@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgd50a01ilmis"]
+
+[ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/player/player.png" id="1_cmjn3"]
+[ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/player/Player.cs" id="1_ldahb"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_o7rne"]
+[ext_resource type="PackedScene" uid="uid://bjjpuksvia1vq" path="res://components/dash/DashComponent.tscn" id="3_ldahb"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/gravity/GravityComponent.tscn" id="4_1yb3l"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/move/MoveComponent.tscn" id="5_jta8v"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/jump/JumpComponent.tscn" id="6_owoq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
+size = Vector2(8, 11)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("componentManager")]
+script = ExtResource("1_ldahb")
+componentManager = NodePath("ComponentManager")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hoemn")
+
+[node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("1_cmjn3")
+
+[node name="ComponentManager" parent="." instance=ExtResource("2_o7rne")]
+
+[node name="DashComponent" parent="ComponentManager" instance=ExtResource("3_ldahb")]
+
+[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("4_1yb3l")]
+
+[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("5_jta8v")]
+
+[node name="JumpComponent" parent="ComponentManager" instance=ExtResource("6_owoq1")]
