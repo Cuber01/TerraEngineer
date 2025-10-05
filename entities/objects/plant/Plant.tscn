@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbvywcak0dwtr"]
+
+[ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="1_0vmq4"]
+[ext_resource type="PackedScene" uid="uid://dh565y8refuyw" path="res://entities/objects/plant/MushroomPlant.tscn" id="2_b4wr8"]
+[ext_resource type="PackedScene" uid="uid://dxs5ae8r4qvb0" path="res://entities/objects/plant/HeartPlant.tscn" id="3_g6gtk"]
+
+[node name="Plant" type="Node2D"]
+script = ExtResource("1_0vmq4")
+
+[node name="MushroomPlant" parent="." instance=ExtResource("2_b4wr8")]
+position = Vector2(0, -1)
+
+[node name="HeartPlant" parent="." instance=ExtResource("3_g6gtk")]

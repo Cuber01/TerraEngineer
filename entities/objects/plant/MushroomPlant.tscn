@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh565y8refuyw"]
+
+[ext_resource type="Texture2D" uid="uid://clql1xeyl6f0k" path="res://entities/objects/plant/plant-mushroom.png" id="1_mo8c6"]
+[ext_resource type="Script" uid="uid://d0cuix83asm8u" path="res://entities/objects/plant/Mushroom.cs" id="1_rgdec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdec"]
+size = Vector2(9, 10)
+
+[node name="MushroomPlant" type="Node2D" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_rgdec")
+hitbox = NodePath("Area2D/CollisionShape2D")
+MyBiome = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rgdec")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mo8c6")

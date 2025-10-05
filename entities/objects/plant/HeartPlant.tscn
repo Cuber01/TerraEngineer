@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxs5ae8r4qvb0"]
+
+[ext_resource type="Script" uid="uid://nlqu7llwq0rh" path="res://entities/objects/plant/HeartPlant.cs" id="1_b8cd1"]
+[ext_resource type="Texture2D" uid="uid://d2dpf27du1h6q" path="res://entities/objects/plant/plant-grass.png" id="1_xhu61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8cd1"]
+size = Vector2(5, 4)
+
+[node name="HeartPlant" type="Node2D" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_b8cd1")
+hitbox = NodePath("Area2D/CollisionShape2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_b8cd1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xhu61")

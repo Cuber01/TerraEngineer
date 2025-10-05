@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfhyb11tyqtw7"]
+[gd_scene load_steps=5 format=3 uid="uid://cfhyb11tyqtw7"]
 
 [ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/player/Player.tscn" id="1_2o28a"]
 [ext_resource type="Texture2D" uid="uid://qukxmwj54ktp" path="res://icon.svg" id="1_8gaax"]
+[ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="3_2fjjk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gaax"]
 size = Vector2(191, 20)
@@ -22,3 +23,6 @@ texture = ExtResource("1_8gaax")
 
 [node name="Player" parent="." instance=ExtResource("1_2o28a")]
 position = Vector2(0, -18)
+
+[node name="Plant" parent="." instance=ExtResource("3_2fjjk")]
+position = Vector2(39, -15)
