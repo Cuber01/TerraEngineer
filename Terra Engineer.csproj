@@ -8,4 +8,7 @@
     <Content Include="addons\TimerManager\LICENSE.txt" />
     <Content Include="addons\TimerManager\TimerManager.tscn" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets_ase\" />
+  </ItemGroup>
 </Project>

@@ -1,14 +1,22 @@
 using Godot;
+using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
 public partial class Jump : Component
 {
-    [Export] private float jumpVelocity = -100;
-    [Export] private int maxJumps = 10;
+    [Export] private float jumpVelocity = 100;
+    [Export] private int maxJumps = 2;
     
     private int currentJumps = 0;
 
+    public override void Init(Mob actor)
+    {
+        base.Init(actor);
+        actor.CM.GetComponent<Gravity>().LandedOnFloor += 
+            () => currentJumps = 0;
+    }
+    
     public bool AttemptJump()
     {
         if (canJump())
@@ -22,7 +30,7 @@ public partial class Jump : Component
 
     private void executeJump()
     {
-        Actor.velocity.Y = jumpVelocity;
+        Actor.velocity.Y = -jumpVelocity;
         currentJumps++;
     }
 
@@ -31,6 +39,4 @@ public partial class Jump : Component
         return currentJumps < maxJumps;
     }
     
-    
-    // Signal: PLayer hit floor, reset current jumps
 }

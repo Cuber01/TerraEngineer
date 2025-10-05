@@ -1,4 +1,5 @@
 using Godot;
+using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
@@ -6,11 +7,18 @@ public partial class Dash : Component
 {
     [Export] private float dashSpeed = 400;
     [Export] private float dashDuration = 0.06f;
-    [Export] private int maxDashes = 10;
+    [Export] private int maxDashes = 1;
 
     private int currentDashes = 0;
     private bool isDashing = false;
     private int dashDirection;
+    
+    public override void Init(Mob actor)
+    {
+        base.Init(actor);
+        actor.CM.GetComponent<Gravity>().LandedOnFloor += 
+            () => currentDashes = 0;
+    }
     
     public override void Update(float delta)
     {
@@ -42,7 +50,6 @@ public partial class Dash : Component
     private void endDash(ITimer timer)
     {
         isDashing = false;
-        currentDashes = 0;
     }
 
     private bool canDash()
@@ -50,5 +57,4 @@ public partial class Dash : Component
         return currentDashes < maxDashes;
     }
     
-    // Signal: PLayer hit floor, reset current dashes
 }

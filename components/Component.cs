@@ -7,7 +7,7 @@ public partial class Component : Node2D
 {
     protected Mob Actor;
 
-    public void Init(Mob actor)
+    public virtual void Init(Mob actor)
     {
         this.Actor = actor;
     }
