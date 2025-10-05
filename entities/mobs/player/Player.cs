@@ -12,33 +12,34 @@ public partial class Player : Mob
 	{
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		int move_dir = (int)Input.GetAxis("ui_left", "ui_right");
-		if (move_dir != 0)
-		{
-			facing = move_dir;
-		}
-		
-		if (Input.IsActionJustPressed("dash"))
-		{
-			componentManager.GetComponent<Dash>().AttemptDash(facing);
-		}
-	
-		if (Input.IsActionJustPressed("jump"))
-		{
-			componentManager.GetComponent<Jump>().AttemptJump();
-		}
-		
-		componentManager.GetComponent<Move>().Walk(move_dir);
 		if (!IsOnFloor())
 		{
 			componentManager.GetComponent<Gravity>().ApplyGravity((float)delta);
 		}
 		else
 		{
-			Mathf.Clamp(velocity.Y, 0, 999999999);
+			velocity.Y = Mathf.Clamp(velocity.Y, -999999999, 0);
+		}
+		
+		int moveDir = (int)Input.GetAxis("ui_left", "ui_right");
+		if (moveDir != 0)
+		{
+			facing = moveDir;
+		}
+		
+		if (Input.IsActionJustPressed("dash"))
+		{
+			componentManager.GetComponent<Dash>().AttemptDash(facing);
+		}
+		
+		componentManager.GetComponent<Move>().Walk(moveDir);
+
+		
+		if (Input.IsActionJustPressed("jump"))
+		{
+			componentManager.GetComponent<Jump>().AttemptJump();
 		}
 		
 		componentManager.UpdateComponents((float)delta);

@@ -4,8 +4,8 @@ namespace TENamespace;
 
 public partial class Dash : Component
 {
-    [Export] private float dashSpeed = 100;
-    [Export] private float dashDuration = 5f;
+    [Export] private float dashSpeed = 400;
+    [Export] private float dashDuration = 0.06f;
     [Export] private int maxDashes = 10;
 
     private int currentDashes = 0;

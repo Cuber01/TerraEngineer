@@ -7,7 +7,7 @@
 size = Vector2(191, 20)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(539, 294)
+position = Vector2(153, 117)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

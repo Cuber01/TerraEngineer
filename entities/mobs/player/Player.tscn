@@ -30,5 +30,6 @@ texture = ExtResource("1_cmjn3")
 [node name="GravityComponent" parent="ComponentManager" instance=ExtResource("4_1yb3l")]
 
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("5_jta8v")]
+speed = 150.0
 
 [node name="JumpComponent" parent="ComponentManager" instance=ExtResource("6_owoq1")]

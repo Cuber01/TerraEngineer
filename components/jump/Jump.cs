@@ -22,7 +22,7 @@ public partial class Jump : Component
 
     private void executeJump()
     {
-        Actor.velocity.Y += jumpVelocity;
+        Actor.velocity.Y = jumpVelocity;
         currentJumps++;
     }
 

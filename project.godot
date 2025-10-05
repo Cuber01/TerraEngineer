@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 TimerManager="*res://addons/TimerManager/TimerManager.tscn"
 
+[display]
+
+window/stretch/scale=4.0
+window/stretch/scale_mode="integer"
+
 [dotnet]
 
 project/assembly_name="Terra Engineer"

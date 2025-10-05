@@ -5,9 +5,13 @@ namespace TENamespace;
 public partial class Gravity : Component
 {
     [Export] private float gravityForce = 2f;
-
+    [Export] private float maxGravity = 60f;
+    
     public void ApplyGravity(float delta)
     {
-        Actor.velocity.Y += gravityForce;
+        if (Actor.velocity.Y < maxGravity)
+        {
+            Actor.velocity.Y += gravityForce;    
+        }
     }
 }
