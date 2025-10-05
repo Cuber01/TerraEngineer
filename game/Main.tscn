@@ -23,6 +23,7 @@ texture = ExtResource("1_8gaax")
 
 [node name="Player" parent="." instance=ExtResource("1_2o28a")]
 position = Vector2(0, -18)
+collision_layer = 2
 
 [node name="Plant" parent="." instance=ExtResource("3_2fjjk")]
 position = Vector2(39, -15)
