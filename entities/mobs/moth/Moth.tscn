@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7lheehhbvylp"]
+
+[ext_resource type="Script" uid="uid://ddf0ivure6uik" path="res://entities/mobs/moth/Moth.cs" id="1_qq40e"]
+[ext_resource type="Texture2D" uid="uid://t77v2ar3qs2u" path="res://entities/mobs/moth/fly.png" id="2_qq40e"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_kqcek"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="4_cthkm"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/contact_damage/ContactDamageComponent.tscn" id="5_ihw6d"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/free_fly/FreeFlyComponent.tscn" id="6_qq40e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r1p3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qq40e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5khu5"]
+size = Vector2(4, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qq40e"]
+radius = 22.0227
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
+size = Vector2(4, 4)
+
+[node name="Moth" type="CharacterBody2D"]
+top_level = true
+collision_layer = 4
+script = ExtResource("1_qq40e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r1p3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5khu5")
+
+[node name="FlyAroundPoint" type="Node2D" parent="."]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_qq40e")
+
+[node name="ComponentManager" parent="." instance=ExtResource("3_kqcek")]
+
+[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_cthkm")]
+maxHealth = 5
+
+[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("5_ihw6d")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+shape = SubResource("RectangleShape2D_q4wwo")
+
+[node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("6_qq40e")]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
+
+[editable path="ComponentManager/ContactDamageComponent"]

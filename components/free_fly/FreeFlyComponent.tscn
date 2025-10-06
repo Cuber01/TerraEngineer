@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs00eiy8lhlvg"]
+
+[ext_resource type="Script" uid="uid://b2tftb434wh0q" path="res://components/free_fly/FreeFly.cs" id="1_tqoml"]
+
+[node name="FreeFlyComponent" type="Node2D"]
+script = ExtResource("1_tqoml")

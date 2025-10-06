@@ -8,7 +8,7 @@ public partial class Player : Mob
 
 	public override void _PhysicsProcess(double delta)
 	{
-		CM.GetComponent<Gravity>().UpdateGravity((float)delta);
+
 		
 		DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
 		if (moveDir != 0)
@@ -22,7 +22,7 @@ public partial class Player : Mob
 		}
 		
 		CM.GetComponent<Move>().Walk(moveDir);
-		CM.GetComponent<Move>().UpdateFriction();
+		CM.UpdateComponents((float)delta);
 		
 		if (Input.IsActionJustPressed("jump"))
 		{

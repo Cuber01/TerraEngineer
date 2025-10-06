@@ -22,7 +22,8 @@ public partial class Frog : Mob
     public override void _PhysicsProcess(double delta)
     {
         fsm.Update((float)delta);
-
+        CM.UpdateComponents((float)delta);
+        
         Velocity = velocity;
         MoveAndSlide();
 
@@ -53,8 +54,6 @@ public partial class Frog : Mob
         public void Update(Frog actor, float dt)
         {
             actor.CM.GetComponent<Move>().Walk(actor.Facing);
-            actor.CM.GetComponent<Move>().UpdateFriction();
-            actor.CM.GetComponent<Gravity>().UpdateGravity(dt);
         }
         
         public void Exit(Frog actor)
@@ -74,8 +73,6 @@ public partial class Frog : Mob
         public override void Update(Frog actor, float dt)
         {
             base.Update(actor, dt);
-            actor.CM.GetComponent<Gravity>().UpdateGravity(dt);
-            actor.CM.GetComponent<Move>().UpdateFriction();
         }
     }
 

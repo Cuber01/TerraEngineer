@@ -11,7 +11,9 @@ public partial class Gravity : Component
     public delegate void LandedOnFloorEventHandler();
     public event LandedOnFloorEventHandler LandedOnFloor;
     
-    public void UpdateGravity(float delta)
+    public override void Update(float delta) => updateGravity(delta);
+    
+    private void updateGravity(float delta)
     {
         if (Actor.IsOnFloor())
         {
