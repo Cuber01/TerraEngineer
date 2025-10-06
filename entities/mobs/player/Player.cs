@@ -5,9 +5,6 @@ using TerraEngineer.entities.mobs;
 
 public partial class Player : Mob
 {
-
-	
-	private int facing = 1;
 	
 	public override void _Ready()
 	{
@@ -17,19 +14,19 @@ public partial class Player : Mob
 	{
 		CM.GetComponent<Gravity>().UpdateGravity((float)delta);
 		
-		int moveDir = (int)Input.GetAxis("ui_left", "ui_right");
+		DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
 		if (moveDir != 0)
 		{
-			facing = moveDir;
+			Facing = moveDir;
 		}
 		
 		if (Input.IsActionJustPressed("dash"))
 		{
-			CM.GetComponent<Dash>().AttemptDash(facing);
+			CM.GetComponent<Dash>().AttemptDash(Facing);
 		}
 		
 		CM.GetComponent<Move>().Walk(moveDir);
-
+		CM.GetComponent<Move>().UpdateFriction();
 		
 		if (Input.IsActionJustPressed("jump"))
 		{

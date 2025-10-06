@@ -29,7 +29,7 @@ public partial class Dash : Component
         }
     }
 
-    public bool AttemptDash(int direction)
+    public bool AttemptDash(DirectionX direction)
     {
         if (canDash())
         {
@@ -39,10 +39,10 @@ public partial class Dash : Component
         return false;
     }
 
-    private void executeDash(int direction)
+    private void executeDash(DirectionX direction)
     {
         isDashing = true;
-        dashDirection = direction;
+        dashDirection = (int)direction;
         TimerManager.Schedule(dashDuration, endDash);
         currentDashes++;
     }

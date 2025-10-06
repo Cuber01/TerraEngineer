@@ -6,6 +6,7 @@ namespace TerraEngineer.entities.mobs;
 public partial class Mob : CharacterBody2D
 {
     [Export] public ComponentManager CM;
+    [Export] public DirectionX Facing = DirectionX.Right;
     public Vector2 velocity;
     
     

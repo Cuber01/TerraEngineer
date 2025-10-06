@@ -1,0 +1,81 @@
+
+using System.Collections.Generic;
+using System.Linq;
+using TerraEngineer;
+
+public class StateMachine<T>
+{
+    private readonly T actor;
+    public IState<T> CurrentState { get; private set; }
+    
+    private readonly List<Transition<T>> localTransitions = new();
+    private List<Transition<T>> possibleTransitions = new();
+    private readonly List<Transition<T>> globalTransitions = new();
+
+    public StateMachine(T actor, IState<T> initialState)
+    {
+        this.actor = actor;
+        CurrentState = initialState;
+        CurrentState.Enter(this.actor);
+    }
+
+    public void AddTransition(IState<T> from, IState<T> to, System.Func<bool> condition)
+    {
+        Transition<T> newTransition = new Transition<T>(to, condition, from); 
+        localTransitions.Add(newTransition);
+        if (from == CurrentState)
+        {
+            possibleTransitions.Add(newTransition);
+        }
+    }
+        
+    public void AddGlobalTransition(IState<T> to, System.Func<bool> condition) => 
+        globalTransitions.Add(new Transition<T>(to, condition, null));
+
+    public void Update(float dt)
+    {
+        Transition<T> transition = GetTransition();
+        if (transition != null) {
+            SetState(transition.To);
+        }
+        
+        CurrentState.Update(actor, dt);
+    }
+
+    private void SetState(IState<T> newState)
+    {
+        CurrentState.Exit(actor);
+        CurrentState = newState;
+        CurrentState.Enter(actor);
+
+        calculatePossibleTransitions();
+    }
+    
+    private void calculatePossibleTransitions() =>  possibleTransitions = localTransitions
+        .Where(t => t.From == CurrentState)
+        .ToList();
+
+    private Transition<T> GetTransition()
+    {
+        // Search global transitions
+        foreach (var transition in globalTransitions)
+        {
+            if (transition.Condition())
+                return transition;
+        }
+
+
+        // Else search normal transitions
+        return possibleTransitions.FirstOrDefault(t => t.Condition(), null);
+    }
+
+    // If from=null it's a global transition
+    private class Transition<U>(IState<U> to, System.Func<bool> condition, IState<U> from)
+    {
+        public readonly IState<U> From = from;
+        public readonly IState<U> To = to;
+        public readonly System.Func<bool> Condition = condition;
+
+        
+    }
+}

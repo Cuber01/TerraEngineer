@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbf0qr5ojtqgw"]
+
+[ext_resource type="Texture2D" uid="uid://di8jvm8s5gfca" path="res://entities/mobs/frog/frog.png" id="1_c4mrv"]
+[ext_resource type="Script" uid="uid://kfeqfwwycnon" path="res://entities/mobs/frog/Frog.cs" id="1_hhfj2"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="1_yst0w"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/jump/JumpComponent.tscn" id="2_c4mrv"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/move/MoveComponent.tscn" id="3_hhfj2"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="4_8wbl1"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/gravity/GravityComponent.tscn" id="5_ggd7j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hhfj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c4mrv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
+size = Vector2(7, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggd7j"]
+size = Vector2(7, 6)
+
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("CM")]
+collision_layer = 4
+script = ExtResource("1_hhfj2")
+CM = NodePath("ComponentManager")
+Facing = -1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hhfj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8wbl1")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_ggd7j")
+
+[node name="ComponentManager" parent="." instance=ExtResource("1_yst0w")]
+
+[node name="JumpComponent" parent="ComponentManager" instance=ExtResource("2_c4mrv")]
+jumpVelocity = 60.0
+maxJumps = 1
+
+[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("3_hhfj2")]
+speed = 50.0
+
+[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_8wbl1")]
+maxHealth = 5
+
+[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("5_ggd7j")]

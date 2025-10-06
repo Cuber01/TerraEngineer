@@ -1,4 +1,5 @@
 using Godot;
+using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
@@ -8,14 +9,17 @@ public partial class Move : Component
 	[Export] private float acceleration = 0.25f;
 	[Export] private float friction = 0.1f;
 
-	public void Walk(float direction)
+	public void Walk(DirectionX direction)
 	{
-		Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, direction * speed, acceleration);
+		Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, (int)direction * speed, acceleration);
 	}
 
-	public void ApplyFriction()
+	public void UpdateFriction()
 	{
-		Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, 0f, friction);
+		if (Actor.velocity.X != 0)
+		{
+			Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, 0f, friction);	
+		}
 	}
 	
 }
