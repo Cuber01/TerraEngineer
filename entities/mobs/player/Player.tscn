@@ -12,9 +12,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CM")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
 script = ExtResource("1_ldahb")
 CM = NodePath("ComponentManager")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 

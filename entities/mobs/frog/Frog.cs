@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using TENamespace;
+using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
@@ -24,6 +25,16 @@ public partial class Frog : Mob
 
         Velocity = velocity;
         MoveAndSlide();
+
+        for(int i = 0; i < GetSlideCollisionCount(); i++)
+        {
+            Vector2 normal = GetSlideCollision(i).GetNormal();
+            GD.Print(normal);
+            if (normal == new Vector2(-(int)Facing, 0))
+            {
+                Flip();
+            }
+        }
     }
 
     public class JumpState : IState<Frog>

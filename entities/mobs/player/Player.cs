@@ -5,10 +5,6 @@ using TerraEngineer.entities.mobs;
 
 public partial class Player : Mob
 {
-	
-	public override void _Ready()
-	{
-	}
 
 	public override void _PhysicsProcess(double delta)
 	{

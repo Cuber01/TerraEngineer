@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbf0qr5ojtqgw"]
+[gd_scene load_steps=12 format=3 uid="uid://cbf0qr5ojtqgw"]
 
 [ext_resource type="Texture2D" uid="uid://di8jvm8s5gfca" path="res://entities/mobs/frog/frog.png" id="1_c4mrv"]
 [ext_resource type="Script" uid="uid://kfeqfwwycnon" path="res://entities/mobs/frog/Frog.cs" id="1_hhfj2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/move/MoveComponent.tscn" id="3_hhfj2"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="4_8wbl1"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/gravity/GravityComponent.tscn" id="5_ggd7j"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/contact_damage/ContactDamageComponent.tscn" id="8_8wbl1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hhfj2"]
 animations = [{
@@ -19,30 +20,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
+size = Vector2(6.875, 6)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggd7j"]
-size = Vector2(7, 6)
-
-[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("CM")]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
+sprite = NodePath("AnimatedSprite2D")
 Facing = -1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hhfj2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8wbl1")
-
-[node name="AttackArea" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("RectangleShape2D_ggd7j")
+shape = SubResource("RectangleShape2D_0f11y")
 
 [node name="ComponentManager" parent="." instance=ExtResource("1_yst0w")]
 
@@ -57,3 +52,10 @@ speed = 50.0
 maxHealth = 5
 
 [node name="GravityComponent" parent="ComponentManager" instance=ExtResource("5_ggd7j")]
+
+[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("8_8wbl1")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+shape = SubResource("RectangleShape2D_8wbl1")
+
+[editable path="ComponentManager/ContactDamageComponent"]
