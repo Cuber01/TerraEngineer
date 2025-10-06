@@ -18,10 +18,7 @@ public partial class Move : Component
 
 	private void updateFriction()
 	{
-		if (Actor.velocity.X != 0)
-		{
-			Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, 0f, friction);	
-		}
+		Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, 0f, friction);	
 	}
 	
 }

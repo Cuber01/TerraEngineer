@@ -4,9 +4,12 @@ using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
+
 public partial class Moth : Mob
 {
-    [Export] private Node2D flyAroundPoint;
+    [Export] public Node2D FlyAroundPoint;
+    [Export] public float MarginAroundPoint = 30f;
+
     private readonly ChaseState chaseState = new();
     private readonly IdleState idleState = new();
     
@@ -29,9 +32,7 @@ public partial class Moth : Mob
 
     public class ChaseState : IState<Moth>
     {
-        public Func<bool> LandedOnFloor => () => isLandingOnFloor;
-        private bool isLandingOnFloor = false;
-        private void landedOnFloor() => isLandingOnFloor = true;
+        public Mob ChaseTarget { set; private get; }
         
         public void Enter(Moth actor)
         {
@@ -50,14 +51,22 @@ public partial class Moth : Mob
     
     public class IdleState : IState<Moth>
     {
+        private Vector2 goToPoint;
+        private float delayAtPoint = 3f; //Currently delay before changing points, perhaps fix/change
+
         public void Enter(Moth actor)
         {
-            
+            void RerollPoint(ITimer timer)
+            {
+                goToPoint = actor.FlyAroundPoint.GlobalPosition + MathTools.RandomVector2(-actor.MarginAroundPoint, actor.MarginAroundPoint);
+                TimerManager.Schedule(delayAtPoint, RerollPoint);
+            }
+            RerollPoint(null);
         }
 
         public void Update(Moth actor, float dt)
         {
-            
+            actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint);    
         }
 
         public void Exit(Moth actor)
@@ -70,6 +79,6 @@ public partial class Moth : Mob
     
     private void onDetectionAreaBodyEntered(Node2D body)
     {
-        
+        chaseState.ChaseTarget = (Mob)body;
     }
 }

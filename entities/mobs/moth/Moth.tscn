@@ -27,10 +27,15 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
-[node name="Moth" type="CharacterBody2D"]
+[node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM", "sprite")]
 top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
+FlyAroundPoint = NodePath("FlyAroundPoint")
+MarginAroundPoint = 10.0
+CM = NodePath("ComponentManager")
+sprite = NodePath("AnimatedSprite2D")
+Facing = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r1p3q")

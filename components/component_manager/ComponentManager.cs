@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using Godot.Collections;
 using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
 public partial class ComponentManager : Node2D
 {
-    private readonly System.Collections.Generic.Dictionary<Type, Component> components = new System.Collections.Generic.Dictionary<Type, Component>();
+    private readonly Dictionary<Type, Component> components = new();
     private Mob actor;
     
     public override void _Ready()
     {
         actor = GetParent<Mob>();
         
-        Array<Node> children = GetChildren();
+        Godot.Collections.Array<Node> children = GetChildren();
         foreach (Node child in children)
         {
+            GD.Print(child.GetType());
             components.Add(child.GetType(), child as Component);
         }
         

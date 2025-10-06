@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfhyb11tyqtw7"]
+[gd_scene load_steps=8 format=3 uid="uid://cfhyb11tyqtw7"]
 
 [ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/player/Player.tscn" id="1_2o28a"]
 [ext_resource type="Texture2D" uid="uid://qukxmwj54ktp" path="res://icon.svg" id="1_8gaax"]
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="3_2fjjk"]
 [ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/frog/Frog.tscn" id="4_ljq5a"]
+[ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/moth/Moth.tscn" id="5_madmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gaax"]
 size = Vector2(191, 20)
@@ -43,3 +44,6 @@ position = Vector2(39, -15)
 
 [node name="Frog" parent="." instance=ExtResource("4_ljq5a")]
 position = Vector2(31, -14)
+
+[node name="Moth" parent="." instance=ExtResource("5_madmh")]
+position = Vector2(231, 65)
