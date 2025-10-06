@@ -30,7 +30,6 @@ public partial class Frog : Mob
         for(int i = 0; i < GetSlideCollisionCount(); i++)
         {
             Vector2 normal = GetSlideCollision(i).GetNormal();
-            GD.Print(normal);
             if (normal == new Vector2(-(int)Facing, 0))
             {
                 Flip();

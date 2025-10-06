@@ -17,7 +17,6 @@ public partial class ComponentManager : Node2D
         Godot.Collections.Array<Node> children = GetChildren();
         foreach (Node child in children)
         {
-            GD.Print(child.GetType());
             components.Add(child.GetType(), child as Component);
         }
         

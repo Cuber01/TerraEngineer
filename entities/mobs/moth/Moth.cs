@@ -8,7 +8,7 @@ using TerraEngineer.entities.mobs;
 public partial class Moth : Mob
 {
     [Export] public Node2D FlyAroundPoint;
-    [Export] public float MarginAroundPoint = 30f;
+    [Export] public float MarginAroundPoint = 20f;
 
     private readonly ChaseState chaseState = new();
     private readonly IdleState idleState = new();
@@ -17,7 +17,9 @@ public partial class Moth : Mob
     
     public override void _Ready()
     {
+        FlyAroundPoint.GlobalPosition = GlobalPosition;
         fsm = new StateMachine<Moth>(this, idleState);
+        
         // fsm.AddTransition(chaseState, waitState, chaseState.LandedOnFloor);
         // fsm.AddTransition(waitState, jumpState, idleState.TimerCondition);
     }
@@ -25,6 +27,7 @@ public partial class Moth : Mob
     public override void _PhysicsProcess(double delta)
     {
         fsm.Update((float)delta);
+        CM.UpdateComponents((float)delta);
 
         Velocity = velocity;
         MoveAndSlide();
@@ -58,7 +61,8 @@ public partial class Moth : Mob
         {
             void RerollPoint(ITimer timer)
             {
-                goToPoint = actor.FlyAroundPoint.GlobalPosition + MathTools.RandomVector2(-actor.MarginAroundPoint, actor.MarginAroundPoint);
+                Vector2 rnd = MathTools.RandomVector2(-actor.MarginAroundPoint, actor.MarginAroundPoint);
+                goToPoint = actor.FlyAroundPoint.GlobalPosition + rnd;
                 TimerManager.Schedule(delayAtPoint, RerollPoint);
             }
             RerollPoint(null);
@@ -66,7 +70,7 @@ public partial class Moth : Mob
 
         public void Update(Moth actor, float dt)
         {
-            actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint);    
+           actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint);    
         }
 
         public void Exit(Moth actor)

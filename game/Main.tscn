@@ -47,3 +47,4 @@ position = Vector2(31, -14)
 
 [node name="Moth" parent="." instance=ExtResource("5_madmh")]
 position = Vector2(231, 65)
+MarginAroundPoint = 20.0

@@ -32,7 +32,6 @@ top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
 FlyAroundPoint = NodePath("FlyAroundPoint")
-MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
 sprite = NodePath("AnimatedSprite2D")
 Facing = 0
@@ -44,6 +43,7 @@ sprite_frames = SubResource("SpriteFrames_r1p3q")
 shape = SubResource("RectangleShape2D_5khu5")
 
 [node name="FlyAroundPoint" type="Node2D" parent="."]
+top_level = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 monitorable = false
