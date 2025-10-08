@@ -9,19 +9,19 @@ public partial class Moth : Mob
 {
     [Export] public Node2D FlyAroundPoint;
     [Export] public float MarginAroundPoint = 20f;
+    [Export] private float timeUntilBored = 5f;
 
     private readonly ChaseState chaseState = new();
     private readonly IdleState idleState = new();
-    
+
+    private bool seesPlayer = false;
+
     private StateMachine<Moth> fsm;
     
     public override void _Ready()
     {
         FlyAroundPoint.GlobalPosition = GlobalPosition;
-        fsm = new StateMachine<Moth>(this, idleState);
-        
-        // fsm.AddTransition(chaseState, waitState, chaseState.LandedOnFloor);
-        // fsm.AddTransition(waitState, jumpState, idleState.TimerCondition);
+        fsm = new StateMachine<Moth>(this, idleState, true);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -43,11 +43,11 @@ public partial class Moth : Mob
         
         public void Update(Moth actor, float dt)
         {
+            actor.CM.GetComponent<FreeFly>().FlyToPoint(ChaseTarget.GlobalPosition);  
         }
         
-        public void Exit(Moth actor)
-        {
-        }
+        public void Exit(Moth actor) { }
+
         
         // Stop chase if long delay and player not in detection range
     }
@@ -84,5 +84,19 @@ public partial class Moth : Mob
     private void onDetectionAreaBodyEntered(Node2D body)
     {
         chaseState.ChaseTarget = (Mob)body;
+        seesPlayer = true;
+        fsm.ChangeState(chaseState);
+    }
+    
+    private void onDetectionAreaBodyExited(Node2D body)
+    {
+        seesPlayer = false;
+        TimerManager.Schedule(timeUntilBored, (t) =>
+        {
+            if (!seesPlayer)
+            {
+                fsm.ChangeState(idleState);
+            }
+        });
     }
 }

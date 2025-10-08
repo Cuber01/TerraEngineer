@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TerraEngineer;
@@ -12,9 +13,12 @@ public class StateMachine<T>
     private List<Transition<T>> possibleTransitions = new();
     private readonly List<Transition<T>> globalTransitions = new();
 
-    public StateMachine(T actor, IState<T> initialState)
+    private readonly bool manualTransitionAllowed = false;
+    
+    public StateMachine(T actor, IState<T> initialState, bool manualTransitionAllowed = false)
     {
         this.actor = actor;
+        this.manualTransitionAllowed = manualTransitionAllowed;
         CurrentState = initialState;
         CurrentState.Enter(this.actor);
     }
@@ -36,13 +40,27 @@ public class StateMachine<T>
     {
         Transition<T> transition = GetTransition();
         if (transition != null) {
-            SetState(transition.To);
+            changeState(transition.To);
         }
         
         CurrentState.Update(actor, dt);
     }
 
-    private void SetState(IState<T> newState)
+    public void ChangeState(IState<T> newState)
+    {
+        if (!manualTransitionAllowed) {
+            throw new AccessViolationException("Cannot manually change state when manualTransition flag is false");
+        }
+
+        if (CurrentState == newState)
+        {
+            return;
+        }
+    
+        changeState(newState);
+    }
+    
+    private void changeState(IState<T> newState)
     {
         CurrentState.Exit(actor);
         CurrentState = newState;
@@ -75,7 +93,6 @@ public class StateMachine<T>
         public readonly IState<U> From = from;
         public readonly IState<U> To = to;
         public readonly System.Func<bool> Condition = condition;
-
-        
     }
+    
 }

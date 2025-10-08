@@ -46,6 +46,8 @@ shape = SubResource("RectangleShape2D_5khu5")
 top_level = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -64,5 +66,6 @@ shape = SubResource("RectangleShape2D_q4wwo")
 [node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("6_qq40e")]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]
 
 [editable path="ComponentManager/ContactDamageComponent"]
