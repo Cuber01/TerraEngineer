@@ -13,6 +13,9 @@ public partial class Mob : CharacterBody2D
     [Export] public DirectionX Facing = DirectionX.Right;
     public Vector2 velocity;
 
+    // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
+    public bool Dead  = false;
+
     protected void Flip()
     {
         Facing = (DirectionX)(-(int)Facing);
@@ -21,6 +24,7 @@ public partial class Mob : CharacterBody2D
 
     public virtual void Die()
     {
-        QueueFree();
+        Dead = true;
+        CallDeferred(Node.MethodName.QueueFree);
     }
 }

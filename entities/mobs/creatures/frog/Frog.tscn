@@ -30,6 +30,7 @@ size = Vector2(7, 6)
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
+Team = 1
 sprite = NodePath("AnimatedSprite2D")
 Facing = -1
 
@@ -46,7 +47,6 @@ jumpVelocity = 60.0
 maxJumps = 1
 
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("3_hhfj2")]
-speed = 50.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_8wbl1")]
 maxHealth = 5

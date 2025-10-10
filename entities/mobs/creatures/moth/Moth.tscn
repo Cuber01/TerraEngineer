@@ -33,6 +33,7 @@ collision_layer = 4
 script = ExtResource("1_qq40e")
 FlyAroundPoint = NodePath("FlyAroundPoint")
 CM = NodePath("ComponentManager")
+Team = 1
 sprite = NodePath("AnimatedSprite2D")
 Facing = 0
 
