@@ -22,6 +22,19 @@ public partial class ComponentManager : Node2D
         
         InitComponents();
     }
+    
+    public T TryGetComponent<T>() where T : Component
+    {
+        bool found = components.TryGetValue(typeof(T), out Component component);
+        if (found)
+        {
+            return (T)component;
+        }
+        else
+        {
+            return null;    
+        }
+    }
 
     public T GetComponent<T>() where T : Component {
         return (T) components[typeof(T)];

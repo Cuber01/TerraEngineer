@@ -8,8 +8,8 @@ public partial class Gravity : Component
     [Export] private float maxGravity = 60f;
     
     private bool isOnFloor = false;
-    public delegate void LandedOnFloorEventHandler();
-    public event LandedOnFloorEventHandler LandedOnFloor;
+    public delegate void LandedOnFloorHandler();
+    public event LandedOnFloorHandler LandedOnFloor;
     
     public override void Update(float delta) => updateGravity(delta);
     
