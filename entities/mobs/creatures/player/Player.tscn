@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=12 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/move/MoveComponent.tscn" id="5_jta8v"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/jump/JumpComponent.tscn" id="6_owoq1"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="8_1yb3l"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/projectile_builder/ProjectileBuilderComponent.tscn" id="9_4dg4o"]
+[ext_resource type="PackedScene" uid="uid://b1ljunm0av8p" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="10_kfaad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
@@ -37,3 +39,6 @@ speed = 150.0
 [node name="JumpComponent" parent="ComponentManager" instance=ExtResource("6_owoq1")]
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
+
+[node name="ProjectileBuilderComponent" parent="ComponentManager" instance=ExtResource("9_4dg4o")]
+projectileScene = ExtResource("10_kfaad")

@@ -6,7 +6,7 @@ namespace TENamespace.lifetime;
 public partial class Lifetime : Component
 {
     [Export] private Mob actor;
-    [Export] private float lifetime;
+    [Export] private float lifetime = 100;
     
     public override void _Ready()
     {

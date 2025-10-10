@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using TENamespace;
+using TENamespace.projectile_builder;
 using TerraEngineer.entities.mobs;
 
 public partial class Player : Mob
@@ -8,8 +9,6 @@ public partial class Player : Mob
 
 	public override void _PhysicsProcess(double delta)
 	{
-
-		
 		DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
 		if (moveDir != 0)
 		{
@@ -19,6 +18,11 @@ public partial class Player : Mob
 		if (Input.IsActionJustPressed("dash"))
 		{
 			CM.GetComponent<Dash>().AttemptDash(Facing);
+		}
+		
+		if (Input.IsActionJustPressed("debug"))
+		{
+			CM.GetComponent<ProjectileBuilder>().Build(GlobalPosition, new Vector2((int)Facing, 0));
 		}
 		
 		CM.GetComponent<Move>().Walk(moveDir);

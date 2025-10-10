@@ -20,8 +20,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhuo2"]
 size = Vector2(1.75, 1.75)
 
-[node name="BasicBullet" type="CharacterBody2D"]
+[node name="BasicBullet" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
 script = ExtResource("1_y6bss")
+CM = NodePath("ComponentManager")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.194444, 0.2)
@@ -38,6 +40,7 @@ shape = SubResource("RectangleShape2D_uhuo2")
 
 [node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("4_3jrf3")]
 
-[node name="LifetimeComponent" parent="ComponentManager" instance=ExtResource("5_t483a")]
+[node name="LifetimeComponent" parent="ComponentManager" node_paths=PackedStringArray("actor") instance=ExtResource("5_t483a")]
+actor = NodePath("../..")
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
