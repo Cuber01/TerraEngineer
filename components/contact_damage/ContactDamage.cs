@@ -10,7 +10,9 @@ public partial class ContactDamage : Component
     
     private void onAttackAreaEnemyEntered(Node2D body)
     {
-        Mob enemy = (Mob)body;
-        enemy.CM.GetComponent<Health>().ChangeHealth(-contactDamageAmount);
+        if (body is Mob mob)
+        {
+            mob.CM.GetComponent<Health>().ChangeHealth(-contactDamageAmount);    
+        }
     }
 }

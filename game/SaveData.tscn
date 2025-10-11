@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmumq5c51ok4j"]
+
+[ext_resource type="Script" uid="uid://cfjbvg2xigc05" path="res://game/SaveData.cs" id="1_hgjtp"]
+
+[node name="LoadedSave" type="Node2D"]
+script = ExtResource("1_hgjtp")

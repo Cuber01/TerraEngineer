@@ -17,8 +17,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhuo2"]
-size = Vector2(1.75, 1.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6bss"]
+size = Vector2(2, 2)
 
 [node name="BasicBullet" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
 script = ExtResource("1_y6bss")
@@ -34,7 +34,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_uhuo2")
+shape = SubResource("RectangleShape2D_y6bss")
 
 [node name="ComponentManager" parent="." instance=ExtResource("3_u806n")]
 

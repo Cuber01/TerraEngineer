@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://kbf1n4rnte7r"]
+
+[node name="Gun" type="Node2D"]
+
+[node name="PointUp" type="Node2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="PointDown" type="Node2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="PointRight" type="Node2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="PointLeft" type="Node2D" parent="."]
+position = Vector2(-1, 0)

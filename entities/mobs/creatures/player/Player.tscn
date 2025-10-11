@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=13 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="8_1yb3l"]
 [ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/projectile_builder/ProjectileBuilderComponent.tscn" id="9_4dg4o"]
 [ext_resource type="PackedScene" uid="uid://b1ljunm0av8p" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="10_kfaad"]
+[ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://abilities/gun/Gun.tscn" id="11_61acl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
@@ -27,6 +28,20 @@ shape = SubResource("RectangleShape2D_hoemn")
 [node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("1_cmjn3")
 
+[node name="Gun" parent="." instance=ExtResource("11_61acl")]
+
+[node name="PointUp" parent="Gun" index="0"]
+position = Vector2(0, -6)
+
+[node name="PointDown" parent="Gun" index="1"]
+position = Vector2(0, 6)
+
+[node name="PointRight" parent="Gun" index="2"]
+position = Vector2(5, 0)
+
+[node name="PointLeft" parent="Gun" index="3"]
+position = Vector2(-5, 0)
+
 [node name="ComponentManager" parent="." instance=ExtResource("2_o7rne")]
 
 [node name="DashComponent" parent="ComponentManager" instance=ExtResource("3_ldahb")]
@@ -42,3 +57,5 @@ speed = 150.0
 
 [node name="ProjectileBuilderComponent" parent="ComponentManager" instance=ExtResource("9_4dg4o")]
 projectileScene = ExtResource("10_kfaad")
+
+[editable path="Gun"]
