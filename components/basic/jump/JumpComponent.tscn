@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bi7ha8busj1or"]
 
-[ext_resource type="Script" uid="uid://bvh2c1e7jqhsf" path="res://components/jump/Jump.cs" id="1_wpf12"]
+[ext_resource type="Script" uid="uid://bvh2c1e7jqhsf" path="res://components/basic/jump/Jump.cs" id="1_wpf12"]
 
 [node name="JumpComponent" type="Node2D"]
 script = ExtResource("1_wpf12")

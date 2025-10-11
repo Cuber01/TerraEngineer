@@ -8,11 +8,14 @@ namespace TENamespace;
 public partial class ComponentManager : Node2D
 {
     private readonly Dictionary<Type, Component> components = new();
-    private Mob actor;
+    private Mob actor = null;
     
     public override void _Ready()
     {
-        actor = GetParent<Mob>();
+        if (GetParent<Node2D>() is Mob mob)
+        {
+            actor = mob;
+        }
         
         Godot.Collections.Array<Node> children = GetChildren();
         foreach (Node child in children)
@@ -46,9 +49,13 @@ public partial class ComponentManager : Node2D
 
     public void InitComponents()
     {
-        foreach (var pair in components)
+        // Do not pass actor if we are a subcomponent
+        if (actor != null)
         {
-            pair.Value.Init(actor);
+            foreach (var pair in components)
+            {
+                pair.Value.Init(actor);
+            }    
         }
     }
 

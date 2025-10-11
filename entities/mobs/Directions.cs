@@ -6,3 +6,11 @@ public enum DirectionX
     Left=-1,
     None=0
 }
+
+public enum Directions4
+{
+    Up,
+    Down,
+    Left,
+    Right
+}

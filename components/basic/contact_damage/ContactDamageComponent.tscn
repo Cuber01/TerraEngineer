@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jg6608wf8u7l"]
 
-[ext_resource type="Script" uid="uid://bre61s1b3m78p" path="res://components/contact_damage/ContactDamage.cs" id="1_x3f60"]
+[ext_resource type="Script" uid="uid://bre61s1b3m78p" path="res://components/basic/contact_damage/ContactDamage.cs" id="1_x3f60"]
 
 [node name="ContactDamageComponent" type="Node2D"]
 script = ExtResource("1_x3f60")

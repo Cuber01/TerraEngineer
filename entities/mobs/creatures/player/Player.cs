@@ -22,7 +22,7 @@ public partial class Player : Mob
 		
 		if (Input.IsActionJustPressed("debug"))
 		{
-			CM.GetComponent<ProjectileBuilder>().Build(GlobalPosition, new Vector2((int)Facing, 0));
+			CM.GetComponent<Gun>().Shoot(Directions4.Up);
 		}
 		
 		CM.GetComponent<Move>().Walk(moveDir);

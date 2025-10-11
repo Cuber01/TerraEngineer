@@ -25,6 +25,9 @@ public partial class Mob : CharacterBody2D
     public virtual void Die()
     {
         Dead = true;
-        CallDeferred(Node.MethodName.QueueFree);
+        if (!Dead)
+        {
+            CallDeferred(Node.MethodName.QueueFree);    
+        }
     }
 }

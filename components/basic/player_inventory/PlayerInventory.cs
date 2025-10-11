@@ -42,7 +42,7 @@ public class DoubleJumpItem : Item
 {
     public void Activate(Player actor)
     {
-        
+        actor.CM.GetComponent<Jump>().MaxJumps = 2;
     }
 }
 

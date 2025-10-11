@@ -3,14 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_o7rne"]
-[ext_resource type="PackedScene" uid="uid://bjjpuksvia1vq" path="res://components/dash/DashComponent.tscn" id="3_ldahb"]
-[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/gravity/GravityComponent.tscn" id="4_1yb3l"]
-[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/move/MoveComponent.tscn" id="5_jta8v"]
-[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/jump/JumpComponent.tscn" id="6_owoq1"]
-[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="8_1yb3l"]
-[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/projectile_builder/ProjectileBuilderComponent.tscn" id="9_4dg4o"]
+[ext_resource type="PackedScene" uid="uid://bjjpuksvia1vq" path="res://components/basic/dash/DashComponent.tscn" id="3_ldahb"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="4_1yb3l"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="5_jta8v"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="6_owoq1"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="8_1yb3l"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/projectile_builder/ProjectileBuilderComponent.tscn" id="9_4dg4o"]
 [ext_resource type="PackedScene" uid="uid://b1ljunm0av8p" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="10_kfaad"]
-[ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://abilities/gun/Gun.tscn" id="11_61acl"]
+[ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://components/advanced/gun/GunAdvComponent.tscn" id="11_61acl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
@@ -28,21 +28,21 @@ shape = SubResource("RectangleShape2D_hoemn")
 [node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("1_cmjn3")
 
-[node name="Gun" parent="." instance=ExtResource("11_61acl")]
+[node name="ComponentManager" parent="." instance=ExtResource("2_o7rne")]
 
-[node name="PointUp" parent="Gun" index="0"]
+[node name="GunAdvComponent" parent="ComponentManager" instance=ExtResource("11_61acl")]
+
+[node name="PointUp" parent="ComponentManager/GunAdvComponent" index="0"]
 position = Vector2(0, -6)
 
-[node name="PointDown" parent="Gun" index="1"]
+[node name="PointDown" parent="ComponentManager/GunAdvComponent" index="1"]
 position = Vector2(0, 6)
 
-[node name="PointRight" parent="Gun" index="2"]
+[node name="PointRight" parent="ComponentManager/GunAdvComponent" index="2"]
 position = Vector2(5, 0)
 
-[node name="PointLeft" parent="Gun" index="3"]
+[node name="PointLeft" parent="ComponentManager/GunAdvComponent" index="3"]
 position = Vector2(-5, 0)
-
-[node name="ComponentManager" parent="." instance=ExtResource("2_o7rne")]
 
 [node name="DashComponent" parent="ComponentManager" instance=ExtResource("3_ldahb")]
 
@@ -58,4 +58,4 @@ speed = 150.0
 [node name="ProjectileBuilderComponent" parent="ComponentManager" instance=ExtResource("9_4dg4o")]
 projectileScene = ExtResource("10_kfaad")
 
-[editable path="Gun"]
+[editable path="ComponentManager/GunAdvComponent"]

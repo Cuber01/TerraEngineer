@@ -6,7 +6,7 @@ namespace TENamespace;
 public partial class Jump : Component
 {
     [Export] private float jumpVelocity = 100;
-    [Export] private int maxJumps = 2;
+    [Export] public int MaxJumps = 2;
     
     private int currentJumps = 0;
 
@@ -36,7 +36,7 @@ public partial class Jump : Component
 
     private bool canJump()
     {
-        return currentJumps < maxJumps;
+        return currentJumps < MaxJumps;
     }
     
 }

@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_y6bss"]
 [ext_resource type="Texture2D" uid="uid://clql1xeyl6f0k" path="res://entities/objects/plant/plant-mushroom.png" id="2_q71h5"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_u806n"]
-[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/free_fly/FreeFlyComponent.tscn" id="4_3jrf3"]
-[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/lifetime/LifetimeComponent.tscn" id="5_t483a"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_3jrf3"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_t483a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_msxgl"]
 animations = [{

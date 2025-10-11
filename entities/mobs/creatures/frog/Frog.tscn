@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://di8jvm8s5gfca" path="res://entities/mobs/creatures/frog/frog.png" id="1_c4mrv"]
 [ext_resource type="Script" uid="uid://kfeqfwwycnon" path="res://entities/mobs/creatures/frog/Frog.cs" id="1_hhfj2"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="1_yst0w"]
-[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/jump/JumpComponent.tscn" id="2_c4mrv"]
-[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/move/MoveComponent.tscn" id="3_hhfj2"]
-[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/health/HealthComponent.tscn" id="4_8wbl1"]
-[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/gravity/GravityComponent.tscn" id="5_ggd7j"]
-[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/contact_damage/ContactDamageComponent.tscn" id="8_8wbl1"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="2_c4mrv"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="3_hhfj2"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_8wbl1"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="5_ggd7j"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_8wbl1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hhfj2"]
 animations = [{

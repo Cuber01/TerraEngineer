@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_o6ug1"]
 [ext_resource type="Texture2D" uid="uid://dhnyfwu1q2gf3" path="res://entities/mobs/projectile/flame/flame-projectile.png" id="2_o6ug1"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_vipxt"]
-[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/free_fly/FreeFlyComponent.tscn" id="4_qdmh2"]
-[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/lifetime/LifetimeComponent.tscn" id="5_d1g7h"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_qdmh2"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_d1g7h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_intoi"]
 animations = [{

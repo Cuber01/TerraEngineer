@@ -14,11 +14,12 @@ public partial class ProjectileBuilder : Component
         root = GetTree().GetRoot().GetChild(0);
     }
 
-    public Projectile Build(Vector2 position, Vector2 directionNormal)
+    public Projectile Build(Vector2 position, Vector2 directionNormal, float rotationDegrees)
     {
         Projectile instance = (Projectile)projectileScene.Instantiate();
         instance.DirectionNormal = directionNormal;
         instance.GlobalPosition = position;
+        instance.RotationDegrees = rotationDegrees;
         root.AddChild(instance);
         return instance;
     }
