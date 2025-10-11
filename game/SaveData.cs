@@ -18,6 +18,32 @@ public partial class SaveData : Node
 
     public static Variant ReadValue(string section, string key) => data.GetValue(section, key);
 
+    public static List<string> ReadInventory()
+    {
+        List<string> items = new();
+        
+        foreach(string key in data.GetSectionKeys("player_inventory"))
+        {
+            if ((bool)data.GetValue("player_inventory", key))
+            {
+                items.Add(key);    
+            }
+            
+        }
+        return items;
+    }
+    
+    public static Dictionary<string, Variant> ReadSection(string section)
+    {
+        Dictionary<string, Variant> dict = new();
+        
+        foreach(string key in data.GetSectionKeys(section))
+        {
+            dict.Add(key, ReadValue(section, key));
+        }
+        return dict;
+    }
+
     private void loadSaveFile(string path)
     {
         Error err = data.Load(path);
