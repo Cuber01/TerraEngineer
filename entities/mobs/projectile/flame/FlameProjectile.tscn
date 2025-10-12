@@ -27,9 +27,11 @@ CM = NodePath("ComponentManager")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.5, 0)
 sprite_frames = SubResource("SpriteFrames_intoi")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(4.5, 0)
 collision_layer = 0
 collision_mask = 5
 
@@ -43,6 +45,6 @@ speed = 0.0
 
 [node name="LifetimeComponent" parent="ComponentManager" node_paths=PackedStringArray("actor") instance=ExtResource("5_d1g7h")]
 actor = NodePath("../..")
-lifetime = 5.0
+lifetime = 0.1
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

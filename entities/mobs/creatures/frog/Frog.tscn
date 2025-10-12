@@ -44,7 +44,6 @@ shape = SubResource("RectangleShape2D_0f11y")
 
 [node name="JumpComponent" parent="ComponentManager" instance=ExtResource("2_c4mrv")]
 jumpVelocity = 60.0
-maxJumps = 1
 
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("3_hhfj2")]
 

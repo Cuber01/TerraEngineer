@@ -24,10 +24,10 @@ public partial class Mob : CharacterBody2D
 
     public virtual void Die()
     {
-        Dead = true;
         if (!Dead)
         {
             CallDeferred(Node.MethodName.QueueFree);    
         }
+        Dead = true;
     }
 }
