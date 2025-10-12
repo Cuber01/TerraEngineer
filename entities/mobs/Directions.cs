@@ -9,8 +9,9 @@ public enum DirectionX
 
 public enum Directions4
 {
-    Up,
-    Down,
-    Left,
-    Right
+    Left=-1,
+    Right=1,
+    Up=2,
+    Down=3,
 }
+

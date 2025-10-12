@@ -11,7 +11,7 @@ public partial class Gun : AdvancedComponent
     [Export] private Node2D right;
     [Export] private Node2D left;
     
-    public void Shoot(Directions4 dir)
+    public void Shoot(Directions4 dir, bool mobParent)
     {
         Vector2 position = Vector2.Zero;
         Vector2 direction = Vector2.Zero;
@@ -19,27 +19,27 @@ public partial class Gun : AdvancedComponent
         switch (dir)
         {
             case Directions4.Up:
-                position = up.GlobalPosition;
+                position = mobParent ? up.Position : up.GlobalPosition;
                 direction = Vector2.Up;
                 rotationDegrees = 270;
                 break;
             case Directions4.Down:
-                position = down.GlobalPosition;
+                position = mobParent ? down.Position : down.GlobalPosition;
                 direction = Vector2.Down;
                 rotationDegrees = 90;
                 break;
             case Directions4.Left:
-                position = left.GlobalPosition;
+                position = mobParent ? left.Position : left.GlobalPosition;
                 direction = Vector2.Left;
                 rotationDegrees = 180;
                 break;
             case Directions4.Right:
-                position = right.GlobalPosition;
+                position = mobParent ? right.Position : right.GlobalPosition;
                 direction = Vector2.Right;
                 rotationDegrees = 0;
                 break;
         }
         
-        CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees);
+        CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
     }
 }

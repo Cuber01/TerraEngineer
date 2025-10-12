@@ -9,7 +9,8 @@ public partial class Projectile : Mob
 {
     [Export] private int damage = 1;
     [Export] private int piercing = 0;
-
+    [Export] private bool breakOnWall = true;
+    
     // Set by builder
     public Vector2 DirectionNormal;
     
@@ -28,7 +29,7 @@ public partial class Projectile : Mob
         else
         {
             // Hit solid ground
-            Die();
+            if(breakOnWall) Die();
         }
     }
 
