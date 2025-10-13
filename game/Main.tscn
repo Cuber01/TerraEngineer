@@ -14,6 +14,9 @@ position = Vector2(153, 117)
 position = Vector2(-16, -8)
 collision_layer = 2
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(16, 8)
+
 [node name="Plant" parent="." instance=ExtResource("3_2fjjk")]
 position = Vector2(42, -4)
 
