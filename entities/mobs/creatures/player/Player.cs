@@ -6,7 +6,7 @@ using TerraEngineer.entities.mobs;
 
 public partial class Player : Mob
 {
-
+	
 	public override void _PhysicsProcess(double delta)
 	{
 		DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
