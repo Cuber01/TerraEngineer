@@ -2,6 +2,7 @@
 ##
 ## MetSysGame is responsible for map management and player tracking. You can extend it by adding MetSysModules.
 extends Node
+class_name MetSysGame
 
 const MetSysModule = preload("res://addons/MetroidvaniaSystem/Template/Scripts/MetSysModule.gd")
 

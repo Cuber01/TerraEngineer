@@ -1,16 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfhyb11tyqtw7"]
+[gd_scene load_steps=3 format=3 uid="uid://cfhyb11tyqtw7"]
 
-[ext_resource type="Script" uid="uid://hdepxmu8gqlr" path="res://game/WorldManager.cs" id="1_2o28a"]
-[ext_resource type="Script" uid="uid://bcitqhgcevmaq" path="res://addons/MetroidvaniaSystem/Template/Scripts/MetSysGame.gd" id="2_8gaax"]
+[ext_resource type="Script" uid="uid://vnlh3pdbdh8q" path="res://game/WorldManager.gd" id="1_8gaax"]
 [ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/creatures/player/Player.tscn" id="3_2fjjk"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("metSysGame", "player")]
-script = ExtResource("1_2o28a")
-metSysGame = NodePath("MetSysGame")
-player = NodePath("Player")
-
-[node name="MetSysGame" type="Node2D" parent="."]
-script = ExtResource("2_8gaax")
+[node name="Main" type="Node2D" node_paths=PackedStringArray("extPlayer")]
+script = ExtResource("1_8gaax")
+extPlayer = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("3_2fjjk")]
 
