@@ -61,7 +61,7 @@ public partial class Moth : Mob
         {
             void RerollPoint(ITimer timer)
             {
-                if(actor.Dead) return;
+                if(!IsInstanceValid(actor)) return;
                 Vector2 rnd = MathTools.RandomVector2(-actor.MarginAroundPoint, actor.MarginAroundPoint);
                 goToPoint = actor.FlyAroundPoint.GlobalPosition + rnd;
                 TimerManager.Schedule(delayAtPoint, RerollPoint);
