@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://b25awrmfc2fdn"]
+
+[ext_resource type="Script" uid="uid://ddy5tf3wqqog6" path="res://components/basic/particle_builder/ParticleBuilder.cs" id="1_6fau1"]
+[ext_resource type="PackedScene" uid="uid://bpmg5wo3xd0r4" path="res://gfx/terraform-star/StarParticles.tscn" id="2_vecva"]
+[ext_resource type="Texture2D" uid="uid://d3jlfrogunpoh" path="res://gfx/terraform-star/LeftVelCurve.tres" id="3_33urv"]
+[ext_resource type="Texture2D" uid="uid://o88ah3nux04b" path="res://gfx/terraform-star/RightVelCurve.tres" id="4_yrl7v"]
+[ext_resource type="Texture2D" uid="uid://dg886020c1ryw" path="res://gfx/terraform-star/DownVelCurve.tres" id="5_vx2hk"]
+[ext_resource type="Texture2D" uid="uid://byhjwttrh1r5e" path="res://gfx/terraform-star/UpVelCurve.tres" id="6_b0rk4"]
+
+[node name="ParticleBuilderComponent" type="Node2D"]
+script = ExtResource("1_6fau1")
+particleScene = ExtResource("2_vecva")
+leftVelCurve = ExtResource("3_33urv")
+rightVelCurve = ExtResource("4_yrl7v")
+downVelCurve = ExtResource("5_vx2hk")
+upVelCurve = ExtResource("6_b0rk4")

@@ -3,6 +3,8 @@ extends MetSysGame
 
 @export var extPlayer : Node2D;
 
+var CurrentLevel: Node;
+
 func _ready():
 	start();
 
@@ -13,6 +15,6 @@ func start():
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	
-	await load_room("res://levels/Lobby.tscn");
+	CurrentLevel = await load_room("res://levels/Lobby.tscn");
 	
 	MetSys.get_current_room_instance().adjust_camera_limits(player.get_node("Camera2D"))

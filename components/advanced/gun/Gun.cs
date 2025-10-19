@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using TENamespace.advanced;
+using TENamespace.basic.particle_builder;
 using TENamespace.projectile_builder;
 using TerraEngineer.entities.mobs;
 
@@ -39,7 +40,8 @@ public partial class Gun : AdvancedComponent
                 rotationDegrees = 0;
                 break;
         }
-        
-        CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
+
+        CM.GetComponent<ParticleBuilder>().Build(position, direction, mobParent ? Actor : null);
+        //CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
     }
 }

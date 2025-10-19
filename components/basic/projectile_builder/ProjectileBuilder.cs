@@ -7,11 +7,11 @@ public partial class ProjectileBuilder : Component
 {
     [Export] private PackedScene projectileScene;
 
-    private Node root;
+    private Node main;
 
     public override void _Ready()
     {
-        root = GetTree().GetRoot().GetChild(0);
+        main = GetTree().GetRoot().GetNode("Main");
     }
 
     public Projectile Build(Vector2 position, Vector2 directionNormal, float rotationDegrees, Node2D parent=null)
@@ -26,7 +26,8 @@ public partial class ProjectileBuilder : Component
         }
         else
         {
-            root.AddChild(instance);    
+            Node2D level = (Node2D)main.Get("CurrentLevel");
+            level.AddChild(instance);    
         }
         
         return instance;
