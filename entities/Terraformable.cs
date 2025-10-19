@@ -3,6 +3,7 @@ using TerraEngineer.entities.objects;
 
 namespace TerraEngineer.entities;
 
+// turn this into interface maybe
 public partial class Terraformable : Node2D
 {
     [Export] private CollisionShape2D hitbox;
