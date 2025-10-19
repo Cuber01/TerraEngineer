@@ -4,6 +4,7 @@ using TENamespace.advanced;
 using TENamespace.basic.particle_builder;
 using TENamespace.projectile_builder;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.objects;
 
 public partial class Gun : AdvancedComponent
 {
@@ -41,7 +42,7 @@ public partial class Gun : AdvancedComponent
                 break;
         }
 
-        CM.GetComponent<ParticleBuilder>().Build(position, direction, mobParent ? Actor : null);
+        CM.GetComponent<StarParticleBuilder>().Build(position, direction, Biomes.Desert, mobParent ? Actor : null);
         //CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
     }
 }

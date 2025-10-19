@@ -1,16 +1,24 @@
 using Godot;
+using TerraEngineer.entities.objects;
 using TerraEngineer.entities.projectiles;
 
 namespace TENamespace.basic.particle_builder;
 
-public partial class ParticleBuilder : Component
+public partial class StarParticleBuilder : Component
 {
     [Export] private PackedScene particleScene;
+    [Export] private int extraYSpread = 2;
+    
     [Export] private CurveXyzTexture leftVelCurve;
     [Export] private CurveXyzTexture rightVelCurve;
     [Export] private CurveXyzTexture downVelCurve;
     [Export] private CurveXyzTexture upVelCurve;
 
+    [Export] private Texture2D mushroomTexture;
+    [Export] private Texture2D grassTexture;
+    [Export] private Texture2D iceTexture;
+    [Export] private Texture2D desertTexture;
+    
     private Node main;
 
     public override void _Ready()
@@ -18,16 +26,15 @@ public partial class ParticleBuilder : Component
         main = GetTree().GetRoot().GetNode("Main");
     }
 
-    public GpuParticles2D Build(Vector2 position, Vector2 directionNormal, Node2D parent=null)
+    public GpuParticles2D Build(Vector2 position, Vector2 directionNormal, Biomes biome, Node2D parent=null)
     {
         GpuParticles2D instance = (GpuParticles2D)particleScene.Instantiate();
 
         instance.OneShot = true;
         
-        // Change velocity curve - is there really no better way to do this?
         ParticleProcessMaterial material = (ParticleProcessMaterial)instance.ProcessMaterial;
 
-        material.Direction = new Vector3(directionNormal.X, directionNormal.Y*2, 0); // Initial velocity
+        material.Direction = new Vector3(directionNormal.X, directionNormal.Y*extraYSpread, 0); // Initial velocity
         
         if (directionNormal.X > 0)
             material.DirectionalVelocityCurve = rightVelCurve.Duplicate(true) as CurveXyzTexture;
@@ -38,6 +45,22 @@ public partial class ParticleBuilder : Component
         else 
             material.DirectionalVelocityCurve = upVelCurve.Duplicate(true) as CurveXyzTexture;
 
+        switch (biome)
+        {
+            case Biomes.Forest:
+                instance.Texture = grassTexture;
+                break;
+            case Biomes.Desert:
+                instance.Texture = desertTexture;
+                break;
+            case Biomes.Ice:
+                instance.Texture = iceTexture;
+                break;
+            case Biomes.Mushroom:
+                instance.Texture = mushroomTexture;
+                break;
+        }
+        
         instance.ProcessMaterial = material.Duplicate() as ParticleProcessMaterial;
         
         instance.GlobalPosition = position;
