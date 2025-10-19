@@ -3,3 +3,8 @@
 
 384x216
 48x27
+
+ASDF - four primary weapons
+V - grenade launcher
+Shift - switch gun to terraform and vice versa
+space or < - switch to next gun

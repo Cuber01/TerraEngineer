@@ -18,18 +18,10 @@ public partial class TerraformableCaretaker : Node2D
             entityVersions.Add(entity.MyBiome, entity);
         }
         
-        change(currentBiome);
+        Terraform(currentBiome);
     }
 
-    public override void _Process(double delta)
-    {
-        if (Input.IsActionJustPressed("debug"))
-        {
-            change(currentBiome == Biomes.Forest ? Biomes.Mushroom : Biomes.Forest);
-        }
-    }
-
-    private void change(Biomes biome)
+    public void Terraform(Biomes biome)
     {
         entityVersions[currentBiome].Disable();
         entityVersions[biome].Enable();

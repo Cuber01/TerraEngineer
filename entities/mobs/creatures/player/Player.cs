@@ -22,7 +22,7 @@ public partial class Player : Mob
 		
 		if (Input.IsActionJustPressed("attack"))
 		{
-			CM.GetComponent<Gun>().Shoot(getShootDirection(), true);
+			CM.GetComponent<GunHandle>().Shoot(getShootDirection(), true);
 		}
 		
 		CM.GetComponent<Move>().Walk(moveDir);
