@@ -12,7 +12,7 @@ position = Vector2(113, 104)
 
 [node name="Plant2" parent="." instance=ExtResource("2_0i00m")]
 position = Vector2(134, 104)
-currentBiome = 3
+currentBiome = 2
 
 [node name="Moth" parent="." instance=ExtResource("4_tmmo3")]
 position = Vector2(278, 54)

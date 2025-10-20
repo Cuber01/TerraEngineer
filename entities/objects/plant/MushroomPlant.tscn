@@ -9,7 +9,7 @@ size = Vector2(8.5, 3)
 [node name="MushroomPlant" type="Node2D" node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_rgdec")
 hitbox = NodePath("Area2D/CollisionShape2D")
-MyBiome = 3
+MyBiome = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2

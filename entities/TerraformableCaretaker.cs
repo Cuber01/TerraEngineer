@@ -29,6 +29,7 @@ public partial class TerraformableCaretaker : Node2D
     public void Terraform(Biomes biome)
     {
         if (currentBiome == biome && init) return;
+        if(!entityVersions.ContainsKey(biome)) return; // This shouldn't happen in the full game theoretically
         
         entityVersions[currentBiome].Disable();
         entityVersions[biome].Enable();
