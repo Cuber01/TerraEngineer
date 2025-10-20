@@ -8,3 +8,5 @@ ASDF - four primary weapons
 V - grenade launcher
 Shift - switch gun to terraform and vice versa
 space or < - switch to next gun
+
+terraform gun should have limited uses
