@@ -59,11 +59,14 @@ public partial class TerraformGun : AdvancedComponent, IGun
     {
         modes[(int)biome] = unlock ? biome : Biomes.Locked;
     }
-    
+
+    private int i = 0;
     private void applyTerraform()
     {
         foreach (TerraformableCaretaker obj in terraformablesAffected)
         {
+            i++;
+            GD.Print(i);
             obj.Terraform(selectedBiome);
         }
     }

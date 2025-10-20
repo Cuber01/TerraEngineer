@@ -8,6 +8,7 @@ public partial class HeartPlant : Terraformable
     [Export] private int healthHealed = 3;
     [Export] private float secondsTilRegrow = 5;
     [Export] private AnimatedSprite2D sprite;
+    [Export] private bool regrowAllowed = true;
 
     private bool hasFruit = true;
     private bool timerScheduled = false;
@@ -36,6 +37,8 @@ public partial class HeartPlant : Terraformable
 
     private void regrow()
     {
+        if(!regrowAllowed) return;
+        
         if (Active)
         {
             hasFruit = true;
