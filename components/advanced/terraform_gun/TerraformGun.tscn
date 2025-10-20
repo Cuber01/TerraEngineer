@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckwtij0jbdibs"]
+
+[ext_resource type="Script" uid="uid://b6t57iy2kwssq" path="res://components/advanced/terraform_gun/TerraformGun.cs" id="1_6tpu4"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_fgpw6"]
+[ext_resource type="PackedScene" uid="uid://b25awrmfc2fdn" path="res://components/basic/star_particle_builder/StarParticleBuilderComponent.tscn" id="3_42qxq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tpu4"]
+size = Vector2(51.625, 20)
+
+[node name="TerraformGun" type="Node2D" node_paths=PackedStringArray("areaAffected", "CM")]
+script = ExtResource("1_6tpu4")
+areaAffected = NodePath("Area2D")
+CM = NodePath("ComponentManager")
+
+[node name="ComponentManager" parent="." instance=ExtResource("2_fgpw6")]
+
+[node name="StarParticleBuilderComponent" parent="ComponentManager" instance=ExtResource("3_42qxq")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(25.8125, 0)
+shape = SubResource("RectangleShape2D_6tpu4")
+
+[connection signal="body_entered" from="Area2D" to="." method="onTerraformableEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onTerraformableExited"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://dme2l0jnnhsl2"]
+[gd_scene load_steps=5 format=4 uid="uid://dme2l0jnnhsl2"]
 
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="2_0i00m"]
-[ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="3_m2uud"]
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="4_tmmo3"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="5_ckmn6"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="6_dyuhh"]
@@ -9,10 +8,11 @@
 [node name="Level" type="Node2D"]
 
 [node name="Plant" parent="." instance=ExtResource("2_0i00m")]
-position = Vector2(303, 72)
+position = Vector2(113, 104)
 
-[node name="Frog" parent="." instance=ExtResource("3_m2uud")]
-position = Vector2(223, 97)
+[node name="Plant2" parent="." instance=ExtResource("2_0i00m")]
+position = Vector2(134, 104)
+currentBiome = 3
 
 [node name="Moth" parent="." instance=ExtResource("4_tmmo3")]
 position = Vector2(278, 54)

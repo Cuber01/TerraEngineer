@@ -10,7 +10,9 @@ using TerraEngineer.entities.objects;
 
 public interface IGun
 {
-    public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees, bool mobParent);
+    public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees);
+    public void ChangeWeapon(int index);
+    public void ChangeToNextWeapon();
 }
 
 public partial class GunHandle : AdvancedComponent
@@ -19,7 +21,7 @@ public partial class GunHandle : AdvancedComponent
     [Export] private Node2D down;
     [Export] private Node2D right;
     [Export] private Node2D left;
-    [Export] private int selectedGun = 1;
+    [Export] private int selectedGun = 0;
     
     private List<IGun> guns = new List<IGun>();
 
@@ -57,8 +59,11 @@ public partial class GunHandle : AdvancedComponent
                 break;
         }
         
-        guns[selectedGun].Shoot(position, direction, rotationDegrees, mobParent);
+        guns[selectedGun].Shoot(position, direction, rotationDegrees);
 
         //CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
     }
+
+    public void ChangeWeapon(int index) => guns[selectedGun].ChangeWeapon(index);
+    public void ChangeToNextWeapon() => guns[selectedGun].ChangeToNextWeapon();
 }

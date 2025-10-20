@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://kbf1n4rnte7r"]
+[gd_scene load_steps=6 format=3 uid="uid://kbf1n4rnte7r"]
 
 [ext_resource type="Script" uid="uid://bdopnimf1nlgu" path="res://components/advanced/gun_handle/GunHandle.cs" id="1_8xf7b"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_l55wu"]
 [ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/projectile_builder/ProjectileBuilderComponent.tscn" id="3_avu5t"]
 [ext_resource type="PackedScene" uid="uid://bwta0ajoqhibc" path="res://entities/mobs/projectile/flame/FlameProjectile.tscn" id="4_l55wu"]
-[ext_resource type="PackedScene" uid="uid://b25awrmfc2fdn" path="res://components/basic/star_particle_builder/StarParticleBuilderComponent.tscn" id="5_avu5t"]
-[ext_resource type="Texture2D" uid="uid://dnkcxdyh865je" path="res://gfx/terraform-star/mushroom-star-sheet.png" id="6_5l17k"]
-[ext_resource type="Texture2D" uid="uid://c5ppoyhhsnw1q" path="res://gfx/terraform-star/green-star1-Sheet.png" id="7_2j8mj"]
-[ext_resource type="Texture2D" uid="uid://taxdoda74hkg" path="res://gfx/terraform-star/ice-star-sheet.png" id="8_sq52j"]
-[ext_resource type="Texture2D" uid="uid://bu84k0y8qmnnk" path="res://gfx/terraform-star/desert-star-sheet.png" id="9_7aj34"]
+[ext_resource type="PackedScene" uid="uid://ckwtij0jbdibs" path="res://components/advanced/terraform_gun/TerraformGun.tscn" id="5_415s4"]
 
 [node name="GunHandleComponent" type="Node2D" node_paths=PackedStringArray("up", "down", "right", "left", "CM")]
 script = ExtResource("1_8xf7b")
@@ -35,8 +31,4 @@ position = Vector2(-1, 0)
 [node name="ProjectileBuilderComponent" parent="ComponentManager" instance=ExtResource("3_avu5t")]
 projectileScene = ExtResource("4_l55wu")
 
-[node name="ParticleBuilderComponent" parent="ComponentManager" instance=ExtResource("5_avu5t")]
-mushroomTexture = ExtResource("6_5l17k")
-grassTexture = ExtResource("7_2j8mj")
-iceTexture = ExtResource("8_sq52j")
-desertTexture = ExtResource("9_7aj34")
+[node name="TerraformGun" parent="ComponentManager" instance=ExtResource("5_415s4")]

@@ -22,8 +22,19 @@ public partial class Player : Mob
 		
 		if (Input.IsActionJustPressed("attack"))
 		{
-			CM.GetComponent<GunHandle>().Shoot(getShootDirection(), true);
+			CM.GetComponent<GunHandle>().Shoot(getShootDirection(), false);
 		}
+
+		if (Input.IsActionJustPressed("weapon_0"))
+			CM.GetComponent<GunHandle>().ChangeWeapon(0);
+		else if (Input.IsActionJustPressed("weapon_1"))
+			CM.GetComponent<GunHandle>().ChangeWeapon(1);
+		else if (Input.IsActionJustPressed("weapon_2"))
+			CM.GetComponent<GunHandle>().ChangeWeapon(2);
+		else if (Input.IsActionJustPressed("weapon_3"))
+			CM.GetComponent<GunHandle>().ChangeWeapon(3);
+		else if (Input.IsActionJustPressed("weapon_next"))
+			CM.GetComponent<GunHandle>().ChangeToNextWeapon();
 		
 		CM.GetComponent<Move>().Walk(moveDir);
 		CM.UpdateComponents((float)delta);
