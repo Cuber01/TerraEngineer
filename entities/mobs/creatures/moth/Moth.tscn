@@ -32,6 +32,7 @@ top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
 FlyAroundPoint = NodePath("FlyAroundPoint")
+MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
 Team = 1
 sprite = NodePath("AnimatedSprite2D")
@@ -65,6 +66,7 @@ maxHealth = 5
 shape = SubResource("RectangleShape2D_q4wwo")
 
 [node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("6_qq40e")]
+speed = 75.0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]

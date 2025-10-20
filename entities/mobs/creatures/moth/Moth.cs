@@ -55,7 +55,7 @@ public partial class Moth : Mob
     public class IdleState : IState<Moth>
     {
         private Vector2 goToPoint;
-        private float delayAtPoint = 3f; //Currently delay before changing points, perhaps fix/change
+        private float delayAtPoint = 1f; //Currently delay before changing points, perhaps fix/change
 
         public void Enter(Moth actor)
         {
