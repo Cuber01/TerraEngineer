@@ -34,6 +34,20 @@ sprite_frames = SubResource("SpriteFrames_wbohw")
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_gumxn")
 
+[node name="RayCastDown" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+target_position = Vector2(0, 7)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+rotation = -1.5707964
+target_position = Vector2(0, 7)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-4, 0)
+rotation = 1.5707964
+target_position = Vector2(0, 7)
+
 [node name="ComponentManager" parent="." instance=ExtResource("3_ralr5")]
 
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("4_072wc")]

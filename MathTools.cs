@@ -27,4 +27,15 @@ public static class MathTools
             Y = (float)(min + random.NextDouble() * (max - min))
         };
     }
+    
+    public static float Lerp(float from, float to, float weight) => Mathf.Lerp(from, to, weight);
+
+    public static Vector2 Lerp(Vector2 from, Vector2 to, float weight)
+    {
+        return new Vector2
+        {
+            X = Mathf.Lerp(from.X, to.X, weight),
+            Y = Mathf.Lerp(from.Y, to.Y, weight)
+        };
+    }
 }

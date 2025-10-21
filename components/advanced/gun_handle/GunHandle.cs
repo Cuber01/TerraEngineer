@@ -30,29 +30,29 @@ public partial class GunHandle : AdvancedComponent
         guns.Add(CM.GetComponent<TerraformGun>());
     }
     
-    public void Shoot(Directions4 dir, bool mobParent)
+    public void Shoot(Direction4 dir, bool mobParent)
     {
         Vector2 position = Vector2.Zero;
         Vector2 direction = Vector2.Zero;
         float rotationDegrees = 0;
         switch (dir)
         {
-            case Directions4.Up:
+            case Direction4.Up:
                 position = mobParent ? up.Position : up.GlobalPosition;
                 direction = Vector2.Up;
                 rotationDegrees = 270;
                 break;
-            case Directions4.Down:
+            case Direction4.Down:
                 position = mobParent ? down.Position : down.GlobalPosition;
                 direction = Vector2.Down;
                 rotationDegrees = 90;
                 break;
-            case Directions4.Left:
+            case Direction4.Left:
                 position = mobParent ? left.Position : left.GlobalPosition;
                 direction = Vector2.Left;
                 rotationDegrees = 180;
                 break;
-            case Directions4.Right:
+            case Direction4.Right:
                 position = mobParent ? right.Position : right.GlobalPosition;
                 direction = Vector2.Right;
                 rotationDegrees = 0;

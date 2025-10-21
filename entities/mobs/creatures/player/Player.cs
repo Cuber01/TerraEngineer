@@ -50,16 +50,16 @@ public partial class Player : Mob
 		MoveAndSlide();
 	}
 
-	private Directions4 getShootDirection()
+	private Direction4 getShootDirection()
 	{
 		Vector2 vector = Input.GetVector("ui_left", "ui_right", 
 										 "ui_down", "ui_up");
-		if (vector.Y > 0) return Directions4.Up;
-		if (vector.Y < 0) return Directions4.Down;
-		if (vector.X > 0) return Directions4.Right;
-		if (vector.X < 0) return Directions4.Left;
+		if (vector.Y > 0) return Direction4.Up;
+		if (vector.Y < 0) return Direction4.Down;
+		if (vector.X > 0) return Direction4.Right;
+		if (vector.X < 0) return Direction4.Left;
 
-		return (Directions4)(int)Facing;
+		return (Direction4)(int)Facing;
 	}
 }
 
