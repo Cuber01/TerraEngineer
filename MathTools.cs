@@ -7,6 +7,8 @@ namespace TerraEngineer;
 public static class MathTools
 {
     public const float PI = (float)Math.PI;
+    public const int NEGATIVE_INF = -99999999;
+    public const int POSITIVE_INF = 99999999;
     
     private static Random random = new Random();
 

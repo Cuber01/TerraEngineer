@@ -1,11 +1,12 @@
 using Godot;
+using TerraEngineer;
 
 namespace TENamespace;
 
 public partial class Gravity : Component
 {
     [Export] private float gravityForce = 2f;
-    [Export] private float maxGravity = 60f;
+    [Export] private float maxGravity = 100f;
     
     private bool isOnFloor = false;
     public delegate void LandedOnFloorHandler();
@@ -15,16 +16,34 @@ public partial class Gravity : Component
     
     private void updateGravity(float delta)
     {
+        
         if (Actor.IsOnFloor())
         {
-            Actor.velocity.Y = Mathf.Clamp(Actor.velocity.Y, -999999999, 0);
+            if (Actor.UpDirection.Y != 0)
+            {
+                Actor.velocity.Y = Mathf.Clamp(Actor.velocity.Y, 
+                    Actor.UpDirection.Y < 0 ? MathTools.NEGATIVE_INF : 0,
+                    Actor.UpDirection.Y < 0 ? 0 : MathTools.POSITIVE_INF);
+            }
+
+            if (Actor.UpDirection.X != 0)
+            {
+                Actor.velocity.X = Mathf.Clamp(Actor.velocity.X, 
+                    Actor.UpDirection.X < 0 ? 0 : MathTools.NEGATIVE_INF,
+                    Actor.UpDirection.X < 0 ? MathTools.POSITIVE_INF : 0);    
+            }
         }
         else
         {
-            if (Actor.velocity.Y < maxGravity)
+            if (Actor.velocity.Y * -Actor.UpDirection.Y < maxGravity * -Actor.UpDirection.Y)
             {
-                Actor.velocity.Y += gravityForce;    
-            }    
+                Actor.velocity.Y += gravityForce * -Actor.UpDirection.Y;    
+            }   
+            
+            if (Actor.velocity.X * Actor.UpDirection.X < maxGravity * Actor.UpDirection.X)
+            {
+                Actor.velocity.X += gravityForce * Actor.UpDirection.X;    
+            }   
         }
         
         checkLandedOnFloor();
