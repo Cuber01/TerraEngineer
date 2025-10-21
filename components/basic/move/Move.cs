@@ -10,10 +10,10 @@ public partial class Move : Component
 	[Export] private float acceleration = 0.25f;
 	[Export] private float friction = 0.1f;
 
-	[Export] private bool frictionEnabledX = true;
-	[Export] private bool frictionEnabledY = false;
+	[Export] public bool FrictionEnabledX = true;
+	[Export] public bool FrictionEnabledY = false;
 	
-	public override void Update(float delta) => updateFriction(frictionEnabledX, frictionEnabledY);
+	public override void Update(float delta) => updateFriction(FrictionEnabledX, FrictionEnabledY);
 	
 	public void Walk(DirectionX direction)
 	{
@@ -22,7 +22,7 @@ public partial class Move : Component
 
 	public void Walk4(Vector2 direction)
 	{
-		Actor.velocity = MathTools.Lerp(Actor.velocity, direction * speed, acceleration);
+		Actor.velocity = MathT.Lerp(Actor.velocity, direction * speed, acceleration);
 	}
 
 	private void updateFriction(bool x, bool y)

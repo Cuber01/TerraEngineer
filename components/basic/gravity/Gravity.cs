@@ -22,15 +22,15 @@ public partial class Gravity : Component
             if (Actor.UpDirection.Y != 0)
             {
                 Actor.velocity.Y = Mathf.Clamp(Actor.velocity.Y, 
-                    Actor.UpDirection.Y < 0 ? MathTools.NEGATIVE_INF : 0,
-                    Actor.UpDirection.Y < 0 ? 0 : MathTools.POSITIVE_INF);
+                    Actor.UpDirection.Y < 0 ? MathT.NEGATIVE_INF : 0,
+                    Actor.UpDirection.Y < 0 ? 0 : MathT.POSITIVE_INF);
             }
 
             if (Actor.UpDirection.X != 0)
             {
                 Actor.velocity.X = Mathf.Clamp(Actor.velocity.X, 
-                    Actor.UpDirection.X < 0 ? 0 : MathTools.NEGATIVE_INF,
-                    Actor.UpDirection.X < 0 ? MathTools.POSITIVE_INF : 0);    
+                    Actor.UpDirection.X < 0 ? 0 : MathT.NEGATIVE_INF,
+                    Actor.UpDirection.X < 0 ? MathT.POSITIVE_INF : 0);    
             }
         }
         else

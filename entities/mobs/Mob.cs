@@ -11,6 +11,7 @@ public partial class Mob : CharacterBody2D
     
     [Export] private AnimatedSprite2D sprite;
     [Export] public DirectionX Facing = DirectionX.Right;
+    
     public Vector2 velocity;
 
     // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
