@@ -44,6 +44,11 @@ public partial class TimerManager : Node
         return timer;
     }
 
+    internal void Remove(QuickTimer timer)
+    {
+        _timers.Remove(timer);
+    }
+
     /// <summary>
     /// schedules a one-time or repeating timer that will call the passed in Action
     /// </summary>
@@ -54,6 +59,11 @@ public partial class TimerManager : Node
     public static ITimer Schedule(float timeInSeconds, bool repeats, object context, Action<ITimer> onTime)
     {
         return _instance.Start(timeInSeconds, repeats, context, onTime);
+    }
+
+    public static void Cancel(ITimer timer)
+    {
+        _instance.Remove((QuickTimer)timer);
     }
 
     /// <summary>

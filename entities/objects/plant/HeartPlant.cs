@@ -10,15 +10,16 @@ public partial class HeartPlant : Terraformable
     [Export] private AnimatedSprite2D sprite;
     [Export] private bool regrowAllowed = true;
 
+    private ITimer regrowTimer;
+    
     private bool hasFruit = true;
-    private bool timerScheduled = false;
 
     public override void Enable()
     {
         base.Enable();
-        if (!timerScheduled && !hasFruit)
+        if (!hasFruit)
         {
-            TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
+            regrowTimer = TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
         }
     }
 
@@ -30,21 +31,25 @@ public partial class HeartPlant : Terraformable
             sprite.Animation = "no_fruit";
             player.CM.GetComponent<Health>().ChangeHealth(healthHealed);
             hasFruit = false;    
-            TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
-            timerScheduled = true;
+            regrowTimer = TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
         }
     }
 
     private void regrow()
     {
         if(!regrowAllowed) return;
-        
-        if (Active)
-        {
-            hasFruit = true;
-            sprite.Animation = "default";    
-        }
 
-        timerScheduled = false;
+        hasFruit = true;
+        sprite.Animation = "default";    
     }
+    
+    public override void Disable()
+    {
+        base.Disable();
+        TimerManager.Cancel(regrowTimer);
+    }
+    
+    public override void _ExitTree() =>
+        TimerManager.Cancel(regrowTimer);
+    
 }
