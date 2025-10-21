@@ -13,7 +13,7 @@ var map_changing: bool
 var modules: Array[MetSysModule]
 
 ## Emitted when [method load_room] has loaded a room. You can use it when you want to call some methods after loading a room (e.g. positioning the player).
-signal room_loaded
+signal room_loaded(level: Node)
 
 ## Sets the node to be tracked by this class. When player was assigned, [method MetroidvaniaSystem.set_player_position] will be called automatically at the end of every physics frame, updating the player position.
 func set_player(p_player: Node2D):
@@ -36,7 +36,7 @@ func _physics_tick():
 
 ## Loads a map and adds as a child of this node. If a map already exists, it will be removed before the new one is loaded. This method is asynchronous, so you should call it with [code]await[/code] if you want to do something after the map is loaded. Alternatively, you can use [signal room_loaded].
 ## [br][br][b]Note:[/b] If you call this method while a map is being loaded, it will fail silently. The earliest when you can load a map again is after [signal room_loaded] is emitted.
-func load_room(path: String) -> Node:
+func load_room(path: String):
 	if map_changing:
 		return null
 	
@@ -52,8 +52,7 @@ func load_room(path: String) -> Node:
 	
 	MetSys.current_layer = MetSys.get_current_room_instance().get_layer()
 	map_changing = false
-	room_loaded.emit()
-	return map
+	room_loaded.emit(map)
 
 ## Virtual method to be optionally overriden in your game class. Return a Node representing a scene under given path. Mostly useful for procedurally generated maps.
 func _load_map(path: String) -> Node:

@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://v37c1i0566mt"]
+
+[ext_resource type="Texture2D" uid="uid://dnb2rq0ehsm8u" path="res://entities/mobs/creatures/snail/snail.png" id="2_ncjo3"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_ralr5"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_072wc"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_he5bs"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_8i4jb"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_35750"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbohw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ncjo3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gumxn"]
+size = Vector2(9, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
+size = Vector2(9, 7)
+
+[node name="Snail" type="CharacterBody2D"]
+collision_layer = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wbohw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_gumxn")
+
+[node name="ComponentManager" parent="." instance=ExtResource("3_ralr5")]
+
+[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("4_072wc")]
+
+[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("5_he5bs")]
+maxHealth = 5
+
+[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("6_8i4jb")]
+
+[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("7_35750")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_hyp8g")
+
+[editable path="ComponentManager/ContactDamageComponent"]

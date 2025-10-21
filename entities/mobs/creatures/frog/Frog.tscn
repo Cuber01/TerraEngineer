@@ -21,7 +21,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
-size = Vector2(6.875, 6)
+size = Vector2(7, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 6)
@@ -35,9 +35,11 @@ sprite = NodePath("AnimatedSprite2D")
 Facing = -1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_hhfj2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_0f11y")
 
 [node name="ComponentManager" parent="." instance=ExtResource("1_yst0w")]
@@ -55,6 +57,7 @@ maxHealth = 5
 [node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("8_8wbl1")]
 
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_8wbl1")
 
 [editable path="ComponentManager/ContactDamageComponent"]

@@ -26,7 +26,7 @@ public partial class ProjectileBuilder : Component
         }
         else
         {
-            Node2D level = (Node2D)main.Get("CurrentLevel");
+            Node level = (Node2D)main.Get("CurrentLevel");
             level.AddChild(instance);    
         }
         
