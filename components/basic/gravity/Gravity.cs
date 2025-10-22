@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using TerraEngineer;
 
@@ -35,14 +36,14 @@ public partial class Gravity : Component
         }
         else
         {
-            if (Actor.velocity.Y * -Actor.UpDirection.Y < maxGravity * -Actor.UpDirection.Y)
+            if (Actor.velocity.Y * -Actor.UpDirection.Y < maxGravity * Math.Abs(Actor.UpDirection.Y))
             {
                 Actor.velocity.Y += gravityForce * -Actor.UpDirection.Y;    
             }   
             
-            if (Actor.velocity.X * Actor.UpDirection.X < maxGravity * Actor.UpDirection.X)
+            if (Actor.velocity.X * Actor.UpDirection.X < maxGravity * Math.Abs(Actor.UpDirection.X))
             {
-                Actor.velocity.X += gravityForce * Actor.UpDirection.X;    
+                Actor.velocity.X += gravityForce * -Actor.UpDirection.X;    
             }   
         }
         

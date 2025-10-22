@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://v37c1i0566mt"]
+[gd_scene load_steps=11 format=3 uid="uid://v37c1i0566mt"]
 
+[ext_resource type="Script" uid="uid://jlmdy1upywt6" path="res://entities/mobs/creatures/snail/Snail.cs" id="1_jdeb6"]
 [ext_resource type="Texture2D" uid="uid://dnb2rq0ehsm8u" path="res://entities/mobs/creatures/snail/snail.png" id="2_ncjo3"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_ralr5"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_072wc"]
@@ -24,8 +25,14 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
 size = Vector2(9, 7)
 
-[node name="Snail" type="CharacterBody2D"]
+[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("down", "right", "left", "CM", "sprite")]
 collision_layer = 4
+script = ExtResource("1_jdeb6")
+down = NodePath("RayCastDown")
+right = NodePath("RayCastRight")
+left = NodePath("RayCastLeft")
+CM = NodePath("ComponentManager")
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wbohw")
@@ -36,7 +43,7 @@ shape = SubResource("RectangleShape2D_gumxn")
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
 position = Vector2(0, 4)
-target_position = Vector2(0, 7)
+target_position = Vector2(0, 9)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
@@ -51,6 +58,7 @@ target_position = Vector2(0, 7)
 [node name="ComponentManager" parent="." instance=ExtResource("3_ralr5")]
 
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("4_072wc")]
+speed = 25.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("5_he5bs")]
 maxHealth = 5

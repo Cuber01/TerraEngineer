@@ -65,9 +65,23 @@ public static class MathT
         
         return Direction4.None;
     }
+    
+    public static Vector2 rotateVec2(Vector2 dir, bool right)
+    {
+        if(dir.Y == -1)
+            return right ? Vector2.Right : Vector2.Left;
+        if(dir.Y == 1)
+            return right ? Vector2.Left : Vector2.Right;
+        if(dir.X == -1)
+            return right ? Vector2.Up : Vector2.Down;
+        if(dir.X == 1)
+            return right ? Vector2.Down : Vector2.Up;
+        
+        return Vector2.Zero;
+    }
 
 
-public static float Lerp(float from, float to, float weight) => Mathf.Lerp(from, to, weight);
+    public static float Lerp(float from, float to, float weight) => Mathf.Lerp(from, to, weight);
 
     public static Vector2 Lerp(Vector2 from, Vector2 to, float weight)
     {
