@@ -26,6 +26,4 @@ tile_set = ExtResource("5_ckmn6")
 [node name="RoomInstance" parent="." instance=ExtResource("6_dyuhh")]
 
 [node name="Snail" parent="." instance=ExtResource("5_vi1ua")]
-position = Vector2(165, 92)
-rotation = -3.1415927
-up_direction = Vector2(-1, 0)
+position = Vector2(184, 79)

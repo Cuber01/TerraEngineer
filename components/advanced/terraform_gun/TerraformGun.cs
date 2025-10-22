@@ -66,7 +66,6 @@ public partial class TerraformGun : AdvancedComponent, IGun
         foreach (TerraformableCaretaker obj in terraformablesAffected)
         {
             i++;
-            GD.Print(i);
             obj.Terraform(selectedBiome);
         }
     }

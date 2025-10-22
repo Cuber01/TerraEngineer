@@ -10,14 +10,18 @@ public partial class Snail : Mob
     [Export] private RayCast2D down;
     [Export] private RayCast2D right;
     [Export] private RayCast2D left;
-    [Export] public Vector2 newFacing = Vector2.Right; // Does not impact sprite since we rotate it!
+    [Export] public Vector2 vecFacing = Vector2.Right; // Does not impact sprite since we rotate it!
     [Export] private float initTime = 1f;
 
     private ITimer initTimer;
-    private bool init = false;
     
     private readonly WalkState walkState = new WalkState();
     private readonly RotateState rotateState = new RotateState();
+
+    private Vector2 startingFacing;
+    
+    private bool raycastReady = false;
+    public bool WasOnFloor = true;
     
     private StateMachine<Snail> fsm;
     public float ToRotate = 0;
@@ -25,17 +29,18 @@ public partial class Snail : Mob
     public override void _Ready()
     {
         fsm = new StateMachine<Snail>(this, walkState, true);
+
+        CM.GetComponent<Gravity>().LandedOnFloor += () => raycastReady = true;
+        
+        startingFacing = vecFacing;
         
         fsm.AddTransition(walkState, rotateState, needsRotate);
-        initTimer = TimerManager.Schedule(1f, (_) => init = true);
     }
     
     public override void _PhysicsProcess(double delta)
     {
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
-
-        GD.Print(down.IsColliding());
         
         Velocity = velocity;
         MoveAndSlide();
@@ -43,22 +48,23 @@ public partial class Snail : Mob
 
     private bool needsRotate()
     {
-        if(!init) return false;
+        // To avoid weird raycast edge cases while rotating and on instantiation 
+        if(!WasOnFloor || !raycastReady) return false;
         
         if (down.IsColliding()) {
-            // if (newFacing.X == 1 && right.IsColliding())
-            // {
-            //     ToRotate = -90;
-            // }
-            //
-            // if (newFacing.X == -1 && left.IsColliding())
-            // {
-            //     ToRotate = 90;
-            // }
+            if (vecFacing.X == 1 && right.IsColliding())
+            {
+                ToRotate = -MathT.PI/2;
+            }
+            
+            if (vecFacing.X == -1 && left.IsColliding())
+            {
+                ToRotate = (MathT.PI/2);
+            }
         }
         else
         {
-            ToRotate = newFacing.X * 90;
+            ToRotate = startingFacing.X * (MathT.PI/2);
         }
         
         return (ToRotate != 0);
@@ -71,7 +77,8 @@ public partial class Snail : Mob
 
         public void Update(Snail actor, float dt)
         {
-            //actor.CM.GetComponent<Move>().Walk4(actor.newFacing);
+            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing); 
+            // TODO Doesn't this double as friction if direction = 0?
         }
 
         public void Exit(Snail actor)
@@ -82,26 +89,30 @@ public partial class Snail : Mob
     
     public class RotateState : IState<Snail>
     {
-        private float rotationSpeed = 1f;
+        private float rotationDelay = 1.5f;
+        private float rotationSpeed = 0.1f;
         private float reachRotation = 0;
-        private const float rotationTolerance = 1f;
+        private const float rotationTolerance = 0.001f;
 
         public void Enter(Snail actor)
         {
-            reachRotation = actor.ToRotate + actor.RotationDegrees;
-            actor.newFacing = MathT.rotateVec2(actor.newFacing, actor.ToRotate > 0);
-            actor.UpDirection = -actor.newFacing;
-            
+            reachRotation = actor.ToRotate + actor.Rotation;
+            actor.vecFacing = MathT.rotateVec2(actor.vecFacing, actor.ToRotate > 0);
+            actor.UpDirection = MathT.rotateVec2(actor.UpDirection, actor.ToRotate > 0);
             actor.ToRotate = 0;
-            
+            actor.WasOnFloor = false;
+            TimerManager.Schedule(rotationDelay, (_) => actor.WasOnFloor = true);
         }
 
         public void Update(Snail actor, float dt)
         {
-           // actor.CM.GetComponent<Move>().Walk4(actor.newFacing);
-            actor.RotationDegrees = MathT.Lerp(actor.RotationDegrees, reachRotation, rotationSpeed);
-
-            if (Math.Abs(actor.RotationDegrees - reachRotation) < rotationTolerance)
+            
+            actor.Rotation = Mathf.RotateToward(actor.Rotation, reachRotation, rotationSpeed);
+            GD.Print(reachRotation);
+            
+            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing);
+            
+            if (Math.Abs(actor.Rotation - reachRotation) < rotationTolerance)
                 actor.fsm.ChangeState(actor.walkState);
         }
 
@@ -110,6 +121,5 @@ public partial class Snail : Mob
             reachRotation = 0;
         }
     }
-    
 
 }
