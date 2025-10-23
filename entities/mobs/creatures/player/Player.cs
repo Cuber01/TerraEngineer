@@ -6,6 +6,7 @@ using TerraEngineer.entities.mobs;
 
 public partial class Player : Mob
 {
+	[Export] private RayCast2D raycastUp;
 	
 	public override void _PhysicsProcess(double delta)
 	{
@@ -42,6 +43,15 @@ public partial class Player : Mob
 		if (Input.IsActionJustPressed("jump"))
 		{
 			CM.GetComponent<Jump>().AttemptJump();
+		}
+
+		if (raycastUp.IsColliding())
+		{
+			CM.GetComponent<Jump>().CancelJump();
+		}
+		
+		if (Input.IsActionJustReleased("jump")) {
+			CM.GetComponent<Jump>().LimitJump();
 		}
 		
 		CM.UpdateComponents((float)delta);

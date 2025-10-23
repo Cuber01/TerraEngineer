@@ -25,4 +25,11 @@ public abstract partial class Spawner : Component
             level.AddChild(instance);    
         }
     }
+
+    protected Node2D SetTransform(Node2D instance, Vector2 position, float rotationDegrees)
+    {
+        instance.GlobalPosition = position;
+        instance.RotationDegrees = rotationDegrees;
+        return instance;
+    }
 }
