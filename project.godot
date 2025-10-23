@@ -34,10 +34,6 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="Terra Engineer"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg")
-
 [input]
 
 jump={

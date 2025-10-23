@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdopnimf1nlgu" path="res://components/advanced/gun_handle/GunHandle.cs" id="1_8xf7b"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_l55wu"]
-[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/projectile_builder/ProjectileBuilderComponent.tscn" id="3_avu5t"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/builders/projectile_builder/ProjectileBuilderComponent.tscn" id="3_avu5t"]
 [ext_resource type="PackedScene" uid="uid://bwta0ajoqhibc" path="res://entities/mobs/projectile/flame/FlameProjectile.tscn" id="4_l55wu"]
 [ext_resource type="PackedScene" uid="uid://ckwtij0jbdibs" path="res://components/advanced/terraform_gun/TerraformGun.tscn" id="5_415s4"]
 
@@ -28,7 +28,7 @@ position = Vector2(-1, 0)
 
 [node name="ComponentManager" parent="." instance=ExtResource("2_l55wu")]
 
-[node name="ProjectileBuilderComponent" parent="ComponentManager" instance=ExtResource("3_avu5t")]
-projectileScene = ExtResource("4_l55wu")
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" instance=ExtResource("3_avu5t")]
+Scene = ExtResource("4_l55wu")
 
 [node name="TerraformGun" parent="ComponentManager" instance=ExtResource("5_415s4")]

@@ -19,7 +19,8 @@ public partial class TerraformGun : AdvancedComponent, IGun
     
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)
     {
-        CM.GetComponent<StarParticleBuilder>().Build(position, direction, selectedBiome);
+        Node2D instance = CM.GetComponent<StarParticleSpawner>().Build(position, direction, selectedBiome);
+        CM.GetComponent<StarParticleSpawner>().AddToGame(instance);
         areaAffected.RotationDegrees = rotationDegrees;
         applyTerraform(); // Maybe on timer
     }

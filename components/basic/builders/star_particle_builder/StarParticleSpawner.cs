@@ -1,12 +1,12 @@
 using Godot;
+using TENamespace.basic.builders;
 using TerraEngineer.entities.objects;
 using TerraEngineer.entities.projectiles;
 
 namespace TENamespace.basic.particle_builder;
 
-public partial class StarParticleBuilder : Component
+public partial class StarParticleSpawner : Spawner
 {
-    [Export] private PackedScene particleScene;
     [Export] private int extraYSpread = 2;
     
     [Export] private CurveXyzTexture leftVelCurve;
@@ -18,17 +18,10 @@ public partial class StarParticleBuilder : Component
     [Export] private Texture2D grassTexture;
     [Export] private Texture2D iceTexture;
     [Export] private Texture2D desertTexture;
-    
-    private Node main;
 
-    public override void _Ready()
+    public GpuParticles2D Build(Vector2 position, Vector2 directionNormal, Biomes biome)
     {
-        main = GetTree().GetRoot().GetNode("Main");
-    }
-
-    public GpuParticles2D Build(Vector2 position, Vector2 directionNormal, Biomes biome, Node2D parent=null)
-    {
-        GpuParticles2D instance = (GpuParticles2D)particleScene.Instantiate();
+        GpuParticles2D instance = (GpuParticles2D)Scene.Instantiate();
 
         instance.OneShot = true;
         
@@ -62,17 +55,7 @@ public partial class StarParticleBuilder : Component
         }
         
         instance.ProcessMaterial = material.Duplicate() as ParticleProcessMaterial;
-        
         instance.GlobalPosition = position;
-        if (parent != null)
-        {
-            parent.AddChild(instance);
-        }
-        else
-        {
-            Node level = (Node2D)main.Get("CurrentLevel");
-            level.AddChild(instance);    
-        }
         
         return instance;
     }

@@ -61,7 +61,7 @@ public partial class GunHandle : AdvancedComponent
         
         guns[selectedGun].Shoot(position, direction, rotationDegrees);
 
-        //CM.GetComponent<ProjectileBuilder>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
+        //CM.GetComponent<ProjectileSpawner>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
     }
 
     public void ChangeWeapon(int index) => guns[selectedGun].ChangeWeapon(index);

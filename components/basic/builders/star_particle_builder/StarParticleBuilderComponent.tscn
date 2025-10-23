@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b25awrmfc2fdn"]
 
-[ext_resource type="Script" uid="uid://ddy5tf3wqqog6" path="res://components/basic/star_particle_builder/StarParticleBuilder.cs" id="1_4ors7"]
+[ext_resource type="Script" uid="uid://ddy5tf3wqqog6" path="res://components/basic/builders/star_particle_builder/StarParticleSpawner.cs" id="1_4ors7"]
 [ext_resource type="PackedScene" uid="uid://bpmg5wo3xd0r4" path="res://gfx/terraform-star/StarParticles.tscn" id="2_j604c"]
 [ext_resource type="Texture2D" uid="uid://d3jlfrogunpoh" path="res://gfx/terraform-star/LeftVelCurve.tres" id="3_rv8fh"]
 [ext_resource type="Texture2D" uid="uid://o88ah3nux04b" path="res://gfx/terraform-star/RightVelCurve.tres" id="4_b8j24"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://taxdoda74hkg" path="res://gfx/terraform-star/ice-star-sheet.png" id="9_rca4g"]
 [ext_resource type="Texture2D" uid="uid://bu84k0y8qmnnk" path="res://gfx/terraform-star/desert-star-sheet.png" id="10_k8tvu"]
 
-[node name="StarParticleBuilderComponent" type="Node2D"]
+[node name="StarParticleSpawnerComponent" type="Node2D"]
 script = ExtResource("1_4ors7")
 particleScene = ExtResource("2_j604c")
 leftVelCurve = ExtResource("3_rv8fh")
