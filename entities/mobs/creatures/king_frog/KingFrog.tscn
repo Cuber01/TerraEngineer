@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://c664c7d5b8qgx"]
+
+[ext_resource type="Script" uid="uid://kfeqfwwycnon" path="res://entities/mobs/creatures/frog/Frog.cs" id="1_0c618"]
+[ext_resource type="Texture2D" uid="uid://q64l41cvrhp5" path="res://entities/mobs/creatures/king_frog/king-frog.png" id="2_eijyq"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_tw2qj"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="4_ltn64"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="5_1s1ba"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_gybbv"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_eguul"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_4q3up"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vp5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_eijyq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4g3d"]
+size = Vector2(22, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4uap"]
+size = Vector2(20, 19)
+
+[node name="KingFrog" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
+collision_layer = 4
+script = ExtResource("1_0c618")
+CM = NodePath("ComponentManager")
+Team = 1
+sprite = NodePath("AnimatedSprite2D")
+Facing = -1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1vp5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n4g3d")
+
+[node name="ComponentManager" parent="." instance=ExtResource("3_tw2qj")]
+
+[node name="JumpComponent" parent="ComponentManager" instance=ExtResource("4_ltn64")]
+jumpVelocity = 60.0
+
+[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("5_1s1ba")]
+
+[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("6_gybbv")]
+maxHealth = 5
+
+[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("7_eguul")]
+
+[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("8_4q3up")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_w4uap")
+
+[editable path="ComponentManager/ContactDamageComponent"]
