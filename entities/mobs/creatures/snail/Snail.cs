@@ -28,6 +28,7 @@ public partial class Snail : Mob
     
     public override void _Ready()
     {
+        base._Ready();
         fsm = new StateMachine<Snail>(this, walkState, true);
 
         CM.GetComponent<Gravity>().LandedOnFloor += () => raycastReady = true;

@@ -11,12 +11,33 @@ public partial class Mob : CharacterBody2D
     
     [Export] private AnimatedSprite2D sprite;
     [Export] public DirectionX Facing = DirectionX.Right;
+    //     get => Facing;
+    //     set
+    //     {
+    //         if (value != Facing)
+    //         {
+    //             Flip();
+    //         }
+    //     }
+    // }
+
     
+
     public Vector2 velocity;
 
     // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
     public bool Dead  = false;
 
+    public override void _Ready()
+    {
+        if (Facing == DirectionX.Left)
+        {
+            FlipSprite();
+        }
+    }
+
+    protected void FlipSprite() => sprite.FlipH = !sprite.FlipH;
+    
     protected void Flip()
     {
         Facing = (DirectionX)(-(int)Facing);

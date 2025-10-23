@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=4 uid="uid://dme2l0jnnhsl2"]
+[gd_scene load_steps=4 format=4 uid="uid://dme2l0jnnhsl2"]
 
+[ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="3_n5sna"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="5_ckmn6"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="6_dyuhh"]
 
@@ -11,3 +12,7 @@ tile_map_data = PackedByteArray("AAAOAPz/AAANAAEAAAAPAPz/AAANAAEAAAAQAPz/AAAOAAE
 tile_set = ExtResource("5_ckmn6")
 
 [node name="RoomInstance" parent="." instance=ExtResource("6_dyuhh")]
+
+[node name="Frog" parent="." instance=ExtResource("3_n5sna")]
+position = Vector2(78, 112)
+Facing = 1

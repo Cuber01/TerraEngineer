@@ -14,6 +14,7 @@ public partial class Frog : Mob
     
     public override void _Ready()
     {
+        base._Ready();
         fsm = new StateMachine<Frog>(this, waitState);
         fsm.AddTransition(jumpState, waitState, jumpState.LandedOnFloor);
         fsm.AddTransition(waitState, jumpState, waitState.TimerCondition);
