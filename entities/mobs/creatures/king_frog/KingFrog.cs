@@ -88,9 +88,9 @@ public partial class KingFrog : Mob
 
             if ((int)AmAt > (int)wasAt)
             {
-                actor.Sprite.FlipH = false;
+                actor.Flip(DirectionX.Right);
             }
-            else actor.Sprite.FlipH = true;
+            else actor.Flip(DirectionX.Left);
             
             goTo = Positions[(int)AmAt];
 
@@ -114,9 +114,9 @@ public partial class KingFrog : Mob
         public void Exit(KingFrog actor)
         {
             if(AmAt == ArenaPos.Left)
-                actor.Sprite.FlipH = false;
+                actor.Flip(DirectionX.Right);
             else if(AmAt == ArenaPos.Right)
-                actor.Sprite.FlipH = true;
+                actor.Flip(DirectionX.Left);
                 
             finished = false;
             speedModifier = 1f;
