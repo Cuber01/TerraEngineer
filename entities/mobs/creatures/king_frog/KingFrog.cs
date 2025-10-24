@@ -84,25 +84,23 @@ public partial class KingFrog : Mob
             List<int> chooseFrom = [0, 1, 2];
             chooseFrom.RemoveAt((int)AmAt); // Do not choose current location
             AmAt = (ArenaPos)(int)MathT.RandomChooseList(chooseFrom);
-            
-            if(AmAt == ArenaPos.Right)
-                actor.Sprite.FlipH = true;
-            if(AmAt == ArenaPos.Left)
+
+
+            if ((int)AmAt > (int)wasAt)
+            {
                 actor.Sprite.FlipH = false;
+            }
+            else actor.Sprite.FlipH = true;
             
             goTo = Positions[(int)AmAt];
 
             float jumpModifier = 1f;
-            
             if (Math.Abs((int)AmAt - (int)wasAt) > 1)
             {
                 // big jumpino
-                // 240:
                 jumpModifier = 1.25f;
                 speedModifier = 1.55f;
             }
-            
-            GD.Print(AmAt);
             
             actor.CM.GetComponent<Jump>().AttemptJump(jumpModifier);
             actor.CM.GetComponent<Gravity>().LandedOnFloor += () => finished = true;
@@ -115,7 +113,11 @@ public partial class KingFrog : Mob
 
         public void Exit(KingFrog actor)
         {
-            if(AmAt != ArenaPos.Middle) actor.Flip();
+            if(AmAt == ArenaPos.Left)
+                actor.Sprite.FlipH = false;
+            else if(AmAt == ArenaPos.Right)
+                actor.Sprite.FlipH = true;
+                
             finished = false;
             speedModifier = 1f;
         }
