@@ -6,7 +6,7 @@ namespace TENamespace;
 
 public partial class Gravity : Component
 {
-    [Export] private float gravityForce = 2f;
+    [Export] public float GravityForce = 2f;
     [Export] private float maxGravity = 100f;
     
     private bool isOnFloor = false;
@@ -38,12 +38,12 @@ public partial class Gravity : Component
         {
             if (Actor.velocity.Y * -Actor.UpDirection.Y < maxGravity * Math.Abs(Actor.UpDirection.Y))
             {
-                Actor.velocity.Y += gravityForce * -Actor.UpDirection.Y;    
+                Actor.velocity.Y += GravityForce * -Actor.UpDirection.Y;    
             }   
             
             if (Actor.velocity.X * Actor.UpDirection.X < maxGravity * Math.Abs(Actor.UpDirection.X))
             {
-                Actor.velocity.X += gravityForce * -Actor.UpDirection.X;    
+                Actor.velocity.X += GravityForce * -Actor.UpDirection.X;    
             }   
         }
         
