@@ -55,6 +55,7 @@ MaxJumps = 1
 speed = 60.0
 acceleration = 1.0
 friction = 0.5
+errorMargin = 0.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("6_gybbv")]
 maxHealth = 5

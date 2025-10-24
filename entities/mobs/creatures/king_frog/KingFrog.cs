@@ -102,7 +102,7 @@ public partial class KingFrog : Mob
             }
             
             actor.CM.GetComponent<Jump>().AttemptJump(jumpModifier);
-            actor.CM.GetComponent<Gravity>().LandedOnFloor += () => finished = true;
+            actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
         }
 
         public void Update(KingFrog actor, float dt)
@@ -117,11 +117,14 @@ public partial class KingFrog : Mob
             else if(AmAt == ArenaPos.Right)
                 actor.Flip(DirectionX.Left);
                 
+            
+            actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
             finished = false;
             speedModifier = 1f;
         }
         
         public bool IsFinished() => finished;
+        public void Finished() { finished = true; }
     }
     
     public class IdleState : TimedState<KingFrog>
@@ -157,12 +160,13 @@ public partial class KingFrog : Mob
     public class SmashState : IState<KingFrog>
     {
         private bool finished = false;
-        private float gravityModifier = 4f;
+        private float gravityModifier = 10f;
         
         public void Enter(KingFrog actor)
         {
+            actor.velocity.Y = 0;
             actor.CM.GetComponent<Gravity>().GravityForce *= gravityModifier;
-            actor.CM.GetComponent<Gravity>().LandedOnFloor += () => finished = true;
+            actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
             GD.Print("Enter");
         }
 
@@ -202,10 +206,12 @@ public partial class KingFrog : Mob
         public void Exit(KingFrog actor)
         {
             actor.CM.GetComponent<Gravity>().GravityForce /= gravityModifier;
+            actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
             finished = false;
         }
         
         public bool IsFinished() => finished;
+        public void Finished() { finished = true; }
     }
     
 }
