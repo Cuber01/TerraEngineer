@@ -26,7 +26,8 @@ public partial class FreeFly : Component
 
     private bool isAtPoint(Vector2 actorPos, Vector2 pointPosition)
     {
-        return (actorPos.X >= pointPosition.X-errorMargin.X && actorPos.Y >= pointPosition.Y-errorMargin.X && actorPos.X <= pointPosition.X + errorMargin.Y && actorPos.Y <= pointPosition.Y + errorMargin.Y);
+        return (actorPos.X >= pointPosition.X-errorMargin.X && actorPos.Y >= pointPosition.Y-errorMargin.Y && 
+                actorPos.X <= pointPosition.X + errorMargin.X && actorPos.Y <= pointPosition.Y + errorMargin.Y);
     }
     
     private void updateAirResistance()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Godot;
 using TerraEngineer.entities.mobs;
@@ -20,6 +21,25 @@ public static class MathT
         if (min == max) return min;
 
         return (float)(min + random.NextDouble() * (max - min));
+    }
+    
+    public static int RandomInt(int min, int max)
+    {
+        if (min == max) return min;
+
+        return random.Next(min, max+1);
+    }
+    
+    public static object RandomChooseList(List<int> list)
+    {
+        int i = RandomInt(0, random.Next(list.Count));
+        return list[i];
+    }
+
+    public static object RandomChoose(params object[] args)
+    {
+        int i = RandomInt(0, random.Next(args.Length));
+        return args[i];
     }
 
     public static Vector2 RandomVector2(float min, float max)

@@ -19,11 +19,11 @@ public partial class Jump : Component
             () => currentJumps = 0;
     }
     
-    public bool AttemptJump()
+    public bool AttemptJump(float forceMultiplier=1f)
     {
         if (canJump())
         {
-            executeJump();
+            executeJump(forceMultiplier);
             return true;
         }
 
@@ -43,9 +43,9 @@ public partial class Jump : Component
         }
     }
 
-    private void executeJump()
+    private void executeJump(float forceMultiplier=1f)
     {
-        Actor.velocity.Y = -jumpVelocity;
+        Actor.velocity.Y = -jumpVelocity*forceMultiplier;
         currentJumps++;
     }
 

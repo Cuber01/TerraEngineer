@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b377xxnj8j5oy"]
+
+[ext_resource type="Script" uid="uid://bbdyjaon0phx7" path="res://game/tools/XBounds.cs" id="1_piqd1"]
+
+[node name="XBounds" type="Node2D" node_paths=PackedStringArray("right", "left")]
+script = ExtResource("1_piqd1")
+right = NodePath("Right")
+left = NodePath("Left")
+
+[node name="Right" type="Node2D" parent="."]
+
+[node name="Left" type="Node2D" parent="."]
+position = Vector2(1, 0)

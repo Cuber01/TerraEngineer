@@ -9,7 +9,7 @@ public partial class Mob : CharacterBody2D
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;
     
-    [Export] private AnimatedSprite2D sprite;
+    [Export] protected AnimatedSprite2D Sprite;
     [Export] public DirectionX Facing = DirectionX.Right;
     //     get => Facing;
     //     set
@@ -36,12 +36,12 @@ public partial class Mob : CharacterBody2D
         }
     }
 
-    protected void FlipSprite() => sprite.FlipH = !sprite.FlipH;
+    protected void FlipSprite() => Sprite.FlipH = !Sprite.FlipH;
     
     protected void Flip()
     {
         Facing = (DirectionX)(-(int)Facing);
-        sprite.FlipH = !sprite.FlipH;
+        Sprite.FlipH = !Sprite.FlipH;
     }
 
     public virtual void Die()
