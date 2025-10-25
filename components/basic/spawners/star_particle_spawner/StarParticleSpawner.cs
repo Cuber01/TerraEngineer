@@ -18,8 +18,6 @@ public partial class StarParticleSpawner : Spawner<GpuParticles2D, StarParticleS
     [Export] private Texture2D grassTexture;
     [Export] private Texture2D iceTexture;
     [Export] private Texture2D desertTexture;
-
-    private ParticleProcessMaterial material;
     
     public override GpuParticles2D Build()
     {

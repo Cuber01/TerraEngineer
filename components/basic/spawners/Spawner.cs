@@ -21,19 +21,18 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
         return Instance;
     }
 
-    public void AddToGame(T instance, Node2D parent = null)
+    public void AddToGame(Node2D parent = null)
     {
         if (parent != null)
         {
-            parent.AddChild(instance);
+            parent.AddChild(Instance);
         }
         else
         {
             Node level = (Node2D)Main.Get("CurrentLevel");
-            level.AddChild(instance);    
+            level.AddChild(Instance);    
         }
 
-        Instance = default(T);
     }
     
     public Me Start()
