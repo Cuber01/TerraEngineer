@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b25awrmfc2fdn"]
 
-[ext_resource type="Script" uid="uid://ddy5tf3wqqog6" path="res://components/basic/builders/star_particle_builder/StarParticleSpawner.cs" id="1_4ors7"]
+[ext_resource type="Script" uid="uid://ddy5tf3wqqog6" path="res://components/basic/spawners/star_particle_spawner/StarParticleSpawner.cs" id="1_4ors7"]
 [ext_resource type="PackedScene" uid="uid://bpmg5wo3xd0r4" path="res://gfx/terraform-star/StarParticles.tscn" id="2_j604c"]
 [ext_resource type="Texture2D" uid="uid://d3jlfrogunpoh" path="res://gfx/terraform-star/LeftVelCurve.tres" id="3_rv8fh"]
 [ext_resource type="Texture2D" uid="uid://o88ah3nux04b" path="res://gfx/terraform-star/RightVelCurve.tres" id="4_b8j24"]

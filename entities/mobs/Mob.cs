@@ -38,7 +38,7 @@ public partial class Mob : CharacterBody2D
 
     protected void FlipSprite() => Sprite.FlipH = !Sprite.FlipH;
     
-    protected virtual void Flip(DirectionX side=DirectionX.None)
+    public virtual void Flip(DirectionX side=DirectionX.None)
     {
         if (side != DirectionX.None)
         {
