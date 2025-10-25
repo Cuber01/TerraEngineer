@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c664c7d5b8qgx"]
+[gd_scene load_steps=14 format=3 uid="uid://c664c7d5b8qgx"]
 
 [ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_0c618"]
 [ext_resource type="Texture2D" uid="uid://q64l41cvrhp5" path="res://entities/mobs/creatures/king_frog/king-frog.png" id="2_eijyq"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_gybbv"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_eguul"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_4q3up"]
+[ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawneComponent.tscn" id="8_tw2qj"]
+[ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="9_ltn64"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1vp5w"]
 animations = [{
@@ -61,6 +63,10 @@ errorMargin = 0.0
 maxHealth = 5
 
 [node name="GravityComponent" parent="ComponentManager" instance=ExtResource("7_eguul")]
+
+[node name="CreatureSpawnerComponent" parent="ComponentManager" instance=ExtResource("8_tw2qj")]
+position = Vector2(6, 0)
+Scene = ExtResource("9_ltn64")
 
 [node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("8_4q3up")]
 

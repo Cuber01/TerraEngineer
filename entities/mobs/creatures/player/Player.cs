@@ -7,6 +7,7 @@ using TerraEngineer.entities.mobs;
 public partial class Player : Mob
 {
 	[Export] private RayCast2D raycastUp;
+	[Export] private bool godMode = false;
 	
 	public override void _PhysicsProcess(double delta)
 	{
@@ -70,6 +71,17 @@ public partial class Player : Mob
 		if (vector.X < 0) return Direction4.Left;
 
 		return (Direction4)(int)Facing;
+	}
+
+	public override void Die()
+	{
+		if(godMode) return;
+		
+		if (!Dead)
+		{
+			CallDeferred(Node.MethodName.QueueFree);    
+		}
+		Dead = true;
 	}
 }
 

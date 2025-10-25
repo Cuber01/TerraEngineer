@@ -14,6 +14,11 @@ public partial class XBounds : Node2D
 	{
 		XLeft = left.GlobalPosition.X;
 		XRight = right.GlobalPosition.X;
+
+		if (!Engine.IsEditorHint())
+		{
+			Hide();
+		}
 	}
 	
 	public override void _Process(double delta)

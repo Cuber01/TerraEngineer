@@ -38,18 +38,18 @@ public partial class Mob : CharacterBody2D
 
     protected void FlipSprite() => Sprite.FlipH = !Sprite.FlipH;
     
-    public virtual void Flip(DirectionX side=DirectionX.None)
+    public void Flip(DirectionX side=DirectionX.None)
     {
-        if (side != DirectionX.None)
+        if (side == DirectionX.None || (int)side == -(int)Facing)
         {
-            Facing = side;
-            Sprite.FlipH = side != DirectionX.Right;
+            FlipEffect();
         }
-        else
-        {
-            Facing = (DirectionX)(-(int)Facing);
-            Sprite.FlipH = !Sprite.FlipH;   
-        }
+    }
+
+    protected virtual void FlipEffect()
+    {
+        Facing = (DirectionX)(-(int)Facing);
+        Sprite.FlipH = !Sprite.FlipH;   
     }
 
     public virtual void Die()

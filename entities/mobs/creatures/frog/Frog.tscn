@@ -26,12 +26,12 @@ size = Vector2(7, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 6)
 
-[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
+[node name="Frog" type="CharacterBody2D" node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
 Team = 1
-sprite = NodePath("AnimatedSprite2D")
+Sprite = NodePath("AnimatedSprite2D")
 Facing = -1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

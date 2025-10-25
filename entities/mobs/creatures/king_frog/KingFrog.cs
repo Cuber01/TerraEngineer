@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using TENamespace;
+using TENamespace.basic.builders.creature_builder;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
@@ -40,8 +41,10 @@ public partial class KingFrog : Mob
         fsm = new StateMachine<KingFrog>(this, idleState);
         fsm.AddTransition(idleState, jumpState, idleState.TimerCondition);
         fsm.AddTransition(jumpState, idleState, jumpState.IsFinished);
-        fsm.AddTransition(jumpState, smashState, () => playerDetector.IsColliding());
+        fsm.AddTransition(jumpState, spawnState, jumpState.IsFinished);
+        fsm.AddTransition(jumpState, smashState, playerDetector.IsColliding);
         fsm.AddTransition(smashState, idleState, smashState.IsFinished);
+        fsm.AddTransition(spawnState, idleState, spawnState.IsFinished);
         
         //fsm.AddTransition(idleState, spawnState, idleState.TimerCondition);
 
@@ -54,6 +57,12 @@ public partial class KingFrog : Mob
         
         Velocity = velocity;
         MoveAndSlide();
+    }
+
+    protected override void FlipEffect()
+    {
+        base.FlipEffect();
+        CM.GetComponent<CreatureSpawner>().Position = -CM.GetComponent<CreatureSpawner>().Position;
     }
 
     public class JumpState : IState<KingFrog>
@@ -136,25 +145,54 @@ public partial class KingFrog : Mob
         }
     }
     
-    public class SpawnState : TimedState<KingFrog>
+    public class SpawnState : IState<KingFrog>
     {
-        public override void Enter(KingFrog actor)
+        private int amountToSpawn = 3;
+        private int amountSpawned = 0;
+        private float minTimeSpawn = 1f;
+        private float maxTimeSpawn = 6f;
+        private int frogHealth = 1;
+        
+        private bool finished = false;
+        
+        public void Enter(KingFrog actor)
         {
-            base.Enter(actor);
-            throw new NotImplementedException();
+           spawn(actor);
         }
 
-        public override void Update(KingFrog actor, float dt)
+        public void Update(KingFrog actor, float dt) { }
+
+        public void Exit(KingFrog actor)
         {
-            base.Update(actor, dt);
-            throw new NotImplementedException();
+            finished = false;
+            amountSpawned = 0;
         }
 
-        public override void Exit(KingFrog actor)
+        private void spawn(KingFrog actor)
         {
-            base.Exit(actor);
-            throw new NotImplementedException();
+            actor.CM.GetComponent<CreatureSpawner>()
+                .Start()
+                .SetPosition(actor.CM.GetComponent<CreatureSpawner>().GlobalPosition)
+                .AddToGame()
+                .SetFacing(actor.Facing)
+                .SetHealth(frogHealth)
+                .Build();
+                
+            amountSpawned++;
+
+            if (amountSpawned < amountToSpawn)
+            {
+                TimerManager.Schedule(MathT.RandomFloat(minTimeSpawn, maxTimeSpawn), 
+                        (_) => spawn(actor));
+            }
+            else
+            {
+                finished = true;
+            }
         }
+        
+        public bool IsFinished() => finished;
+        public void Finished() { finished = true; }
     }
     
     public class SmashState : IState<KingFrog>

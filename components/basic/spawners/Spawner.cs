@@ -21,7 +21,7 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
         return Instance;
     }
 
-    public void AddToGame(Node2D parent = null)
+    public Me AddToGame(Node2D parent = null)
     {
         if (parent != null)
         {
@@ -33,6 +33,7 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
             level.AddChild(Instance);    
         }
 
+        return (Me)this;
     }
     
     public Me Start()

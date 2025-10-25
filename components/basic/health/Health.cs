@@ -14,6 +14,9 @@ public partial class Health : Component
     private bool invincible = false;
     private float invincibilityDelay = 0;
     
+    // Does not check for invincibility or anything!
+    public void SetHealth(int health) => this.health = health;
+    
     public void ChangeHealth(int amount)
     {
         if (invincible && amount < 0)
