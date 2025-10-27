@@ -9,14 +9,20 @@ namespace TENamespace.advanced.terraform_gun;
 
 public partial class TerraformGun : AdvancedComponent, IGun
 {
+    public delegate void EssenceChangedEventHandler(Biomes selected, Biomes unselected);
+    public event EssenceChangedEventHandler EssenceChanged;
+    
+    public delegate void EssenceUnlockedEventHandler(Biomes biome);
+    public event EssenceUnlockedEventHandler EssenceUnlocked;
+    
     [Export] private Biomes selectedBiome = Biomes.Forest;
     [Export] private Area2D areaAffected;
     
     // Every enum biome corresponds to it's index in this array
-    private Biomes[] modes = [Biomes.Forest, Biomes.Ice, Biomes.Mushroom, Biomes.Desert];
+    private Biomes[] modes = [Biomes.Forest, Biomes.Mushroom, Biomes.Ice, Biomes.Desert];
     
     private List<TerraformableCaretaker> terraformablesAffected = new List<TerraformableCaretaker>();
-    
+
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)
     {
         CM.GetComponent<StarParticleSpawner>()
@@ -36,8 +42,9 @@ public partial class TerraformGun : AdvancedComponent, IGun
     {
         if (modes[index] != Biomes.Locked)
         {
-            selectedBiome = (Biomes)index;
-            GD.Print(selectedBiome);
+            Biomes toSelect = (Biomes)index;
+            EssenceChanged?.Invoke(toSelect, selectedBiome);
+            selectedBiome = toSelect;
         }
     }
 
@@ -54,8 +61,9 @@ public partial class TerraformGun : AdvancedComponent, IGun
             
             if (modes[i] != Biomes.Locked)
             {
+                Biomes toSelect = (Biomes)i;
+                EssenceChanged?.Invoke(toSelect, selectedBiome);
                 selectedBiome = (Biomes)i;
-                GD.Print(selectedBiome);
                 break;
             }
             
@@ -66,14 +74,13 @@ public partial class TerraformGun : AdvancedComponent, IGun
     public void LockOrUnlockMode(Biomes biome, bool unlock)
     {
         modes[(int)biome] = unlock ? biome : Biomes.Locked;
+        if(unlock) EssenceUnlocked?.Invoke(biome);
     }
-
-    private int i = 0;
+    
     private void applyTerraform()
     {
         foreach (TerraformableCaretaker obj in terraformablesAffected)
         {
-            i++;
             obj.Terraform(selectedBiome);
         }
     }

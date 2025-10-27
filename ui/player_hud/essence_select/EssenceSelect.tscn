@@ -1,0 +1,205 @@
+[gd_scene load_steps=20 format=3 uid="uid://doi2a5xm3mqf5"]
+
+[ext_resource type="Texture2D" uid="uid://7kofn85qdabm" path="res://ui/player_hud/essence_select/essences.png" id="1_pou7s"]
+[ext_resource type="Script" uid="uid://rdi6sfvpdwk3" path="res://ui/player_hud/essence_select/EssenceSelect.cs" id="1_sya5d"]
+[ext_resource type="Texture2D" uid="uid://c54awjr6r2bsp" path="res://ui/player_hud/essence_select/essences-decor.png" id="2_0st5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0st5w"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(0, 10, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sya5d"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02rye"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(0, 5, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bn502"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0st5w")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sya5d")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02rye")
+}],
+"loop": true,
+"name": &"unselected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pbt0"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(15, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjdr6"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(15, 5, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xv5hy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0st5w")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pbt0")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjdr6")
+}],
+"loop": true,
+"name": &"unselected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wxis"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(10, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56qd0"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(10, 5, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02fdx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0st5w")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wxis")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56qd0")
+}],
+"loop": true,
+"name": &"unselected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rkuu"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(5, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16yo1"]
+atlas = ExtResource("1_pou7s")
+region = Rect2(5, 5, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bm3qy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0st5w")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rkuu")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16yo1")
+}],
+"loop": true,
+"name": &"unselected",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn502"]
+atlas = ExtResource("2_0st5w")
+region = Rect2(0, 4, 29, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv5hy"]
+atlas = ExtResource("2_0st5w")
+region = Rect2(0, 0, 29, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wxis"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bn502")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv5hy")
+}],
+"loop": true,
+"name": &"unselected",
+"speed": 5.0
+}]
+
+[node name="EssenceSelect" type="Node2D" node_paths=PackedStringArray("essenceList")]
+script = ExtResource("1_sya5d")
+essenceList = [NodePath("Forest"), NodePath("Mushroom"), NodePath("Ice"), NodePath("Desert")]
+
+[node name="Forest" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_bn502")
+animation = &"unselected"
+
+[node name="Mushroom" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, 2)
+sprite_frames = SubResource("SpriteFrames_xv5hy")
+animation = &"unselected"
+
+[node name="Ice" type="AnimatedSprite2D" parent="."]
+position = Vector2(17, 2)
+sprite_frames = SubResource("SpriteFrames_02fdx")
+animation = &"unselected"
+
+[node name="Desert" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, 2)
+sprite_frames = SubResource("SpriteFrames_bm3qy")
+animation = &"unselected"
+
+[node name="Decor" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 2)
+sprite_frames = SubResource("SpriteFrames_4wxis")
+animation = &"unselected"

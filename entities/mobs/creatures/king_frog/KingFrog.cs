@@ -20,6 +20,7 @@ public partial class KingFrog : Mob
     // Stretch: tongue attack
     // If you do a secret you can get green essence early and play the boss fight with a heart plant
     // Green essence room: requires using green essence to leave, make heartplant or die to damaging blocks
+    // TODO: Make it so that he can smash only if his velocity is already < 0
     
     private StateMachine<KingFrog> fsm;
     

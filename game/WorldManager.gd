@@ -7,6 +7,7 @@ var CurrentLevel: Node;
 
 func _ready():
 	start();
+	$PlayerHUD.Connect(player);
 
 func on_room_loaded(level: Node):
 	CurrentLevel = level;

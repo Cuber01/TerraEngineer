@@ -13,13 +13,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("raycastUp", "CM", "sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("raycastUp", "CM")]
 collision_layer = 2
 slide_on_ceiling = false
 script = ExtResource("1_ldahb")
 raycastUp = NodePath("RayCastUp")
 CM = NodePath("ComponentManager")
-sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -61,5 +60,6 @@ speed = 150.0
 jumpVelocity = 120.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
+MaxHealth = 10
 
 [editable path="ComponentManager/GunAdvComponent"]

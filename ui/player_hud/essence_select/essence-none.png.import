@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkpwf6qt0i1do"
-path="res://.godot/imported/cam-view-small.png-13ef59237b53050199aee018b269846b.ctex"
+uid="uid://dnuub2oe5jm85"
+path="res://.godot/imported/essence-none.png-a975721b49eaacd6afe03741e776d339.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets_ase/cam-view-small.png"
-dest_files=["res://.godot/imported/cam-view-small.png-13ef59237b53050199aee018b269846b.ctex"]
+source_file="res://ui/player_hud/essence_select/essence-none.png"
+dest_files=["res://.godot/imported/essence-none.png-a975721b49eaacd6afe03741e776d339.ctex"]
 
 [params]
 
