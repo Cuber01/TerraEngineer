@@ -5,7 +5,7 @@ namespace TENamespace.basic;
 
 public partial class KnockbackComponent : Component
 {
-    [Export] private Vector2 knockbackFactor = Vector2.One;
+    [Export] private Vector2 knockbackFactor = new(1.0f, 0.5f);
     
     public void ApplyKnockback(Vector2 fromPosition, float force)
     {

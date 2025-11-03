@@ -152,7 +152,7 @@ public partial class KingFrog : Mob
         private int amountSpawned = 0;
         private float minTimeSpawn = 1f;
         private float maxTimeSpawn = 6f;
-        private int frogHealth = 1;
+        private int frogHealth = 5;
         
         private bool finished = false;
         

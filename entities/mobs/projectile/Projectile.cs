@@ -10,7 +10,7 @@ public partial class Projectile : Mob
 {
     [Export] private int damage = 1;
     [Export] private int piercing = 0;
-    [Export] private float knockbackForce = 500f;
+    [Export] private float knockbackForce = 100f;
     [Export] private bool breakOnWall = true;
     
     // Set by builder
