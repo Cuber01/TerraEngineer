@@ -47,3 +47,5 @@ airResistance = 0.0
 [node name="LifetimeComponent" parent="ComponentManager" node_paths=PackedStringArray("actor") instance=ExtResource("5_enncr")]
 actor = NodePath("../..")
 lifetime = 0.3
+
+[connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

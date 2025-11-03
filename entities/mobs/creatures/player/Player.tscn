@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=12 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="5_jta8v"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="6_owoq1"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="8_1yb3l"]
+[ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="10_kfaad"]
 [ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://components/advanced/gun_handle/GunHandleComponent.tscn" id="11_61acl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
@@ -61,5 +62,8 @@ jumpVelocity = 120.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
 MaxHealth = 10
+
+[node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("10_kfaad")]
+knockbackFactor = Vector2(1, 0.2)
 
 [editable path="ComponentManager/GunAdvComponent"]

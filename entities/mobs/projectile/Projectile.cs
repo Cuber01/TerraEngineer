@@ -1,5 +1,6 @@
 using System.Reflection.Metadata.Ecma335;
 using Godot;
+using TENamespace.basic;
 using TENamespace.health;
 using TerraEngineer.entities.mobs;
 
@@ -9,6 +10,7 @@ public partial class Projectile : Mob
 {
     [Export] private int damage = 1;
     [Export] private int piercing = 0;
+    [Export] private float knockbackForce = 500f;
     [Export] private bool breakOnWall = true;
     
     // Set by builder
@@ -22,6 +24,10 @@ public partial class Projectile : Mob
             {
                 Health healthComp = mob.CM.TryGetComponent<Health>();
                 healthComp?.ChangeHealth(-damage);
+                
+                mob.CM.TryGetComponent<KnockbackComponent>()
+                    ?.ApplyKnockback(GlobalPosition, knockbackForce);
+                
                 pierceOrDie();
             }
             // Else ignore

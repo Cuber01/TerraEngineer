@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdopnimf1nlgu" path="res://components/advanced/gun_handle/GunHandle.cs" id="1_8xf7b"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_l55wu"]
-[ext_resource type="PackedScene" uid="uid://c3u3v3sbq4ydd" path="res://components/advanced/pistol_gun_handle/MainGunsSwitchComponent.tscn" id="4_dnj0d"]
+[ext_resource type="PackedScene" uid="uid://c3u3v3sbq4ydd" path="res://components/advanced/pistol_gun_handle/PistolGunHandleComponent.tscn" id="4_dnj0d"]
 [ext_resource type="PackedScene" uid="uid://ckwtij0jbdibs" path="res://components/advanced/terraform_gun/TerraformGun.tscn" id="5_415s4"]
 
 [node name="GunHandleComponent" type="Node2D" node_paths=PackedStringArray("up", "down", "right", "left", "CM")]
