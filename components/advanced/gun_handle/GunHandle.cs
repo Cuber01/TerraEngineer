@@ -9,6 +9,12 @@ using TENamespace.projectile_builder;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
+public enum GunHandleType
+{
+    Normal,
+    Terraforming
+}
+
 public interface IGun
 {
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees);
@@ -18,11 +24,14 @@ public interface IGun
 
 public partial class GunHandle : AdvancedComponent
 {
+    public delegate void GunHandleChangedEventHandler(GunHandleType newSelected);
+    public event GunHandleChangedEventHandler GunHandleChanged;
+    
     [Export] private Node2D up;
     [Export] private Node2D down;
     [Export] private Node2D right;
     [Export] private Node2D left;
-    [Export] private int selectedGun = 0;
+    [Export] private GunHandleType selectedGun = 0;
     
     private List<IGun> guns = new List<IGun>();
 
@@ -61,23 +70,16 @@ public partial class GunHandle : AdvancedComponent
                 break;
         }
         
-        guns[selectedGun].Shoot(position, direction, rotationDegrees);
+        guns[(int)selectedGun].Shoot(position, direction, rotationDegrees);
 
     }
 
     public void ChangeGunHandle()
     {
-        int i = selectedGun;
-        
-        i++;
-        if (i >= guns.Count)
-        {
-            i = 0;
-        }
-        
-        selectedGun = i;
+        selectedGun = selectedGun == GunHandleType.Normal ? GunHandleType.Terraforming : GunHandleType.Normal;
+        GunHandleChanged?.Invoke(selectedGun);
     }
     
-    public void ChangeWeapon(int index) => guns[selectedGun].ChangeWeapon(index);
-    public void ChangeToNextWeapon() => guns[selectedGun].ChangeToNextWeapon();
+    public void ChangeWeapon(int index) => guns[(int)selectedGun].ChangeWeapon(index);
+    public void ChangeToNextWeapon() => guns[(int)selectedGun].ChangeToNextWeapon();
 }

@@ -175,9 +175,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EssenceSelect" type="Node2D" node_paths=PackedStringArray("essenceList")]
+[node name="EssenceSelect" type="Node2D" node_paths=PackedStringArray("essenceList", "decor")]
 script = ExtResource("1_sya5d")
 essenceList = [NodePath("Forest"), NodePath("Mushroom"), NodePath("Ice"), NodePath("Desert")]
+decor = NodePath("Decor")
 
 [node name="Forest" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 2)
@@ -202,4 +203,4 @@ animation = &"unselected"
 [node name="Decor" type="AnimatedSprite2D" parent="."]
 position = Vector2(14, 2)
 sprite_frames = SubResource("SpriteFrames_4wxis")
-animation = &"selected"
+animation = &"unselected"
