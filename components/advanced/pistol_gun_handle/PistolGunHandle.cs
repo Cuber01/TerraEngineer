@@ -7,23 +7,23 @@ namespace TENamespace.advanced.main_gun_wrapper;
 
 // For non-terraforming guns
 
-public enum NormalGuns
+public enum PistolGuns
 {
     Blowtorch,
     Shotgun,
 }
 
-public interface IMainGun
+public interface IPistolGun
 {
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees);
 }
 
-public partial class MainGunWrapper : AdvancedComponent, IGun
+public partial class PistolGunHandle : AdvancedComponent, IGun
 {
-    public delegate void MainGunChangedEventHandler(NormalGuns newSelected);
+    public delegate void MainGunChangedEventHandler(PistolGuns newSelected);
     public event MainGunChangedEventHandler NormalGunChanged;
     
-    private List<IMainGun> guns = new List<IMainGun>();
+    private List<IPistolGun> guns = new List<IPistolGun>();
     private int selectedIndex;
 
     public override void _Ready()
@@ -40,7 +40,7 @@ public partial class MainGunWrapper : AdvancedComponent, IGun
         if (index < guns.Count)
         {
             selectedIndex = index;
-            NormalGunChanged?.Invoke((NormalGuns)index);
+            NormalGunChanged?.Invoke((PistolGuns)index);
         }
     }
 
@@ -56,10 +56,10 @@ public partial class MainGunWrapper : AdvancedComponent, IGun
         }
 
         selectedIndex = i;
-        NormalGunChanged?.Invoke((NormalGuns)selectedIndex);
+        NormalGunChanged?.Invoke((PistolGuns)selectedIndex);
     }
 
-    public void UnlockGun(IMainGun gun)
+    public void UnlockGun(IPistolGun gun)
     {
         guns.Add(gun);
     }

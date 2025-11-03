@@ -11,24 +11,24 @@ public partial class WeaponSelectUI : Node2D, IConnectable<Player>
     [Export] private Sprite2D icon;
 
     private GunHandle gunHandle;
-    private MainGunWrapper normalGunWrapper;
+    private PistolGunHandle normalGunHandle;
     
     public void Connect(Player player)
     {
         gunHandle = player.CM.GetComponent<GunHandle>();
-        normalGunWrapper = gunHandle.CM.GetComponent<MainGunWrapper>();
+        normalGunHandle = gunHandle.CM.GetComponent<PistolGunHandle>();
         
         gunHandle.GunHandleChanged += onGunHandleChanged;
-        normalGunWrapper.NormalGunChanged += onGunChanged;
+        normalGunHandle.NormalGunChanged += onGunChanged;
     }
 
     public void Disconnect(Player player)
     {
         gunHandle.GunHandleChanged -= onGunHandleChanged;
-        normalGunWrapper.NormalGunChanged -= onGunChanged;
+        normalGunHandle.NormalGunChanged -= onGunChanged;
     }
 
-    private void onGunChanged(NormalGuns newSelected)
+    private void onGunChanged(PistolGuns newSelected)
     {
         icon.Texture = gunTextures[(int)newSelected];
     }

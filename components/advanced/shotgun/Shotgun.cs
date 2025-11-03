@@ -5,7 +5,7 @@ using Vector2 = System.Numerics.Vector2;
 
 namespace TENamespace.advanced.shotgun;
 
-public partial class Shotgun : AdvancedComponent, IMainGun
+public partial class Shotgun : AdvancedComponent, IPistolGun
 {
     public void Shoot(Godot.Vector2 position, Godot.Vector2 direction, float rotationDegrees)
     {

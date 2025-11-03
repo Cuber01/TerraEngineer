@@ -5,7 +5,7 @@ using TerraEngineer.entities.projectiles;
 
 namespace TENamespace.advanced.blowtorch;
 
-public partial class Blowtorch : AdvancedComponent, IMainGun
+public partial class Blowtorch : AdvancedComponent, IPistolGun
 {
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)
     {

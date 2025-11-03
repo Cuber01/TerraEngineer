@@ -37,7 +37,7 @@ public partial class GunHandle : AdvancedComponent
 
     public override void _Ready()
     {
-        guns.Add(CM.GetComponent<MainGunWrapper>());
+        guns.Add(CM.GetComponent<PistolGunHandle>());
         guns.Add(CM.GetComponent<TerraformGun>());
     }
     
