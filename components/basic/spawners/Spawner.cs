@@ -36,8 +36,13 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
         return (Me)this;
     }
     
-    public Me Start()
+    public Me Start(PackedScene overrideScene=null)
     {
+        if (overrideScene != null)
+        {
+            Scene = overrideScene;
+        }
+        
         Instance = (T)Scene.Instantiate();
         return (Me)this;
     }

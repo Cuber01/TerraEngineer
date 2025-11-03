@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7jygjsij4v6s"]
+
+[ext_resource type="Script" uid="uid://buxlrp3tafbxy" path="res://components/advanced/shotgun/Shotgun.cs" id="1_f3er8"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_dvp5g"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileBuilderComponent.tscn" id="3_kq3bi"]
+[ext_resource type="PackedScene" uid="uid://cs43ir7fk8nwk" path="res://entities/mobs/projectile/basic_bullet/SimpleBullet.tscn" id="4_7kkx5"]
+
+[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("CM")]
+script = ExtResource("1_f3er8")
+CM = NodePath("ComponentManager")
+
+[node name="ComponentManager" parent="." instance=ExtResource("2_dvp5g")]
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" instance=ExtResource("3_kq3bi")]
+Scene = ExtResource("4_7kkx5")

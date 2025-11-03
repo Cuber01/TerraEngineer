@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxs10yht7u0v6"]
+
+[ext_resource type="Script" uid="uid://bpctuolso1xab" path="res://components/advanced/blowtorch/Blowtorch.cs" id="1_wept5"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_t6dep"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileBuilderComponent.tscn" id="3_kti3f"]
+[ext_resource type="PackedScene" uid="uid://bwta0ajoqhibc" path="res://entities/mobs/projectile/flame/FlameProjectile.tscn" id="4_tak1h"]
+
+[node name="Blowtorch" type="Node2D" node_paths=PackedStringArray("CM")]
+script = ExtResource("1_wept5")
+CM = NodePath("ComponentManager")
+
+[node name="ComponentManager" parent="." instance=ExtResource("2_t6dep")]
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" instance=ExtResource("3_kti3f")]
+Scene = ExtResource("4_tak1h")

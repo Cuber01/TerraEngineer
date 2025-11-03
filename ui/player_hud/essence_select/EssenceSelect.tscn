@@ -202,4 +202,4 @@ animation = &"unselected"
 [node name="Decor" type="AnimatedSprite2D" parent="."]
 position = Vector2(14, 2)
 sprite_frames = SubResource("SpriteFrames_4wxis")
-animation = &"unselected"
+animation = &"selected"

@@ -43,7 +43,7 @@ public partial class KingFrog : Mob
         fsm.AddTransition(idleState, jumpState, idleState.TimerCondition);
         fsm.AddTransition(jumpState, idleState, jumpState.IsFinished);
         fsm.AddTransition(jumpState, spawnState, jumpState.IsFinished);
-        fsm.AddTransition(jumpState, smashState, playerDetector.IsColliding);
+        fsm.AddTransition(jumpState, smashState, canSmash);
         fsm.AddTransition(smashState, idleState, smashState.IsFinished);
         fsm.AddTransition(spawnState, idleState, spawnState.IsFinished);
         
@@ -59,7 +59,7 @@ public partial class KingFrog : Mob
         Velocity = velocity;
         MoveAndSlide();
     }
-
+    
     protected override void FlipEffect()
     {
         base.FlipEffect();
@@ -171,6 +171,8 @@ public partial class KingFrog : Mob
 
         private void spawn(KingFrog actor)
         {
+            if(actor.Dead) return;
+            
             actor.CM.GetComponent<CreatureSpawner>()
                 .Start()
                 .SetPosition(actor.CM.GetComponent<CreatureSpawner>().GlobalPosition)
@@ -222,4 +224,5 @@ public partial class KingFrog : Mob
         public void Finished() { finished = true; }
     }
     
+    private bool canSmash() => (playerDetector.IsColliding() && velocity.Y > 0);
 }

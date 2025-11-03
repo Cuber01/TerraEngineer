@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using TENamespace.advanced;
+using TENamespace.advanced.main_gun_wrapper;
 using TENamespace.advanced.terraform_gun;
 using TENamespace.basic.particle_builder;
 using TENamespace.projectile_builder;
@@ -27,6 +28,7 @@ public partial class GunHandle : AdvancedComponent
 
     public override void _Ready()
     {
+        guns.Add(CM.GetComponent<MainGunWrapper>());
         guns.Add(CM.GetComponent<TerraformGun>());
     }
     
@@ -61,9 +63,21 @@ public partial class GunHandle : AdvancedComponent
         
         guns[selectedGun].Shoot(position, direction, rotationDegrees);
 
-        //CM.GetComponent<ProjectileSpawner>().Build(position, direction, rotationDegrees, mobParent ? Actor : null);
     }
 
+    public void ChangeGunHandle()
+    {
+        int i = selectedGun;
+        
+        i++;
+        if (i >= guns.Count)
+        {
+            i = 0;
+        }
+        
+        selectedGun = i;
+    }
+    
     public void ChangeWeapon(int index) => guns[selectedGun].ChangeWeapon(index);
     public void ChangeToNextWeapon() => guns[selectedGun].ChangeToNextWeapon();
 }

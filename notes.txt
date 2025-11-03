@@ -1,4 +1,4 @@
-320x180 screen size
+ 320x180 screen size
 40x23 tiles (not full)
 
 384x216

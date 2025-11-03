@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3u3v3sbq4ydd"]
+
+[ext_resource type="Script" uid="uid://srm6keqyupdh" path="res://components/advanced/main_gun_wrapper/MainGunWrapper.cs" id="1_vc4ry"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_0ik3n"]
+[ext_resource type="PackedScene" uid="uid://bxs10yht7u0v6" path="res://components/advanced/blowtorch/Blowtorch.tscn" id="3_vc4ry"]
+[ext_resource type="PackedScene" uid="uid://b7jygjsij4v6s" path="res://components/advanced/shotgun/Shotgun.tscn" id="4_7hyir"]
+
+[node name="MainGunsSwitchComponent" type="Node2D" node_paths=PackedStringArray("CM")]
+script = ExtResource("1_vc4ry")
+CM = NodePath("ComponentManager")
+
+[node name="ComponentManager" parent="." instance=ExtResource("2_0ik3n")]
+
+[node name="Blowtorch" parent="ComponentManager" instance=ExtResource("3_vc4ry")]
+
+[node name="Shotgun" parent="ComponentManager" instance=ExtResource("4_7hyir")]

@@ -37,6 +37,8 @@ public partial class Player : Mob
 			CM.GetComponent<GunHandle>().ChangeWeapon(3);
 		else if (Input.IsActionJustPressed("weapon_next"))
 			CM.GetComponent<GunHandle>().ChangeToNextWeapon();
+		else if (Input.IsActionJustPressed("gunhandle_next"))
+			CM.GetComponent<GunHandle>().ChangeGunHandle();
 		
 		CM.GetComponent<Move>().Walk(moveDir);
 		CM.UpdateComponents((float)delta);
