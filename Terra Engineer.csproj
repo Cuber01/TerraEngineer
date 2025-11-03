@@ -9,6 +9,7 @@
     <Content Include="addons\TimerManager\TimerManager.tscn" />
     <Content Include="LICENSE.txt" />
     <Content Include="notes.txt" />
+    <Content Include="shaders\blink.gdshader" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets_ase\" />

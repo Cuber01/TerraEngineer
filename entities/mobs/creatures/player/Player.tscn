@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=15 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="2_61acl"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_o7rne"]
 [ext_resource type="PackedScene" uid="uid://bjjpuksvia1vq" path="res://components/basic/dash/DashComponent.tscn" id="3_ldahb"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="4_1yb3l"]
@@ -11,24 +12,42 @@
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="10_kfaad"]
 [ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://components/advanced/gun_handle/GunHandleComponent.tscn" id="11_61acl"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_802vs"]
+shader = ExtResource("2_61acl")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/run = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlvbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cmjn3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("raycastUp", "CM")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("raycastUp", "CM", "Sprite")]
 collision_layer = 2
 slide_on_ceiling = false
 script = ExtResource("1_ldahb")
 raycastUp = NodePath("RayCastUp")
 CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+BlinkShader = SubResource("ShaderMaterial_802vs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jlvbh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_hoemn")
-
-[node name="Player" type="Sprite2D" parent="."]
-texture = ExtResource("1_cmjn3")
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
 position = Vector2(0, -5)
