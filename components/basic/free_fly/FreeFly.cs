@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using TENamespace;
+using TerraEngineer;
 
 public partial class FreeFly : Component
 {
@@ -9,18 +10,18 @@ public partial class FreeFly : Component
     [Export] private float acceleration = 0.25f;
     [Export] private float airResistance = 0.1f;
 
-    public void FlyInDirection(Vector2 directionNormal)
+    public void FlyInDirection(Vector2 directionNormal, float dt)
     {
-        Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, directionNormal.X * speed, acceleration);
-        Actor.velocity.Y = Mathf.Lerp(Actor.velocity.Y, directionNormal.Y * speed, acceleration);
+        Actor.velocity.X = MathT.Lerp(Actor.velocity.X, directionNormal.X * speed, acceleration, dt);
+        Actor.velocity.Y = MathT.Lerp(Actor.velocity.Y, directionNormal.Y * speed, acceleration, dt);
     }
 
-    public void FlyToPoint(Vector2 point)
+    public void FlyToPoint(Vector2 point, float dt)
     {
         if (!isAtPoint(Actor.GlobalPosition, point))
         {
             Vector2 direction = (point - Actor.GlobalPosition).Normalized();
-            FlyInDirection(direction);
+            FlyInDirection(direction, dt);
         }
     }
 
@@ -30,11 +31,10 @@ public partial class FreeFly : Component
                 actorPos.X <= pointPosition.X + errorMargin.X && actorPos.Y <= pointPosition.Y + errorMargin.Y);
     }
     
-    private void updateAirResistance()
+    private void updateAirResistance(float dt)
     {
-        Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, 0f, airResistance);
-        Actor.velocity.Y = Mathf.Lerp(Actor.velocity.Y, 0f, airResistance);
+        Actor.velocity = MathT.Lerp(Actor.velocity, Vector2.Zero, airResistance, dt);
     }
 
-    public override void Update(float delta) => updateAirResistance();
+    public override void Update(float dt) => updateAirResistance(dt);
 }

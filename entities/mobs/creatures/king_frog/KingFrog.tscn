@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c664c7d5b8qgx"]
+[gd_scene load_steps=14 format=3 uid="uid://c664c7d5b8qgx"]
 
 [ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_0c618"]
 [ext_resource type="Texture2D" uid="uid://q64l41cvrhp5" path="res://entities/mobs/creatures/king_frog/king-frog.png" id="2_eijyq"]
@@ -10,41 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_4q3up"]
 [ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawneComponent.tscn" id="8_tw2qj"]
 [ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="9_ltn64"]
-
-[sub_resource type="Shader" id="Shader_tw2qj"]
-code = "shader_type canvas_item;
-
-uniform vec3 blink_color = vec3(1.0,1.0,1.0);
-
-// Color we ignore while blinking
-uniform vec4 ignore_color = vec4(0.0,0.0,0.0,1.0);
-
-uniform float blink_speed = 2.0f;
-
-uniform bool run = false;
-
-void fragment()
-{
-	if(run)
-	{
-		// Fracture of TIME means we go from 0.(0) to 0.(9) meaning it's a 0-9 counter
-		float timer = fract(TIME * blink_speed);
-		// If it's below 0.5 blink is 0, otherwise 1
-		float blink = step(0.5, timer);
-		vec4 tex_color = texture(TEXTURE, UV);
-		if(blink == 1.0 && COLOR != ignore_color)
-		{
-			COLOR = vec4(blink_color, tex_color.a);
-		}
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ltn64"]
-shader = SubResource("Shader_tw2qj")
-shader_parameter/blink_color = Vector3(1, 1, 1)
-shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
-shader_parameter/blink_speed = 2.0
-shader_parameter/run = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1vp5w"]
 animations = [{
@@ -71,7 +36,6 @@ playerDetector = NodePath("PlayerDetector")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
-BlinkShader = SubResource("ShaderMaterial_ltn64")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1vp5w")
@@ -92,7 +56,7 @@ MaxJumps = 1
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("5_1s1ba")]
 speed = 60.0
 acceleration = 1.0
-friction = 0.5
+friction = 10.0
 errorMargin = 0.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("6_gybbv")]

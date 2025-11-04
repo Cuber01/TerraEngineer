@@ -42,7 +42,7 @@ public partial class Player : Creature
 		else if (Input.IsActionJustPressed("gunhandle_next"))
 			CM.GetComponent<GunHandle>().ChangeGunHandle();
 		
-		CM.GetComponent<Move>().Walk(moveDir);
+		CM.GetComponent<Move>().Walk(moveDir, (float)delta);
 		CM.UpdateComponents((float)delta);
 		
 		if (Input.IsActionJustPressed("jump"))

@@ -16,16 +16,16 @@ public partial class Move : Component
 	
 	[Export] private float errorMargin = 1f;
 	
-	public override void Update(float delta) => updateFriction(FrictionEnabledX, FrictionEnabledY);
+	public override void Update(float delta) => updateFriction(FrictionEnabledX, FrictionEnabledY, delta);
 	
-	public void Walk(DirectionX direction, float speedModifier=1f)
+	public void Walk(DirectionX direction, float dt, float speedModifier=1f)
 	{
-		Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, (int)direction * speed * speedModifier, acceleration);
+		Actor.velocity.X = MathT.Lerp(Actor.velocity.X, (int)direction * speed * speedModifier, acceleration, dt);
 	}
 
-	public void Walk4(Vector2 direction)
+	public void Walk4(Vector2 direction, float dt)
 	{
-		Actor.velocity = MathT.Lerp(Actor.velocity, direction * speed, acceleration);
+		Actor.velocity = MathT.Lerp(Actor.velocity, direction * speed, acceleration, dt);
 	}
 
 	public void WalkToPoint(float pointX, float speedModifier=1f)
@@ -42,7 +42,7 @@ public partial class Move : Component
 		return (posX >= pointX - errorMargin && posX <= pointX + errorMargin);
 	}
 
-	private void updateFriction(bool x, bool y)
+	private void updateFriction(bool x, bool y, float dt)
 	{
 		float amount;
 		if (Actor.IsOnFloor())
@@ -54,8 +54,8 @@ public partial class Move : Component
 			amount = airResistance;
 		}
 		
-		if (x) Actor.velocity.X = Mathf.Lerp(Actor.velocity.X, 0f, amount);	
-		if (y) Actor.velocity.Y = Mathf.Lerp(Actor.velocity.Y, 0f, amount);
+		if (x) Actor.velocity.X = MathT.Lerp(Actor.velocity.X, 0f, amount, dt);	
+		if (y) Actor.velocity.Y = MathT.Lerp(Actor.velocity.Y, 0f, amount, dt);
 	}
 
 }

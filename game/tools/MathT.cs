@@ -100,15 +100,17 @@ public static class MathT
         return Vector2.Zero;
     }
 
+    public static float Lerp(float from, float to, float weight, float delta)
+    {
+        return Mathf.Lerp(from, to, 1 - Mathf.Exp(-weight * delta));
+    }
 
-    public static float Lerp(float from, float to, float weight) => Mathf.Lerp(from, to, weight);
-
-    public static Vector2 Lerp(Vector2 from, Vector2 to, float weight)
+    public static Vector2 Lerp(Vector2 from, Vector2 to, float weight, float delta)
     {
         return new Vector2
         {
-            X = Mathf.Lerp(from.X, to.X, weight),
-            Y = Mathf.Lerp(from.Y, to.Y, weight)
+            X = MathT.Lerp(from.X, to.X, weight, delta),
+            Y = MathT.Lerp(from.Y, to.Y, weight, delta)
         };
     }
 

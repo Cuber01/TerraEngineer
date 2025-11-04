@@ -27,7 +27,7 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
-[node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM", "sprite")]
+[node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM")]
 top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
@@ -35,7 +35,6 @@ FlyAroundPoint = NodePath("FlyAroundPoint")
 MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
 Team = 1
-sprite = NodePath("AnimatedSprite2D")
 Facing = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -58,7 +57,6 @@ shape = SubResource("CircleShape2D_qq40e")
 [node name="ComponentManager" parent="." instance=ExtResource("3_kqcek")]
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_cthkm")]
-maxHealth = 5
 
 [node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("5_ihw6d")]
 
@@ -67,6 +65,8 @@ shape = SubResource("RectangleShape2D_q4wwo")
 
 [node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("6_qq40e")]
 speed = 75.0
+acceleration = 4.31
+airResistance = 1.724
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]

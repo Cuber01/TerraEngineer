@@ -8,7 +8,7 @@ public partial class BasicBullet : Projectile
     {
         CM.UpdateComponents((float)delta);
         
-        CM.GetComponent<FreeFly>().FlyInDirection(DirectionNormal);
+        CM.GetComponent<FreeFly>().FlyInDirection(DirectionNormal, (float)delta);
         
         Velocity = velocity;
         MoveAndSlide();

@@ -44,7 +44,7 @@ public partial class Moth : Creature
         
         public void Update(Moth actor, float dt)
         {
-            actor.CM.GetComponent<FreeFly>().FlyToPoint(ChaseTarget.GlobalPosition);  
+            actor.CM.GetComponent<FreeFly>().FlyToPoint(ChaseTarget.GlobalPosition, dt);  
         }
         
         public void Exit(Moth actor) { }
@@ -72,7 +72,7 @@ public partial class Moth : Creature
 
         public void Update(Moth actor, float dt)
         {
-           actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint);    
+           actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint, dt);    
         }
 
         public void Exit(Moth actor)

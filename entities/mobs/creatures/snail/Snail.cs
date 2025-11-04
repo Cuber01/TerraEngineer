@@ -78,7 +78,7 @@ public partial class Snail : Mob
 
         public void Update(Snail actor, float dt)
         {
-            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing); 
+            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing, dt); 
             // TODO Doesn't this double as friction if direction = 0?
         }
 
@@ -109,9 +109,8 @@ public partial class Snail : Mob
         {
             
             actor.Rotation = Mathf.RotateToward(actor.Rotation, reachRotation, rotationSpeed);
-            GD.Print(reachRotation);
             
-            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing);
+            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing, dt);
             
             if (Math.Abs(actor.Rotation - reachRotation) < rotationTolerance)
                 actor.fsm.ChangeState(actor.walkState);

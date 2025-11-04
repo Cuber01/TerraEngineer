@@ -21,6 +21,7 @@ public partial class Frog : Creature
         fsm.AddTransition(waitState, jumpState, waitState.TimerCondition);
     }
 
+    
     public override void _PhysicsProcess(double delta)
     {
         fsm.Update((float)delta);
@@ -54,7 +55,7 @@ public partial class Frog : Creature
         
         public void Update(Frog actor, float dt)
         {
-            actor.CM.GetComponent<Move>().Walk(actor.Facing);
+            actor.CM.GetComponent<Move>().Walk(actor.Facing, dt);
         }
         
         public void Exit(Frog actor)

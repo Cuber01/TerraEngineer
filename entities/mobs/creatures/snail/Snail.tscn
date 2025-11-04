@@ -25,14 +25,13 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
 size = Vector2(9, 7)
 
-[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("down", "right", "left", "CM", "sprite")]
+[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("down", "right", "left", "CM")]
 collision_layer = 4
 script = ExtResource("1_jdeb6")
 down = NodePath("RayCastDown")
 right = NodePath("RayCastRight")
 left = NodePath("RayCastLeft")
 CM = NodePath("ComponentManager")
-sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wbohw")
@@ -58,10 +57,11 @@ target_position = Vector2(0, 2)
 [node name="ComponentManager" parent="." instance=ExtResource("3_ralr5")]
 
 [node name="MoveComponent" parent="ComponentManager" instance=ExtResource("4_072wc")]
-speed = 15.0
+acceleration = 4.31
+friction = 10.0
+airResistance = 1.724
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("5_he5bs")]
-maxHealth = 5
 
 [node name="GravityComponent" parent="ComponentManager" instance=ExtResource("6_8i4jb")]
 
