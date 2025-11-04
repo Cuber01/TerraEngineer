@@ -9,9 +9,8 @@ public partial class Mob : CharacterBody2D
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;
     
-    [Export] protected AnimatedSprite2D Sprite;
+    [Export] public AnimatedSprite2D Sprite;
     [Export] public DirectionX Facing = DirectionX.Right;
-    [Export] public ShaderMaterial BlinkShader;
 
     public Vector2 velocity;
 
@@ -40,15 +39,6 @@ public partial class Mob : CharacterBody2D
     {
         Facing = (DirectionX)(-(int)Facing);
         Sprite.FlipH = !Sprite.FlipH;   
-    }
-    
-    public void SetShader(AnimatedSprite2D sprite, ShaderMaterial shader) =>
-        sprite.Material = shader;
-
-    public void ToggleShader(AnimatedSprite2D sprite, bool enabled)
-    {
-        var shaderMaterial = (ShaderMaterial)sprite.Material;
-        shaderMaterial.SetShaderParameter("run", enabled); 
     }
 
     public virtual void Die()

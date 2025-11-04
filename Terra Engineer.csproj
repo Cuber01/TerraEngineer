@@ -13,6 +13,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets_ase\" />
-    <Folder Include="entities\mobs\creatures\" />
   </ItemGroup>
 </Project>

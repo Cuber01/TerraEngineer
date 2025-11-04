@@ -3,9 +3,10 @@ using System;
 using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.mobs.creatures;
 
 
-public partial class Moth : Mob
+public partial class Moth : Creature
 {
     [Export] public Node2D FlyAroundPoint;
     [Export] public float MarginAroundPoint = 20f;

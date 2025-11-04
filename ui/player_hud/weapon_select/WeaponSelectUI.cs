@@ -19,13 +19,13 @@ public partial class WeaponSelectUI : Node2D, IConnectable<Player>
         normalGunHandle = gunHandle.CM.GetComponent<PistolGunHandle>();
         
         gunHandle.GunHandleChanged += onGunHandleChanged;
-        normalGunHandle.NormalGunChanged += onGunChanged;
+        normalGunHandle.PistolGunChanged += onGunChanged;
     }
 
     public void Disconnect(Player player)
     {
         gunHandle.GunHandleChanged -= onGunHandleChanged;
-        normalGunHandle.NormalGunChanged -= onGunChanged;
+        normalGunHandle.PistolGunChanged -= onGunChanged;
     }
 
     private void onGunChanged(PistolGuns newSelected)

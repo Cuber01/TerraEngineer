@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgxg315s21wev"]
+
+[ext_resource type="Script" uid="uid://bc8da8v4k37rj" path="res://components/basic/shader/Shader.cs" id="1_he7ab"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="2_7jllx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u4qpm"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("2_7jllx")
+
+[node name="ShaderComponent" type="Node2D"]
+script = ExtResource("1_he7ab")
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_u4qpm")])

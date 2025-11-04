@@ -5,8 +5,9 @@ using TENamespace;
 using TENamespace.basic.builders.creature_builder;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.mobs.creatures;
 
-public partial class KingFrog : Mob
+public partial class KingFrog : Creature
 {
     [Export] private XBounds arenaBounds;
     [Export] private int myXSize;

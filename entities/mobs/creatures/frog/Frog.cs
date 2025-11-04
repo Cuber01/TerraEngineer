@@ -4,8 +4,9 @@ using TENamespace;
 using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.mobs.creatures;
 
-public partial class Frog : Mob
+public partial class Frog : Creature
 {
     private readonly JumpState jumpState = new JumpState();
     private readonly TimedState<Frog> waitState = new WaitState();

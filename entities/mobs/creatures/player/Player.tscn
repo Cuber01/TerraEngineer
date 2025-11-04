@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="10_kfaad"]
 [ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://components/advanced/gun_handle/GunHandleComponent.tscn" id="11_61acl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_802vs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61acl"]
 shader = ExtResource("2_61acl")
 shader_parameter/blink_color = Vector3(1, 1, 1)
 shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
@@ -40,7 +40,7 @@ script = ExtResource("1_ldahb")
 raycastUp = NodePath("RayCastUp")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
-BlinkShader = SubResource("ShaderMaterial_802vs")
+BlinkShader = SubResource("ShaderMaterial_61acl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jlvbh")
@@ -83,6 +83,5 @@ jumpVelocity = 120.0
 MaxHealth = 10
 
 [node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("10_kfaad")]
-knockbackFactor = Vector2(1, 0.2)
 
 [editable path="ComponentManager/GunAdvComponent"]

@@ -12,6 +12,7 @@ position = Vector2(210, 72)
 
 [node name="Frog" parent="." instance=ExtResource("3_p3t4a")]
 position = Vector2(150, 102)
+Facing = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(119, 108)
@@ -19,3 +20,9 @@ tile_map_data = PackedByteArray("AAD//wIAAAADAAEAAAAAAAIAAAADAAEAAAABAAIAAAADAAE
 tile_set = ExtResource("5_pit4m")
 
 [node name="RoomInstance" parent="." instance=ExtResource("6_11kte")]
+
+[node name="Frog2" parent="." instance=ExtResource("3_p3t4a")]
+position = Vector2(79, 86)
+
+[node name="Frog3" parent="." instance=ExtResource("3_p3t4a")]
+position = Vector2(120, 55)

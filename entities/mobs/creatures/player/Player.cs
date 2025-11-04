@@ -4,28 +4,12 @@ using TENamespace;
 using TENamespace.health;
 using TENamespace.projectile_builder;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.mobs.creatures;
 
-public partial class Player : Mob
+public partial class Player : Creature
 {
 	[Export] private RayCast2D raycastUp;
 	[Export] private bool godMode = false;
-	
-	public override void _Ready()
-	{
-		CM.GetComponent<Health>().HealthChanged += (_, amount) =>
-		{
-			if (amount < 0)
-			{
-				SetShader(Sprite, BlinkShader);
-				ToggleShader(Sprite, true);
-			}
-		};
-		
-		CM.GetComponent<Health>().InvincibilityEnded += () =>
-		{
-			ToggleShader(Sprite, false);
-		};
-	}
 	
 	public override void _PhysicsProcess(double delta)
 	{

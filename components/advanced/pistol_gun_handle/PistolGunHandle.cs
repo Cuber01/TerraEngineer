@@ -20,8 +20,8 @@ public interface IPistolGun
 
 public partial class PistolGunHandle : AdvancedComponent, IGun
 {
-    public delegate void MainGunChangedEventHandler(PistolGuns newSelected);
-    public event MainGunChangedEventHandler NormalGunChanged;
+    public delegate void PistolGunChangedEventHandler(PistolGuns newSelected);
+    public event PistolGunChangedEventHandler PistolGunChanged;
     
     private List<IPistolGun> guns = new List<IPistolGun>();
     private int selectedIndex;
@@ -40,7 +40,7 @@ public partial class PistolGunHandle : AdvancedComponent, IGun
         if (index < guns.Count)
         {
             selectedIndex = index;
-            NormalGunChanged?.Invoke((PistolGuns)index);
+            PistolGunChanged?.Invoke((PistolGuns)index);
         }
     }
 
@@ -56,7 +56,7 @@ public partial class PistolGunHandle : AdvancedComponent, IGun
         }
 
         selectedIndex = i;
-        NormalGunChanged?.Invoke((PistolGuns)selectedIndex);
+        PistolGunChanged?.Invoke((PistolGuns)selectedIndex);
     }
 
     public void UnlockGun(IPistolGun gun)
