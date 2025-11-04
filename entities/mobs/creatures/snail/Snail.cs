@@ -90,13 +90,14 @@ public partial class Snail : Mob
     
     public class RotateState : IState<Snail>
     {
-        private float rotationDelay = 1.5f;
+        private float rotationDelay = 1.0f;
         private float rotationSpeed = 0.1f;
         private float reachRotation = 0;
         private const float rotationTolerance = 0.001f;
 
         public void Enter(Snail actor)
         {
+
             reachRotation = actor.ToRotate + actor.Rotation;
             actor.vecFacing = MathT.rotateVec2(actor.vecFacing, actor.ToRotate > 0);
             actor.UpDirection = MathT.rotateVec2(actor.UpDirection, actor.ToRotate > 0);
@@ -118,6 +119,7 @@ public partial class Snail : Mob
 
         public void Exit(Snail actor)
         {
+            actor.velocity = Vector2.Zero; // Disable effects of past gravity when changing rotation
             reachRotation = 0;
         }
     }

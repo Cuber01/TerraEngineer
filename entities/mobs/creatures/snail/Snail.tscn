@@ -42,17 +42,17 @@ shape = SubResource("RectangleShape2D_gumxn")
 
 [node name="RayCastDown" type="RayCast2D" parent="."]
 position = Vector2(-3, 4)
-target_position = Vector2(0, 2)
+target_position = Vector2(0, 4)
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
 rotation = -1.5707964
-target_position = Vector2(0, 2)
+target_position = Vector2(0, 4)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(-4, 0)
 rotation = 1.5707964
-target_position = Vector2(0, 2)
+target_position = Vector2(0, 4)
 
 [node name="ComponentManager" parent="." instance=ExtResource("3_ralr5")]
 
@@ -60,6 +60,7 @@ target_position = Vector2(0, 2)
 acceleration = 4.31
 friction = 10.0
 airResistance = 1.724
+FrictionEnabledY = true
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("5_he5bs")]
 
