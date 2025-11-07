@@ -10,3 +10,5 @@ Shift - switch gun to terraform and vice versa
 space or < - switch to next gun
 
 terraform gun should have limited uses
+
+replace raycast up for player with area2d cause it will never cover the entire head of player

@@ -15,10 +15,10 @@ func on_room_loaded(level: Node):
 func start():
 	MetSys.reset_state();
 	MetSys.set_save_data();
-	extPlayer.global_position = Vector2(50, 50);
+	extPlayer.global_position = Vector2(11, 131);
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
-	await load_room("res://levels/Room1.tscn");
+	await load_room("res://levels/Start.tscn");
 
 	MetSys.get_current_room_instance().adjust_camera_limits(player.get_node("Camera2D"))
