@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://tilemaps/special-tiles.png" id="1_f810q"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_aukk6"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="3_lx7qt"]
-[ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="5_lx7qt"]
+[ext_resource type="PackedScene" uid="uid://nrndakgkb8c8" path="res://components/basic/save_tile/SaveTileComponent.tscn" id="5_lx7qt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bsskh"]
 atlas = ExtResource("1_f810q")
@@ -43,4 +43,4 @@ shape = SubResource("RectangleShape2D_uo1hy")
 MaxHealth = 1
 invincibilityTimeOnHit = 0.0
 
-[node name="SaveEntityComponent" parent="ComponentManager" instance=ExtResource("5_lx7qt")]
+[node name="SaveTileComponent" parent="ComponentManager" instance=ExtResource("5_lx7qt")]

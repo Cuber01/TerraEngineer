@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Godot.NativeInterop;
 using GodotDict = Godot.Collections.Dictionary<string, Godot.Variant>;
 using GodotArray = Godot.Collections.Array;
 
@@ -31,9 +32,29 @@ public partial class SaveData : Node
     
     public static void SetValue(string sectionKey, string key, Variant value)
         => ( (GodotDict)data[sectionKey] )[key] = value;
-
+    
+    public static void SetValueInArray(string sectionKey, string key, int index, Variant value)
+        => ((GodotArray)( (GodotDict)data[sectionKey] )[key])[index] = value;
+    
+    public static void RemoveValueInArray(string sectionKey, string key, Variant value)
+        => ((GodotArray)( (GodotDict)data[sectionKey] )[key]).Remove(value);
+    
+    public static void AddValueToArray(string sectionKey, string key, Variant value)
+    { 
+        GodotDict dict = (GodotDict)data[sectionKey];
+        if (!dict.ContainsKey(key))
+        {
+            dict[key] = new GodotArray();
+        }
+        
+        ((GodotArray)dict[key]).Add(value);
+    }
+    
     public static Variant ReadValue(string sectionKey, string key) 
         => ((GodotDict)data[sectionKey] )[key];
+    
+    public static Variant ReadFromArray(string sectionKey, string key, int index) 
+        => ((GodotArray)((GodotDict)data[sectionKey] )[key])[index];
 
     public static List<string> ReadInventory()
     {
@@ -44,6 +65,7 @@ public partial class SaveData : Node
         {
             if ((bool)playerInventory[key])
             {
+                GD.Print($"Player {key} is online");
                 items.Add(key);   
             }
             

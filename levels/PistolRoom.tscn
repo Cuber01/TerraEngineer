@@ -9,7 +9,7 @@
 texture = ExtResource("3_ikqer")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
-0:0/0/custom_data_0 = "breakable_block"
+0:0/0/custom_data_0 = "breakable"
 
 [sub_resource type="TileSet" id="TileSet_1dxaf"]
 tile_size = Vector2i(8, 8)
@@ -17,7 +17,8 @@ custom_data_layer_0/name = "special_type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_fj2sp")
 
-[node name="PistolRoom" type="Node2D"]
+[node name="Level" type="Node2D"]
+metadata/level_name = "PistolRoom"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(212, 108)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfrpu6pvsfai0"]
+
+[ext_resource type="Script" uid="uid://1iqil2rornjx" path="res://game/level_preparer/LevelPreparer.cs" id="1_l4i6g"]
+[ext_resource type="PackedScene" uid="uid://b7a8ld2p7qvwm" path="res://entities/tiles/breakable_tile/BreakableTile.tscn" id="2_hffwe"]
+
+[node name="LevelPreparer" type="Node2D"]
+script = ExtResource("1_l4i6g")
+tileNames = PackedStringArray("breakable")
+tileScenes = Array[PackedScene]([ExtResource("2_hffwe")])

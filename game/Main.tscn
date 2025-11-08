@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfhyb11tyqtw7"]
+[gd_scene load_steps=5 format=3 uid="uid://cfhyb11tyqtw7"]
 
 [ext_resource type="Script" uid="uid://vnlh3pdbdh8q" path="res://game/WorldManager.gd" id="1_8gaax"]
 [ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/creatures/player/Player.tscn" id="3_2fjjk"]
 [ext_resource type="PackedScene" uid="uid://cyfavbpc4vih7" path="res://ui/player_hud/PlayerHUD.tscn" id="3_ljq5a"]
+[ext_resource type="PackedScene" uid="uid://dfrpu6pvsfai0" path="res://game/level_preparer/LevelPreparer.tscn" id="4_ljq5a"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("extPlayer")]
 script = ExtResource("1_8gaax")
@@ -13,10 +14,11 @@ extPlayer = NodePath("Player")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -5)
 
-[node name="PlayerHUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_ljq5a")]
+[node name="PlayerHUD" parent="." instance=ExtResource("3_ljq5a")]
 z_index = 999
 position = Vector2(0, -5)
-player = NodePath("../Player")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerHUD"]
 remote_path = NodePath("../../Player/Camera2D")
+
+[node name="LevelPreparer" parent="." instance=ExtResource("4_ljq5a")]

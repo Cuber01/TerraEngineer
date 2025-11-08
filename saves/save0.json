@@ -1,0 +1,9 @@
+{
+    "player_inventory": {
+        "double_jump": true,
+        "dash": false
+    },
+    "PistolRoom": {
+    	"removed_tiles": []
+    }
+}

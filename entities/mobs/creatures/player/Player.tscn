@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=14 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="8_1yb3l"]
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="10_kfaad"]
 [ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://components/advanced/gun_handle/GunHandleComponent.tscn" id="11_61acl"]
+[ext_resource type="PackedScene" uid="uid://coo88mqcbjp6u" path="res://components/basic/player_inventory/PlayerInventoryComponent.tscn" id="11_802vs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jlvbh"]
 animations = [{
@@ -77,5 +78,7 @@ jumpVelocity = 120.0
 MaxHealth = 10
 
 [node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("10_kfaad")]
+
+[node name="PlayerInventoryComponent" parent="ComponentManager" instance=ExtResource("11_802vs")]
 
 [editable path="ComponentManager/GunAdvComponent"]

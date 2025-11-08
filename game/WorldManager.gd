@@ -11,6 +11,8 @@ func _ready():
 
 func on_room_loaded(level: Node):
 	CurrentLevel = level;
+	$LevelPreparer.Prepare(CurrentLevel);
+	MetSys.get_current_room_instance().adjust_camera_limits(player.get_node("Camera2D"))
 
 func start():
 	MetSys.reset_state();
@@ -19,6 +21,6 @@ func start():
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
-	await load_room("res://levels/FrogBoss.tscn");
-
-	MetSys.get_current_room_instance().adjust_camera_limits(player.get_node("Camera2D"))
+	await load_room("res://levels/PistolRoom.tscn");
+	
+	
