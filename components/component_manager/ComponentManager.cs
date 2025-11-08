@@ -8,11 +8,11 @@ namespace TENamespace;
 public partial class ComponentManager : Node2D
 {
     private readonly Dictionary<Type, Component> components = new();
-    private Mob actor = null;
+    private Entity actor = null;
     
     public override void _Ready()
     {
-        if (GetParent<Node2D>() is Mob mob)
+        if (GetParent<Node2D>() is Entity mob)
         {
             actor = mob;
         }

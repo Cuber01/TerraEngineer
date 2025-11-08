@@ -12,7 +12,7 @@ public partial class Jump : Component
     
     private int currentJumps = 0;
 
-    public override void Init(Mob actor)
+    public override void Init(Entity actor)
     {
         base.Init(actor);
         actor.CM.GetComponent<Gravity>().LandedOnFloor += 

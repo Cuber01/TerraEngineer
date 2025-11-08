@@ -5,7 +5,6 @@ namespace TENamespace.save_entity;
 
 public partial class SaveEntity : Component
 {
-    [Export] private Mob actor;
     [Export] private string saveSection;
     [Export] private string saveName;
 
@@ -16,6 +15,12 @@ public partial class SaveEntity : Component
         {
             CallDeferred(Node.MethodName.QueueFree);
         }
+    }
+
+    public void Setup(string saveSection, string saveName)
+    {
+        this.saveSection = saveSection;
+        this.saveName = saveName;
     }
 
     public void ChangeState(bool exists)

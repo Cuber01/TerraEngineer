@@ -4,6 +4,10 @@ using Godot.Collections;
 
 public partial class LevelPreparer : Node2D
 {
+    // These are merged into a dictionary at runtime. Make sure that the corresponding name and PackedScene have the same index!
+    [Export] private string[] tileNames;
+    [Export] private PackedScene tileScenes;
+    
     public override void _Ready()
     {
         

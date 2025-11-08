@@ -4,7 +4,7 @@ using TENamespace.health;
 
 namespace TerraEngineer.entities.mobs;
 
-public partial class Mob : CharacterBody2D
+public partial class Entity : CharacterBody2D
 {
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;

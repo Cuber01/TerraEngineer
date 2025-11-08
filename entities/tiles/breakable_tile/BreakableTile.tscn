@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7a8ld2p7qvwm"]
+
+[ext_resource type="Script" uid="uid://ba10rytdj18kj" path="res://entities/tiles/breakable_tile/BreakableTile.cs" id="1_aukk6"]
+[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://tilemaps/special-tiles.png" id="1_f810q"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_aukk6"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="3_lx7qt"]
+[ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="5_lx7qt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsskh"]
+atlas = ExtResource("1_f810q")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_imu5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsskh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo1hy"]
+size = Vector2(8, 8)
+
+[node name="BreakableTile" type="CharacterBody2D" node_paths=PackedStringArray("CM", "Sprite")]
+collision_mask = 4
+script = ExtResource("1_aukk6")
+CM = NodePath("ComponentManager")
+Team = 3
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_imu5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uo1hy")
+
+[node name="ComponentManager" parent="." instance=ExtResource("2_aukk6")]
+
+[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("3_lx7qt")]
+MaxHealth = 1
+invincibilityTimeOnHit = 0.0
+
+[node name="SaveEntityComponent" parent="ComponentManager" instance=ExtResource("5_lx7qt")]

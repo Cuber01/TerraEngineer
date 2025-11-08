@@ -26,8 +26,7 @@ position = Vector2(36, 168)
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(120, 0)
 
-[node name="KingFrog" parent="." node_paths=PackedStringArray("arenaBounds") instance=ExtResource("4_ppyts")]
+[node name="KingFrog" parent="." instance=ExtResource("4_ppyts")]
 position = Vector2(156, 160)
-arenaBounds = NodePath("")
 
 [editable path="XBounds"]

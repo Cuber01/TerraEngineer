@@ -13,7 +13,7 @@ public partial class Dash : Component
     private bool isDashing = false;
     private int dashDirection;
     
-    public override void Init(Mob actor)
+    public override void Init(Entity actor)
     {
         base.Init(actor);
         actor.CM.GetComponent<Gravity>().LandedOnFloor += 

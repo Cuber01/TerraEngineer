@@ -5,7 +5,7 @@ using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
-public partial class Snail : Mob
+public partial class Snail : Entity
 {
     [Export] private RayCast2D down;
     [Export] private RayCast2D right;

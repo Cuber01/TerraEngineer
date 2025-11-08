@@ -5,9 +5,9 @@ namespace TENamespace;
 
 public partial class Component : Node2D
 {
-    protected Mob Actor;
+    protected Entity Actor;
 
-    public virtual void Init(Mob actor)
+    public virtual void Init(Entity actor)
     {
         this.Actor = actor;
     }

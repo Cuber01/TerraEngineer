@@ -36,7 +36,7 @@ public partial class Moth : Creature
 
     public class ChaseState : IState<Moth>
     {
-        public Mob ChaseTarget { set; private get; }
+        public Entity ChaseTarget { set; private get; }
         
         public void Enter(Moth actor)
         {
@@ -85,7 +85,7 @@ public partial class Moth : Creature
     
     private void onDetectionAreaBodyEntered(Node2D body)
     {
-        chaseState.ChaseTarget = (Mob)body;
+        chaseState.ChaseTarget = (Entity)body;
         seesPlayer = true;
         fsm.ChangeState(chaseState);
     }

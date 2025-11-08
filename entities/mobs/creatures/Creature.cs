@@ -3,7 +3,7 @@ using TENamespace.health;
 
 namespace TerraEngineer.entities.mobs.creatures;
 
-public partial class Creature : Mob
+public partial class Creature : Entity
 {
     public override void _Ready()
     {

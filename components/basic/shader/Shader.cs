@@ -14,7 +14,7 @@ public partial class Shader : Component
     private bool running = false;
     private float deltaTime = 0f;
     
-    public override void Init(Mob actor)
+    public override void Init(Entity actor)
     {
         base.Init(actor);
         

@@ -6,7 +6,7 @@ using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.entities.projectiles;
 
-public partial class Projectile : Mob
+public partial class Projectile : Entity
 {
     [Export] private int damage = 1;
     [Export] private int piercing = 0;
@@ -18,7 +18,7 @@ public partial class Projectile : Mob
     
     private void onBodyEntered(Node2D body)
     {
-        if (body is Mob mob)
+        if (body is Entity mob)
         {
             if (mob.Team != Team)
             {
