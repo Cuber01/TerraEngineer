@@ -1,6 +1,7 @@
 using Godot;
 using System.Linq;
 using Godot.Collections;
+using TerraEngineer.entities.tiles;
 using Array = Godot.Collections.Array;
 
 public partial class LevelPreparer : Node2D
@@ -40,20 +41,21 @@ public partial class LevelPreparer : Node2D
             if (!levelTiles.Contains(coords))
             {
                 TileData data = specialLayer.GetCellTileData(coords);
-                spawnTile( (string)data.GetCustomData("special_type"),
-                       specialLayer.MapToLocal(coords) + specialLayer.GlobalPosition,
-                                 newLevel);
+                spawnTile( (string)data.GetCustomData("special_type"), 
+                                coords,
+                                newLevel, specialLayer);
             }
         }
 
         specialLayer.CallDeferred(Node.MethodName.QueueFree);
     }
 
-    private void spawnTile(string name, Vector2 worldCoords, Node2D level)
+    private void spawnTile(string name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {
         PackedScene scene = tilesDict[name];
-        Node2D instance = (Node2D)scene.Instantiate();
-        instance.GlobalPosition = worldCoords;
+        Tile instance = (Tile)scene.Instantiate();
+        instance.MapCoords = mapCoords;
+        instance.GlobalPosition = dataLayer.MapToLocal(mapCoords) + dataLayer.GlobalPosition;
         level.AddChild(instance);
     }
     

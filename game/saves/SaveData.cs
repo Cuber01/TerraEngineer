@@ -65,7 +65,6 @@ public partial class SaveData : Node
         {
             if ((bool)playerInventory[key])
             {
-                GD.Print($"Player {key} is online");
                 items.Add(key);   
             }
             

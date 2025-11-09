@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using TENamespace.basic.particle_builder;
+using TerraEngineer;
 
 namespace TENamespace.basic.builders;
 
@@ -13,7 +14,7 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
 
     public override void _Ready()
     {
-        Main = GetTree().GetRoot().GetNode("Main");
+        Main = GetTree().GetRoot().GetNode(Names.Node.Main);
     }
 
     public virtual T Build()
@@ -29,7 +30,7 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
         }
         else
         {
-            Node level = (Node2D)Main.Get("CurrentLevel");
+            Node level = (Node2D)Main.Get(Names.Properties.CurrentLevel);
             level.AddChild(Instance);    
         }
 
