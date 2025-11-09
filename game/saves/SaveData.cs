@@ -16,6 +16,14 @@ public partial class SaveData : Node
         loadSaveFile(saveSlotPath);
     }
 
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("debug"))
+        {
+            WriteChanges();
+        }
+    }
+
     public static void WriteChanges()
     {
         String newJsonText = Json.Stringify(data);

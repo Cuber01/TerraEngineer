@@ -19,11 +19,11 @@ public partial class SaveTile : Component
     {
         if (exists)
         {
-            SaveData.RemoveValueInArray(levelName, TilesKey,  myCoords); 
+            SaveData.RemoveValueInArray(levelName, TilesKey,  myCoords.ToString()); 
         }
         else
         {
-            SaveData.AddValueToArray(levelName, TilesKey,  myCoords);       
+            SaveData.AddValueToArray(levelName, TilesKey,  myCoords.ToString());       
         }
     }
 }
