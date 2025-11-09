@@ -38,8 +38,9 @@ public partial class LevelPreparer : Node2D
         Array removedTiles = (Array)SaveData.ReadValue(levelName, "removed_tiles");
         foreach (Vector2I coords in specialTiles)
         {
-            // TODO: this is probably really slow
-            if (!removedTiles.Contains(coords.ToString() ))
+            // We need to convert it to a really weird array in order for the comparison to work...
+            Variant asArray = new Array() {(float)coords.X, (float)coords.Y};
+            if (!removedTiles.Contains(asArray))
             {
                 TileData data = specialLayer.GetCellTileData(coords);
                 spawnTile( (string)data.GetCustomData("special_type"), 

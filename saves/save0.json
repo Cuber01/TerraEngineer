@@ -1,1 +1,1 @@
-{"PistolRoom":{"removed_tiles":["(5, 6)","(5, 5)","(6, 5)","(6, 6)","(7, 6)","(7, 5)","(5, 4)"]},"player_inventory":{"dash":false,"double_jump":true}}
+{"PistolRoom":{"removed_tiles":[[5,6],[5,5]]},"player_inventory":{"dash":false,"double_jump":true}}

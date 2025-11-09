@@ -17,13 +17,15 @@ public partial class SaveTile : Component
 
     public void ChangeState(Vector2I myCoords, bool exists)
     {
+        int[] asArray = {myCoords.X, myCoords.Y};
+        
         if (exists)
         {
-            SaveData.RemoveValueInArray(levelName, TilesKey,  myCoords.ToString()); 
+            SaveData.RemoveValueInArray(levelName, TilesKey,  asArray); 
         }
         else
         {
-            SaveData.AddValueToArray(levelName, TilesKey,  myCoords.ToString());       
+            SaveData.AddValueToArray(levelName, TilesKey,  asArray);       
         }
     }
 }
