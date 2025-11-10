@@ -8,7 +8,7 @@ namespace TENamespace.basic.shader;
 public partial class Shader : Component
 {
     [Export] private ShaderMaterial[] importedShaders;
-    private Dictionary<string, ShaderMaterial> shaders = new();
+    private Dictionary<StringName, ShaderMaterial> shaders = new();
     private AnimatedSprite2D sprite;
     private ShaderMaterial material;
     
@@ -37,7 +37,7 @@ public partial class Shader : Component
         }
     }
 
-    public void SetShader(string name)
+    public void SetShader(StringName name)
     {
         material = shaders[name];
         sprite.Material = material;

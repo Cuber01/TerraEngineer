@@ -8,14 +8,14 @@ using Array = Godot.Collections.Array;
 public partial class LevelPreparer : Node2D
 {
     // These are merged into a dictionary at runtime. Make sure that the corresponding name and PackedScene have the same index!
-    [Export] private string[] tileNames;
+    [Export] private StringName[] tileNames;
     [Export] private PackedScene[] tileScenes;
     
-    private Dictionary<string, PackedScene> tilesDict;
+    private Dictionary<StringName, PackedScene> tilesDict;
     
     public override void _Ready()
     {
-        tilesDict = new Dictionary<string, PackedScene>();
+        tilesDict = new Dictionary<StringName, PackedScene>();
         int i = 0;
         while (i < tileNames.Length)
         {
@@ -30,7 +30,7 @@ public partial class LevelPreparer : Node2D
         if(specialLayer == null)
             return;
         
-        string levelName = (string)newLevel.GetMeta(Names.Properties.LevelName);
+        StringName levelName = (StringName)newLevel.GetMeta(Names.Properties.LevelName);
         if(levelName == "")
             return;
         
@@ -43,7 +43,7 @@ public partial class LevelPreparer : Node2D
             if (!removedTiles.Contains(asArray))
             {
                 TileData data = specialLayer.GetCellTileData(coords);
-                spawnTile( (string)data.GetCustomData(Names.Properties.SpecialType), 
+                spawnTile( (StringName)data.GetCustomData(Names.Properties.SpecialType), 
                                 coords,
                                 newLevel, specialLayer);
             }
@@ -56,7 +56,7 @@ public partial class LevelPreparer : Node2D
     public static Array VecToParseableArray(Vector2I coords)
         => new Array() {(float)coords.X, (float)coords.Y};
 
-    private void spawnTile(string name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
+    private void spawnTile(StringName name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {
         PackedScene scene = tilesDict[name];
         Tile instance = (Tile)scene.Instantiate();

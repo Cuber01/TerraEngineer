@@ -7,13 +7,12 @@ namespace TENamespace.basic.save_tile;
 
 public partial class SaveTile : Component
 {
-    private string levelName;
-    
+    private StringName levelName;
 
     public override void Init(Entity actor)
     {
         base.Init(actor);
-        levelName = (string)Actor.GetParent().GetMeta(Names.Properties.LevelName);
+        levelName = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
     }
 
     public void ChangeState(Vector2I myCoords, bool exists)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://n304cvr7pmk3"]
+[gd_scene load_steps=8 format=4 uid="uid://n304cvr7pmk3"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="1_tbn4r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_ikqer"]
 [ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://tilemaps/special-tiles.png" id="3_ikqer"]
 [ext_resource type="PackedScene" uid="uid://b63p72q853m2s" path="res://entities/objects/person-plant/PersonPlant.tscn" id="4_fj2sp"]
+[ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="5_1dxaf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj2sp"]
 texture = ExtResource("3_ikqer")
@@ -34,3 +35,12 @@ tile_set = SubResource("TileSet_1dxaf")
 
 [node name="PersonPlant" parent="." instance=ExtResource("4_fj2sp")]
 position = Vector2(161, 136)
+
+[node name="PickupableItem" parent="." instance=ExtResource("5_1dxaf")]
+position = Vector2(161, 128)
+itemName = &"blowtorch"
+
+[node name="SaveEntityComponent" parent="PickupableItem/ComponentManager" index="0"]
+saveName = &"gun_exists"
+
+[editable path="PickupableItem"]

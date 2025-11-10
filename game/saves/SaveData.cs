@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Godot.NativeInterop;
 using TerraEngineer;
-using GodotDict = Godot.Collections.Dictionary<string, Godot.Variant>;
+using GodotDict = Godot.Collections.Dictionary<Godot.StringName, Godot.Variant>;
 using GodotArray = Godot.Collections.Array;
 
 public partial class SaveData : Node
@@ -64,12 +64,12 @@ public partial class SaveData : Node
     public static Variant ReadFromArray(string sectionKey, string key, int index) 
         => ((GodotArray)((GodotDict)data[sectionKey] )[key])[index];
 
-    public static List<string> ReadInventory()
+    public static List<StringName> ReadInventory()
     {
-        List<string> items = new();
+        List<StringName> items = new();
         GodotDict playerInventory = (GodotDict)data[Names.SaveSections.PlayerInventory];
         
-        foreach(string key in playerInventory.Keys)
+        foreach(StringName key in playerInventory.Keys)
         {
             if ((bool)playerInventory[key])
             {

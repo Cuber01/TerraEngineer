@@ -3,13 +3,28 @@ using System;
 using TENamespace;
 using TENamespace.health;
 using TENamespace.projectile_builder;
+using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
+using TerraEngineer.game;
 
 public partial class Player : Creature
 {
 	[Export] private RayCast2D raycastUp;
 	[Export] private bool godMode = false;
+	
+	public Controller controller = new();
+
+	public override void _Ready()
+	{
+		controller.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
+		controller.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
+		controller.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
+		controller.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
+		controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
+		controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupWeapon);
+		
+	}
 	
 	public override void _PhysicsProcess(double delta)
 	{
@@ -24,23 +39,7 @@ public partial class Player : Creature
 			CM.GetComponent<Dash>().AttemptDash(Facing);
 		}
 		
-		if (Input.IsActionJustPressed("attack"))
-		{
-			CM.GetComponent<GunHandle>().Shoot(getShootDirection(), false);
-		}
-
-		if (Input.IsActionJustPressed("weapon_0"))
-			CM.GetComponent<GunHandle>().ChangeWeapon(0);
-		else if (Input.IsActionJustPressed("weapon_1"))
-			CM.GetComponent<GunHandle>().ChangeWeapon(1);
-		else if (Input.IsActionJustPressed("weapon_2"))
-			CM.GetComponent<GunHandle>().ChangeWeapon(2);
-		else if (Input.IsActionJustPressed("weapon_3"))
-			CM.GetComponent<GunHandle>().ChangeWeapon(3);
-		else if (Input.IsActionJustPressed("weapon_next"))
-			CM.GetComponent<GunHandle>().ChangeToNextWeapon();
-		else if (Input.IsActionJustPressed("gunhandle_next"))
-			CM.GetComponent<GunHandle>().ChangeGunHandle();
+		controller.Update((float)delta);
 		
 		CM.GetComponent<Move>().Walk(moveDir, (float)delta);
 		CM.UpdateComponents((float)delta);
@@ -65,7 +64,7 @@ public partial class Player : Creature
 		MoveAndSlide();
 	}
 
-	private Direction4 getShootDirection()
+	public Direction4 GetShootDirection()
 	{
 		Vector2 vector = Input.GetVector("ui_left", "ui_right", 
 										 "ui_down", "ui_up");

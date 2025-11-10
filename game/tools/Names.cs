@@ -49,4 +49,17 @@ public static class Names
         public static readonly StringName NoFruit = "no_fruit";
         public static readonly StringName Default = "default";
     }
+
+    public static class Actions
+    {
+        public static readonly StringName Weapon0 = "weapon_0";
+        public static readonly StringName Weapon1 = "weapon_1";
+        public static readonly StringName Weapon2 = "weapon_2";
+        public static readonly StringName Weapon3 = "weapon_3";
+        public static readonly StringName WeaponNext = "weapon_next";
+        public static readonly StringName GunHandleNext = "gunhandle_next";
+        public static readonly StringName Attack = "attack";
+        
+        public static readonly StringName GroupWeapon = "GroupWeapon";
+    }
 }

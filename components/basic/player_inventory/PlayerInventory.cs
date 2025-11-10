@@ -1,22 +1,25 @@
 using System;
 using System.Collections.Generic;
+using Godot;
+using TENamespace;
 using TerraEngineer;
 
 namespace TENamespace.player_inventory;
 
 public partial class PlayerInventory : Component
 {
-    private Dictionary<string, Type> fullItemList = new()
+    private Dictionary<StringName, Type> fullItemList = new()
     {
-        { "double_jump", typeof(DoubleJumpItem) }
+        { "double_jump", typeof(DoubleJumpItem) },
+        { "blowtorch", typeof(BlowtorchItem) }
     };
 
-    private List<string> itemsLastRead = new();
+    private List<StringName> itemsLastRead = new();
     
     public void ActivateItems(Player actor)
     {
         itemsLastRead = SaveData.ReadInventory();
-        foreach (string item in itemsLastRead)
+        foreach (StringName item in itemsLastRead)
         {
             Type type = fullItemList[item];
             Item instance = (Item)Activator.CreateInstance(type);
@@ -24,7 +27,7 @@ public partial class PlayerInventory : Component
         }
     }
 
-    public void AddItem(Player actor, string name)
+    public void AddItem(Player actor, StringName name)
     {
         SaveData.SetValue(Names.SaveSections.PlayerInventory,name, true);
         Type type = fullItemList[name];
@@ -44,6 +47,15 @@ public class DoubleJumpItem : Item
     public void Activate(Player actor)
     {
         actor.CM.GetComponent<Jump>().MaxJumps = 2;
+    }
+}
+
+public class BlowtorchItem : Item
+{
+    public void Activate(Player actor)
+    {
+        actor.controller.AddAction(Names.Actions.Attack, 
+            () => actor.CM.GetComponent<GunHandle>().Shoot(actor.GetShootDirection(), false), Names.Actions.GroupWeapon);
     }
 }
 

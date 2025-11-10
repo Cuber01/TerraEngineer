@@ -1,23 +1,33 @@
+using System;
 using Godot;
+using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
 namespace TENamespace.save_entity;
 
 public partial class SaveEntity : Component
 {
-    [Export] private string saveSection;
-    [Export] private string saveName;
+    [Export] private StringName saveName;
+    private StringName saveSection;
 
-    public override void _Ready()
+    public override void Init(Entity actor)
     {
+        base.Init(actor);
+        
+        saveSection = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
+        if (saveSection == "")
+        {
+            throw new Exception("No level name found.");
+        }
+        
         bool exists = (bool)SaveData.ReadValue(saveSection, saveName);
         if (!exists) 
         {
-            CallDeferred(Node.MethodName.QueueFree);
+            actor.CallDeferred(Node.MethodName.QueueFree);
         }
     }
 
-    public void Setup(string saveSection, string saveName)
+    public void Setup(StringName saveSection, StringName saveName)
     {
         this.saveSection = saveSection;
         this.saveName = saveName;

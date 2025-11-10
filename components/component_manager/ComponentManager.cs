@@ -42,10 +42,16 @@ public partial class ComponentManager : Node2D
     public T GetComponent<T>() where T : Component {
         return (T) components[typeof(T)];
     }
-    
-    public void AddComponent(Component component) {}
-    
-    public void RemoveComponent(Component component) {}
+
+    public void AddComponent(Component component)
+    {
+        
+    }
+
+    public void RemoveComponent(Component component)
+    {
+        
+    }
 
     public void InitComponents()
     {

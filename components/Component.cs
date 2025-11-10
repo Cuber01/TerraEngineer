@@ -5,6 +5,7 @@ namespace TENamespace;
 
 public partial class Component : Node2D
 {
+
     protected Entity Actor;
 
     public virtual void Init(Entity actor)
