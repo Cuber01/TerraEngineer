@@ -209,7 +209,6 @@ public partial class KingFrog : Creature
             actor.velocity.Y = 0;
             actor.CM.GetComponent<Gravity>().GravityForce *= gravityModifier;
             actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
-            GD.Print("Enter");
         }
 
         public void Update(KingFrog actor, float dt) { }

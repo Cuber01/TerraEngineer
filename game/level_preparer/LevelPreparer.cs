@@ -1,6 +1,7 @@
 using Godot;
 using System.Linq;
 using Godot.Collections;
+using TerraEngineer;
 using TerraEngineer.entities.tiles;
 using Array = Godot.Collections.Array;
 
@@ -25,25 +26,24 @@ public partial class LevelPreparer : Node2D
 
     public void Prepare(Node2D newLevel)
     {
-        TileMapLayer specialLayer = newLevel.GetNodeOrNull<TileMapLayer>("SpecialTiles");
+        TileMapLayer specialLayer = newLevel.GetNodeOrNull<TileMapLayer>(Names.Node.SpecialTiles);
         if(specialLayer == null)
             return;
         
-        string levelName = (string)newLevel.GetMeta("level_name");
+        string levelName = (string)newLevel.GetMeta(Names.Properties.LevelName);
         if(levelName == "")
             return;
         
         Array<Vector2I> specialTiles = specialLayer.GetUsedCells();
 
-        Array removedTiles = (Array)SaveData.ReadValue(levelName, "removed_tiles");
+        Array removedTiles = (Array)SaveData.ReadValue(levelName, Names.SaveSections.RemovedTiles);
         foreach (Vector2I coords in specialTiles)
         {
-            // We need to convert it to a really weird array in order for the comparison to work...
-            Variant asArray = new Array() {(float)coords.X, (float)coords.Y};
+            Variant asArray = VecToParseableArray(coords);
             if (!removedTiles.Contains(asArray))
             {
                 TileData data = specialLayer.GetCellTileData(coords);
-                spawnTile( (string)data.GetCustomData("special_type"), 
+                spawnTile( (string)data.GetCustomData(Names.Properties.SpecialType), 
                                 coords,
                                 newLevel, specialLayer);
             }
@@ -51,6 +51,10 @@ public partial class LevelPreparer : Node2D
 
         specialLayer.CallDeferred(Node.MethodName.QueueFree);
     }
+
+    // We need to convert it to a really weird array in order for the comparison to work...
+    public static Array VecToParseableArray(Vector2I coords)
+        => new Array() {(float)coords.X, (float)coords.Y};
 
     private void spawnTile(string name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {

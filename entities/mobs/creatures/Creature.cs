@@ -11,7 +11,7 @@ public partial class Creature : Entity
         {
             if (amount < 0)
             {
-                CM.TryGetComponent<Shader>()?.SetShader("blink");
+                CM.TryGetComponent<Shader>()?.SetShader(Names.Shader.Blink);
                 CM.TryGetComponent<Shader>()?.ToggleShader(true);
             }
         };

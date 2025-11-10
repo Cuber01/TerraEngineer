@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TerraEngineer;
 
 namespace TENamespace.player_inventory;
 
@@ -25,7 +26,7 @@ public partial class PlayerInventory : Component
 
     public void AddItem(Player actor, string name)
     {
-        SaveData.SetValue("player_inventory",name, true);
+        SaveData.SetValue(Names.SaveSections.PlayerInventory,name, true);
         Type type = fullItemList[name];
         Item instance = (Item)Activator.CreateInstance(type);
         instance!.Activate(actor);

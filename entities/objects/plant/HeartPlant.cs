@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using TENamespace.health;
+using TerraEngineer;
 using TerraEngineer.entities;
 
 public partial class HeartPlant : Terraformable
@@ -28,7 +29,7 @@ public partial class HeartPlant : Terraformable
         if (hasFruit)
         {
             Player player = (Player)body;
-            sprite.Animation = "no_fruit";
+            sprite.Animation = Names.Animations.NoFruit;
             player.CM.GetComponent<Health>().ChangeHealth(healthHealed);
             hasFruit = false;    
             regrowTimer = TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
@@ -40,7 +41,7 @@ public partial class HeartPlant : Terraformable
         if(!regrowAllowed) return;
 
         hasFruit = true;
-        sprite.Animation = "default";    
+        sprite.Animation = Names.Animations.Default;    
     }
     
     public override void Disable()

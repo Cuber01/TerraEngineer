@@ -2,18 +2,18 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Godot.NativeInterop;
+using TerraEngineer;
 using GodotDict = Godot.Collections.Dictionary<string, Godot.Variant>;
 using GodotArray = Godot.Collections.Array;
 
 public partial class SaveData : Node
 {
     private static GodotDict data;
-    private static Json json = new Json();
-    private const string saveSlotPath = "res://saves/save0.json";    
+    private static Json json = new Json();    
 
     public override void _Ready()
     {
-        loadSaveFile(saveSlotPath);
+        loadSaveFile(Names.Paths.Save0);
     }
 
     public override void _Process(double delta)
@@ -33,7 +33,7 @@ public partial class SaveData : Node
             throw new Exception("Failed to stringify data.");
         }
         
-        FileAccess file = FileAccess.Open(saveSlotPath, FileAccess.ModeFlags.Write);
+        FileAccess file = FileAccess.Open(Names.Paths.Save0, FileAccess.ModeFlags.Write);
         file.StoreString(newJsonText);
         file.Close();
     }
@@ -67,7 +67,7 @@ public partial class SaveData : Node
     public static List<string> ReadInventory()
     {
         List<string> items = new();
-        GodotDict playerInventory = (GodotDict)data["player_inventory"];
+        GodotDict playerInventory = (GodotDict)data[Names.SaveSections.PlayerInventory];
         
         foreach(string key in playerInventory.Keys)
         {

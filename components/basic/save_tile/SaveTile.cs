@@ -1,31 +1,32 @@
 using Godot;
+using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using Array = Godot.Collections.Array;
 
 namespace TENamespace.basic.save_tile;
 
 public partial class SaveTile : Component
 {
     private string levelName;
-    private const string TilesKey = "removed_tiles";
     
 
     public override void Init(Entity actor)
     {
         base.Init(actor);
-        levelName = (string)Actor.GetParent().GetMeta("level_name");
+        levelName = (string)Actor.GetParent().GetMeta(Names.Properties.LevelName);
     }
 
     public void ChangeState(Vector2I myCoords, bool exists)
     {
-        int[] asArray = {myCoords.X, myCoords.Y};
+        Variant asArray = LevelPreparer.VecToParseableArray(myCoords);
         
         if (exists)
         {
-            SaveData.RemoveValueInArray(levelName, TilesKey,  asArray); 
+            SaveData.RemoveValueInArray(levelName, Names.SaveSections.RemovedTiles,  asArray); 
         }
         else
         {
-            SaveData.AddValueToArray(levelName, TilesKey,  asArray);       
+            SaveData.AddValueToArray(levelName, Names.SaveSections.RemovedTiles,  asArray);       
         }
     }
 }

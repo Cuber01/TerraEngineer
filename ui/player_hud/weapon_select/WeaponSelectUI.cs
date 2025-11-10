@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using TENamespace.advanced.main_gun_wrapper;
+using TerraEngineer;
 using TerraEngineer.ui.player_hud;
 
 public partial class WeaponSelectUI : Node2D, IConnectable<Player>
@@ -37,11 +38,11 @@ public partial class WeaponSelectUI : Node2D, IConnectable<Player>
     {
         if (newSelected == GunHandleType.Normal)
         {
-            decor.Animation = "selected";
+            decor.Animation = Names.Animations.Selected;
         }
         else
         {
-            decor.Animation= "unselected";
+            decor.Animation= Names.Animations.Unselected;
         }
     }
 }

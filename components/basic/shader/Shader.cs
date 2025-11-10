@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
 namespace TENamespace.basic.shader;
@@ -32,7 +33,7 @@ public partial class Shader : Component
         if (running)
         {
             deltaTime += delta;
-            material.SetShaderParameter("delta_time", deltaTime); 
+            material.SetShaderParameter(Names.Shader.Delta, deltaTime); 
         }
     }
 
@@ -45,8 +46,8 @@ public partial class Shader : Component
     public void ToggleShader(bool enabled)
     {
         running = enabled;
-        material.SetShaderParameter("delta_time", 0f);
-        material.SetShaderParameter("run", enabled);
+        material.SetShaderParameter(Names.Shader.Delta, 0f);
+        material.SetShaderParameter(Names.Shader.Run, enabled);
 
         if (!enabled)
         {
