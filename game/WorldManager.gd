@@ -21,6 +21,6 @@ func start():
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
-	await load_room("res://levels/PistolRoom.tscn");
+	await load_room("res://levels/LongGrass.tscn");
 	
 	

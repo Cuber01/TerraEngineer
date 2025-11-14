@@ -25,13 +25,14 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
 size = Vector2(9, 7)
 
-[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("down", "right", "left", "CM")]
+[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("down", "right", "left", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_jdeb6")
 down = NodePath("RayCastDown")
 right = NodePath("RayCastRight")
 left = NodePath("RayCastLeft")
 CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wbohw")

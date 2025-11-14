@@ -5,6 +5,7 @@ using TerraEngineer.entities.projectiles;
 
 namespace TENamespace.basic.builders.creature_builder;
 
+[Tool]
 public partial class CreatureSpawner : Spawner<Entity, CreatureSpawner>
 {
     public CreatureSpawner SetHealth(int health)

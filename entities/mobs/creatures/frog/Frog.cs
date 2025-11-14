@@ -6,24 +6,36 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
+[Tool]
 public partial class Frog : Creature
 {
     private readonly JumpState jumpState = new JumpState();
     private readonly TimedState<Frog> waitState = new WaitState();
-    
+
     private StateMachine<Frog> fsm;
     
     public override void _Ready()
     {
+        #if TOOLS
+        if (Engine.IsEditorHint())
+            return;
+        #endif
+        
         base._Ready();
         fsm = new StateMachine<Frog>(this, waitState);
         fsm.AddTransition(jumpState, waitState, jumpState.LandedOnFloor);
         fsm.AddTransition(waitState, jumpState, waitState.TimerCondition);
     }
-
     
     public override void _PhysicsProcess(double delta)
     {
+        // Society if C# had real defines...
+        #if TOOLS
+        if (Engine.IsEditorHint())
+            return;
+        #endif
+
+        
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
         

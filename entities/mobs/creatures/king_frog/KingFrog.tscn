@@ -34,7 +34,6 @@ script = ExtResource("1_0c618")
 myXSize = 22
 playerDetector = NodePath("PlayerDetector")
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

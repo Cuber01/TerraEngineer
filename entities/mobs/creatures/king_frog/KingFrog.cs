@@ -7,6 +7,7 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
+[Tool]
 public partial class KingFrog : Creature
 {
     [Export] private XBounds arenaBounds;
@@ -32,6 +33,9 @@ public partial class KingFrog : Creature
     
     public override void _Ready()
     {
+        if (Engine.IsEditorHint())
+            return;
+        
         base._Ready();
         
         int halfMySize = (int)Math.Ceiling(myXSize / 2f);
@@ -54,6 +58,9 @@ public partial class KingFrog : Creature
 
     public override void _PhysicsProcess(double delta)
     {
+        if(Engine.IsEditorHint())
+            return;
+        
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
         
@@ -64,7 +71,12 @@ public partial class KingFrog : Creature
     protected override void FlipEffect()
     {
         base.FlipEffect();
-        CM.GetComponent<CreatureSpawner>().Position = -CM.GetComponent<CreatureSpawner>().Position;
+
+        var spawner = CM.TryGetComponent<CreatureSpawner>();
+        if (spawner != null)
+        {
+            spawner.Position = -spawner.Position;   
+        }
     }
 
     public class JumpState : IState<KingFrog>

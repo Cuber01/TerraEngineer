@@ -5,6 +5,7 @@ using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
+[Tool]
 public partial class Snail : Entity
 {
     [Export] private RayCast2D down;
@@ -28,6 +29,11 @@ public partial class Snail : Entity
     
     public override void _Ready()
     {
+        #if TOOLS
+        if (Engine.IsEditorHint())
+            return;
+        #endif
+        
         base._Ready();
         fsm = new StateMachine<Snail>(this, walkState, true);
 
@@ -40,6 +46,11 @@ public partial class Snail : Entity
     
     public override void _PhysicsProcess(double delta)
     {
+        #if TOOLS
+        if(Engine.IsEditorHint())
+            return;
+        #endif
+        
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
         

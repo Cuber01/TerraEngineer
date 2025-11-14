@@ -43,9 +43,7 @@ shader_parameter/run = false
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("AnimatedSprite2D")
-Facing = -1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 0)

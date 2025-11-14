@@ -5,6 +5,7 @@ using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
+[Tool]
 public partial class ComponentManager : Node2D
 {
     private readonly Dictionary<Type, Component> components = new();
@@ -12,6 +13,11 @@ public partial class ComponentManager : Node2D
     
     public override void _Ready()
     {
+        #if TOOLS
+        if (Engine.IsEditorHint())
+            return;
+        #endif
+        
         if (GetParent<Node2D>() is Entity mob)
         {
             actor = mob;
