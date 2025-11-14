@@ -31,13 +31,8 @@ public partial class KingFrog : Creature
     private SmashState smashState = new SmashState();
     private SpawnState spawnState =  new SpawnState();
     
-    public override void _Ready()
+    public override void Init()
     {
-        if (Engine.IsEditorHint())
-            return;
-        
-        base._Ready();
-        
         int halfMySize = (int)Math.Ceiling(myXSize / 2f);
         float xMaxRight = arenaBounds.XRight - halfMySize;
         float xMaxLeft = arenaBounds.XLeft + halfMySize;
@@ -51,9 +46,6 @@ public partial class KingFrog : Creature
         fsm.AddTransition(jumpState, smashState, canSmash);
         fsm.AddTransition(smashState, idleState, smashState.IsFinished);
         fsm.AddTransition(spawnState, idleState, spawnState.IsFinished);
-        
-        //fsm.AddTransition(idleState, spawnState, idleState.TimerCondition);
-
     }
 
     public override void _PhysicsProcess(double delta)

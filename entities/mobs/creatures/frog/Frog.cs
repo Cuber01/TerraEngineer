@@ -14,14 +14,8 @@ public partial class Frog : Creature
 
     private StateMachine<Frog> fsm;
     
-    public override void _Ready()
+    public override void Init()
     {
-        #if TOOLS
-        if (Engine.IsEditorHint())
-            return;
-        #endif
-        
-        base._Ready();
         fsm = new StateMachine<Frog>(this, waitState);
         fsm.AddTransition(jumpState, waitState, jumpState.LandedOnFloor);
         fsm.AddTransition(waitState, jumpState, waitState.TimerCondition);

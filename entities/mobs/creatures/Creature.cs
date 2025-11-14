@@ -7,14 +7,16 @@ namespace TerraEngineer.entities.mobs.creatures;
 [Tool]
 public partial class Creature : Entity
 {
+    // Override this.
+    public virtual void Init() {}
+    
+    // Do not override!
     public override void _Ready()
     {
         #if TOOLS
         if (Engine.IsEditorHint())
             return;
         #endif
-        
-        base._Ready();
         
         CM.GetComponent<Health>().HealthChanged += (_, amount) =>
         {
@@ -29,5 +31,7 @@ public partial class Creature : Entity
         {
             CM.TryGetComponent<Shader>()?.ToggleShader(false);
         };
+        
+        Init();
     }
 }

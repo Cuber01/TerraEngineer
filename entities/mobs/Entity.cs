@@ -29,7 +29,7 @@ public partial class Entity : CharacterBody2D
 
     // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
     public bool Dead  = false;
-
+    
     public override void _Ready()
     {
         #if TOOLS

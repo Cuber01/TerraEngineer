@@ -4,9 +4,10 @@ using System.Security.AccessControl;
 using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.mobs.creatures;
 
 [Tool]
-public partial class Snail : Entity
+public partial class Snail : Creature
 {
     [Export] private RayCast2D down;
     [Export] private RayCast2D right;
@@ -27,14 +28,8 @@ public partial class Snail : Entity
     private StateMachine<Snail> fsm;
     public float ToRotate = 0;
     
-    public override void _Ready()
+    public override void Init()
     {
-        #if TOOLS
-        if (Engine.IsEditorHint())
-            return;
-        #endif
-        
-        base._Ready();
         fsm = new StateMachine<Snail>(this, walkState, true);
 
         CM.GetComponent<Gravity>().LandedOnFloor += () => raycastReady = true;
