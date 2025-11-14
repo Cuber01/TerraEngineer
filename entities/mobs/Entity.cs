@@ -51,7 +51,7 @@ public partial class Entity : CharacterBody2D
     
     public void Flip(DirectionX side=DirectionX.None)
     {
-        if (side == DirectionX.None || (int)side == -(int)Facing)
+        if ((side == DirectionX.None || (int)side == -(int)Facing) && Sprite != null)
         {
             #if TOOLS
             if(Engine.IsEditorHint())
