@@ -35,6 +35,7 @@ CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_jlvbh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -73,6 +74,7 @@ airResistance = 1.724
 
 [node name="JumpComponent" parent="ComponentManager" instance=ExtResource("6_owoq1")]
 jumpVelocity = 120.0
+limitThreshold = 40.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
 MaxHealth = 10
