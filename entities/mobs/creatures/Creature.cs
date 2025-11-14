@@ -14,6 +14,8 @@ public partial class Creature : Entity
             return;
         #endif
         
+        base._Ready();
+        
         CM.GetComponent<Health>().HealthChanged += (_, amount) =>
         {
             if (amount < 0)

@@ -21,6 +21,7 @@ public partial class Moth : Creature
     
     public override void _Ready()
     {
+        base._Ready();
         FlyAroundPoint.GlobalPosition = GlobalPosition;
         fsm = new StateMachine<Moth>(this, idleState, true);
     }

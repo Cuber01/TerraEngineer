@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7lheehhbvylp"]
+[gd_scene load_steps=15 format=3 uid="uid://c7lheehhbvylp"]
 
 [ext_resource type="Script" uid="uid://ddf0ivure6uik" path="res://entities/mobs/creatures/moth/Moth.cs" id="1_qq40e"]
 [ext_resource type="Texture2D" uid="uid://t77v2ar3qs2u" path="res://entities/mobs/creatures/moth/fly.png" id="2_qq40e"]
@@ -7,15 +7,40 @@
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="5_ihw6d"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="6_qq40e"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyo0l"]
+atlas = ExtResource("2_qq40e")
+region = Rect2(0, 0, 10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xt1o"]
+atlas = ExtResource("2_qq40e")
+region = Rect2(10, 0, 10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48xfr"]
+atlas = ExtResource("2_qq40e")
+region = Rect2(20, 0, 10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6o0n"]
+atlas = ExtResource("2_qq40e")
+region = Rect2(30, 0, 10, 6)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_r1p3q"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_qq40e")
+"texture": SubResource("AtlasTexture_jyo0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xt1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48xfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6o0n")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 11.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5khu5"]
@@ -27,7 +52,7 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
-[node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM")]
+[node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM", "Sprite")]
 top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
@@ -35,10 +60,11 @@ FlyAroundPoint = NodePath("FlyAroundPoint")
 MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
 Team = 1
-Facing = 0
+Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r1p3q")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5khu5")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v37c1i0566mt"]
+[gd_scene load_steps=16 format=3 uid="uid://v37c1i0566mt"]
 
 [ext_resource type="Script" uid="uid://jlmdy1upywt6" path="res://entities/mobs/creatures/snail/Snail.cs" id="1_jdeb6"]
 [ext_resource type="Texture2D" uid="uid://dnb2rq0ehsm8u" path="res://entities/mobs/creatures/snail/snail.png" id="2_ncjo3"]
@@ -8,11 +8,43 @@
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_8i4jb"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_35750"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdeb6"]
+atlas = ExtResource("2_ncjo3")
+region = Rect2(0, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncjo3"]
+atlas = ExtResource("2_ncjo3")
+region = Rect2(10, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ralr5"]
+atlas = ExtResource("2_ncjo3")
+region = Rect2(20, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_072wc"]
+atlas = ExtResource("2_ncjo3")
+region = Rect2(30, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he5bs"]
+atlas = ExtResource("2_ncjo3")
+region = Rect2(40, 0, 10, 7)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wbohw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ncjo3")
+"texture": SubResource("AtlasTexture_jdeb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncjo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ralr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_072wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he5bs")
 }],
 "loop": true,
 "name": &"default",
@@ -36,6 +68,8 @@ Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wbohw")
+autoplay = "default"
+frame_progress = 0.6395907
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)

@@ -40,11 +40,6 @@ public partial class Entity : CharacterBody2D
             return;
         }
         #endif
-        
-        if (Facing == DirectionX.Left)
-        {
-            FlipSprite();
-        }
     }
 
     protected void FlipSprite() => Sprite.FlipH = !Sprite.FlipH;
