@@ -7,6 +7,11 @@
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("2_7jllx")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
 
 [node name="ShaderComponent" type="Node2D"]
 script = ExtResource("1_he7ab")

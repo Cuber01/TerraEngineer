@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=17 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="10_kfaad"]
 [ext_resource type="PackedScene" uid="uid://kbf1n4rnte7r" path="res://components/advanced/gun_handle/GunHandleComponent.tscn" id="11_61acl"]
 [ext_resource type="PackedScene" uid="uid://coo88mqcbjp6u" path="res://components/basic/player_inventory/PlayerInventoryComponent.tscn" id="11_802vs"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="12_jlvbh"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="13_8611i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jlvbh"]
 animations = [{
@@ -25,6 +27,16 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
 size = Vector2(8, 11)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1q3sw"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("13_8611i")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("raycastUp", "CM", "Sprite")]
 collision_layer = 2
@@ -78,9 +90,13 @@ limitThreshold = 40.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
 MaxHealth = 10
+invincibilityTimeOnHit = 2.0
 
 [node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("10_kfaad")]
 
 [node name="PlayerInventoryComponent" parent="ComponentManager" instance=ExtResource("11_802vs")]
+
+[node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("12_jlvbh")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_1q3sw")])
 
 [editable path="ComponentManager/GunAdvComponent"]

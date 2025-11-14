@@ -31,7 +31,7 @@ size = Vector2(7, 6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y3mso"]
 resource_local_to_scene = true
-resource_name = "blink"
+resource_name = "Blink"
 shader = ExtResource("2_n5xjy")
 shader_parameter/blink_color = Vector3(1, 1, 1)
 shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
@@ -43,6 +43,7 @@ shader_parameter/run = false
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

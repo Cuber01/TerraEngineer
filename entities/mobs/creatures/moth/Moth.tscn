@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c7lheehhbvylp"]
+[gd_scene load_steps=18 format=3 uid="uid://c7lheehhbvylp"]
 
 [ext_resource type="Script" uid="uid://ddf0ivure6uik" path="res://entities/mobs/creatures/moth/Moth.cs" id="1_qq40e"]
 [ext_resource type="Texture2D" uid="uid://t77v2ar3qs2u" path="res://entities/mobs/creatures/moth/fly.png" id="2_qq40e"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_cthkm"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="5_ihw6d"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="6_qq40e"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="7_48xfr"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="8_q6o0n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyo0l"]
 atlas = ExtResource("2_qq40e")
@@ -52,6 +54,16 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wt63l"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("8_q6o0n")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
 [node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM", "Sprite")]
 top_level = true
 collision_layer = 4
@@ -93,6 +105,9 @@ shape = SubResource("RectangleShape2D_q4wwo")
 speed = 75.0
 acceleration = 4.31
 airResistance = 1.724
+
+[node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("7_48xfr")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_wt63l")])
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]

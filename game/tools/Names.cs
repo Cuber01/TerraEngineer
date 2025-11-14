@@ -25,7 +25,7 @@ public static class Names
     {
         public static readonly StringName Delta = "delta_time";
         public static readonly StringName Run = "run";
-        public static readonly StringName Blink = "blink";
+        public static readonly StringName Blink = "Blink";
     }
 
     // Filesystem paths
