@@ -26,9 +26,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
-size = Vector2(8, 11)
+size = Vector2(7.9, 11)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1q3sw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlvbh"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -97,6 +97,6 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_1q3sw")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jlvbh")])
 
 [editable path="ComponentManager/GunAdvComponent"]
