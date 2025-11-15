@@ -7,7 +7,7 @@ var CurrentLevel: Node;
 
 func _ready():
 	start();
-	$PlayerHUD.Connect(player);
+	$GUI/PlayerHUD.Connect(player);
 
 func on_room_loaded(level: Node):
 	CurrentLevel = level;
@@ -21,6 +21,6 @@ func start():
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
-	await load_room("res://levels/LongGrass.tscn");
+	await load_room("res://levels/Start.tscn");
 	
 	

@@ -14,11 +14,10 @@ extPlayer = NodePath("Player")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -5)
 
-[node name="PlayerHUD" parent="." instance=ExtResource("3_ljq5a")]
-z_index = 999
-position = Vector2(0, -5)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PlayerHUD"]
-remote_path = NodePath("../../Player/Camera2D")
-
 [node name="LevelPreparer" parent="." instance=ExtResource("4_ljq5a")]
+position = Vector2(0, -1)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="PlayerHUD" parent="GUI" instance=ExtResource("3_ljq5a")]
+z_index = 999
