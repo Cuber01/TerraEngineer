@@ -4,6 +4,7 @@
 
 [node name="ContactDamageComponent" type="Node2D"]
 script = ExtResource("1_x3f60")
+knockbackForce = 250.0
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 4

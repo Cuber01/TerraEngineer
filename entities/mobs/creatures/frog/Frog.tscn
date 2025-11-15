@@ -65,7 +65,7 @@ friction = 10.0
 airResistance = 1.724
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_8wbl1")]
-MaxHealth = 10
+MaxHealth = 3
 
 [node name="GravityComponent" parent="ComponentManager" instance=ExtResource("5_ggd7j")]
 

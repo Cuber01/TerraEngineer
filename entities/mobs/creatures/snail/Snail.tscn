@@ -59,7 +59,7 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
 size = Vector2(9, 7)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_he5bs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ralr5"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("9_072wc")
@@ -111,6 +111,7 @@ airResistance = 1.724
 FrictionEnabledY = true
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("5_he5bs")]
+MaxHealth = 2
 
 [node name="GravityComponent" parent="ComponentManager" instance=ExtResource("6_8i4jb")]
 
@@ -121,6 +122,6 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_hyp8g")
 
 [node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("8_ralr5")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_he5bs")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_ralr5")])
 
 [editable path="ComponentManager/ContactDamageComponent"]
