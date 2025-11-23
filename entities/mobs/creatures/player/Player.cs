@@ -2,6 +2,7 @@ using Godot;
 using System;
 using TENamespace;
 using TENamespace.health;
+using TENamespace.player_inventory;
 using TENamespace.projectile_builder;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
@@ -76,13 +77,17 @@ public partial class Player : Creature
 
 	public override void Die()
 	{
-		
 		if (!Dead)
 		{
 			CallDeferred(Node.MethodName.QueueFree);    
 		}
 		Dead = true;
 	}
+	
+	
+	// Wrapper for gdscript
+	public void ActivateInventory()
+	 => CM.GetComponent<PlayerInventory>().ActivateItems(this);
 }
 
 

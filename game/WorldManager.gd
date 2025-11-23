@@ -13,6 +13,7 @@ func on_room_loaded(level: Node):
 	CurrentLevel = level;
 	$LevelPreparer.Prepare(CurrentLevel);
 	player.global_position = SaveData.StringToVec(SaveData.ReadValue("savepoint_data", "position"));
+	player.ActivateInventory();
 	
 	MetSys.get_current_room_instance().adjust_camera_limits(player.get_node("Camera2D"))
 
