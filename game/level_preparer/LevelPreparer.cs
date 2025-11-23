@@ -39,7 +39,7 @@ public partial class LevelPreparer : Node2D
         Array removedTiles = (Array)SaveData.ReadValue(levelName, Names.SaveSections.RemovedTiles);
         foreach (Vector2I coords in specialTiles)
         {
-            Variant asArray = VecToParseableArray(coords);
+            Variant asArray = SaveData.VecToParseableArray(coords);
             if (!removedTiles.Contains(asArray))
             {
                 TileData data = specialLayer.GetCellTileData(coords);
@@ -51,10 +51,7 @@ public partial class LevelPreparer : Node2D
 
         specialLayer.CallDeferred(Node.MethodName.QueueFree);
     }
-
-    // We need to convert it to a really weird array in order for the comparison to work...
-    public static Array VecToParseableArray(Vector2I coords)
-        => new Array() {(float)coords.X, (float)coords.Y};
+    
 
     private void spawnTile(StringName name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {

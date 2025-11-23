@@ -17,7 +17,7 @@ public partial class SaveTile : Component
 
     public void ChangeState(Vector2I myCoords, bool exists)
     {
-        Variant asArray = LevelPreparer.VecToParseableArray(myCoords);
+        Variant asArray = SaveData.VecToParseableArray(myCoords);
         
         if (exists)
         {

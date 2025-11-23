@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=4 uid="uid://c5iw0utq2h37t"]
+[gd_scene load_steps=7 format=4 uid="uid://c5iw0utq2h37t"]
 
 [ext_resource type="PackedScene" uid="uid://v37c1i0566mt" path="res://entities/mobs/creatures/snail/Snail.tscn" id="3_y60rs"]
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="4_qw6t1"]
 [ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="4_y3fmu"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="5_qf288"]
+[ext_resource type="PackedScene" uid="uid://jkol8scl305i" path="res://entities/objects/savepoint/savepoint.tscn" id="6_7v84h"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="6_ha70h"]
 
 [node name="Level" type="Node2D"]
+metadata/level_name = &"Tree2"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 2)
@@ -35,3 +37,6 @@ position = Vector2(41, 171)
 
 [node name="Frog2" parent="." instance=ExtResource("4_y3fmu")]
 position = Vector2(264, 275)
+
+[node name="Savepoint" parent="." instance=ExtResource("6_7v84h")]
+position = Vector2(71, 45)

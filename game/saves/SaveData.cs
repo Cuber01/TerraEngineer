@@ -37,9 +37,11 @@ public partial class SaveData : Node
         file.StoreString(newJsonText);
         file.Close();
     }
-    
+
     public static void SetValue(string sectionKey, string key, Variant value)
-        => ( (GodotDict)data[sectionKey] )[key] = value;
+    {
+        ((GodotDict)data[sectionKey] )[key] = value;
+    }
     
     public static void SetValueInArray(string sectionKey, string key, int index, Variant value)
         => ((GodotArray)( (GodotDict)data[sectionKey] )[key])[index] = value;
@@ -99,5 +101,17 @@ public partial class SaveData : Node
         }
 
         data = (GodotDict)json.GetData();
+    }
+    
+    // We need to convert it to a really weird array in order for the comparison to work...
+    public static GodotArray VecToParseableArray(Vector2I coords)
+        => new GodotArray() {(float)coords.X, (float)coords.Y};
+    
+    public static Vector2 StringToVec(String vecString)
+    { 
+        string[] parts = vecString.Split(',');
+        float x = float.Parse(parts[0].Remove(0,1));
+        float y = float.Parse(parts[1].Remove(parts[1].Length-1,1));
+        return new Vector2(x, y);
     }
 }

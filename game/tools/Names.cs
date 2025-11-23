@@ -37,7 +37,12 @@ public static class Names
     // Json save sections
     public static class SaveSections
     {
+        public static readonly StringName SavePointData = "savepoint_data";
+        public static readonly StringName SavePointPosition = "position";
+        public static readonly StringName SavePointLevel = "level";
+        
         public static readonly StringName PlayerInventory = "player_inventory";
+
         public static readonly StringName RemovedTiles = "removed_tiles";
     }
 
