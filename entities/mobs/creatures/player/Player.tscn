@@ -44,6 +44,7 @@ slide_on_ceiling = false
 script = ExtResource("1_ldahb")
 raycastUp = NodePath("RayCastUp")
 CM = NodePath("ComponentManager")
+GodMode = true
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -85,8 +86,8 @@ friction = 1.724
 airResistance = 1.724
 
 [node name="JumpComponent" parent="ComponentManager" instance=ExtResource("6_owoq1")]
-jumpVelocity = 120.0
-limitThreshold = 40.0
+jumpVelocity = 130.0
+limitThreshold = 60.0
 
 [node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
 MaxHealth = 10

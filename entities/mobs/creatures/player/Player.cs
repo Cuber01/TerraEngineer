@@ -11,7 +11,6 @@ using TerraEngineer.game;
 public partial class Player : Creature
 {
 	[Export] private RayCast2D raycastUp;
-	[Export] private bool godMode = false;
 	
 	public Controller controller = new();
 
@@ -77,7 +76,6 @@ public partial class Player : Creature
 
 	public override void Die()
 	{
-		if(godMode) return;
 		
 		if (!Dead)
 		{

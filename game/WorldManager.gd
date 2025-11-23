@@ -21,6 +21,6 @@ func start():
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
-	await load_room("res://levels/Tree1.tscn");
+	await load_room("res://levels/Tree2.tscn");
 	
 	

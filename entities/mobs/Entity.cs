@@ -12,6 +12,7 @@ public partial class Entity : CharacterBody2D
 {
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;
+    [Export] public bool GodMode = false;
     
     [Export] public DirectionX pFacing
     {

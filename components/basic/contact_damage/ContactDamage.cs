@@ -14,6 +14,8 @@ public partial class ContactDamage : Component
     {
         if (body is Entity mob)
         {
+            if(mob.GodMode) return;
+            
             mob.CM.TryGetComponent<Health>()?.ChangeHealth(-contactDamageAmount);
                 
             mob.CM.TryGetComponent<KnockbackComponent>()
