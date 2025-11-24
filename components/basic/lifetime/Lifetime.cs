@@ -12,14 +12,10 @@ public partial class Lifetime : Component
     
     public override void _Ready()
     {
-        timer = TimerManager.Schedule(lifetime, (t) =>
+        timer = TimerManager.Schedule(lifetime, this, (t) =>
         {
              actor.Die();
         });
     }
-
-    public override void _ExitTree()
-    {
-        TimerManager.Cancel(timer);
-    }
+    
 }

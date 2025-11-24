@@ -33,14 +33,15 @@ public partial class TimerManager : Node
     /// </summary>
     /// <param name="timeInSeconds">Time in seconds.</param>
     /// <param name="repeats">If set to <c>true</c> repeats.</param>
-    /// <param name="context">Context.</param>
+    /// <param name="owner">Context.</param>
     /// <param name="onTime">On time.</param>
-    internal ITimer Start(float timeInSeconds, bool repeats, object context, Action<ITimer> onTime)
+    internal ITimer Start(float timeInSeconds, bool repeats, Node owner, Action<ITimer> onTime)
     {
         var timer = new QuickTimer();
-        timer.Initialize(timeInSeconds, repeats, context, onTime);
+        timer.Initialize(timeInSeconds, repeats, owner, onTime);
         _timers.Add(timer);
-
+        
+        owner.TreeExiting += () => { Cancel(timer); };
         return timer;
     }
 
@@ -54,11 +55,11 @@ public partial class TimerManager : Node
     /// </summary>
     /// <param name="timeInSeconds">Time in seconds.</param>
     /// <param name="repeats">If set to <c>true</c> repeats.</param>
-    /// <param name="context">Context.</param>
+    /// <param name="owner">Context.</param>
     /// <param name="onTime">On time.</param>
-    public static ITimer Schedule(float timeInSeconds, bool repeats, object context, Action<ITimer> onTime)
+    public static ITimer Schedule(float timeInSeconds, bool repeats, Node owner, Action<ITimer> onTime)
     {
-        return _instance.Start(timeInSeconds, repeats, context, onTime);
+        return _instance.Start(timeInSeconds, repeats, owner, onTime);
     }
 
     public static void Cancel(ITimer timer)
@@ -70,11 +71,11 @@ public partial class TimerManager : Node
     /// schedules a one-time timer that will call the passed in Action after timeInSeconds
     /// </summary>
     /// <param name="timeInSeconds">Time in seconds.</param>
-    /// <param name="context">Context.</param>
+    /// <param name="owner">Context.</param>
     /// <param name="onTime">On time.</param>
-    public static ITimer Schedule(float timeInSeconds, object context, Action<ITimer> onTime)
+    public static ITimer Schedule(float timeInSeconds, Node owner, Action<ITimer> onTime)
     {
-        return _instance.Start(timeInSeconds, false, context, onTime);
+        return _instance.Start(timeInSeconds, false, owner, onTime);
     }
 
     /// <summary>

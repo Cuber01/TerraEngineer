@@ -1,11 +1,12 @@
 using System;
+using Godot;
 
 /// <summary>
 /// private class hiding the implementation of ITimer
 /// </summary>
 internal class QuickTimer : ITimer
 {
-    public object Context { get; set; }
+    public Node Owner { get; set; }
 
     private float _timeInSeconds;
     private bool _repeats;
@@ -24,9 +25,9 @@ internal class QuickTimer : ITimer
         _elapsedTime = 0f;
     }
 
-    public T GetContext<T>()
+    public Node GetOwner()
     {
-        return (T)Context;
+        return Owner;
     }
 
     internal bool Tick(float delta)
@@ -48,12 +49,13 @@ internal class QuickTimer : ITimer
         return _isDone;
     }
 
-    internal void Initialize(float timeInSeconds, bool repeats, object context, Action<ITimer> onTime)
+    internal void Initialize(float timeInSeconds, bool repeats, Node owner, Action<ITimer> onTime)
     {
         _timeInSeconds = timeInSeconds;
         _repeats = repeats;
-        Context = context;
+        Owner = owner;
         _onTime = onTime;
+        
     }
 
     /// <summary>
@@ -61,7 +63,7 @@ internal class QuickTimer : ITimer
     /// </summary>
     internal void Unload()
     {
-        Context = null;
+        Owner = null;
         _onTime = null;
     }
 }

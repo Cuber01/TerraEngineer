@@ -65,7 +65,7 @@ public partial class Moth : Creature
                 if(!IsInstanceValid(actor)) return;
                 Vector2 rnd = MathT.RandomVector2(-actor.MarginAroundPoint, actor.MarginAroundPoint);
                 goToPoint = actor.FlyAroundPoint.GlobalPosition + rnd;
-                TimerManager.Schedule(delayAtPoint, RerollPoint);
+                TimerManager.Schedule(delayAtPoint, actor,  RerollPoint);
             }
             RerollPoint(null);
         }
@@ -93,7 +93,7 @@ public partial class Moth : Creature
     private void onDetectionAreaBodyExited(Node2D body)
     {
         seesPlayer = false;
-        TimerManager.Schedule(timeUntilBored, (t) =>
+        TimerManager.Schedule(timeUntilBored, this, (t) =>
         {
             if (!seesPlayer)
             {

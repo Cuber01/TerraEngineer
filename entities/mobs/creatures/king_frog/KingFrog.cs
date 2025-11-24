@@ -191,7 +191,8 @@ public partial class KingFrog : Creature
             if (amountSpawned < amountToSpawn)
             {
                 TimerManager.Schedule(MathT.RandomFloat(minTimeSpawn, maxTimeSpawn), 
-                        (_) => spawn(actor));
+                    actor,        
+                    (_) => spawn(actor));
             }
             else
             {

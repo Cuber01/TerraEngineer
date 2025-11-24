@@ -107,7 +107,7 @@ public partial class Snail : Creature
             actor.UpDirection = MathT.rotateVec2(actor.UpDirection, actor.ToRotate > 0);
             actor.ToRotate = 0;
             actor.WasOnFloor = false;
-            TimerManager.Schedule(rotationDelay, (_) => actor.WasOnFloor = true);
+            TimerManager.Schedule(rotationDelay, actor, (_) => actor.WasOnFloor = true);
         }
 
         public void Update(Snail actor, float dt)

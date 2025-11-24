@@ -20,7 +20,7 @@ public partial class HeartPlant : Terraformable
         base.Enable();
         if (!hasFruit)
         {
-            regrowTimer = TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
+            regrowTimer = TimerManager.Schedule(secondsTilRegrow, this, (_) => regrow());
         }
     }
 
@@ -32,7 +32,7 @@ public partial class HeartPlant : Terraformable
             sprite.Animation = Names.Animations.NoFruit;
             player.CM.GetComponent<Health>().ChangeHealth(healthHealed);
             hasFruit = false;    
-            regrowTimer = TimerManager.Schedule(secondsTilRegrow, (_) => regrow());
+            regrowTimer = TimerManager.Schedule(secondsTilRegrow, this, (_) => regrow());
         }
     }
 

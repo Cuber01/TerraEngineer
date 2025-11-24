@@ -43,7 +43,7 @@ public partial class Dash : Component
     {
         isDashing = true;
         dashDirection = (int)direction;
-        TimerManager.Schedule(dashDuration, endDash);
+        TimerManager.Schedule(dashDuration,  this, endDash);
         currentDashes++;
     }
 

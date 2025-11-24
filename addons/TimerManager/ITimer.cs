@@ -1,6 +1,8 @@
+using Godot;
+
 public interface ITimer
 {
-    object Context { get; }
+    Node Owner { get; }
 
 
     /// <summary>
@@ -18,5 +20,5 @@ public interface ITimer
     /// </summary>
     /// <returns>The context.</returns>
     /// <typeparam name="T">The 1st type parameter.</typeparam>
-    T GetContext<T>();
+    Node GetOwner();
 }
