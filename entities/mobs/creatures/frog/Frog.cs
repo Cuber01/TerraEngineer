@@ -23,7 +23,7 @@ public partial class Frog : Creature
     
     public override void _PhysicsProcess(double delta)
     {
-        // Society if C# had real defines...
+        // Society if C# had real macros...
         #if TOOLS
         if (Engine.IsEditorHint())
             return;

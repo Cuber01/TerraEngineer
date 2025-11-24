@@ -181,6 +181,7 @@ func get_explored_ratio(layer := -1):
 
 ## Sets the position of the player to be tracked by MetSys. Automatically explores cells when crossing cell boundary and emits [signal cell_changed] and [signal room_changed] signals.
 ## [br][br][param position] should be position in the room's coordinates, i.e. with [code](0, 0)[/code] being the top-left corner of the scene assigned to the room (which in most cases simply equals to global position of the player).
+var cell_change_allowed = true;
 func set_player_position(position: Vector2):
 	exact_player_position = position
 	if not current_room:
@@ -188,10 +189,14 @@ func set_player_position(position: Vector2):
 	
 	var player_pos := Vector2i((position / settings.in_game_cell_size).floor()) + current_room.min_cell
 	var player_pos_3d := Vector3i(player_pos.x, player_pos.y, current_layer)
-	if player_pos_3d != last_player_position:
+	if (player_pos_3d != last_player_position) and cell_change_allowed:
 		visit_cell(Vector3i(player_pos.x, player_pos.y, current_layer))
+		print("Visiting " + str(player_pos)  + " from " + str(last_player_position));
 		last_player_position = player_pos_3d
 		cell_changed.emit(player_pos_3d)
+		cell_change_allowed = false;
+		await get_tree().create_timer(1).timeout
+		cell_change_allowed = true;
 
 ## Discovers (maps) the cell at the given [param coords]. Fails if the cell does not exist.
 func discover_cell(coords: Vector3i):

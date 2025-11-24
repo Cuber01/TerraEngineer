@@ -7,12 +7,19 @@ public partial class Lifetime : Component
 {
     [Export] private Entity actor;
     [Export] private float lifetime = 100;
+
+    private ITimer timer;
     
     public override void _Ready()
     {
-        TimerManager.Schedule(lifetime, (t) =>
+        timer = TimerManager.Schedule(lifetime, (t) =>
         {
-            actor.Die();
+             actor.Die();
         });
+    }
+
+    public override void _ExitTree()
+    {
+        TimerManager.Cancel(timer);
     }
 }

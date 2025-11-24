@@ -27,6 +27,8 @@ public partial class Player : Creature
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		GD.Print(GlobalPosition);
+		
 		DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
 		if (moveDir != 0)
 		{

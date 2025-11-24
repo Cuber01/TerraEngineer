@@ -14,8 +14,6 @@ public partial class Snail : Creature
     [Export] private RayCast2D left;
     [Export] public Vector2 vecFacing = Vector2.Right; // Does not impact sprite since we rotate it!
     [Export] private float initTime = 1f;
-
-    private ITimer initTimer;
     
     private readonly WalkState walkState = new WalkState();
     private readonly RotateState rotateState = new RotateState();

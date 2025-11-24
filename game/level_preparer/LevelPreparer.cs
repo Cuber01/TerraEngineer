@@ -51,7 +51,7 @@ public partial class LevelPreparer : Node2D
 
         specialLayer.CallDeferred(Node.MethodName.QueueFree);
     }
-    
+
 
     private void spawnTile(StringName name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {
