@@ -41,15 +41,19 @@ public partial class Health : Component
         {
             Actor.Die();
         }
-        else if (invincibilityTimeOnHit > 0)
+        else if (amount < 0)
         {
-            MakeInvincible();
+            if (invincibilityTimeOnHit > 0)
+            {
+                MakeInvincible();    
+            }
+            else
+            {
+                // Theoretically Invincibility has never even started at this point, but we use this event for handling blink
+                InvincibilityEnded?.Invoke();
+            }
         }
-        else
-        {
-            // Theoretically Invincibility has never even started at this point, but we use this event for handling blink
-            InvincibilityEnded?.Invoke();
-        }
+
     }
 
     public void ChangeMaxHealth(int amount)
