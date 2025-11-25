@@ -50,7 +50,4 @@ public partial class HeartPlant : Terraformable
         TimerManager.Cancel(regrowTimer);
     }
     
-    public override void _ExitTree() =>
-        TimerManager.Cancel(regrowTimer);
-    
 }

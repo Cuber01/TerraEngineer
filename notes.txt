@@ -13,4 +13,3 @@ terraform gun should have limited uses?
 replace raycast up for player with area2d cause it will never cover the entire head of player
 while we're at it, the platforms dont seem to interact too well with it
 make jump feel less heavy + remake the first level since you can now reach the hut
-

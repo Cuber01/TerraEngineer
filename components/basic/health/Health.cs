@@ -61,7 +61,7 @@ public partial class Health : Component
     public void MakeInvincible()
     {
         invincible = true;
-        TimerManager.Schedule(invincibilityTimeOnHit, this,  (t) =>
+        TimerManager.Schedule(invincibilityTimeOnHit, Actor,  (t) =>
         {
             invincible = false;
             InvincibilityEnded?.Invoke();

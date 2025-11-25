@@ -93,7 +93,7 @@ public partial class Moth : Creature
     private void onDetectionAreaBodyExited(Node2D body)
     {
         seesPlayer = false;
-        TimerManager.Schedule(timeUntilBored, this, (t) =>
+        TimerManager.Schedule(timeUntilBored, this, (_) =>
         {
             if (!seesPlayer)
             {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene load_steps=18 format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -26,9 +26,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoemn"]
-size = Vector2(7.9, 11)
+size = Vector2(7.9, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlvbh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvbh"]
+size = Vector2(8, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8611i"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -38,11 +41,11 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("raycastUp", "CM", "Sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 2
+collision_mask = 33
 slide_on_ceiling = false
 script = ExtResource("1_ldahb")
-raycastUp = NodePath("RayCastUp")
 CM = NodePath("ComponentManager")
 GodMode = true
 Sprite = NodePath("AnimatedSprite2D")
@@ -52,12 +55,15 @@ z_index = 1
 sprite_frames = SubResource("SpriteFrames_jlvbh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hoemn")
 
-[node name="RayCastUp" type="RayCast2D" parent="."]
-position = Vector2(0, -5)
-target_position = Vector2(0, -1)
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_jlvbh")
 
 [node name="ComponentManager" parent="." instance=ExtResource("2_o7rne")]
 
@@ -74,6 +80,9 @@ position = Vector2(5, 0)
 
 [node name="PointLeft" parent="ComponentManager/GunAdvComponent" index="3"]
 position = Vector2(-5, 0)
+
+[node name="TerraformGun" parent="ComponentManager/GunAdvComponent/ComponentManager" index="0"]
+position = Vector2(0, -1)
 
 [node name="DashComponent" parent="ComponentManager" instance=ExtResource("3_ldahb")]
 
@@ -98,6 +107,8 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jlvbh")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_8611i")])
+
+[connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 
 [editable path="ComponentManager/GunAdvComponent"]

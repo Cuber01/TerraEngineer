@@ -11,7 +11,6 @@ using TerraEngineer.game;
 
 public partial class Player : Creature
 {
-	[Export] private RayCast2D raycastUp;
 	
 	public Controller controller = new();
 
@@ -27,8 +26,6 @@ public partial class Player : Creature
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(GlobalPosition);
-		
 		DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
 		if (moveDir != 0)
 		{
@@ -48,11 +45,6 @@ public partial class Player : Creature
 		if (Input.IsActionJustPressed("jump"))
 		{
 			CM.GetComponent<Jump>().AttemptJump();
-		}
-
-		if (raycastUp.IsColliding())
-		{
-			CM.GetComponent<Jump>().CancelJump();
 		}
 		
 		if (Input.IsActionJustReleased("jump")) {
@@ -85,7 +77,11 @@ public partial class Player : Creature
 		}
 		Dead = true;
 	}
-	
+
+	private void onBumpedCeiling(Node2D body)
+	{
+		CM.GetComponent<Jump>().CancelJump();
+	}
 	
 	// Wrapper for gdscript
 	public void ActivateInventory()
