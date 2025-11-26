@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://cx74jv60ugo07"]
+[gd_scene load_steps=9 format=4 uid="uid://cx74jv60ugo07"]
 
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="2_ffrsi"]
 [ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="5_fj3ik"]
@@ -6,6 +6,8 @@
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="5_pit4m"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="6_11kte"]
 [ext_resource type="PackedScene" uid="uid://v37c1i0566mt" path="res://entities/mobs/creatures/snail/Snail.tscn" id="6_aob1a"]
+[ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="7_4qls1"]
+[ext_resource type="PackedScene" uid="uid://dxjv1g0yeixry" path="res://entities/objects/puzzle/button/Button.tscn" id="8_ogj88"]
 
 [node name="Level" type="Node2D"]
 
@@ -40,3 +42,8 @@ position = Vector2(810, 71)
 
 [node name="Snail3" parent="." instance=ExtResource("6_aob1a")]
 position = Vector2(740, 103)
+
+[node name="SwitchableBlock" parent="." node_paths=PackedStringArray("SwitchersNeededToSwitch") instance=ExtResource("7_4qls1")]
+SwitchersNeededToSwitch = [NodePath("../Button")]
+
+[node name="Button" parent="." instance=ExtResource("8_ogj88")]

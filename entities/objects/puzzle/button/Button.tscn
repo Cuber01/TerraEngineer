@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxjv1g0yeixry"]
+
+[ext_resource type="Script" uid="uid://vofvwclmotw6" path="res://entities/objects/puzzle/button/Button.cs" id="1_hmy84"]
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_hmy84")

@@ -8,6 +8,10 @@ using GodotArray = Godot.Collections.Array;
 
 public partial class SaveData : Node
 {
+    // Used for objects in current level to know when a state of some data they might need has changed
+    public delegate void RealtimeDataChangedHandler(bool switchedOn);
+    public static event RealtimeDataChangedHandler RealtimeDataChanged;
+    
     private static GodotDict data;
     private static Json json = new Json();    
 
@@ -18,7 +22,7 @@ public partial class SaveData : Node
 
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("debug"))
+        if (Input.IsActionJustPressed("f1"))
         {
             WriteChanges();
         }
@@ -38,19 +42,25 @@ public partial class SaveData : Node
         file.Close();
     }
 
-    public static void SetValue(string sectionKey, string key, Variant value)
+    public static void SetValue(string sectionKey, string key, Variant value, bool fireEvent = false)
     {
+        if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
         ((GodotDict)data[sectionKey] )[key] = value;
     }
-    
-    public static void SetValueInArray(string sectionKey, string key, int index, Variant value)
-        => ((GodotArray)( (GodotDict)data[sectionKey] )[key])[index] = value;
-    
+
+    public static void SetValueInArray(string sectionKey, string key, int index, Variant value, bool fireEvent = false)
+    {
+        if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
+        ((GodotArray)((GodotDict)data[sectionKey])[key])[index] = value;
+    }
+
     public static void RemoveValueInArray(string sectionKey, string key, Variant value)
         => ((GodotArray)( (GodotDict)data[sectionKey] )[key]).Remove(value);
     
-    public static void AddValueToArray(string sectionKey, string key, Variant value)
+    public static void AddValueToArray(string sectionKey, string key, Variant value, bool fireEvent = false)
     { 
+        if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
+        
         GodotDict dict = (GodotDict)data[sectionKey];
         if (!dict.ContainsKey(key))
         {
@@ -59,9 +69,19 @@ public partial class SaveData : Node
         
         ((GodotArray)dict[key]).Add(value);
     }
-    
-    public static Variant ReadValue(string sectionKey, string key) 
-        => ((GodotDict)data[sectionKey] )[key];
+
+    public static Variant? ReadValue(string sectionKey, string key)
+    {
+        GodotDict dict = (GodotDict)data[sectionKey];
+        if (dict.TryGetValue(key, out Variant value))
+        {
+            return value;    
+        }
+        else
+        {
+            return null;
+        }
+    }
     
     public static Variant ReadFromArray(string sectionKey, string key, int index) 
         => ((GodotArray)((GodotDict)data[sectionKey] )[key])[index];
