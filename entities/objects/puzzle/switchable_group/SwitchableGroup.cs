@@ -3,22 +3,28 @@ using Godot;
 
 namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 
-public class SwitchableGroup : ISwitchable
+public partial class SwitchableGroup : Node2D, ISwitchable
 {
     [Export] private Color groupColor;
     
     [Export] public StringName[] SavePropertiesNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchersNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchableGroupMembers;
+    [Export] public bool GroupSwitchedOn { get; set; }
     
     public List<ISwitcher> Switchers { get; set; }
     public Node2D Me { get; set; }
 
-    public void OnSwitch()
+    public override void _Ready()
+    {
+        ((ISwitchable)this).Init(this);
+    }
+    
+    public void OnSwitch(bool switchedOn)
     {
         foreach (var switchable in SwitchableGroupMembers)
         {
-            ((ISwitchableDependent)switchable).OnSwitch();
+            ((ISwitchableDependent)switchable).OnSwitch(switchedOn);
         }
     }
 }

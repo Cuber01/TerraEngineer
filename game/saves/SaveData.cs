@@ -70,16 +70,17 @@ public partial class SaveData : Node
         ((GodotArray)dict[key]).Add(value);
     }
 
-    public static Variant? ReadValue(string sectionKey, string key)
+    public static Variant ReadValue(string sectionKey, string key)
     {
         GodotDict dict = (GodotDict)data[sectionKey];
+        
         if (dict.TryGetValue(key, out Variant value))
         {
             return value;    
         }
         else
         {
-            return null;
+            return new Variant();
         }
     }
     

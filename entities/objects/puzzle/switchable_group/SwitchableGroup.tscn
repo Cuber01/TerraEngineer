@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjhdhb4i0bm06"]
+
+[ext_resource type="Script" uid="uid://brq02ckv78888" path="res://entities/objects/puzzle/switchable_group/SwitchableGroup.cs" id="1_4qfnb"]
+
+[node name="SwitchableGroup" type="Node2D"]
+script = ExtResource("1_4qfnb")

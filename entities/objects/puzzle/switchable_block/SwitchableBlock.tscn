@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx5otd75j65no"]
+[gd_scene load_steps=4 format=3 uid="uid://dx5otd75j65no"]
 
 [ext_resource type="Script" uid="uid://bh1ouhnjrw2fs" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.cs" id="1_hbxo4"]
+[ext_resource type="Texture2D" uid="uid://cvyic0f266t67" path="res://entities/objects/puzzle/switchable_block/switchable-block.png" id="2_vyy7x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sbt2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vyy7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="SwitchableBlock" type="Node2D"]
 script = ExtResource("1_hbxo4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sbt2g")

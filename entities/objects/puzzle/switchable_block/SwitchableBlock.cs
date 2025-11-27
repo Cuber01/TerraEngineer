@@ -7,8 +7,8 @@ namespace TerraEngineer.entities.tiles.switchable_tile;
 
 public partial class SwitchableBlock : Node2D, ISwitchableDependent
 {
-    public void OnSwitch()
+    public void OnSwitch(bool switchedOn)
     {
-        throw new System.NotImplementedException();
+        GD.Print("Switched " + Name + " to value " + switchedOn);
     }
 }
