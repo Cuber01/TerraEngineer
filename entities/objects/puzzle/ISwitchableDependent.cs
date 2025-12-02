@@ -1,3 +1,5 @@
+using Godot;
+
 namespace TerraEngineer.entities.objects.puzzle;
 
 // Type of SwitchableGroup members

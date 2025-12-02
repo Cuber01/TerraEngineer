@@ -2,6 +2,7 @@ using Godot;
 
 namespace TerraEngineer;
 
+[Tool]
 public static class Names
 {
     // Node names
@@ -10,6 +11,7 @@ public static class Names
         public static readonly NodePath Main = "Main";
         public static readonly NodePath SpecialTiles = "SpecialTiles";
         public static readonly NodePath Level = "Level";
+        public static readonly NodePath AnimatedSprite2D = "AnimatedSprite2D";
     }
 
     // Properties, metadata, custom tile data

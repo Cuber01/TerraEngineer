@@ -20,8 +20,10 @@ position = Vector2(177, 41)
 position = Vector2(126, 48)
 
 [node name="SwitchableGroup" parent="." node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("4_fpbev")]
+GroupColor = Color(0.46537334, 0.36556914, 0.21681035, 1)
+SavePropertiesNeededToSwitch = []
 SwitchersNeededToSwitch = [NodePath("../Button")]
-SwitchableGroupMembers = [NodePath("../SwitchableBlock2"), NodePath("../SwitchableBlock3"), NodePath("../SwitchableBlock")]
+SwitchableGroupMembers = [NodePath("../SwitchableBlock"), NodePath("../SwitchableBlock2"), NodePath("../SwitchableBlock3")]
 
 [node name="SwitchableBlock2" parent="." instance=ExtResource("3_1fue5")]
 position = Vector2(157, 52)
