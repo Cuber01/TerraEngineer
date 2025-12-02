@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://b1nj3yqr0qwkr"]
+[gd_scene load_steps=7 format=4 uid="uid://b1nj3yqr0qwkr"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="2_v3p77"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="3_1fue5"]
+[ext_resource type="Texture2D" uid="uid://b72vatjax06mn" path="res://entities/objects/puzzle/puzzle-palette-blue.png" id="4_1fue5"]
 [ext_resource type="PackedScene" uid="uid://bjhdhb4i0bm06" path="res://entities/objects/puzzle/switchable_group/SwitchableGroup.tscn" id="4_fpbev"]
 [ext_resource type="PackedScene" uid="uid://dxjv1g0yeixry" path="res://entities/objects/puzzle/button/Button.tscn" id="4_xcx2i"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="5_v3p77"]
@@ -17,11 +18,8 @@ tile_set = ExtResource("2_v3p77")
 [node name="SwitchableBlock" parent="." instance=ExtResource("3_1fue5")]
 position = Vector2(177, 41)
 
-[node name="Button" parent="." instance=ExtResource("4_xcx2i")]
-position = Vector2(126, 48)
-
 [node name="SwitchableGroup" parent="." node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("4_fpbev")]
-GroupColor = Color(0.46537334, 0.36556914, 0.21681035, 1)
+GroupPalette = ExtResource("4_1fue5")
 SavePropertiesNeededToSwitch = []
 SwitchersNeededToSwitch = [NodePath("../Button")]
 SwitchableGroupMembers = [NodePath("../SwitchableBlock"), NodePath("../SwitchableBlock2"), NodePath("../SwitchableBlock3")]
@@ -33,3 +31,9 @@ position = Vector2(157, 52)
 position = Vector2(157, 44)
 
 [node name="RoomInstance" parent="." instance=ExtResource("5_v3p77")]
+
+[node name="Button" parent="." instance=ExtResource("4_xcx2i")]
+position = Vector2(80, 73)
+
+[node name="Button2" parent="." instance=ExtResource("4_xcx2i")]
+position = Vector2(69, 88)

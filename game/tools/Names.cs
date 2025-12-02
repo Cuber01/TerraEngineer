@@ -26,8 +26,10 @@ public static class Names
     public static class Shader
     {
         public static readonly StringName Delta = "delta_time";
+        public static readonly StringName Palette = "palette";
         public static readonly StringName Run = "run";
         public static readonly StringName Blink = "Blink";
+        
     }
 
     // Filesystem paths

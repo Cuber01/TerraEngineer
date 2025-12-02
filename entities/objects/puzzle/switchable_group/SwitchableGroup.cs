@@ -7,17 +7,17 @@ namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 [Tool]
 public partial class SwitchableGroup : Node2D, ISwitchable
 {
-    [Export] private Color GroupColor
+    [Export] private Texture2D GroupPalette
     {
-        get => groupColor;
+        get => groupPalette;
         set
         {
-            groupColor = value;
-            updateGroupColor();
+            groupPalette = value;
+            updateGroupPalette();
         }
     }
     
-    private Color groupColor;
+    private Texture2D groupPalette;
     
     [Export] public StringName[] SavePropertiesNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchersNeededToSwitch { get; set; }
@@ -36,7 +36,7 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         
         ((ISwitchable)this).Init(this);
         
-        updateGroupColor();
+        updateGroupPalette();
     }
 
     public void OnSwitch(bool switchedOn)
@@ -47,7 +47,7 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         }
     }
     
-    private void updateGroupColor()
+    private void updateGroupPalette()
     {
         if(SwitchableGroupMembers == null) 
             return;
@@ -55,7 +55,14 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         foreach (var switchable in SwitchableGroupMembers)
         {
             AnimatedSprite2D sprite = switchable.GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-            sprite.Modulate = groupColor;
+            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, groupPalette);
+        }
+        
+        
+        foreach (var switcher in SwitchersNeededToSwitch)
+        {
+            AnimatedSprite2D sprite = switcher.GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
+            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, groupPalette);
         }
     }
 }

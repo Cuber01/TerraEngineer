@@ -1,6 +1,57 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxjv1g0yeixry"]
+[gd_scene load_steps=9 format=3 uid="uid://dxjv1g0yeixry"]
 
 [ext_resource type="Script" uid="uid://vofvwclmotw6" path="res://entities/objects/puzzle/button/Button.cs" id="1_hmy84"]
+[ext_resource type="Texture2D" uid="uid://b7lgmfh8f0tu2" path="res://entities/objects/puzzle/button/button.png" id="2_1242d"]
+
+[sub_resource type="Shader" id="Shader_1242d"]
+code = "shader_type canvas_item;
+uniform sampler2D palette;
+
+void fragment() {
+    vec4 tex_color = texture(TEXTURE, UV);
+	
+	// Ignore white
+	if(tex_color != vec4(1.0, 1.0, 1.0, 1.0))
+	{
+		vec4 new_color = texture(palette, vec2(tex_color.r, 0));
+    	COLOR = vec4(new_color.rgb, tex_color.a);	
+	}
+    
+}
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_biptm"]
+load_path = "res://.godot/imported/puzzle-palette-red.png-22c8c1925a2d765985b59858aeb39f81.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ni6wq"]
+shader = SubResource("Shader_1242d")
+shader_parameter/palette = SubResource("CompressedTexture2D_biptm")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biptm"]
+atlas = ExtResource("2_1242d")
+region = Rect2(6, 0, 6, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni6wq"]
+atlas = ExtResource("2_1242d")
+region = Rect2(0, 0, 6, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ctoyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biptm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ni6wq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Button" type="Node2D"]
 script = ExtResource("1_hmy84")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_ni6wq")
+sprite_frames = SubResource("SpriteFrames_ctoyd")

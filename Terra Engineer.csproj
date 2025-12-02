@@ -10,6 +10,7 @@
     <Content Include="LICENSE.txt" />
     <Content Include="notes.txt" />
     <Content Include="shaders\blink.gdshader" />
+    <Content Include="shaders\palette_swap.gdshader" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets_ase\" />
