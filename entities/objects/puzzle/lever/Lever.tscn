@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkdxw6irme7rf"]
+
+[ext_resource type="Texture2D" uid="uid://dorn77torsdbl" path="res://entities/objects/puzzle/puzzle-palette-red.png" id="1_g0htm"]
+[ext_resource type="Texture2D" uid="uid://crp5ykqa41aqm" path="res://entities/objects/puzzle/lever/lever.png" id="2_6xpxo"]
+
+[sub_resource type="Shader" id="Shader_fl3nn"]
+code = "shader_type canvas_item;
+uniform sampler2D palette;
+
+uniform vec3 exclusion_list[16];
+uniform int exclusion_list_size : hint_range(0,16) = 0;
+
+void fragment() {
+    vec4 tex_color = texture(TEXTURE, UV);
+	
+	bool found = false;
+	for(int i = 0; i < exclusion_list_size; i++)
+	{
+		if(distance(tex_color.rgb, exclusion_list[i]) < 0.01)
+		{
+			found = true;
+		} 
+	}
+	
+	if(found)
+	{
+		COLOR = tex_color;
+	}
+	else
+	{
+		// Replace
+		vec4 new_color = texture(palette, vec2(tex_color.r, 0));
+    	COLOR = vec4(new_color.rgb, tex_color.a);	
+	}
+	
+    
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yn61"]
+shader = SubResource("Shader_fl3nn")
+shader_parameter/palette = ExtResource("1_g0htm")
+shader_parameter/exclusion_list = PackedVector3Array(1, 1, 1, 0.18, 0.133, 0.184, 0.243, 0.208, 0.275)
+shader_parameter/exclusion_list_size = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ae5x"]
+atlas = ExtResource("2_6xpxo")
+region = Rect2(0, 0, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofhtp"]
+atlas = ExtResource("2_6xpxo")
+region = Rect2(10, 0, 10, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aflbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ae5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofhtp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lever" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_0yn61")
+sprite_frames = SubResource("SpriteFrames_aflbh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

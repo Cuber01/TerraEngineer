@@ -1,25 +1,44 @@
 using Godot;
+using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.entities.objects.puzzle;
 
 [Tool]
-public partial class Button : Node2D, ISwitcher
+public partial class Button : Entity, ISwitcher
 {
     public event ISwitcher.SwitchedEventHandler Switched;
     public bool SwitchedOn { get; set; }
 
+    private int bodiesOnButton = 0;
+    
     public override void _Ready()
     {
         Material mat = (Material)GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material.Duplicate(true);
         GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material = mat;
     }
-    
-    public override void _PhysicsProcess(double delta)
+
+    private void onBodyEntered(Node2D _)
     {
-        if (Input.IsActionJustPressed("f2"))
+        bodiesOnButton++;
+        if (!SwitchedOn)
         {
-            SwitchedOn = !SwitchedOn;
-            Switched?.Invoke(SwitchedOn);
+            Sprite.Frame = 1;
+            SwitchedOn = true;
+            Switched?.Invoke(true);
         }
     }
+
+    private void onBodyExited(Node2D _)
+    {
+        bodiesOnButton--;
+
+        if (bodiesOnButton == 0)
+        {
+            Sprite.Frame = 0;
+            SwitchedOn = false;
+            Switched?.Invoke(false);
+        }
+        
+    }
+    
 }

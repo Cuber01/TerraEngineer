@@ -33,7 +33,9 @@ position = Vector2(157, 44)
 [node name="RoomInstance" parent="." instance=ExtResource("5_v3p77")]
 
 [node name="Button" parent="." instance=ExtResource("4_xcx2i")]
-position = Vector2(80, 73)
+position = Vector2(162, 98)
+script = null
 
 [node name="Button2" parent="." instance=ExtResource("4_xcx2i")]
-position = Vector2(69, 88)
+position = Vector2(145, 98)
+script = null
