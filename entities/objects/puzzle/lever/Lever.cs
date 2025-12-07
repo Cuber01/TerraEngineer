@@ -10,7 +10,7 @@ public partial class Lever : Entity, ISwitcher
 
     private void getSwitched()
     {
-        Sprite.Frame = SwitchedOn ? 1 : 0;
+        Sprite.Frame = SwitchedOn ? 0 : 1;
         SwitchedOn = !SwitchedOn;
         Switched?.Invoke(SwitchedOn);
     }

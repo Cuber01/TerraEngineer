@@ -12,7 +12,7 @@ public partial class SwitchableBlock : Entity, ISwitchableDependent
 
     public void OnSwitch(bool switchedOn)
     {
-        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, !switchedOn);
-        Sprite.Frame = switchedOn ? 0 : 1;
+        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, switchedOn);
+        Sprite.Frame = switchedOn ? 1 : 0;
     }
 }

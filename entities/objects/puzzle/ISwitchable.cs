@@ -47,10 +47,17 @@ public interface ISwitchable : ISwitchableDependent
     {
         if(GroupSwitchedOn == switchedOn)
             return;
+
+        if (switchedOn == false)
+        {
+            GroupSwitchedOn = false;
+            OnSwitch(GroupSwitchedOn);
+            return;
+        }
         
         foreach (ISwitcher switcher in Switchers ?? Enumerable.Empty<ISwitcher>())
         {
-            if (switcher.SwitchedOn == GroupSwitchedOn)
+            if (!switcher.SwitchedOn)
             {
                 GD.Print("Failed to switch: " + switcher + " was false.");
                 return;
@@ -62,7 +69,7 @@ public interface ISwitchable : ISwitchableDependent
         foreach (string property in SavePropertiesNeededToSwitch ?? Enumerable.Empty<StringName>())
         {
             Variant value = SaveData.ReadValue(levelName, property);
-            if (value.VariantType == Variant.Type.Nil || (bool)value == GroupSwitchedOn)
+            if (value.VariantType == Variant.Type.Nil || (bool)value == false)
             {
                 GD.Print("Failed to switch: " + property + " was false.");
                 return;
