@@ -8,7 +8,7 @@ namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 public partial class SwitchableGroup : Node2D, ISwitchable
 {
     [ExportToolButton("Update group palettes")]
-    public Callable MyToolButton => Callable.From(() => updateGroupPalette());
+    public Callable MyToolButton => Callable.From(updateGroupPalette);
     
     [Export] private Texture2D GroupPalette
     {

@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
+using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects.puzzle;
 
 namespace TerraEngineer.entities.tiles.switchable_tile;
 
-public partial class SwitchableBlock : CharacterBody2D, ISwitchableDependent
+public partial class SwitchableBlock : Entity, ISwitchableDependent
 {
     [Export] private CollisionShape2D collider;
-    
-    public AnimatedSprite2D Sprite { get; set; }
 
     public void OnSwitch(bool switchedOn)
     {

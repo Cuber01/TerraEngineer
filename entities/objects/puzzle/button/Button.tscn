@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vofvwclmotw6" path="res://entities/objects/puzzle/button/Button.cs" id="1_hmy84"]
 [ext_resource type="Texture2D" uid="uid://b7lgmfh8f0tu2" path="res://entities/objects/puzzle/button/button.png" id="2_1242d"]
+[ext_resource type="Texture2D" uid="uid://dp5ojga10j7ho" path="res://entities/objects/puzzle/puzzle-palette-yellow-levers-buttons.png" id="2_biptm"]
 
 [sub_resource type="Shader" id="Shader_1242d"]
 code = "shader_type canvas_item;
@@ -20,12 +21,9 @@ void fragment() {
 }
 "
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_biptm"]
-load_path = "res://.godot/imported/puzzle-palette-red.png-22c8c1925a2d765985b59858aeb39f81.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ni6wq"]
 shader = SubResource("Shader_1242d")
-shader_parameter/palette = SubResource("CompressedTexture2D_biptm")
+shader_parameter/palette = ExtResource("2_biptm")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_biptm"]
 atlas = ExtResource("2_1242d")
@@ -52,7 +50,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wevid"]
 size = Vector2(6, 3)
 
-[node name="Button" type="Node2D" node_paths=PackedStringArray("Sprite")]
+[node name="Button" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_hmy84")
 Sprite = NodePath("AnimatedSprite2D")
 

@@ -34,9 +34,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1yfi"]
 size = Vector2(8, 8)
 
-[node name="SwitchableBlock" type="CharacterBody2D"]
+[node name="SwitchableBlock" type="CharacterBody2D" node_paths=PackedStringArray("collider", "Sprite")]
 collision_mask = 0
 script = ExtResource("1_hbxo4")
+collider = NodePath("CollisionShape2D")
+Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_rfkk2")
