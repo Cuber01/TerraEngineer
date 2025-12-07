@@ -11,6 +11,8 @@ using TerraEngineer.game;
 
 public partial class Player : Creature
 {
+	public delegate void InteractedEventHandler();
+	public event InteractedEventHandler Interacted;
 	
 	public Controller controller = new();
 
@@ -22,6 +24,7 @@ public partial class Player : Creature
 		controller.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
 		controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
 		controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupWeapon);
+		controller.AddAction(Names.Actions.Interact, () => Interacted?.Invoke());
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -82,6 +85,7 @@ public partial class Player : Creature
 	{
 		CM.GetComponent<Jump>().CancelJump();
 	}
+
 	
 	// Wrapper for gdscript
 	public void ActivateInventory()

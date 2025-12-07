@@ -7,6 +7,9 @@ namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 [Tool]
 public partial class SwitchableGroup : Node2D, ISwitchable
 {
+    [ExportToolButton("Update group palettes")]
+    public Callable MyToolButton => Callable.From(() => updateGroupPalette());
+    
     [Export] private Texture2D GroupPalette
     {
         get => groupPalette;
@@ -16,8 +19,18 @@ public partial class SwitchableGroup : Node2D, ISwitchable
             updateGroupPalette();
         }
     }
-    
     private Texture2D groupPalette;
+    
+    [Export] private Texture2D BlocksGroupPalette
+    {
+        get => blocksGroupPalette;
+        set
+        {
+            blocksGroupPalette = value;
+            updateGroupPalette();
+        }
+    }
+    private Texture2D blocksGroupPalette;
     
     [Export] public StringName[] SavePropertiesNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchersNeededToSwitch { get; set; }
@@ -55,7 +68,7 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         foreach (var switchable in SwitchableGroupMembers)
         {
             AnimatedSprite2D sprite = switchable.GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, groupPalette);
+            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, blocksGroupPalette);
         }
         
         

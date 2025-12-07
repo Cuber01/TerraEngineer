@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkdxw6irme7rf"]
+[gd_scene load_steps=10 format=3 uid="uid://bkdxw6irme7rf"]
 
+[ext_resource type="Script" uid="uid://dnjdjfcs4e7j8" path="res://entities/objects/puzzle/lever/Lever.cs" id="1_6xpxo"]
 [ext_resource type="Texture2D" uid="uid://dorn77torsdbl" path="res://entities/objects/puzzle/puzzle-palette-red.png" id="1_g0htm"]
 [ext_resource type="Texture2D" uid="uid://crp5ykqa41aqm" path="res://entities/objects/puzzle/lever/lever.png" id="2_6xpxo"]
 
@@ -65,12 +66,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0htm"]
+size = Vector2(10, 8)
+
 [node name="Lever" type="Node2D"]
+script = ExtResource("1_6xpxo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_0yn61")
 sprite_frames = SubResource("SpriteFrames_aflbh")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_g0htm")
+
+[connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onPlayerExited"]

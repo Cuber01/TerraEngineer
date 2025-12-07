@@ -5,12 +5,15 @@ using TerraEngineer.entities.objects.puzzle;
 
 namespace TerraEngineer.entities.tiles.switchable_tile;
 
-public partial class SwitchableBlock : Node2D, ISwitchableDependent
+public partial class SwitchableBlock : CharacterBody2D, ISwitchableDependent
 {
-    public AnimatedSprite2D Sprite { get; set;  }
+    [Export] private CollisionShape2D collider;
+    
+    public AnimatedSprite2D Sprite { get; set; }
 
     public void OnSwitch(bool switchedOn)
     {
-        GD.Print("Switched " + Name + " to value " + switchedOn);
+        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, !switchedOn);
+        Sprite.Frame = switchedOn ? 0 : 1;
     }
 }

@@ -1,21 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx5otd75j65no"]
+[gd_scene load_steps=10 format=3 uid="uid://dx5otd75j65no"]
 
 [ext_resource type="Script" uid="uid://bh1ouhnjrw2fs" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.cs" id="1_hbxo4"]
 [ext_resource type="Texture2D" uid="uid://cvyic0f266t67" path="res://entities/objects/puzzle/switchable_block/switchable-block.png" id="2_vyy7x"]
+[ext_resource type="Shader" uid="uid://dwsmvj3x1pon0" path="res://shaders/palette_swap.gdshader" id="2_x1yfi"]
+[ext_resource type="Texture2D" uid="uid://cvmh3g4quab6f" path="res://entities/objects/puzzle/puzzle-palette-yellow.png" id="3_ksqu1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfkk2"]
+shader = ExtResource("2_x1yfi")
+shader_parameter/palette = ExtResource("3_ksqu1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3sok"]
+atlas = ExtResource("2_vyy7x")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adeq6"]
+atlas = ExtResource("2_vyy7x")
+region = Rect2(8, 0, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sbt2g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vyy7x")
+"texture": SubResource("AtlasTexture_y3sok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adeq6")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="SwitchableBlock" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1yfi"]
+size = Vector2(8, 8)
+
+[node name="SwitchableBlock" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_hbxo4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_rfkk2")
 sprite_frames = SubResource("SpriteFrames_sbt2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x1yfi")
