@@ -12,6 +12,7 @@ public static class Names
         public static readonly NodePath SpecialTiles = "SpecialTiles";
         public static readonly NodePath Level = "Level";
         public static readonly NodePath AnimatedSprite2D = "AnimatedSprite2D";
+        public static readonly NodePath PinJoint2D = "PinJoint2D";
     }
 
     // Properties, metadata, custom tile data

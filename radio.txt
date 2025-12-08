@@ -1,0 +1,18 @@
+*Bzzt* *Bzzaat*
+You: Hello? Is anyone there? 
+You: This is Jakub. Please respond.
+*Bzzaat* *Bzzt*
+You: Come on...
+Radio: Status report.
+You: I am so glad to hear from you, Mr. Henderson!
+Henderson: Yes, I share your feelings. What happened?
+You: We've been struck by the boche's on the way here. I am the only one who survived.
+You: I managed to get to the coordinates you sent me and found the old bunker.
+You: Nothing makes sense here. First I went into some offices, then a cave full of fauna and flora, and then there was an enormous tree empty inside. And inside of it there were more trees.
+You: And the animals here... They're not... normal. They attacked me, I'm not feeling very well.
+Henderson: You must get yourself together. We can't send you any help, we've been cut off from the east and west by enemy forces.
+Henderson: It is of utmost importance you finish your mission, Jakub. We need you to extract all important archeo technology from that bunker.
+Henderson: Report directly to me, and don't come back empty handed.
+You:
+>Yes sir!
+>No. (locked)

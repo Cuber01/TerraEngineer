@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b1nj3yqr0qwkr"]
+[gd_scene load_steps=10 format=4 uid="uid://b1nj3yqr0qwkr"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="2_v3p77"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="3_1fue5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cvmh3g4quab6f" path="res://entities/objects/puzzle/puzzle-palette-yellow.png" id="5_f8aun"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="5_v3p77"]
 [ext_resource type="PackedScene" uid="uid://bkdxw6irme7rf" path="res://entities/objects/puzzle/lever/Lever.tscn" id="7_rklo2"]
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="10_rklo2"]
 
 [node name="Level" type="Node2D"]
 metadata/level_name = &"DevRoom"
@@ -34,3 +35,66 @@ position = Vector2(161, 97)
 
 [node name="SwitchableBlock" parent="." instance=ExtResource("3_1fue5")]
 position = Vector2(183, 77)
+
+[node name="Rope2" type="Node2D" parent="."]
+position = Vector2(18, 92)
+script = ExtResource("10_rklo2")
+rope_length = 40.0
+num_constraint_iterations = 5
+line_width = 1.0
+color = Color(0.11552902, 0.5732264, 3.85046e-07, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="Rope3" type="Node2D" parent="."]
+position = Vector2(159, 29)
+script = ExtResource("10_rklo2")
+rope_length = 40.0
+num_constraint_iterations = 5
+line_width = 1.0
+color = Color(0.11552902, 0.5732264, 3.85046e-07, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="Rope4" type="Node2D" parent="."]
+position = Vector2(250, 73)
+script = ExtResource("10_rklo2")
+rope_length = 40.0
+stiffness = -100.0
+num_constraint_iterations = 5
+line_width = 1.0
+color = Color(0.11552902, 0.5732264, 3.85046e-07, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="Rope5" type="Node2D" parent="."]
+position = Vector2(265, 68)
+script = ExtResource("10_rklo2")
+rope_length = 40.0
+stiffness = -100.0
+num_constraint_iterations = 5
+line_width = 1.0
+color = Color(0.11552902, 0.5732264, 3.85046e-07, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="Rope6" type="Node2D" parent="."]
+position = Vector2(236, 68)
+script = ExtResource("10_rklo2")
+rope_length = 40.0
+stiffness = -100.0
+num_constraint_iterations = 5
+line_width = 1.0
+color = Color(0.11552902, 0.5732264, 3.85046e-07, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
