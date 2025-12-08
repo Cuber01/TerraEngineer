@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cdollu8bx58st"]
+
+[ext_resource type="Texture2D" uid="uid://2ym2pnou4up8" path="res://tilemaps/office/office-decor.png" id="1_jb88u"]
+
+[resource]
+atlas = ExtResource("1_jb88u")
+region = Rect2(88, 6, 8, 7)
