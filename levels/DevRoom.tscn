@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b1nj3yqr0qwkr"]
+[gd_scene load_steps=17 format=4 uid="uid://b1nj3yqr0qwkr"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/grass/grass.tres" id="2_v3p77"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="3_1fue5"]
@@ -8,9 +8,27 @@
 [ext_resource type="Texture2D" uid="uid://cvmh3g4quab6f" path="res://entities/objects/puzzle/puzzle-palette-yellow.png" id="5_f8aun"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="5_v3p77"]
 [ext_resource type="PackedScene" uid="uid://bkdxw6irme7rf" path="res://entities/objects/puzzle/lever/Lever.tscn" id="7_rklo2"]
+[ext_resource type="Shader" uid="uid://batds4jjpugpc" path="res://shaders/randon-region-selector.gdshader" id="10_ftbtv"]
+[ext_resource type="Shader" uid="uid://b6nhsjnmgur2f" path="res://shaders/rope-segment-selector.gdshader" id="10_lngq4"]
 [ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="10_rklo2"]
 [ext_resource type="Texture2D" uid="uid://dns0ueunuurtt" path="res://wire.png" id="10_wpy1m"]
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="11_ryq83"]
+[ext_resource type="Texture2D" uid="uid://c7ixwu8lcvpvm" path="res://sample.png" id="13_ftbtv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lngq4"]
+shader = ExtResource("10_lngq4")
+shader_parameter/texture_source = ExtResource("10_wpy1m")
+shader_parameter/region_count = 6
+shader_parameter/region_size_px = Vector2i(4, 8)
+shader_parameter/seed = 0.2430000115425
+shader_parameter/tiles_per_unit = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryq83"]
+shader = ExtResource("10_ftbtv")
+shader_parameter/texture_source = ExtResource("10_wpy1m")
+shader_parameter/region_count = 4
+shader_parameter/region_size_px = Vector2i(4, 8)
+shader_parameter/seed = 0.2650000125875
 
 [node name="Level" type="Node2D"]
 metadata/level_name = &"DevRoom"
@@ -39,10 +57,11 @@ position = Vector2(161, 97)
 position = Vector2(183, 77)
 
 [node name="Rope2" type="Node2D" parent="."]
-position = Vector2(18, 92)
+position = Vector2(31, 77)
 script = ExtResource("10_rklo2")
-rope_length = 40.0
+rope_length = 50.0
 num_constraint_iterations = 5
+render_line = false
 line_width = 1.0
 color = Color(0.11372549, 0.1254902, 0, 1)
 enable_collisions = true
@@ -52,7 +71,146 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope2"]
 texture_repeat = 2
-points = PackedVector2Array(0, 0, 0, 6.691948, 0, 13.185944, 0, 19.426239, 0, 25.37796, 0, 31.020515, 0, 36.3423, 0, 41.337036, 0, 46.001328, 0, 50.333466, 0, 54.333466)
-texture = ExtResource("10_wpy1m")
+material = SubResource("ShaderMaterial_lngq4")
+points = PackedVector2Array(0, 0, 0, 7.691948, 0, 15.185944, 0, 22.426239, 0, 29.37796, 0, 36.020515, 0, 42.342316, 0, 48.33705, 0, 54.001343, 0, 59.333496, 0, 64.333496)
+width = 4.0
+texture_mode = 1
+script = ExtResource("11_ryq83")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ryq83")
+position = Vector2(103, 72)
+texture = ExtResource("13_ftbtv")
+
+[node name="Grass" type="Node2D" parent="."]
+
+[node name="Rope3" type="Node2D" parent="Grass"]
+position = Vector2(180, 101)
+script = ExtResource("10_rklo2")
+num_segments = 5
+rope_length = 1.0
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope3"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+sharp_limit = 6.0
+script = ExtResource("11_ryq83")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope4" type="Node2D" parent="Grass"]
+position = Vector2(187, 100)
+script = ExtResource("10_rklo2")
+num_segments = 5
+rope_length = 1.0
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope4"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+sharp_limit = 6.0
+script = ExtResource("11_ryq83")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope5" type="Node2D" parent="Grass"]
+position = Vector2(192, 100)
+script = ExtResource("10_rklo2")
+num_segments = 5
+rope_length = 1.0
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope5"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+sharp_limit = 6.0
+script = ExtResource("11_ryq83")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope6" type="Node2D" parent="Grass"]
+position = Vector2(198, 100)
+script = ExtResource("10_rklo2")
+num_segments = 5
+rope_length = 1.0
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope6"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+sharp_limit = 6.0
+script = ExtResource("11_ryq83")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope7" type="Node2D" parent="Grass"]
+position = Vector2(204, 100)
+script = ExtResource("10_rklo2")
+num_segments = 5
+rope_length = 1.0
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+resolve_collisions_while_constraining = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope7"]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+sharp_limit = 6.0
 script = ExtResource("11_ryq83")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"

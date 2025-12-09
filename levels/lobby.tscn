@@ -29,80 +29,82 @@ tile_set = ExtResource("1_n1gxf")
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_n1gxf")]
 
-[node name="Desk" type="Sprite2D" parent="."]
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Desk" type="Sprite2D" parent="Props"]
 position = Vector2(163, 145)
 texture = ExtResource("3_gyuag")
 
-[node name="Desk2" type="Sprite2D" parent="."]
+[node name="Desk2" type="Sprite2D" parent="Props"]
 position = Vector2(163, 145)
 texture = ExtResource("3_gyuag")
 
-[node name="BackComputer" type="Sprite2D" parent="."]
+[node name="BackComputer" type="Sprite2D" parent="Props"]
 position = Vector2(161, 139)
 texture = ExtResource("4_ymuiv")
 
-[node name="Eurofed" type="Sprite2D" parent="."]
+[node name="Eurofed" type="Sprite2D" parent="Props"]
 position = Vector2(160, 83)
 texture = ExtResource("5_ui1w4")
 
-[node name="Newspaper" type="Sprite2D" parent="."]
+[node name="Newspaper" type="Sprite2D" parent="Props"]
 position = Vector2(190, 134)
 texture = SubResource("AtlasTexture_ymuiv")
 
-[node name="Paperstack2" type="Sprite2D" parent="."]
+[node name="Paperstack2" type="Sprite2D" parent="Props"]
 position = Vector2(257, 136)
 texture = ExtResource("7_7i7hg")
 
-[node name="Paperstack3" type="Sprite2D" parent="."]
+[node name="Paperstack3" type="Sprite2D" parent="Props"]
 position = Vector2(221, 144)
 texture = ExtResource("7_7i7hg")
 
-[node name="Paperstack4" type="Sprite2D" parent="."]
+[node name="Paperstack4" type="Sprite2D" parent="Props"]
 position = Vector2(230, 144)
 texture = ExtResource("7_7i7hg")
 
-[node name="Paperstack5" type="Sprite2D" parent="."]
+[node name="Paperstack5" type="Sprite2D" parent="Props"]
 position = Vector2(205, 144)
 texture = ExtResource("7_7i7hg")
 
-[node name="Lamp" type="Sprite2D" parent="."]
+[node name="Lamp" type="Sprite2D" parent="Props"]
 position = Vector2(86, 31)
 texture = ExtResource("8_6htc0")
 
-[node name="Lamp2" type="Sprite2D" parent="."]
+[node name="Lamp2" type="Sprite2D" parent="Props"]
 position = Vector2(230, 31)
 texture = ExtResource("8_6htc0")
 
-[node name="Lamp3" type="Sprite2D" parent="."]
+[node name="Lamp3" type="Sprite2D" parent="Props"]
 position = Vector2(285, 136)
-rotation = 0.903958
+rotation = 0.90395796
 texture = ExtResource("8_6htc0")
 
-[node name="Board" type="Sprite2D" parent="."]
+[node name="Board" type="Sprite2D" parent="Props"]
 position = Vector2(106, 132)
 texture = ExtResource("9_fj1tp")
 
-[node name="Shelves" type="Sprite2D" parent="."]
+[node name="Shelves" type="Sprite2D" parent="Props"]
 position = Vector2(133, 141)
 texture = ExtResource("10_7i7hg")
 
-[node name="Shelf" type="Sprite2D" parent="."]
+[node name="Shelf" type="Sprite2D" parent="Props"]
 position = Vector2(241, 143)
 texture = ExtResource("11_6htc0")
 
-[node name="Table" type="Sprite2D" parent="."]
+[node name="Table" type="Sprite2D" parent="Props"]
 position = Vector2(76, 145)
 texture = ExtResource("12_mip8o")
 
-[node name="Cup" type="Sprite2D" parent="."]
+[node name="Cup" type="Sprite2D" parent="Props"]
 position = Vector2(78, 140)
 texture = ExtResource("13_fqd37")
 
-[node name="Chair" type="Sprite2D" parent="."]
+[node name="Chair" type="Sprite2D" parent="Props"]
 position = Vector2(84, 145)
 texture = ExtResource("14_8rd0g")
 
-[node name="Chair2" type="Sprite2D" parent="."]
+[node name="Chair2" type="Sprite2D" parent="Props"]
 position = Vector2(67.00001, 145.99998)
 rotation = 1.5682148
 texture = ExtResource("14_8rd0g")
