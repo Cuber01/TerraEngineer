@@ -1,52 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwta0ajoqhibc"]
+[gd_scene load_steps=8 format=3 uid="uid://bwta0ajoqhibc"]
 
 [ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_o6ug1"]
-[ext_resource type="Texture2D" uid="uid://bpdw3unwx6lar" path="res://entities/mobs/projectile/flame/flame_anim/flame1.png" id="2_e7c0l"]
-[ext_resource type="Texture2D" uid="uid://bpy2wqsgkwdmj" path="res://entities/mobs/projectile/flame/flame_anim/flame2.png" id="3_0vphj"]
+[ext_resource type="Texture2D" uid="uid://dwluhg7h388hj" path="res://entities/mobs/projectile/flame/long-fire.png" id="2_o6ug1"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_vipxt"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_qdmh2"]
-[ext_resource type="Texture2D" uid="uid://jbog0bbqvdl1" path="res://entities/mobs/projectile/flame/flame_anim/flame3.png" id="4_tvuvr"]
-[ext_resource type="Texture2D" uid="uid://df2w13si88k7w" path="res://entities/mobs/projectile/flame/flame_anim/flame4.png" id="5_1dv7j"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_d1g7h"]
-[ext_resource type="Texture2D" uid="uid://d1yd85jpeba1v" path="res://entities/mobs/projectile/flame/flame_anim/flame5.png" id="6_opb45"]
-[ext_resource type="Texture2D" uid="uid://y0iwigrhiw7g" path="res://entities/mobs/projectile/flame/flame_anim/flame6.png" id="7_4ssam"]
-[ext_resource type="Texture2D" uid="uid://2h6hjhv88w8q" path="res://entities/mobs/projectile/flame/flame_anim/flame7.png" id="8_icfna"]
-[ext_resource type="Texture2D" uid="uid://bu64jshtl503w" path="res://entities/mobs/projectile/flame/flame_anim/flame8.png" id="9_4daib"]
-[ext_resource type="Texture2D" uid="uid://d2qkco3gedojt" path="res://entities/mobs/projectile/flame/flame_anim/flame9.png" id="10_qjcsj"]
-[ext_resource type="Texture2D" uid="uid://csjwv6tnit8pa" path="res://entities/mobs/projectile/flame/flame_anim/flame10.png" id="11_6uwt2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_intoi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_e7c0l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_0vphj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_tvuvr")
-}, {
-"duration": 1.4,
-"texture": ExtResource("5_1dv7j")
-}, {
-"duration": 1.4,
-"texture": ExtResource("6_opb45")
-}, {
-"duration": 1.4,
-"texture": ExtResource("7_4ssam")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_icfna")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_4daib")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_qjcsj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_6uwt2")
+"texture": ExtResource("2_o6ug1")
 }],
 "loop": true,
 "name": &"default",
@@ -54,18 +18,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhuo2"]
-size = Vector2(9, 11)
+size = Vector2(18, 11)
 
-[node name="FlameProjectile" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
+[node name="FlameProjectile" type="CharacterBody2D" node_paths=PackedStringArray("CM")]
 script = ExtResource("1_o6ug1")
 piercing = 99
 breakOnWall = false
 CM = NodePath("ComponentManager")
-sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(4.5, 0)
+position = Vector2(9, 0)
 sprite_frames = SubResource("SpriteFrames_intoi")
 autoplay = "default"
 frame_progress = 0.746872
@@ -76,6 +39,7 @@ collision_layer = 0
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_uhuo2")
 
 [node name="ComponentManager" parent="." instance=ExtResource("3_vipxt")]

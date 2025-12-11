@@ -21,35 +21,31 @@ tile_set = ExtResource("1_38jn4")
 [node name="SwitchableGroup" parent="." node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 GroupPalette = ExtResource("4_r0qsy")
 BlocksGroupPalette = ExtResource("5_6kv7p")
-SwitchersNeededToSwitch = []
-SwitchableGroupMembers = [NodePath("SwitchableBlock4"), NodePath("SwitchableBlock5"), NodePath("SwitchableBlock6"), NodePath("SwitchableBlock7")]
+SavePropertiesNeededToSwitch = []
+SwitchersNeededToSwitch = [NodePath("SwitchableBlock")]
+SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock2")]
 
-[node name="SwitchableBlock4" parent="SwitchableGroup" instance=ExtResource("4_247ex")]
-position = Vector2(267, 168)
+[node name="SwitchableBlock" parent="SwitchableGroup" instance=ExtResource("4_247ex")]
+position = Vector2(132, 79)
 
-[node name="SwitchableBlock5" parent="SwitchableGroup" instance=ExtResource("4_247ex")]
-position = Vector2(243, 168)
-
-[node name="SwitchableBlock6" parent="SwitchableGroup" instance=ExtResource("4_247ex")]
-position = Vector2(259, 168)
-
-[node name="SwitchableBlock7" parent="SwitchableGroup" instance=ExtResource("4_247ex")]
-position = Vector2(251, 168)
+[node name="SwitchableBlock2" parent="SwitchableGroup" instance=ExtResource("4_247ex")]
+position = Vector2(112, 77)
 
 [node name="SwitchableGroup2" parent="." node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 GroupPalette = ExtResource("7_r8f0g")
 BlocksGroupPalette = ExtResource("7_r8f0g")
+SavePropertiesNeededToSwitch = []
 SwitchersNeededToSwitch = []
 SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock2"), NodePath("SwitchableBlock3"), NodePath("SwitchableBlock4")]
 
 [node name="SwitchableBlock" parent="SwitchableGroup2" instance=ExtResource("4_247ex")]
-position = Vector2(259, 152)
+position = Vector2(267, 152)
 
 [node name="SwitchableBlock2" parent="SwitchableGroup2" instance=ExtResource("4_247ex")]
-position = Vector2(251, 152)
+position = Vector2(259, 152)
 
 [node name="SwitchableBlock3" parent="SwitchableGroup2" instance=ExtResource("4_247ex")]
-position = Vector2(243, 152)
+position = Vector2(251, 152)
 
 [node name="SwitchableBlock4" parent="SwitchableGroup2" instance=ExtResource("4_247ex")]
-position = Vector2(267, 152)
+position = Vector2(243, 152)

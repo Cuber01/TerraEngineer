@@ -43,6 +43,12 @@ public partial class Entity : CharacterBody2D
         #endif
     }
 
+    protected void MakeShaderUnique()
+    {
+        Material mat = (Material)GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material.Duplicate(true);
+        GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material = mat;
+    }
+
     protected void FlipSprite() => Sprite.FlipH = !Sprite.FlipH;
     
     public void Flip(DirectionX side=DirectionX.None)

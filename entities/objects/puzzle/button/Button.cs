@@ -13,8 +13,7 @@ public partial class Button : Entity, ISwitcher
     
     public override void _Ready()
     {
-        Material mat = (Material)GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material.Duplicate(true);
-        GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material = mat;
+        MakeShaderUnique();
     }
 
     private void onBodyEntered(Node2D _)

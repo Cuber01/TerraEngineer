@@ -20,7 +20,6 @@ void fragment() {
     ivec2 region_pos = ivec2(region_idx % region_grid.x, region_idx / region_grid.x);
     vec2 region_offset = vec2(region_pos) * region_size;
 
-    // Simple, clean UV mapping - stretch UV to exactly fit one region
     vec2 region_uv = UV * region_size + region_offset;
 
     COLOR = texture(texture_source, region_uv);
