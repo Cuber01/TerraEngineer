@@ -10,15 +10,32 @@ namespace TerraEngineer.entities.tiles.switchable_tile;
 public partial class SwitchableBlock : Entity, ISwitchableDependent
 {
     [Export] private CollisionShape2D collider;
+    [Export] private bool DefaultState
+    {
+        get => defaultState;
+        set
+        {
+            defaultState = value;
+            Sprite.Frame = defaultState ? 0 : 1;
+        }
+    }
+
+    private bool defaultState = true;
 
     public override void _Ready()
     {
         MakeShaderUnique();
+
+        if (!defaultState)
+        {
+            collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+            Sprite.Frame = 1;    
+        }
     }
     
     public void OnSwitch(bool switchedOn)
     {
-        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, switchedOn);
-        Sprite.Frame = switchedOn ? 1 : 0;
+        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, switchedOn == defaultState);
+        Sprite.Frame = (switchedOn == defaultState) ? 1 : 0;
     }
 }

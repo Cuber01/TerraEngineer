@@ -57,6 +57,7 @@ position = Vector2(161, 97)
 
 [node name="SwitchableBlock" parent="." instance=ExtResource("3_1fue5")]
 position = Vector2(183, 77)
+DefaultState = false
 
 [node name="Rope2" type="Node2D" parent="."]
 position = Vector2(31, 77)
