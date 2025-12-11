@@ -35,15 +35,7 @@ public partial class Frog : Creature
         
         Velocity = velocity;
         MoveAndSlide();
-
-        for(int i = 0; i < GetSlideCollisionCount(); i++)
-        {
-            Vector2 normal = GetSlideCollision(i).GetNormal();
-            if (normal == new Vector2(-(int)Facing, 0))
-            {
-                Flip();
-            }
-        }
+        FlipIfHitWall();
     }
 
     public class JumpState : IState<Frog>

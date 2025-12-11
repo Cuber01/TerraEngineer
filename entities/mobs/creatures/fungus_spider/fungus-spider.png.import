@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkpwf6qt0i1do"
-path="res://.godot/imported/cam-view-small.png-f008d58443ba33a9841f357cce9a0b55.ctex"
+uid="uid://07p1xmyxuj7i"
+path="res://.godot/imported/fungus-spider.png-c8aa21e0b7eb5f8d5071d7297338003a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cam-view-small.png"
-dest_files=["res://.godot/imported/cam-view-small.png-f008d58443ba33a9841f357cce9a0b55.ctex"]
+source_file="res://entities/mobs/creatures/fungus_spider/fungus-spider.png"
+dest_files=["res://.godot/imported/fungus-spider.png-c8aa21e0b7eb5f8d5071d7297338003a.ctex"]
 
 [params]
 
