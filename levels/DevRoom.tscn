@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b1nj3yqr0qwkr"]
+[gd_scene load_steps=18 format=4 uid="uid://b1nj3yqr0qwkr"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="2_v3p77"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="3_1fue5"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dns0ueunuurtt" path="res://wire.png" id="10_wpy1m"]
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="11_ryq83"]
 [ext_resource type="Texture2D" uid="uid://c7ixwu8lcvpvm" path="res://sample.png" id="13_ftbtv"]
+[ext_resource type="PackedScene" uid="uid://dingl1m5pxwmo" path="res://entities/objects/movable_block/MovableBlock.tscn" id="15_yyfs6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lngq4"]
 shader = ExtResource("10_lngq4")
@@ -214,3 +215,6 @@ texture_mode = 1
 sharp_limit = 6.0
 script = ExtResource("11_ryq83")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="MovableBlock" parent="." instance=ExtResource("15_yyfs6")]
+position = Vector2(74, 137)

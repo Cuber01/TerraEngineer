@@ -24,6 +24,16 @@ public partial class SaveData : Node
     {
         if (Input.IsActionJustPressed("f1"))
         {
+            SetValue(Names.SaveSections.SavePointData,
+                Names.SaveSections.SavePointPosition,
+                GetNode<Player>("/root/Main/Player").GlobalPosition);
+        
+            StringName levelName = (StringName)GetNode<Node2D>("/root/Main/Level").GetMeta(Names.Properties.LevelName);
+        
+            SetValue(Names.SaveSections.SavePointData,
+                Names.SaveSections.SavePointLevel,
+                levelName);
+            
             WriteChanges();
         }
     }
