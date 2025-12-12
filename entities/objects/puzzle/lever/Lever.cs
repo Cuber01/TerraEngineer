@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects.puzzle;
 
@@ -23,11 +24,13 @@ public partial class Lever : Entity, ISwitcher
     
     private void onPlayerEntered(Player player)
     {
+        player.controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
         player.Interacted += getSwitched;
     }
     
     private void onPlayerExited(Player player)
     {
+        player.controller.RemoveOverride(Names.Actions.Attack);
         player.Interacted -= getSwitched;
     }
 
