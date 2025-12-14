@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://b1nj3yqr0qwkr"]
+[gd_scene load_steps=20 format=4 uid="uid://b1nj3yqr0qwkr"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="2_v3p77"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="3_1fue5"]
@@ -23,7 +23,17 @@ shader_parameter/texture_source = ExtResource("10_wpy1m")
 shader_parameter/region_count = 6
 shader_parameter/region_size_px = Vector2i(4, 8)
 shader_parameter/seed = 0.2430000115425
-shader_parameter/tiles_per_unit = 5.0
+shader_parameter/tiles_per_unit = 5.0000002375
+shader_parameter/line_length_scale = 0.15625
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gmryx"]
+shader = ExtResource("10_lngq4")
+shader_parameter/texture_source = ExtResource("10_wpy1m")
+shader_parameter/region_count = 6
+shader_parameter/region_size_px = Vector2i(4, 8)
+shader_parameter/seed = 0.2430000115425
+shader_parameter/tiles_per_unit = 5.0000002375
+shader_parameter/line_length_scale = 0.3124999921875
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ryq83"]
 shader = ExtResource("10_ftbtv")
@@ -60,21 +70,42 @@ position = Vector2(183, 77)
 DefaultState = false
 
 [node name="Rope2" type="Node2D" parent="."]
-position = Vector2(31, 77)
+position = Vector2(31, 76)
 script = ExtResource("10_rklo2")
 rope_length = 50.0
+stiffness = -20.0
 num_constraint_iterations = 5
 render_line = false
 line_width = 1.0
 color = Color(0.11372549, 0.1254902, 0, 1)
 enable_collisions = true
-resolve_collisions_while_constraining = true
 collision_mask = 30
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope2"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_lngq4")
+points = PackedVector2Array(0, 0, 0, 7.691948, 0, 15.185944, 0, 22.426239, 0, 29.37796, 0, 36.020515, 0, 42.342316, 0, 48.33705, 0, 54.001343, 0, 59.333496, 0, 64.333496)
+width = 4.0
+texture_mode = 1
+script = ExtResource("11_ryq83")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope3" type="Node2D" parent="."]
+position = Vector2(44, 76)
+script = ExtResource("10_rklo2")
+stiffness = -20.0
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Rope3"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_gmryx")
 points = PackedVector2Array(0, 0, 0, 7.691948, 0, 15.185944, 0, 22.426239, 0, 29.37796, 0, 36.020515, 0, 42.342316, 0, 48.33705, 0, 54.001343, 0, 59.333496, 0, 64.333496)
 width = 4.0
 texture_mode = 1
