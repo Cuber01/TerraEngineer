@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b63p72q853m2s"]
 
-[ext_resource type="Texture2D" uid="uid://cy678wyrxwnv1" path="res://entities/objects/person-plant/person-plant.png" id="1_hoj4r"]
+[ext_resource type="Texture2D" uid="uid://cy678wyrxwnv1" path="res://entities/objects/person_plant/person-plant.png" id="1_hoj4r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h50rc"]
 animations = [{
