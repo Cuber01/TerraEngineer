@@ -49,16 +49,6 @@ public partial class ComponentManager : Node2D
         return (T) components[typeof(T)];
     }
 
-    public void AddComponent(Component component)
-    {
-        
-    }
-
-    public void RemoveComponent(Component component)
-    {
-        
-    }
-
     public void InitComponents()
     {
         // Do not pass actor if we are a subcomponent

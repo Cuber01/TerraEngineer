@@ -22,6 +22,7 @@ public partial class SaveData : Node
 
     public override void _Process(double delta)
     {
+        #if DEBUG
         if (Input.IsActionJustPressed("f1"))
         {
             SetValue(Names.SaveSections.SavePointData,
@@ -35,7 +36,9 @@ public partial class SaveData : Node
                 levelName);
             
             WriteChanges();
+            GD.Print("DEBUG TOOLS: Custom savepoint set.");
         }
+        #endif
     }
 
     public static void WriteChanges()

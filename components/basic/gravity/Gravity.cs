@@ -9,6 +9,8 @@ public partial class Gravity : Component
     [Export] public float GravityForce = 2f;
     [Export] private float maxGravity = 100f;
     
+    public bool Disabled = false;
+    
     private bool isOnFloor = false;
     public delegate void LandedOnFloorHandler();
     public event LandedOnFloorHandler LandedOnFloor;
@@ -17,6 +19,7 @@ public partial class Gravity : Component
     
     private void updateGravity(float delta)
     {
+        if(Disabled) return;
         
         if (Actor.IsOnFloor())
         {
