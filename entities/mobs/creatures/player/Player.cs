@@ -173,7 +173,11 @@ public partial class Player : Creature
 			{
 				fsm.ChangeState(noclipState);	
 			}
-			
+		}
+		
+		if(Input.IsActionJustPressed("f3"))
+		{
+			GodMode = !GodMode;
 		}
 		#endif
 		

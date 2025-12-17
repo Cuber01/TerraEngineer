@@ -1,1 +1,3 @@
-{"PistolRoom":{"gun_exists":true,"removed_tiles":[]},"player_inventory":{"blowtorch":true,"dash":false,"double_jump":true},"savepoint_data":{"level":"Tree2","position":"(21.10482, 19.24754)"}}
+{
+  "PistolRoom":{"gun_exists":true,"removed_tiles":[]},
+  "GreenEssence":{"green_essence_exists": true},"player_inventory":{"blowtorch":true,"dash":false,"double_jump":true, "green_essence": false},"savepoint_data":{"level":"GreenEssence","position":"(218.0152, 74.17486)"}}

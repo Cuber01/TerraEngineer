@@ -19,7 +19,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
     [Export] private Area2D areaAffected;
     
     // Every enum biome corresponds to it's index in this array
-    private Biomes[] modes = [Biomes.Forest, Biomes.Mushroom, Biomes.Ice, Biomes.Desert];
+    private Biomes[] modes = [Biomes.Locked, Biomes.Locked, Biomes.Locked, Biomes.Locked];
     
     private List<TerraformableCaretaker> terraformablesAffected = new List<TerraformableCaretaker>();
 

@@ -10,7 +10,7 @@ public partial class CreatureSpawner : Spawner<Entity, CreatureSpawner>
 {
     public CreatureSpawner SetHealth(int health)
     {
-        Instance.CM.GetComponent<Health>().SetHealth(health);
+        Instance.CM.GetComponent<Health>().HP = health;
         return this;
     }
     

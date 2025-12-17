@@ -8,6 +8,7 @@ namespace TerraEngineer.entities.objects;
 public partial class PickupableItem : Entity
 {
     [Export] private StringName itemName;
+    [Export] private AtlasTexture texture;
 
     private void onPlayerEntered(Node2D body)
     {

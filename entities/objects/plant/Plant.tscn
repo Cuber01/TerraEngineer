@@ -17,6 +17,7 @@ versions = NodePath("Versions")
 
 [node name="MushroomPlant" parent="Versions" instance=ExtResource("2_b4wr8")]
 position = Vector2(0, -1)
+MyBiome = 1
 
 [node name="HeartPlant" parent="Versions" instance=ExtResource("3_g6gtk")]
 

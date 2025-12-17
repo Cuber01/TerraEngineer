@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dpso5fmnao5hb"]
+
+[ext_resource type="Texture2D" uid="uid://tdyxee8jbxog" path="res://entities/objects/puzzle/hp_gateway/hp-gateway.png" id="1_ow28f"]
+
+[resource]
+atlas = ExtResource("1_ow28f")
+region = Rect2(1, 0, 6, 8)

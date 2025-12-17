@@ -14,7 +14,7 @@ public partial class Entity : CharacterBody2D
     [Export] public CollisionTeam Team;
     [Export] public bool GodMode = false;
     
-    [Export] public DirectionX pFacing
+    [Export] public DirectionX ExportedFacing
     {
         get => Facing;
         set

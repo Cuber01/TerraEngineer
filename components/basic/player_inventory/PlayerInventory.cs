@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using TENamespace;
+using TENamespace.advanced.terraform_gun;
 using TerraEngineer;
+using TerraEngineer.entities.objects;
 
 namespace TENamespace.player_inventory;
 
@@ -11,7 +13,8 @@ public partial class PlayerInventory : Component
     private Dictionary<StringName, Type> fullItemList = new()
     {
         { "double_jump", typeof(DoubleJumpItem) },
-        { "blowtorch", typeof(BlowtorchItem) }
+        { "blowtorch", typeof(BlowtorchItem) },
+        { "green_essence", typeof(GreenEssenceItem) }
     };
 
     private List<StringName> itemsLastRead = new();
@@ -56,6 +59,14 @@ public class BlowtorchItem : Item
     {
         actor.controller.AddAction(Names.Actions.Attack, 
             () => actor.CM.GetComponent<GunHandle>().Shoot(actor.GetShootDirection(), false), Names.Actions.GroupWeapon);
+    }
+}
+
+public class GreenEssenceItem : Item
+{
+    public void Activate(Player actor)
+    {
+        actor.CM.GetComponent<GunHandle>().CM.GetComponent<TerraformGun>().LockOrUnlockMode(Biomes.Forest, true);
     }
 }
 

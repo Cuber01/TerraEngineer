@@ -1,9 +1,39 @@
-[gd_scene format=3 uid="uid://b0eg46nrhalfj"]
+[gd_scene load_steps=6 format=3 uid="uid://b0eg46nrhalfj"]
 
-[node name="HpGateway" type="CharacterBody2D"]
+[ext_resource type="Script" uid="uid://dvi74pscivl0g" path="res://entities/objects/puzzle/hp_gateway/HPGateway.cs" id="1_8vqa3"]
+[ext_resource type="Texture2D" uid="uid://dpso5fmnao5hb" path="res://entities/objects/puzzle/hp_gateway/gateway-positive.tres" id="2_yr447"]
+[ext_resource type="Texture2D" uid="uid://bcgqtu1f40fr0" path="res://entities/objects/puzzle/hp_gateway/gateway-negative.tres" id="3_6857q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8alns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yr447")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6857q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vqa3"]
+size = Vector2(6, 8)
+
+[node name="HpGateway" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
+script = ExtResource("1_8vqa3")
+Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8alns")
+frame_progress = 0.7093564
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8vqa3")
+
+[connection signal="body_entered" from="Area2D" to="." method="onCreatureEntered"]

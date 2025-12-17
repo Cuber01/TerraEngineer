@@ -14,7 +14,7 @@ public partial class Health : Component
     public event MaxHealthChangedEventHandler MaxHealthChanged;
     
     [Export] public int MaxHealth;
-    private int health;
+    public int HP;
 
     [Export] private float invincibilityTimeOnHit = 0.2f;
     private bool invincible = false;
@@ -22,11 +22,8 @@ public partial class Health : Component
 
     public override void _Ready()
     {
-        health = MaxHealth;
+        HP = MaxHealth;
     }
-    
-    // Does not check for invincibility or anything!
-    public void SetHealth(int health) => this.health = health;
     
     public void ChangeHealth(int amount)
     {
@@ -35,9 +32,9 @@ public partial class Health : Component
             return;
         }
         
-        health += amount;
-        HealthChanged?.Invoke(health, amount);
-        if (health <= 0)
+        HP += amount;
+        HealthChanged?.Invoke(HP, amount);
+        if (HP <= 0)
         {
             Actor.Die();
         }
@@ -53,9 +50,10 @@ public partial class Health : Component
                 InvincibilityEnded?.Invoke();
             }
         }
-
     }
 
+    public void FullHeal() => ChangeHealth(MaxHealth - HP);
+    
     public void ChangeMaxHealth(int amount)
     {
         MaxHealth += amount;

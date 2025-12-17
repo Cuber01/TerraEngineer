@@ -85,16 +85,15 @@ public partial class SaveData : Node
 
     public static Variant ReadValue(string sectionKey, string key)
     {
-        GodotDict dict = (GodotDict)data[sectionKey];
-        
-        if (dict.TryGetValue(key, out Variant value))
+        if (data.TryGetValue(sectionKey, out Variant output))
         {
-            return value;    
+            GodotDict dict = (GodotDict)output;
+            if (dict.TryGetValue(key, out Variant value))
+            {
+                return value;    
+            }
         }
-        else
-        {
-            return new Variant();
-        }
+        return new Variant();
     }
     
     public static Variant ReadFromArray(string sectionKey, string key, int index) 
