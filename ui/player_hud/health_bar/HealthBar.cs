@@ -5,6 +5,8 @@ using TerraEngineer.ui.player_hud;
 
 public partial class HealthBar : TextureProgressBar, IConnectable<Player>
 {
+    [Export] private RichTextLabel label;
+    
     private Health hpComponent;
     
     public void Connect(Player player)
@@ -16,6 +18,8 @@ public partial class HealthBar : TextureProgressBar, IConnectable<Player>
         
         hpComponent.HealthChanged += onHealthChanged;
         hpComponent.MaxHealthChanged += onMaxHealthChanged;
+        
+        label.Text = hpComponent.MaxHealth.ToString("00");
     }
 
     public void Disconnect(Player player)
@@ -27,10 +31,12 @@ public partial class HealthBar : TextureProgressBar, IConnectable<Player>
     private void onHealthChanged(int health, int amount)
     {
         Value = health;
+        label.Text = health.ToString("00");
     }
 
     private void onMaxHealthChanged(int maxHealth)
     {
         MaxValue = maxHealth;
+        label.Text = maxHealth.ToString("00");
     }
 }

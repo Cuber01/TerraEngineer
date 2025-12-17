@@ -31,7 +31,7 @@ size = Vector2(7.9, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvbh"]
 size = Vector2(8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8611i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlvbh"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -47,7 +47,6 @@ collision_mask = 33
 slide_on_ceiling = false
 script = ExtResource("1_ldahb")
 CM = NodePath("ComponentManager")
-GodMode = true
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -107,7 +106,7 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_8611i")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jlvbh")])
 
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 

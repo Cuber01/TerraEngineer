@@ -1,12 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl5jp0h4pm054"]
+[gd_scene load_steps=5 format=3 uid="uid://cl5jp0h4pm054"]
 
 [ext_resource type="Texture2D" uid="uid://xdk1h0y2wrcq" path="res://ui/player_hud/health_bar/health-back.png" id="1_3muoq"]
 [ext_resource type="Texture2D" uid="uid://bhgxjqosh3fo1" path="res://ui/player_hud/health_bar/health-progress.png" id="2_4xfdc"]
 [ext_resource type="Script" uid="uid://cic6gw7iek4b8" path="res://ui/player_hud/health_bar/HealthBar.cs" id="3_4xfdc"]
+[ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="4_4kus5"]
 
-[node name="HealthBar" type="TextureProgressBar"]
+[node name="HealthBar" type="TextureProgressBar" node_paths=PackedStringArray("label")]
 offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("1_3muoq")
 texture_progress = ExtResource("2_4xfdc")
 script = ExtResource("3_4xfdc")
+label = NodePath("TextLabel")
+
+[node name="TextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = -5.0
+offset_right = 76.0
+offset_bottom = 35.0
+theme_override_fonts/normal_font = ExtResource("4_4kus5")
