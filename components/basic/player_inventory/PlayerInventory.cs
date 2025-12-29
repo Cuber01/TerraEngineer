@@ -15,6 +15,9 @@ public partial class PlayerInventory : Component
         { "double_jump", new DoubleJumpItem() },
         { "blowtorch", new BlowtorchItem() },
         { "green_essence", new EssenceItem(Biomes.Forest) },
+        { "blue_essence", new EssenceItem(Biomes.Ice) },
+        { "orange_essence", new EssenceItem(Biomes.Desert) },
+        { "purple_essence", new EssenceItem(Biomes.Mushroom) },
     };
 
     private List<StringName> itemsLastRead = new();
