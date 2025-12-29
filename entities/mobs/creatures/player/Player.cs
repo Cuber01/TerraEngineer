@@ -204,7 +204,7 @@ public partial class Player : Creature
 	{
 		if (!Dead)
 		{
-			CallDeferred(Node.MethodName.QueueFree);    
+			GetTree().ReloadCurrentScene();
 		}
 		Dead = true;
 	}
