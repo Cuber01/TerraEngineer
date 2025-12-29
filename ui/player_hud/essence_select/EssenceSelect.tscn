@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://doi2a5xm3mqf5"]
 
 [ext_resource type="Texture2D" uid="uid://7kofn85qdabm" path="res://ui/player_hud/essence_select/essences.png" id="1_pou7s"]
-[ext_resource type="Script" uid="uid://rdi6sfvpdwk3" path="res://ui/player_hud/essence_select/EssenceSelect.cs" id="1_sya5d"]
+[ext_resource type="Script" uid="uid://rdi6sfvpdwk3" path="res://ui/player_hud/essence_select/EssenceSelectUI.cs" id="1_sya5d"]
 [ext_resource type="Texture2D" uid="uid://c54awjr6r2bsp" path="res://ui/player_hud/essence_select/essences-decor.png" id="2_0st5w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0st5w"]
@@ -183,22 +183,22 @@ decor = NodePath("Decor")
 [node name="Forest" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 2)
 sprite_frames = SubResource("SpriteFrames_bn502")
-animation = &"unselected"
+animation = &"locked"
 
 [node name="Mushroom" type="AnimatedSprite2D" parent="."]
 position = Vector2(10, 2)
 sprite_frames = SubResource("SpriteFrames_xv5hy")
-animation = &"unselected"
+animation = &"locked"
 
 [node name="Ice" type="AnimatedSprite2D" parent="."]
 position = Vector2(17, 2)
 sprite_frames = SubResource("SpriteFrames_02fdx")
-animation = &"unselected"
+animation = &"locked"
 
 [node name="Desert" type="AnimatedSprite2D" parent="."]
 position = Vector2(24, 2)
 sprite_frames = SubResource("SpriteFrames_bm3qy")
-animation = &"unselected"
+animation = &"locked"
 
 [node name="Decor" type="AnimatedSprite2D" parent="."]
 position = Vector2(14, 2)

@@ -66,7 +66,11 @@ public class GreenEssenceItem : Item
 {
     public void Activate(Player actor)
     {
-        actor.CM.GetComponent<GunHandle>().CM.GetComponent<TerraformGun>().LockOrUnlockMode(Biomes.Forest, true);
+        GunHandle gunHandle = actor.CM.GetComponent<GunHandle>();
+        
+        gunHandle.CM.GetComponent<TerraformGun>().LockOrUnlockMode(Biomes.Forest, true);
+        if(gunHandle.SelectedGun == GunHandleType.Pistol)
+            gunHandle.ChangeGunHandle();
     }
 }
 

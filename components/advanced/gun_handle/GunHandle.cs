@@ -11,7 +11,7 @@ using TerraEngineer.entities.objects;
 
 public enum GunHandleType
 {
-    Normal,
+    Pistol,
     Terraforming
 }
 
@@ -31,7 +31,7 @@ public partial class GunHandle : AdvancedComponent
     [Export] private Node2D down;
     [Export] private Node2D right;
     [Export] private Node2D left;
-    [Export] private GunHandleType selectedGun = 0;
+    [Export] public GunHandleType SelectedGun = 0;
     
     private List<IGun> guns = new List<IGun>();
 
@@ -70,16 +70,21 @@ public partial class GunHandle : AdvancedComponent
                 break;
         }
         
-        guns[(int)selectedGun].Shoot(position, direction, rotationDegrees);
+        guns[(int)SelectedGun].Shoot(position, direction, rotationDegrees);
 
     }
 
     public void ChangeGunHandle()
     {
-        selectedGun = selectedGun == GunHandleType.Normal ? GunHandleType.Terraforming : GunHandleType.Normal;
-        GunHandleChanged?.Invoke(selectedGun);
+        if (SelectedGun == GunHandleType.Pistol && !CM.GetComponent<TerraformGun>().Usable)
+        {
+            return;
+        }
+        
+        SelectedGun = SelectedGun == GunHandleType.Pistol ? GunHandleType.Terraforming : GunHandleType.Pistol;
+        GunHandleChanged?.Invoke(SelectedGun);
     }
     
-    public void ChangeWeapon(int index) => guns[(int)selectedGun].ChangeWeapon(index);
-    public void ChangeToNextWeapon() => guns[(int)selectedGun].ChangeToNextWeapon();
+    public void ChangeWeapon(int index) => guns[(int)SelectedGun].ChangeWeapon(index);
+    public void ChangeToNextWeapon() => guns[(int)SelectedGun].ChangeToNextWeapon();
 }

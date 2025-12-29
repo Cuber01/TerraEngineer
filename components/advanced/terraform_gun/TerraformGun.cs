@@ -14,9 +14,24 @@ public partial class TerraformGun : AdvancedComponent, IGun
     
     public delegate void EssenceUnlockedEventHandler(Biomes biome);
     public event EssenceUnlockedEventHandler EssenceUnlocked;
+
+    public Biomes SelectedBiome
+    {
+        get => selectedBiome;
+        private set
+        {
+            if (selectedBiome != value)
+            {
+                EssenceChanged?.Invoke(value, selectedBiome);
+                selectedBiome = value;
+            } 
+        }
+    }
+    private Biomes selectedBiome = Biomes.Forest;
     
-    [Export] private Biomes selectedBiome = Biomes.Forest;
     [Export] private Area2D areaAffected;
+
+    public bool Usable = false;
     
     // Every enum biome corresponds to it's index in this array
     private Biomes[] modes = [Biomes.Locked, Biomes.Locked, Biomes.Locked, Biomes.Locked];
@@ -43,8 +58,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
         if (modes[index] != Biomes.Locked)
         {
             Biomes toSelect = (Biomes)index;
-            EssenceChanged?.Invoke(toSelect, selectedBiome);
-            selectedBiome = toSelect;
+            SelectedBiome = toSelect;
         }
     }
 
@@ -61,9 +75,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
             
             if (modes[i] != Biomes.Locked)
             {
-                Biomes toSelect = (Biomes)i;
-                EssenceChanged?.Invoke(toSelect, selectedBiome);
-                selectedBiome = (Biomes)i;
+                SelectedBiome = (Biomes)i;
                 break;
             }
             
@@ -74,7 +86,11 @@ public partial class TerraformGun : AdvancedComponent, IGun
     public void LockOrUnlockMode(Biomes biome, bool unlock)
     {
         modes[(int)biome] = unlock ? biome : Biomes.Locked;
-        if(unlock) EssenceUnlocked?.Invoke(biome);
+        if (unlock)
+        {
+            EssenceUnlocked?.Invoke(biome);
+            Usable = true;
+        }
     }
     
     private void applyTerraform()

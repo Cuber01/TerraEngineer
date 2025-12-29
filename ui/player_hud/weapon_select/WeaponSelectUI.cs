@@ -36,7 +36,7 @@ public partial class WeaponSelectUI : Node2D, IConnectable<Player>
     
     private void onGunHandleChanged(GunHandleType newSelected)
     {
-        if (newSelected == GunHandleType.Normal)
+        if (newSelected == GunHandleType.Pistol)
         {
             decor.Animation = Names.Animations.Selected;
         }
