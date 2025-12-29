@@ -10,11 +10,11 @@ namespace TENamespace.player_inventory;
 
 public partial class PlayerInventory : Component
 {
-    private Dictionary<StringName, Type> fullItemList = new()
+    private Dictionary<StringName, Item> fullItemList = new()
     {
-        { "double_jump", typeof(DoubleJumpItem) },
-        { "blowtorch", typeof(BlowtorchItem) },
-        { "green_essence", typeof(GreenEssenceItem) }
+        { "double_jump", new DoubleJumpItem() },
+        { "blowtorch", new BlowtorchItem() },
+        { "green_essence", new EssenceItem(Biomes.Forest) },
     };
 
     private List<StringName> itemsLastRead = new();
@@ -24,18 +24,14 @@ public partial class PlayerInventory : Component
         itemsLastRead = SaveData.ReadInventory();
         foreach (StringName item in itemsLastRead)
         {
-            Type type = fullItemList[item];
-            Item instance = (Item)Activator.CreateInstance(type);
-            instance!.Activate(actor);
+            fullItemList[item].Activate(actor);
         }
     }
 
     public void AddItem(Player actor, StringName name)
     {
         SaveData.SetValue(Names.SaveSections.PlayerInventory,name, true);
-        Type type = fullItemList[name];
-        Item instance = (Item)Activator.CreateInstance(type);
-        instance!.Activate(actor);
+        fullItemList[name].Activate(actor);
     }
 }
 
@@ -62,13 +58,13 @@ public class BlowtorchItem : Item
     }
 }
 
-public class GreenEssenceItem : Item
+public class EssenceItem(Biomes biome) : Item
 {
     public void Activate(Player actor)
     {
         GunHandle gunHandle = actor.CM.GetComponent<GunHandle>();
         
-        gunHandle.CM.GetComponent<TerraformGun>().LockOrUnlockMode(Biomes.Forest, true);
+        gunHandle.CM.GetComponent<TerraformGun>().LockOrUnlockMode(biome, true);
         if(gunHandle.SelectedGun == GunHandleType.Pistol)
             gunHandle.ChangeGunHandle();
     }
