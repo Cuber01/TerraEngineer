@@ -11,6 +11,8 @@ public partial class ComponentManager : Node2D
     private readonly Dictionary<Type, Component> components = new();
     private Entity actor = null;
     
+    private bool lateInitialized = false;
+    
     public override void _Ready()
     {
         #if TOOLS
@@ -57,6 +59,17 @@ public partial class ComponentManager : Node2D
             foreach (var pair in components)
             {
                 pair.Value.Init(actor);
+            }    
+        }
+    }
+    
+    public void OptionalInitComponents()
+    {
+        if (actor != null)
+        {
+            foreach (var pair in components)
+            {
+                pair.Value.OptionalInit(actor);
             }    
         }
     }

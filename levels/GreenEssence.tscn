@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://chykbvkl7hxs4"]
+[gd_scene load_steps=9 format=4 uid="uid://chykbvkl7hxs4"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="1_ocdex"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_7in26"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0eg46nrhalfj" path="res://entities/objects/puzzle/hp_gateway/HPGateway.tscn" id="4_7in26"]
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="5_eixo1"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="6_xqscd"]
+[ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://entities/objects/pickupable_item/green_essence.tres" id="7_3mq2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqscd"]
 size = Vector2(31, 32)
@@ -46,9 +47,10 @@ currentBiome = 1
 [node name="PickupableItem" parent="." instance=ExtResource("6_xqscd")]
 position = Vector2(254, 124)
 itemName = &"green_essence"
+Texture = ExtResource("7_3mq2g")
 
 [node name="SaveEntityComponent" parent="PickupableItem/ComponentManager" index="0"]
-saveName = &"green_essence_exists"
+SaveName = &"green_essence_exists"
 
 [editable path="SecretRoom"]
 [editable path="PickupableItem"]

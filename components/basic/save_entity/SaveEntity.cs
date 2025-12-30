@@ -10,26 +10,34 @@ public partial class SaveEntity : Component
     [Export] private StringName saveName;
     private StringName saveSection;
 
-    public override void Init(Entity actor)
+    public Action<Entity> doIfFalse = (Entity actor) =>
     {
-        base.Init(actor);
-        
+        actor.CallDeferred(Node.MethodName.QueueFree);
+    };
+
+    public override void OptionalInit(Entity actor)
+    {
         saveSection = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
-        if (saveSection == "")
+        if (saveSection == "" || saveSection == null)
         {
             throw new Exception("No level name found.");
+        }
+
+        if (saveName =="" || saveName is null)
+        {
+            throw new Exception("Save name is empty.");
         }
         
         bool exists = (bool)SaveData.ReadValue(saveSection, saveName);
         if (!exists) 
         {
-            actor.CallDeferred(Node.MethodName.QueueFree);
+           doIfFalse.Invoke(actor);
         }
     }
 
-    public void Setup(StringName saveSection, StringName saveName)
+    public void Setup(StringName saveName, Action<Entity> doIfFalse)
     {
-        this.saveSection = saveSection;
+        this.doIfFalse = doIfFalse;
         this.saveName = saveName;
     }
 

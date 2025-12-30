@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://j1vclnor6vgd"]
+[gd_scene load_steps=8 format=3 uid="uid://j1vclnor6vgd"]
 
 [ext_resource type="Script" uid="uid://cthjqmkkuxuvn" path="res://entities/objects/pickupable_item/PickupableItem.cs" id="1_6pxu7"]
-[ext_resource type="Texture2D" uid="uid://dra4s2g8lprxx" path="res://entities/objects/pickupable_item/gun.png" id="2_3epke"]
+[ext_resource type="Texture2D" uid="uid://2l73qeabktgd" path="res://missing-texture.png" id="2_3epke"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_eevrr"]
+[ext_resource type="Texture2D" uid="uid://hupsnohg8ydh" path="res://entities/objects/pickupable_item/item-pedestals.png" id="4_6pxu7"]
 [ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="4_hrgty"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mwfq4"]
@@ -17,14 +18,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eqks1"]
-size = Vector2(7, 6)
+size = Vector2(7, 7)
 
 [node name="PickupableItem" type="CharacterBody2D" node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_6pxu7")
+itemName = &""
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_mwfq4")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -32,11 +35,15 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 0)
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_eqks1")
 
 [node name="ComponentManager" parent="." instance=ExtResource("3_eevrr")]
 
 [node name="SaveEntityComponent" parent="ComponentManager" instance=ExtResource("4_hrgty")]
+
+[node name="PedestalSprite" type="Sprite2D" parent="."]
+position = Vector2(-1, 1)
+texture = ExtResource("4_6pxu7")
 
 [connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]

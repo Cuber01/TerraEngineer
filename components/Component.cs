@@ -13,6 +13,9 @@ public partial class Component : Node2D
         this.Actor = actor;
     }
     
+    // Has to be called by the actor manually
+    public virtual void OptionalInit(Entity actor) { }
+    
     public virtual void Update(float delta) {}
 
 }
