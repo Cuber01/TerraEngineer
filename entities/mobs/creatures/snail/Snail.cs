@@ -12,7 +12,7 @@ public partial class Snail : Creature
     [Export] private RayCast2D down;
     [Export] private RayCast2D right;
     [Export] private RayCast2D left;
-    [Export] public Vector2 vecFacing = Vector2.Right; // Does not impact sprite since we rotate it!
+    [Export] public Vector2I vecFacing = Vector2I.Right; // Does not impact sprite since we rotate it!
     [Export] private float initTime = 1f;
     
     private readonly WalkState walkState = new WalkState();
@@ -103,8 +103,8 @@ public partial class Snail : Creature
         {
 
             reachRotation = actor.ToRotate + actor.Rotation;
-            actor.vecFacing = MathT.rotateVec2(actor.vecFacing, actor.ToRotate > 0);
-            actor.UpDirection = MathT.rotateVec2(actor.UpDirection, actor.ToRotate > 0);
+            actor.vecFacing = (Vector2I)MathT.rotateVec2(actor.vecFacing, actor.ToRotate > 0);
+            actor.UpDirection = MathT.rotateVec2((Vector2I)actor.UpDirection, actor.ToRotate > 0);
             actor.ToRotate = 0;
             actor.WasOnFloor = false;
             TimerManager.Schedule(rotationDelay, actor, (_) => actor.WasOnFloor = true);

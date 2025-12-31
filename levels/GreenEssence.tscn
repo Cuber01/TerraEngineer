@@ -47,10 +47,7 @@ currentBiome = 1
 [node name="PickupableItem" parent="." instance=ExtResource("6_xqscd")]
 position = Vector2(254, 124)
 itemName = &"green_essence"
-Texture = ExtResource("7_3mq2g")
-
-[node name="SaveEntityComponent" parent="PickupableItem/ComponentManager" index="0"]
-SaveName = &"green_essence_exists"
+ItemTexture = ExtResource("7_3mq2g")
 
 [editable path="SecretRoom"]
 [editable path="PickupableItem"]

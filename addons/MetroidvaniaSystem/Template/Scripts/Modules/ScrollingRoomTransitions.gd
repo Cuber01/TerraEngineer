@@ -23,7 +23,7 @@ func _initialize():
 	MetSys.room_changed.connect(_on_room_changed, CONNECT_DEFERRED)
 	MetSys.cell_changed.connect(_on_cell_changed)
 
-func _on_room_changed(target_room: String):
+func _on_room_changed(target_room: String, player_direction: Vector2i):
 	if target_room == MetSys.get_current_room_id():
 		# This can happen when teleporting to another room.
 		return

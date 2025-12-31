@@ -25,7 +25,7 @@ public partial class PickupableItem : Entity
         set
         {
             _collected = value;
-            Sprite.Visible = Collected;
+            Sprite.Visible = !Collected;
         }
     }
     private bool _collected = false;

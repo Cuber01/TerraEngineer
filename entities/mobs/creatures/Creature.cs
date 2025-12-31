@@ -7,8 +7,6 @@ namespace TerraEngineer.entities.mobs.creatures;
 [Tool]
 public partial class Creature : Entity
 {
-
-    
     // Override this.
     public virtual void Init() {}
     
@@ -48,4 +46,5 @@ public partial class Creature : Entity
             }
         }
     }
+
 }

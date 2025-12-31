@@ -10,7 +10,7 @@ func _initialize():
 	assert(player)
 	MetSys.room_changed.connect(_on_room_changed, CONNECT_DEFERRED)
 
-func _on_room_changed(target_room: String):
+func _on_room_changed(target_room: String, player_direction: Vector2i):
 	if target_room == MetSys.get_current_room_id():
 		# This can happen when teleporting to another room.
 		return
@@ -23,4 +23,5 @@ func _on_room_changed(target_room: String):
 	
 	if prev_room_instance:
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_room_instance)
+		player.HandleRoomTransition(player_direction)
 		prev_room_instance.queue_free()

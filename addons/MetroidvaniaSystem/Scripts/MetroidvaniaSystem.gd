@@ -46,7 +46,7 @@ var current_layer: int:
 ## Emitted when the player crosses a cell boundary and visits another cell as a result of [method set_player_position]. The new cell coordinates are provided as an argument.
 signal cell_changed(new_cell: Vector3i)
 ## Emitted when the player enters a new room, i.e. using [method set_player_position] results in a cell that has a different assigned scene. The new scene is provided as an argument, you can use it to easily make room transitions.
-signal room_changed(new_room: String)
+signal room_changed(new_room: String, player_direction: Vector2i)
 
 ## Emitted when a map cell was added, deleted or modified. This includes cell overrides and MapBuilder updates.
 signal map_updated
@@ -155,7 +155,7 @@ func visit_cell(coords: Vector3i):
 	var previous_map := map_data.get_assigned_scene_at(Vector3i(last_player_position.x, last_player_position.y, current_layer))
 	var new_map := map_data.get_assigned_scene_at(coords)
 	if not new_map.is_empty() and not previous_map.is_empty() and new_map != previous_map:
-		room_changed.emit(new_map)
+		room_changed.emit(new_map, Vector2i(coords.x, coords.y) - Vector2i(last_player_position.x, last_player_position.y))
 
 ## Returns [code]true[/code] if the call was discovered, either mapped (if [param include_mapped] is [code]true[/code]) or explored.
 func is_cell_discovered(coords: Vector3i, include_mapped := true) -> bool:
@@ -191,7 +191,6 @@ func set_player_position(position: Vector2):
 	var player_pos_3d := Vector3i(player_pos.x, player_pos.y, current_layer)
 	if (player_pos_3d != last_player_position) and cell_change_allowed:
 		visit_cell(Vector3i(player_pos.x, player_pos.y, current_layer))
-		print("Visiting " + str(player_pos)  + " from " + str(last_player_position));
 		last_player_position = player_pos_3d
 		cell_changed.emit(player_pos_3d)
 		cell_change_allowed = false;

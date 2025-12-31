@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 using TENamespace;
 using TENamespace.health;
 using TENamespace.player_inventory;
@@ -8,6 +9,7 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 using TerraEngineer.game;
+using Vector2 = Godot.Vector2;
 
 public partial class Player : Creature
 {
@@ -19,9 +21,14 @@ public partial class Player : Creature
 	private readonly WalkState jumpState = new WalkState();
 	private readonly IdleState idleState = new IdleState();
 	private readonly NoclipState noclipState = new NoclipState();
+
 	
 	private StateMachine<Player> fsm;
 	public Controller controller = new();
+
+	private bool updateFrozen = false;
+	private const float RoomTransitionForce = 10f;
+	private const float RoomTransitionForceUpModifier = 3f;
 	
 	public class IdleState : IState<Player>
 	{
@@ -131,6 +138,7 @@ public partial class Player : Creature
 		}
 	}
 	
+	
 	public class JumpState : IState<Player>
 	{
 		public void Enter(Player actor)
@@ -162,6 +170,8 @@ public partial class Player : Creature
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		if(updateFrozen) return;
+		
 		#if DEBUG
 		if(Input.IsActionJustPressed("f2"))
 		{
@@ -213,7 +223,19 @@ public partial class Player : Creature
 	{
 		CM.GetComponent<Jump>().CancelJump();
 	}
+	
+	public void RoomLoaded() => updateFrozen = false;
 
+	public void HandleRoomTransition(Vector2I playerDirection)
+	{
+		float extraForce = RoomTransitionForce;
+		if (playerDirection == Vector2I.Up)
+			extraForce *= RoomTransitionForceUpModifier;
+		
+		velocity += extraForce * (Vector2)(playerDirection);
+		updateFrozen = true;
+	}
+	
 	public void InvokeInteracted() => Interacted?.Invoke();
 	
 	// Wrapper for gdscript

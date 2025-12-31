@@ -86,7 +86,7 @@ public static class MathT
         return Direction4.None;
     }
     
-    public static Vector2 rotateVec2(Vector2 dir, bool right)
+    public static Vector2 rotateVec2(Vector2I dir, bool right)
     {
         if(dir.Y == -1)
             return right ? Vector2.Right : Vector2.Left;

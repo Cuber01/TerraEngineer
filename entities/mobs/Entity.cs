@@ -82,6 +82,4 @@ public partial class Entity : CharacterBody2D
         }
         Dead = true;
     }
-    
-
 }
