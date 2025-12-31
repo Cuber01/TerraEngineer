@@ -12,25 +12,25 @@ public partial class SwitchableGroup : Node2D, ISwitchable
     
     [Export] private Texture2D GroupPalette
     {
-        get => groupPalette;
+        get => _groupPalette;
         set
         {
-            groupPalette = value;
+            _groupPalette = value;
             updateGroupPalette();
         }
     }
-    private Texture2D groupPalette;
+    private Texture2D _groupPalette;
     
     [Export] private Texture2D BlocksGroupPalette
     {
-        get => blocksGroupPalette;
+        get => _blocksGroupPalette;
         set
         {
-            blocksGroupPalette = value;
+            _blocksGroupPalette = value;
             updateGroupPalette();
         }
     }
-    private Texture2D blocksGroupPalette;
+    private Texture2D _blocksGroupPalette;
     
     [Export] public StringName[] SavePropertiesNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchersNeededToSwitch { get; set; }
@@ -68,14 +68,14 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         foreach (var switchable in SwitchableGroupMembers)
         {
             AnimatedSprite2D sprite = switchable.GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, blocksGroupPalette);
+            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, _blocksGroupPalette);
         }
         
         
         foreach (var switcher in SwitchersNeededToSwitch)
         {
             AnimatedSprite2D sprite = switcher.GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, groupPalette);
+            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);
         }
     }
 }

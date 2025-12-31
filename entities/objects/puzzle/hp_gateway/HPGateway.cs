@@ -15,14 +15,14 @@ public partial class HPGateway : Entity
 
 	[Export] private Mode ExportedMode
 	{
-		get => mode;
+		get => _mode;
 		set
 		{
-			mode = value;
+			_mode = value;
 			updateSprite();
 		}
 	}
-	private Mode mode = Mode.Heal;
+	private Mode _mode = Mode.Heal;
 	
 	public override void _Ready()
 	{
@@ -30,12 +30,12 @@ public partial class HPGateway : Entity
 	}
 
 	private void updateSprite()
-		=> Sprite.Frame = (int)mode;
+		=> Sprite.Frame = (int)_mode;
 
 	private void onCreatureEntered(Node2D creature)
 	{
 		Health healthComp = ((Creature)creature).CM.TryGetComponent<Health>();
-		if (mode == Mode.Heal)
+		if (_mode == Mode.Heal)
 		{
 			healthComp.FullHeal();	
 		}

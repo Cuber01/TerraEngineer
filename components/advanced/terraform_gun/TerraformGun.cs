@@ -17,17 +17,17 @@ public partial class TerraformGun : AdvancedComponent, IGun
 
     public Biomes SelectedBiome
     {
-        get => selectedBiome;
+        get => _selectedBiome;
         private set
         {
-            if (selectedBiome != value)
+            if (_selectedBiome != value)
             {
-                EssenceChanged?.Invoke(value, selectedBiome);
-                selectedBiome = value;
+                EssenceChanged?.Invoke(value, _selectedBiome);
+                _selectedBiome = value;
             } 
         }
     }
-    private Biomes selectedBiome = Biomes.Forest;
+    private Biomes _selectedBiome = Biomes.Forest;
     
     [Export] private Area2D areaAffected;
 
@@ -42,7 +42,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
     {
         CM.GetComponent<StarParticleSpawner>()
                   .Start()
-                  .SetBiome(selectedBiome)
+                  .SetBiome(_selectedBiome)
                   .SetPosition(position)
                   .SetDirectionNormal(direction)
                   .Build();
@@ -64,7 +64,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
 
     public void ChangeToNextWeapon()
     {
-        int i = (int)selectedBiome + 1;
+        int i = (int)_selectedBiome + 1;
         while (true)
         {
             if (i == modes.Length)
@@ -97,7 +97,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
     {
         foreach (TerraformableCaretaker obj in terraformablesAffected)
         {
-            obj.Terraform(selectedBiome);
+            obj.Terraform(_selectedBiome);
         }
     }
 

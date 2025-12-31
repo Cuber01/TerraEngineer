@@ -12,21 +12,20 @@ public partial class SwitchableBlock : Entity, ISwitchableDependent
     [Export] private CollisionShape2D collider;
     [Export] private bool DefaultState
     {
-        get => defaultState;
+        get => _defaultState;
         set
         {
-            defaultState = value;
-            Sprite.Frame = defaultState ? 0 : 1;
+            _defaultState = value;
+            Sprite.Frame = _defaultState ? 0 : 1;
         }
     }
-
-    private bool defaultState = true;
+    private bool _defaultState = true;
 
     public override void _Ready()
     {
         MakeShaderUnique();
 
-        if (!defaultState)
+        if (!_defaultState)
         {
             collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
             Sprite.Frame = 1;    
@@ -35,7 +34,7 @@ public partial class SwitchableBlock : Entity, ISwitchableDependent
     
     public void OnSwitch(bool switchedOn)
     {
-        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, switchedOn == defaultState);
-        Sprite.Frame = (switchedOn == defaultState) ? 1 : 0;
+        collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, switchedOn == _defaultState);
+        Sprite.Frame = (switchedOn == _defaultState) ? 1 : 0;
     }
 }
