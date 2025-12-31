@@ -29,6 +29,8 @@ func start():
 	set_player(extPlayer);
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
+	MetSys.connect("room_changed", player.onRoomEntered)
+	connect("room_loaded", player.onRoomLoaded)
 	
 	var levelName = SaveData.ReadValue("savepoint_data", "level");
 	await load_room("res://levels/" + levelName + ".tscn");

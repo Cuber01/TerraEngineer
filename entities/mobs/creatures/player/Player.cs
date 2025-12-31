@@ -224,9 +224,9 @@ public partial class Player : Creature
 		CM.GetComponent<Jump>().CancelJump();
 	}
 	
-	public void RoomLoaded() => updateFrozen = false;
+	public void onRoomLoaded(Node level) => updateFrozen = false;
 
-	public void HandleRoomTransition(Vector2I playerDirection)
+	private void onRoomEntered(string roomName, Vector2I playerDirection)
 	{
 		float extraForce = RoomTransitionForce;
 		if (playerDirection == Vector2I.Up)
