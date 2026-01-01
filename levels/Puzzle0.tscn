@@ -20,7 +20,7 @@
 size = Vector2(31, 32)
 
 [node name="Level" type="Node2D"]
-metadata/level_name = &"Lobby"
+metadata/level_name = &"Puzzle0"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(120, 100)
@@ -73,7 +73,7 @@ position = Vector2(251, 112)
 position = Vector2(243, 112)
 
 [node name="Button" parent="SwitchableGroupRed" instance=ExtResource("8_r8f0g")]
-position = Vector2(200, 105)
+position = Vector2(185, 105)
 
 [node name="Button2" parent="SwitchableGroupRed" instance=ExtResource("8_r8f0g")]
 position = Vector2(219, 145)
@@ -112,7 +112,7 @@ position = Vector2(171, 80)
 DefaultState = false
 
 [node name="Button" parent="SwitchableGroupYello" instance=ExtResource("8_r8f0g")]
-position = Vector2(136, 105)
+position = Vector2(141, 105)
 
 [node name="SwitchableGroupGreen" parent="." node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
@@ -129,13 +129,13 @@ position = Vector2(67, 112)
 position = Vector2(299, 105)
 
 [node name="MovableBlock" parent="." instance=ExtResource("12_6qmui")]
-position = Vector2(121, 97)
+position = Vector2(125, 97)
 
 [node name="FungusSpider2" parent="." instance=ExtResource("9_qg68b")]
 position = Vector2(200, 135)
 
 [node name="SecretRoom" parent="." instance=ExtResource("15_8p7k7")]
-position = Vector2(41, 118)
+position = Vector2(-16, 108)
 
 [node name="FakeLayer" parent="SecretRoom" index="0"]
 tile_map_data = PackedByteArray("AAAIAAAABgABAAEAAAAIAAEABgABAAEAAAAIAAIABgABAAEAAAAIAAMABgABAAEAAAAJAAMABgABAAEAAAAJAAIABgABAAEAAAAJAAEABgABAAEAAAAJAAAABgABAAEAAAAKAAAABgABAAEAAAAKAAEABgABAAEAAAAKAAIABgABAAEAAAAKAAMABgABAAEAAAALAAMABgABAAEAAAALAAIABgABAAEAAAALAAEABgABAAEAAAALAAAABgABAAEAAAA=")

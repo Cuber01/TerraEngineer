@@ -41,16 +41,15 @@ public partial class FungusSpider : Creature
         MoveAndSlide();
     }
 
-    public class WalkState : IState<FungusSpider>
+    public class WalkState : State<FungusSpider>
     {
-        public void Enter(FungusSpider actor) { }
+        public override void Enter() { }
         
-        public void Update(FungusSpider actor, float dt)
+        public override void Update(float dt)
         {
-            actor.CM.GetComponent<Move>().Walk(actor.Facing, dt);
+            Actor.CM.GetComponent<Move>().Walk(Actor.Facing, dt);
         }
         
-        public void Exit(FungusSpider actor) { }
     }
     
     protected override void FlipEffect()

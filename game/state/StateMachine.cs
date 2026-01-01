@@ -7,7 +7,7 @@ using TerraEngineer;
 public class StateMachine<T>
 {
     private readonly T actor;
-    public IState<T> CurrentState { get; private set; }
+    public State<T> CurrentState { get; private set; }
     
     private readonly List<Transition<T>> localTransitions = new();
     private List<Transition<T>> possibleTransitions = new();
@@ -15,15 +15,16 @@ public class StateMachine<T>
 
     private readonly bool manualTransitionAllowed = false;
     
-    public StateMachine(T actor, IState<T> initialState, bool manualTransitionAllowed = false)
+    public StateMachine(T actor, State<T> initialState, bool manualTransitionAllowed = false)
     {
         this.actor = actor;
         this.manualTransitionAllowed = manualTransitionAllowed;
         CurrentState = initialState;
-        CurrentState.Enter(this.actor);
+        CurrentState.Assign(actor);
+        CurrentState.Enter();
     }
 
-    public void AddTransition(IState<T> from, IState<T> to, System.Func<bool> condition)
+    public void AddTransition(State<T> from, State<T> to, System.Func<bool> condition)
     {
         Transition<T> newTransition = new Transition<T>(to, condition, from); 
         localTransitions.Add(newTransition);
@@ -33,7 +34,7 @@ public class StateMachine<T>
         }
     }
         
-    public void AddGlobalTransition(IState<T> to, System.Func<bool> condition) => 
+    public void AddGlobalTransition(State<T> to, System.Func<bool> condition) => 
         globalTransitions.Add(new Transition<T>(to, condition, null));
 
     public void Update(float dt)
@@ -43,10 +44,10 @@ public class StateMachine<T>
             changeState(transition.To);
         }
         
-        CurrentState.Update(actor, dt);
+        CurrentState.Update(dt);
     }
 
-    public void ChangeState(IState<T> newState)
+    public void ChangeState(State<T> newState)
     {
         if (!manualTransitionAllowed) {
             throw new AccessViolationException("Cannot manually change state when manualTransition flag is false");
@@ -60,11 +61,12 @@ public class StateMachine<T>
         changeState(newState);
     }
     
-    private void changeState(IState<T> newState)
+    private void changeState(State<T> newState)
     {
-        CurrentState.Exit(actor);
+        CurrentState.Exit();
         CurrentState = newState;
-        CurrentState.Enter(actor);
+        CurrentState.Assign(actor);
+        CurrentState.Enter();
 
         calculatePossibleTransitions();
     }
@@ -102,10 +104,10 @@ public class StateMachine<T>
     }
 
     // If from=null it's a global transition
-    private class Transition<U>(IState<U> to, System.Func<bool> condition, IState<U> from)
+    private class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from)
     {
-        public readonly IState<U> From = from;
-        public readonly IState<U> To = to;
+        public readonly State<U> From = from;
+        public readonly State<U> To = to;
         public readonly System.Func<bool> Condition = condition;
     }
     

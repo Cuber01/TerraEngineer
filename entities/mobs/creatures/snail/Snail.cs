@@ -76,54 +76,54 @@ public partial class Snail : Creature
     }
     
 
-    public class WalkState : IState<Snail>
+    public class WalkState : State<Snail>
     {
-        public void Enter(Snail actor) { }
+        public override void Enter() { }
 
-        public void Update(Snail actor, float dt)
+        public override void Update(float dt)
         {
-            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing, dt); 
+            Actor.CM.GetComponent<Move>().Walk4(Actor.vecFacing, dt); 
             // TODO Doesn't this double as friction if direction = 0?
         }
 
-        public void Exit(Snail actor)
+        public override void Exit()
         {
-            actor.velocity = Vector2.Zero;
+            Actor.velocity = Vector2.Zero;
         }
     }
     
-    public class RotateState : IState<Snail>
+    public class RotateState : State<Snail>
     {
         private float rotationDelay = 1.0f;
         private float rotationSpeed = 0.1f;
         private float reachRotation = 0;
         private const float rotationTolerance = 0.001f;
 
-        public void Enter(Snail actor)
+        public override void Enter()
         {
 
-            reachRotation = actor.ToRotate + actor.Rotation;
-            actor.vecFacing = (Vector2I)MathT.rotateVec2(actor.vecFacing, actor.ToRotate > 0);
-            actor.UpDirection = MathT.rotateVec2((Vector2I)actor.UpDirection, actor.ToRotate > 0);
-            actor.ToRotate = 0;
-            actor.WasOnFloor = false;
-            TimerManager.Schedule(rotationDelay, actor, (_) => actor.WasOnFloor = true);
+            reachRotation = Actor.ToRotate + Actor.Rotation;
+            Actor.vecFacing = (Vector2I)MathT.rotateVec2(Actor.vecFacing, Actor.ToRotate > 0);
+            Actor.UpDirection = MathT.rotateVec2((Vector2I)Actor.UpDirection, Actor.ToRotate > 0);
+            Actor.ToRotate = 0;
+            Actor.WasOnFloor = false;
+            TimerManager.Schedule(rotationDelay, Actor, (_) => Actor.WasOnFloor = true);
         }
 
-        public void Update(Snail actor, float dt)
+        public override void Update(float dt)
         {
             
-            actor.Rotation = Mathf.RotateToward(actor.Rotation, reachRotation, rotationSpeed);
+            Actor.Rotation = Mathf.RotateToward(Actor.Rotation, reachRotation, rotationSpeed);
             
-            actor.CM.GetComponent<Move>().Walk4(actor.vecFacing, dt);
+            Actor.CM.GetComponent<Move>().Walk4(Actor.vecFacing, dt);
             
-            if (Math.Abs(actor.Rotation - reachRotation) < rotationTolerance)
-                actor.fsm.ChangeState(actor.walkState);
+            if (Math.Abs(Actor.Rotation - reachRotation) < rotationTolerance)
+                Actor.fsm.ChangeState(Actor.walkState);
         }
 
-        public void Exit(Snail actor)
+        public override void Exit()
         {
-            actor.velocity = Vector2.Zero; // Disable effects of past gravity when changing rotation
+            Actor.velocity = Vector2.Zero; // Disable effects of past gravity when changing rotation
             reachRotation = 0;
         }
     }

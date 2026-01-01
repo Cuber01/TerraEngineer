@@ -38,41 +38,41 @@ public partial class Frog : Creature
         FlipIfHitWall();
     }
 
-    public class JumpState : IState<Frog>
+    public class JumpState : State<Frog>
     {
         public Func<bool> LandedOnFloor => () => isLandingOnFloor;
         private bool isLandingOnFloor = false;
         private void landedOnFloor() => isLandingOnFloor = true;
         
-        public void Enter(Frog actor)
+        public override void Enter()
         {
             isLandingOnFloor = false;
-            actor.CM.GetComponent<Jump>().AttemptJump();
-            actor.CM.GetComponent<Gravity>().LandedOnFloor += landedOnFloor;
+            Actor.CM.GetComponent<Jump>().AttemptJump();
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor += landedOnFloor;
         }
         
-        public void Update(Frog actor, float dt)
+        public override void Update( float dt)
         {
-            actor.CM.GetComponent<Move>().Walk(actor.Facing, dt);
+            Actor.CM.GetComponent<Move>().Walk(Actor.Facing, dt);
         }
         
-        public void Exit(Frog actor)
+        public override void Exit()
         {
-            actor.CM.GetComponent<Gravity>().LandedOnFloor -= landedOnFloor;
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor -= landedOnFloor;
         }
     }
     
     public class WaitState : TimedState<Frog>
     {
-        public override void Enter(Frog actor)
+        public override void Enter()
         {
-            base.Enter(actor);
+            base.Enter();
             Delay = 2.5f;
         }
 
-        public override void Update(Frog actor, float dt)
+        public override void Update(float dt)
         {
-            base.Update(actor, dt);
+            base.Update(dt);
         }
     }
 

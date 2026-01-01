@@ -71,7 +71,7 @@ public partial class KingFrog : Creature
         }
     }
 
-    public class JumpState : IState<KingFrog>
+    public class JumpState : State<KingFrog>
     {
         public enum ArenaPos
         {
@@ -91,7 +91,7 @@ public partial class KingFrog : Creature
         
         private const float JumpModifierPerPixel = 0.005f;
         
-        public void Enter(KingFrog actor)
+        public override void Enter()
         {
             // Choose where to jump
             ArenaPos wasAt = AmAt;
@@ -102,9 +102,9 @@ public partial class KingFrog : Creature
 
             if ((int)AmAt > (int)wasAt)
             {
-                actor.Flip(DirectionX.Right);
+                Actor.Flip(DirectionX.Right);
             }
-            else actor.Flip(DirectionX.Left);
+            else Actor.Flip(DirectionX.Left);
             
             goTo = Positions[(int)AmAt];
 
@@ -116,24 +116,24 @@ public partial class KingFrog : Creature
                 speedModifier = 1.55f;
             }
             
-            actor.CM.GetComponent<Jump>().AttemptJump(jumpModifier);
-            actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
+            Actor.CM.GetComponent<Jump>().AttemptJump(jumpModifier);
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
         }
 
-        public void Update(KingFrog actor, float dt)
+        public override void Update( float dt)
         {
-            actor.CM.GetComponent<Move>().WalkToPoint(goTo, speedModifier);
+            Actor.CM.GetComponent<Move>().WalkToPoint(goTo, speedModifier);
         }
 
-        public void Exit(KingFrog actor)
+        public override void Exit()
         {
             if(AmAt == ArenaPos.Left)
-                actor.Flip(DirectionX.Right);
+                Actor.Flip(DirectionX.Right);
             else if(AmAt == ArenaPos.Right)
-                actor.Flip(DirectionX.Left);
+                Actor.Flip(DirectionX.Left);
                 
             
-            actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
             finished = false;
             speedModifier = 1f;
         }
@@ -144,14 +144,14 @@ public partial class KingFrog : Creature
     
     public class IdleState : TimedState<KingFrog>
     {
-        public override void Enter(KingFrog actor)
+        public override void Enter()
         {
-            base.Enter(actor);
+            base.Enter();
             Delay = 0.5f;
         }
     }
     
-    public class SpawnState : IState<KingFrog>
+    public class SpawnState : State<KingFrog>
     {
         private int amountToSpawn = 3;
         private int amountSpawned = 0;
@@ -161,28 +161,28 @@ public partial class KingFrog : Creature
         
         private bool finished = false;
         
-        public void Enter(KingFrog actor)
+        public override void Enter()
         {
-           spawn(actor);
+           spawn(Actor);
         }
 
-        public void Update(KingFrog actor, float dt) { }
+        public override void Update( float dt) { }
 
-        public void Exit(KingFrog actor)
+        public override void Exit()
         {
             finished = false;
             amountSpawned = 0;
         }
 
-        private void spawn(KingFrog actor)
+        private void spawn(KingFrog Actor)
         {
-            if(actor.Dead) return;
+            if(Actor.Dead) return;
             
-            actor.CM.GetComponent<CreatureSpawner>()
+            Actor.CM.GetComponent<CreatureSpawner>()
                 .Start()
-                .SetPosition(actor.CM.GetComponent<CreatureSpawner>().GlobalPosition)
+                .SetPosition(Actor.CM.GetComponent<CreatureSpawner>().GlobalPosition)
                 .AddToGame()
-                .SetFacing(actor.Facing)
+                .SetFacing(Actor.Facing)
                 .SetHealth(frogHealth)
                 .Build();
                 
@@ -191,8 +191,8 @@ public partial class KingFrog : Creature
             if (amountSpawned < amountToSpawn)
             {
                 TimerManager.Schedule(MathT.RandomFloat(minTimeSpawn, maxTimeSpawn), 
-                    actor,        
-                    (_) => spawn(actor));
+                    Actor,        
+                    (_) => spawn(Actor));
             }
             else
             {
@@ -204,24 +204,24 @@ public partial class KingFrog : Creature
         public void Finished() { finished = true; }
     }
     
-    public class SmashState : IState<KingFrog>
+    public class SmashState : State<KingFrog>
     {
         private bool finished = false;
         private float gravityModifier = 10f;
         
-        public void Enter(KingFrog actor)
+        public override void Enter()
         {
-            actor.velocity.Y = 0;
-            actor.CM.GetComponent<Gravity>().GravityForce *= gravityModifier;
-            actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
+            Actor.velocity.Y = 0;
+            Actor.CM.GetComponent<Gravity>().GravityForce *= gravityModifier;
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
         }
 
-        public void Update(KingFrog actor, float dt) { }
+        public override void Update( float dt) { }
 
-        public void Exit(KingFrog actor)
+        public override void Exit()
         {
-            actor.CM.GetComponent<Gravity>().GravityForce /= gravityModifier;
-            actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
+            Actor.CM.GetComponent<Gravity>().GravityForce /= gravityModifier;
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
             finished = false;
         }
         

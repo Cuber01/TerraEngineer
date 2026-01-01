@@ -4,27 +4,33 @@ using Godot;
 
 namespace TerraEngineer;
 
-public interface IState<T>
+public class State<T>
 {
-    public void Enter(T actor);
-    public void Update(T actor, float dt);
-    public void Exit(T actor);
+    protected T Actor;
+
+    public void Assign(T actor)
+    {
+        this.Actor = actor;
+    }
+    
+    public virtual void Enter() {}
+    public virtual void Update(float dt) {}
+    public virtual void Exit() {}
 }
 
-public class TimedState<T> : IState<T>
+public class TimedState<T> : State<T>
 {
     public float Time = 0;
     protected float Delay = -1;
 
-    public virtual void Enter(T actor)
+    public override void Enter()
     {
         Time = 0;
     }
 
-    public virtual void Update(T actor, float dt) {
+    public override void Update(float dt) {
         Time += dt;
     }
-    public virtual void Exit(T actor) { }
     
     public bool TimerCondition()
     {

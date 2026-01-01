@@ -24,13 +24,13 @@ public partial class Lever : Entity, ISwitcher
     
     private void onPlayerEntered(Player player)
     {
-        player.controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
+        player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
         player.Interacted += getSwitched;
     }
     
     private void onPlayerExited(Player player)
     {
-        player.controller.RemoveOverride(Names.Actions.Attack);
+        player.Controller.RemoveOverride(Names.Actions.Attack);
         player.Interacted -= getSwitched;
     }
 

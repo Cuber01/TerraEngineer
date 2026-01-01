@@ -34,51 +34,46 @@ public partial class Moth : Creature
         MoveAndSlide();
     }
 
-    public class ChaseState : IState<Moth>
+    public class ChaseState : State<Moth>
     {
         public Entity ChaseTarget { set; private get; }
         
-        public void Enter(Moth actor)
+        public override void Enter()
         {
         }
         
-        public void Update(Moth actor, float dt)
+        public override void Update( float dt)
         {
-            actor.CM.GetComponent<FreeFly>().FlyToPoint(ChaseTarget.GlobalPosition, dt);  
+            Actor.CM.GetComponent<FreeFly>().FlyToPoint(ChaseTarget.GlobalPosition, dt);  
         }
         
-        public void Exit(Moth actor) { }
 
         
         // Stop chase if long delay and player not in detection range
     }
     
-    public class IdleState : IState<Moth>
+    public class IdleState : State<Moth>
     {
         private Vector2 goToPoint;
         private float delayAtPoint = 1f; //Currently delay before changing points, perhaps fix/change
 
-        public void Enter(Moth actor)
+        public override void Enter()
         {
             void RerollPoint(ITimer timer)
             {
-                if(!IsInstanceValid(actor)) return;
-                Vector2 rnd = MathT.RandomVector2(-actor.MarginAroundPoint, actor.MarginAroundPoint);
-                goToPoint = actor.FlyAroundPoint.GlobalPosition + rnd;
-                TimerManager.Schedule(delayAtPoint, actor,  RerollPoint);
+                if(!IsInstanceValid(Actor)) return;
+                Vector2 rnd = MathT.RandomVector2(-Actor.MarginAroundPoint, Actor.MarginAroundPoint);
+                goToPoint = Actor.FlyAroundPoint.GlobalPosition + rnd;
+                TimerManager.Schedule(delayAtPoint, Actor,  RerollPoint);
             }
             RerollPoint(null);
         }
 
-        public void Update(Moth actor, float dt)
+        public override void Update(float dt)
         {
-           actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint, dt);    
+           Actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint, dt);    
         }
 
-        public void Exit(Moth actor)
-        {
-            
-        }
         
         // Start chase if player in detection range
     }

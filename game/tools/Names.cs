@@ -69,7 +69,8 @@ public static class Names
         public static readonly StringName WeaponNext = "weapon_next";
         public static readonly StringName GunHandleNext = "gunhandle_next";
         public static readonly StringName Attack = "attack";
-        public static readonly StringName Interact = "interact";
+        public static readonly StringName Dash = "dash";
+        public static readonly StringName Jump = "jump";
         
         public static readonly StringName GroupWeapon = "GroupWeapon";
     }

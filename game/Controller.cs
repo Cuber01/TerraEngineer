@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.game;
 
@@ -8,6 +9,8 @@ public class Controller
 {
     private Dictionary<StringName, Action> actions = new();
     private Dictionary<StringName, Action> overrides = new();
+    
+    private Dictionary<StringName, Action> releaseActions = new();
     
     // Actions in an exclusive group will be executed only once per update
     private Dictionary<StringName, StringName> exclusiveGroups = new();
@@ -40,9 +43,21 @@ public class Controller
                         pair.Value();
                     }    
                 }
-                
             }
         }
+
+        foreach (KeyValuePair<StringName, Action> pair in releaseActions)
+        {
+            if (Input.IsActionJustReleased(pair.Key))
+            {
+                pair.Value();
+            }
+        }
+    }
+
+    public DirectionX GetAxis(StringName negativeAction, StringName positiveAction)
+    {
+        return (DirectionX)(int)Input.GetAxis(negativeAction, positiveAction);
     }
     
     public void AddAction(StringName actionName, Action action, StringName exclusiveGroup = null)
@@ -52,8 +67,13 @@ public class Controller
         if(exclusiveGroup != null)
             exclusiveGroups[actionName] = exclusiveGroup;
     }
+
+    public void AddReleaseAction(StringName actionName, Action action)
+    {
+        releaseActions[actionName] = action;
+    }
     
-    public void AddOverride(StringName actionName, Action action)
+    public void AddOverride(StringName actionName, Action? action)
     {
         overrides[actionName] = action;
     }

@@ -17,155 +17,192 @@ public partial class Player : Creature
 	public event InteractedEventHandler Interacted;
 
 	private readonly DashState dashState = new DashState();
-	private readonly JumpState walkState = new JumpState();
-	private readonly WalkState jumpState = new WalkState();
+	private readonly JumpState jumpState = new JumpState();
+	private readonly WalkState walkState = new WalkState();
 	private readonly IdleState idleState = new IdleState();
 	private readonly NoclipState noclipState = new NoclipState();
-
 	
 	private StateMachine<Player> fsm;
-	public Controller controller = new();
+	public Controller Controller = new();
 
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
 	
-	public class IdleState : IState<Player>
+	public override void Init()
 	{
-		public void Enter(Player actor)
+		Controller.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
+		Controller.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
+		Controller.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
+		Controller.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
+		Controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
+		Controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupWeapon);
+		Controller.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
+		
+		// State machine related
+		fsm = new StateMachine<Player>(this, idleState, true);
+		fsm.AddTransition(idleState, walkState, idleState.CheckWalkState);
+		fsm.AddTransition(walkState, idleState, checkIdleState);
+		fsm.AddTransition(jumpState, idleState, checkIdleState);
+		fsm.AddTransition(walkState, jumpState, checkJumpState);
+		fsm.AddTransition(idleState, jumpState, checkJumpState);
+		fsm.AddTransition(jumpState, walkState, jumpState.CheckWalkState);
+		fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
+		fsm.AddTransition(jumpState, dashState, checkDashState);
+		fsm.AddTransition(walkState, dashState, checkDashState);
+		fsm.AddTransition(idleState, dashState, checkDashState);
+		
+		Controller.AddAction(Names.Actions.Dash, () =>
 		{
+			CM.GetComponent<Dash>().AttemptDash(Facing);
+		});
+		
+		Controller.AddAction(Names.Actions.Jump, () =>
+		{
+			if (fsm.CurrentState != dashState)
+				CM.GetComponent<Jump>().AttemptJump();
+		});
+	}
+	
+	private bool checkIdleState()
+	{
+		if (IsOnFloor() && velocity.Abs() < Vector2.One)
+			return true;
+		else
+			return false;
+	}
+
+	private bool checkJumpState()
+	{
+		return !IsOnFloor();
+	}
+
+	private bool checkDashState()
+	{
+		return CM.GetComponent<Dash>().IsDashing;
+	}
+	
+	public class IdleState : State<Player>
+	{
+		public override void Enter()
+		{
+			#if DEBUG_STATE
+			GD.Print("Entered Idle.");
+			#endif
 		}
 
-		public void Update(Player actor, float dt)
+		public bool CheckWalkState()
 		{
-			DirectionX moveDir = (DirectionX)(int)Input.GetAxis("ui_left", "ui_right");
+			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
 			if (moveDir != 0)
 			{
-				actor.Facing = moveDir;
+				Actor.Facing = moveDir;
+				return true;
 			}
-		
-			if (Input.IsActionJustPressed("dash"))
-			{
-				actor.CM.GetComponent<Dash>().AttemptDash(actor.Facing);
-			}
-		
-			actor.controller.Update((float)dt);
-		
-			actor.CM.GetComponent<Move>().Walk(moveDir, (float)dt);
-			actor.CM.UpdateComponents((float)dt);
-		
-			if (Input.IsActionJustPressed("jump"))
-			{
-				actor.CM.GetComponent<Jump>().AttemptJump();
-			}
-		
-			if (Input.IsActionJustReleased("jump")) {
-				actor.CM.GetComponent<Jump>().LimitJump();
-			}
-		}
-
-		public void Exit(Player actor)
-		{
-		}
-	}
-
-	public class DashState : IState<Player>
-	{
-		public void Enter(Player actor)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Update(Player actor, float dt)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Exit(Player actor)
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	public class WalkState : IState<Player>
-	{
-		public void Enter(Player actor)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Update(Player actor, float dt)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Exit(Player actor)
-		{
-			throw new NotImplementedException();
+			return false;
 		}
 	}
 	
-	public class NoclipState : IState<Player>
+	public class WalkState : State<Player>
 	{
-		public void Enter(Player actor)
+		public override void Enter()
 		{
-			actor.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
-			actor.CM.GetComponent<Gravity>().Disabled = true;
+			#if DEBUG_STATE
+			GD.Print("Entered Walk.");
+			#endif
+		}
+		
+		public override void Update( float dt)
+		{
+			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
+			if (moveDir != 0)
+			{
+				Actor.Facing = moveDir;
+			}
+			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
+		}
+	}
+	
+	public class JumpState : State<Player>
+	{
+		public override void Enter()
+		{
+			#if DEBUG_STATE
+			GD.Print("Entered Jump.");
+			#endif
+		}
+		
+		public override void Update(float dt)
+		{
+			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
+			if (moveDir != 0)
+			{
+				Actor.Facing = moveDir;
+			}
+			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
+		}
+		
+		public bool CheckWalkState()
+		{
+			if (Actor.IsOnFloor() && MathF.Abs(Actor.velocity.X) >= 1)
+				return true;
+			else
+				return false;
+		}
+	}
+	
+	public class DashState : State<Player>
+	{
+		public override void Enter()
+		{
+			#if DEBUG_STATE
+			GD.Print("Entered Dash.");
+			#endif
+		}
+		
+		public bool CheckJumpState()
+		{
+			return !Actor.CM.GetComponent<Dash>().IsDashing;
+		}
+		
+		public override void Update(float dt)
+		{
+			
+		}
+		
+	}
+	
+	public class NoclipState : State<Player>
+	{
+		public override void Enter()
+		{
+			Actor.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+			Actor.CM.GetComponent<Gravity>().Disabled = true;
 		}
 
-		public void Update(Player actor, float dt)
+		public override void Update( float dt)
 		{
 			Vector2 dir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 			if (dir != Vector2.Zero)
 			{
-				actor.Facing = (DirectionX)dir.X;
+				Actor.Facing = (DirectionX)dir.X;
 			}
 		
 			if (Input.IsActionJustPressed("dash"))
 			{
-				actor.CM.GetComponent<Dash>().AttemptDash(actor.Facing);
+				Actor.CM.GetComponent<Dash>().AttemptDash(Actor.Facing);
 			}
 		
-			actor.controller.Update((float)dt);
+			Actor.Controller.Update((float)dt);
 
-			actor.velocity = dir * 150;
-		}
-
-		public void Exit(Player actor)
-		{
-			actor.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
-			actor.CM.GetComponent<Gravity>().Disabled = false;
-		}
-	}
-	
-	
-	public class JumpState : IState<Player>
-	{
-		public void Enter(Player actor)
-		{
-			throw new NotImplementedException();
+			Actor.velocity = dir * 150;
 		}
 
-		public void Update(Player actor, float dt)
+		public override void Exit()
 		{
-			throw new NotImplementedException();
+			Actor.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+			Actor.CM.GetComponent<Gravity>().Disabled = false;
 		}
-
-		public void Exit(Player actor)
-		{
-			throw new NotImplementedException();
-		}
-	}
-	
-	public override void Init()
-	{
-		controller.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
-		controller.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
-		controller.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
-		controller.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
-		controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
-		controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupWeapon);
-		fsm = new StateMachine<Player>(this, idleState, true);
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -191,6 +228,7 @@ public partial class Player : Creature
 		}
 		#endif
 		
+		Controller.Update((float)delta);
 		fsm.Update((float)delta);
 		CM.UpdateComponents((float)delta);
 
@@ -219,6 +257,8 @@ public partial class Player : Creature
 		Dead = true;
 	}
 
+	#region Callbacks
+	
 	private void onBumpedCeiling(Node2D body)
 	{
 		CM.GetComponent<Jump>().CancelJump();
@@ -239,8 +279,9 @@ public partial class Player : Creature
 	public void InvokeInteracted() => Interacted?.Invoke();
 	
 	// Wrapper for gdscript
-	public void ActivateInventory()
-	 => CM.GetComponent<PlayerInventory>().ActivateItems(this);
+	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems(this);
+	
+	#endregion
 }
 
 

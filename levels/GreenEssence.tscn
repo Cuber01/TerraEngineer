@@ -30,7 +30,6 @@ position = Vector2(79.5, 16)
 shape = SubResource("RectangleShape2D_xqscd")
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_7in26")]
-position = Vector2(0, -380)
 
 [node name="HpGateway" parent="." instance=ExtResource("4_7in26")]
 position = Vector2(120, 126)

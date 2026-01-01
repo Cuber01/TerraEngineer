@@ -10,7 +10,7 @@ public partial class Dash : Component
     [Export] private int maxDashes = 1;
 
     private int currentDashes = 0;
-    private bool isDashing = false;
+    public bool IsDashing = false;
     private int dashDirection;
     
     public override void Init(Entity actor)
@@ -22,7 +22,7 @@ public partial class Dash : Component
     
     public override void Update(float delta)
     {
-        if (isDashing)
+        if (IsDashing)
         {
             Actor.velocity.X = dashSpeed * dashDirection;
             Actor.velocity.Y = 0;
@@ -41,7 +41,7 @@ public partial class Dash : Component
 
     private void executeDash(DirectionX direction)
     {
-        isDashing = true;
+        IsDashing = true;
         dashDirection = (int)direction;
         TimerManager.Schedule(dashDuration,  this, endDash);
         currentDashes++;
@@ -49,7 +49,7 @@ public partial class Dash : Component
 
     private void endDash(ITimer timer)
     {
-        isDashing = false;
+        IsDashing = false;
     }
 
     private bool canDash()
