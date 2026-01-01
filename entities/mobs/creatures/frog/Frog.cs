@@ -33,8 +33,7 @@ public partial class Frog : Creature
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
         
-        Velocity = velocity;
-        MoveAndSlide();
+        HandleMove();
         FlipIfHitWall();
     }
 

@@ -30,8 +30,7 @@ public partial class Moth : Creature
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
 
-        Velocity = velocity;
-        MoveAndSlide();
+        HandleMove();
     }
 
     public class ChaseState : State<Moth>

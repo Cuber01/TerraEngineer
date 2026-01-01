@@ -37,8 +37,7 @@ public partial class FungusSpider : Creature
         
         FlipIfHitWall();
         
-        Velocity = velocity;
-        MoveAndSlide();
+        HandleMove();
     }
 
     public class WalkState : State<FungusSpider>

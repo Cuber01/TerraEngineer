@@ -47,8 +47,7 @@ public partial class Snail : Creature
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
         
-        Velocity = velocity;
-        MoveAndSlide();
+        HandleMove();
     }
 
     private bool needsRotate()

@@ -1,6 +1,7 @@
 #define TOOLS
 
 using Godot;
+using System;
 using TENamespace;
 using TENamespace.health;
 
@@ -13,6 +14,7 @@ public partial class Entity : CharacterBody2D
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;
     [Export] public bool GodMode = false;
+    [Export] public AnimatedSprite2D Sprite;
     
     [Export] public DirectionX ExportedFacing
     {
@@ -22,12 +24,9 @@ public partial class Entity : CharacterBody2D
             Flip(value);
         }
     }
-    
-    [Export] public AnimatedSprite2D Sprite;
-    
     public DirectionX Facing = DirectionX.Right;
     public Vector2 velocity;
-
+    
     // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
     public bool Dead  = false;
     
@@ -81,5 +80,11 @@ public partial class Entity : CharacterBody2D
             CallDeferred(Node.MethodName.QueueFree);    
         }
         Dead = true;
+    }
+
+    protected void HandleMove()
+    {
+        Velocity = new Vector2(MathF.Truncate(velocity.X), MathF.Truncate(velocity.Y));
+        MoveAndSlide();
     }
 }

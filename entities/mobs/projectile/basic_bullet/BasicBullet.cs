@@ -10,7 +10,6 @@ public partial class BasicBullet : Projectile
         
         CM.GetComponent<FreeFly>().FlyInDirection(DirectionNormal, (float)delta);
         
-        Velocity = velocity;
-        MoveAndSlide();
+        HandleMove();
     }
 }

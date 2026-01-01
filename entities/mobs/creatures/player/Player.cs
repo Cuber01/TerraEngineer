@@ -231,9 +231,7 @@ public partial class Player : Creature
 		Controller.Update((float)delta);
 		fsm.Update((float)delta);
 		CM.UpdateComponents((float)delta);
-
-		Velocity = velocity;
-		MoveAndSlide();
+		HandleMove();
 	}
 
 	public Direction4 GetShootDirection()

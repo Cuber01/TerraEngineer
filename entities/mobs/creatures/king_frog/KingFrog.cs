@@ -56,8 +56,7 @@ public partial class KingFrog : Creature
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);
         
-        Velocity = velocity;
-        MoveAndSlide();
+        HandleMove();
     }
     
     protected override void FlipEffect()
