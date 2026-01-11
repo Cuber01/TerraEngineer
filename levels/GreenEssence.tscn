@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://entities/objects/pickupable_item/green_essence.tres" id="7_3mq2g"]
 [ext_resource type="PackedScene" uid="uid://ca31480u7y56i" path="res://entities/objects/interact_and_display/InteractAndDisplay.tscn" id="8_cn40b"]
 [ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://ui/textbox/Popup.tscn" id="9_2jexy"]
-[ext_resource type="Texture2D" uid="uid://bkbstkjtt6yha" path="res://assets/fungus-spider.png" id="10_2jexy"]
+[ext_resource type="Texture2D" uid="uid://cjps5m4sthw74" path="res://assets/scribbles.png" id="10_2jexy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqscd"]
 size = Vector2(31, 32)
@@ -52,16 +52,26 @@ itemName = &"green_essence"
 ItemTexture = ExtResource("7_3mq2g")
 
 [node name="InteractAndDisplay" parent="." node_paths=PackedStringArray("displayer") instance=ExtResource("8_cn40b")]
-position = Vector2(195, 128)
+position = Vector2(180, 128)
 displayer = NodePath("../TextPopup")
+
+[node name="CollisionShape2D" parent="InteractAndDisplay" index="0"]
+position = Vector2(1, -3.5)
 
 [node name="TextPopup" parent="." instance=ExtResource("9_2jexy")]
 visible = false
 position = Vector2(63, 16)
 
-[node name="FungusSpider" type="Sprite2D" parent="."]
-position = Vector2(195, 128)
+[node name="TextLabel" parent="TextPopup" index="1"]
+text = "something happened to the regenerative gates.
+go through them twice and you're as good as dead.
+rip Frank"
+
+[node name="Scribbles" type="Sprite2D" parent="."]
+position = Vector2(181, 124)
 texture = ExtResource("10_2jexy")
 
 [editable path="SecretRoom"]
 [editable path="PickupableItem"]
+[editable path="InteractAndDisplay"]
+[editable path="TextPopup"]

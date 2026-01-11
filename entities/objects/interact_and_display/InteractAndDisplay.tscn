@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cc1th0yvwbesi" path="res://entities/objects/interact_and_display/InteractAndDisplay.cs" id="1_ays3t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1r0i"]
-size = Vector2(8.5, 8)
+size = Vector2(36, 19)
 
 [node name="InteractAndDisplay" type="Area2D"]
 collision_layer = 0
