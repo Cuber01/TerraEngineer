@@ -279,6 +279,9 @@ public partial class Player : Creature
 	// Wrapper for gdscript
 	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems(this);
 	
+	public void Freeze() => updateFrozen = true;
+	public void Unfreeze() => updateFrozen = false;
+	
 	#endregion
 }
 

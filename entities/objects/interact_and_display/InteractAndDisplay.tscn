@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca31480u7y56i"]
+
+[ext_resource type="Script" uid="uid://cc1th0yvwbesi" path="res://entities/objects/interact_and_display/InteractAndDisplay.cs" id="1_ays3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1r0i"]
+size = Vector2(8.5, 8)
+
+[node name="InteractAndDisplay" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ays3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x1r0i")
+
+[connection signal="body_entered" from="." to="." method="onPlayerEntered"]
+[connection signal="body_exited" from="." to="." method="onPlayerExited"]

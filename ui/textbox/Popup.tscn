@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://diswsaudlbdh4"]
+
+[ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="1_osfhi"]
+[ext_resource type="Script" uid="uid://bpxtom75742x7" path="res://ui/textbox/Popup.cs" id="1_sag4e"]
+[ext_resource type="Texture2D" uid="uid://784noyfpxsmt" path="res://ui/textbox/textbox-big.png" id="2_vy4aq"]
+
+[node name="Popup" type="Node2D" node_paths=PackedStringArray("popupBoxSprite")]
+process_mode = 2
+script = ExtResource("1_sag4e")
+popupBoxSprite = NodePath("PopupBoxSprite")
+
+[node name="PopupBoxSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.92941177)
+z_index = 6
+position = Vector2(96, 79)
+texture = ExtResource("2_vy4aq")
+
+[node name="TextLabel" type="RichTextLabel" parent="."]
+z_index = 10
+custom_minimum_size = Vector2(189, 13)
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 191.0
+offset_bottom = 156.0
+theme_override_fonts/normal_font = ExtResource("1_osfhi")
+bbcode_enabled = true
+text = "This is Euro
+[img=68x65]res://assets/eurofed-small.png[/img]
+Stay vigilant!"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
