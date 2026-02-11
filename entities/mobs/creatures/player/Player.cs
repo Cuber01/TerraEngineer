@@ -1,3 +1,4 @@
+using DialogueManagerRuntime;
 using Godot;
 using System;
 using System.Numerics;
@@ -31,6 +32,7 @@ public partial class Player : Creature
 	
 	public override void Init()
 	{
+		Controller.TurnActive = true;
 		Controller.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
 		Controller.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
 		Controller.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
@@ -225,6 +227,11 @@ public partial class Player : Creature
 		if(Input.IsActionJustPressed("f3"))
 		{
 			GodMode = !GodMode;
+		}
+		
+		if(Input.IsActionJustPressed("f4"))
+		{
+			DialogueManager.ShowDialogueBalloon(ResourceLoader.Load("res://dialogue/radio01.dialogue"), "start");
 		}
 		#endif
 		

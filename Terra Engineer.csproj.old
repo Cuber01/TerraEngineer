@@ -1,0 +1,18 @@
+<Project Sdk="Godot.NET.Sdk/4.5.0">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>TerraEngineer</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="addons\TimerManager\LICENSE.txt" />
+    <Content Include="addons\TimerManager\TimerManager.tscn" />
+    <Content Include="LICENSE.txt" />
+    <Content Include="notes.txt" />
+    <Content Include="shaders\blink.gdshader" />
+    <Content Include="shaders\palette_swap.gdshader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets_ase\" />
+  </ItemGroup>
+</Project>

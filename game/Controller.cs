@@ -7,6 +7,10 @@ namespace TerraEngineer.game;
 
 public class Controller
 {
+    public bool TurnActive = false;
+    private bool active = false;
+    private Controller switchedFrom = null;
+    
     private Dictionary<StringName, Action> actions = new();
     private Dictionary<StringName, Action> overrides = new();
     
@@ -17,6 +21,16 @@ public class Controller
 
     public void Update(float delta)
     {
+        if (TurnActive)
+        {
+            active = true;
+            TurnActive = false;
+            return;
+        } else if (!active) {
+            return;
+        }
+        
+        
         HashSet<StringName> executedGroups = new();
         
         foreach (KeyValuePair<StringName, Action> pair in actions)
@@ -82,6 +96,20 @@ public class Controller
     {
         overrides.Remove(actionName);
     }
-    
+
+    public void SwitchControl(Controller to)
+    {
+        active = false;
+        to.TurnActive = true;
+        to.switchedFrom = this;
+    }
+
+    public void GiveBackControl()
+    {
+        switchedFrom.TurnActive = true;
+        switchedFrom.switchedFrom = this;
+        switchedFrom = null;
+        active = false;
+    }
 
 }

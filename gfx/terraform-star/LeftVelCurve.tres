@@ -1,4 +1,4 @@
-[gd_resource type="CurveXYZTexture" load_steps=2 format=3 uid="uid://d3jlfrogunpoh"]
+[gd_resource type="CurveXYZTexture" format=3 uid="uid://d3jlfrogunpoh"]
 
 [sub_resource type="Curve" id="Curve_piqe1"]
 _limits = [-40.0, 0.0, 0.0, 1.0]

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ckkgpylkuisom"
+path="res://.godot/imported/radio01.dialogue-e678e202db8abb3ed904f543950d476f.tres"
+
+[deps]
+
+source_file="res://dialogue/radio01.dialogue"
+dest_files=["res://.godot/imported/radio01.dialogue-e678e202db8abb3ed904f543950d476f.tres"]
+
+[params]
+
+defaults=true
