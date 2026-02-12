@@ -65,9 +65,6 @@ public partial class DialogueBalloon : Node2D, IPopupable
 			Close();
 			return;
 		}
-		
-		nameLabel.Text = currentLine.Character;
-		dialogueLabel.Text = currentLine.Text;
 
 		// Clear previous choices
 		foreach (Node child in choicesContainer.GetChildren())
@@ -75,15 +72,22 @@ public partial class DialogueBalloon : Node2D, IPopupable
 			child.QueueFree();
 		}
 
-		// Check if this line has branching responses
+		// Choice tree
 		if (currentLine.Responses.Count > 0)
 		{
+			nameLabel.Text = "";
+			dialogueLabel.Text = "";
+			
 			waitingForChoice = true;
 			choicesContainer.Visible = true;
 			showChoices();
 		}
 		else
+		// Normal dialogue
 		{
+			nameLabel.Text = currentLine.Character;
+			dialogueLabel.Text = currentLine.Text;
+			
 			waitingForChoice = false;
 			choicesContainer.Visible = false;
 		}

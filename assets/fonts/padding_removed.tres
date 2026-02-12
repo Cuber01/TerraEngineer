@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" format=3 uid="uid://biak3pvf0qnuv"]
+
+[ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="1_x3fqk"]
+
+[resource]
+base_font = ExtResource("1_x3fqk")
+spacing_top = -4
+spacing_bottom = -1
