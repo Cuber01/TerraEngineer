@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cvgy7a8q5auyi"]
+
+[ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="1_koo56"]
+[ext_resource type="Script" uid="uid://cy5yjn1q1nj70" path="res://ui/dialogue_box/DialogueButton.cs" id="2_cjich"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ixn4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4geoi"]
+bg_color = Color(0.74809223, 0.08471867, 0.05519382, 1)
+
+[node name="DialogueButton" type="Button" unique_id=2071785463]
+z_index = 8
+theme_override_fonts/font = ExtResource("1_koo56")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ixn4")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_4geoi")
+text = "assss"
+alignment = 0
+script = ExtResource("2_cjich")
+
+[connection signal="focus_entered" from="." to="." method="onFocusEntered"]
+[connection signal="focus_exited" from="." to="." method="onFocusExited"]

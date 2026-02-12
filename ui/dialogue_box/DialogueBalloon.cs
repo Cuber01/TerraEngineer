@@ -11,9 +11,10 @@ public partial class DialogueBalloon : Node2D, IPopupable
 	[Export] private Resource dialogueResource;
 	[Export] private string startTitle = "start";
 
+	[Export] private PackedScene dialogueButton;
 	[Export] private RichTextLabel dialogueLabel;
 	[Export] private RichTextLabel nameLabel; 
-	[Export] private HBoxContainer choicesContainer;
+	[Export] private VBoxContainer choicesContainer;
 	[Export] private Node2D decoration;
 	
 	public Controller Controller { get; set;  }
@@ -54,14 +55,17 @@ public partial class DialogueBalloon : Node2D, IPopupable
 	{
 		currentLine = await DialogueManager.GetNextDialogueLine(dialogueResource, startTitle);
 
-		if (currentLine != null)
-		{
-			displayLine();
-		}
+		tryDisplayLine();
 	}
 
-	private void displayLine()
+	private void tryDisplayLine()
 	{
+		if (currentLine == null)
+		{
+			Close();
+			return;
+		}
+		
 		nameLabel.Text = currentLine.Character;
 		dialogueLabel.Text = currentLine.Text;
 
@@ -89,7 +93,7 @@ public partial class DialogueBalloon : Node2D, IPopupable
 	{
 		foreach (DialogueResponse response in currentLine.Responses)
 		{
-			Button choiceButton = new Button();
+			DialogueButton choiceButton = (DialogueButton)dialogueButton.Instantiate();
 			choiceButton.Text = response.Text;
 			choiceButton.Pressed += () => onChoiceSelected(response);
 			choicesContainer.AddChild(choiceButton);
@@ -103,20 +107,12 @@ public partial class DialogueBalloon : Node2D, IPopupable
 		waitingForChoice = false;
 
 		currentLine = await DialogueManager.GetNextDialogueLine(dialogueResource, response.NextId);
-		displayLine();
+		tryDisplayLine();	
 	}
 
 	private async void advanceDialogue()
 	{
 		currentLine = await DialogueManager.GetNextDialogueLine(dialogueResource, currentLine.NextId);
-		
-		if (currentLine != null && currentLine.NextId != "0")
-		{
-			displayLine();
-		}
-		else
-		{
-			Close();
-		}
+		tryDisplayLine();
 	}
 }

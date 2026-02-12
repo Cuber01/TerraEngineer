@@ -3,18 +3,20 @@
 [ext_resource type="Script" uid="uid://cmx1pwf7qi8uh" path="res://ui/dialogue_box/DialogueBalloon.cs" id="1_qra05"]
 [ext_resource type="Resource" uid="uid://ckkgpylkuisom" path="res://dialogue/radio01.dialogue" id="2_6ixn4"]
 [ext_resource type="Texture2D" uid="uid://dyhpqwoxnjcms" path="res://ui/textbox/dialogue-box.png" id="2_uoo0t"]
+[ext_resource type="PackedScene" uid="uid://cvgy7a8q5auyi" path="res://ui/dialogue_box/DialogueButton.tscn" id="3_1y02w"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="3_4geoi"]
 
 [node name="Dialogue" type="Node2D" unique_id=316962339 node_paths=PackedStringArray("dialogueLabel", "nameLabel", "choicesContainer", "decoration")]
 script = ExtResource("1_qra05")
 dialogueResource = ExtResource("2_6ixn4")
+dialogueButton = ExtResource("3_1y02w")
 dialogueLabel = NodePath("DialogueLabel")
 nameLabel = NodePath("NameLabel")
-choicesContainer = NodePath("HBoxContainer")
+choicesContainer = NodePath("VBoxContainer")
 decoration = NodePath("DialogueBox")
 
 [node name="NameLabel" type="RichTextLabel" parent="." unique_id=903381523]
-z_index = 8
+z_index = 7
 offset_left = 4.0
 offset_top = -2.0
 offset_right = 59.0
@@ -29,7 +31,7 @@ shortcut_keys_enabled = false
 justification_flags = 0
 
 [node name="DialogueLabel" type="RichTextLabel" parent="." unique_id=2022129268]
-z_index = 10
+z_index = 7
 custom_minimum_size = Vector2(189, 13)
 offset_left = 4.0
 offset_top = 7.0
@@ -42,10 +44,12 @@ text = "Lorem ipsum aa Lorem ipsum aaLorem ipsum aa Lorem ipsum aa Lorem ipsum a
 scroll_active = false
 
 [node name="DialogueBox" type="Sprite2D" parent="." unique_id=423684854]
-z_index = 7
+z_index = 6
 position = Vector2(150, 24)
 texture = ExtResource("2_uoo0t")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1838371196]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=495185432]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 298.0
+offset_bottom = 47.0
