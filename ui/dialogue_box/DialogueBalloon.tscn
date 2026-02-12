@@ -15,12 +15,20 @@ nameLabel = NodePath("NameLabel")
 choicesContainer = NodePath("VBoxContainer")
 decoration = NodePath("DialogueBox")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=495185432]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 298.0
+offset_bottom = 47.0
+mouse_filter = 2
+
 [node name="NameLabel" type="RichTextLabel" parent="." unique_id=903381523]
 z_index = 7
 offset_left = 4.0
 offset_top = -2.0
 offset_right = 59.0
 offset_bottom = 10.0
+mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_4geoi")
 bbcode_enabled = true
@@ -37,6 +45,7 @@ offset_left = 4.0
 offset_top = 7.0
 offset_right = 300.0
 offset_bottom = 47.0
+mouse_filter = 2
 theme_override_constants/line_separation = -4
 theme_override_fonts/normal_font = ExtResource("3_4geoi")
 bbcode_enabled = true
@@ -47,9 +56,3 @@ scroll_active = false
 z_index = 6
 position = Vector2(150, 24)
 texture = ExtResource("2_uoo0t")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=495185432]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 298.0
-offset_bottom = 47.0
