@@ -72,8 +72,7 @@ position = Vector2(181, 124)
 texture = ExtResource("10_2jexy")
 
 [node name="Dialogue" parent="." unique_id=316962339 instance=ExtResource("11_fxoad")]
-visible = false
-position = Vector2(8, 5)
+position = Vector2(8, 16)
 
 [editable path="SecretRoom"]
 [editable path="PickupableItem"]

@@ -21,6 +21,7 @@ offset_top = 2.0
 offset_right = 298.0
 offset_bottom = 47.0
 mouse_filter = 2
+theme_override_constants/separation = 0
 
 [node name="NameLabel" type="RichTextLabel" parent="." unique_id=903381523]
 z_index = 7
