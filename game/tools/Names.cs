@@ -39,6 +39,13 @@ public static class Names
         public static readonly StringName Save0 = "res://saves/save0.json";
     }
 
+    // Node paths from root
+    public static class NodePaths
+    {
+        public static readonly NodePath Popup = "/root/Main/GUI/Popup";
+        public static readonly NodePath DialogueBalloon = "/root/Main/GUI/Dialogue";
+    }
+
     // Json save sections
     public static class SaveSections
     {

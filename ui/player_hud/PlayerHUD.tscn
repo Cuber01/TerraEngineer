@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyfavbpc4vih7"]
+[gd_scene format=3 uid="uid://cyfavbpc4vih7"]
 
 [ext_resource type="Script" uid="uid://bxjpejkhwjl85" path="res://ui/player_hud/PlayerHUD.cs" id="1_0g8sc"]
 [ext_resource type="PackedScene" uid="uid://cl5jp0h4pm054" path="res://ui/player_hud/health_bar/HealthBar.tscn" id="1_wcxt4"]
 [ext_resource type="PackedScene" uid="uid://c24y7l605skah" path="res://ui/player_hud/weapon_select/WeaponSelect.tscn" id="2_0g8sc"]
 [ext_resource type="PackedScene" uid="uid://doi2a5xm3mqf5" path="res://ui/player_hud/essence_select/EssenceSelect.tscn" id="3_g7gli"]
 
-[node name="PlayerHUD" type="Node2D"]
+[node name="PlayerHUD" type="Node2D" unique_id=762574733]
 script = ExtResource("1_0g8sc")
 
-[node name="HealthBar" parent="." instance=ExtResource("1_wcxt4")]
+[node name="HealthBar" parent="." unique_id=434900103 instance=ExtResource("1_wcxt4")]
 offset_left = 13.0
 offset_right = 57.0
 
-[node name="WeaponSelect" parent="." instance=ExtResource("2_0g8sc")]
+[node name="WeaponSelect" parent="." unique_id=1460306163 instance=ExtResource("2_0g8sc")]
 position = Vector2(6, 6)
 
-[node name="EssenceSelect" parent="." instance=ExtResource("3_g7gli")]
+[node name="EssenceSelect" parent="." unique_id=1845521500 instance=ExtResource("3_g7gli")]
 position = Vector2(13, 6)

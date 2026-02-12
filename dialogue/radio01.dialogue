@@ -1,12 +1,11 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
+Jon: Now where could my pipe be?
 Choices:
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
+- In the fridge.
+	Jon: Nope.
+- On my desk.
+	Jon: Doesn't seem like it.
 - Start again => start
 - End the conversation => END
-Nathan: For more information see the online documentation.
+Jon: GARFIELD!!
 => END

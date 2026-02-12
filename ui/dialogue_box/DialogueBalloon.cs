@@ -2,14 +2,16 @@ using Godot;
 using DialogueManagerRuntime;
 using TerraEngineer;
 using TerraEngineer.game;
+using TerraEngineer.ui.player_hud;
 using TerraEngineer.ui.textbox;
 
 namespace TENamespace.ui.dialogue_box;
 
 public partial class DialogueBalloon : Node2D, IPopupable
 {
-	[Export] private Resource dialogueResource;
-	[Export] private string startTitle = "start";
+
+	private Resource dialogueResource;
+	private StringName startTitle;
 
 	[Export] private PackedScene dialogueButton;
 	[Export] private RichTextLabel dialogueLabel;
@@ -39,8 +41,11 @@ public partial class DialogueBalloon : Node2D, IPopupable
 		Controller.Update((float)delta);
 	}
 	
-	public void Display()
+	public void PlayDialogue(Resource dialogue, StringName title)
 	{
+		dialogueResource = dialogue;
+		startTitle = title;
+		
 		Show();
 		loadDialogue();
 	}
@@ -80,6 +85,9 @@ public partial class DialogueBalloon : Node2D, IPopupable
 			
 			waitingForChoice = true;
 			choicesContainer.Visible = true;
+			
+			// We let godot buttons handle input
+			Controller.AddOverride(Names.Actions.Attack, () => {});
 			showChoices();
 		}
 		else
@@ -95,12 +103,19 @@ public partial class DialogueBalloon : Node2D, IPopupable
 
 	private void showChoices()
 	{
+		int count = 0;
 		foreach (DialogueResponse response in currentLine.Responses)
 		{
 			DialogueButton choiceButton = (DialogueButton)dialogueButton.Instantiate();
 			choiceButton.Text = response.Text;
 			choiceButton.Pressed += () => onChoiceSelected(response);
 			choicesContainer.AddChild(choiceButton);
+
+			if (count == 0)
+			{
+				choiceButton.GrabFocus();
+			}
+			count++;
 		}
 	}
 
@@ -109,6 +124,9 @@ public partial class DialogueBalloon : Node2D, IPopupable
 		// Hide choices immediately upon selection
 		choicesContainer.Visible = false;
 		waitingForChoice = false;
+		
+		// We take back control of input
+		Controller.RemoveOverride(Names.Actions.Attack);
 
 		currentLine = await DialogueManager.GetNextDialogueLine(dialogueResource, response.NextId);
 		tryDisplayLine();	
@@ -119,4 +137,6 @@ public partial class DialogueBalloon : Node2D, IPopupable
 		currentLine = await DialogueManager.GetNextDialogueLine(dialogueResource, currentLine.NextId);
 		tryDisplayLine();
 	}
+
+
 }

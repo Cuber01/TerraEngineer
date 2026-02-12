@@ -1,14 +1,17 @@
 using Godot;
 using System;
+using System.Net.Mime;
 using System.Xml;
 using TerraEngineer;
 using TerraEngineer.game;
+using TerraEngineer.ui.player_hud;
 using TerraEngineer.ui.textbox;
 
 public partial class Popup : Node2D, IPopupable
 {
     public Controller Controller { get; set; }
     
+    [Export] private RichTextLabel label;
     [Export] private Sprite2D popupBoxSprite;
     
     private readonly Vector2 screenSize = new Vector2(320, 190);
@@ -28,23 +31,27 @@ public partial class Popup : Node2D, IPopupable
         Controller.Update((float)delta);
     }
     
-    public void SetupControls()
+    public void ShowPopup(StringName message)
     {
-        Controller = new Controller();
-        Controller.AddAction(Names.Actions.Attack, Close);
-    }
-    
-    public void Display()
-    {
+        label.Text = message;
+       
         Visible = true;
         GetTree().Paused = true;
         closingAllowed = false;
     }
     
+    public void SetupControls()
+    {
+        Controller = new Controller();
+        Controller.AddAction(Names.Actions.Attack, Close);
+    }
+
     public void Close()
     {
         Controller.GiveBackControl();
         Visible = false;
         GetTree().Paused = false;
     }
+
+
 }

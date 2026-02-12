@@ -1,23 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfhyb11tyqtw7"]
+[gd_scene format=3 uid="uid://cfhyb11tyqtw7"]
 
 [ext_resource type="Script" uid="uid://vnlh3pdbdh8q" path="res://game/WorldManager.gd" id="1_8gaax"]
 [ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/creatures/player/Player.tscn" id="3_2fjjk"]
 [ext_resource type="PackedScene" uid="uid://cyfavbpc4vih7" path="res://ui/player_hud/PlayerHUD.tscn" id="3_ljq5a"]
 [ext_resource type="PackedScene" uid="uid://dfrpu6pvsfai0" path="res://game/level_preparer/LevelPreparer.tscn" id="4_ljq5a"]
+[ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://ui/textbox/Popup.tscn" id="5_yo8gm"]
+[ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://ui/dialogue_box/DialogueBalloon.tscn" id="6_fk7ia"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("extPlayer")]
+[node name="Main" type="Node2D" unique_id=1624566616 node_paths=PackedStringArray("extPlayer")]
 script = ExtResource("1_8gaax")
 extPlayer = NodePath("Player")
 
-[node name="Player" parent="." instance=ExtResource("3_2fjjk")]
+[node name="Player" parent="." unique_id=1249233617 instance=ExtResource("3_2fjjk")]
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1200301963]
 position = Vector2(0, -5)
 
-[node name="LevelPreparer" parent="." instance=ExtResource("4_ljq5a")]
+[node name="LevelPreparer" parent="." unique_id=2113395370 instance=ExtResource("4_ljq5a")]
 position = Vector2(0, -1)
+tileNames = null
 
-[node name="GUI" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1075649017]
 
-[node name="PlayerHUD" parent="GUI" instance=ExtResource("3_ljq5a")]
+[node name="PlayerHUD" parent="GUI" unique_id=930722298 instance=ExtResource("3_ljq5a")]
 z_index = 999
+
+[node name="Popup" parent="GUI" unique_id=1887763754 instance=ExtResource("5_yo8gm")]
+visible = false
+position = Vector2(63, 16)
+
+[node name="Dialogue" parent="GUI" unique_id=316962339 instance=ExtResource("6_fk7ia")]
+visible = false
+position = Vector2(8, 16)

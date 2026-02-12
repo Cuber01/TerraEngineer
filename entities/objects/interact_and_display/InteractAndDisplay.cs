@@ -1,18 +1,44 @@
 using Godot;
 using System;
+using TENamespace.ui.dialogue_box;
 using TerraEngineer;
 using TerraEngineer.ui.textbox;
 
 public partial class InteractAndDisplay : Area2D
 {
+	public enum PopupType
+	{
+		Dialogue,
+		Popup
+	}
+	
+	[Export] private PopupType popupType;
+	[Export] private Resource dialogueResource;
+	[Export] private StringName popupText;
+	[Export] private StringName startTitle;
+	
 	private Player player;
-	[Export] private Node2D displayer;
+	private Popup popupTemplate;
+	private DialogueBalloon baloonTemplate;
 
+	public override void _Ready()
+	{
+		popupTemplate = GetNode<Popup>(Names.NodePaths.Popup);
+		baloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+	}
+	
 	private void display()
 	{
-		IPopupable popup = (IPopupable)displayer;
-		player.Controller.SwitchControl(popup.Controller);
-		popup.Display();
+		if (popupType == PopupType.Dialogue)
+		{
+			baloonTemplate.PlayDialogue(dialogueResource, startTitle);
+			player.Controller.SwitchControl(baloonTemplate.Controller);
+		}
+		else if (popupType == PopupType.Popup)
+		{
+			popupTemplate.ShowPopup(popupText);
+			player.Controller.SwitchControl(popupTemplate.Controller);
+		}
 	}
 
 	private void onPlayerEntered(Player player)

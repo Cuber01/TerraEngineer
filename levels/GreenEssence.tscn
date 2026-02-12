@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://entities/objects/pickupable_item/green_essence.tres" id="7_3mq2g"]
 [ext_resource type="PackedScene" uid="uid://ca31480u7y56i" path="res://entities/objects/interact_and_display/InteractAndDisplay.tscn" id="8_cn40b"]
 [ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://ui/textbox/Popup.tscn" id="9_2jexy"]
+[ext_resource type="Resource" uid="uid://ckkgpylkuisom" path="res://dialogue/radio01.dialogue" id="9_gmd8g"]
 [ext_resource type="Texture2D" uid="uid://cjps5m4sthw74" path="res://assets/scribbles.png" id="10_2jexy"]
 [ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://ui/dialogue_box/DialogueBalloon.tscn" id="11_fxoad"]
 
@@ -52,9 +53,10 @@ position = Vector2(254, 124)
 itemName = &"green_essence"
 ItemTexture = ExtResource("7_3mq2g")
 
-[node name="InteractAndDisplay" parent="." unique_id=1725825487 node_paths=PackedStringArray("displayer") instance=ExtResource("8_cn40b")]
+[node name="InteractAndDisplay" parent="." unique_id=1725825487 instance=ExtResource("8_cn40b")]
 position = Vector2(180, 128)
-displayer = NodePath("../Dialogue")
+dialogueResource = ExtResource("9_gmd8g")
+startTitle = &"start"
 
 [node name="CollisionShape2D" parent="InteractAndDisplay" index="0"]
 position = Vector2(1, -4)
@@ -72,6 +74,7 @@ position = Vector2(181, 124)
 texture = ExtResource("10_2jexy")
 
 [node name="Dialogue" parent="." unique_id=316962339 instance=ExtResource("11_fxoad")]
+visible = false
 position = Vector2(8, 16)
 
 [editable path="SecretRoom"]
