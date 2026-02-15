@@ -19,20 +19,20 @@ public partial class InteractAndDisplay : Area2D
 	
 	private Player player;
 	private Popup popupTemplate;
-	private DialogueBalloon baloonTemplate;
+	private DialogueBalloon balloonTemplate;
 
 	public override void _Ready()
 	{
 		popupTemplate = GetNode<Popup>(Names.NodePaths.Popup);
-		baloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+		balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
 	}
 	
 	private void display()
 	{
 		if (popupType == PopupType.Dialogue)
 		{
-			baloonTemplate.PlayDialogue(dialogueResource, startTitle);
-			player.Controller.SwitchControl(baloonTemplate.Controller);
+			balloonTemplate.PlayDialogue(dialogueResource, startTitle);
+			player.Controller.SwitchControl(balloonTemplate.Controller);
 		}
 		else if (popupType == PopupType.Popup)
 		{
