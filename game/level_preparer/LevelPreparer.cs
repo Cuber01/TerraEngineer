@@ -26,6 +26,20 @@ public partial class LevelPreparer : Node2D
 
     public void Prepare(Node2D newLevel)
     {
+        prepareMeta(newLevel);
+        prepareTiles(newLevel);
+    }
+
+    private void prepareMeta(Node2D newLevel)
+    {
+        if (!newLevel.HasMeta(Names.Properties.LevelName))
+        {
+            newLevel.SetMeta(Names.Properties.LevelName, newLevel.SceneFilePath.GetFile());
+        }
+    }
+    
+    private void prepareTiles(Node2D newLevel)
+    {
         TileMapLayer specialLayer = newLevel.GetNodeOrNull<TileMapLayer>(Names.Node.SpecialTiles);
         if(specialLayer == null)
             return;
@@ -44,8 +58,8 @@ public partial class LevelPreparer : Node2D
             {
                 TileData data = specialLayer.GetCellTileData(coords);
                 spawnTile( (StringName)data.GetCustomData(Names.Properties.SpecialType), 
-                                coords,
-                                newLevel, specialLayer);
+                    coords,
+                    newLevel, specialLayer);
             }
         }
 
