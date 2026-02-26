@@ -156,7 +156,7 @@ public partial class KingFrog : Creature
         private int amountSpawned = 0;
         private float minTimeSpawn = 1f;
         private float maxTimeSpawn = 6f;
-        private int frogHealth = 5;
+        private int frogHealth = 2;
         
         private bool finished = false;
         

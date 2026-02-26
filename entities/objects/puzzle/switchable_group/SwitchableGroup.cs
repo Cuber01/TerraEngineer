@@ -50,6 +50,11 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         ((ISwitchable)this).Init(this);
         
         updateGroupPalette();
+        
+        if (GroupSwitchedOn)
+        {
+            OnSwitch(GroupSwitchedOn);
+        }
     }
 
     public void OnSwitch(bool switchedOn)
@@ -71,11 +76,10 @@ public partial class SwitchableGroup : Node2D, ISwitchable
             ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, _blocksGroupPalette);
         }
         
-        
         foreach (var switcher in SwitchersNeededToSwitch)
         {
-            AnimatedSprite2D sprite = switcher.GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-            ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);
+            AnimatedSprite2D sprite = switcher.GetNodeOrNull<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
+            ((ShaderMaterial)sprite?.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);
         }
     }
 }
