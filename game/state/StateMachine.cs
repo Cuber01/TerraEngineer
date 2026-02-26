@@ -24,9 +24,9 @@ public class StateMachine<T>
         CurrentState.Enter();
     }
 
-    public void AddTransition(State<T> from, State<T> to, System.Func<bool> condition)
+    public void AddTransition(State<T> from, State<T> to, System.Func<bool> condition, float probability=1f)
     {
-        Transition<T> newTransition = new Transition<T>(to, condition, from); 
+        Transition<T> newTransition = new Transition<T>(to, condition, from, probability); 
         localTransitions.Add(newTransition);
         if (from == CurrentState)
         {
@@ -34,8 +34,8 @@ public class StateMachine<T>
         }
     }
         
-    public void AddGlobalTransition(State<T> to, System.Func<bool> condition) => 
-        globalTransitions.Add(new Transition<T>(to, condition, null));
+    public void AddGlobalTransition(State<T> to, System.Func<bool> condition, float probability=1f) => 
+        globalTransitions.Add(new Transition<T>(to, condition, null, probability));
 
     public void Update(float dt)
     {
@@ -94,21 +94,45 @@ public class StateMachine<T>
 
         if (availableTransitions.Count == 0)
             return null;
+        
         else if (availableTransitions.Count == 1)
             return availableTransitions[0];
+        
         else
         {
-            int index = MathT.RandomInt(0, availableTransitions.Count - 1);
-            return availableTransitions[index];
+            return chooseRandomTransition(availableTransitions);
         }
     }
 
+    private Transition<T> chooseRandomTransition(List<Transition<T>> availableTransitions)
+    {
+        #if DEBUG
+        float totalProbability = availableTransitions.Sum(t => t.Probability);
+        if (totalProbability != 1f)
+            throw new Exception("Summed probabilities of possible do not sum to 100%");
+        #endif
+
+        float cumulativeChance = 0f;
+        float roll = MathT.RandomFloat(0,1);
+        foreach (var transition in availableTransitions)
+        {
+            cumulativeChance += transition.Probability;
+            if (roll < cumulativeChance)
+            {
+                return transition;
+            }
+        }
+
+        throw new Exception("Couldn't find transition");
+    }
+
     // If from=null it's a global transition
-    private class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from)
+    private class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from, float probability)
     {
         public readonly State<U> From = from;
         public readonly State<U> To = to;
         public readonly System.Func<bool> Condition = condition;
+        public readonly float Probability = probability;
     }
     
 }

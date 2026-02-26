@@ -29,7 +29,7 @@ position = Vector2(276, 168)
 position = Vector2(36, 168)
 
 [node name="KingFrog" parent="." unique_id=236755459 node_paths=PackedStringArray("arenaBounds") instance=ExtResource("4_ppyts")]
-position = Vector2(156, 160)
+position = Vector2(156, 0)
 arenaBounds = NodePath("../XBounds")
 
 [node name="SwitcherArea" parent="." unique_id=921846283 instance=ExtResource("7_ppyts")]

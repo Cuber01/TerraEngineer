@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using TENamespace;
 using TENamespace.basic.builders.creature_builder;
 using TerraEngineer;
@@ -33,16 +34,16 @@ public partial class KingFrog : Creature
     
     public override void Init()
     {
-        int halfMySize = (int)Math.Ceiling(myXSize / 2f);
-        float xMaxRight = arenaBounds.XRight - halfMySize;
-        float xMaxLeft = arenaBounds.XLeft + halfMySize;
-        float xMiddle = (arenaBounds.XRight+arenaBounds.XLeft)/2;
-        jumpState.Positions = [xMaxLeft, xMiddle, xMaxRight];
+        // int halfMySize = (int)Math.Ceiling(myXSize / 2f);
+        // float xMaxRight = arenaBounds.XRight - halfMySize;
+        // float xMaxLeft = arenaBounds.XLeft + halfMySize;
+        // float xMiddle = (arenaBounds.XRight+arenaBounds.XLeft)/2;
+        // jumpState.Positions = [xMaxLeft, xMiddle, xMaxRight];
         
         fsm = new StateMachine<KingFrog>(this, idleState);
-        fsm.AddTransition(idleState, jumpState, idleState.TimerCondition);
-        fsm.AddTransition(jumpState, idleState, jumpState.IsFinished);
-        fsm.AddTransition(jumpState, spawnState, jumpState.IsFinished);
+        fsm.AddTransition(idleState, jumpState, idleState.Condition);
+        fsm.AddTransition(jumpState, idleState, jumpState.IsFinished, 0.7f);
+        fsm.AddTransition(jumpState, spawnState, jumpState.IsFinished, 0.3f);
         fsm.AddTransition(jumpState, smashState, canSmash);
         fsm.AddTransition(smashState, idleState, smashState.IsFinished);
         fsm.AddTransition(spawnState, idleState, spawnState.IsFinished);
@@ -57,6 +58,7 @@ public partial class KingFrog : Creature
         CM.UpdateComponents((float)delta);
         
         HandleMove();
+        FlipIfHitWall();
     }
     
     protected override void FlipEffect()
@@ -72,81 +74,50 @@ public partial class KingFrog : Creature
 
     public class JumpState : State<KingFrog>
     {
-        public enum ArenaPos
-        {
-            Left=0,
-            Middle=1,
-            Right=2,
-        }
-
-        public ArenaPos AmAt = ArenaPos.Middle;
-
-        public List<float> Positions = new(); // [XMaxLeft, XMiddle, XMaxRight]
-
-        private float goTo;
-        private float speedModifier = 1f;
-
-        private bool finished = false;
-        
-        private const float JumpModifierPerPixel = 0.005f;
+        public Func<bool> LandedOnFloor => () => isLandingOnFloor;
+        private bool isLandingOnFloor = false;
+        private void landedOnFloor() => isLandingOnFloor = true;
+        public bool IsFinished() => isLandingOnFloor;
         
         public override void Enter()
         {
-            // Choose where to jump
-            ArenaPos wasAt = AmAt;
-            List<int> chooseFrom = [0, 1, 2];
-            chooseFrom.RemoveAt((int)AmAt); // Do not choose current location
-            AmAt = (ArenaPos)(int)MathT.RandomChooseList(chooseFrom);
-
-
-            if ((int)AmAt > (int)wasAt)
-            {
-                Actor.Flip(DirectionX.Right);
-            }
-            else Actor.Flip(DirectionX.Left);
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor += landedOnFloor;
+            isLandingOnFloor = false;
             
-            goTo = Positions[(int)AmAt];
-
-            float jumpModifier = 1f;
-            if (Math.Abs((int)AmAt - (int)wasAt) > 1)
-            {
-                // big jumpino
-                jumpModifier = 1.25f;
-                speedModifier = 1.55f;
-            }
-            
-            Actor.CM.GetComponent<Jump>().AttemptJump(jumpModifier);
-            Actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
+            Actor.CM.GetComponent<Jump>().AttemptJump( MathT.RandomInt(0,1)==1 ? 1.2f : 1f);
         }
-
+        
         public override void Update( float dt)
         {
-            Actor.CM.GetComponent<Move>().WalkToPoint(goTo, speedModifier);
-        }
-
-        public override void Exit()
-        {
-            if(AmAt == ArenaPos.Left)
-                Actor.Flip(DirectionX.Right);
-            else if(AmAt == ArenaPos.Right)
-                Actor.Flip(DirectionX.Left);
-                
-            
-            Actor.CM.GetComponent<Gravity>().LandedOnFloor -= Finished;
-            finished = false;
-            speedModifier = 1f;
+            Actor.CM.GetComponent<Move>().Walk(Actor.Facing, dt);
         }
         
-        public bool IsFinished() => finished;
-        public void Finished() { finished = true; }
+        public override void Exit()
+        {
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor -= landedOnFloor;
+        }
     }
     
-    public class IdleState : TimedState<KingFrog>
+    public class IdleState : State<KingFrog>
     {
+        private float time = 0;
+        private float delay = 0.5f;
+
         public override void Enter()
         {
-            base.Enter();
-            Delay = 0.5f;
+            time = 0;
+        }
+
+        public override void Update(float dt) {
+            if (Actor.IsOnFloor())
+            {
+                time += dt;    
+            }
+        }
+    
+        public bool Condition()
+        {
+            return (time >= delay && Actor.IsOnFloor());
         }
     }
     
@@ -155,7 +126,7 @@ public partial class KingFrog : Creature
         private int amountToSpawn = 3;
         private int amountSpawned = 0;
         private float minTimeSpawn = 1f;
-        private float maxTimeSpawn = 6f;
+        private float maxTimeSpawn = 2f;
         private int frogHealth = 2;
         
         private bool finished = false;
@@ -200,7 +171,6 @@ public partial class KingFrog : Creature
         }
         
         public bool IsFinished() => finished;
-        public void Finished() { finished = true; }
     }
     
     public class SmashState : State<KingFrog>
@@ -211,6 +181,7 @@ public partial class KingFrog : Creature
         public override void Enter()
         {
             Actor.velocity.Y = 0;
+            Actor.velocity.X = 0;
             Actor.CM.GetComponent<Gravity>().GravityForce *= gravityModifier;
             Actor.CM.GetComponent<Gravity>().LandedOnFloor += Finished;
         }

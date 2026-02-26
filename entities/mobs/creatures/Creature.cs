@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using TENamespace.health;
 using Shader = TENamespace.basic.shader.Shader;
 
@@ -46,5 +47,6 @@ public partial class Creature : Entity
             }
         }
     }
+    
 
 }

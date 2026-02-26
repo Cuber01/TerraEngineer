@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c664c7d5b8qgx"]
+[gd_scene format=3 uid="uid://c664c7d5b8qgx"]
 
 [ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_0c618"]
 [ext_resource type="Texture2D" uid="uid://q64l41cvrhp5" path="res://entities/mobs/creatures/king_frog/king-frog.png" id="2_eijyq"]
@@ -28,7 +28,7 @@ size = Vector2(22, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4uap"]
 size = Vector2(20, 19)
 
-[node name="KingFrog" type="CharacterBody2D" node_paths=PackedStringArray("playerDetector", "CM", "Sprite")]
+[node name="KingFrog" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("playerDetector", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_0c618")
 myXSize = 22
@@ -36,38 +36,38 @@ playerDetector = NodePath("PlayerDetector")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1245072297]
 sprite_frames = SubResource("SpriteFrames_1vp5w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=110568154]
 shape = SubResource("RectangleShape2D_n4g3d")
 
-[node name="PlayerDetector" type="RayCast2D" parent="."]
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=1309772282]
 target_position = Vector2(0, 100)
 collision_mask = 2
 
-[node name="ComponentManager" parent="." instance=ExtResource("3_tw2qj")]
+[node name="ComponentManager" parent="." unique_id=361461068 instance=ExtResource("3_tw2qj")]
 
-[node name="JumpComponent" parent="ComponentManager" instance=ExtResource("4_ltn64")]
+[node name="JumpComponent" parent="ComponentManager" unique_id=80657099 instance=ExtResource("4_ltn64")]
 jumpVelocity = 120.0
 MaxJumps = 1
 
-[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("5_1s1ba")]
-speed = 60.0
-acceleration = 1.0
+[node name="MoveComponent" parent="ComponentManager" unique_id=866251039 instance=ExtResource("5_1s1ba")]
+speed = 80.0
+acceleration = 10.0
 friction = 10.0
 errorMargin = 0.0
 
-[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("6_gybbv")]
+[node name="HealthComponent" parent="ComponentManager" unique_id=1112742135 instance=ExtResource("6_gybbv")]
 MaxHealth = 50
 
-[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("7_eguul")]
+[node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("7_eguul")]
 
-[node name="CreatureSpawnerComponent" parent="ComponentManager" instance=ExtResource("8_tw2qj")]
+[node name="CreatureSpawnerComponent" parent="ComponentManager" unique_id=998830598 instance=ExtResource("8_tw2qj")]
 position = Vector2(6, 0)
 Scene = ExtResource("9_ltn64")
 
-[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("8_4q3up")]
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=1881481707 instance=ExtResource("8_4q3up")]
 
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
 position = Vector2(0, 1.5)

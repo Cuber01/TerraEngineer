@@ -81,10 +81,12 @@ public partial class Entity : CharacterBody2D
         }
         Dead = true;
     }
-
-    protected void HandleMove()
+    
+    
+    public void HandleMove()
     {
         Velocity = new Vector2(MathF.Truncate(velocity.X), MathF.Truncate(velocity.Y));
         MoveAndSlide();
     }
+
 }
