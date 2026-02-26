@@ -2,7 +2,6 @@ using Godot;
 using DialogueManagerRuntime;
 using TerraEngineer;
 using TerraEngineer.game;
-using TerraEngineer.ui.player_hud;
 using TerraEngineer.ui.textbox;
 
 namespace TENamespace.ui.dialogue_box;

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Godot;
 using TENamespace.basic.particle_builder;
-using TerraEngineer.entities;
-using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
 namespace TENamespace.advanced.terraform_gun;

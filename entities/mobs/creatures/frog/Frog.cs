@@ -1,9 +1,7 @@
 using Godot;
 using System;
 using TENamespace;
-using TENamespace.health;
 using TerraEngineer;
-using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
 [Tool]

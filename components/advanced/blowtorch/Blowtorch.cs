@@ -1,7 +1,6 @@
 using Godot;
 using TENamespace.advanced.main_gun_wrapper;
 using TENamespace.projectile_builder;
-using TerraEngineer.entities.projectiles;
 
 namespace TENamespace.advanced.blowtorch;
 

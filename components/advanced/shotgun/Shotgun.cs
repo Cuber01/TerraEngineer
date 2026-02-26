@@ -1,7 +1,5 @@
-using Godot;
 using TENamespace.advanced.main_gun_wrapper;
 using TENamespace.projectile_builder;
-using Vector2 = System.Numerics.Vector2;
 
 namespace TENamespace.advanced.shotgun;
 

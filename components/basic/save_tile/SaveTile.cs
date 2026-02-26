@@ -1,7 +1,6 @@
 using Godot;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
-using Array = Godot.Collections.Array;
 
 namespace TENamespace.basic.save_tile;
 

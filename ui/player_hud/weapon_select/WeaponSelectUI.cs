@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 using TENamespace.advanced.main_gun_wrapper;
 using TerraEngineer;
 using TerraEngineer.ui.player_hud;

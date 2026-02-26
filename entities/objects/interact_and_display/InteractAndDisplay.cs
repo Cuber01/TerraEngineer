@@ -1,8 +1,6 @@
 using Godot;
-using System;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer;
-using TerraEngineer.ui.textbox;
 
 public partial class InteractAndDisplay : Area2D
 {

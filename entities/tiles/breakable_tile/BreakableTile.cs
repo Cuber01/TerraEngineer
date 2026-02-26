@@ -1,6 +1,4 @@
-using Godot;
 using TENamespace.basic.save_tile;
-using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.entities.tiles;
 

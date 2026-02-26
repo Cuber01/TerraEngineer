@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;

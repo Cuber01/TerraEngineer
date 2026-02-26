@@ -1,13 +1,9 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using TENamespace.advanced;
 using TENamespace.advanced.main_gun_wrapper;
 using TENamespace.advanced.terraform_gun;
-using TENamespace.basic.particle_builder;
-using TENamespace.projectile_builder;
 using TerraEngineer.entities.mobs;
-using TerraEngineer.entities.objects;
 
 public enum GunHandleType
 {

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Godot;
-using TENamespace;
 using TENamespace.advanced.terraform_gun;
 using TerraEngineer;
 using TerraEngineer.entities.objects;

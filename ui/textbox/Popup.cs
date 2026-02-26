@@ -1,10 +1,7 @@
 using Godot;
 using System;
-using System.Net.Mime;
-using System.Xml;
 using TerraEngineer;
 using TerraEngineer.game;
-using TerraEngineer.ui.player_hud;
 using TerraEngineer.ui.textbox;
 
 public partial class Popup : Node2D, IPopupable

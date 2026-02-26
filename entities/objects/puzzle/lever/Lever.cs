@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects.puzzle;

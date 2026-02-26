@@ -1,5 +1,3 @@
-using System;
-
 namespace TerraEngineer.entities.objects.puzzle;
 
 public interface ISwitcher

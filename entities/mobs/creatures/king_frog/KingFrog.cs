@@ -1,17 +1,13 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.Security.AccessControl;
 using TENamespace;
 using TENamespace.basic.builders.creature_builder;
 using TerraEngineer;
-using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
 [Tool]
 public partial class KingFrog : Creature
 {
-    [Export] private XBounds arenaBounds;
     [Export] private int myXSize;
     [Export] private RayCast2D playerDetector;
     
@@ -23,7 +19,6 @@ public partial class KingFrog : Creature
     // Stretch: tongue attack
     // If you do a secret you can get green essence early and play the boss fight with a heart plant
     // Green essence room: requires using green essence to leave, make heartplant or die to damaging blocks
-    // TODO: Make it so that he can smash only if his velocity is already < 0
     
     private StateMachine<KingFrog> fsm;
     
@@ -34,12 +29,6 @@ public partial class KingFrog : Creature
     
     public override void Init()
     {
-        // int halfMySize = (int)Math.Ceiling(myXSize / 2f);
-        // float xMaxRight = arenaBounds.XRight - halfMySize;
-        // float xMaxLeft = arenaBounds.XLeft + halfMySize;
-        // float xMiddle = (arenaBounds.XRight+arenaBounds.XLeft)/2;
-        // jumpState.Positions = [xMaxLeft, xMiddle, xMaxRight];
-        
         fsm = new StateMachine<KingFrog>(this, idleState);
         fsm.AddTransition(idleState, jumpState, idleState.Condition);
         fsm.AddTransition(jumpState, idleState, jumpState.IsFinished, 0.7f);

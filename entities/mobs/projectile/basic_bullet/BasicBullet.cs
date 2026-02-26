@@ -1,5 +1,3 @@
-using Godot;
-
 namespace TerraEngineer.entities.projectiles;
 
 public partial class BasicBullet : Projectile

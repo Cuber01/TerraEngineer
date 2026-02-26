@@ -1,7 +1,6 @@
 using Godot;
 using TENamespace.basic.builders;
 using TerraEngineer.entities.objects;
-using TerraEngineer.entities.projectiles;
 
 namespace TENamespace.basic.particle_builder;
 

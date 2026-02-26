@@ -1,11 +1,8 @@
 using DialogueManagerRuntime;
 using Godot;
 using System;
-using System.Numerics;
 using TENamespace;
-using TENamespace.health;
 using TENamespace.player_inventory;
-using TENamespace.projectile_builder;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;

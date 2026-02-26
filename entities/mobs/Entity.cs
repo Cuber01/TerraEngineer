@@ -3,7 +3,6 @@
 using Godot;
 using System;
 using TENamespace;
-using TENamespace.health;
 
 namespace TerraEngineer.entities.mobs;
 
@@ -11,6 +10,8 @@ namespace TerraEngineer.entities.mobs;
 [Tool]
 public partial class Entity : CharacterBody2D
 {
+    [Signal] public delegate void DiedEventHandler();
+    
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;
     [Export] public bool GodMode = false;
@@ -28,7 +29,7 @@ public partial class Entity : CharacterBody2D
     public Vector2 velocity;
     
     // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
-    public bool Dead  = false;
+    public bool Dead = false;
     
     public override void _Ready()
     {
@@ -77,6 +78,7 @@ public partial class Entity : CharacterBody2D
     {
         if (!Dead)
         {
+            EmitSignal(SignalName.Died);
             CallDeferred(Node.MethodName.QueueFree);    
         }
         Dead = true;

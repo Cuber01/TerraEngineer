@@ -1,9 +1,7 @@
 using Godot;
 using System;
-using System.Security.AccessControl;
 using TENamespace;
 using TerraEngineer;
-using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
 [Tool]
