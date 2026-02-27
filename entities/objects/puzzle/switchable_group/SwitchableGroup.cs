@@ -31,6 +31,7 @@ public partial class SwitchableGroup : Node2D, ISwitchable
     }
     private Texture2D _blocksGroupPalette;
     
+
     [Export] public StringName[] SavePropertiesNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchersNeededToSwitch { get; set; }
     [Export] public Node2D[] SwitchableGroupMembers;
@@ -81,4 +82,13 @@ public partial class SwitchableGroup : Node2D, ISwitchable
             ((ShaderMaterial)sprite?.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);
         }
     }
+
+    // Signal that overrides usual checks
+    private void onSpecialSignal()
+    {
+        GroupSwitchedOn = !GroupSwitchedOn;
+        OnSwitch(GroupSwitchedOn);
+    }
+
+ 
 }

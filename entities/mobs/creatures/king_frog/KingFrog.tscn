@@ -31,9 +31,9 @@ size = Vector2(20, 19)
 [node name="KingFrog" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("playerDetector", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_0c618")
-myXSize = 22
 playerDetector = NodePath("PlayerDetector")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1245072297]
@@ -59,7 +59,7 @@ friction = 10.0
 errorMargin = 0.0
 
 [node name="HealthComponent" parent="ComponentManager" unique_id=1112742135 instance=ExtResource("6_gybbv")]
-MaxHealth = 50
+MaxHealth = 1
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("7_eguul")]
 

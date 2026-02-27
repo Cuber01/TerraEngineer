@@ -21,6 +21,8 @@ public static class Names
         public static readonly StringName CurrentLevel = "CurrentLevel";
         public static readonly StringName LevelName = "level_name";
         public static readonly StringName SpecialType = "special_type";
+        public static readonly StringName Bosses = "bosses";
+        public static readonly StringName KingFrog = "king_frog";
     }
 
     // Shader data

@@ -5,21 +5,19 @@ using TENamespace.basic.builders.creature_builder;
 using TerraEngineer;
 using TerraEngineer.entities.mobs.creatures;
 
+// Phases:
+// Jump => Smash or Idle
+// Idle => Spawn or Jump
+// Smash => Jump
+// Spawn => Jump
+// Stretch: tongue attack
+// If you do a secret you can get green essence early and play the boss fight with a heart plant
+// Green essence room: requires using green essence to leave, make heartplant or die to damaging blocks
+
 [Tool]
 public partial class KingFrog : Creature
 {
-    [Export] private int myXSize;
     [Export] private RayCast2D playerDetector;
-    
-    // Phases:
-    // Jump => Smash or Idle
-    // Idle => Spawn or Jump
-    // Smash => Jump
-    // Spawn => Jump
-    // Stretch: tongue attack
-    // If you do a secret you can get green essence early and play the boss fight with a heart plant
-    // Green essence room: requires using green essence to leave, make heartplant or die to damaging blocks
-    
     private StateMachine<KingFrog> fsm;
     
     private JumpState jumpState = new JumpState();
@@ -186,6 +184,12 @@ public partial class KingFrog : Creature
         
         public bool IsFinished() => finished;
         public void Finished() { finished = true; }
+    }
+
+    public override void Die()
+    {
+        SaveData.SetValue(Names.Properties.Bosses, Names.Properties.KingFrog, true);
+        base.Die();
     }
     
     private bool canSmash() => (playerDetector.IsColliding() && velocity.Y > 0);
