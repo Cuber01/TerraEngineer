@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c5pb62b4yvo1m"]
+
+[ext_resource type="Script" uid="uid://pi3eqh6a2crr" path="res://entities/objects/puzzle/switcher_area/SwitcherArea.cs" id="1_7g62k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6o18"]
+size = Vector2(40, 20)
+
+[node name="SwitcherArea" type="Area2D" unique_id=921846283]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_7g62k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1208980969]
+shape = SubResource("RectangleShape2D_q6o18")
+
+[connection signal="body_entered" from="." to="." method="onPlayerEntered"]

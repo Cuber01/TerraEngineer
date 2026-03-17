@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using Godot;
+using System;
 
 namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 
 [Tool]
-public partial class SwitchableGroup : Node2D, ISwitchable
+public partial class SwitchableGroup : Node2D
 {
     [ExportToolButton("Update group palettes")]
     public Callable MyToolButton => Callable.From(updateGroupPalette);
@@ -30,11 +31,14 @@ public partial class SwitchableGroup : Node2D, ISwitchable
         }
     }
     private Texture2D _blocksGroupPalette;
-    
 
-    [Export] public StringName[] SavePropertiesNeededToSwitch { get; set; }
-    [Export] public Node2D[] SwitchersNeededToSwitch { get; set; }
-    [Export] public Node2D[] SwitchableGroupMembers;
+
+    // Groups of switchers - if one of the groups is switched, all switchables are
+    [Export] public Node2D[] SwitcherGroups = Array.Empty<Node2D>();
+    
+    // Switchables switched on or off
+    [Export] public Node2D[] SwitchableGroupMembers = Array.Empty<Node2D>();
+    
     [Export] public bool GroupSwitchedOn { get; set; }
 
     public List<ISwitcher> Switchers { get; set; }
@@ -47,7 +51,7 @@ public partial class SwitchableGroup : Node2D, ISwitchable
             return;
         #endif
         
-        ((ISwitchable)this).Init(this);
+        
         
         updateGroupPalette();
         
@@ -61,7 +65,7 @@ public partial class SwitchableGroup : Node2D, ISwitchable
     {
         foreach (var switchable in SwitchableGroupMembers)
         {
-            ((ISwitchableDependent)switchable).OnSwitch(switchedOn);
+            ((ISwitchable)switchable).OnSwitch(switchedOn);
         }
     }
     
@@ -76,10 +80,19 @@ public partial class SwitchableGroup : Node2D, ISwitchable
             ((ShaderMaterial)sprite.Material)?.SetShaderParameter(Names.Shader.Palette, _blocksGroupPalette);
         }
         
-        foreach (var switcher in SwitchersNeededToSwitch)
+        foreach (var node in SwitcherGroups)
         {
-            AnimatedSprite2D sprite = switcher.GetNodeOrNull<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-            ((ShaderMaterial)sprite?.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);
+            SwitcherGroup switcherGroup = (SwitcherGroup)node;
+            if (!switcherGroup.IsInit)
+            {
+                switcherGroup.Init(this);
+            }
+            
+            foreach (var switcher in switcherGroup.SwitchersToSwitch)
+            {
+                AnimatedSprite2D sprite = ((Node2D)switcher).GetNodeOrNull<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
+                ((ShaderMaterial)sprite?.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);    
+            }
         }
     }
 

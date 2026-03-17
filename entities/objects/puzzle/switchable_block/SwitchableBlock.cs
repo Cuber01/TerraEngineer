@@ -5,7 +5,7 @@ using TerraEngineer.entities.objects.puzzle;
 namespace TerraEngineer.entities.tiles.switchable_tile;
 
 [Tool]
-public partial class SwitchableBlock : Entity, ISwitchableDependent
+public partial class SwitchableBlock : Entity, ISwitchable
 {
     [Export] private CollisionShape2D collider;
     [Export] private bool DefaultState

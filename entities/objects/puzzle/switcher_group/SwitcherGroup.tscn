@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c51wlvsjnjx1a"]
+
+[ext_resource type="Script" uid="uid://beku4j7iar8r6" path="res://entities/objects/puzzle/switchable_group/SwitcherGroup.cs" id="1_c61lp"]
+
+[node name="SwitcherGroup" type="Node2D" unique_id=689601484 node_paths=PackedStringArray("SwitchersToSwitch")]
+script = ExtResource("1_c61lp")
+SwitchersToSwitch = []

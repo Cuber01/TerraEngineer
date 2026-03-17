@@ -2,11 +2,13 @@
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="1_s6dal"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_553c0"]
+[ext_resource type="PackedScene" uid="uid://c51wlvsjnjx1a" path="res://entities/objects/puzzle/switcher_group/SwitcherGroup.tscn" id="4_i6ww4"]
 [ext_resource type="PackedScene" uid="uid://c664c7d5b8qgx" path="res://entities/mobs/creatures/king_frog/KingFrog.tscn" id="4_ppyts"]
 [ext_resource type="PackedScene" uid="uid://bjhdhb4i0bm06" path="res://entities/objects/puzzle/switchable_group/SwitchableGroup.tscn" id="5_1d37w"]
 [ext_resource type="Texture2D" uid="uid://b72vatjax06mn" path="res://entities/objects/puzzle/puzzle-palette-blue.png" id="6_i6ww4"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="6_ppyts"]
 [ext_resource type="PackedScene" uid="uid://c5pb62b4yvo1m" path="res://entities/objects/puzzle/switcher_area/SwitcherArea.tscn" id="7_ppyts"]
+[ext_resource type="Texture2D" uid="uid://2drnkhxr2fjw" path="res://entities/objects/puzzle/puzzle-palette-blue-levers-buttons.png" id="7_vik8r"]
 
 [node name="Level" type="Node2D" unique_id=1037949503]
 metadata/level_name = &"FrogBoss"
@@ -21,18 +23,19 @@ tile_set = ExtResource("1_s6dal")
 [node name="KingFrog" parent="." unique_id=236755459 instance=ExtResource("4_ppyts")]
 position = Vector2(156, 0)
 
-[node name="SwitcherArea" parent="." unique_id=921846283 instance=ExtResource("7_ppyts")]
+[node name="SwitcherGroup" parent="." unique_id=689601484 instance=ExtResource("4_i6ww4")]
+
+[node name="SwitcherArea" parent="SwitcherGroup" unique_id=921846283 instance=ExtResource("7_ppyts")]
 position = Vector2(50, 163)
 startState = true
 
-[node name="CollisionShape2D" parent="SwitcherArea" index="0" unique_id=1208980969]
+[node name="CollisionShape2D" parent="SwitcherGroup/SwitcherArea" index="0" unique_id=1208980969]
 position = Vector2(10, 0)
 
-[node name="SwitchableGroup" parent="." unique_id=1664946770 node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("5_1d37w")]
-GroupPalette = ExtResource("6_i6ww4")
+[node name="SwitchableGroup" parent="." unique_id=1664946770 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("5_1d37w")]
+GroupPalette = ExtResource("7_vik8r")
 BlocksGroupPalette = ExtResource("6_i6ww4")
-SavePropertiesNeededToSwitch = []
-SwitchersNeededToSwitch = [NodePath("../SwitcherArea")]
+SwitcherGroups = [NodePath("../SwitcherGroup")]
 SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock9"), NodePath("SwitchableBlock2"), NodePath("SwitchableBlock3"), NodePath("SwitchableBlock4"), NodePath("SwitchableBlock5"), NodePath("SwitchableBlock6"), NodePath("SwitchableBlock7"), NodePath("SwitchableBlock8")]
 GroupSwitchedOn = true
 
@@ -65,4 +68,4 @@ position = Vector2(44, 178)
 
 [connection signal="Died" from="KingFrog" to="SwitchableGroup" method="onSpecialSignal"]
 
-[editable path="SwitcherArea"]
+[editable path="SwitcherGroup/SwitcherArea"]
