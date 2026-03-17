@@ -55,9 +55,9 @@ public partial class SaveData : Node
     }
 
     public static void SetValue(string sectionKey, string key, Variant value, bool fireEvent = false)
-    {
-        if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
+    { 
         ((GodotDict)data[sectionKey] )[key] = value;
+        if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
     }
 
     public static void SetValueInArray(string sectionKey, string key, int index, Variant value, bool fireEvent = false)

@@ -63,6 +63,7 @@ public partial class SwitchableGroup : Node2D
 
     public void OnSwitch(bool switchedOn)
     {
+        GroupSwitchedOn = switchedOn;
         foreach (var switchable in SwitchableGroupMembers)
         {
             ((ISwitchable)switchable).OnSwitch(switchedOn);

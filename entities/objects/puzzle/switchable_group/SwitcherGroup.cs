@@ -10,12 +10,15 @@ public partial class SwitcherGroup : Node2D
     public List<ISwitcher> SwitchersToSwitch = new List<ISwitcher>();
 
     // False = blocks impassable, true = blocks passable
-    public bool GroupSwitchedOn = false;
+    private bool groupSwitchedOn = false;
     public bool IsInit = false;
     private SwitchableGroup mySwitchableGroup;
     
     public void Init(SwitchableGroup switchableGroup)
     {
+        mySwitchableGroup = switchableGroup;
+        groupSwitchedOn = mySwitchableGroup.GroupSwitchedOn;
+        
         foreach (var switcher in GetChildren())
         {
             SwitchersToSwitch.Add((ISwitcher)switcher);
@@ -36,17 +39,17 @@ public partial class SwitcherGroup : Node2D
     
     private void checkSwitchers(bool switchedOn)
     {
-        if(GroupSwitchedOn == switchedOn)
+        if(groupSwitchedOn == switchedOn)
             return;
 
         if (switchedOn == false)
         {
-            GroupSwitchedOn = false;
-            mySwitchableGroup.OnSwitch(GroupSwitchedOn);
+            groupSwitchedOn = false;
+            mySwitchableGroup.OnSwitch(groupSwitchedOn);
             return;
         }
-        
-        foreach (ISwitcher switcher in (IEnumerable<ISwitcher>)SwitchersToSwitch ?? Enumerable.Empty<ISwitcher>())
+
+        foreach (ISwitcher switcher in SwitchersToSwitch ?? Enumerable.Empty<ISwitcher>())
         {
             if (!switcher.SwitchedOn)
             {
@@ -58,7 +61,6 @@ public partial class SwitcherGroup : Node2D
         }
         
         StringName levelName = (StringName)GetParent().GetMeta(Names.Properties.LevelName);
-        
         foreach (string property in SavePropertiesToSwitch ?? Enumerable.Empty<StringName>())
         {
             Variant value = SaveData.ReadValue(levelName, property);
@@ -67,11 +69,10 @@ public partial class SwitcherGroup : Node2D
                 #if DEBUG
                 GD.Print("Failed to switch: " + property + " was false.");
                 #endif
-                return;
             }
         }
         
-        GroupSwitchedOn = !GroupSwitchedOn;
-        mySwitchableGroup.OnSwitch(GroupSwitchedOn);
+        groupSwitchedOn = !groupSwitchedOn;
+        mySwitchableGroup.OnSwitch(groupSwitchedOn);
     }
 }

@@ -188,7 +188,8 @@ public partial class KingFrog : Creature
 
     public override void Die()
     {
-        SaveData.SetValue(Names.Properties.Bosses, Names.Properties.KingFrog, true);
+        // For global keeping
+        SaveData.SetValue(Names.Properties.Bosses, Names.Properties.KingFrog, true, false);
         base.Die();
     }
     

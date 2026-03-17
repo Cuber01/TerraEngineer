@@ -24,6 +24,7 @@ tile_set = ExtResource("1_s6dal")
 position = Vector2(156, 0)
 
 [node name="SwitcherGroup" parent="." unique_id=689601484 instance=ExtResource("4_i6ww4")]
+SavePropertiesToSwitch = Array[StringName]([&"open_doors"])
 
 [node name="SwitcherArea" parent="SwitcherGroup" unique_id=921846283 instance=ExtResource("7_ppyts")]
 position = Vector2(50, 163)
