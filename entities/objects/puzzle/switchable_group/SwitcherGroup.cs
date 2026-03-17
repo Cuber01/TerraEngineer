@@ -43,22 +43,26 @@ public partial class SwitcherGroup : Node2D
         if(groupSwitchedOn == switchedOn || StateLocked)
             return;
         
-        StringName levelName = (StringName)GetParent().GetMeta(Names.Properties.LevelName);
-        bool allPropertiesTrue = true;
-        foreach (string property in SavePropertiesToSwitch ?? Enumerable.Empty<StringName>())
+        if (SavePropertiesToSwitch is { Length: > 0 })
         {
-            Variant value = SaveData.ReadValue(levelName, property);
-            if (value.VariantType == Variant.Type.Nil || (bool)value == false)
+            StringName levelName = (StringName)GetParent().GetMeta(Names.Properties.LevelName);
+            bool allPropertiesTrue = true;
+
+            foreach (string property in SavePropertiesToSwitch)
             {
-                allPropertiesTrue = false;
+                Variant value = SaveData.ReadValue(levelName, property);
+                if (value.VariantType == Variant.Type.Nil || (bool)value == false)
+                {
+                    allPropertiesTrue = false;
+                }
             }
-        }
-        if (allPropertiesTrue)
-        {
-            groupSwitchedOn = true;
-            mySwitchableGroup.OnSwitch(true);
-            StateLocked = true;
-            return;
+            if (allPropertiesTrue)
+            {
+                groupSwitchedOn = true;
+                mySwitchableGroup.OnSwitch(true);
+                StateLocked = true;
+                return;
+            }
         }
         
         if (switchedOn == false)

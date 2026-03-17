@@ -2,6 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="1_38jn4"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_12y14"]
+[ext_resource type="PackedScene" uid="uid://c51wlvsjnjx1a" path="res://entities/objects/puzzle/switcher_group/SwitcherGroup.tscn" id="3_6qmui"]
 [ext_resource type="PackedScene" uid="uid://bjhdhb4i0bm06" path="res://entities/objects/puzzle/switchable_group/SwitchableGroup.tscn" id="3_hodsr"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="4_247ex"]
 [ext_resource type="Texture2D" uid="uid://2drnkhxr2fjw" path="res://entities/objects/puzzle/puzzle-palette-blue-levers-buttons.png" id="4_r0qsy"]
@@ -29,12 +30,16 @@ tile_set = ExtResource("1_38jn4")
 
 [node name="RoomInstance" parent="." unique_id=1421756507 instance=ExtResource("2_12y14")]
 
-[node name="SwitchableGroupBlue" parent="." unique_id=1571858659 node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
+[node name="SwitcherGroupBlue" parent="." unique_id=689601484 instance=ExtResource("3_6qmui")]
+
+[node name="Lever" parent="SwitcherGroupBlue" unique_id=95168821 instance=ExtResource("11_8p7k7")]
+position = Vector2(185, 56)
+
+[node name="SwitchableGroupBlue" parent="." unique_id=1571858659 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
 GroupPalette = ExtResource("4_r0qsy")
 BlocksGroupPalette = ExtResource("5_6kv7p")
-SavePropertiesNeededToSwitch = []
-SwitchersNeededToSwitch = [NodePath("Lever")]
+SwitcherGroups = [NodePath("../SwitcherGroupBlue")]
 SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock2"), NodePath("SwitchableBlock3"), NodePath("SwitchableBlock4")]
 
 [node name="SwitchableBlock" parent="SwitchableGroupBlue" unique_id=1173571359 instance=ExtResource("4_247ex")]
@@ -49,15 +54,11 @@ position = Vector2(163, 88)
 [node name="SwitchableBlock4" parent="SwitchableGroupBlue" unique_id=772260488 instance=ExtResource("4_247ex")]
 position = Vector2(163, 80)
 
-[node name="Lever" parent="SwitchableGroupBlue" unique_id=95168821 instance=ExtResource("11_8p7k7")]
-position = Vector2(184, 64)
-
-[node name="SwitchableGroupRed" parent="." unique_id=726934438 node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
+[node name="SwitchableGroupRed" parent="." unique_id=726934438 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
 GroupPalette = ExtResource("7_r8f0g")
 BlocksGroupPalette = ExtResource("7_r8f0g")
-SavePropertiesNeededToSwitch = []
-SwitchersNeededToSwitch = [NodePath("Button"), NodePath("Button2")]
+SwitcherGroups = [NodePath("../SwitcherGroupRed")]
 SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock2"), NodePath("SwitchableBlock3"), NodePath("SwitchableBlock4")]
 
 [node name="SwitchableBlock" parent="SwitchableGroupRed" unique_id=623475716 instance=ExtResource("4_247ex")]
@@ -72,18 +73,19 @@ position = Vector2(251, 112)
 [node name="SwitchableBlock4" parent="SwitchableGroupRed" unique_id=205473906 instance=ExtResource("4_247ex")]
 position = Vector2(243, 112)
 
-[node name="Button" parent="SwitchableGroupRed" unique_id=93529958 instance=ExtResource("8_r8f0g")]
-position = Vector2(185, 105)
+[node name="SwitcherGroupRed" parent="." unique_id=1149591064 instance=ExtResource("3_6qmui")]
 
-[node name="Button2" parent="SwitchableGroupRed" unique_id=537828731 instance=ExtResource("8_r8f0g")]
-position = Vector2(219, 145)
+[node name="Button" parent="SwitcherGroupRed" unique_id=93529958 instance=ExtResource("8_r8f0g")]
+position = Vector2(186, 97)
 
-[node name="SwitchableGroupYello" parent="." unique_id=962924309 node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
+[node name="Button2" parent="SwitcherGroupRed" unique_id=537828731 instance=ExtResource("8_r8f0g")]
+position = Vector2(220, 137)
+
+[node name="SwitchableGroupYello" parent="." unique_id=962924309 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
 GroupPalette = ExtResource("9_d3l5n")
 BlocksGroupPalette = ExtResource("10_b24tv")
-SavePropertiesNeededToSwitch = []
-SwitchersNeededToSwitch = [NodePath("Button")]
+SwitcherGroups = [NodePath("../SwitcherGroupYellow")]
 SwitchableGroupMembers = [NodePath("SwitchableBlock2"), NodePath("SwitchableBlock3"), NodePath("SwitchableBlock4"), NodePath("SwitchableBlock6"), NodePath("SwitchableBlock7"), NodePath("SwitchableBlock8"), NodePath("SwitchableBlock5")]
 
 [node name="SwitchableBlock2" parent="SwitchableGroupYello" unique_id=10995329 instance=ExtResource("4_247ex")]
@@ -111,22 +113,25 @@ DefaultState = false
 position = Vector2(171, 80)
 DefaultState = false
 
-[node name="Button" parent="SwitchableGroupYello" unique_id=188581164 instance=ExtResource("8_r8f0g")]
-position = Vector2(141, 105)
+[node name="SwitcherGroupYellow" parent="." unique_id=981949451 instance=ExtResource("3_6qmui")]
 
-[node name="SwitchableGroupGreen" parent="." unique_id=1943660232 node_paths=PackedStringArray("SwitchersNeededToSwitch", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
+[node name="Button" parent="SwitcherGroupYellow" unique_id=188581164 instance=ExtResource("8_r8f0g")]
+position = Vector2(142, 97)
+
+[node name="SwitchableGroupGreen" parent="." unique_id=1943660232 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
 GroupPalette = ExtResource("14_b24tv")
 BlocksGroupPalette = ExtResource("14_b24tv")
-SavePropertiesNeededToSwitch = []
-SwitchersNeededToSwitch = [NodePath("Button")]
+SwitcherGroups = [NodePath("../SwitcherGroupGreen")]
 SwitchableGroupMembers = [NodePath("SwitchableBlock")]
 
 [node name="SwitchableBlock" parent="SwitchableGroupGreen" unique_id=224284574 instance=ExtResource("4_247ex")]
 position = Vector2(67, 112)
 
-[node name="Button" parent="SwitchableGroupGreen" unique_id=1881341006 instance=ExtResource("8_r8f0g")]
-position = Vector2(299, 105)
+[node name="SwitcherGroupGreen" parent="." unique_id=1994872695 instance=ExtResource("3_6qmui")]
+
+[node name="Button" parent="SwitcherGroupGreen" unique_id=1881341006 instance=ExtResource("8_r8f0g")]
+position = Vector2(300, 97)
 
 [node name="MovableBlock" parent="." unique_id=1018781702 instance=ExtResource("12_6qmui")]
 position = Vector2(125, 97)

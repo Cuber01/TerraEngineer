@@ -31,7 +31,7 @@ position = Vector2(50, 163)
 startState = true
 
 [node name="CollisionShape2D" parent="SwitcherGroup/SwitcherArea" index="0" unique_id=1208980969]
-position = Vector2(10, -4)
+position = Vector2(9, -4)
 
 [node name="SwitchableGroup" parent="." unique_id=1664946770 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("5_1d37w")]
 GroupPalette = ExtResource("7_vik8r")
