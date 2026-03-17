@@ -43,7 +43,6 @@ public partial class Player : Creature
 		fsm.AddTransition(idleState, walkState, idleState.CheckWalkState);
 		fsm.AddTransition(walkState, idleState, checkIdleState);
 		fsm.AddTransition(jumpState, idleState, checkIdleState);
-		fsm.AddTransition(walkState, jumpState, checkJumpState);
 		fsm.AddTransition(idleState, jumpState, checkJumpState);
 		fsm.AddTransition(jumpState, walkState, jumpState.CheckWalkState);
 		fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
