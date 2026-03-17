@@ -43,7 +43,7 @@ public partial class PickupableItem : Entity
         
         Player player = (Player)body;
         player.CM.GetComponent<PlayerInventory>().AddItem(player, itemName);
-        CM.GetComponent<SaveEntity>().ChangeState(false);
+        CM.GetComponent<SaveEntity>().ChangeState(true);
         Collected = true;
     }
 }

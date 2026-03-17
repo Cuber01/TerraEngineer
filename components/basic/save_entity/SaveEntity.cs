@@ -10,7 +10,7 @@ public partial class SaveEntity : Component
     [Export] private StringName saveName;
     private StringName saveSection;
 
-    public Action<Entity> doIfFalse = (Entity actor) =>
+    public Action<Entity> DoIfTrue = (Entity actor) =>
     {
         actor.CallDeferred(Node.MethodName.QueueFree);
     };
@@ -28,21 +28,21 @@ public partial class SaveEntity : Component
             throw new Exception("Save name is empty.");
         }
         
-        bool exists = (bool)SaveData.ReadValue(saveSection, saveName);
-        if (!exists) 
+        Variant exists = SaveData.ReadValue(saveSection, saveName);
+        if (exists.VariantType == Variant.Type.Bool && (bool)exists == true) 
         {
-           doIfFalse.Invoke(actor);
+           DoIfTrue.Invoke(actor);
         }
     }
 
-    public void Setup(StringName saveName, Action<Entity> doIfFalse)
+    public void Setup(StringName saveName, Action<Entity> doIfTrue)
     {
-        this.doIfFalse = doIfFalse;
+        this.DoIfTrue = doIfTrue;
         this.saveName = saveName;
     }
 
     public void ChangeState(bool exists)
     {
-        SaveData.SetValue(saveSection, saveName, exists);
+        SaveData.SetAddValue(saveSection, saveName, exists);
     }
 }

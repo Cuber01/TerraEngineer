@@ -31,7 +31,7 @@ public partial class PlayerInventory : Component
 
     public void AddItem(Player actor, StringName name)
     {
-        SaveData.SetValue(Names.SaveSections.PlayerInventory,name, true);
+        SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, true);
         fullItemList[name].Activate(actor);
     }
 }

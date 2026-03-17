@@ -24,13 +24,13 @@ public partial class SaveData : Node
         #if DEBUG
         if (Input.IsActionJustPressed("f1"))
         {
-            SetValue(Names.SaveSections.SavePointData,
+            SetAddValue(Names.SaveSections.SavePointData,
                 Names.SaveSections.SavePointPosition,
                 GetNode<Player>("/root/Main/Player").GlobalPosition);
         
             StringName levelName = (StringName)GetNode<Node2D>("/root/Main/Level").GetMeta(Names.Properties.LevelName);
         
-            SetValue(Names.SaveSections.SavePointData,
+            SetAddValue(Names.SaveSections.SavePointData,
                 Names.SaveSections.SavePointLevel,
                 levelName);
             
@@ -54,8 +54,13 @@ public partial class SaveData : Node
         file.Close();
     }
 
-    public static void SetValue(string sectionKey, string key, Variant value, bool fireEvent = false)
-    { 
+    public static void SetAddValue(string sectionKey, string key, Variant value, bool fireEvent = false)
+    {
+        if (!data.ContainsKey(sectionKey))
+        {
+            data[sectionKey] = new GodotDict();
+        }
+        
         ((GodotDict)data[sectionKey] )[key] = value;
         if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
     }

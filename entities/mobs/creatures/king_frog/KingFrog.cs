@@ -2,6 +2,7 @@ using Godot;
 using System;
 using TENamespace;
 using TENamespace.basic.builders.creature_builder;
+using TENamespace.save_entity;
 using TerraEngineer;
 using TerraEngineer.entities.mobs.creatures;
 
@@ -34,6 +35,7 @@ public partial class KingFrog : Creature
         fsm.AddTransition(jumpState, smashState, canSmash);
         fsm.AddTransition(smashState, idleState, smashState.IsFinished);
         fsm.AddTransition(spawnState, idleState, spawnState.IsFinished);
+        CM.GetComponent<SaveEntity>().OptionalInit(this);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -188,8 +190,7 @@ public partial class KingFrog : Creature
 
     public override void Die()
     {
-        // For global keeping
-        SaveData.SetValue(Names.Properties.Bosses, Names.Properties.KingFrog, true, false);
+        CM.GetComponent<SaveEntity>().ChangeState(true);
         base.Die();
     }
     

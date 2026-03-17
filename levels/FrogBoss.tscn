@@ -24,14 +24,14 @@ tile_set = ExtResource("1_s6dal")
 position = Vector2(156, 0)
 
 [node name="SwitcherGroup" parent="." unique_id=689601484 instance=ExtResource("4_i6ww4")]
-SavePropertiesToSwitch = Array[StringName]([&"open_doors"])
+SavePropertiesToSwitch = Array[StringName]([&"boss_defeated"])
 
 [node name="SwitcherArea" parent="SwitcherGroup" unique_id=921846283 instance=ExtResource("7_ppyts")]
 position = Vector2(50, 163)
 startState = true
 
 [node name="CollisionShape2D" parent="SwitcherGroup/SwitcherArea" index="0" unique_id=1208980969]
-position = Vector2(10, 0)
+position = Vector2(10, -4)
 
 [node name="SwitchableGroup" parent="." unique_id=1664946770 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("5_1d37w")]
 GroupPalette = ExtResource("7_vik8r")

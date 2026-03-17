@@ -12,6 +12,7 @@ public partial class SwitcherGroup : Node2D
     // False = blocks impassable, true = blocks passable
     private bool groupSwitchedOn = false;
     public bool IsInit = false;
+    private bool StateLocked = false;
     private SwitchableGroup mySwitchableGroup;
     
     public void Init(SwitchableGroup switchableGroup)
@@ -39,9 +40,27 @@ public partial class SwitcherGroup : Node2D
     
     private void checkSwitchers(bool switchedOn)
     {
-        if(groupSwitchedOn == switchedOn)
+        if(groupSwitchedOn == switchedOn || StateLocked)
             return;
-
+        
+        StringName levelName = (StringName)GetParent().GetMeta(Names.Properties.LevelName);
+        bool allPropertiesTrue = true;
+        foreach (string property in SavePropertiesToSwitch ?? Enumerable.Empty<StringName>())
+        {
+            Variant value = SaveData.ReadValue(levelName, property);
+            if (value.VariantType == Variant.Type.Nil || (bool)value == false)
+            {
+                allPropertiesTrue = false;
+            }
+        }
+        if (allPropertiesTrue)
+        {
+            groupSwitchedOn = true;
+            mySwitchableGroup.OnSwitch(true);
+            StateLocked = true;
+            return;
+        }
+        
         if (switchedOn == false)
         {
             groupSwitchedOn = false;
@@ -60,17 +79,6 @@ public partial class SwitcherGroup : Node2D
             }
         }
         
-        StringName levelName = (StringName)GetParent().GetMeta(Names.Properties.LevelName);
-        foreach (string property in SavePropertiesToSwitch ?? Enumerable.Empty<StringName>())
-        {
-            Variant value = SaveData.ReadValue(levelName, property);
-            if (value.VariantType == Variant.Type.Nil || (bool)value == false)
-            {
-                #if DEBUG
-                GD.Print("Failed to switch: " + property + " was false.");
-                #endif
-            }
-        }
         
         groupSwitchedOn = !groupSwitchedOn;
         mySwitchableGroup.OnSwitch(groupSwitchedOn);
