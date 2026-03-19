@@ -40,6 +40,7 @@ position = Vector2(161, 136)
 [node name="PickupableItem" parent="." unique_id=372071546 instance=ExtResource("5_1dxaf")]
 position = Vector2(161, 124)
 itemName = &"blowtorch"
+itemCollectedTag = &"blowtorch_collected"
 ItemTexture = ExtResource("6_8g1fl")
 
 [node name="SaveEntityComponent" parent="PickupableItem/ComponentManager" index="0"]

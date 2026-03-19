@@ -9,6 +9,9 @@ namespace TerraEngineer.entities.objects;
 public partial class PickupableItem : Entity
 {
     [Export] private StringName itemName;
+    [Export] private StringName itemCollectedTag;
+    [Export] private ItemType itemType = ItemType.Unique;
+    [Export] private int itemAmount = 1;
     [Export] private AtlasTexture ItemTexture {
         get => _itemTexture;
         set
@@ -33,7 +36,7 @@ public partial class PickupableItem : Entity
     public override void _Ready()
     {
         Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, _itemTexture);
-        CM.GetComponent<SaveEntity>().Setup("green_essence_exists", ((_) => Collected = true));
+        CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
         CM.GetComponent<SaveEntity>().OptionalInit(this);
     } 
     
@@ -42,7 +45,16 @@ public partial class PickupableItem : Entity
         if(Collected) return;
         
         Player player = (Player)body;
-        player.CM.GetComponent<PlayerInventory>().AddItem(player, itemName);
+
+        if (itemType == ItemType.Unique)
+        {
+            player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
+        } else if (itemType == ItemType.Generic)
+        {
+            player.CM.GetComponent<PlayerInventory>().AddGenericItem(player, itemName, itemAmount);
+        }
+        
+        
         CM.GetComponent<SaveEntity>().ChangeState(true);
         Collected = true;
     }

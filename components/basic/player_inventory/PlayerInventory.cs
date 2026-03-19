@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using TENamespace.advanced.terraform_gun;
+using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities.objects;
 
@@ -12,6 +13,7 @@ public partial class PlayerInventory : Component
     {
         { "double_jump", new DoubleJumpItem() },
         { "blowtorch", new BlowtorchItem() },
+        {"health_serum", new HealthSerumItem() },
         { "green_essence", new EssenceItem(Biomes.Forest) },
         { "blue_essence", new EssenceItem(Biomes.Ice) },
         { "orange_essence", new EssenceItem(Biomes.Desert) },
@@ -29,11 +31,24 @@ public partial class PlayerInventory : Component
         }
     }
 
-    public void AddItem(Player actor, StringName name)
+    public void AddUniqueItem(Player actor, StringName name)
     {
         SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, true);
         fullItemList[name].Activate(actor);
     }
+
+    public void AddGenericItem(Player actor, StringName name, int amount)
+    {
+        int currentAmount = (int)SaveData.ReadValue(Names.SaveSections.PlayerInventory, name);
+        SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, currentAmount + amount);
+        fullItemList[name].Activate(actor);
+    }
+}
+
+public enum ItemType
+{
+    Unique, // You can have only one
+    Generic // You can have many (coins, health etc.)
 }
 
 public interface Item
@@ -58,6 +73,17 @@ public class BlowtorchItem : Item
             () => actor.CM.GetComponent<GunHandle>().Shoot(actor.GetShootDirection(), false), Names.Actions.GroupWeapon);
     }
 }
+
+
+public class HealthSerumItem : Item
+{
+    public void Activate(Player actor)
+    {
+        actor.CM.GetComponent<Health>().MaxHealth += 1;
+        actor.CM.GetComponent<Health>().FullHeal();
+    }
+}
+
 
 public class EssenceItem(Biomes biome) : Item
 {

@@ -52,6 +52,7 @@ currentBiome = 1
 [node name="GreenEssence" parent="." unique_id=1039917152 instance=ExtResource("6_xqscd")]
 position = Vector2(254, 124)
 itemName = &"green_essence"
+itemCollectedTag = &"green_essence_collected"
 ItemTexture = ExtResource("7_3mq2g")
 
 [node name="InteractAndDisplay" parent="." unique_id=1725825487 instance=ExtResource("8_cn40b")]
@@ -74,15 +75,17 @@ rip Frank"
 position = Vector2(181, 124)
 texture = ExtResource("10_2jexy")
 
-[node name="HealthContainer" parent="." unique_id=1647281721 instance=ExtResource("6_xqscd")]
+[node name="HealthSerum" parent="." unique_id=1647281721 instance=ExtResource("6_xqscd")]
 position = Vector2(84, 55)
-itemName = &"health_container"
+itemName = &"health_serum"
+itemCollectedTag = &"GreenEssence_health_serum_collected"
+itemType = 1
 ItemTexture = ExtResource("13_ku3f2")
 
-[node name="CollisionShape2D" parent="HealthContainer/Area2D" index="0"]
+[node name="CollisionShape2D" parent="HealthSerum/Area2D" index="0"]
 position = Vector2(-0.5, -1)
 
-[node name="PedestalSprite" parent="HealthContainer" index="3"]
+[node name="PedestalSprite" parent="HealthSerum" index="3"]
 visible = false
 
 [node name="DevLabel" parent="." unique_id=779754817 instance=ExtResource("14_mexo6")]
@@ -96,4 +99,4 @@ text = "drugi ukryty pokój jeśli masz double jump"
 [editable path="GreenEssence"]
 [editable path="InteractAndDisplay"]
 [editable path="TextPopup"]
-[editable path="HealthContainer"]
+[editable path="HealthSerum"]
