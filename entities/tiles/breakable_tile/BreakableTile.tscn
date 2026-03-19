@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7a8ld2p7qvwm"]
+[gd_scene format=3 uid="uid://b7a8ld2p7qvwm"]
 
 [ext_resource type="Script" uid="uid://ba10rytdj18kj" path="res://entities/tiles/breakable_tile/BreakableTile.cs" id="1_aukk6"]
-[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://tilemaps/special-tiles.png" id="1_f810q"]
+[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special-tiles.png" id="1_f810q"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_aukk6"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="3_lx7qt"]
 [ext_resource type="PackedScene" uid="uid://nrndakgkb8c8" path="res://components/basic/save_tile/SaveTileComponent.tscn" id="5_lx7qt"]

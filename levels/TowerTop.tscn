@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://bsva27q0y8rxu"]
 
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="1_275y8"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_275y8"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_vw1pw"]
-[ext_resource type="Texture2D" uid="uid://dpbgorkdqruna" path="res://tilemaps/office/desk.tres" id="3_eh8s7"]
-[ext_resource type="Texture2D" uid="uid://ditherew4omm6" path="res://tilemaps/office/microphone.tres" id="4_jgdjd"]
-[ext_resource type="Texture2D" uid="uid://cum4n6jim23t4" path="res://tilemaps/office/radio.tres" id="5_v7y6a"]
+[ext_resource type="Texture2D" uid="uid://dpbgorkdqruna" path="res://assets/world/office/desk.tres" id="3_eh8s7"]
+[ext_resource type="Texture2D" uid="uid://ditherew4omm6" path="res://assets/world/office/microphone.tres" id="4_jgdjd"]
+[ext_resource type="Texture2D" uid="uid://cum4n6jim23t4" path="res://assets/world/office/radio.tres" id="5_v7y6a"]
 
 [node name="Level" type="Node2D" unique_id=1400059701]
 metadata/level_name = &"FrogBoss"

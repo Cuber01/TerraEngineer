@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=4 uid="uid://ccspihhsgij8b"]
+[gd_scene format=4 uid="uid://ccspihhsgij8b"]
 
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="4_edrai"]
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="5_is5iw"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="5_is5iw"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="6_0mkih"]
 
 [node name="Level" type="Node2D"]

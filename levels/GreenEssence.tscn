@@ -1,17 +1,18 @@
 [gd_scene format=4 uid="uid://chykbvkl7hxs4"]
 
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://tilemaps/Tileset.tres" id="1_ocdex"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_ocdex"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_7in26"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="3_eixo1"]
 [ext_resource type="PackedScene" uid="uid://b0eg46nrhalfj" path="res://entities/objects/puzzle/hp_gateway/HPGateway.tscn" id="4_7in26"]
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="5_eixo1"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="6_xqscd"]
-[ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://entities/objects/pickupable_item/green_essence.tres" id="7_3mq2g"]
+[ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://assets/items/green_essence.tres" id="7_3mq2g"]
 [ext_resource type="PackedScene" uid="uid://ca31480u7y56i" path="res://entities/objects/interact_and_display/InteractAndDisplay.tscn" id="8_cn40b"]
 [ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://ui/textbox/Popup.tscn" id="9_2jexy"]
 [ext_resource type="Resource" uid="uid://ckkgpylkuisom" path="res://dialogue/radio01.dialogue" id="9_gmd8g"]
 [ext_resource type="Texture2D" uid="uid://cjps5m4sthw74" path="res://assets/scribbles.png" id="10_2jexy"]
-[ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://ui/dialogue_box/DialogueBalloon.tscn" id="11_fxoad"]
+[ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="13_ku3f2"]
+[ext_resource type="PackedScene" uid="uid://ddsure0810rlt" path="res://game/dev_label/dev_label.tscn" id="14_mexo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqscd"]
 size = Vector2(31, 32)
@@ -48,7 +49,7 @@ ExportedMode = 1
 position = Vector2(83, 130)
 currentBiome = 1
 
-[node name="PickupableItem" parent="." unique_id=1039917152 instance=ExtResource("6_xqscd")]
+[node name="GreenEssence" parent="." unique_id=1039917152 instance=ExtResource("6_xqscd")]
 position = Vector2(254, 124)
 itemName = &"green_essence"
 ItemTexture = ExtResource("7_3mq2g")
@@ -73,11 +74,26 @@ rip Frank"
 position = Vector2(181, 124)
 texture = ExtResource("10_2jexy")
 
-[node name="Dialogue" parent="." unique_id=316962339 instance=ExtResource("11_fxoad")]
+[node name="HealthContainer" parent="." unique_id=1647281721 instance=ExtResource("6_xqscd")]
+position = Vector2(84, 55)
+itemName = &"health_container"
+ItemTexture = ExtResource("13_ku3f2")
+
+[node name="CollisionShape2D" parent="HealthContainer/Area2D" index="0"]
+position = Vector2(-0.5, -1)
+
+[node name="PedestalSprite" parent="HealthContainer" index="3"]
 visible = false
-position = Vector2(8, 16)
+
+[node name="DevLabel" parent="." unique_id=779754817 instance=ExtResource("14_mexo6")]
+offset_left = 13.0
+offset_top = -23.0
+offset_right = 270.0
+offset_bottom = 22.0
+text = "drugi ukryty pokój jeśli masz double jump"
 
 [editable path="SecretRoom"]
-[editable path="PickupableItem"]
+[editable path="GreenEssence"]
 [editable path="InteractAndDisplay"]
 [editable path="TextPopup"]
+[editable path="HealthContainer"]

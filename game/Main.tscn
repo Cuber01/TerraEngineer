@@ -30,5 +30,6 @@ visible = false
 position = Vector2(63, 16)
 
 [node name="Dialogue" parent="GUI" unique_id=316962339 instance=ExtResource("6_fk7ia")]
+process_mode = 2
 visible = false
 position = Vector2(8, 16)

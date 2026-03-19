@@ -42,6 +42,7 @@ public partial class DialogueBalloon : Node2D, IPopupable
 	
 	public void PlayDialogue(Resource dialogue, StringName title)
 	{
+		GetTree().Paused = true;
 		dialogueResource = dialogue;
 		startTitle = title;
 		
@@ -51,6 +52,7 @@ public partial class DialogueBalloon : Node2D, IPopupable
 
 	public void Close()
 	{
+		GetTree().Paused = false;
 		Controller.GiveBackControl();
 		Hide();
 	}
