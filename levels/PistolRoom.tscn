@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b63p72q853m2s" path="res://entities/objects/person_plant/PersonPlant.tscn" id="4_fj2sp"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="5_1dxaf"]
 [ext_resource type="Texture2D" uid="uid://cs3684jn1lrrc" path="res://assets/items/gun.tres" id="6_8g1fl"]
+[ext_resource type="Resource" uid="uid://yph8vpk12axr" path="res://dialogue/item_pistol.dialogue" id="6_lbusw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj2sp"]
 texture = ExtResource("3_ikqer")
@@ -41,6 +42,7 @@ position = Vector2(161, 136)
 position = Vector2(161, 124)
 itemName = &"blowtorch"
 itemCollectedTag = &"blowtorch_collected"
+dialogueDescription = ExtResource("6_lbusw")
 ItemTexture = ExtResource("6_8g1fl")
 
 [node name="SaveEntityComponent" parent="PickupableItem/ComponentManager" index="0"]

@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="5_eixo1"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="6_xqscd"]
 [ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://assets/items/green_essence.tres" id="7_3mq2g"]
+[ext_resource type="Resource" uid="uid://dghlav2hdya2h" path="res://dialogue/item_green_essence.dialogue" id="7_frwa4"]
 [ext_resource type="PackedScene" uid="uid://ca31480u7y56i" path="res://entities/objects/interact_and_display/InteractAndDisplay.tscn" id="8_cn40b"]
 [ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://ui/textbox/Popup.tscn" id="9_2jexy"]
 [ext_resource type="Resource" uid="uid://ckkgpylkuisom" path="res://dialogue/radio01.dialogue" id="9_gmd8g"]
 [ext_resource type="Texture2D" uid="uid://cjps5m4sthw74" path="res://assets/scribbles.png" id="10_2jexy"]
+[ext_resource type="Resource" uid="uid://dtsqlokbfv8w7" path="res://dialogue/item_health_serum.dialogue" id="12_mexo6"]
 [ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="13_ku3f2"]
 [ext_resource type="PackedScene" uid="uid://ddsure0810rlt" path="res://game/dev_label/dev_label.tscn" id="14_mexo6"]
 
@@ -53,6 +55,7 @@ currentBiome = 1
 position = Vector2(254, 124)
 itemName = &"green_essence"
 itemCollectedTag = &"green_essence_collected"
+dialogueDescription = ExtResource("7_frwa4")
 ItemTexture = ExtResource("7_3mq2g")
 
 [node name="InteractAndDisplay" parent="." unique_id=1725825487 instance=ExtResource("8_cn40b")]
@@ -80,6 +83,7 @@ position = Vector2(84, 55)
 itemName = &"health_serum"
 itemCollectedTag = &"GreenEssence_health_serum_collected"
 itemType = 1
+dialogueDescription = ExtResource("12_mexo6")
 ItemTexture = ExtResource("13_ku3f2")
 
 [node name="CollisionShape2D" parent="HealthSerum/Area2D" index="0"]

@@ -21,6 +21,7 @@ public partial class InteractAndDisplay : Area2D
 
 	public override void _Ready()
 	{
+		player = GetNode<Player>(Names.NodePaths.Player);
 		popupTemplate = GetNode<Popup>(Names.NodePaths.Popup);
 		balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
 	}
@@ -43,7 +44,6 @@ public partial class InteractAndDisplay : Area2D
 	{
 		player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
 		player.Interacted += display;
-		this.player = player;
 	}
 	
 	private void onPlayerExited(Player player)

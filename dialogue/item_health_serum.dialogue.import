@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dtsqlokbfv8w7"
+path="res://.godot/imported/item_health_serum.dialogue-9fa14db8cc2f8532de97359518eff57f.tres"
+
+[deps]
+
+source_file="res://dialogue/item_health_serum.dialogue"
+dest_files=["res://.godot/imported/item_health_serum.dialogue-9fa14db8cc2f8532de97359518eff57f.tres"]
+
+[params]
+
+defaults=true

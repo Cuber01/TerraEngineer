@@ -47,6 +47,7 @@ public static class Names
     {
         public static readonly NodePath Popup = "/root/Main/GUI/Popup";
         public static readonly NodePath DialogueBalloon = "/root/Main/GUI/Dialogue";
+        public static readonly NodePath Player = "/root/Main/Player";
     }
 
     // Json save sections
@@ -83,5 +84,10 @@ public static class Names
         public static readonly StringName Jump = "jump";
         
         public static readonly StringName GroupWeapon = "GroupWeapon";
+    }
+
+    public static class Dialogue
+    {
+        public static readonly StringName Start = "start";
     }
 }

@@ -1,6 +1,7 @@
 using Godot;
 using TENamespace.player_inventory;
 using TENamespace.save_entity;
+using TENamespace.ui.dialogue_box;
 using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.entities.objects;
@@ -12,6 +13,7 @@ public partial class PickupableItem : Entity
     [Export] private StringName itemCollectedTag;
     [Export] private ItemType itemType = ItemType.Unique;
     [Export] private int itemAmount = 1;
+    [Export] private Resource dialogueDescription;
     [Export] private AtlasTexture ItemTexture {
         get => _itemTexture;
         set
@@ -32,9 +34,15 @@ public partial class PickupableItem : Entity
         }
     }
     private bool _collected = false;
+    
+    private DialogueBalloon balloonTemplate;
+    private Player player;
 
     public override void _Ready()
     {
+        player = GetNode<Player>(Names.NodePaths.Player);
+        balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+     
         Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, _itemTexture);
         CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
         CM.GetComponent<SaveEntity>().OptionalInit(this);
@@ -43,8 +51,6 @@ public partial class PickupableItem : Entity
     private void onPlayerEntered(Node2D body)
     {
         if(Collected) return;
-        
-        Player player = (Player)body;
 
         if (itemType == ItemType.Unique)
         {
@@ -53,9 +59,10 @@ public partial class PickupableItem : Entity
         {
             player.CM.GetComponent<PlayerInventory>().AddGenericItem(player, itemName, itemAmount);
         }
-        
-        
         CM.GetComponent<SaveEntity>().ChangeState(true);
         Collected = true;
+        
+        balloonTemplate.PlayDialogue(dialogueDescription, Names.Dialogue.Start);
+        player.Controller.SwitchControl(balloonTemplate.Controller);
     }
 }
