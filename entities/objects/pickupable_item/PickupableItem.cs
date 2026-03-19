@@ -18,7 +18,7 @@ public partial class PickupableItem : Entity
         get => _itemTexture;
         set
         {
-            Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, value);
+            setTexture(value);
             _itemTexture = value;
         } 
     }
@@ -43,7 +43,7 @@ public partial class PickupableItem : Entity
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
      
-        Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, _itemTexture);
+        //Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, (Texture2D)_itemTexture.Duplicate());
         CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
         CM.GetComponent<SaveEntity>().OptionalInit(this);
     } 
@@ -64,5 +64,11 @@ public partial class PickupableItem : Entity
         
         balloonTemplate.PlayDialogue(dialogueDescription, Names.Dialogue.Start);
         player.Controller.SwitchControl(balloonTemplate.Controller);
+    }
+
+    private void setTexture(Texture2D texture)
+    {
+        Sprite.SpriteFrames = (SpriteFrames)Sprite.SpriteFrames.Duplicate();
+        Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, (Texture2D)texture.Duplicate());
     }
 }

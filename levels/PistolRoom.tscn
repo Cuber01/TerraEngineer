@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="5_1dxaf"]
 [ext_resource type="Texture2D" uid="uid://cs3684jn1lrrc" path="res://assets/items/gun.tres" id="6_8g1fl"]
 [ext_resource type="Resource" uid="uid://yph8vpk12axr" path="res://dialogue/item_pistol.dialogue" id="6_lbusw"]
+[ext_resource type="Texture2D" uid="uid://b6oc8xnvv8gc0" path="res://assets/items/items.png" id="8_ruw8v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fj2sp"]
 texture = ExtResource("3_ikqer")
@@ -19,6 +20,21 @@ tile_size = Vector2i(8, 8)
 custom_data_layer_0/name = "special_type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_fj2sp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgdxs"]
+atlas = ExtResource("8_ruw8v")
+region = Rect2(16, 1, 10, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qosnk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgdxs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Level" type="Node2D" unique_id=448035029]
 metadata/level_name = "PistolRoom"
@@ -44,6 +60,9 @@ itemName = &"blowtorch"
 itemCollectedTag = &"blowtorch_collected"
 dialogueDescription = ExtResource("6_lbusw")
 ItemTexture = ExtResource("6_8g1fl")
+
+[node name="AnimatedSprite2D" parent="PickupableItem" index="0"]
+sprite_frames = SubResource("SpriteFrames_qosnk")
 
 [node name="SaveEntityComponent" parent="PickupableItem/ComponentManager" index="0"]
 saveName = &"gun_exists"
