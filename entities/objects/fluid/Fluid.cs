@@ -7,12 +7,21 @@ using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
-// TODO:
-// Make it display preview in editor
-
+[Tool]
 public partial class Fluid : Node2D
 {
-	[Export] private Vector2I size = new Vector2I(100, 32);
+	[Export] private Vector2 Size
+	{
+		get => _size;
+		set
+		{
+			_size.X = ((int)MathF.Round(value.X / 10f)) * 10;
+			_size.Y = ((int)MathF.Round(value.Y));
+			resetSprings();
+		}
+	}
+	private Vector2I _size = new Vector2I(100, 100);
+	
 	[Export] private int springsAmountPer10Px = 1;
 	[Export] private float forceOnContact = 40;
 	
@@ -26,26 +35,39 @@ public partial class Fluid : Node2D
 	
 	public override void _Ready()
 	{
-		if (!initialized)
+		resetSprings();
+		
+		#if TOOLS
+		if(Engine.IsEditorHint())
+			return;
+		#endif
+		
+		setupCollisions();
+	}
+	
+	private void resetSprings()
+	{
+		foreach (FluidSpring spring in fluidSprings)
 		{
-			setupSprings();
-			setupCollisions();
-			initialized = true;	
+			spring.QueueFree();
 		}
+		fluidSprings.Clear();
+		
+		setupSprings();
 	}
 
 	private void setupSprings()
 	{
 		createFluidSpring(new Vector2(0, 0)); // Left coast
 		
-		int springsAmount = (int)Math.Ceiling( (size.X / 10.0) * springsAmountPer10Px );
+		int springsAmount = (int)Math.Ceiling( (_size.X / 10.0) * springsAmountPer10Px );
 		
 		// How much space is needed to distribute the 2 springs we spawn outside of loop
 		// Loss of fraction unavoidable here
 		// ReSharper disable once PossibleLossOfFraction
-		float spaceTaken = (size.X / springsAmount - 2) * 2;
+		float spaceTaken = (_size.X / springsAmount - 2) * 2;
 		
-		float spaceBetween = (size.X - spaceTaken) / (springsAmount-2);
+		float spaceBetween = (_size.X - spaceTaken) / (springsAmount-2);
 		
 		float xOffset = spaceBetween;
 		for (int i = 0; i < springsAmount-2; i++)
@@ -55,7 +77,7 @@ public partial class Fluid : Node2D
 			xOffset += spaceBetween;
 		}
 		
-		createFluidSpring(new Vector2(size.X, 0)); // Right coast
+		createFluidSpring(new Vector2(_size.X, 0)); // Right coast
 		
 		for (int i = 0; i < springsAmount; i++)
 		{
@@ -69,8 +91,8 @@ public partial class Fluid : Node2D
 	private void setupCollisions()
 	{
 		RectangleShape2D shape = new RectangleShape2D();
-		shape.Size = size;
-		collisionShape.Position += size / 2;
+		shape.Size = _size;
+		collisionShape.Position += _size / 2;
 		collisionShape.Shape = shape;
 	}
 
@@ -81,22 +103,13 @@ public partial class Fluid : Node2D
 		AddChild(springInstance);
 		fluidSprings.Add(springInstance);
 	}
-
-	private void reset()
-	{
-		foreach (FluidSpring spring in fluidSprings)
-		{
-			spring.QueueFree();
-		}
-		fluidSprings.Clear();
-	}
 	
 	public override void _Process(double delta)
 	{
 		// Order of points counts!
 		List<Vector2> bodyPoints = new List<Vector2>();
 		List<Vector2> surfacePoints = new List<Vector2>();
-		bodyPoints.Add(new  Vector2(0, size.Y));
+		bodyPoints.Add(new  Vector2(0, _size.Y));
 		
 		foreach (FluidSpring spring in fluidSprings)
 		{
@@ -104,7 +117,7 @@ public partial class Fluid : Node2D
 			surfacePoints.Add(spring.Position);
 		}
 		
-		bodyPoints.Add(new  Vector2(size.X, size.Y));
+		bodyPoints.Add(new  Vector2(_size.X, _size.Y));
 		
 		displayPolygon.SetPolygon(bodyPoints.ToArray());
 		surfaceLine.SetPoints(surfacePoints.ToArray());

@@ -1,12 +1,17 @@
 using Godot;
 using System;
 
+[Tool]
 public partial class FluidSpring : Node2D
 {
 	[Export] private float damping = 0.7f;
-	[Export] private float coastalDamping = 0.9f; // Damping is increased for coastal springs to simulate waves crushing against the coast
 	[Export] private float stiffness = 0.1f;
 	[Export] private float spread = 0.6f;
+	
+	// Damping is increased for coastal springs to simulate waves crushing against the coast
+	[Export] private float coastalDamping = 0.9f;
+	[Export] private float coastalStiffness = 0.2f;
+	
 	
 	private float velocityY = 0;
 	private float targetHeight;
@@ -35,6 +40,11 @@ public partial class FluidSpring : Node2D
 
 	public override void _Process(double delta)
 	{
+		#if TOOLS
+		if(Engine.IsEditorHint())
+			return;
+		#endif
+		
 		if (distanceToTarget() != 0)
 		{
 			velocityY += -stiffness * distanceToTarget();
