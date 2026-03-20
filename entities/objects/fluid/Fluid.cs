@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using TENamespace.health;
 using TerraEngineer;
@@ -13,7 +14,7 @@ public partial class Fluid : Node2D
 {
 	[Export] private Vector2I size = new Vector2I(100, 32);
 	[Export] private int springsAmountPer10Px = 1;
-	[Export] private float forceOnContact = 80;
+	[Export] private float forceOnContact = 40;
 	
 	[Export] private PackedScene fluidSpringScene;
 	[Export] private Polygon2D displayPolygon;
@@ -111,33 +112,35 @@ public partial class Fluid : Node2D
 	
 	private void _onBodyEntered(Node2D body)
 	{
-		addForce((Entity)body, true);
+		addForce(body, true);
 	}
 
 	private void _onBodyExited(Node2D body)
 	{
-		addForce((Entity)body, false);
+		addForce(body, false);
 	}
 	
-	private void addForce(Entity source, bool entering)
+	private void addForce(Node2D source, bool entering)
 	{
-		float minDist = float.MaxValue;
-		FluidSpring closestSpring = null;
-		foreach (FluidSpring spring in fluidSprings)
+		List<FluidSpring> top3Springs = fluidSprings
+			.OrderBy(spring => source.GlobalPosition.DistanceSquaredTo(spring.GlobalPosition))
+			.Take(3)
+			.ToList();
+
+		// For fat things
+		if (source is Entity)
 		{
-			float dist = source.GlobalPosition.DistanceSquaredTo(spring.GlobalPosition);
-			
-			if(dist < minDist)
-			{
-				minDist = dist;
-				closestSpring = spring;
-			}
+			top3Springs[0].AddExternalForce(entering ? forceOnContact : -forceOnContact);
+			top3Springs[1].AddExternalForce(entering ? forceOnContact/2 : -forceOnContact/2);
+			top3Springs[1].AddExternalForce(entering ? forceOnContact/2 : -forceOnContact/2);	
+		}
+		// For less fat things
+		else
+		{
+			top3Springs[0].AddExternalForce(entering ? forceOnContact : -forceOnContact);
 		}
 		
-		if(closestSpring == null)
-			throw new Exception("Body fell into fluid, but a fluid spring was not found");
-		
-		closestSpring.AddExternalForce(entering ? forceOnContact : -forceOnContact);
+
 	}
 	
 }

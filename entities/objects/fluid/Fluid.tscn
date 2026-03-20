@@ -7,7 +7,7 @@
 z_index = 1
 script = ExtResource("1_d6y8p")
 springsAmountPer10Px = 3
-forceOnContact = 100.0
+forceOnContact = 64.0
 fluidSpringScene = ExtResource("2_kdw15")
 displayPolygon = NodePath("DisplayPolygon")
 surfaceLine = NodePath("SurfaceLine")
