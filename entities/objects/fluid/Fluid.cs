@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 public partial class Fluid : Node2D
 {
-	[Export] private Vector2I size = new Vector2I(32, 32);
+	[Export] private Vector2I size = new Vector2I(100, 32);
 	[Export] private int springsAmountPer10Px = 1;
 	[Export] private PackedScene fluidSpringScene;
 	
@@ -20,7 +20,7 @@ public partial class Fluid : Node2D
 			initialized = true;	
 		}
 		
-		fluidSprings[2].AddExternalForce(50);
+		fluidSprings[2].AddExternalForce(100);
 	}
 
 	private void setup()
@@ -37,6 +37,14 @@ public partial class Fluid : Node2D
 			fluidSprings.Add(springInstance);
 			
 			xOffset += spaceBetween;
+		}
+		
+		for (int i = 0; i < springsAmount; i++)
+		{
+			fluidSprings[i].SetupNeighbors( 
+				i-1 >= 0 ? fluidSprings[i-1] : null,
+				i+1 < fluidSprings.Count ? fluidSprings[i+1] : null
+				);
 		}
 	}
 
