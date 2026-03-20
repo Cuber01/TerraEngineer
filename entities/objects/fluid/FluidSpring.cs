@@ -3,9 +3,9 @@ using System;
 
 public partial class FluidSpring : Node2D
 {
-	[Export] private float damping = 0.4f;
+	[Export] private float damping = 0.8f;
 	[Export] private float stiffness = 0.1f;
-	[Export] private float spread = 0.2f;
+	[Export] private float spread = 0.6f;
 	
 	private float velocityY = 0;
 	private float targetHeight;

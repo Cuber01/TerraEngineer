@@ -8,14 +8,16 @@ using TerraEngineer.entities.mobs;
 
 // TODO:
 // Make it display preview in editor
-// Perhaps move the first and last springs to the middle or else it could look weird
 
 public partial class Fluid : Node2D
 {
 	[Export] private Vector2I size = new Vector2I(100, 32);
 	[Export] private int springsAmountPer10Px = 1;
+	[Export] private float forceOnContact = 80;
+	
 	[Export] private PackedScene fluidSpringScene;
 	[Export] private Polygon2D displayPolygon;
+	[Export] private Line2D surfaceLine;
 	[Export] private CollisionShape2D collisionShape;
 	
 	private List<FluidSpring> fluidSprings = new List<FluidSpring>();
@@ -88,17 +90,20 @@ public partial class Fluid : Node2D
 	public override void _Process(double delta)
 	{
 		// Order of points counts!
-		List<Vector2> points = new List<Vector2>();
-		points.Add(new  Vector2(0, size.Y));
+		List<Vector2> bodyPoints = new List<Vector2>();
+		List<Vector2> surfacePoints = new List<Vector2>();
+		bodyPoints.Add(new  Vector2(0, size.Y));
 		
 		foreach (FluidSpring spring in fluidSprings)
 		{
-			points.Add(spring.Position);
+			bodyPoints.Add(spring.Position);
+			surfacePoints.Add(spring.Position);
 		}
 		
-		points.Add(new  Vector2(size.X, size.Y));
+		bodyPoints.Add(new  Vector2(size.X, size.Y));
 		
-		displayPolygon.SetPolygon(points.ToArray());
+		displayPolygon.SetPolygon(bodyPoints.ToArray());
+		surfaceLine.SetPoints(surfacePoints.ToArray());
 	}
 	
 	private void _onBodyEntered(Node2D body)
@@ -129,7 +134,7 @@ public partial class Fluid : Node2D
 		if(closestSpring == null)
 			throw new Exception("Body fell into fluid, but a fluid spring was not found");
 		
-		closestSpring.AddExternalForce(entering ? 80 : -80);
+		closestSpring.AddExternalForce(entering ? forceOnContact : -forceOnContact);
 	}
 	
 }

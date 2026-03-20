@@ -3,19 +3,28 @@
 [ext_resource type="Script" uid="uid://4572tf2p8ars" path="res://entities/objects/fluid/Fluid.cs" id="1_d6y8p"]
 [ext_resource type="PackedScene" uid="uid://cw5pd4wwpyqiq" path="res://entities/objects/fluid/FluidSpring.tscn" id="2_kdw15"]
 
-[node name="Fluid" type="Node2D" unique_id=1673010555 node_paths=PackedStringArray("displayPolygon", "collisionShape")]
+[node name="Fluid" type="Node2D" unique_id=1673010555 node_paths=PackedStringArray("displayPolygon", "surfaceLine", "collisionShape")]
+z_index = 1
 script = ExtResource("1_d6y8p")
+springsAmountPer10Px = 3
+forceOnContact = 100.0
 fluidSpringScene = ExtResource("2_kdw15")
 displayPolygon = NodePath("DisplayPolygon")
+surfaceLine = NodePath("SurfaceLine")
 collisionShape = NodePath("Area2D/CollisionShape2D")
 
 [node name="DisplayPolygon" type="Polygon2D" parent="." unique_id=1133375849]
+color = Color(0.22352941, 0.44705883, 1, 0.4509804)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=494408737]
 collision_layer = 0
 collision_mask = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1321225502]
+
+[node name="SurfaceLine" type="Line2D" parent="." unique_id=60308002]
+width = 1.0
+default_color = Color(0.29411766, 0.6784314, 1, 1)
 
 [connection signal="body_entered" from="Area2D" to="." method="_onBodyEntered"]
 [connection signal="body_exited" from="Area2D" to="." method="_onBodyExited"]
