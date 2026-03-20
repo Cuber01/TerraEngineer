@@ -17,21 +17,20 @@ public partial class Fluid : Node2D
 		{
 			_size.X = ((int)MathF.Round(value.X / 10f)) * 10;
 			_size.Y = ((int)MathF.Round(value.Y));
-			resetSprings();
+			CallDeferred(nameof(resetSprings));
 		}
 	}
 	private Vector2I _size = new Vector2I(100, 100);
 	
-	[Export] private int springsAmountPer10Px = 1;
-	[Export] private float forceOnContact = 40;
+	[Export] private int springsAmountPer10Px = 3;
+	[Export] private float forceOnContact = 64;
 	
 	[Export] private PackedScene fluidSpringScene;
 	[Export] private Polygon2D displayPolygon;
 	[Export] private Line2D surfaceLine;
-	[Export] private CollisionShape2D collisionShape;
+	[Export] public CollisionShape2D collisionShape { get; set; }
 	
 	private List<FluidSpring> fluidSprings = new List<FluidSpring>();
-	private bool initialized = false;
 	
 	public override void _Ready()
 	{
@@ -78,6 +77,11 @@ public partial class Fluid : Node2D
 		}
 		
 		createFluidSpring(new Vector2(_size.X, 0)); // Right coast
+		
+		#if TOOLS
+		if(Engine.IsEditorHint())
+			return;
+		#endif
 		
 		for (int i = 0; i < springsAmount; i++)
 		{

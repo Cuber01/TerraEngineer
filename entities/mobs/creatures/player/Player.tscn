@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgd50a01ilmis"]
+[gd_scene format=3 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Texture2D" uid="uid://b6vwm7r1uogfe" path="res://entities/mobs/creatures/player/player.png" id="1_cmjn3"]
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
@@ -41,7 +41,7 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("CM", "Sprite")]
+[node name="Player" type="CharacterBody2D" unique_id=278146221 node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 2
 collision_mask = 33
 slide_on_ceiling = false
@@ -49,24 +49,24 @@ script = ExtResource("1_ldahb")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=777265139]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_jlvbh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=482271209]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hoemn")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=2137969782]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1224399013]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_jlvbh")
 
-[node name="ComponentManager" parent="." instance=ExtResource("2_o7rne")]
+[node name="ComponentManager" parent="." unique_id=1214721453 instance=ExtResource("2_o7rne")]
 
-[node name="GunAdvComponent" parent="ComponentManager" instance=ExtResource("11_61acl")]
+[node name="GunAdvComponent" parent="ComponentManager" unique_id=924199162 instance=ExtResource("11_61acl")]
 
 [node name="PointUp" parent="ComponentManager/GunAdvComponent" index="0"]
 position = Vector2(0, -6)
@@ -83,31 +83,31 @@ position = Vector2(-5, 0)
 [node name="TerraformGun" parent="ComponentManager/GunAdvComponent/ComponentManager" index="0"]
 position = Vector2(0, -1)
 
-[node name="DashComponent" parent="ComponentManager" instance=ExtResource("3_ldahb")]
+[node name="DashComponent" parent="ComponentManager" unique_id=1541394193 instance=ExtResource("3_ldahb")]
 
-[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("4_1yb3l")]
+[node name="GravityComponent" parent="ComponentManager" unique_id=1676305436 instance=ExtResource("4_1yb3l")]
 GravityForce = 3.0
 maxGravity = 80.0
 
-[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("5_jta8v")]
+[node name="MoveComponent" parent="ComponentManager" unique_id=1958513480 instance=ExtResource("5_jta8v")]
 speed = 150.0
 acceleration = 4.31
 friction = 1.724
 airResistance = 1.724
 
-[node name="JumpComponent" parent="ComponentManager" instance=ExtResource("6_owoq1")]
+[node name="JumpComponent" parent="ComponentManager" unique_id=1945252795 instance=ExtResource("6_owoq1")]
 jumpVelocity = 112.0
 limitThreshold = 50.0
 
-[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("8_1yb3l")]
+[node name="HealthComponent" parent="ComponentManager" unique_id=758392570 instance=ExtResource("8_1yb3l")]
 MaxHealth = 10
 invincibilityTimeOnHit = 2.0
 
-[node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("10_kfaad")]
+[node name="KnockbackComponent" parent="ComponentManager" unique_id=1873741121 instance=ExtResource("10_kfaad")]
 
-[node name="PlayerInventoryComponent" parent="ComponentManager" instance=ExtResource("11_802vs")]
+[node name="PlayerInventoryComponent" parent="ComponentManager" unique_id=536859350 instance=ExtResource("11_802vs")]
 
-[node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("12_jlvbh")]
+[node name="ShaderComponent" parent="ComponentManager" unique_id=2142681019 instance=ExtResource("12_jlvbh")]
 importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jlvbh")])
 
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]

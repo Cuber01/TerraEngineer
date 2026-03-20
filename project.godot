@@ -42,6 +42,7 @@ window/stretch/scale_mode="integer"
 [dotnet]
 
 project/assembly_name="Terra Engineer"
+project/assembly_reload_attempts=1
 
 [editor_plugins]
 

@@ -252,4 +252,4 @@ position = Vector2(234, 54)
 
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
 position = Vector2(317, 120)
-Size = Vector2(160, 70)
+Size = Vector2(160, 60)
