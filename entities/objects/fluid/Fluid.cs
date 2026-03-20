@@ -39,11 +39,14 @@ public partial class Fluid : Node2D
 		
 		int springsAmount = (int)Math.Ceiling( (size.X / 10.0) * springsAmountPer10Px );
 		
-		// size.X = How much space we need if we would want to distribute all springs
-		// (size.X - (size.X/springsAmount-2) ) = How much space we need if we want to distribute all springs -2
-		int spaceBetween = (size.X - (size.X/springsAmount-2) ) / (springsAmount-2);
+		// How much space is needed to distribute the 2 springs we spawn outside of loop
+		// Loss of fraction unavoidable here
+		// ReSharper disable once PossibleLossOfFraction
+		float spaceTaken = (size.X / springsAmount - 2) * 2;
 		
-		int xOffset = spaceBetween;
+		float spaceBetween = (size.X - spaceTaken) / (springsAmount-2);
+		
+		float xOffset = spaceBetween;
 		for (int i = 0; i < springsAmount-2; i++)
 		{
 			createFluidSpring(new Vector2(xOffset, 0));

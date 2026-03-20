@@ -6,3 +6,4 @@
 script = ExtResource("1_dpyqb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=86755445]
+scale = Vector2(0.09375, 0.09375)
