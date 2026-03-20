@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://cw5pd4wwpyqiq"]
 
 [ext_resource type="Script" uid="uid://dljw15ryxlcs7" path="res://entities/objects/fluid/FluidSpring.cs" id="1_dpyqb"]
-[ext_resource type="Texture2D" uid="uid://di8jvm8s5gfca" path="res://entities/mobs/creatures/frog/frog.png" id="1_x52vm"]
 
 [node name="FluidSpring" type="Node2D" unique_id=1402478551]
 script = ExtResource("1_dpyqb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=86755445]
-z_index = 99
-z_as_relative = false
-texture = ExtResource("1_x52vm")

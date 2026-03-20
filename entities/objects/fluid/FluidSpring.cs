@@ -36,13 +36,11 @@ public partial class FluidSpring : Node2D
 			velocityY += -stiffness * distanceToTarget();
 		}
 		
-		velocityY += -(damping * velocityY * (float)delta);	
-		
-		if(rightNeighbor != null)
-			rightNeighbor.AddExternalForce(spread * (Position.Y - rightNeighbor.Position.Y));
-		if(leftNeighbor != null)
-			leftNeighbor.AddExternalForce(spread * (Position.Y - leftNeighbor.Position.Y));
-		
+		velocityY += -(damping * velocityY * (float)delta);
+
+		rightNeighbor?.AddExternalForce(spread * (Position.Y - rightNeighbor.Position.Y));
+		leftNeighbor?.AddExternalForce(spread * (Position.Y - leftNeighbor.Position.Y));
+
 		Position = Position with { Y = Position.Y + velocityY * (float)delta };
 	}
 
