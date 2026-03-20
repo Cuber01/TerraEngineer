@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c7ixwu8lcvpvm" path="res://sample.png" id="13_ftbtv"]
 [ext_resource type="PackedScene" uid="uid://dingl1m5pxwmo" path="res://entities/objects/movable_block/MovableBlock.tscn" id="15_yyfs6"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="16_gmryx"]
+[ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Fluid.tscn" id="17_kwwd8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lngq4"]
 shader = ExtResource("10_lngq4")
@@ -247,3 +248,6 @@ position = Vector2(74, 137)
 
 [node name="FungusSpider" parent="." unique_id=1877408370 instance=ExtResource("16_gmryx")]
 position = Vector2(234, 54)
+
+[node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
+position = Vector2(319, 113)
