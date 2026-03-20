@@ -5,7 +5,7 @@ public partial class FluidSpring : Node2D
 {
 	[Export] private float damping = 0.4f;
 	[Export] private float stiffness = 0.1f;
-	[Export] private float spread = 0.8f;
+	[Export] private float spread = 0.2f;
 	
 	private float velocityY = 0;
 	private float targetHeight;
@@ -24,13 +24,9 @@ public partial class FluidSpring : Node2D
 		this.leftNeighbor = leftNeighbor;
 	}
 
-	public void AddExternalForce(float force, FluidSpring source = null)
+	public void AddExternalForce(float force)
 	{
 		velocityY += force;
-		if(rightNeighbor != null && rightNeighbor != source)
-			rightNeighbor.AddExternalForce(force * spread, this);
-		if(leftNeighbor != null && leftNeighbor != source)
-			leftNeighbor.AddExternalForce(force * spread, this);
 	}
 
 	public override void _Process(double delta)
@@ -41,6 +37,12 @@ public partial class FluidSpring : Node2D
 		}
 		
 		velocityY += -(damping * velocityY * (float)delta);	
+		
+		if(rightNeighbor != null)
+			rightNeighbor.AddExternalForce(spread * (Position.Y - rightNeighbor.Position.Y));
+		if(leftNeighbor != null)
+			leftNeighbor.AddExternalForce(spread * (Position.Y - leftNeighbor.Position.Y));
+		
 		Position = Position with { Y = Position.Y + velocityY * (float)delta };
 	}
 
