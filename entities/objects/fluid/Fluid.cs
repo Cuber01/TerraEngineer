@@ -2,6 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TENamespace.health;
+using TerraEngineer;
+using TerraEngineer.entities.mobs;
 
 // TODO:
 // Make it display preview in editor
@@ -13,6 +16,7 @@ public partial class Fluid : Node2D
 	[Export] private int springsAmountPer10Px = 1;
 	[Export] private PackedScene fluidSpringScene;
 	[Export] private Polygon2D displayPolygon;
+	[Export] private CollisionShape2D collisionShape;
 	
 	private List<FluidSpring> fluidSprings = new List<FluidSpring>();
 	private bool initialized = false;
@@ -21,14 +25,13 @@ public partial class Fluid : Node2D
 	{
 		if (!initialized)
 		{
-			setup();
+			setupSprings();
+			setupCollisions();
 			initialized = true;	
 		}
-		
-		fluidSprings[2].AddExternalForce(100);
 	}
 
-	private void setup()
+	private void setupSprings()
 	{
 		createFluidSpring(new Vector2(0, 0)); // Left coast
 		
@@ -55,6 +58,14 @@ public partial class Fluid : Node2D
 				i+1 < fluidSprings.Count ? fluidSprings[i+1] : null
 				);
 		}
+	}
+
+	private void setupCollisions()
+	{
+		RectangleShape2D shape = new RectangleShape2D();
+		shape.Size = size;
+		collisionShape.Position += size / 2;
+		collisionShape.Shape = shape;
 	}
 
 	private void createFluidSpring(Vector2 position)
@@ -89,4 +100,36 @@ public partial class Fluid : Node2D
 		
 		displayPolygon.SetPolygon(points.ToArray());
 	}
+	
+	private void _onBodyEntered(Node2D body)
+	{
+		addForce((Entity)body, true);
+	}
+
+	private void _onBodyExited(Node2D body)
+	{
+		addForce((Entity)body, false);
+	}
+	
+	private void addForce(Entity source, bool entering)
+	{
+		float minDist = float.MaxValue;
+		FluidSpring closestSpring = null;
+		foreach (FluidSpring spring in fluidSprings)
+		{
+			float dist = source.GlobalPosition.DistanceSquaredTo(spring.GlobalPosition);
+			
+			if(dist < minDist)
+			{
+				minDist = dist;
+				closestSpring = spring;
+			}
+		}
+		
+		if(closestSpring == null)
+			throw new Exception("Body fell into fluid, but a fluid spring was not found");
+		
+		closestSpring.AddExternalForce(entering ? 80 : -80);
+	}
+	
 }
