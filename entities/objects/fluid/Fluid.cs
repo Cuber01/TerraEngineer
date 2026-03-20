@@ -19,6 +19,8 @@ public partial class Fluid : Node2D
 			setup();
 			initialized = true;	
 		}
+		
+		fluidSprings[2].AddExternalForce(50);
 	}
 
 	private void setup()
