@@ -33,6 +33,6 @@ func start():
 	connect("room_loaded", player.onRoomLoaded)
 	
 	var levelName = SaveData.ReadValue("savepoint_data", "level");
-	await load_room("res://levels/" + levelName + ".tscn");
+	await load_room("res://assets/levels/" + levelName + ".tscn");
 	
 	

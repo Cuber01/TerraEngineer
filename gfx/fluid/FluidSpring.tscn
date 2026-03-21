@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cw5pd4wwpyqiq"]
+
+[ext_resource type="Script" uid="uid://dljw15ryxlcs7" path="res://gfx/fluid/FluidSpring.cs" id="1_dpyqb"]
+
+[node name="FluidSpring" type="Node2D" unique_id=1402478551]
+script = ExtResource("1_dpyqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=86755445]
+scale = Vector2(0.09375, 0.09375)

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://vnlh3pdbdh8q" path="res://game/WorldManager.gd" id="1_8gaax"]
 [ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/creatures/player/Player.tscn" id="3_2fjjk"]
-[ext_resource type="PackedScene" uid="uid://cyfavbpc4vih7" path="res://ui/player_hud/PlayerHUD.tscn" id="3_ljq5a"]
+[ext_resource type="PackedScene" uid="uid://cyfavbpc4vih7" path="res://game/ui/player_hud/PlayerHUD.tscn" id="3_ljq5a"]
 [ext_resource type="PackedScene" uid="uid://dfrpu6pvsfai0" path="res://game/level_preparer/LevelPreparer.tscn" id="4_ljq5a"]
-[ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://ui/textbox/Popup.tscn" id="5_yo8gm"]
-[ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://ui/dialogue_box/DialogueBalloon.tscn" id="6_fk7ia"]
+[ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://game/ui/textbox/Popup.tscn" id="5_yo8gm"]
+[ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://game/ui/dialogue_box/DialogueBalloon.tscn" id="6_fk7ia"]
 
 [node name="Main" type="Node2D" unique_id=1624566616 node_paths=PackedStringArray("extPlayer")]
 script = ExtResource("1_8gaax")

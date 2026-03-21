@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dghlav2hdya2h"
+path="res://.godot/imported/item_green_essence.dialogue-b1fee7de2239a23f279be2c8c9920640.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_green_essence.dialogue"
+dest_files=["res://.godot/imported/item_green_essence.dialogue-b1fee7de2239a23f279be2c8c9920640.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bk27b7lq8mt1f"
+path="res://.godot/imported/mines_announcement.dialogue-9c6cb6a1bb0d21d3e36ce0ab0299deee.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/mines_announcement.dialogue"
+dest_files=["res://.godot/imported/mines_announcement.dialogue-9c6cb6a1bb0d21d3e36ce0ab0299deee.tres"]
+
+[params]
+
+defaults=true

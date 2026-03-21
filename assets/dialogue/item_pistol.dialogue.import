@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://yph8vpk12axr"
+path="res://.godot/imported/item_pistol.dialogue-a53d72f9c1946931703f240e8a0b3711.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_pistol.dialogue"
+dest_files=["res://.godot/imported/item_pistol.dialogue-a53d72f9c1946931703f240e8a0b3711.tres"]
+
+[params]
+
+defaults=true
