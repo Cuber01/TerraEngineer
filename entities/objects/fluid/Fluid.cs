@@ -2,9 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using TENamespace.health;
-using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
 [Tool]
@@ -28,7 +25,7 @@ public partial class Fluid : Node2D
 	[Export] private PackedScene fluidSpringScene;
 	[Export] private Polygon2D displayPolygon;
 	[Export] private Line2D surfaceLine;
-	[Export] public CollisionShape2D collisionShape { get; set; }
+	[Export] private CollisionShape2D collisionShape;
 	
 	private List<FluidSpring> fluidSprings = new List<FluidSpring>();
 	

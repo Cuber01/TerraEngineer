@@ -12,7 +12,7 @@ public partial class InteractAndDisplay : Area2D
 	
 	[Export] private PopupType popupType;
 	[Export] private Resource dialogueResource;
-	[Export] private StringName popupText;
+	[Export(PropertyHint.MultilineText)] private string popupText;
 	[Export] private StringName startTitle;
 	
 	private Player player;

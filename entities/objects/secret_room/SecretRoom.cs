@@ -5,7 +5,7 @@ public partial class SecretRoom : Area2D
 {
     [Export] private TileMapLayer fakeTileMap;
     private bool disappear = false;
-    private float disappearingSpeed = 10;
+    private float disappearingSpeed = 5;
     
     private void onPlayerEntered(Node2D _)
         => disappear = true;

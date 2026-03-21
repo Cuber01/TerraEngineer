@@ -28,7 +28,7 @@ public partial class Popup : Node2D, IPopupable
         Controller.Update((float)delta);
     }
     
-    public void ShowPopup(StringName message)
+    public void ShowPopup(string message)
     {
         label.Text = message;
        

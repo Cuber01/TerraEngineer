@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://cmmr64akxvoq"]
 
 [ext_resource type="Script" uid="uid://cmx1pwf7qi8uh" path="res://ui/dialogue_box/DialogueBalloon.cs" id="1_qra05"]
-[ext_resource type="Resource" uid="uid://ckkgpylkuisom" path="res://dialogue/radio01.dialogue" id="2_6ixn4"]
 [ext_resource type="Texture2D" uid="uid://dyhpqwoxnjcms" path="res://ui/textbox/dialogue-box.png" id="2_uoo0t"]
 [ext_resource type="PackedScene" uid="uid://cvgy7a8q5auyi" path="res://ui/dialogue_box/DialogueButton.tscn" id="3_1y02w"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="3_4geoi"]
 
 [node name="Dialogue" type="Node2D" unique_id=316962339 node_paths=PackedStringArray("dialogueLabel", "nameLabel", "choicesContainer", "decoration")]
 script = ExtResource("1_qra05")
-dialogueResource = ExtResource("2_6ixn4")
 dialogueButton = ExtResource("3_1y02w")
 dialogueLabel = NodePath("DialogueLabel")
 nameLabel = NodePath("NameLabel")
@@ -27,13 +25,13 @@ theme_override_constants/separation = 0
 z_index = 7
 offset_left = 4.0
 offset_top = -2.0
-offset_right = 59.0
-offset_bottom = 10.0
+offset_right = 280.0
+offset_bottom = 11.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_4geoi")
 bbcode_enabled = true
-text = "Jon Arbuckle"
+text = "Jon Arbuckleg"
 scroll_active = false
 autowrap_trim_flags = 0
 shortcut_keys_enabled = false
