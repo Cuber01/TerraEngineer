@@ -22,7 +22,6 @@ func on_room_loaded(level: Node):
 	MetSys.get_current_room_instance().adjust_camera_limits(player.get_node("Camera2D"))
 
 func start():
-	
 	MetSys.reset_state();
 	MetSys.set_save_data();
 	extPlayer.global_position = Vector2(11, 131);

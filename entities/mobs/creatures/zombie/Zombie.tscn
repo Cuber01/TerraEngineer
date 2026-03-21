@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://g38d3kf8jth2"]
+
+[ext_resource type="Script" uid="uid://dubuc26jsdci0" path="res://entities/mobs/creatures/zombie/Zombie.cs" id="1_bcpaq"]
+[ext_resource type="Texture2D" uid="uid://bsi72sgf54wop" path="res://entities/mobs/creatures/zombie/zombie.png" id="2_bcpaq"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_lf67q"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="4_mmmtn"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="5_r6jhx"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_grhg4"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_u4h3t"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_rtuhr"]
+[ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_wpeh0"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_2jiwv"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_08l68"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_66n7q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bcpaq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
+size = Vector2(9, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcpaq"]
+size = Vector2(86, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
+size = Vector2(7, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y43i2"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("11_08l68")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
+[node name="Zombie" type="CharacterBody2D" unique_id=344834364 node_paths=PackedStringArray("IsWallAhead", "isEnemyAbove", "CM", "Sprite")]
+collision_layer = 4
+script = ExtResource("1_bcpaq")
+IsWallAhead = NodePath("IsWallAhead")
+isEnemyAbove = NodePath("IsEnemyAbove")
+CM = NodePath("ComponentManager")
+Team = 1
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=549796304]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_66n7q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=328456227]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_0f11y")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=33051726]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=983518829]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_bcpaq")
+
+[node name="IsWallAhead" type="RayCast2D" parent="." unique_id=2091207006]
+target_position = Vector2(10, 0)
+collision_mask = 9
+
+[node name="IsEnemyAbove" type="RayCast2D" parent="." unique_id=9061316]
+target_position = Vector2(0, -20)
+collision_mask = 2
+
+[node name="ComponentManager" parent="." unique_id=731129293 instance=ExtResource("3_lf67q")]
+
+[node name="MoveComponent" parent="ComponentManager" unique_id=145969847 instance=ExtResource("5_r6jhx")]
+acceleration = 4.31
+friction = 10.0
+airResistance = 1.724
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=152181254 instance=ExtResource("6_grhg4")]
+MaxHealth = 3
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1337478712 instance=ExtResource("7_u4h3t")]
+
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=165596565 instance=ExtResource("8_rtuhr")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_8wbl1")
+
+[node name="KnockbackComponent" parent="ComponentManager" unique_id=294067570 instance=ExtResource("9_wpeh0")]
+
+[node name="ShaderComponent" parent="ComponentManager" unique_id=550713322 instance=ExtResource("10_2jiwv")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_y43i2")])
+
+[node name="JumpComponent" parent="ComponentManager" unique_id=817091342 instance=ExtResource("4_mmmtn")]
+jumpVelocity = 70.0
+limitThreshold = 40.0
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_onDetectionAreaPlayerEntered"]
+
+[editable path="ComponentManager/ContactDamageComponent"]

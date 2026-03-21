@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dns0ueunuurtt" path="res://gfx/wire/wire.png" id="10_wpy1m"]
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="11_ryq83"]
 [ext_resource type="PackedScene" uid="uid://dingl1m5pxwmo" path="res://entities/objects/movable_block/MovableBlock.tscn" id="15_yyfs6"]
+[ext_resource type="PackedScene" uid="uid://g38d3kf8jth2" path="res://entities/mobs/creatures/zombie/Zombie.tscn" id="16_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="16_gmryx"]
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://gfx/fluid/Fluid.tscn" id="17_kwwd8"]
 
@@ -239,3 +240,6 @@ position = Vector2(234, 54)
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
 position = Vector2(317, 120)
 Size = Vector2(160, 60)
+
+[node name="Zombie" parent="." unique_id=344834364 instance=ExtResource("16_8k2kr")]
+position = Vector2(382, 139)
