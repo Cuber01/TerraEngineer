@@ -15,6 +15,7 @@ public partial class Zombie : Creature
 {
 	[Export] public RayCast2D IsWallAhead;
 	[Export] private RayCast2D isEnemyAbove;
+	[Export] private PackedScene zombieBodyScene;
     
 	private readonly WalkState walkState = new WalkState();
 	private readonly JumpState jumpState = new JumpState();
@@ -120,6 +121,15 @@ public partial class Zombie : Creature
 	{
 		base.FlipEffect();
 		IsWallAhead.TargetPosition = new Vector2(-IsWallAhead.TargetPosition.X, IsWallAhead.TargetPosition.Y);
+	}
+
+	public override void Die()
+	{
+		Node2D instance = (Node2D)zombieBodyScene.Instantiate();
+		instance.GlobalPosition = GlobalPosition;
+		GetParent().CallDeferred(Node.MethodName.AddChild, instance);
+		
+		base.Die();
 	}
 
 	private void _onDetectionAreaPlayerEntered(Player player)

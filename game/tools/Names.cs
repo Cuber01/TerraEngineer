@@ -40,6 +40,7 @@ public static class Names
     public static class Paths
     {
         public static readonly StringName Save0 = "res://saves/save0.json";
+        public static readonly StringName Zombie = "res://entities/mobs/creatures/zombie/Zombie.tscn";
     }
 
     // Node paths from root

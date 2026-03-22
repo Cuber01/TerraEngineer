@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://g38d3kf8jth2"]
 
 [ext_resource type="Script" uid="uid://dubuc26jsdci0" path="res://entities/mobs/creatures/zombie/Zombie.cs" id="1_bcpaq"]
+[ext_resource type="PackedScene" uid="uid://b1mwnfbo0k8yx" path="res://entities/objects/zombie_dead/ZombieDead.tscn" id="2_66n7q"]
 [ext_resource type="Texture2D" uid="uid://bsi72sgf54wop" path="res://entities/mobs/creatures/zombie/zombie.png" id="2_bcpaq"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_lf67q"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="4_mmmtn"]
@@ -51,6 +52,7 @@ collision_layer = 4
 script = ExtResource("1_bcpaq")
 IsWallAhead = NodePath("IsWallAhead")
 isEnemyAbove = NodePath("IsEnemyAbove")
+zombieBodyScene = ExtResource("2_66n7q")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
