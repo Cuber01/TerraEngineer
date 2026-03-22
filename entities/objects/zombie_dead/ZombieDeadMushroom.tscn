@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bauoisloxciqf"]
+
+[ext_resource type="Texture2D" uid="uid://dy35ouxhld16l" path="res://entities/objects/zombie_dead/zombie-dead-flower.tres" id="1_bi87p"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_q7frl"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="3_37tdn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4eg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bi87p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ZombieDeadMushroom" type="CharacterBody2D" unique_id=128883506]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443641612]
+sprite_frames = SubResource("SpriteFrames_p4eg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195100179]
+
+[node name="ComponentManager" parent="." unique_id=87725376 instance=ExtResource("2_q7frl")]
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1328347468 instance=ExtResource("3_37tdn")]

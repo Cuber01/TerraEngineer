@@ -5,6 +5,11 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
+// TODO smooth movement
+// TODO resurrection 
+// TODO dead body into a flower or whatevs
+// TODO zombie should get faster when alerted
+
 [Tool]
 public partial class Zombie : Creature
 {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh565y8refuyw"]
+[gd_scene format=3 uid="uid://dh565y8refuyw"]
 
 [ext_resource type="Texture2D" uid="uid://clql1xeyl6f0k" path="res://entities/objects/plant/plant-mushroom.png" id="1_mo8c6"]
 [ext_resource type="Script" uid="uid://d0cuix83asm8u" path="res://entities/objects/plant/Mushroom.cs" id="1_rgdec"]
@@ -6,20 +6,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdec"]
 size = Vector2(8.5, 3)
 
-[node name="MushroomPlant" type="Node2D" node_paths=PackedStringArray("hitbox")]
+[node name="MushroomPlant" type="Node2D" unique_id=2061202188 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_rgdec")
 hitbox = NodePath("Area2D/CollisionShape2D")
 MyBiome = 2
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=732570946]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1883654811]
 position = Vector2(-0.25, -1.5)
 shape = SubResource("RectangleShape2D_rgdec")
 one_way_collision_margin = 0.0
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=935639345]
 texture = ExtResource("1_mo8c6")
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

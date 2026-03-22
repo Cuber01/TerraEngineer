@@ -12,11 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_2jiwv"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_08l68"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcpaq"]
+atlas = ExtResource("2_bcpaq")
+region = Rect2(0, 0, 9, 12)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_66n7q"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_bcpaq")
+"texture": SubResource("AtlasTexture_bcpaq")
 }],
 "loop": true,
 "name": &"default",
@@ -32,7 +36,7 @@ size = Vector2(86, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y43i2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcpaq"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("11_08l68")
@@ -96,7 +100,7 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=294067570 instance=ExtResource("9_wpeh0")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=550713322 instance=ExtResource("10_2jiwv")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_y43i2")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_bcpaq")])
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=817091342 instance=ExtResource("4_mmmtn")]
 jumpVelocity = 70.0
