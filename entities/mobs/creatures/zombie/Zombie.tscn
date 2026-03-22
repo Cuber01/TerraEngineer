@@ -37,7 +37,7 @@ size = Vector2(86, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcpaq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66n7q"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("11_08l68")
@@ -84,8 +84,9 @@ collision_mask = 2
 [node name="ComponentManager" parent="." unique_id=731129293 instance=ExtResource("3_lf67q")]
 
 [node name="MoveComponent" parent="ComponentManager" unique_id=145969847 instance=ExtResource("5_r6jhx")]
-acceleration = 4.31
-friction = 10.0
+speed = 80.0
+acceleration = 2.0
+friction = 2.0
 airResistance = 1.724
 
 [node name="HealthComponent" parent="ComponentManager" unique_id=152181254 instance=ExtResource("6_grhg4")]
@@ -102,10 +103,10 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=294067570 instance=ExtResource("9_wpeh0")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=550713322 instance=ExtResource("10_2jiwv")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_bcpaq")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_66n7q")])
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=817091342 instance=ExtResource("4_mmmtn")]
-jumpVelocity = 70.0
+jumpVelocity = 80.0
 limitThreshold = 40.0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_onDetectionAreaPlayerEntered"]

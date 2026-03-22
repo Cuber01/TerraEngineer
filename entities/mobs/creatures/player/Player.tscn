@@ -90,7 +90,8 @@ GravityForce = 3.0
 maxGravity = 80.0
 
 [node name="MoveComponent" parent="ComponentManager" unique_id=1958513480 instance=ExtResource("5_jta8v")]
-speed = 150.0
+position = Vector2(1, 0)
+speed = 120.0
 acceleration = 4.31
 friction = 1.724
 airResistance = 1.724

@@ -5,17 +5,13 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
-// TODO smooth movement
-// TODO resurrection 
-// TODO dead body into a flower or whatevs
-// TODO zombie should get faster when alerted
-
 [Tool]
 public partial class Zombie : Creature
 {
 	[Export] public RayCast2D IsWallAhead;
 	[Export] private RayCast2D isEnemyAbove;
 	[Export] private PackedScene zombieBodyScene;
+	[Export] private float alertedSpeed = 80;
     
 	private readonly WalkState walkState = new WalkState();
 	private readonly JumpState jumpState = new JumpState();
@@ -135,6 +131,7 @@ public partial class Zombie : Creature
 	private void _onDetectionAreaPlayerEntered(Player player)
 	{
 		Alerted = true;
+		//CM.GetComponent<Move>().Speed = alertedSpeed;
 	}
     
 }
