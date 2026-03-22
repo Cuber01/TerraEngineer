@@ -1,26 +1,38 @@
 [gd_scene format=3 uid="uid://bauoisloxciqf"]
 
-[ext_resource type="Texture2D" uid="uid://dy35ouxhld16l" path="res://entities/objects/zombie_dead/zombie-dead-flower.tres" id="1_bi87p"]
+[ext_resource type="Script" uid="uid://c68fibgsxk3xt" path="res://entities/objects/zombie_dead/ZombieDeadMushroom.cs" id="1_q7frl"]
+[ext_resource type="PackedScene" uid="uid://g38d3kf8jth2" path="res://entities/mobs/creatures/zombie/Zombie.tscn" id="2_37tdn"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_q7frl"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="3_37tdn"]
+[ext_resource type="Texture2D" uid="uid://cl62u1xtjx68g" path="res://entities/objects/zombie_dead/zombie-dead-mushroom.tres" id="3_ydiwe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p4eg8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_bi87p")
+"texture": ExtResource("3_ydiwe")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="ZombieDeadMushroom" type="CharacterBody2D" unique_id=128883506]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37tdn"]
+size = Vector2(8, 6)
+
+[node name="ZombieDeadMushroom" type="CharacterBody2D" unique_id=128883506 node_paths=PackedStringArray("CM", "Sprite")]
+collision_layer = 0
+script = ExtResource("1_q7frl")
+zombieScene = ExtResource("2_37tdn")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443641612]
 sprite_frames = SubResource("SpriteFrames_p4eg8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1195100179]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_37tdn")
 
 [node name="ComponentManager" parent="." unique_id=87725376 instance=ExtResource("2_q7frl")]
 

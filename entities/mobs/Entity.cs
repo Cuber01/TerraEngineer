@@ -6,7 +6,6 @@ using TENamespace;
 
 namespace TerraEngineer.entities.mobs;
 
-
 [Tool]
 public partial class Entity : CharacterBody2D
 {
@@ -84,7 +83,7 @@ public partial class Entity : CharacterBody2D
         Dead = true;
     }
     
-    public void HandleMove()
+    public virtual void HandleMove()
     {
         Velocity = new Vector2(MathF.Truncate(velocity.X), MathF.Truncate(velocity.Y));
         MoveAndSlide();

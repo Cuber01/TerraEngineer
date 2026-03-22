@@ -2,6 +2,8 @@ using Godot;
 using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities;
+using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.objects;
 
 public partial class HeartPlant : Terraformable
 {
@@ -9,11 +11,11 @@ public partial class HeartPlant : Terraformable
     [Export] private float secondsTilRegrow = 5;
     [Export] private AnimatedSprite2D sprite;
     [Export] private bool regrowAllowed = true;
-
+    
     private ITimer regrowTimer;
     
     private bool hasFruit = true;
-
+    
     public override void Enable()
     {
         base.Enable();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxs5ae8r4qvb0"]
+[gd_scene format=3 uid="uid://dxs5ae8r4qvb0"]
 
 [ext_resource type="Script" uid="uid://nlqu7llwq0rh" path="res://entities/objects/plant/HeartPlant.cs" id="1_b8cd1"]
 [ext_resource type="Texture2D" uid="uid://d2dpf27du1h6q" path="res://entities/objects/plant/plant-grass.png" id="1_xhu61"]
@@ -26,19 +26,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HeartPlant" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox")]
+[node name="HeartPlant" type="CharacterBody2D" unique_id=573733268 node_paths=PackedStringArray("sprite", "Hitbox", "Sprite")]
 script = ExtResource("1_b8cd1")
 sprite = NodePath("Sprite2D")
-hitbox = NodePath("Area2D/CollisionShape2D")
+Hitbox = NodePath("Area2D/CollisionShape2D")
+Sprite = NodePath("Sprite2D")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=450907993]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=654494040]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_b8cd1")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=977332267]
 sprite_frames = SubResource("SpriteFrames_ww8cb")
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://b71fgkfgiowcw" path="res://entities/objects/zombie_dead/ZombieDeadFlower.tscn" id="2_5rsga"]
 [ext_resource type="PackedScene" uid="uid://bauoisloxciqf" path="res://entities/objects/zombie_dead/ZombieDeadMushroom.tscn" id="3_cmo1e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt63p"]
-size = Vector2(9, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rsga"]
+size = Vector2(9, 7)
 
-[node name="ZombieDead" type="StaticBody2D" unique_id=423284648 node_paths=PackedStringArray("versions")]
+[node name="ZombieDead" type="CharacterBody2D" unique_id=1438616883 node_paths=PackedStringArray("versions")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_5rsga")
@@ -19,7 +19,8 @@ versions = NodePath("Versions")
 [node name="ZombieDeadFlower" parent="Versions" unique_id=330094314 instance=ExtResource("2_5rsga")]
 
 [node name="ZombieDeadMushroom" parent="Versions" unique_id=128883506 instance=ExtResource("3_cmo1e")]
+MyBiome = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=263371872]
-position = Vector2(0.5, -1)
-shape = SubResource("RectangleShape2D_wt63p")
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_5rsga")

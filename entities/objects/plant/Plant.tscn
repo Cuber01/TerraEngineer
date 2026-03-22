@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbvywcak0dwtr"]
+[gd_scene format=3 uid="uid://cbvywcak0dwtr"]
 
 [ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="1_0vmq4"]
 [ext_resource type="PackedScene" uid="uid://dh565y8refuyw" path="res://entities/objects/plant/MushroomPlant.tscn" id="2_b4wr8"]
@@ -7,20 +7,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vmq4"]
 size = Vector2(9, 10)
 
-[node name="Plant" type="StaticBody2D" node_paths=PackedStringArray("versions")]
+[node name="Plant" type="StaticBody2D" unique_id=59443197 node_paths=PackedStringArray("versions")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_0vmq4")
 versions = NodePath("Versions")
 
-[node name="Versions" type="Node2D" parent="."]
+[node name="Versions" type="Node2D" parent="." unique_id=2010832830]
 
-[node name="MushroomPlant" parent="Versions" instance=ExtResource("2_b4wr8")]
+[node name="MushroomPlant" parent="Versions" unique_id=440767554 instance=ExtResource("2_b4wr8")]
 position = Vector2(0, -1)
 MyBiome = 1
 
-[node name="HeartPlant" parent="Versions" instance=ExtResource("3_g6gtk")]
+[node name="HeartPlant" parent="Versions" unique_id=1703168225 instance=ExtResource("3_g6gtk")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1420760080]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_0vmq4")

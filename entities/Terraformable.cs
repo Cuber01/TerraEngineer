@@ -1,26 +1,54 @@
 using Godot;
+using System;
+using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
 namespace TerraEngineer.entities;
 
-// turn this into interface maybe
-public partial class Terraformable : Node2D
+public partial class Terraformable : Entity
 {
-    [Export] private CollisionShape2D hitbox;
+    [Export] public CollisionShape2D Hitbox;
     [Export] public Biomes MyBiome;
-    public bool Active = false;
+    public bool Active;
+    public TerraformableCaretaker Caretaker;
+    
+    public virtual void Setup(TerraformableCaretaker caretaker)
+    {
+        Caretaker = caretaker;
+    }
+
+    public virtual void Update(float delta)
+    {
+        CM?.UpdateComponents(delta);
+        HandleMove();
+    }
     
     public virtual void Enable()
     {
         Active = true;
-        hitbox.Disabled = false;
+        if (Hitbox != null)
+        {
+            Hitbox.Disabled = false;
+        }
         Show();
     }
     
     public virtual void Disable()
     {
         Active = false;
-        hitbox.Disabled = true;
+        if (Hitbox != null)
+        {
+            Hitbox.Disabled = true;
+        }
         Hide();
+    }
+
+    public override void HandleMove()
+    {
+        Vector2 roundedVelocity = new Vector2(MathF.Truncate(velocity.X), MathF.Truncate(velocity.Y));
+        Velocity = roundedVelocity;
+        MoveAndSlide();
+
+        Caretaker.GlobalPosition = GlobalPosition;
     }
 }

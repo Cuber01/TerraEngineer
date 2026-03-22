@@ -1,5 +1,7 @@
 using Godot;
 using TerraEngineer.entities;
+using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.objects;
 
 public partial class Mushroom : Terraformable
 {
@@ -13,4 +15,5 @@ public partial class Mushroom : Terraformable
             player.velocity.Y = -bounceVelocity;
         }
     }
+    
 }

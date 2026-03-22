@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TerraEngineer.entities;
 using TerraEngineer.entities.objects;
 
-public partial class TerraformableCaretaker : Node2D
+public partial class TerraformableCaretaker : CharacterBody2D
 {
     [Export] private Biomes currentBiome;
     [Export] private Node2D versions;
@@ -18,11 +18,23 @@ public partial class TerraformableCaretaker : Node2D
         {
             var entity = (Terraformable)node;
             entity.Disable();
+            entity.Setup(this);
             entityVersions.Add(entity.MyBiome, entity);
         }
         
         Terraform(currentBiome);
         init = true;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        foreach (var version in entityVersions)
+        {
+            if (version.Value.Active)
+            {
+                version.Value.Update((float)delta);
+            }
+        }
     }
 
     public void Terraform(Biomes biome)
