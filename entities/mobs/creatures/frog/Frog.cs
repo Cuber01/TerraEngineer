@@ -40,22 +40,42 @@ public partial class Frog : Creature
         public Func<bool> LandedOnFloor => () => isLandingOnFloor;
         private bool isLandingOnFloor = false;
         private void landedOnFloor() => isLandingOnFloor = true;
+        private bool inAir = false;
         
         public override void Enter()
         {
-            isLandingOnFloor = false;
-            Actor.CM.GetComponent<Jump>().AttemptJump();
-            Actor.CM.GetComponent<Gravity>().LandedOnFloor += landedOnFloor;
+            Actor.Sprite.Play(Names.Animations.Jump);
+            Actor.Sprite.AnimationFinished += jump;
         }
         
         public override void Update( float dt)
         {
-            Actor.CM.GetComponent<Move>().Walk(Actor.Facing, dt);
+            if (inAir)
+            {
+                Actor.CM.GetComponent<Move>().Walk(Actor.Facing, dt);
+                if (Actor.Velocity.Y > 0)
+                {
+                    Actor.Sprite.Play(Names.Animations.Fall);
+                }
+            }
+                
+            
         }
         
         public override void Exit()
         {
+            Actor.Sprite.Play(Names.Animations.Idle);
             Actor.CM.GetComponent<Gravity>().LandedOnFloor -= landedOnFloor;
+            inAir = false;
+            isLandingOnFloor = false;
+        }
+
+        private void jump()
+        {
+            inAir = true;
+            Actor.CM.GetComponent<Jump>().AttemptJump();
+            Actor.Sprite.AnimationFinished -= jump;
+            Actor.CM.GetComponent<Gravity>().LandedOnFloor += landedOnFloor;
         }
     }
     
@@ -64,7 +84,7 @@ public partial class Frog : Creature
         public override void Enter()
         {
             base.Enter();
-            Delay = 2.5f;
+            Delay = 2.0f;
         }
 
         public override void Update(float dt)

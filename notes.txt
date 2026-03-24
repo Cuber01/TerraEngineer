@@ -17,3 +17,10 @@ make jump feel less heavy + remake the first level since you can now reach the h
 f1 - save at current location
 f2 - noclip on/off
 f3 - godmode on/off
+
+todo til v0:
+- add frog animations
+- add double jump as an item
+- make it possible to leave the office room
+- add dialogue to radio in tower
+- make boss room open only after picking up double jump

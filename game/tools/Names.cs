@@ -70,6 +70,9 @@ public static class Names
         public static readonly StringName Unselected = "unselected";
         public static readonly StringName NoFruit = "no_fruit";
         public static readonly StringName Default = "default";
+        public static readonly StringName Idle = "idle";
+        public static readonly StringName Jump = "jump";
+        public static readonly StringName Fall = "fall";
     }
 
     public static class Actions
