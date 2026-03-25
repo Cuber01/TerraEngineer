@@ -21,10 +21,10 @@ def analyze():
     result = subprocess.run(['git', 'log', '--format=%s'], capture_output=True, text=True)
     commits = [m for m in result.stdout.lower().split('\n') if m.strip()]
     
-     total_count = len(commits)
-#     if total_count % 25 != 0:
-#         print(f"Current commit count is {total_count}. Skipping update (only runs every 25).")
-#         sys.exit(0)
+    total_count = len(commits)
+    if total_count % 25 != 0:
+        print(f"Current commit count is {total_count}. Skipping update (only runs every 25).")
+        sys.exit(0)
     
     fixes = sum(1 for m in commits if any(k in m for k in ['fix', 'fixed', 'bug', 'patch', 'patched']))
     maint = sum(1 for m in commits if any(k in m for k in ['merge', 'pull', 'review', 'action']))
