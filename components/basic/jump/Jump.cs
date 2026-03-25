@@ -1,4 +1,5 @@
 using Godot;
+using System.Runtime.CompilerServices;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
@@ -17,6 +18,14 @@ public partial class Jump : Component
         base.Init(actor);
         actor.CM.GetComponent<Gravity>().LandedOnFloor += 
             () => currentJumps = 0;
+        
+        actor.CM.GetComponent<Gravity>().LeftFloor += () => {
+            // If we fell
+            if (currentJumps == 0)
+            {
+                currentJumps++;
+            }
+        };
     }
     
     public bool AttemptJump(float forceMultiplier=1f)

@@ -15,6 +15,9 @@ public partial class Gravity : Component
     public delegate void LandedOnFloorHandler();
     public event LandedOnFloorHandler LandedOnFloor;
     
+    public delegate void LeftFloorHandler();
+    public event LandedOnFloorHandler LeftFloor;
+    
     public override void Update(float delta) => updateGravity(delta);
     
     private void updateGravity(float delta)
@@ -50,14 +53,15 @@ public partial class Gravity : Component
             }   
         }
         
-        checkLandedOnFloor();
+        checkEvents();
     }
     
-    private void checkLandedOnFloor()
+    private void checkEvents()
     {
         if (!Actor.IsOnFloor())
         {
             isOnFloor = false;
+            LeftFloor?.Invoke();
         }
         else
         {
