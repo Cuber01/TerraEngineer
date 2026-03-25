@@ -31,8 +31,16 @@ public partial class Health : Component
         {
             return;
         }
+
+        if (HP + amount > MaxHealth)
+        {
+            HP = MaxHealth;
+        }
+        else
+        {
+            HP += amount;
+        }
         
-        HP += amount;
         HealthChanged?.Invoke(HP, amount);
         if (HP <= 0)
         {
