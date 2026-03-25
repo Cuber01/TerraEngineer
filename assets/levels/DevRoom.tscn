@@ -248,7 +248,7 @@ Size = Vector2(160, 60)
 position = Vector2(382, 139)
 
 [node name="ZombieDead" parent="." unique_id=423284648 instance=ExtResource("17_r1ybn")]
-position = Vector2(174, 89)
+position = Vector2(254, 102)
 
 [node name="Moth" parent="." unique_id=168377250 instance=ExtResource("18_x06ml")]
 position = Vector2(138, 71)

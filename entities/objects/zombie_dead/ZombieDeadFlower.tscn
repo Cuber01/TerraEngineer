@@ -17,7 +17,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68qks"]
-size = Vector2(8, 6)
+size = Vector2(8, 5.5)
 
 [node name="ZombieDeadFlower" type="CharacterBody2D" unique_id=907468751 node_paths=PackedStringArray("Hitbox", "CM", "Sprite")]
 collision_layer = 0

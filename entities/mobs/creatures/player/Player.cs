@@ -253,7 +253,7 @@ public partial class Player : Creature
 	{
 		if (!Dead)
 		{
-			GetTree().ReloadCurrentScene();
+			GetTree().CallDeferred(SceneTree.MethodName.ReloadCurrentScene);
 		}
 		Dead = true;
 	}

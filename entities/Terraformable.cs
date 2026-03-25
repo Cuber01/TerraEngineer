@@ -49,6 +49,7 @@ public partial class Terraformable : Entity
         Velocity = roundedVelocity;
         MoveAndSlide();
 
-        Caretaker.GlobalPosition = GlobalPosition;
+        if(Velocity != Vector2.Zero)
+            Caretaker.GlobalPosition = GlobalPosition;
     }
 }
