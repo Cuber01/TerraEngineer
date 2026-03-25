@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TerraEngineer;
 using GodotDict = Godot.Collections.Dictionary<Godot.StringName, Godot.Variant>;
 using GodotArray = Godot.Collections.Array;
@@ -14,9 +15,13 @@ public partial class SaveData : Node
     private static GodotDict data;
     private static Json json = new Json();    
 
+    private static readonly string SavePath = OS.HasFeature(Names.Other.Editor) ?
+        Names.Paths.Res + Names.Paths.Save0 :
+        OS.GetExecutablePath().GetBaseDir() + Names.Paths.Save0;
+    
     public override void _Ready()
     {
-        loadSaveFile(Names.Paths.Save0);
+        loadSaveFile(SavePath);
     }
 
     public override void _Process(double delta)
@@ -49,7 +54,7 @@ public partial class SaveData : Node
             throw new Exception("Failed to stringify data.");
         }
         
-        FileAccess file = FileAccess.Open(Names.Paths.Save0, FileAccess.ModeFlags.Write);
+        FileAccess file = FileAccess.Open(SavePath, FileAccess.ModeFlags.Write);
         file.StoreString(newJsonText);
         file.Close();
     }
@@ -123,7 +128,7 @@ public partial class SaveData : Node
     {
         if (!FileAccess.FileExists(path))
         {
-            throw new Exception($"File {path} does not exist");
+            throw new Exception($"Save file {path} does not exist");
         }
 
         FileAccess file = FileAccess.Open(path, FileAccess.ModeFlags.Read);

@@ -39,7 +39,9 @@ public static class Names
     // Filesystem paths
     public static class Paths
     {
-        public static readonly StringName Save0 = "res://saves/save0.json";
+        public static readonly StringName Res = "res:/";
+        public static readonly StringName Save0 = "/saves/save0.json";
+        public static readonly StringName NewSave = "/saves/new_save.json";
         public static readonly StringName Zombie = "res://entities/mobs/creatures/zombie/Zombie.tscn";
     }
 
@@ -90,8 +92,9 @@ public static class Names
         public static readonly StringName GroupWeapon = "GroupWeapon";
     }
 
-    public static class Dialogue
+    public static class Other
     {
         public static readonly StringName Start = "start";
+        public static readonly StringName Editor = "editor";
     }
 }

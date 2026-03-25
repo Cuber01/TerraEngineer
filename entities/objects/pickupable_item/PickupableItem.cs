@@ -62,7 +62,7 @@ public partial class PickupableItem : Entity
         CM.GetComponent<SaveEntity>().ChangeState(true);
         Collected = true;
         
-        balloonTemplate.PlayDialogue(dialogueDescription, Names.Dialogue.Start);
+        balloonTemplate.PlayDialogue(dialogueDescription, Names.Other.Start);
         player.Controller.SwitchControl(balloonTemplate.Controller);
     }
 

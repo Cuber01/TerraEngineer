@@ -98,6 +98,7 @@ airResistance = 1.724
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=1945252795 instance=ExtResource("6_owoq1")]
 jumpVelocity = 112.0
+MaxJumps = 1
 limitThreshold = 50.0
 
 [node name="HealthComponent" parent="ComponentManager" unique_id=758392570 instance=ExtResource("8_1yb3l")]

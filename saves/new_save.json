@@ -1,9 +1,6 @@
 {
-  "": {
-    "boss_defeated": false
-  },
   "FrogBoss": {
-    "boss_defeated": true,
+    "boss_defeated": false,
     "open_doors": false
   },
   "GreenEssence": {
@@ -18,14 +15,14 @@
     "king_frog": false
   },
   "player_inventory": {
-    "blowtorch": true,
+    "blowtorch": false,
     "dash": false,
-    "double_jump": true,
-    "green_essence": true,
-    "health_serum": 1.0
+    "double_jump": false,
+    "green_essence": false,
+    "health_serum": 0.0
   },
   "savepoint_data": {
     "level": "Lobby",
-    "position": "(50,50)"
+    "position": "(50,100)"
   }
 }
