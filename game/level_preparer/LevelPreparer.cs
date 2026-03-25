@@ -33,7 +33,7 @@ public partial class LevelPreparer : Node2D
     {
         if (!newLevel.HasMeta(Names.Properties.LevelName))
         {
-            newLevel.SetMeta(Names.Properties.LevelName, newLevel.SceneFilePath.GetFile());
+            newLevel.SetMeta(Names.Properties.LevelName, newLevel.SceneFilePath.GetBaseName().GetFile());
         }
     }
     
