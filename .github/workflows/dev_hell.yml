@@ -26,5 +26,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git commit -m "docs: update dev hell ratio" || echo "No changes"
+          git commit -m "action: update dev hell ratio" || echo "No changes"
           git push

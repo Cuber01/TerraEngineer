@@ -7,7 +7,7 @@ def analyze():
     commits = result.stdout.lower().split('\n')
     
     fixes = sum(1 for m in commits if any(k in m for k in ['fix', 'fixed', 'bug', 'patch', 'patched']))
-    maint = sum(1 for m in commits if any(k in m for k in ['merge', 'pull', 'review']))
+    maint = sum(1 for m in commits if any(k in m for k in ['merge', 'pull', 'review', 'action']))
     
     total_commits = len([m for m in commits if m.strip()])
     features = total_commits - fixes - maint
