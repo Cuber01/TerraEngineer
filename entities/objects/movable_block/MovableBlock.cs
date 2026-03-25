@@ -16,20 +16,8 @@ public partial class MovableBlock : Entity
     {
         isPushed = false;
         
-        for (int i = 0; i < GetSlideCollisionCount(); i++)
-        {
-            KinematicCollision2D col = GetSlideCollision(i);
-            GodotObject collidingWith = col.GetCollider();
-            if (collidingWith is Player)
-            {
-                Vector2 normal = col.GetNormal();
-                if (normal.Y == 0)
-                {
-                    velocity.X = pushingSpeed * Mathf.Sign(normal.X);
-                    isPushed = true;
-                }    
-            }
-        }
+        checkForPush(Vector2.Left);
+        checkForPush(Vector2.Right);
         
         CM.UpdateComponents((float)delta);
         
@@ -42,6 +30,22 @@ public partial class MovableBlock : Entity
         {
             Velocity = velocity;
             MoveAndSlide();    
+        }
+    }
+    
+    private void checkForPush(Vector2 direction)
+    {
+        KinematicCollision2D hit = new KinematicCollision2D();
+        if (TestMove(GlobalTransform, direction, hit))
+        {
+            if (hit.GetCollider() is Player player)
+            {
+                if (Mathf.Abs(hit.GetNormal().Y) == 0)
+                {
+                    velocity.X = pushingSpeed * hit.GetNormal().X;
+                    isPushed = true;
+                }
+            }
         }
     }
 }

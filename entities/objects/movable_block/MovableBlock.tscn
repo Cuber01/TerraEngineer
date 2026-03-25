@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dingl1m5pxwmo"]
+[gd_scene format=3 uid="uid://dingl1m5pxwmo"]
 
 [ext_resource type="Texture2D" uid="uid://cksxylhapg7bj" path="res://entities/objects/movable_block/shell.png" id="1_k1t1g"]
 [ext_resource type="Script" uid="uid://cdjt8cab8cnwx" path="res://entities/objects/movable_block/MovableBlock.cs" id="1_kt11t"]
@@ -19,17 +19,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn8cv"]
 size = Vector2(6, 6)
 
-[node name="MovableBlock" type="CharacterBody2D" node_paths=PackedStringArray("CM")]
+[node name="MovableBlock" type="CharacterBody2D" unique_id=1875833687 node_paths=PackedStringArray("CM")]
 collision_mask = 3
 script = ExtResource("1_kt11t")
 CM = NodePath("ComponentManager")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=328792959]
 sprite_frames = SubResource("SpriteFrames_kx5hk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813551855]
 shape = SubResource("RectangleShape2D_bn8cv")
 
-[node name="ComponentManager" parent="." instance=ExtResource("3_mflc0")]
+[node name="ComponentManager" parent="." unique_id=1800920184 instance=ExtResource("3_mflc0")]
 
-[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("4_746kg")]
+[node name="GravityComponent" parent="ComponentManager" unique_id=1890020092 instance=ExtResource("4_746kg")]
