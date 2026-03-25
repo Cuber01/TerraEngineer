@@ -2,6 +2,20 @@ import subprocess
 import os
 import re
 
+def get_status(ratio):
+    if ratio == 0:
+        return "Is this even code?"
+    elif ratio < 15:
+        return "Life is good!"
+    elif ratio < 30:
+        return "This is fine ☕"
+    elif ratio < 50:
+        return "I'm calling an ambulance, but not for me."
+    else if ratio < 99:
+        return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    else:
+        return "Consider removing the repo."
+
 def analyze():
     result = subprocess.run(['git', 'log', '--format=%s'], capture_output=True, text=True)
     commits = result.stdout.lower().split('\n')
@@ -14,7 +28,8 @@ def analyze():
     
     relevant_total = fixes + features
     ratio = (fixes / relevant_total * 100) if relevant_total > 0 else 0
-    formatted_result = f"Dev Hell Ratio: **{round(ratio, 2)}%**"
+    status_comment = get_status(ratio)
+    formatted_result = f"Dev Hell Ratio: **{round(ratio, 2)}%** — *{status_comment}*"
 
     if os.path.exists("README.md"):
         with open("README.md", "r") as f:
