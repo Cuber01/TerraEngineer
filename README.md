@@ -1,1 +1,1 @@
-[[DEV_HELL_RATIO]]
+Dev Hell Ratio: **22.16%**
