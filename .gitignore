@@ -5,4 +5,5 @@
 .editorconfig
 Folder.DotSettings.user
 Terra Engineer.sln.DotSettings.user
-
+.bin/
+*.zip
