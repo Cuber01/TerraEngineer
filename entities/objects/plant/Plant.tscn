@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vmq4"]
 size = Vector2(9, 10)
 
-[node name="Plant" type="StaticBody2D" unique_id=59443197 node_paths=PackedStringArray("versions")]
+[node name="Plant" type="CharacterBody2D" unique_id=802282132 node_paths=PackedStringArray("versions")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_0vmq4")
