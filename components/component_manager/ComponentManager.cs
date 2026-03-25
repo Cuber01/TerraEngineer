@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
@@ -9,7 +8,7 @@ namespace TENamespace;
 public partial class ComponentManager : Node2D
 {
     private readonly Dictionary<Type, Component> components = new();
-    private Entity actor = null;
+    private Node2D actor = null;
     
     private bool lateInitialized = false;
     
@@ -20,7 +19,7 @@ public partial class ComponentManager : Node2D
             return;
         #endif
         
-        if (GetParent<Node2D>() is Entity mob)
+        if (GetParent() is Node2D mob)
         {
             actor = mob;
         }
@@ -28,7 +27,10 @@ public partial class ComponentManager : Node2D
         Godot.Collections.Array<Node> children = GetChildren();
         foreach (Node child in children)
         {
-            components.Add(child.GetType(), child as Component);
+            if (child is Component comp)
+            {
+                components.Add(child.GetType(), comp);
+            }
         }
         
         InitComponents();

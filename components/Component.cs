@@ -1,20 +1,20 @@
 using Godot;
-using TerraEngineer.entities.mobs;
+using System;
 
 namespace TENamespace;
 
 public partial class Component : Node2D
 {
 
-    protected Entity Actor;
+    protected Node2D Actor;
 
-    public virtual void Init(Entity actor)
+    public virtual void Init(Node2D actor)
     {
         this.Actor = actor;
     }
     
     // Has to be called by the actor manually
-    public virtual void OptionalInit(Entity actor) { }
+    public virtual void OptionalInit(Node2D actor) { }
     
     public virtual void Update(float delta) {}
 

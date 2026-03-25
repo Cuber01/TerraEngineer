@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using TerraEngineer;
@@ -14,12 +15,22 @@ public partial class Shader : Component
     
     private bool running = false;
     private float deltaTime = 0f;
-    
-    public override void Init(Entity actor)
+
+    private Entity entityActor;
+
+    public override void Init(Node2D actor)
     {
         base.Init(actor);
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+            throw new Exception("Shader component requires Entity actor.");
+        }
         
-        sprite = Actor.Sprite;
+        sprite = entityActor.Sprite;
         material = (ShaderMaterial)sprite.Material;
         
         foreach (ShaderMaterial shader in importedShaders)

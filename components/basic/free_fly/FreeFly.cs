@@ -1,6 +1,8 @@
 using Godot;
+using System;
 using TENamespace;
 using TerraEngineer;
+using TerraEngineer.entities.mobs;
 
 public partial class FreeFly : Component
 {
@@ -9,10 +11,25 @@ public partial class FreeFly : Component
     [Export] private float acceleration = 0.25f;
     [Export] private float airResistance = 0.1f;
 
+    private Entity entityActor;
+
+    public override void Init(Node2D actor)
+    {
+        base.Init(actor);
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+            throw new Exception("FreeFly component requires Entity actor.");
+        }
+    }
+
     public void FlyInDirection(Vector2 directionNormal, float dt)
     {
-        Actor.velocity.X = MathT.Lerp(Actor.velocity.X, directionNormal.X * speed, acceleration, dt);
-        Actor.velocity.Y = MathT.Lerp(Actor.velocity.Y, directionNormal.Y * speed, acceleration, dt);
+        entityActor.velocity.X = MathT.Lerp(entityActor.velocity.X, directionNormal.X * speed, acceleration, dt);
+        entityActor.velocity.Y = MathT.Lerp(entityActor.velocity.Y, directionNormal.Y * speed, acceleration, dt);
     }
 
     public void FlyToPoint(Vector2 point, float dt)
@@ -32,7 +49,7 @@ public partial class FreeFly : Component
     
     private void updateAirResistance(float dt)
     {
-        Actor.velocity = MathT.Lerp(Actor.velocity, Vector2.Zero, airResistance, dt);
+        entityActor.velocity = MathT.Lerp(entityActor.velocity, Vector2.Zero, airResistance, dt);
     }
 
     public override void Update(float dt) => updateAirResistance(dt);

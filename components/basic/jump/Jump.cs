@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Runtime.CompilerServices;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
@@ -12,14 +13,24 @@ public partial class Jump : Component
     [Export] private float limitThreshold = 30f;
     
     private int currentJumps = 0;
+    private Entity entityActor;
 
-    public override void Init(Entity actor)
+    public override void Init(Node2D actor)
     {
         base.Init(actor);
-        actor.CM.GetComponent<Gravity>().LandedOnFloor += 
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+            throw new Exception("Jump component requires Entity actor.");
+        }
+        
+        entityActor.CM.GetComponent<Gravity>().LandedOnFloor += 
             () => currentJumps = 0;
         
-        actor.CM.GetComponent<Gravity>().LeftFloor += () => {
+        entityActor.CM.GetComponent<Gravity>().LeftFloor += () => {
             // If we fell
             if (currentJumps == 0)
             {
@@ -41,20 +52,20 @@ public partial class Jump : Component
 
     public void CancelJump()
     {
-        Actor.velocity.Y = Mathf.Clamp(Actor.velocity.Y, 0, MathT.POSITIVE_INF);
+        entityActor.velocity.Y = Mathf.Clamp(entityActor.velocity.Y, 0, MathT.POSITIVE_INF);
     }
 
     public void LimitJump()
     {
-        if (Actor.velocity.Y <= -limitThreshold)
+        if (entityActor.velocity.Y <= -limitThreshold)
         {
-            Actor.velocity.Y += limitThreshold;
+            entityActor.velocity.Y += limitThreshold;
         }
     }
 
     private void executeJump(float forceMultiplier=1f)
     {
-        Actor.velocity.Y = -jumpVelocity*forceMultiplier;
+        entityActor.velocity.Y = -jumpVelocity*forceMultiplier;
         currentJumps++;
     }
 

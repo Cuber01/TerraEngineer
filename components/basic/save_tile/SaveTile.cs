@@ -8,7 +8,7 @@ public partial class SaveTile : Component
 {
     private StringName levelName;
 
-    public override void Init(Entity actor)
+    public override void Init(Node2D actor)
     {
         base.Init(actor);
         levelName = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);

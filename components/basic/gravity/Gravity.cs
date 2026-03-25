@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using TerraEngineer;
+using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
 
@@ -17,6 +18,21 @@ public partial class Gravity : Component
     
     public delegate void LeftFloorHandler();
     public event LandedOnFloorHandler LeftFloor;
+
+    private Entity entityActor;
+
+    public override void Init(Node2D actor)
+    {
+        base.Init(actor);
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+            throw new Exception("Gravity component requires Entity actor.");
+        }
+    }
     
     public override void Update(float delta) => updateGravity(delta);
     
@@ -24,32 +40,32 @@ public partial class Gravity : Component
     {
         if(Disabled) return;
         
-        if (Actor.IsOnFloor())
+        if (entityActor.IsOnFloor())
         {
-            if (Actor.UpDirection.Y != 0)
+            if (entityActor.UpDirection.Y != 0)
             {
-                Actor.velocity.Y = Mathf.Clamp(Actor.velocity.Y, 
-                    Actor.UpDirection.Y < 0 ? MathT.NEGATIVE_INF : 0,
-                    Actor.UpDirection.Y < 0 ? 0 : MathT.POSITIVE_INF);
+                entityActor.velocity.Y = Mathf.Clamp(entityActor.velocity.Y, 
+                    entityActor.UpDirection.Y < 0 ? MathT.NEGATIVE_INF : 0,
+                    entityActor.UpDirection.Y < 0 ? 0 : MathT.POSITIVE_INF);
             }
 
-            if (Actor.UpDirection.X != 0)
+            if (entityActor.UpDirection.X != 0)
             {
-                Actor.velocity.X = Mathf.Clamp(Actor.velocity.X, 
-                    Actor.UpDirection.X < 0 ? 0 : MathT.NEGATIVE_INF,
-                    Actor.UpDirection.X < 0 ? MathT.POSITIVE_INF : 0);    
+                entityActor.velocity.X = Mathf.Clamp(entityActor.velocity.X, 
+                    entityActor.UpDirection.X < 0 ? 0 : MathT.NEGATIVE_INF,
+                    entityActor.UpDirection.X < 0 ? MathT.POSITIVE_INF : 0);    
             }
         }
         else
         {
-            if (Actor.velocity.Y * -Actor.UpDirection.Y < maxGravity * Math.Abs(Actor.UpDirection.Y))
+            if (entityActor.velocity.Y * -entityActor.UpDirection.Y < maxGravity * Math.Abs(entityActor.UpDirection.Y))
             {
-                Actor.velocity.Y += GravityForce * -Actor.UpDirection.Y;    
+                entityActor.velocity.Y += GravityForce * -entityActor.UpDirection.Y;    
             }   
             
-            if (Actor.velocity.X * Actor.UpDirection.X < maxGravity * Math.Abs(Actor.UpDirection.X))
+            if (entityActor.velocity.X * entityActor.UpDirection.X < maxGravity * Math.Abs(entityActor.UpDirection.X))
             {
-                Actor.velocity.X += GravityForce * -Actor.UpDirection.X;    
+                entityActor.velocity.X += GravityForce * -entityActor.UpDirection.X;    
             }   
         }
         
@@ -58,10 +74,13 @@ public partial class Gravity : Component
     
     private void checkEvents()
     {
-        if (!Actor.IsOnFloor())
+        if (!entityActor.IsOnFloor())
         {
-            isOnFloor = false;
-            LeftFloor?.Invoke();
+            if (isOnFloor)
+            {
+                isOnFloor = false;
+                LeftFloor?.Invoke();
+            }
         }
         else
         {

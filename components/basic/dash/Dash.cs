@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using TerraEngineer.entities.mobs;
 
 namespace TENamespace;
@@ -13,10 +14,21 @@ public partial class Dash : Component
     public bool IsDashing = false;
     private int dashDirection;
     
-    public override void Init(Entity actor)
+    private Entity entityActor;
+
+    public override void Init(Node2D actor)
     {
         base.Init(actor);
-        actor.CM.GetComponent<Gravity>().LandedOnFloor += 
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+            throw new Exception("Dash component requires Entity actor.");
+        }
+        
+        entityActor.CM.GetComponent<Gravity>().LandedOnFloor += 
             () => currentDashes = 0;
     }
     
@@ -24,8 +36,8 @@ public partial class Dash : Component
     {
         if (IsDashing)
         {
-            Actor.velocity.X = dashSpeed * dashDirection;
-            Actor.velocity.Y = 0;
+            entityActor.velocity.X = dashSpeed * dashDirection;
+            entityActor.velocity.Y = 0;
         }
     }
 

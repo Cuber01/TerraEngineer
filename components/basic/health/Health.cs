@@ -1,4 +1,6 @@
 using Godot;
+using System;
+using TerraEngineer.entities.mobs;
 
 namespace TENamespace.health;
 
@@ -19,6 +21,21 @@ public partial class Health : Component
     [Export] private float invincibilityTimeOnHit = 0.2f;
     private bool invincible = false;
     private float invincibilityDelay = 0;
+
+    private Entity entityActor;
+
+    public override void Init(Node2D actor)
+    {
+        base.Init(actor);
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+           throw new Exception("Health component requires Entity actor.");
+        }
+    }
 
     public override void _Ready()
     {
@@ -44,7 +61,7 @@ public partial class Health : Component
         HealthChanged?.Invoke(HP, amount);
         if (HP <= 0)
         {
-            Actor.Die();
+            entityActor.Die();
         }
         else if (amount < 0)
         {

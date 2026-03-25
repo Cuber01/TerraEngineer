@@ -10,12 +10,12 @@ public partial class SaveEntity : Component
     [Export] private StringName saveName;
     private StringName saveSection;
 
-    public Action<Entity> DoIfTrue = (Entity actor) =>
+    public Action<Node2D> DoIfTrue = (Node2D actor) =>
     {
         actor.CallDeferred(Node.MethodName.QueueFree);
     };
 
-    public override void OptionalInit(Entity actor)
+    public override void OptionalInit(Node2D actor)
     {
         saveSection = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
         if (saveSection == "" || saveSection == null)
@@ -35,7 +35,7 @@ public partial class SaveEntity : Component
         }
     }
 
-    public void Setup(StringName saveName, Action<Entity> doIfTrue)
+    public void Setup(StringName saveName, Action<Node2D> doIfTrue)
     {
         this.DoIfTrue = doIfTrue;
         this.saveName = saveName;

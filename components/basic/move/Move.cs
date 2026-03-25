@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
@@ -15,17 +16,32 @@ public partial class Move : Component
 	[Export] public bool FrictionEnabledY = false;
 	
 	[Export] private float errorMargin = 1f;
+
+	private Entity entityActor;
+
+	public override void Init(Node2D actor)
+	{
+		base.Init(actor);
+        if (actor is Entity entity)
+        {
+            entityActor = entity;
+        }
+        else
+        {
+            throw new Exception("Move component requires Entity actor.");
+        }
+	}
 	
 	public override void Update(float delta) => updateFriction(FrictionEnabledX, FrictionEnabledY, delta);
 	
 	public void Walk(DirectionX direction, float dt, float speedModifier=1f)
 	{
-		Actor.velocity.X = MathT.Lerp(Actor.velocity.X, (int)direction * speed * speedModifier, acceleration, dt);
+		entityActor.velocity.X = MathT.Lerp(entityActor.velocity.X, (int)direction * speed * speedModifier, acceleration, dt);
 	}
 
 	public void Walk4(Vector2 direction, float dt)
 	{
-		Actor.velocity = MathT.Lerp(Actor.velocity, direction * speed, acceleration, dt);
+		entityActor.velocity = MathT.Lerp(entityActor.velocity, direction * speed, acceleration, dt);
 	}
 
 	public void WalkToPoint(float pointX, float speedModifier=1f)
@@ -45,7 +61,7 @@ public partial class Move : Component
 	private void updateFriction(bool x, bool y, float dt)
 	{
 		float amount;
-		if (Actor.IsOnFloor())
+		if (entityActor.IsOnFloor())
 		{
 			amount = friction;
 		}
@@ -54,8 +70,8 @@ public partial class Move : Component
 			amount = airResistance;
 		}
 		
-		if (x) Actor.velocity.X = MathT.Lerp(Actor.velocity.X, 0f, amount, dt);	
-		if (y) Actor.velocity.Y = MathT.Lerp(Actor.velocity.Y, 0f, amount, dt);
+		if (x) entityActor.velocity.X = MathT.Lerp(entityActor.velocity.X, 0f, amount, dt);	
+		if (y) entityActor.velocity.Y = MathT.Lerp(entityActor.velocity.Y, 0f, amount, dt);
 	}
 
 }
