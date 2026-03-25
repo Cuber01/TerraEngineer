@@ -5,10 +5,13 @@
     <RootNamespace>TerraEngineer</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".github\scripts\calculate_ratio.py" />
+    <Content Include=".github\workflows\dev_hell.yml" />
     <Content Include="addons\TimerManager\LICENSE.txt" />
     <Content Include="addons\TimerManager\TimerManager.tscn" />
     <Content Include="LICENSE.txt" />
     <Content Include="notes.txt" />
+    <Content Include="README.md" />
     <Content Include="shaders\blink.gdshader" />
     <Content Include="shaders\palette_swap.gdshader" />
   </ItemGroup>

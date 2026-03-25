@@ -11,7 +11,7 @@ def get_status(ratio):
         return "This is fine ☕"
     elif ratio < 50:
         return "I'm calling an ambulance, but not for me."
-    else if ratio < 99:
+    elif ratio < 99:
         return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     else:
         return "Consider removing the repo."
