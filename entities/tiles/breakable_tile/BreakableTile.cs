@@ -6,7 +6,7 @@ public partial class BreakableTile : Tile
 {
     public override void Die()
     {
-        CM.GetComponent<SaveTile>().ChangeState(MapCoords, false);
+        CM.GetComponent<SaveTile>().ChangeState(MapCoords, true);
         
         base.Die();
     }

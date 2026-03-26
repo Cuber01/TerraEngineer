@@ -14,11 +14,11 @@ public partial class SaveTile : Component
         levelName = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
     }
 
-    public void ChangeState(Vector2I myCoords, bool exists)
+    public void ChangeState(Vector2I myCoords, bool removed)
     {
         Variant asArray = SaveData.VecToParseableArray(myCoords);
         
-        if (exists)
+        if (!removed)
         {
             SaveData.RemoveValueInArray(levelName, Names.SaveSections.RemovedTiles,  asArray); 
         }

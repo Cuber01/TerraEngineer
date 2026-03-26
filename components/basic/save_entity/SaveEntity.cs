@@ -41,8 +41,8 @@ public partial class SaveEntity : Component
         this.saveName = saveName;
     }
 
-    public void ChangeState(bool exists)
+    public void ChangeState(bool removed)
     {
-        SaveData.SetAddValue(saveSection, saveName, exists);
+        SaveData.SetAddValue(saveSection, saveName, removed);
     }
 }

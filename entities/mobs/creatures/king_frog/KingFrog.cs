@@ -5,6 +5,7 @@ using TENamespace.basic.builders.creature_builder;
 using TENamespace.save_entity;
 using TerraEngineer;
 using TerraEngineer.entities.mobs.creatures;
+using TerraEngineer.game;
 
 // Phases:
 // Jump => Smash or Idle
@@ -191,6 +192,7 @@ public partial class KingFrog : Creature
     public override void Die()
     {
         CM.GetComponent<SaveEntity>().ChangeState(true);
+        GlobalEventBus.Instance.Publish(GlobalEvents.BossDefeated);
         base.Die();
     }
     

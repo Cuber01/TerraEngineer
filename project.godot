@@ -24,6 +24,7 @@ TimerManager="*res://addons/TimerManager/TimerManager.tscn"
 SaveData="*res://game/saves/SaveData.tscn"
 MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GlobalEventBus="*uid://de0e3k6hj6epk"
 
 [dialogue_manager]
 
