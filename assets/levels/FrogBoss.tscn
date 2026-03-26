@@ -34,6 +34,7 @@ startState = true
 position = Vector2(9, -4)
 
 [node name="SwitchableGroup" parent="." unique_id=1664946770 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("5_1d37w")]
+overrideOpenOn = 0
 GroupPalette = ExtResource("7_vik8r")
 BlocksGroupPalette = ExtResource("6_i6ww4")
 SwitcherGroups = [NodePath("../SwitcherGroup")]
@@ -66,7 +67,5 @@ position = Vector2(52, 178)
 
 [node name="SwitchableBlock8" parent="SwitchableGroup" unique_id=2076531601 instance=ExtResource("6_ppyts")]
 position = Vector2(44, 178)
-
-[connection signal="Died" from="KingFrog" to="SwitchableGroup" method="onSpecialSignal"]
 
 [editable path="SwitcherGroup/SwitcherArea"]

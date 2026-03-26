@@ -24,7 +24,8 @@ public class EventBus<T> where T : Enum
 
     public void Publish(T eventType)
     {
-        Subs[eventType]?.Invoke();
+        if(Subs.ContainsKey(eventType))
+            Subs[eventType].Invoke();
     }
 
 }

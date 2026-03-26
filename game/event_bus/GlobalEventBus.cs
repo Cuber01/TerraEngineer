@@ -7,10 +7,16 @@ namespace TerraEngineer.game;
 // unrelated high-level objects, but NOT between e.g. nodes and their children
 public enum GlobalEvents
 {
-    BossDefeated
+    BossDefeated,
+    None
 }
 
 public partial class GlobalEventBus : Node2D
 {
     public static EventBus<GlobalEvents> Instance;
+
+    public override void _Ready()
+    {
+        Instance = new EventBus<GlobalEvents>();
+    }
 }

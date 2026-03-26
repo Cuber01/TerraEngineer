@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using System;
+using TerraEngineer.game;
 
 namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 
@@ -9,6 +10,8 @@ public partial class SwitchableGroup : Node2D
 {
     [ExportToolButton("Update group palettes")]
     public Callable MyToolButton => Callable.From(updateGroupPalette);
+
+    [Export] private GlobalEvents overrideOpenOn = GlobalEvents.None;
     
     [Export] private Texture2D GroupPalette
     {
@@ -51,7 +54,8 @@ public partial class SwitchableGroup : Node2D
             return;
         #endif
         
-        
+        if(overrideOpenOn != GlobalEvents.None)
+            GlobalEventBus.Instance.Subscribe(overrideOpenOn, overrideOpen);
         
         updateGroupPalette();
         
@@ -97,11 +101,16 @@ public partial class SwitchableGroup : Node2D
         }
     }
 
-    // Signal that overrides usual checks
-    private void onSpecialSignal()
+    private void overrideOpen()
     {
         GroupSwitchedOn = !GroupSwitchedOn;
         OnSwitch(GroupSwitchedOn);
+    }
+    
+    public override void _ExitTree()
+    {
+        if(overrideOpenOn != GlobalEvents.None)
+            GlobalEventBus.Instance.Unsubscribe(overrideOpenOn, overrideOpen);
     }
 
  

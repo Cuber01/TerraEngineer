@@ -87,7 +87,7 @@ public class Controller
         releaseActions[actionName] = action;
     }
     
-    public void AddOverride(StringName actionName, Action? action)
+    public void AddOverride(StringName actionName, Action action)
     {
         overrides[actionName] = action;
     }

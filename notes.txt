@@ -24,3 +24,4 @@ X add frog animations
 - make it possible to leave the office lore room
 - add dialogue to radio in tower
 - make boss room open only after picking up double jump
+- rewrite switcher area as generic area that fires event on enter
