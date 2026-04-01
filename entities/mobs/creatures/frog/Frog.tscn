@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://kfeqfwwycnon" path="res://entities/mobs/creatures/frog/Frog.cs" id="1_hhfj2"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="1_yst0w"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="2_c4mrv"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_g0rnh"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="2_n5xjy"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="3_hhfj2"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_8wbl1"]
@@ -11,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_8wbl1"]
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_7m517"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_y3mso"]
+
+[sub_resource type="Resource" id="Resource_g0rnh"]
+script = ExtResource("2_g0rnh")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6l3q"]
 atlas = ExtResource("1_c4mrv")
@@ -64,7 +69,7 @@ size = Vector2(7.875, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y3mso"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqf4n"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("2_n5xjy")
@@ -80,6 +85,7 @@ script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_g0rnh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1909880338]
 position = Vector2(0, -1)
@@ -114,6 +120,6 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_7m517")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_y3mso")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_y3mso")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jqf4n")])
 
 [editable path="ComponentManager/ContactDamageComponent"]

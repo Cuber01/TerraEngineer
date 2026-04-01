@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d2wtbvj8vs2lx"
+path="res://.godot/imported/snail.ase-6270c29d393d4ba2c91d4df29f340477.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/snail/snail.ase"
+dest_files=["res://.godot/imported/snail.ase-6270c29d393d4ba2c91d4df29f340477.res"]
+
+[params]
+

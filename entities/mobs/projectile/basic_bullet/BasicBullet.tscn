@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1ljunm0av8p"]
+[gd_scene format=3 uid="uid://b1ljunm0av8p"]
 
 [ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_y6bss"]
 [ext_resource type="Texture2D" uid="uid://clql1xeyl6f0k" path="res://entities/objects/plant/plant-mushroom.png" id="2_q71h5"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_u806n"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_u806n"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_3jrf3"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_t483a"]
+
+[sub_resource type="Resource" id="Resource_q71h5"]
+script = ExtResource("2_u806n")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_msxgl"]
 animations = [{
@@ -20,27 +25,27 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6bss"]
 size = Vector2(2, 2)
 
-[node name="BasicBullet" type="CharacterBody2D" node_paths=PackedStringArray("CM", "sprite")]
+[node name="BasicBullet" type="CharacterBody2D" unique_id=365745434 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_y6bss")
 CM = NodePath("ComponentManager")
-sprite = NodePath("AnimatedSprite2D")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_q71h5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1179702797]
 scale = Vector2(0.194444, 0.2)
 sprite_frames = SubResource("SpriteFrames_msxgl")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=239809437]
 collision_layer = 0
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=960729088]
 shape = SubResource("RectangleShape2D_y6bss")
 
-[node name="ComponentManager" parent="." instance=ExtResource("3_u806n")]
+[node name="ComponentManager" parent="." unique_id=192209432 instance=ExtResource("3_u806n")]
 
-[node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("4_3jrf3")]
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=566405127 instance=ExtResource("4_3jrf3")]
 
-[node name="LifetimeComponent" parent="ComponentManager" node_paths=PackedStringArray("actor") instance=ExtResource("5_t483a")]
-actor = NodePath("../..")
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=1679863149 instance=ExtResource("5_t483a")]
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

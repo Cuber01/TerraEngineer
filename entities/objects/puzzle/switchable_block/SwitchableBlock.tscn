@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx5otd75j65no"]
+[gd_scene format=3 uid="uid://dx5otd75j65no"]
 
 [ext_resource type="Script" uid="uid://bh1ouhnjrw2fs" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.cs" id="1_hbxo4"]
 [ext_resource type="Texture2D" uid="uid://b72vatjax06mn" path="res://entities/objects/puzzle/puzzle-palette-blue.png" id="2_sbt2g"]
 [ext_resource type="Texture2D" uid="uid://cvyic0f266t67" path="res://entities/objects/puzzle/switchable_block/switchable-block.png" id="2_vyy7x"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_x1yfi"]
 
-[sub_resource type="Shader" id="Shader_x1yfi"]
+[sub_resource type="Resource" id="Resource_x1yfi"]
+script = ExtResource("2_x1yfi")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Shader" id="Shader_ksqu1"]
 code = "shader_type canvas_item;
 uniform sampler2D palette;
 
@@ -21,8 +26,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ksqu1"]
-shader = SubResource("Shader_x1yfi")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfkk2"]
+shader = SubResource("Shader_ksqu1")
 shader_parameter/palette = ExtResource("2_sbt2g")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3sok"]
@@ -50,15 +55,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1yfi"]
 size = Vector2(8, 8)
 
-[node name="SwitchableBlock" type="CharacterBody2D" node_paths=PackedStringArray("collider", "Sprite")]
+[node name="SwitchableBlock" type="CharacterBody2D" unique_id=1012799894 node_paths=PackedStringArray("collider", "Sprite")]
 collision_mask = 0
 script = ExtResource("1_hbxo4")
 collider = NodePath("CollisionShape2D")
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_x1yfi")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_ksqu1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=452265582]
+material = SubResource("ShaderMaterial_rfkk2")
 sprite_frames = SubResource("SpriteFrames_sbt2g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=173280865]
 shape = SubResource("RectangleShape2D_x1yfi")

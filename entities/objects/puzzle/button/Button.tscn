@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxjv1g0yeixry"]
+[gd_scene format=3 uid="uid://dxjv1g0yeixry"]
 
 [ext_resource type="Script" uid="uid://vofvwclmotw6" path="res://entities/objects/puzzle/button/Button.cs" id="1_hmy84"]
 [ext_resource type="Texture2D" uid="uid://b7lgmfh8f0tu2" path="res://entities/objects/puzzle/button/button.png" id="2_1242d"]
 [ext_resource type="Texture2D" uid="uid://dp5ojga10j7ho" path="res://entities/objects/puzzle/puzzle-palette-yellow-levers-buttons.png" id="2_biptm"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_ni6wq"]
 
-[sub_resource type="Shader" id="Shader_biptm"]
+[sub_resource type="Resource" id="Resource_ni6wq"]
+script = ExtResource("2_ni6wq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Shader" id="Shader_ctoyd"]
 code = "shader_type canvas_item;
 uniform sampler2D palette;
 
@@ -21,8 +26,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ni6wq"]
-shader = SubResource("Shader_biptm")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wevid"]
+shader = SubResource("Shader_ctoyd")
 shader_parameter/palette = ExtResource("2_biptm")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_biptm"]
@@ -50,19 +55,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wevid"]
 size = Vector2(6, 3)
 
-[node name="Button" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
+[node name="Button" type="CharacterBody2D" unique_id=623681046 node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_hmy84")
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_ni6wq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_ni6wq")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=309861604]
+material = SubResource("ShaderMaterial_wevid")
 sprite_frames = SubResource("SpriteFrames_ctoyd")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=124641945]
 collision_layer = 0
 collision_mask = 15
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=173059445]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_wevid")
 

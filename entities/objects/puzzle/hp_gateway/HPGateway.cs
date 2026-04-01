@@ -29,7 +29,7 @@ public partial class HPGateway : Entity
 	}
 
 	private void updateSprite()
-		=> Sprite.Frame = (int)_mode;
+		=> SpriteWrapper.SetFrame((int)_mode);
 
 	private void onCreatureEntered(Node2D creature)
 	{

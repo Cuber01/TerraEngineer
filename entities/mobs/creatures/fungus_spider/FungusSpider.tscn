@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://br7kc71dlql8f"]
+[gd_scene format=3 uid="uid://br7kc71dlql8f"]
 
 [ext_resource type="Script" uid="uid://caqday17n6hop" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.cs" id="1_cxflu"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="1_wiodx"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="2_cxflu"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_rphps"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="3_rphps"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_14hgr"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="5_jwh86"]
@@ -10,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="7_2bplr"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_ckfwh"]
 [ext_resource type="Texture2D" uid="uid://07p1xmyxuj7i" path="res://entities/mobs/creatures/fungus_spider/fungus-spider.png" id="9_km5g4"]
+
+[sub_resource type="Resource" id="Resource_rphps"]
+script = ExtResource("2_rphps")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqayp"]
 size = Vector2(14, 7)
@@ -28,7 +33,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wiodx"]
 size = Vector2(14, 7)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxflu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rphps"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_k6jmt")
@@ -38,46 +43,47 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="FungusSpider" type="CharacterBody2D" node_paths=PackedStringArray("isGroundAhead", "CM", "Sprite")]
+[node name="FungusSpider" type="CharacterBody2D" unique_id=1688353842 node_paths=PackedStringArray("isGroundAhead", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_cxflu")
 isGroundAhead = NodePath("RayCast2D")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_rphps")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=904074843]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mqayp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1934187692]
 sprite_frames = SubResource("SpriteFrames_drgdx")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=568754032]
 position = Vector2(8, -3)
 target_position = Vector2(0, 9)
 
-[node name="ComponentManager" parent="." instance=ExtResource("1_wiodx")]
+[node name="ComponentManager" parent="." unique_id=2058013670 instance=ExtResource("1_wiodx")]
 
-[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("3_rphps")]
+[node name="MoveComponent" parent="ComponentManager" unique_id=51218843 instance=ExtResource("3_rphps")]
 acceleration = 4.31
 friction = 10.0
 airResistance = 1.724
 
-[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_14hgr")]
+[node name="HealthComponent" parent="ComponentManager" unique_id=941587445 instance=ExtResource("4_14hgr")]
 MaxHealth = 3
 
-[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("2_cxflu")]
+[node name="GravityComponent" parent="ComponentManager" unique_id=6804512 instance=ExtResource("2_cxflu")]
 
-[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("8_ckfwh")]
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=1977737231 instance=ExtResource("8_ckfwh")]
 
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_wiodx")
 
-[node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("7_2bplr")]
+[node name="KnockbackComponent" parent="ComponentManager" unique_id=953470655 instance=ExtResource("7_2bplr")]
 
-[node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("5_jwh86")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_cxflu")])
+[node name="ShaderComponent" parent="ComponentManager" unique_id=55216027 instance=ExtResource("5_jwh86")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_rphps")])
 
 [editable path="ComponentManager/ContactDamageComponent"]

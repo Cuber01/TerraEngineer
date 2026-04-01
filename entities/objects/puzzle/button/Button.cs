@@ -21,7 +21,7 @@ public partial class Button : Entity, ISwitcher
         bodiesOnButton++;
         if (!SwitchedOn)
         {
-            Sprite.Frame = 1;
+            SpriteWrapper.SetFrame(1);
             SwitchedOn = true;
             Switched?.Invoke(true);
         }
@@ -33,7 +33,7 @@ public partial class Button : Entity, ISwitcher
 
         if (bodiesOnButton == 0)
         {
-            Sprite.Frame = 0;
+            SpriteWrapper.SetFrame(0);
             SwitchedOn = false;
             Switched?.Invoke(false);
         }

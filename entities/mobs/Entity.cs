@@ -3,6 +3,7 @@
 using Godot;
 using System;
 using TENamespace;
+using TerraEngineer.game.sprite;
 
 namespace TerraEngineer.entities.mobs;
 
@@ -14,15 +15,23 @@ public partial class Entity : CharacterBody2D
     [Export] public ComponentManager CM;
     [Export] public CollisionTeam Team;
     [Export] public bool GodMode = false;
-    [Export] public AnimatedSprite2D Sprite;
+    [Export] public Node2D Sprite;
+
+    [Export] public SpriteWrapper ExportedSpriteWrapper
+    {
+        get => SpriteWrapper;
+        set
+        {
+            SpriteWrapper = value;
+            SpriteWrapper.Init(Sprite);
+        }
+    }
+    public SpriteWrapper SpriteWrapper;
     
     [Export] public DirectionX ExportedFacing
     {
         get => Facing;
-        set
-        {
-            Flip(value);
-        }
+        set => Flip(value);
     }
     public DirectionX Facing = DirectionX.Right;
     public Vector2 velocity;
@@ -48,7 +57,10 @@ public partial class Entity : CharacterBody2D
         GetNode<AnimatedSprite2D>(Names.Node.AnimatedSprite2D).Material = mat;
     }
 
-    protected void FlipSprite() => Sprite.FlipH = !Sprite.FlipH;
+    protected void FlipSprite()
+    {
+        SpriteWrapper.Flip();
+    }
     
     public void Flip(DirectionX side=DirectionX.None)
     {
@@ -70,7 +82,7 @@ public partial class Entity : CharacterBody2D
     protected virtual void FlipEffect()
     {
         Facing = (DirectionX)(-(int)Facing);
-        Sprite.FlipH = !Sprite.FlipH;   
+        SpriteWrapper.Flip();
     }
 
     public virtual void Die()

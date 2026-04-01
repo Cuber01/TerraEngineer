@@ -18,7 +18,7 @@ public partial class PickupableItem : Entity
         get => _itemTexture;
         set
         {
-            setTexture(value);
+            SpriteWrapper.SetTexture(value);
             _itemTexture = value;
         } 
     }
@@ -65,10 +65,5 @@ public partial class PickupableItem : Entity
         balloonTemplate.PlayDialogue(dialogueDescription, Names.Other.Start);
         player.Controller.SwitchControl(balloonTemplate.Controller);
     }
-
-    private void setTexture(Texture2D texture)
-    {
-        Sprite.SpriteFrames = (SpriteFrames)Sprite.SpriteFrames.Duplicate();
-        Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, (Texture2D)texture.Duplicate());
-    }
+    
 }

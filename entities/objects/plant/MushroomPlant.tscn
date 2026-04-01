@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://clql1xeyl6f0k" path="res://entities/objects/plant/plant-mushroom.png" id="1_mo8c6"]
 [ext_resource type="Script" uid="uid://d0cuix83asm8u" path="res://entities/objects/plant/Mushroom.cs" id="1_rgdec"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_a0hhk"]
+
+[sub_resource type="Resource" id="Resource_a0hhk"]
+script = ExtResource("2_a0hhk")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdec"]
 size = Vector2(8.5, 3)
@@ -22,6 +27,7 @@ script = ExtResource("1_rgdec")
 Hitbox = NodePath("Area2D/CollisionShape2D")
 MyBiome = 2
 Sprite = NodePath("Sprite")
+ExportedSpriteWrapper = SubResource("Resource_a0hhk")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=732570946]
 collision_mask = 2

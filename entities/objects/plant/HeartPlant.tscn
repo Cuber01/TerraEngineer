@@ -2,7 +2,12 @@
 
 [ext_resource type="Script" uid="uid://nlqu7llwq0rh" path="res://entities/objects/plant/HeartPlant.cs" id="1_b8cd1"]
 [ext_resource type="Texture2D" uid="uid://d2dpf27du1h6q" path="res://entities/objects/plant/plant-grass.png" id="1_xhu61"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_ww8cb"]
 [ext_resource type="Texture2D" uid="uid://b5iwuwwwsn4ff" path="res://entities/objects/plant/plant-grass-empty.png" id="3_ehjs6"]
+
+[sub_resource type="Resource" id="Resource_ww8cb"]
+script = ExtResource("2_ww8cb")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8cd1"]
 size = Vector2(5, 4)
@@ -31,6 +36,7 @@ script = ExtResource("1_b8cd1")
 sprite = NodePath("Sprite2D")
 Hitbox = NodePath("Area2D/CollisionShape2D")
 Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_ww8cb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=450907993]
 collision_mask = 2

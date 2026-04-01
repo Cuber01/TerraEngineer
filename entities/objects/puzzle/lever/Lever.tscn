@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkdxw6irme7rf"]
+[gd_scene format=3 uid="uid://bkdxw6irme7rf"]
 
 [ext_resource type="Script" uid="uid://dnjdjfcs4e7j8" path="res://entities/objects/puzzle/lever/Lever.cs" id="1_6xpxo"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_0yn61"]
 [ext_resource type="Texture2D" uid="uid://crp5ykqa41aqm" path="res://entities/objects/puzzle/lever/lever.png" id="2_6xpxo"]
 [ext_resource type="Texture2D" uid="uid://dp5ojga10j7ho" path="res://entities/objects/puzzle/puzzle-palette-yellow-levers-buttons.png" id="2_fl3nn"]
 
-[sub_resource type="Shader" id="Shader_fl3nn"]
+[sub_resource type="Resource" id="Resource_fl3nn"]
+script = ExtResource("2_0yn61")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Shader" id="Shader_0yn61"]
 code = "shader_type canvas_item;
 uniform sampler2D palette;
 
@@ -38,8 +43,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yn61"]
-shader = SubResource("Shader_fl3nn")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ae5x"]
+shader = SubResource("Shader_0yn61")
 shader_parameter/palette = ExtResource("2_fl3nn")
 shader_parameter/exclusion_list = PackedVector3Array(1, 1, 1, 0.18, 0.133, 0.184, 0.243, 0.208, 0.275)
 shader_parameter/exclusion_list_size = 3
@@ -69,19 +74,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0htm"]
 size = Vector2(10, 8)
 
-[node name="Lever" type="CharacterBody2D" node_paths=PackedStringArray("Sprite")]
+[node name="Lever" type="CharacterBody2D" unique_id=598511616 node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_6xpxo")
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_fl3nn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_0yn61")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=512486774]
+material = SubResource("ShaderMaterial_7ae5x")
 sprite_frames = SubResource("SpriteFrames_aflbh")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=702987264]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=694805050]
 shape = SubResource("RectangleShape2D_g0htm")
 
 [connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]

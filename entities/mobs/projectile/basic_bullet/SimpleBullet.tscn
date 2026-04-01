@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs43ir7fk8nwk"]
+[gd_scene format=3 uid="uid://cs43ir7fk8nwk"]
 
 [ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_45ig4"]
 [ext_resource type="Texture2D" uid="uid://matrfljl1nab" path="res://entities/mobs/projectile/basic_bullet/basic-bullet.png" id="2_3e8d6"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_wqdil"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_wqdil"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_milgr"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_enncr"]
+
+[sub_resource type="Resource" id="Resource_milgr"]
+script = ExtResource("2_wqdil")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0gsub"]
 animations = [{
@@ -20,32 +25,32 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvebt"]
 size = Vector2(3, 3)
 
-[node name="SimpleBullet" type="CharacterBody2D" node_paths=PackedStringArray("CM", "Sprite")]
+[node name="SimpleBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_45ig4")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_milgr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
 sprite_frames = SubResource("SpriteFrames_0gsub")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=798235926]
 position = Vector2(4.5, 0)
 collision_layer = 0
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=262930762]
 position = Vector2(-4, 0.5)
 shape = SubResource("RectangleShape2D_vvebt")
 
-[node name="ComponentManager" parent="." instance=ExtResource("3_wqdil")]
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("3_wqdil")]
 
-[node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("4_milgr")]
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=1408906313 instance=ExtResource("4_milgr")]
 speed = 120.0
 acceleration = 1.0
 airResistance = 0.0
 
-[node name="LifetimeComponent" parent="ComponentManager" node_paths=PackedStringArray("actor") instance=ExtResource("5_enncr")]
-actor = NodePath("../..")
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_enncr")]
 lifetime = 0.3
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

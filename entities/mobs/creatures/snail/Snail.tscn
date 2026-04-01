@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://v37c1i0566mt"]
+[gd_scene format=3 uid="uid://v37c1i0566mt"]
 
 [ext_resource type="Script" uid="uid://jlmdy1upywt6" path="res://entities/mobs/creatures/snail/Snail.cs" id="1_jdeb6"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_072wc"]
 [ext_resource type="Texture2D" uid="uid://dnb2rq0ehsm8u" path="res://entities/mobs/creatures/snail/snail.png" id="2_ncjo3"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_ralr5"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_072wc"]
@@ -9,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_35750"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="8_ralr5"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="9_072wc"]
+
+[sub_resource type="Resource" id="Resource_072wc"]
+script = ExtResource("2_072wc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jdeb6"]
 atlas = ExtResource("2_ncjo3")
@@ -59,7 +64,7 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
 size = Vector2(9, 7)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ralr5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_he5bs"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("9_072wc")
@@ -69,7 +74,7 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("down", "right", "left", "CM", "Sprite")]
+[node name="Snail" type="CharacterBody2D" unique_id=749977076 node_paths=PackedStringArray("down", "right", "left", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_jdeb6")
 down = NodePath("RayCastDown")
@@ -78,50 +83,51 @@ left = NodePath("RayCastLeft")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_072wc")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=85921901]
 sprite_frames = SubResource("SpriteFrames_wbohw")
 autoplay = "default"
 frame_progress = 0.94660133
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1838916298]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_gumxn")
 
-[node name="RayCastDown" type="RayCast2D" parent="."]
+[node name="RayCastDown" type="RayCast2D" parent="." unique_id=440617810]
 position = Vector2(-3, 4)
 target_position = Vector2(0, 4)
 
-[node name="RayCastRight" type="RayCast2D" parent="."]
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1114067606]
 position = Vector2(5, 0)
 rotation = -1.5707964
 target_position = Vector2(0, 4)
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1747867793]
 position = Vector2(-4, 0)
 rotation = 1.5707964
 target_position = Vector2(0, 4)
 
-[node name="ComponentManager" parent="." instance=ExtResource("3_ralr5")]
+[node name="ComponentManager" parent="." unique_id=363287534 instance=ExtResource("3_ralr5")]
 
-[node name="MoveComponent" parent="ComponentManager" instance=ExtResource("4_072wc")]
+[node name="MoveComponent" parent="ComponentManager" unique_id=1256015462 instance=ExtResource("4_072wc")]
 acceleration = 4.31
 friction = 10.0
 airResistance = 1.724
 FrictionEnabledY = true
 
-[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("5_he5bs")]
+[node name="HealthComponent" parent="ComponentManager" unique_id=7497861 instance=ExtResource("5_he5bs")]
 MaxHealth = 2
 
-[node name="GravityComponent" parent="ComponentManager" instance=ExtResource("6_8i4jb")]
+[node name="GravityComponent" parent="ComponentManager" unique_id=1202271141 instance=ExtResource("6_8i4jb")]
 
-[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("7_35750")]
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=802995606 instance=ExtResource("7_35750")]
 
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_hyp8g")
 
-[node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("8_ralr5")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_ralr5")])
+[node name="ShaderComponent" parent="ComponentManager" unique_id=764564771 instance=ExtResource("8_ralr5")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_he5bs")])
 
 [editable path="ComponentManager/ContactDamageComponent"]

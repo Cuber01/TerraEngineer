@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="1_5rsga"]
 [ext_resource type="PackedScene" uid="uid://b71fgkfgiowcw" path="res://entities/objects/zombie_dead/ZombieDeadFlower.tscn" id="2_5rsga"]
 [ext_resource type="PackedScene" uid="uid://bauoisloxciqf" path="res://entities/objects/zombie_dead/ZombieDeadMushroom.tscn" id="3_cmo1e"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="4_cmo1e"]
+
+[sub_resource type="Resource" id="Resource_dkfcq"]
+script = ExtResource("4_cmo1e")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rsga"]
 size = Vector2(9, 7)
@@ -20,6 +25,7 @@ versions = NodePath("Versions")
 
 [node name="ZombieDeadMushroom" parent="Versions" unique_id=128883506 instance=ExtResource("3_cmo1e")]
 MyBiome = 1
+ExportedSpriteWrapper = SubResource("Resource_dkfcq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=263371872]
 position = Vector2(-0.5, 0.5)

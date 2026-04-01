@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.game.sprite;
 
 namespace TENamespace.basic.shader;
 
@@ -10,7 +11,7 @@ public partial class Shader : Component
 {
     [Export] private ShaderMaterial[] importedShaders;
     private Dictionary<StringName, ShaderMaterial> shaders = new();
-    private AnimatedSprite2D sprite;
+    private Node2D sprite;
     private ShaderMaterial material;
     
     private bool running = false;

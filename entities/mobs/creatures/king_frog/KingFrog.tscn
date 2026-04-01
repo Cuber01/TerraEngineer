@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c664c7d5b8qgx"]
 
 [ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_0c618"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_1s1ba"]
 [ext_resource type="Texture2D" uid="uid://q64l41cvrhp5" path="res://entities/mobs/creatures/king_frog/king-frog.png" id="2_eijyq"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_tw2qj"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="4_ltn64"]
@@ -11,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawneComponent.tscn" id="8_tw2qj"]
 [ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="9_ltn64"]
 [ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="11_ltn64"]
+
+[sub_resource type="Resource" id="Resource_1s1ba"]
+script = ExtResource("2_1s1ba")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1vp5w"]
 animations = [{
@@ -36,6 +41,7 @@ playerDetector = NodePath("PlayerDetector")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_1s1ba")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1245072297]
 sprite_frames = SubResource("SpriteFrames_1vp5w")

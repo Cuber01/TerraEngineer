@@ -14,7 +14,7 @@ public partial class SwitchableBlock : Entity, ISwitchable
         set
         {
             _defaultState = value;
-            Sprite.Frame = _defaultState ? 0 : 1;
+            SpriteWrapper.SetFrame(_defaultState ? 0 : 1);
         }
     }
     private bool _defaultState = true;
@@ -26,13 +26,13 @@ public partial class SwitchableBlock : Entity, ISwitchable
         if (!_defaultState)
         {
             collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-            Sprite.Frame = 1;    
+            SpriteWrapper.SetFrame(1);    
         }
     }
     
     public void OnSwitch(bool switchedOn)
     {
         collider.SetDeferred(CollisionShape2D.PropertyName.Disabled, switchedOn == _defaultState);
-        Sprite.Frame = (switchedOn == _defaultState) ? 1 : 0;
+        SpriteWrapper.SetFrame((switchedOn == _defaultState) ? 1 : 0);
     }
 }

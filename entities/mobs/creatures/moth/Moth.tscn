@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7lheehhbvylp"]
+[gd_scene format=3 uid="uid://c7lheehhbvylp"]
 
 [ext_resource type="Script" uid="uid://ddf0ivure6uik" path="res://entities/mobs/creatures/moth/Moth.cs" id="1_qq40e"]
 [ext_resource type="Texture2D" uid="uid://t77v2ar3qs2u" path="res://entities/mobs/creatures/moth/fly.png" id="2_qq40e"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_wt63l"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_kqcek"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_cthkm"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="5_ihw6d"]
@@ -9,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="7_48xfr"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="8_q6o0n"]
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_q6o0n"]
+
+[sub_resource type="Resource" id="Resource_cf6to"]
+script = ExtResource("2_wt63l")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyo0l"]
 atlas = ExtResource("2_qq40e")
@@ -55,7 +60,7 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wt63l"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2upb0"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("8_q6o0n")
@@ -65,7 +70,7 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Moth" type="CharacterBody2D" node_paths=PackedStringArray("FlyAroundPoint", "CM", "Sprite")]
+[node name="Moth" type="CharacterBody2D" unique_id=1583262676 node_paths=PackedStringArray("FlyAroundPoint", "CM", "Sprite")]
 top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
@@ -74,44 +79,45 @@ MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_cf6to")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1512478635]
 sprite_frames = SubResource("SpriteFrames_r1p3q")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1191637729]
 shape = SubResource("RectangleShape2D_5khu5")
 
-[node name="FlyAroundPoint" type="Node2D" parent="."]
+[node name="FlyAroundPoint" type="Node2D" parent="." unique_id=1362219062]
 top_level = true
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=882065516]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1715366083]
 shape = SubResource("CircleShape2D_qq40e")
 
-[node name="ComponentManager" parent="." instance=ExtResource("3_kqcek")]
+[node name="ComponentManager" parent="." unique_id=1175472756 instance=ExtResource("3_kqcek")]
 
-[node name="HealthComponent" parent="ComponentManager" instance=ExtResource("4_cthkm")]
+[node name="HealthComponent" parent="ComponentManager" unique_id=299907499 instance=ExtResource("4_cthkm")]
 MaxHealth = 2
 
-[node name="ContactDamageComponent" parent="ComponentManager" instance=ExtResource("5_ihw6d")]
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=293547787 instance=ExtResource("5_ihw6d")]
 
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
 shape = SubResource("RectangleShape2D_q4wwo")
 
-[node name="FreeFlyComponent" parent="ComponentManager" instance=ExtResource("6_qq40e")]
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=1467101279 instance=ExtResource("6_qq40e")]
 speed = 75.0
 acceleration = 4.31
 airResistance = 1.724
 
-[node name="ShaderComponent" parent="ComponentManager" instance=ExtResource("7_48xfr")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_wt63l")])
+[node name="ShaderComponent" parent="ComponentManager" unique_id=552720510 instance=ExtResource("7_48xfr")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_2upb0")])
 
-[node name="KnockbackComponent" parent="ComponentManager" instance=ExtResource("9_q6o0n")]
+[node name="KnockbackComponent" parent="ComponentManager" unique_id=135453091 instance=ExtResource("9_q6o0n")]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]

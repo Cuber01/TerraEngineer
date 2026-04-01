@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cyjibvrd3v5l4"
+path="res://.godot/imported/fly.ase-ac80a0c25408f579e12e379a8994af10.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/moth/fly.ase"
+dest_files=["res://.godot/imported/fly.ase-ac80a0c25408f579e12e379a8994af10.res"]
+
+[params]
+

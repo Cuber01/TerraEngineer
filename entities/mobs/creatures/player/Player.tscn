@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dgd50a01ilmis"]
 
 [ext_resource type="Script" uid="uid://cmpplpeenuc2n" path="res://entities/mobs/creatures/player/Player.cs" id="1_ldahb"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_jlvbh"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_o7rne"]
 [ext_resource type="PackedScene" uid="uid://bjjpuksvia1vq" path="res://components/basic/dash/DashComponent.tscn" id="3_ldahb"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="4_1yb3l"]
@@ -12,6 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://coo88mqcbjp6u" path="res://components/basic/player_inventory/PlayerInventoryComponent.tscn" id="11_802vs"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="12_jlvbh"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="13_8611i"]
+
+[sub_resource type="Resource" id="Resource_jlvbh"]
+script = ExtResource("2_jlvbh")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_802vs"]
 _data = PackedByteArray("AAADAAUAAAABAAAANgAAADwAAADWAgAAUklGRs4CAABXRUJQVlA4TMICAAAvNcAOEGegKJKk5u7I8EJCVIFwbGSQghVFkSQ1lwwE4HXycIU2vhk8KAkAtEHdEM9BHGJTgHWZmv8AAC5y6+pTe/eTuo6g/g1rx48RSqlRSn0g19r2NHLegGnW3Zzt0k6/cAk56R2Qwok2Od4Jx1UYXAU6xopJM0WYYRnmzFWtf8nOHUT0n2CSZnsg8Av+652Od3rbIVmSbVuP6XTCKkCWaJWLEtFmlBIBTsnv46JEto22RYAsGXvWwiz+km3MD0GPT8m2TI9A2yLayHffYmyYVm23yPpPIP+CaHv/09okexAk5LttYl4NYNEmou39Htun17NP1tr6FK9boG2KaOtegt6rQWutDczTJ9C1yLawgGIpkm0mTuCaTURbCTElMcQlUAI8gpibdVIN3kTKF+lI7fZJuZEO0H27tvu503anivRIWdDvjok2GbBoQ0fKwli/5bS9OAbt30jN+zYle+1r80mxeByydwOn7d3AL2XB/A5hqWr7HfilfokAf4kjxbUIzPcR2WbeX6TkVmWXALGwE5rCs8HrNBuQiVVAdWTeALXbsVNKtHkCHKnxKcxoW7R5AqTU2DCF+SFVmydASmUPgoRcOW357ltVgJTq9eyTLFeBaHv/09ok04GU6r0atFKdz4i293tsH6WVI7UUQfcM9F4PWnQvMWNUmEqpc0BYgJkpZEAxHUFcCjIZEAs5ARj/l51wa46ot62vyBoholXgktUiosfXyZItm2sRBYWePAztTbWIkmx2nQyYUUHKPjUj2rJqlZSwU1qJAFGS6hwptS+fwagQnBJJNqPCVAQU02erksixK4DQITsCMSElhkgg1XGVICIER9N7OJq0eTg8bd6NtmvJnCM4asi8y1UdmWceDl+b7/vylBm5lEwr3yoXSbaUwz696F1oKrIIxy7y7loE5hzSzlDgfQwIOmJiSs8A")
@@ -274,7 +279,7 @@ size = Vector2(7.9, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvbh"]
 size = Vector2(7.8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlvbh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_802vs"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -291,6 +296,7 @@ slide_on_ceiling = false
 script = ExtResource("1_ldahb")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_jlvbh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=777265139]
 z_index = 1
@@ -376,7 +382,7 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" unique_id=536859350 instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=2142681019 instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jlvbh")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_802vs")])
 
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 

@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://bwta0ajoqhibc"]
 
 [ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_o6ug1"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_intoi"]
 [ext_resource type="Texture2D" uid="uid://dwluhg7h388hj" path="res://entities/mobs/projectile/flame/long-fire.png" id="2_o6ug1"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_vipxt"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_qdmh2"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_d1g7h"]
+
+[sub_resource type="Resource" id="Resource_intoi"]
+script = ExtResource("2_intoi")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_intoi"]
 animations = [{
@@ -20,12 +25,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhuo2"]
 size = Vector2(18, 11)
 
-[node name="FlameProjectile" type="CharacterBody2D" unique_id=1046525801 node_paths=PackedStringArray("CM")]
+[node name="FlameProjectile" type="CharacterBody2D" unique_id=1046525801 node_paths=PackedStringArray("CM", "Sprite")]
 z_index = 3
 script = ExtResource("1_o6ug1")
 piercing = 99
 breakOnWall = false
 CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_intoi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1762735955]
 z_index = 1
@@ -48,8 +55,7 @@ shape = SubResource("RectangleShape2D_uhuo2")
 [node name="FreeFlyComponent" parent="ComponentManager" unique_id=1864667561 instance=ExtResource("4_qdmh2")]
 speed = 0.0
 
-[node name="LifetimeComponent" parent="ComponentManager" unique_id=1282788199 node_paths=PackedStringArray("actor") instance=ExtResource("5_d1g7h")]
-actor = NodePath("../..")
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=1282788199 instance=ExtResource("5_d1g7h")]
 lifetime = 0.15
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
