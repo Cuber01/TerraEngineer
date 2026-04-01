@@ -12,7 +12,11 @@ public partial class PlayerWrapper : SpriteWrapper
     public override void Init(Node2D node)
     {
         sprite = (Sprite2D)node;
-        player = sprite.GetNode<AnimationPlayer>("AnimationPlayer");
+        player = sprite.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+        player.AnimationFinished += (animName) => InvokeAnimationFinished();
+        
+        if(player == null)
+            GD.PrintErr("Animation Player Wrapper: Cannot find AnimationPlayer node.");
     } 
     
     public override void Play(string anim) 
@@ -22,10 +26,12 @@ public partial class PlayerWrapper : SpriteWrapper
     
     public override void Flip() => sprite.FlipH = !sprite.FlipH;
     public override bool GetFlipH() => sprite.FlipH;
+    
     public override void SetFrame(int num)
     {
         throw new System.NotImplementedException();
     }
+    
     public override void SetTexture(Texture2D texture)
     {
         throw new System.NotImplementedException();

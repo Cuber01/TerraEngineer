@@ -1,11 +1,10 @@
-[gd_scene format=3 uid="uid://cbf0qr5ojtqgw"]
+[gd_scene format=4 uid="uid://cbf0qr5ojtqgw"]
 
-[ext_resource type="Texture2D" uid="uid://di8jvm8s5gfca" path="res://entities/mobs/creatures/frog/frog.png" id="1_c4mrv"]
 [ext_resource type="Script" uid="uid://kfeqfwwycnon" path="res://entities/mobs/creatures/frog/Frog.cs" id="1_hhfj2"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="1_yst0w"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="2_c4mrv"]
-[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_g0rnh"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="2_n5xjy"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_y3mso"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="3_hhfj2"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_8wbl1"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="5_ggd7j"]
@@ -14,54 +13,83 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_y3mso"]
 
 [sub_resource type="Resource" id="Resource_g0rnh"]
-script = ExtResource("2_g0rnh")
-metadata/_custom_type_script = "uid://w784gkp03g63"
+script = ExtResource("2_y3mso")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6l3q"]
-atlas = ExtResource("1_c4mrv")
-region = Rect2(24, 0, 8, 8)
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_y3mso"]
+_data = PackedByteArray("AAADAAUAAAABAAAAEAAAABAAAACWAAAAUklGRo4AAABXRUJQVlA4TIIAAAAvD8ADEC9AFmAyf6cB9KUQSRqK2jZiyp/XuEngqNxHURsp0J7WcYYbJPCY/wDwn7uVffK0Cq5i22qrTTHAYAAJDPvynyIh/tXkFQsR/Z8A/p9+Wk9hytDCeoo2hpbVG/ZG3Adxn8AqvIf7wMJ0E8rSqnva02FPw5awxWFUiCOOAzgA")
+size_override = Vector2(16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3mso"]
-atlas = ExtResource("1_c4mrv")
-region = Rect2(0, 0, 8, 8)
+[sub_resource type="Animation" id="Animation_y3mso"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g0rnh"]
-atlas = ExtResource("1_c4mrv")
-region = Rect2(8, 0, 8, 8)
+[sub_resource type="Animation" id="Animation_g0rnh"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jqf4n"]
-atlas = ExtResource("1_c4mrv")
-region = Rect2(16, 0, 8, 8)
+[sub_resource type="Animation" id="Animation_l6l3q"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hhfj2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l6l3q")
-}],
-"loop": false,
-"name": &"fall",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y3mso")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g0rnh")
-}, {
-"duration": 0.1,
-"texture": SubResource("AtlasTexture_jqf4n")
-}],
-"loop": false,
-"name": &"jump",
-"speed": 5.0
-}]
+[sub_resource type="Animation" id="Animation_jqf4n"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6l3q"]
+_data = {
+&"fly-downwards": SubResource("Animation_y3mso"),
+&"fly-upwards": SubResource("Animation_g0rnh"),
+&"idle": SubResource("Animation_l6l3q"),
+&"start-jump": SubResource("Animation_jqf4n")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
 size = Vector2(7.875, 6)
@@ -69,7 +97,7 @@ size = Vector2(7.875, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jqf4n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0rnh"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("2_n5xjy")
@@ -83,15 +111,40 @@ shader_parameter/run = false
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
-Team = 1
-Sprite = NodePath("AnimatedSprite2D")
+Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_g0rnh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1909880338]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
+texture_filter = 1
 position = Vector2(0, -1)
-sprite_frames = SubResource("SpriteFrames_hhfj2")
-animation = &"jump"
-autoplay = "idle"
+texture = SubResource("PortableCompressedTexture2D_y3mso")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/mobs/creatures/frog/frog.ase",
+"source_uid": 5421163400374686998
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d647f47d916fa0bbf00e4f867bf7af36"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1283013631]
+libraries/ = SubResource("AnimationLibrary_l6l3q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219721195]
 shape = SubResource("RectangleShape2D_0f11y")
@@ -120,6 +173,6 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_7m517")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_y3mso")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jqf4n")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_g0rnh")])
 
 [editable path="ComponentManager/ContactDamageComponent"]

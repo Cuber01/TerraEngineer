@@ -1,5 +1,6 @@
 using Godot;
 using TENamespace.health;
+using TerraEngineer.game.sprite;
 using Shader = TENamespace.basic.shader.Shader;
 
 namespace TerraEngineer.entities.mobs.creatures;
@@ -13,6 +14,9 @@ public partial class Creature : Entity
     // Do not override!
     public override void _Ready()
     {
+        ExportedSpriteWrapper = (SpriteWrapper)ExportedSpriteWrapper.Duplicate();
+        SpriteWrapper.Init(Sprite);
+        
         #if TOOLS
         if (Engine.IsEditorHint())
             return;

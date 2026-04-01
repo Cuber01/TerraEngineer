@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 namespace TerraEngineer.game.sprite;
 
@@ -6,6 +7,9 @@ namespace TerraEngineer.game.sprite;
 [GlobalClass]
 public abstract partial class SpriteWrapper : Resource
 {
+    public event Action AnimationFinished;
+    protected void InvokeAnimationFinished() => AnimationFinished?.Invoke();
+    
     public abstract void Init(Node2D node);
     public abstract void Play(string anim);
     public abstract void Flip();

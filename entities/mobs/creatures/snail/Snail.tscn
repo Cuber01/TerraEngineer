@@ -64,7 +64,7 @@ size = Vector2(9, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp8g"]
 size = Vector2(9, 7)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_he5bs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_072wc"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("9_072wc")
@@ -81,7 +81,6 @@ down = NodePath("RayCastDown")
 right = NodePath("RayCastRight")
 left = NodePath("RayCastLeft")
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_072wc")
 
@@ -128,6 +127,6 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_hyp8g")
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=764564771 instance=ExtResource("8_ralr5")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_he5bs")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_072wc")])
 
 [editable path="ComponentManager/ContactDamageComponent"]

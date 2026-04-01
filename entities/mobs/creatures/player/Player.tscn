@@ -279,7 +279,7 @@ size = Vector2(7.9, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvbh"]
 size = Vector2(7.8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_802vs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8611i"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -382,7 +382,7 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" unique_id=536859350 instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=2142681019 instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_802vs")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_8611i")])
 
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 

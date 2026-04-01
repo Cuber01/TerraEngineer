@@ -23,7 +23,10 @@ public partial class Entity : CharacterBody2D
         set
         {
             SpriteWrapper = value;
-            SpriteWrapper.Init(Sprite);
+            #if TOOLS
+            if(Engine.IsEditorHint())
+                SpriteWrapper.Init(Sprite);
+            #endif
         }
     }
     public SpriteWrapper SpriteWrapper;

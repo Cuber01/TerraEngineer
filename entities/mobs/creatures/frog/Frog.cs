@@ -44,9 +44,8 @@ public partial class Frog : Creature
         
         public override void Enter()
         {
-            //TODO
-            //Actor.Sprite.Play(Names.Animations.Jump);
-            //Actor.Sprite.AnimationFinished += jump;
+            Actor.SpriteWrapper.Play(Names.Animations.Jump);
+            Actor.SpriteWrapper.AnimationFinished += jump;
         }
         
         public override void Update( float dt)
@@ -56,7 +55,7 @@ public partial class Frog : Creature
                 Actor.CM.GetComponent<Move>().Walk(Actor.Facing, dt);
                 if (Actor.Velocity.Y > 0)
                 {
-                    //Actor.Sprite.Play(Names.Animations.Fall);
+                    Actor.SpriteWrapper.Play(Names.Animations.Fall);
                 }
             }
                 
@@ -65,7 +64,7 @@ public partial class Frog : Creature
         
         public override void Exit()
         {
-            //Actor.Sprite.Play(Names.Animations.Idle);
+            Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.CM.GetComponent<Gravity>().LandedOnFloor -= landedOnFloor;
             inAir = false;
             isLandingOnFloor = false;
@@ -74,8 +73,9 @@ public partial class Frog : Creature
         private void jump()
         {
             inAir = true;
+            Actor.SpriteWrapper.AnimationFinished -= jump;
+            Actor.SpriteWrapper.Play(Names.Animations.Fly);
             Actor.CM.GetComponent<Jump>().AttemptJump();
-            //Actor.Sprite.AnimationFinished -= jump;
             Actor.CM.GetComponent<Gravity>().LandedOnFloor += landedOnFloor;
         }
     }

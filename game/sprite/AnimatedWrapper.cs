@@ -8,8 +8,12 @@ public partial class AnimatedWrapper : SpriteWrapper
 {
     private AnimatedSprite2D animSprite;
 
-    public override void Init(Node2D node) => animSprite = (AnimatedSprite2D)node;
-    
+    public override void Init(Node2D node)
+    {
+        animSprite = (AnimatedSprite2D)node;
+        animSprite.AnimationFinished += InvokeAnimationFinished;
+    }
+
     public override void Play(string anim) => animSprite.Play(anim);
     public override void Flip() => animSprite.FlipH = !animSprite.FlipH;
     public override bool GetFlipH() => animSprite.FlipH;
