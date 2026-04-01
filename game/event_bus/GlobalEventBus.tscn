@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://de0e3k6hj6epk"]
+
+[ext_resource type="Script" uid="uid://3jiq5jg37csg" path="res://game/event_bus/GlobalEventBus.cs" id="1_m4wrf"]
+
+[node name="GlobalEventBus" type="Node2D" unique_id=1100441185]
+script = ExtResource("1_m4wrf")

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ka7kkgp2xd12"
+path="res://.godot/imported/palette.ase-28119911d1a8b4e91e75c1d78f6a7ae8.res"
+
+[deps]
+
+source_file="res://palette.ase"
+dest_files=["res://.godot/imported/palette.ase-28119911d1a8b4e91e75c1d78f6a7ae8.res"]
+
+[params]
+

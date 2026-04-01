@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cjl6c5tvb1ts0"
+path="res://.godot/imported/protag-animations.ase-fd8833725f84a79bfc834a311c8d9e67.res"
+
+[deps]
+
+source_file="res://assets/protag-animations.ase"
+dest_files=["res://.godot/imported/protag-animations.ase-fd8833725f84a79bfc834a311c8d9e67.res"]
+
+[params]
+
