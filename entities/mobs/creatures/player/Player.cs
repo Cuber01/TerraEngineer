@@ -1,3 +1,5 @@
+
+#define DEBUG_STATE
 using DialogueManagerRuntime;
 using Godot;
 using System;
@@ -26,6 +28,8 @@ public partial class Player : Creature
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
+	public bool IsJumping = false;
+	
 	
 	public override void Init()
 	{
@@ -41,39 +45,33 @@ public partial class Player : Creature
 		
 		// State machine related
 		fsm = new StateMachine<Player>(this, idleState, true);
-		fsm.AddTransition(idleState, walkState, idleState.CheckWalkState);
-		fsm.AddTransition(walkState, idleState, checkIdleState);
-		fsm.AddTransition(jumpState, idleState, checkIdleState);
-		fsm.AddTransition(idleState, jumpState, checkJumpState);
-		fsm.AddTransition(jumpState, walkState, jumpState.CheckWalkState);
-		fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
-		fsm.AddTransition(jumpState, dashState, checkDashState);
-		fsm.AddTransition(walkState, dashState, checkDashState);
-		fsm.AddTransition(idleState, dashState, checkDashState);
+		//fsm.AddTransition(idleState, walkState, idleState.CheckWalkState);
+		//fsm.AddTransition(walkState, idleState, checkIdleState);
+		//fsm.AddTransition(jumpState, idleState, checkIdleState);
+		//fsm.AddTransition(idleState, jumpState, checkJumpState);
+		//fsm.AddTransition(jumpState, walkState, jumpState.CheckWalkState);
+		//fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
+		//fsm.AddTransition(jumpState, dashState, checkDashState);
+		//fsm.AddTransition(walkState, dashState, checkDashState);
+		//fsm.AddTransition(idleState, dashState, checkDashState);
 		
 		Controller.AddAction(Names.Actions.Dash, () =>
 		{
-			CM.GetComponent<Dash>().AttemptDash(Facing);
+			//CM.GetComponent<Dash>().AttemptDash(Facing);
 		});
 		
 		Controller.AddAction(Names.Actions.Jump, () =>
 		{
-			if (fsm.CurrentState != dashState)
-				CM.GetComponent<Jump>().AttemptJump();
+			fsm.ChangeState(jumpState);
 		});
 	}
 	
 	private bool checkIdleState()
 	{
-		if (IsOnFloor() && velocity.Abs() < Vector2.One)
+		if (IsOnFloor() && Controller.GetAxis("ui_left", "ui_right") == 0 && fsm.CurrentState != jumpState)
 			return true;
 		else
 			return false;
-	}
-
-	private bool checkJumpState()
-	{
-		return !IsOnFloor();
 	}
 
 	private bool checkDashState()
@@ -88,18 +86,19 @@ public partial class Player : Creature
 			#if DEBUG_STATE
 			GD.Print("Entered Idle.");
 			#endif
+			
+			Actor.SpriteWrapper.Play(Names.Animations.Idle);
 		}
 
-		public bool CheckWalkState()
+		public override void Update(float dt)
 		{
 			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
 			if (moveDir != 0)
 			{
-				Actor.Facing = moveDir;
-				return true;
+				Actor.fsm.ChangeState(Actor.walkState);
 			}
-			return false;
 		}
+		
 	}
 	
 	public class WalkState : State<Player>
@@ -109,6 +108,8 @@ public partial class Player : Creature
 			#if DEBUG_STATE
 			GD.Print("Entered Walk.");
 			#endif
+			
+			Actor.SpriteWrapper.Play(Names.Animations.Walk);
 		}
 		
 		public override void Update( float dt)
@@ -116,7 +117,11 @@ public partial class Player : Creature
 			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
 			if (moveDir != 0)
 			{
-				Actor.Facing = moveDir;
+				Actor.Flip(moveDir);
+			}
+			else
+			{
+				Actor.fsm.ChangeState(Actor.idleState);
 			}
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
 		}
@@ -129,6 +134,12 @@ public partial class Player : Creature
 			#if DEBUG_STATE
 			GD.Print("Entered Jump.");
 			#endif
+
+			Actor.SpriteWrapper.AnimationFinished += afterStartJump;
+			Actor.SpriteWrapper.Play(Names.Animations.Jump);
+			
+			Actor.CM.GetComponent<Jump>().AttemptJump();
+			Actor.CM.GetComponent<Gravity>().LandedOnFloor += landed;
 		}
 		
 		public override void Update(float dt)
@@ -136,17 +147,32 @@ public partial class Player : Creature
 			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
 			if (moveDir != 0)
 			{
-				Actor.Facing = moveDir;
+				Actor.Flip(moveDir);
 			}
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
 		}
-		
-		public bool CheckWalkState()
+
+		public override void Exit()
 		{
-			if (Actor.IsOnFloor() && MathF.Abs(Actor.velocity.X) >= 1)
-				return true;
+			Actor.SpriteWrapper.Play(Names.Animations.Land);
+		}
+
+		private void afterStartJump()
+		{
+			Actor.SpriteWrapper.AnimationFinished -= afterStartJump;
+			Actor.SpriteWrapper.Play(Names.Animations.Fly);
+		}
+
+		private void landed()
+		{
+			if (MathF.Abs(Actor.velocity.X) >= 1)
+			{ 
+				Actor.fsm.ChangeState(Actor.walkState);	
+			}
 			else
-				return false;
+			{ 
+				Actor.fsm.ChangeState(Actor.idleState);		
+			}
 		}
 	}
 	

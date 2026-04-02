@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_7m517"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_y3mso"]
 
-[sub_resource type="Resource" id="Resource_g0rnh"]
+[sub_resource type="Resource" id="Resource_y3mso"]
 script = ExtResource("2_y3mso")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -111,8 +111,9 @@ shader_parameter/run = false
 collision_layer = 4
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_g0rnh")
+ExportedSpriteWrapper = SubResource("Resource_y3mso")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
 texture_filter = 1

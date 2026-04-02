@@ -34,9 +34,12 @@ size = Vector2(22, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4uap"]
 size = Vector2(20, 19)
 
-[node name="KingFrog" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("Sprite")]
+[node name="KingFrog" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("playerDetector", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_0c618")
+playerDetector = NodePath("PlayerDetector")
+CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_1s1ba")
 

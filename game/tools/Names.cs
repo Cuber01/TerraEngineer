@@ -76,6 +76,8 @@ public static class Names
         public static readonly StringName Jump = "start-jump";
         public static readonly StringName Fall = "fly-downwards";
         public static readonly StringName Fly = "fly-upwards";
+        public static readonly StringName Walk = "walk";
+        public static readonly StringName Land = "land";
     }
 
     public static class Actions
