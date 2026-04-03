@@ -24,9 +24,9 @@ public class StateMachine<T>
         CurrentState.Enter();
     }
 
-    public void AddTransition(State<T> from, State<T> to, System.Func<bool> condition, float probability=1f)
+    public void AddTransition(State<T> from, State<T> to, System.Func<bool> condition, uint priority=0, float probability=1f)
     {
-        Transition<T> newTransition = new Transition<T>(to, condition, from, probability); 
+        Transition<T> newTransition = new Transition<T>(to, condition, from, priority, probability); 
         localTransitions.Add(newTransition);
         if (from == CurrentState)
         {
@@ -35,16 +35,16 @@ public class StateMachine<T>
     }
         
     public void AddGlobalTransition(State<T> to, System.Func<bool> condition, float probability=1f) => 
-        globalTransitions.Add(new Transition<T>(to, condition, null, probability));
+        globalTransitions.Add(new Transition<T>(to, condition, null, 0, probability));
 
-    public void Update(float dt)
+    public virtual void Update(float dt)
     {
+        CurrentState.Update(dt);
+        
         Transition<T> transition = GetTransition();
         if (transition != null) {
             changeState(transition.To);
         }
-        
-        CurrentState.Update(dt);
     }
 
     public void ChangeState(State<T> newState)
@@ -94,13 +94,24 @@ public class StateMachine<T>
 
         if (availableTransitions.Count == 0)
             return null;
-        
         else if (availableTransitions.Count == 1)
             return availableTransitions[0];
-        
         else
         {
-            return chooseRandomTransition(availableTransitions);
+            return chooseTransitionPriorityBased(availableTransitions);
+        }
+    }
+    
+    private Transition<T> chooseTransitionPriorityBased(List<Transition<T>> availableTransitions)
+    {
+        uint maxPriority = availableTransitions.Max(t => t.Priority);
+        List<Transition<T>> bestPriority = availableTransitions.Where(t => t.Priority == maxPriority).ToList();
+        
+        if (bestPriority.Count == 1)
+            return bestPriority[0];
+        else
+        {
+            return chooseTransitionPriorityBased(bestPriority);
         }
     }
 
@@ -127,12 +138,13 @@ public class StateMachine<T>
     }
 
     // If from=null it's a global transition
-    private class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from, float probability)
+    private class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from, uint priority, float probability)
     {
         public readonly State<U> From = from;
         public readonly State<U> To = to;
         public readonly System.Func<bool> Condition = condition;
         public readonly float Probability = probability;
+        public readonly uint Priority = priority;
     }
     
 }

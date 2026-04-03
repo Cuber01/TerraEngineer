@@ -11,6 +11,15 @@ using TerraEngineer.entities.mobs.creatures;
 using TerraEngineer.game;
 using Vector2 = Godot.Vector2;
 
+public enum PlayerTriggers
+{
+	PressedMove,
+	ReleasedMove,
+	PressedJump,
+	PressedDash,
+	Landed
+}
+
 public partial class Player : Creature
 {
 	public delegate void InteractedEventHandler();
@@ -22,7 +31,7 @@ public partial class Player : Creature
 	private readonly IdleState idleState = new IdleState();
 	private readonly NoclipState noclipState = new NoclipState();
 	
-	private StateMachine<Player> fsm;
+	private StateMachineWithTriggers<Player, PlayerTriggers> fsm;
 	public Controller Controller = new();
 
 	private bool updateFrozen = false;
@@ -42,18 +51,27 @@ public partial class Player : Creature
 		Controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
 		Controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupWeapon);
 		Controller.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
-		
+
 		// State machine related
-		fsm = new StateMachine<Player>(this, idleState, true);
-		//fsm.AddTransition(idleState, walkState, idleState.CheckWalkState);
-		//fsm.AddTransition(walkState, idleState, checkIdleState);
-		//fsm.AddTransition(jumpState, idleState, checkIdleState);
-		//fsm.AddTransition(idleState, jumpState, checkJumpState);
-		//fsm.AddTransition(jumpState, walkState, jumpState.CheckWalkState);
-		//fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
-		//fsm.AddTransition(jumpState, dashState, checkDashState);
-		//fsm.AddTransition(walkState, dashState, checkDashState);
-		//fsm.AddTransition(idleState, dashState, checkDashState);
+
+		fsm = new StateMachineWithTriggers<Player, PlayerTriggers>(this, idleState, true);
+		fsm.AddTransition(idleState, walkState, () => fsm.IsTriggered(PlayerTriggers.PressedMove));
+		fsm.AddTransition(walkState, idleState, () => fsm.IsTriggered(PlayerTriggers.ReleasedMove));
+		
+		fsm.AddTransition(jumpState, idleState, () => fsm.IsTriggered(PlayerTriggers.Landed));
+		fsm.AddTransition(jumpState, walkState, () => fsm.IsTriggered(PlayerTriggers.Landed) &&
+		                                              fsm.IsTriggered(PlayerTriggers.PressedMove)
+													  , 1);
+		
+		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump));
+		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump));
+
+		// fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
+		// fsm.AddTransition(jumpState, dashState, checkDashState);
+		// fsm.AddTransition(walkState, dashState, checkDashState);
+		// fsm.AddTransition(idleState, dashState, checkDashState);
+		
+		CM.GetComponent<Gravity>().LandedOnFloor += () => fsm.FireTrigger(PlayerTriggers.Landed);
 		
 		Controller.AddAction(Names.Actions.Dash, () =>
 		{
@@ -62,16 +80,8 @@ public partial class Player : Creature
 		
 		Controller.AddAction(Names.Actions.Jump, () =>
 		{
-			fsm.ChangeState(jumpState);
+			fsm.FireTrigger(PlayerTriggers.PressedJump);
 		});
-	}
-	
-	private bool checkIdleState()
-	{
-		if (IsOnFloor() && Controller.GetAxis("ui_left", "ui_right") == 0 && fsm.CurrentState != jumpState)
-			return true;
-		else
-			return false;
 	}
 
 	private bool checkDashState()
@@ -95,7 +105,7 @@ public partial class Player : Creature
 			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
 			if (moveDir != 0)
 			{
-				Actor.fsm.ChangeState(Actor.walkState);
+				Actor.fsm.FireTrigger(PlayerTriggers.PressedMove);
 			}
 		}
 		
@@ -121,7 +131,7 @@ public partial class Player : Creature
 			}
 			else
 			{
-				Actor.fsm.ChangeState(Actor.idleState);
+				Actor.fsm.FireTrigger(PlayerTriggers.ReleasedMove);
 			}
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
 		}
@@ -138,8 +148,7 @@ public partial class Player : Creature
 			Actor.SpriteWrapper.AnimationFinished += afterStartJump;
 			Actor.SpriteWrapper.Play(Names.Animations.Jump);
 			
-			Actor.CM.GetComponent<Jump>().AttemptJump();
-			Actor.CM.GetComponent<Gravity>().LandedOnFloor += landed;
+			Actor.CM.GetComponent<Jump>().AttemptJump(); 
 		}
 		
 		public override void Update(float dt)
@@ -148,7 +157,15 @@ public partial class Player : Creature
 			if (moveDir != 0)
 			{
 				Actor.Flip(moveDir);
+				Actor.fsm.FireTrigger(PlayerTriggers.PressedMove);
+			} else if (Actor.fsm.IsTriggered(PlayerTriggers.PressedMove))
+			{
+				Actor.fsm.FireTrigger(PlayerTriggers.ReleasedMove);
 			}
+			
+			if(Actor.fsm.IsTriggered(PlayerTriggers.PressedJump))
+				Actor.CM.GetComponent<Jump>().AttemptJump();
+			
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
 		}
 
@@ -161,18 +178,6 @@ public partial class Player : Creature
 		{
 			Actor.SpriteWrapper.AnimationFinished -= afterStartJump;
 			Actor.SpriteWrapper.Play(Names.Animations.Fly);
-		}
-
-		private void landed()
-		{
-			if (MathF.Abs(Actor.velocity.X) >= 1)
-			{ 
-				Actor.fsm.ChangeState(Actor.walkState);	
-			}
-			else
-			{ 
-				Actor.fsm.ChangeState(Actor.idleState);		
-			}
 		}
 	}
 	

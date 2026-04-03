@@ -31,8 +31,8 @@ public partial class KingFrog : Creature
     {
         fsm = new StateMachine<KingFrog>(this, idleState);
         fsm.AddTransition(idleState, jumpState, idleState.Condition);
-        fsm.AddTransition(jumpState, idleState, jumpState.IsFinished, 0.7f);
-        fsm.AddTransition(jumpState, spawnState, jumpState.IsFinished, 0.3f);
+        fsm.AddTransition(jumpState, idleState, jumpState.IsFinished, 0, 0.7f);
+        fsm.AddTransition(jumpState, spawnState, jumpState.IsFinished, 0,0.3f);
         fsm.AddTransition(jumpState, smashState, canSmash);
         fsm.AddTransition(smashState, idleState, smashState.IsFinished);
         fsm.AddTransition(spawnState, idleState, spawnState.IsFinished);
