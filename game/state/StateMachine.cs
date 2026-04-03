@@ -111,7 +111,7 @@ public class StateMachine<T>
             return bestPriority[0];
         else
         {
-            return chooseTransitionPriorityBased(bestPriority);
+            return chooseRandomTransition(bestPriority);
         }
     }
 
