@@ -63,8 +63,8 @@ public partial class Player : Creature
 		                                              fsm.IsTriggered(PlayerTriggers.PressedMove)
 													  , 1);
 		
-		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump));
-		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump));
+		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
+		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
 
 		// fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
 		// fsm.AddTransition(jumpState, dashState, checkDashState);
