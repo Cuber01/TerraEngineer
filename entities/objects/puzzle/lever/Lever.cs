@@ -12,6 +12,7 @@ public partial class Lever : Entity, ISwitcher
     public override void _Ready()
     {
         MakeShaderUnique();
+        InitSpriteWrapper();
     }
     
     private void getSwitched()

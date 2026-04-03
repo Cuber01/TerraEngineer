@@ -12,6 +12,7 @@ public partial class AnimatedWrapper : SpriteWrapper
     {
         animSprite = (AnimatedSprite2D)node;
         animSprite.AnimationFinished += InvokeAnimationFinished;
+        Initialized = true;
     }
 
     public override void Play(string anim) => animSprite.Play(anim);

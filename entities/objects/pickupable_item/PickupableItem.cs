@@ -18,7 +18,8 @@ public partial class PickupableItem : Entity
         get => _itemTexture;
         set
         {
-            SpriteWrapper.SetTexture(value);
+            if(SpriteWrapper.Initialized)
+                SpriteWrapper.SetTexture(value);
             _itemTexture = value;
         } 
     }

@@ -14,7 +14,8 @@ public partial class SwitchableBlock : Entity, ISwitchable
         set
         {
             _defaultState = value;
-            SpriteWrapper.SetFrame(_defaultState ? 0 : 1);
+            if(SpriteWrapper.Initialized) // Skip before _Ready
+                SpriteWrapper.SetFrame(_defaultState ? 0 : 1);
         }
     }
     private bool _defaultState = true;

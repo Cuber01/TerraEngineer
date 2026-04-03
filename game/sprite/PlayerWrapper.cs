@@ -14,6 +14,7 @@ public partial class PlayerWrapper : SpriteWrapper
         sprite = (Sprite2D)node;
         player = sprite.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
         player.AnimationFinished += (animName) => InvokeAnimationFinished();
+        Initialized = true;
         
         if(player == null)
             GD.PrintErr("Animation Player Wrapper: Cannot find AnimationPlayer node.");

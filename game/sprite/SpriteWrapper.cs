@@ -7,6 +7,8 @@ namespace TerraEngineer.game.sprite;
 [GlobalClass]
 public abstract partial class SpriteWrapper : Resource
 {
+    public bool Initialized = false;
+    
     public event Action AnimationFinished;
     protected void InvokeAnimationFinished() => AnimationFinished?.Invoke();
     

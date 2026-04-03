@@ -18,13 +18,15 @@ public partial class HPGateway : Entity
 		set
 		{
 			_mode = value;
-			updateSprite();
+			if(SpriteWrapper.Initialized)
+				updateSprite();
 		}
 	}
 	private Mode _mode = Mode.Heal;
 	
 	public override void _Ready()
 	{
+		InitSpriteWrapper();
 		updateSprite();
 	}
 

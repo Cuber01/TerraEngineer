@@ -13,6 +13,7 @@ public partial class Button : Entity, ISwitcher
     
     public override void _Ready()
     {
+        InitSpriteWrapper();
         MakeShaderUnique();
     }
 

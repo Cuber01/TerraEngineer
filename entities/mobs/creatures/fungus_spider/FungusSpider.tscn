@@ -33,7 +33,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wiodx"]
 size = Vector2(14, 7)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rphps"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14hgr"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_k6jmt")
@@ -43,9 +43,11 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="FungusSpider" type="CharacterBody2D" unique_id=1688353842 node_paths=PackedStringArray("Sprite")]
+[node name="FungusSpider" type="CharacterBody2D" unique_id=1688353842 node_paths=PackedStringArray("isGroundAhead", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_cxflu")
+isGroundAhead = NodePath("RayCast2D")
+CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_rphps")
 
@@ -81,6 +83,6 @@ shape = SubResource("RectangleShape2D_wiodx")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=953470655 instance=ExtResource("7_2bplr")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=55216027 instance=ExtResource("5_jwh86")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_rphps")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_14hgr")])
 
 [editable path="ComponentManager/ContactDamageComponent"]
