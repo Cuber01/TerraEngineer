@@ -66,16 +66,16 @@ public partial class Player : Creature
 		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
 		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
 
-		// fsm.AddTransition(dashState, jumpState, dashState.CheckJumpState);
-		// fsm.AddTransition(jumpState, dashState, checkDashState);
-		// fsm.AddTransition(walkState, dashState, checkDashState);
-		// fsm.AddTransition(idleState, dashState, checkDashState);
+		fsm.AddTransition(dashState, jumpState, () => CM.GetComponent<Dash>().IsDashing);
+		fsm.AddTransition(jumpState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
+		fsm.AddTransition(walkState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
+		fsm.AddTransition(idleState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
 		
 		CM.GetComponent<Gravity>().LandedOnFloor += () => fsm.FireTrigger(PlayerTriggers.Landed);
 		
 		Controller.AddAction(Names.Actions.Dash, () =>
 		{
-			//CM.GetComponent<Dash>().AttemptDash(Facing);
+			fsm.FireTrigger(PlayerTriggers.PressedDash);
 		});
 		
 		Controller.AddAction(Names.Actions.Jump, () =>
@@ -188,11 +188,9 @@ public partial class Player : Creature
 			#if DEBUG_STATE
 			GD.Print("Entered Dash.");
 			#endif
-		}
-		
-		public bool CheckJumpState()
-		{
-			return !Actor.CM.GetComponent<Dash>().IsDashing;
+
+			Actor.CM.GetComponent<Dash>().AttemptDash(Actor.Facing);
+			Actor.SpriteWrapper.Play(Names.Animations.Dash);
 		}
 		
 		public override void Update(float dt)

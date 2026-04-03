@@ -225,7 +225,7 @@ texture_filter = 1
 texture = SubResource("PortableCompressedTexture2D_jlvbh")
 hframes = 6
 vframes = 5
-frame = 14
+frame = 18
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": false,
