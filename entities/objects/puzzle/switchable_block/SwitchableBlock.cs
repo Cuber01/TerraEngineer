@@ -22,6 +22,7 @@ public partial class SwitchableBlock : Entity, ISwitchable
     public override void _Ready()
     {
         MakeShaderUnique();
+        InitSpriteWrapper();
 
         if (!_defaultState)
         {

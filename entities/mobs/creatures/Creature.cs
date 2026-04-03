@@ -14,8 +14,7 @@ public partial class Creature : Entity
     // Do not override!
     public override void _Ready()
     {
-        ExportedSpriteWrapper = (SpriteWrapper)ExportedSpriteWrapper.Duplicate();
-        SpriteWrapper.Init(Sprite);
+        InitSpriteWrapper();
         
         #if TOOLS
         if (Engine.IsEditorHint())

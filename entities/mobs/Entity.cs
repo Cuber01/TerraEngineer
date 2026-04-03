@@ -104,4 +104,10 @@ public partial class Entity : CharacterBody2D
         MoveAndSlide();
     }
 
+    protected void InitSpriteWrapper()
+    {
+        ExportedSpriteWrapper = (SpriteWrapper)ExportedSpriteWrapper.Duplicate();
+        SpriteWrapper.Init(Sprite);
+    }
+
 }
