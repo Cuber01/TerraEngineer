@@ -20,17 +20,17 @@ public partial class MovableBlock : Terraformable
     public override void Update(float delta)
     {
         IsPushed = false;
-        checkIfPushed(Vector2.Left);
-        checkIfPushed(Vector2.Right);
+        CheckIfPushed(Vector2.Left);
+        CheckIfPushed(Vector2.Right);
 
-        HandleVelocity();
+        HandleVelocity(delta);
         
         CM.UpdateComponents(delta);
         
         HandleMove();
     }
     
-    private void checkIfPushed(Vector2 direction)
+    protected virtual void CheckIfPushed(Vector2 direction)
     {
         KinematicCollision2D hit = new KinematicCollision2D();
         if (TestMove(GlobalTransform, direction * TestMoveBuffer, hit))
@@ -47,7 +47,7 @@ public partial class MovableBlock : Terraformable
         }
     }
 
-    protected virtual void HandleVelocity()
+    protected virtual void HandleVelocity(float delta)
     {
         if (IsPushed && PushingSpeed > VelocityNeededToPush)
         {

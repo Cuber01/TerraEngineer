@@ -2,51 +2,55 @@ using Godot;
 
 namespace TerraEngineer.entities.objects.movable_block;
 
-public partial class StickyBlock : Terraformable
+public partial class StickyBlock : MovableBlock
 {
-    private bool isPulled = false;
-    private float pullDirection = 0;
-    private float pullingSpeed = 0;
-    
-    public override void Update(float delta)
-    {
-        isPulled = false;
-        
-        checkForPulled(Vector2.Left);
-        checkForPulled(Vector2.Right);
-        
-        CM.UpdateComponents((float)delta);
+    private bool isLatched = false;
+    private Player latchedPlayer = null;
 
-        if (isPulled)
+    protected override void HandleVelocity(float delta)
+    {
+        if (IsPushed && !isLatched)
         {
-            velocity.X = pullingSpeed * pullDirection;
-        } else if (!isPulled)
-        {
-            velocity.X = 0;
+            isLatched = true;
         }
-        
-        if (velocity.X == 0 || !TestMove(Transform, velocity*(float)delta))
+
+        if (isLatched)
         {
-            Velocity = velocity;
-            MoveAndSlide();    
+            if (latchedPlayer == null || Mathf.Abs(latchedPlayer.velocity.Y) > 0.1f)
+            {
+                isLatched = false;
+                latchedPlayer = null;
+                velocity.X = 0;
+                return;
+            }
+
+            if((PushDirection < 0 && ((latchedPlayer.GlobalPosition.X + latchedPlayer.velocity.X) - GlobalPosition.X) > 0 )
+               || (PushDirection > 0 && ((latchedPlayer.GlobalPosition.X + latchedPlayer.velocity.X) - GlobalPosition.X) < 0) )
+            {
+                velocity.X = latchedPlayer.velocity.X;
+            }
+            else
+            {
+                velocity.X = 0;
+            }
+        }
+        else
+        {
+            velocity.X = Mathf.MoveToward(velocity.X, 0, PushingSpeed * 0.2f);
         }
     }
-    
-    private void checkForPulled(Vector2 direction)
+
+    protected override void CheckIfPushed(Vector2 direction)
     {
         KinematicCollision2D hit = new KinematicCollision2D();
-        if (TestMove(GlobalTransform, direction, hit))
+        if (TestMove(GlobalTransform, direction * 1.1f, hit))
         {
-            if (hit.GetCollider() is Player player)
+            if (hit.GetCollider() is Player p)
             {
-                if (Mathf.Abs(hit.GetNormal().Y) == 0)
-                {
-                    isPulled = true;
-                    pullDirection = -hit.GetNormal().X;
-                }
+                IsPushed = true;
+                PushDirection = hit.GetNormal().X;
+                latchedPlayer = p; 
             }
         }
     }
-
-    
 }
