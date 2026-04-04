@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dubuc26jsdci0" path="res://entities/mobs/creatures/zombie/Zombie.cs" id="1_bcpaq"]
 [ext_resource type="Texture2D" uid="uid://bsi72sgf54wop" path="res://entities/mobs/creatures/zombie/zombie.png" id="2_bcpaq"]
+[ext_resource type="PackedScene" uid="uid://b1mwnfbo0k8yx" path="res://entities/objects/zombie_dead/TerraZombieDead.tscn" id="2_lf67q"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_lf67q"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="3_mmmtn"]
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="4_mmmtn"]
@@ -13,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_2jiwv"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_08l68"]
 
-[sub_resource type="Resource" id="Resource_lf67q"]
+[sub_resource type="Resource" id="Resource_mmmtn"]
 script = ExtResource("3_mmmtn")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -41,7 +42,7 @@ size = Vector2(86, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lf67q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6jhx"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("11_08l68")
@@ -51,11 +52,16 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Zombie" type="CharacterBody2D" unique_id=344834364 node_paths=PackedStringArray("Sprite")]
+[node name="Zombie" type="CharacterBody2D" unique_id=344834364 node_paths=PackedStringArray("IsWallAhead", "isEnemyAbove", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_bcpaq")
+IsWallAhead = NodePath("IsWallAhead")
+isEnemyAbove = NodePath("IsEnemyAbove")
+zombieBodyScene = ExtResource("2_lf67q")
+CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
-ExportedSpriteWrapper = SubResource("Resource_lf67q")
+ExportedSpriteWrapper = SubResource("Resource_mmmtn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=549796304]
 position = Vector2(-1, 0)
@@ -103,7 +109,7 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=294067570 instance=ExtResource("9_wpeh0")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=550713322 instance=ExtResource("10_2jiwv")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_lf67q")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_r6jhx")])
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=817091342 instance=ExtResource("4_mmmtn")]
 jumpVelocity = 80.0

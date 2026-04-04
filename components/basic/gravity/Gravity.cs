@@ -7,8 +7,8 @@ namespace TENamespace;
 
 public partial class Gravity : Component
 {
-    [Export] public float GravityForce = 2f;
-    [Export] private float maxGravity = 100f;
+    [Export] public float GravityForce = 120f;
+    [Export] private float maxGravity = 600f;
     
     public bool Disabled = false;
     
@@ -33,10 +33,8 @@ public partial class Gravity : Component
             throw new Exception("Gravity component requires Entity actor.");
         }
     }
-    
-    public override void Update(float delta) => updateGravity(delta);
-    
-    private void updateGravity(float delta)
+
+    public override void Update(float delta)
     {
         if(Disabled) return;
         
@@ -60,7 +58,7 @@ public partial class Gravity : Component
         {
             if (entityActor.velocity.Y * -entityActor.UpDirection.Y < maxGravity * Math.Abs(entityActor.UpDirection.Y))
             {
-                entityActor.velocity.Y += GravityForce * -entityActor.UpDirection.Y;    
+                entityActor.velocity.Y += GravityForce * -entityActor.UpDirection.Y * delta;    
             }   
             
             if (entityActor.velocity.X * entityActor.UpDirection.X < maxGravity * Math.Abs(entityActor.UpDirection.X))
@@ -69,7 +67,7 @@ public partial class Gravity : Component
             }   
         }
         
-        checkEvents();
+        checkEvents();   
     }
     
     private void checkEvents()

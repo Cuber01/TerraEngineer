@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_7in26"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="3_eixo1"]
 [ext_resource type="PackedScene" uid="uid://b0eg46nrhalfj" path="res://entities/objects/puzzle/hp_gateway/HPGateway.tscn" id="4_7in26"]
-[ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/Plant.tscn" id="5_eixo1"]
+[ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/TerraPlant.tscn" id="5_eixo1"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="6_xqscd"]
 [ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://assets/items/green_essence.tres" id="7_3mq2g"]
 [ext_resource type="Resource" uid="uid://dghlav2hdya2h" path="res://assets/dialogue/item_green_essence.dialogue" id="7_frwa4"]

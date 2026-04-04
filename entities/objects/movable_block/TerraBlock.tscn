@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b5rxo30wh0msq"]
+
+[ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="1_l3plo"]
+[ext_resource type="PackedScene" uid="uid://dingl1m5pxwmo" path="res://entities/objects/movable_block/MovableBlock.tscn" id="2_mybk7"]
+[ext_resource type="PackedScene" uid="uid://bus06c4x2a0v0" path="res://entities/objects/movable_block/IceBlock.tscn" id="3_qvalx"]
+[ext_resource type="PackedScene" uid="uid://dvxvsgllfl6y6" path="res://entities/objects/movable_block/StickyBlock.tscn" id="4_4xrje"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3plo"]
+size = Vector2(6, 6)
+
+[node name="TerraBlock" type="CharacterBody2D" unique_id=1673332728 node_paths=PackedStringArray("versions")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_l3plo")
+versions = NodePath("Versions")
+
+[node name="Versions" type="Node2D" parent="." unique_id=1787269591]
+
+[node name="MovableBlock" parent="Versions" unique_id=1875833687 instance=ExtResource("2_mybk7")]
+
+[node name="IceBlock" parent="Versions" unique_id=203794177 instance=ExtResource("3_qvalx")]
+pushingSpeed = 20.0
+
+[node name="StickyBlock" parent="Versions" unique_id=1292222940 instance=ExtResource("4_4xrje")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=823379311]
+shape = SubResource("RectangleShape2D_l3plo")

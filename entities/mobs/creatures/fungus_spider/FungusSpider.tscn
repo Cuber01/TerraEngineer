@@ -48,6 +48,7 @@ collision_layer = 4
 script = ExtResource("1_cxflu")
 isGroundAhead = NodePath("RayCast2D")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_rphps")
 

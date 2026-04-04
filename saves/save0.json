@@ -1,1 +1,82 @@
-{"":{"boss_defeated":false},"FrogBoss":{"boss_defeated":false,"open_doors":false},"GreenEssence":{"GreenEssence_health_serum_collected":false,"green_essence_collected":false},"PistolRoom":{"blowtorch_collected":true,"removed_tiles":[[5.0,6.0],[5.0,5.0],[6.0,5.0],[6.0,6.0],[8.0,6.0],[7.0,6.0],[7.0,5.0],[12.0,5.0],[10.0,6.0],[11.0,6.0],[12.0,6.0],[11.0,5.0]]},"bosses":{"king_frog":false},"player_inventory":{"blowtorch":true,"dash":false,"double_jump":true,"green_essence":true,"health_serum":1.0},"savepoint_data":{"level":"Tree1","position":"(300.6095, 80.82394)"}}
+{
+  "": {
+    "boss_defeated": false
+  },
+  "FrogBoss": {
+    "boss_defeated": false,
+    "open_doors": false
+  },
+  "GreenEssence": {
+    "GreenEssence_health_serum_collected": false,
+    "green_essence_collected": false
+  },
+  "PistolRoom": {
+    "blowtorch_collected": true,
+    "removed_tiles": [
+      [
+        5.0,
+        6.0
+      ],
+      [
+        5.0,
+        5.0
+      ],
+      [
+        6.0,
+        5.0
+      ],
+      [
+        6.0,
+        6.0
+      ],
+      [
+        8.0,
+        6.0
+      ],
+      [
+        7.0,
+        6.0
+      ],
+      [
+        7.0,
+        5.0
+      ],
+      [
+        12.0,
+        5.0
+      ],
+      [
+        10.0,
+        6.0
+      ],
+      [
+        11.0,
+        6.0
+      ],
+      [
+        12.0,
+        6.0
+      ],
+      [
+        11.0,
+        5.0
+      ]
+    ]
+  },
+  "bosses": {
+    "king_frog": false
+  },
+  "player_inventory": {
+    "blowtorch": true,
+    "dash": false,
+    "double_jump": true,
+    "green_essence": true,
+    "blue_essence": true,
+    "purple_essence": true,
+    "health_serum": 1.0
+  },
+  "savepoint_data": {
+    "level": "DevRoom",
+    "position": "(127.9365, 101.9253)"
+  }
+}

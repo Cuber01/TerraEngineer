@@ -214,6 +214,7 @@ shader_parameter/run = false
 collision_layer = 2
 collision_mask = 33
 slide_on_ceiling = false
+safe_margin = 0.001
 script = ExtResource("1_ldahb")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
@@ -289,8 +290,6 @@ position = Vector2(0, -1)
 [node name="DashComponent" parent="ComponentManager" unique_id=1541394193 instance=ExtResource("3_ldahb")]
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1676305436 instance=ExtResource("4_1yb3l")]
-GravityForce = 3.0
-maxGravity = 80.0
 
 [node name="MoveComponent" parent="ComponentManager" unique_id=1958513480 instance=ExtResource("5_jta8v")]
 position = Vector2(1, 0)

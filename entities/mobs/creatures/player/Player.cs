@@ -1,5 +1,3 @@
-
-#define DEBUG_STATE
 using DialogueManagerRuntime;
 using Godot;
 using System;

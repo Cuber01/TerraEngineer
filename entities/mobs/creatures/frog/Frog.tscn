@@ -109,6 +109,7 @@ shader_parameter/run = false
 
 [node name="Frog" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
 Team = 1
@@ -121,6 +122,7 @@ position = Vector2(0, -1)
 texture = SubResource("PortableCompressedTexture2D_y3mso")
 hframes = 2
 vframes = 2
+frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

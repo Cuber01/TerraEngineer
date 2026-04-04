@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bus06c4x2a0v0"]
+
+[ext_resource type="Script" uid="uid://co3eeo6txvmhq" path="res://entities/objects/movable_block/IceBlock.cs" id="1_udj8d"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_oqc1f"]
+[ext_resource type="Texture2D" uid="uid://bte4an0yjimr7" path="res://entities/objects/movable_block/ice-block.png" id="3_udj8d"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_x76fd"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="5_uj0mk"]
+
+[sub_resource type="Resource" id="Resource_mflc0"]
+script = ExtResource("2_oqc1f")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx5hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_udj8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bn8cv"]
+size = Vector2(6, 6)
+
+[node name="IceBlock" type="CharacterBody2D" unique_id=1875833687 node_paths=PackedStringArray("Hitbox", "CM", "Sprite")]
+collision_layer = 9
+collision_mask = 3
+script = ExtResource("1_udj8d")
+pushingSpeed = 20.0
+Hitbox = NodePath("CollisionShape2D")
+MyBiome = 2
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_mflc0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=328792959]
+sprite_frames = SubResource("SpriteFrames_kx5hk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813551855]
+shape = SubResource("RectangleShape2D_bn8cv")
+
+[node name="ComponentManager" parent="." unique_id=1800920184 instance=ExtResource("4_x76fd")]
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1890020092 instance=ExtResource("5_uj0mk")]

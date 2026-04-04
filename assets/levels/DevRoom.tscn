@@ -1,21 +1,16 @@
 [gd_scene format=4 uid="uid://b1nj3yqr0qwkr"]
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="2_v3p77"]
-[ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="3_1fue5"]
-[ext_resource type="Texture2D" uid="uid://dp5ojga10j7ho" path="res://entities/objects/puzzle/puzzle-palette-yellow-levers-buttons.png" id="4_733jv"]
-[ext_resource type="PackedScene" uid="uid://bjhdhb4i0bm06" path="res://entities/objects/puzzle/switchable_group/SwitchableGroup.tscn" id="4_fpbev"]
-[ext_resource type="PackedScene" uid="uid://dxjv1g0yeixry" path="res://entities/objects/puzzle/button/Button.tscn" id="4_xcx2i"]
-[ext_resource type="Texture2D" uid="uid://cvmh3g4quab6f" path="res://entities/objects/puzzle/puzzle-palette-yellow.png" id="5_f8aun"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="5_v3p77"]
-[ext_resource type="PackedScene" uid="uid://bkdxw6irme7rf" path="res://entities/objects/puzzle/lever/Lever.tscn" id="7_rklo2"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="7_r1ybn"]
 [ext_resource type="Shader" uid="uid://b6nhsjnmgur2f" path="res://shaders/rope-segment-selector.gdshader" id="10_lngq4"]
 [ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="10_rklo2"]
 [ext_resource type="Texture2D" uid="uid://dns0ueunuurtt" path="res://gfx/wire/wire.png" id="10_wpy1m"]
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="11_ryq83"]
-[ext_resource type="PackedScene" uid="uid://dingl1m5pxwmo" path="res://entities/objects/movable_block/MovableBlock.tscn" id="15_yyfs6"]
 [ext_resource type="PackedScene" uid="uid://g38d3kf8jth2" path="res://entities/mobs/creatures/zombie/Zombie.tscn" id="16_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="16_gmryx"]
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://gfx/fluid/Fluid.tscn" id="17_kwwd8"]
+[ext_resource type="PackedScene" uid="uid://b5rxo30wh0msq" path="res://entities/objects/movable_block/TerraBlock.tscn" id="17_x06ml"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lngq4"]
 shader = ExtResource("10_lngq4")
@@ -25,6 +20,14 @@ shader_parameter/region_size_px = Vector2i(4, 8)
 shader_parameter/seed = 0.2430000115425
 shader_parameter/tiles_per_unit = 5.0000002375
 shader_parameter/line_length_scale = 0.15625
+
+[sub_resource type="Resource" id="Resource_p1jas"]
+script = ExtResource("7_r1ybn")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_nt7ux"]
+script = ExtResource("7_r1ybn")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"DevRoom"
@@ -36,21 +39,6 @@ tile_map_data = PackedByteArray("AAD1/wgAAAADAAIAAAD1/wcAAAAHAAEAAAD0/wgAAAAHAAI
 tile_set = ExtResource("2_v3p77")
 
 [node name="RoomInstance" parent="." unique_id=646333494 instance=ExtResource("5_v3p77")]
-
-[node name="SwitchableGroup" parent="." unique_id=927323311 node_paths=PackedStringArray("SwitchableGroupMembers") instance=ExtResource("4_fpbev")]
-GroupPalette = ExtResource("4_733jv")
-BlocksGroupPalette = ExtResource("5_f8aun")
-SwitchableGroupMembers = [NodePath("../SwitchableBlock")]
-
-[node name="Button" parent="." unique_id=472783358 instance=ExtResource("4_xcx2i")]
-position = Vector2(266, 57)
-
-[node name="Lever" parent="." unique_id=847617930 instance=ExtResource("7_rklo2")]
-position = Vector2(161, 97)
-
-[node name="SwitchableBlock" parent="." unique_id=800569464 instance=ExtResource("3_1fue5")]
-position = Vector2(183, 77)
-DefaultState = false
 
 [node name="Rope3" type="Node2D" parent="." unique_id=242761111]
 position = Vector2(63, 81)
@@ -231,11 +219,10 @@ sharp_limit = 6.0
 script = ExtResource("11_ryq83")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
-[node name="MovableBlock" parent="." unique_id=90784030 instance=ExtResource("15_yyfs6")]
-position = Vector2(74, 137)
-
 [node name="FungusSpider" parent="." unique_id=1877408370 instance=ExtResource("16_gmryx")]
 position = Vector2(234, 54)
+Team = 0
+ExportedSpriteWrapper = SubResource("Resource_p1jas")
 
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
 position = Vector2(317, 120)
@@ -243,3 +230,7 @@ Size = Vector2(160, 60)
 
 [node name="Zombie" parent="." unique_id=344834364 instance=ExtResource("16_8k2kr")]
 position = Vector2(382, 139)
+ExportedSpriteWrapper = SubResource("Resource_nt7ux")
+
+[node name="TerraBlock" parent="." unique_id=1673332728 instance=ExtResource("17_x06ml")]
+position = Vector2(261, 100)

@@ -45,10 +45,7 @@ public partial class Terraformable : Entity
 
     public override void HandleMove()
     {
-        Vector2 roundedVelocity = new Vector2(MathF.Truncate(velocity.X), MathF.Truncate(velocity.Y));
-        Velocity = roundedVelocity;
-        MoveAndSlide();
-
+        base.HandleMove();
         if(Velocity != Vector2.Zero)
             Caretaker.GlobalPosition = GlobalPosition;
     }

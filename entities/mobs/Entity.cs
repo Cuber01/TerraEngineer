@@ -100,8 +100,9 @@ public partial class Entity : CharacterBody2D
     
     public virtual void HandleMove()
     {
-        Velocity = new Vector2(MathF.Truncate(velocity.X), MathF.Truncate(velocity.Y));
+        Velocity = velocity;
         MoveAndSlide();
+        //velocity = Velocity;
     }
 
     protected void InitSpriteWrapper()
