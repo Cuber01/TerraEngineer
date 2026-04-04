@@ -63,7 +63,7 @@ public partial class Gravity : Component
             
             if (entityActor.velocity.X * entityActor.UpDirection.X < maxGravity * Math.Abs(entityActor.UpDirection.X))
             {
-                entityActor.velocity.X += GravityForce * -entityActor.UpDirection.X;    
+                entityActor.velocity.X += GravityForce * -entityActor.UpDirection.X * delta;    
             }   
         }
         
