@@ -7,8 +7,8 @@ namespace TENamespace;
 
 public partial class Gravity : Component
 {
-    [Export] public float GravityForce = 120f;
-    [Export] private float maxGravity = 600f;
+    [Export] public float GravityForce = 160f;
+    [Export] private float maxGravity = 700f;
     
     public bool Disabled = false;
     

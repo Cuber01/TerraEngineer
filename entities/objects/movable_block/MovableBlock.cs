@@ -9,24 +9,21 @@ using Vector2 = Godot.Vector2;
 public partial class MovableBlock : Terraformable
 {
     private const float TestMoveBuffer = 1.1f;
-    private float pushingSpeed = 100;
-    private bool isPushed = false;
-    private float pushDirection = 0;
+    private const float BaseSlideSpeed = 100;
+    protected const float VelocityNeededToPush = 40f;
+    
+    protected float PushingSpeed = 100;
+    protected bool IsPushed = false;
+    protected float PushDirection = 0;
+    
 
     public override void Update(float delta)
     {
-        isPushed = false;
+        IsPushed = false;
         checkIfPushed(Vector2.Left);
         checkIfPushed(Vector2.Right);
 
-        if (isPushed)
-        {
-            velocity.X = pushingSpeed * pushDirection;
-        } 
-        else if (StopCondition())
-        {
-            velocity.X = Mathf.MoveToward(velocity.X, 0, pushingSpeed * 0.2f);
-        }
+        HandleVelocity();
         
         CM.UpdateComponents(delta);
         
@@ -42,15 +39,25 @@ public partial class MovableBlock : Terraformable
             {
                 if (Mathf.Abs(hit.GetNormal().Y) == 0)
                 {
-                    isPushed = true;
-                    pushDirection = hit.GetNormal().X;
-                    pushingSpeed = Math.Abs(player.velocity.X);
+                    IsPushed = true;
+                    PushDirection = hit.GetNormal().X;
+                    PushingSpeed = Math.Abs(player.velocity.X);
                 }
             }
         }
     }
-    
-    protected virtual bool StopCondition() => !isPushed;
+
+    protected virtual void HandleVelocity()
+    {
+        if (IsPushed && PushingSpeed > VelocityNeededToPush)
+        {
+            velocity.X = PushingSpeed * PushDirection;
+        } 
+        else if (!IsPushed)
+        {
+            velocity.X = Mathf.MoveToward(velocity.X, 0, PushingSpeed * 0.2f);
+        }
+    }
 
     public override void Disable()
     {
