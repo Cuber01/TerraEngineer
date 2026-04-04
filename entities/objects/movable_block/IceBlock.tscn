@@ -27,6 +27,7 @@ size = Vector2(6, 6)
 [node name="IceBlock" type="CharacterBody2D" unique_id=1875833687 node_paths=PackedStringArray("Hitbox", "CM", "Sprite")]
 collision_layer = 9
 collision_mask = 3
+collision_priority = 2.0
 script = ExtResource("1_udj8d")
 Hitbox = NodePath("CollisionShape2D")
 MyBiome = 2

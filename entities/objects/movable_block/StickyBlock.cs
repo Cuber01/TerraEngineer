@@ -31,6 +31,10 @@ public partial class StickyBlock : MovableBlock
             }
             else
             {
+                // All of these are necessary to workaround multiple behaviors of the physics engine
+                latchedPlayer.velocity.X = 0;
+                latchedPlayer.Velocity = new Vector2(0,latchedPlayer.Velocity.Y);
+                Position = new  Vector2(0, Position.Y);
                 velocity.X = 0;
             }
         }
