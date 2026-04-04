@@ -18,8 +18,6 @@ public partial class MovableBlock : Terraformable
         isPushed = false;
         checkIfPushed(Vector2.Left);
         checkIfPushed(Vector2.Right);
-    
-        CM.UpdateComponents(delta);
 
         if (isPushed)
         {
@@ -27,9 +25,11 @@ public partial class MovableBlock : Terraformable
         } 
         else if (StopCondition())
         {
-            velocity.X = 0;
+            velocity.X = Mathf.MoveToward(velocity.X, 0, pushingSpeed * 0.2f);
         }
-
+        
+        CM.UpdateComponents(delta);
+        
         HandleMove();
     }
     

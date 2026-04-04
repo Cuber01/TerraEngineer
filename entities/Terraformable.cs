@@ -1,7 +1,9 @@
 using Godot;
 using System;
+using System.Numerics;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
+using Vector2 = Godot.Vector2;
 
 namespace TerraEngineer.entities;
 
@@ -45,8 +47,12 @@ public partial class Terraformable : Entity
 
     public override void HandleMove()
     {
-        if(velocity != Vector2.Zero)
+        if (velocity != Vector2.Zero)
+        {
             Caretaker.GlobalPosition = GlobalPosition;
+            Position = Vector2.Zero;
+        }
+            
         base.HandleMove();
     }
 }
