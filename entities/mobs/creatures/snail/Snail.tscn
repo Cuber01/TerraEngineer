@@ -81,7 +81,6 @@ down = NodePath("RayCastDown")
 right = NodePath("RayCastRight")
 left = NodePath("RayCastLeft")
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_072wc")
 
@@ -120,6 +119,7 @@ FrictionEnabledY = true
 MaxHealth = 2
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1202271141 instance=ExtResource("6_8i4jb")]
+GravityForce = 10.0
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=802995606 instance=ExtResource("7_35750")]
 

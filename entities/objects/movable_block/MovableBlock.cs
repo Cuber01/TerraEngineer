@@ -30,9 +30,7 @@ public partial class MovableBlock : Terraformable
             velocity.X = 0;
         }
 
-        Velocity = velocity;
-        MoveAndSlide();
-        velocity = Velocity; // Sync back so Gravity knows we hit the floor
+        HandleMove();
     }
     
     private void checkIfPushed(Vector2 direction)

@@ -45,8 +45,8 @@ public partial class Terraformable : Entity
 
     public override void HandleMove()
     {
-        base.HandleMove();
-        if(Velocity != Vector2.Zero)
+        if(velocity != Vector2.Zero)
             Caretaker.GlobalPosition = GlobalPosition;
+        base.HandleMove();
     }
 }

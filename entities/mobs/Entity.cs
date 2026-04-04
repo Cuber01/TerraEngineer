@@ -24,8 +24,8 @@ public partial class Entity : CharacterBody2D
         {
             SpriteWrapper = value;
             #if TOOLS
-            if(Engine.IsEditorHint())
-                SpriteWrapper.Init(Sprite);
+            if(Engine.IsEditorHint() && Sprite != null && SpriteWrapper != null)
+                InitSpriteWrapper();
             #endif
         }
     }
@@ -107,7 +107,7 @@ public partial class Entity : CharacterBody2D
 
     protected void InitSpriteWrapper()
     {
-        ExportedSpriteWrapper = (SpriteWrapper)ExportedSpriteWrapper.Duplicate();
+        SpriteWrapper = (SpriteWrapper)ExportedSpriteWrapper.Duplicate();
         SpriteWrapper.Init(Sprite);
     }
 
