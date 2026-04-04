@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b71fgkfgiowcw"]
 
 [ext_resource type="Texture2D" uid="uid://dy35ouxhld16l" path="res://entities/objects/zombie_dead/zombie-dead-flower.tres" id="1_4fnjv"]
+[ext_resource type="Script" uid="uid://blo7kdxbqebir" path="res://entities/Terraformable.cs" id="1_68qks"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_lsu5c"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="3_68qks"]
 
@@ -20,6 +21,7 @@ size = Vector2(8, 5.5)
 
 [node name="ZombieDeadFlower" type="CharacterBody2D" unique_id=907468751]
 collision_layer = 0
+script = ExtResource("1_68qks")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443641612]
 scale = Vector2(1, 0.9285714)

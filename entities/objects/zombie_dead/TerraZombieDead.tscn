@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b1mwnfbo0k8yx"]
+
+[ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="1_enojd"]
+[ext_resource type="PackedScene" uid="uid://b71fgkfgiowcw" path="res://entities/objects/zombie_dead/ZombieDeadFlower.tscn" id="2_tkuxf"]
+[ext_resource type="PackedScene" uid="uid://bauoisloxciqf" path="res://entities/objects/zombie_dead/ZombieDeadMushroom.tscn" id="3_aqado"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="4_rfpcj"]
+
+[sub_resource type="Resource" id="Resource_dkfcq"]
+script = ExtResource("4_rfpcj")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rsga"]
+size = Vector2(9, 7)
+
+[node name="ZombieDead" type="CharacterBody2D" unique_id=1438616883 node_paths=PackedStringArray("versions")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_enojd")
+currentBiome = 1
+versions = NodePath("Versions")
+
+[node name="Versions" type="Node2D" parent="." unique_id=1108625021]
+
+[node name="ZombieDeadFlower" parent="Versions" unique_id=330094314 instance=ExtResource("2_tkuxf")]
+
+[node name="ZombieDeadMushroom" parent="Versions" unique_id=128883506 instance=ExtResource("3_aqado")]
+MyBiome = 1
+ExportedSpriteWrapper = SubResource("Resource_dkfcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=263371872]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_5rsga")
