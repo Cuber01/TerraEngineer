@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://iirwb33mvplw"]
+
+[ext_resource type="Script" uid="uid://b4n68h15lw4sy" path="res://gfx/droplet-dropper/Droplet.cs" id="1_cgcng"]
+[ext_resource type="Texture2D" uid="uid://de0yyrd5ejxuj" path="res://gfx/droplet-dropper/droplet.png" id="1_lnvwr"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_4yw5q"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_8groe"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="4_4yw5q"]
+
+[sub_resource type="Resource" id="Resource_wpt23"]
+script = ExtResource("2_4yw5q")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnvwr"]
+size = Vector2(1, 1)
+
+[node name="Droplet" type="CharacterBody2D" unique_id=612088106 node_paths=PackedStringArray("CM", "Sprite")]
+collision_layer = 8
+script = ExtResource("1_cgcng")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("Sprite2D")
+Weight = 3.0
+ExportedSpriteWrapper = SubResource("Resource_wpt23")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1440061973]
+position = Vector2(1, 0)
+texture = ExtResource("1_lnvwr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1671436739]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_lnvwr")
+
+[node name="ComponentManager" parent="." unique_id=137453510 instance=ExtResource("3_8groe")]
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1199763218 instance=ExtResource("4_4yw5q")]

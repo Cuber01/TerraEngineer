@@ -1,0 +1,62 @@
+[gd_scene format=4 uid="uid://cviknho0o5vvg"]
+
+[ext_resource type="Script" uid="uid://c64544ip7jde1" path="res://gfx/droplet-dropper/Dropper.cs" id="1_yln1t"]
+[ext_resource type="PackedScene" uid="uid://iirwb33mvplw" path="res://gfx/droplet-dropper/Droplet.tscn" id="2_kck21"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_vxnoj"]
+_data = PackedByteArray("AAADAAUAAAABAAAACgAAAAQAAABMAAAAUklGRkQAAABXRUJQVlA4TDcAAAAvCcAAEB8gECBTHhyIIxAgQw4oIRAgXMiwLHX+A9A17aAqsg3qkES0ZxARfIojZkT/o1fO1QYeAA==")
+size_override = Vector2(10, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yln1t"]
+atlas = SubResource("PortableCompressedTexture2D_vxnoj")
+region = Rect2(0, 0, 5, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kck21"]
+atlas = SubResource("PortableCompressedTexture2D_vxnoj")
+region = Rect2(5, 0, 5, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0hed"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_yln1t")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_kck21")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Dropper" type="Node2D" unique_id=1306450557 node_paths=PackedStringArray("spawnPlace", "sprite2D")]
+script = ExtResource("1_yln1t")
+dropletScene = ExtResource("2_kck21")
+spawnPlace = NodePath("Node2D")
+sprite2D = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=755133229]
+texture_filter = 1
+position = Vector2(1, 2)
+sprite_frames = SubResource("SpriteFrames_s0hed")
+frame_progress = 0.7461264
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://gfx/droplet-dropper/dropper.ase",
+"source_uid": 6432893380920760805
+}
+metadata/_aseprite_wizard_source_file_hash_ = "53a7a8355bb21f8836e3957acde2882b"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=232159728]
+position = Vector2(0, 3)

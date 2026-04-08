@@ -1,4 +1,6 @@
 using Godot;
+using System;
+using TerraEngineer;
 
 [Tool]
 public partial class FluidSpring : Node2D
@@ -10,7 +12,6 @@ public partial class FluidSpring : Node2D
 	// Damping is increased for coastal springs to simulate waves crushing against the coast
 	[Export] private float coastalDamping = 0.9f;
 	[Export] private float coastalStiffness = 0.2f;
-	
 	
 	private float velocityY = 0;
 	private float targetHeight;
@@ -46,14 +47,15 @@ public partial class FluidSpring : Node2D
 		
 		if (distanceToTarget() != 0)
 		{
-			velocityY += -stiffness * distanceToTarget();
+			velocityY -= stiffness * distanceToTarget();
 		}
 		
 		velocityY += -(damping * velocityY * (float)delta);
-
+		
+			leftNeighbor?.AddExternalForce(spread*2 * (Position.Y - leftNeighbor.Position.Y));
+			
 		rightNeighbor?.AddExternalForce(spread * (Position.Y - rightNeighbor.Position.Y));
-		leftNeighbor?.AddExternalForce(spread * (Position.Y - leftNeighbor.Position.Y));
-
+		
 		Position = Position with { Y = Position.Y + velocityY * (float)delta };
 	}
 

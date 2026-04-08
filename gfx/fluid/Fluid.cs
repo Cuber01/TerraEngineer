@@ -20,7 +20,6 @@ public partial class Fluid : Node2D
 	private Vector2I _size = new Vector2I(100, 100);
 	
 	[Export] private int springsAmountPer10Px = 3;
-	[Export] private float forceOnContact = 64;
 	
 	[Export] private PackedScene fluidSpringScene;
 	[Export] private Polygon2D displayPolygon;
@@ -131,7 +130,17 @@ public partial class Fluid : Node2D
 
 	private void _onBodyExited(Node2D body)
 	{
-		addForce(body, false);
+		if (body is Entity e)
+		{
+			if (!e.Dead)
+			{
+				addForce(body, false);		
+			}
+		}
+		else
+		{
+			addForce(body, false);
+		}
 	}
 	
 	private void addForce(Node2D source, bool entering)
@@ -140,18 +149,14 @@ public partial class Fluid : Node2D
 			.OrderBy(spring => source.GlobalPosition.DistanceSquaredTo(spring.GlobalPosition))
 			.Take(3)
 			.ToList();
-
-		// For fat things
-		if (source is Entity)
+		
+		if (source is Entity e)
 		{
-			top3Springs[0].AddExternalForce(entering ? forceOnContact : -forceOnContact);
-			top3Springs[1].AddExternalForce(entering ? forceOnContact/2 : -forceOnContact/2);
-			top3Springs[1].AddExternalForce(entering ? forceOnContact/2 : -forceOnContact/2);	
-		}
-		// For less fat things
-		else
-		{
-			top3Springs[0].AddExternalForce(entering ? forceOnContact : -forceOnContact);
+			top3Springs[0].AddExternalForce(entering ? e.Weight : -e.Weight);
+			top3Springs[1].AddExternalForce(entering ? e.Weight/2 : -e.Weight/2);
+			top3Springs[1].AddExternalForce(entering ? e.Weight / 2 : -e.Weight / 2);
+			
+			e.FellIntoFluid();
 		}
 		
 

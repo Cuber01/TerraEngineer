@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cxwe2xeoix84p"
+path="res://.godot/imported/dropper.ase-0a2f54a059384460c93c8de798e8dbc2.res"
+
+[deps]
+
+source_file="res://gfx/droplet-dropper/dropper.ase"
+dest_files=["res://.godot/imported/dropper.ase-0a2f54a059384460c93c8de798e8dbc2.res"]
+
+[params]
+

@@ -16,6 +16,7 @@ public partial class Entity : CharacterBody2D
     [Export] public CollisionTeam Team;
     [Export] public bool GodMode = false;
     [Export] public Node2D Sprite;
+    [Export] public float Weight = 64f; // For fluids
 
     [Export] public SpriteWrapper ExportedSpriteWrapper
     {
@@ -38,6 +39,7 @@ public partial class Entity : CharacterBody2D
     }
     public DirectionX Facing = DirectionX.Right;
     public Vector2 velocity;
+    
     
     // Used to stop edge cases in which non-garbage collected objects will try to interact with disposed Godot nodes via timed callbacks.
     public bool Dead = false;
@@ -104,6 +106,8 @@ public partial class Entity : CharacterBody2D
         MoveAndSlide();
         //velocity = Velocity;
     }
+    
+    public virtual void FellIntoFluid() {}
 
     protected void InitSpriteWrapper()
     {
