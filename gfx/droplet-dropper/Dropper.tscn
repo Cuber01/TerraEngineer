@@ -3,26 +3,26 @@
 [ext_resource type="Script" uid="uid://c64544ip7jde1" path="res://gfx/droplet-dropper/Dropper.cs" id="1_yln1t"]
 [ext_resource type="PackedScene" uid="uid://iirwb33mvplw" path="res://gfx/droplet-dropper/Droplet.tscn" id="2_kck21"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_vxnoj"]
-_data = PackedByteArray("AAADAAUAAAABAAAACgAAAAQAAABMAAAAUklGRkQAAABXRUJQVlA4TDcAAAAvCcAAEB8gECBTHhyIIxAgQw4oIRAgXMiwLHX+A9A17aAqsg3qkES0ZxARfIojZkT/o1fO1QYeAA==")
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_kck21"]
+_data = PackedByteArray("AAADAAUAAAABAAAACgAAAAQAAABOAAAAUklGRkYAAABXRUJQVlA4TDoAAAAvCcAAEB8gECBTHhz4ICQgTLDE/2+KQIBwIUO/u/kPQFX1g6rINqhDEtGeQUTwKY6YEf2PXjlXG3gA")
 size_override = Vector2(10, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yln1t"]
-atlas = SubResource("PortableCompressedTexture2D_vxnoj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0hed"]
+atlas = SubResource("PortableCompressedTexture2D_kck21")
 region = Rect2(0, 0, 5, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kck21"]
-atlas = SubResource("PortableCompressedTexture2D_vxnoj")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tenxr"]
+atlas = SubResource("PortableCompressedTexture2D_kck21")
 region = Rect2(5, 0, 5, 4)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_s0hed"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jucfd"]
 animations = [{
 "frames": [{
 "duration": 10.0,
-"texture": SubResource("AtlasTexture_yln1t")
+"texture": SubResource("AtlasTexture_s0hed")
 }, {
 "duration": 5.0,
-"texture": SubResource("AtlasTexture_kck21")
+"texture": SubResource("AtlasTexture_tenxr")
 }],
 "loop": true,
 "name": &"default",
@@ -38,8 +38,7 @@ sprite2D = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=755133229]
 texture_filter = 1
 position = Vector2(1, 2)
-sprite_frames = SubResource("SpriteFrames_s0hed")
-frame_progress = 0.7461264
+sprite_frames = SubResource("SpriteFrames_jucfd")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -56,7 +55,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://gfx/droplet-dropper/dropper.ase",
 "source_uid": 6432893380920760805
 }
-metadata/_aseprite_wizard_source_file_hash_ = "53a7a8355bb21f8836e3957acde2882b"
+metadata/_aseprite_wizard_source_file_hash_ = "9710f3f6b1a54c826fdd38a5f67304a6"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=232159728]
 position = Vector2(0, 3)

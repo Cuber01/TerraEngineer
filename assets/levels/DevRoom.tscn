@@ -224,6 +224,7 @@ ExportedSpriteWrapper = SubResource("Resource_nt7ux")
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
 position = Vector2(317, 120)
 Size = Vector2(160, 60)
+springsAmountPer10Px = 2
 
 [node name="TerraBlock" parent="." unique_id=1673332728 instance=ExtResource("17_x06ml")]
 position = Vector2(261, 100)

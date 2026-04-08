@@ -8,6 +8,9 @@ public partial class FluidSpring : Node2D
 	[Export] private float damping = 0.7f;
 	[Export] private float stiffness = 0.1f;
 	[Export] private float spread = 0.6f;
+	[Export] private float spreadDamping = 0.9995f;
+	private const float VelocityThreshold = 0.1f;
+	private const float PositionThreshold = 0.01f;
 	
 	// Damping is increased for coastal springs to simulate waves crushing against the coast
 	[Export] private float coastalDamping = 0.9f;
@@ -33,28 +36,33 @@ public partial class FluidSpring : Node2D
 			damping = coastalDamping;
 	}
 
-	public void AddExternalForce(float force)
+	public void AddExternalForce(float force, float newSpread)
 	{
+		spread = newSpread;
 		velocityY += force;
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		#if TOOLS
 		if(Engine.IsEditorHint())
 			return;
 		#endif
 		
-		if (distanceToTarget() != 0)
+		float dist = distanceToTarget();
+		
+		if (Mathf.Abs(dist) < PositionThreshold && Mathf.Abs(velocityY) < VelocityThreshold)
 		{
-			velocityY -= stiffness * distanceToTarget();
+			Position = Position with { Y = targetHeight };
+			velocityY = 0;
+			return;
 		}
 		
+		velocityY -= stiffness * distanceToTarget();
 		velocityY += -(damping * velocityY * (float)delta);
 		
-			leftNeighbor?.AddExternalForce(spread*2 * (Position.Y - leftNeighbor.Position.Y));
-			
-		rightNeighbor?.AddExternalForce(spread * (Position.Y - rightNeighbor.Position.Y));
+		leftNeighbor?.AddExternalForce(spread * (Position.Y - leftNeighbor.Position.Y), spread * spreadDamping);
+		rightNeighbor?.AddExternalForce(spread * (Position.Y - rightNeighbor.Position.Y), spread * spreadDamping);
 		
 		Position = Position with { Y = Position.Y + velocityY * (float)delta };
 	}

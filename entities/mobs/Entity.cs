@@ -107,7 +107,7 @@ public partial class Entity : CharacterBody2D
         //velocity = Velocity;
     }
     
-    public virtual void FellIntoFluid() {}
+    public virtual void FellIntoFluid(Fluid fluid) {}
 
     protected void InitSpriteWrapper()
     {

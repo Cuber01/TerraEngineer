@@ -32,3 +32,4 @@ shape = SubResource("RectangleShape2D_lnvwr")
 [node name="ComponentManager" parent="." unique_id=137453510 instance=ExtResource("3_8groe")]
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1199763218 instance=ExtResource("4_4yw5q")]
+maxGravity = 400.0
