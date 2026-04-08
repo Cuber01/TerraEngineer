@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c0hhbqey7klp0"]
+
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="1_tsamq"]
+[ext_resource type="Shader" uid="uid://b6nhsjnmgur2f" path="res://shaders/rope-segment-selector.gdshader" id="2_gt7y8"]
+[ext_resource type="Texture2D" uid="uid://b0esa63rurvqk" path="res://gfx/wire/vine.png" id="3_388d1"]
+[ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="4_c4n0g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n551i"]
+shader = ExtResource("2_gt7y8")
+shader_parameter/texture_source = ExtResource("3_388d1")
+shader_parameter/region_count = 6
+shader_parameter/region_size_px = Vector2i(4, 8)
+shader_parameter/seed = 0.28800001368
+shader_parameter/tiles_per_unit = 2.000000095
+shader_parameter/line_length_scale = 0.23856999403575
+
+[node name="Vine" type="Node2D" unique_id=1921563168]
+script = ExtResource("1_tsamq")
+rope_length = 50.0
+stiffness = -100.0
+gravity = 12.0
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+collision_mask = 31
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="." unique_id=1198926238]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_n551i")
+points = PackedVector2Array(0, 0, 0, 7.691948, 0, 15.185944, 0, 22.426239, 0, 29.37796, 0, 36.020515, 0, 42.342316, 0, 48.33705, 0, 54.001343, 0, 59.333496, 0, 64.333496)
+width = 4.0
+texture_mode = 1
+script = ExtResource("4_c4n0g")
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
