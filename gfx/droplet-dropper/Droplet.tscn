@@ -18,7 +18,7 @@ collision_layer = 8
 script = ExtResource("1_cgcng")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
-Weight = 3.0
+Weight = 5.0
 ExportedSpriteWrapper = SubResource("Resource_wpt23")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1440061973]
