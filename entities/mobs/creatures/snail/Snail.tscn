@@ -81,6 +81,7 @@ down = NodePath("RayCastDown")
 right = NodePath("RayCastRight")
 left = NodePath("RayCastLeft")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_072wc")
 

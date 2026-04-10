@@ -130,6 +130,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope4" unique_id=1875321019]
 texture_repeat = 2
+position = Vector2(-4, 0)
 points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
 width = 1.0
 default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
@@ -156,58 +157,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope5" unique_id=838910979]
 texture_repeat = 2
-points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
-width = 1.0
-default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
-texture_mode = 1
-sharp_limit = 6.0
-script = ExtResource("11_ryq83")
-metadata/_custom_type_script = "uid://dfppmnngy2wx4"
-
-[node name="Rope6" type="Node2D" parent="Grass" unique_id=1738760549]
-position = Vector2(198, 100)
-script = ExtResource("10_rklo2")
-num_segments = 5
-rope_length = 1.0
-stiffness = 0.5
-gravity_direction = Vector2(0, -1)
-num_constraint_iterations = 5
-render_line = false
-line_width = 1.0
-color = Color(0.11372549, 0.1254902, 0, 1)
-enable_collisions = true
-resolve_collisions_while_constraining = true
-collision_mask = 30
-metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
-
-[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope6" unique_id=1535957032]
-texture_repeat = 2
-points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
-width = 1.0
-default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
-texture_mode = 1
-sharp_limit = 6.0
-script = ExtResource("11_ryq83")
-metadata/_custom_type_script = "uid://dfppmnngy2wx4"
-
-[node name="Rope7" type="Node2D" parent="Grass" unique_id=311581143]
-position = Vector2(204, 100)
-script = ExtResource("10_rklo2")
-num_segments = 5
-rope_length = 1.0
-stiffness = 0.5
-gravity_direction = Vector2(0, -1)
-num_constraint_iterations = 5
-render_line = false
-line_width = 1.0
-color = Color(0.11372549, 0.1254902, 0, 1)
-enable_collisions = true
-resolve_collisions_while_constraining = true
-collision_mask = 30
-metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
-
-[node name="RopeRendererLine2D" type="Line2D" parent="Grass/Rope7" unique_id=1667083131]
-texture_repeat = 2
+position = Vector2(-6, 0)
 points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
 width = 1.0
 default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
