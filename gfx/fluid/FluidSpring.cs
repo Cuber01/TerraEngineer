@@ -7,8 +7,9 @@ public partial class FluidSpring : Node2D
 {
 	[Export] private float damping = 0.7f;
 	[Export] private float stiffness = 0.1f;
-	[Export] private float spread = 0.6f;
+	[Export] private float spread = BaseSpread;
 	[Export] private float spreadDamping = 0.9995f;
+	private const float BaseSpread = 0.6f;
 	private const float VelocityThreshold = 0.1f;
 	private const float PositionThreshold = 0.01f;
 	
@@ -36,7 +37,7 @@ public partial class FluidSpring : Node2D
 			damping = coastalDamping;
 	}
 
-	public void AddExternalForce(float force, float newSpread)
+	public void AddExternalForce(float force, float newSpread=BaseSpread)
 	{
 		spread = newSpread;
 		velocityY += force;

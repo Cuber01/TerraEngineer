@@ -18,15 +18,14 @@ collision_layer = 8
 script = ExtResource("1_cgcng")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
-Weight = 5.0
+Weight = 10.0
 ExportedSpriteWrapper = SubResource("Resource_wpt23")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1440061973]
-position = Vector2(1, 0)
 texture = ExtResource("1_lnvwr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1671436739]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 7)
 shape = SubResource("RectangleShape2D_lnvwr")
 
 [node name="ComponentManager" parent="." unique_id=137453510 instance=ExtResource("3_8groe")]

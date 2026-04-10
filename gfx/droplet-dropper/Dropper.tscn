@@ -58,4 +58,4 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "9710f3f6b1a54c826fdd38a5f67304a6"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=232159728]
-position = Vector2(0, 3)
+position = Vector2(1, 3)

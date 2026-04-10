@@ -152,9 +152,9 @@ public partial class Fluid : Node2D
 		
 		if (source is Entity e)
 		{
-			top3Springs[0].AddExternalForce(entering ? e.Weight : -e.Weight, 0.6f);
-			top3Springs[1].AddExternalForce(entering ? e.Weight/2 : -e.Weight/2, 0.6f);
-			top3Springs[1].AddExternalForce(entering ? e.Weight / 2 : -e.Weight / 2, 0.6f);
+			top3Springs[0].AddExternalForce(entering ? e.Weight : -e.Weight);
+			top3Springs[1].AddExternalForce(entering ? e.Weight/2 : -e.Weight/2);
+			top3Springs[1].AddExternalForce(entering ? e.Weight / 2 : -e.Weight / 2);
 			
 			e.FellIntoFluid(this);
 		}
