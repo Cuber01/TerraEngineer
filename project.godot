@@ -137,7 +137,7 @@ interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://assets/dialogue/item_green_essence.dialogue", "res://assets/dialogue/item_health_serum.dialogue", "res://assets/dialogue/item_pistol.dialogue", "res://assets/dialogue/mines_announcement.dialogue", "res://assets/dialogue/radio01.dialogue")
+locale/translations_pot_files=PackedStringArray("res://assets/dialogue/item_green_essence.dialogue", "res://assets/dialogue/item_health_serum.dialogue", "res://assets/dialogue/item_pistol.dialogue", "res://assets/dialogue/mines_announcement.dialogue", "res://assets/dialogue/radio01.dialogue", "res://assets/dialogue/item_double_jump.dialogue")
 
 [layer_names]
 

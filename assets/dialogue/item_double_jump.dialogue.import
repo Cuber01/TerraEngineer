@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://6in1o2gsk0f8"
+path="res://.godot/imported/item_double_jump.dialogue-7b1629456eb3f806f28cc1aaa084b9bd.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_double_jump.dialogue"
+dest_files=["res://.godot/imported/item_double_jump.dialogue-7b1629456eb3f806f28cc1aaa084b9bd.tres"]
+
+[params]
+
+defaults=true

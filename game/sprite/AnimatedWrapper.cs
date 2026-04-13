@@ -15,7 +15,7 @@ public partial class AnimatedWrapper : SpriteWrapper
         Initialized = true;
     }
 
-    public override void Play(string anim) => animSprite.Play(anim);
+    public override void Play(string anim, float customSpeed=1f) => animSprite.Play(anim, customSpeed);
     public override void Flip() => animSprite.FlipH = !animSprite.FlipH;
     public override bool GetFlipH() => animSprite.FlipH;
     public override void SetFrame(int num) => animSprite.Frame = num;

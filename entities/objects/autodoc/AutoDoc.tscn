@@ -1,0 +1,118 @@
+[gd_scene format=4 uid="uid://boooxlqm536jd"]
+
+[ext_resource type="Script" uid="uid://ccm83dlqnwdvn" path="res://entities/objects/autodoc/AutoDoc.cs" id="1_thjbx"]
+[ext_resource type="Resource" uid="uid://6in1o2gsk0f8" path="res://assets/dialogue/item_double_jump.dialogue" id="2_fxudd"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_sydl0"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_xlml3"]
+[ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="3_sydl0"]
+
+[sub_resource type="Resource" id="Resource_fxudd"]
+script = ExtResource("2_sydl0")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_xlml3"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAACAAAADIAAAAUklGRsAAAABXRUJQVlA4TLMAAAAvF8AHEFegJJIV6snncX8qoClD/xLUUBRJUnPBQHpm/vjBM6oUNJLUvIhO72AZWxhi/gMANHw6EhF9CvBnNW0ec5P/170HjmrbWrKLMyQCEVzHNnVJ8I1xGrAoQASS+i8BIvqvtm0bJm1zyxmARAFnHCHE9/03OKXYXJ1Wit3T6Xhd55m54ESgYWIH6K5VA/2fnmUhfhS9wX3nb8fHXv6tZuSeiWtTO3CcclSh9/953v8tAgA=")
+size_override = Vector2(24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sydl0"]
+atlas = SubResource("PortableCompressedTexture2D_xlml3")
+region = Rect2(12, 16, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxudd"]
+atlas = SubResource("PortableCompressedTexture2D_xlml3")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxrut"]
+atlas = SubResource("PortableCompressedTexture2D_xlml3")
+region = Rect2(12, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h46nm"]
+atlas = SubResource("PortableCompressedTexture2D_xlml3")
+region = Rect2(0, 16, 12, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i74y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sydl0")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxudd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxrut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h46nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sydl0")
+}],
+"loop": false,
+"name": &"closing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxudd")
+}],
+"loop": true,
+"name": &"open",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxudd"]
+size = Vector2(12, 15)
+
+[node name="AutoDoc" type="CharacterBody2D" unique_id=912996181 node_paths=PackedStringArray("CM", "Sprite")]
+script = ExtResource("1_thjbx")
+itemName = &"double_jump"
+itemCollectedTag = &"double_jump"
+dialogueDescription = ExtResource("2_fxudd")
+CM = NodePath("ComponentManager")
+Team = 2
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_fxudd")
+
+[node name="ComponentManager" parent="." unique_id=924767318 instance=ExtResource("2_xlml3")]
+
+[node name="SaveEntityComponent" parent="ComponentManager" unique_id=1131271268 instance=ExtResource("3_sydl0")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1115106654]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_i74y0")
+animation = &"closing"
+autoplay = "open"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/objects/autodoc/autodoc.ase",
+"source_uid": 7758936400770440342
+}
+metadata/_aseprite_wizard_source_file_hash_ = "e50495709d43774b371607a38795958c"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=600439736]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1934802200]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_fxudd")
+
+[connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onPlayerExited"]

@@ -88,14 +88,4 @@ public partial class TimerManager : Node
     {
         return _instance.Start(timeInSeconds, repeats, null, onTime);
     }
-
-    /// <summary>
-    /// schedules a one-time timer that will call the passed in Action after timeInSeconds
-    /// </summary>
-    /// <param name="timeInSeconds">Time in seconds.</param>
-    /// <param name="onTime">On time.</param>
-    public static ITimer Schedule(float timeInSeconds, Action<ITimer> onTime)
-    {
-        return _instance.Start(timeInSeconds, false, null, onTime);
-    }
 }

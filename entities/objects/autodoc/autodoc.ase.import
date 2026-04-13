@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://disqsws8o0guo"
+path="res://.godot/imported/autodoc.ase-8db8404dde68d7637ebb27665f93cddf.res"
+
+[deps]
+
+source_file="res://entities/objects/autodoc/autodoc.ase"
+dest_files=["res://.godot/imported/autodoc.ase-8db8404dde68d7637ebb27665f93cddf.res"]
+
+[params]
+

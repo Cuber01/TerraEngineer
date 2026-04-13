@@ -20,9 +20,9 @@ public partial class PlayerWrapper : SpriteWrapper
             GD.PrintErr("Animation Player Wrapper: Cannot find AnimationPlayer node.");
     } 
     
-    public override void Play(string anim) 
+    public override void Play(string anim, float customSpeed=1f) 
     {
-        player.Play(anim);
+        player.Play(anim, -1D, customSpeed);
     }
     
     public override void Flip() => sprite.FlipH = !sprite.FlipH;
