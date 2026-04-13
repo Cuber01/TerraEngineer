@@ -18,8 +18,12 @@ public partial class PickupableItem : Entity
         get => _itemTexture;
         set
         {
-            if(SpriteWrapper.Initialized)
+            if (Sprite != null && SpriteWrapper is { Initialized: false })
+            {
+                SpriteWrapper.Init(Sprite);
                 SpriteWrapper.SetTexture(value);
+            }
+                
             _itemTexture = value;
         } 
     }
@@ -41,6 +45,8 @@ public partial class PickupableItem : Entity
 
     public override void _Ready()
     {
+        
+        SpriteWrapper.SetTexture(_itemTexture);
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
      

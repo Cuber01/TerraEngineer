@@ -7,15 +7,104 @@
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="4_247ex"]
 [ext_resource type="Texture2D" uid="uid://2drnkhxr2fjw" path="res://entities/objects/puzzle/puzzle-palette-blue-levers-buttons.png" id="4_r0qsy"]
 [ext_resource type="Texture2D" uid="uid://b72vatjax06mn" path="res://entities/objects/puzzle/puzzle-palette-blue.png" id="5_6kv7p"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_t8icc"]
 [ext_resource type="Texture2D" uid="uid://dorn77torsdbl" path="res://entities/objects/puzzle/puzzle-palette-red.png" id="7_r8f0g"]
 [ext_resource type="PackedScene" uid="uid://dxjv1g0yeixry" path="res://entities/objects/puzzle/button/Button.tscn" id="8_r8f0g"]
 [ext_resource type="Texture2D" uid="uid://dp5ojga10j7ho" path="res://entities/objects/puzzle/puzzle-palette-yellow-levers-buttons.png" id="9_d3l5n"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="9_qg68b"]
 [ext_resource type="Texture2D" uid="uid://cvmh3g4quab6f" path="res://entities/objects/puzzle/puzzle-palette-yellow.png" id="10_b24tv"]
 [ext_resource type="PackedScene" uid="uid://bkdxw6irme7rf" path="res://entities/objects/puzzle/lever/Lever.tscn" id="11_8p7k7"]
-[ext_resource type="PackedScene" uid="uid://dingl1m5pxwmo" path="res://entities/objects/movable_block/MovableBlock.tscn" id="12_6qmui"]
 [ext_resource type="Texture2D" uid="uid://b6it05wvwcgdp" path="res://entities/objects/puzzle/puzzle-palette-green.png" id="14_b24tv"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="15_8p7k7"]
+[ext_resource type="PackedScene" uid="uid://b5rxo30wh0msq" path="res://entities/objects/movable_block/TerraBlock.tscn" id="17_xtk4c"]
+
+[sub_resource type="Resource" id="Resource_d7k7b"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_akj7r"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_sw6ht"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_mk3da"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_wpji2"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_2sapa"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_dyl0t"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_ktgjv"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_3kk3p"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_1tgcu"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_3p1uc"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_28bo0"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_er8bn"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_x7mmg"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_t5lnh"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_fipk5"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_r7nno"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_3h216"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_vr2g3"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_fg8vx"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_16blf"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_c78df"]
+script = ExtResource("5_t8icc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qmui"]
 size = Vector2(31, 32)
@@ -34,6 +123,7 @@ tile_set = ExtResource("1_38jn4")
 
 [node name="Lever" parent="SwitcherGroupBlue" unique_id=95168821 instance=ExtResource("11_8p7k7")]
 position = Vector2(185, 56)
+ExportedSpriteWrapper = SubResource("Resource_d7k7b")
 
 [node name="SwitchableGroupBlue" parent="." unique_id=1571858659 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
@@ -44,15 +134,19 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock
 
 [node name="SwitchableBlock" parent="SwitchableGroupBlue" unique_id=1173571359 instance=ExtResource("4_247ex")]
 position = Vector2(163, 104)
+ExportedSpriteWrapper = SubResource("Resource_akj7r")
 
 [node name="SwitchableBlock2" parent="SwitchableGroupBlue" unique_id=2112083702 instance=ExtResource("4_247ex")]
 position = Vector2(163, 96)
+ExportedSpriteWrapper = SubResource("Resource_sw6ht")
 
 [node name="SwitchableBlock3" parent="SwitchableGroupBlue" unique_id=1808763536 instance=ExtResource("4_247ex")]
 position = Vector2(163, 88)
+ExportedSpriteWrapper = SubResource("Resource_mk3da")
 
 [node name="SwitchableBlock4" parent="SwitchableGroupBlue" unique_id=772260488 instance=ExtResource("4_247ex")]
 position = Vector2(163, 80)
+ExportedSpriteWrapper = SubResource("Resource_wpji2")
 
 [node name="SwitchableGroupRed" parent="." unique_id=726934438 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
@@ -63,23 +157,29 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock"), NodePath("SwitchableBlock
 
 [node name="SwitchableBlock" parent="SwitchableGroupRed" unique_id=623475716 instance=ExtResource("4_247ex")]
 position = Vector2(267, 112)
+ExportedSpriteWrapper = SubResource("Resource_2sapa")
 
 [node name="SwitchableBlock2" parent="SwitchableGroupRed" unique_id=956456262 instance=ExtResource("4_247ex")]
 position = Vector2(259, 112)
+ExportedSpriteWrapper = SubResource("Resource_dyl0t")
 
 [node name="SwitchableBlock3" parent="SwitchableGroupRed" unique_id=750308386 instance=ExtResource("4_247ex")]
 position = Vector2(251, 112)
+ExportedSpriteWrapper = SubResource("Resource_ktgjv")
 
 [node name="SwitchableBlock4" parent="SwitchableGroupRed" unique_id=205473906 instance=ExtResource("4_247ex")]
 position = Vector2(243, 112)
+ExportedSpriteWrapper = SubResource("Resource_3kk3p")
 
 [node name="SwitcherGroupRed" parent="." unique_id=1149591064 instance=ExtResource("3_6qmui")]
 
 [node name="Button" parent="SwitcherGroupRed" unique_id=93529958 instance=ExtResource("8_r8f0g")]
 position = Vector2(186, 97)
+ExportedSpriteWrapper = SubResource("Resource_1tgcu")
 
 [node name="Button2" parent="SwitcherGroupRed" unique_id=537828731 instance=ExtResource("8_r8f0g")]
 position = Vector2(220, 137)
+ExportedSpriteWrapper = SubResource("Resource_3p1uc")
 
 [node name="SwitchableGroupYello" parent="." unique_id=962924309 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
@@ -90,33 +190,41 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock2"), NodePath("SwitchableBloc
 
 [node name="SwitchableBlock2" parent="SwitchableGroupYello" unique_id=10995329 instance=ExtResource("4_247ex")]
 position = Vector2(163, 48)
+ExportedSpriteWrapper = SubResource("Resource_28bo0")
 
 [node name="SwitchableBlock3" parent="SwitchableGroupYello" unique_id=1402045639 instance=ExtResource("4_247ex")]
 position = Vector2(163, 56)
+ExportedSpriteWrapper = SubResource("Resource_er8bn")
 
 [node name="SwitchableBlock4" parent="SwitchableGroupYello" unique_id=1156927979 instance=ExtResource("4_247ex")]
 position = Vector2(163, 64)
+ExportedSpriteWrapper = SubResource("Resource_x7mmg")
 
 [node name="SwitchableBlock6" parent="SwitchableGroupYello" unique_id=1062900703 instance=ExtResource("4_247ex")]
 position = Vector2(171, 88)
 DefaultState = false
+ExportedSpriteWrapper = SubResource("Resource_t5lnh")
 
 [node name="SwitchableBlock7" parent="SwitchableGroupYello" unique_id=813380018 instance=ExtResource("4_247ex")]
 position = Vector2(171, 96)
 DefaultState = false
+ExportedSpriteWrapper = SubResource("Resource_fipk5")
 
 [node name="SwitchableBlock8" parent="SwitchableGroupYello" unique_id=1142530388 instance=ExtResource("4_247ex")]
 position = Vector2(171, 104)
 DefaultState = false
+ExportedSpriteWrapper = SubResource("Resource_r7nno")
 
 [node name="SwitchableBlock5" parent="SwitchableGroupYello" unique_id=983767584 instance=ExtResource("4_247ex")]
 position = Vector2(171, 80)
 DefaultState = false
+ExportedSpriteWrapper = SubResource("Resource_3h216")
 
 [node name="SwitcherGroupYellow" parent="." unique_id=981949451 instance=ExtResource("3_6qmui")]
 
 [node name="Button" parent="SwitcherGroupYellow" unique_id=188581164 instance=ExtResource("8_r8f0g")]
 position = Vector2(142, 97)
+ExportedSpriteWrapper = SubResource("Resource_vr2g3")
 
 [node name="SwitchableGroupGreen" parent="." unique_id=1943660232 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("3_hodsr")]
 position = Vector2(1, -8)
@@ -127,26 +235,29 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock")]
 
 [node name="SwitchableBlock" parent="SwitchableGroupGreen" unique_id=224284574 instance=ExtResource("4_247ex")]
 position = Vector2(67, 112)
+ExportedSpriteWrapper = SubResource("Resource_fg8vx")
 
 [node name="SwitcherGroupGreen" parent="." unique_id=1994872695 instance=ExtResource("3_6qmui")]
 
 [node name="Button" parent="SwitcherGroupGreen" unique_id=1881341006 instance=ExtResource("8_r8f0g")]
 position = Vector2(300, 97)
-
-[node name="MovableBlock" parent="." unique_id=1018781702 instance=ExtResource("12_6qmui")]
-position = Vector2(125, 97)
+ExportedSpriteWrapper = SubResource("Resource_16blf")
 
 [node name="FungusSpider2" parent="." unique_id=135715521 instance=ExtResource("9_qg68b")]
 position = Vector2(200, 135)
+ExportedSpriteWrapper = SubResource("Resource_c78df")
 
 [node name="SecretRoom" parent="." unique_id=254994908 instance=ExtResource("15_8p7k7")]
 position = Vector2(-16, 108)
 
-[node name="FakeLayer" parent="SecretRoom" index="0"]
+[node name="FakeLayer" parent="SecretRoom" index="0" unique_id=866630467]
 tile_map_data = PackedByteArray("AAAIAAAABgABAAEAAAAIAAEABgABAAEAAAAIAAIABgABAAEAAAAIAAMABgABAAEAAAAJAAMABgABAAEAAAAJAAIABgABAAEAAAAJAAEABgABAAEAAAAJAAAABgABAAEAAAAKAAAABgABAAEAAAAKAAEABgABAAEAAAAKAAIABgABAAEAAAAKAAMABgABAAEAAAALAAMABgABAAEAAAALAAIABgABAAEAAAALAAEABgABAAEAAAALAAAABgABAAEAAAA=")
 
-[node name="CollisionShape2D" parent="SecretRoom" index="1"]
+[node name="CollisionShape2D" parent="SecretRoom" index="1" unique_id=1783871849]
 position = Vector2(79.5, 16)
 shape = SubResource("RectangleShape2D_6qmui")
+
+[node name="TerraBlock" parent="." unique_id=1673332728 instance=ExtResource("17_xtk4c")]
+position = Vector2(121, 97)
 
 [editable path="SecretRoom"]
