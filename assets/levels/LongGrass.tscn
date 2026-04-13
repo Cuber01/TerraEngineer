@@ -13,23 +13,23 @@
 [ext_resource type="PackedScene" uid="uid://c3moaf2xvm5q" path="res://gfx/grass-pendulum/Grass2.tscn" id="11_oe31r"]
 [ext_resource type="PackedScene" uid="uid://dnwelu1ik56by" path="res://gfx/grass-pendulum/Grass3.tscn" id="12_v6rjy"]
 
+[sub_resource type="Resource" id="Resource_v6rjy"]
+script = ExtResource("5_bpqm8")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
 [sub_resource type="Resource" id="Resource_4wuyu"]
 script = ExtResource("5_bpqm8")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
 [sub_resource type="Resource" id="Resource_gw2n5"]
-script = ExtResource("5_bpqm8")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
+script = ExtResource("8_hoh6n")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="Resource" id="Resource_8fi38"]
 script = ExtResource("8_hoh6n")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="Resource" id="Resource_b64ao"]
-script = ExtResource("8_hoh6n")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_qo50u"]
 script = ExtResource("8_hoh6n")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -47,11 +47,11 @@ tile_set = ExtResource("5_pit4m")
 
 [node name="Frog" parent="." unique_id=1043733515 instance=ExtResource("5_fj3ik")]
 position = Vector2(97, 144)
-ExportedSpriteWrapper = SubResource("Resource_4wuyu")
+ExportedSpriteWrapper = SubResource("Resource_v6rjy")
 
 [node name="Frog2" parent="." unique_id=1351154446 instance=ExtResource("5_fj3ik")]
 position = Vector2(339, 139)
-ExportedSpriteWrapper = SubResource("Resource_gw2n5")
+ExportedSpriteWrapper = SubResource("Resource_4wuyu")
 
 [node name="Moth" parent="." unique_id=185459743 instance=ExtResource("5_ou4qm")]
 position = Vector2(302, 92)
@@ -61,15 +61,15 @@ position = Vector2(514, 88)
 
 [node name="Snail" parent="." unique_id=381864948 instance=ExtResource("6_aob1a")]
 position = Vector2(778, 79)
-ExportedSpriteWrapper = SubResource("Resource_8fi38")
+ExportedSpriteWrapper = SubResource("Resource_gw2n5")
 
 [node name="Snail2" parent="." unique_id=1613947770 instance=ExtResource("6_aob1a")]
 position = Vector2(810, 71)
-ExportedSpriteWrapper = SubResource("Resource_b64ao")
+ExportedSpriteWrapper = SubResource("Resource_8fi38")
 
 [node name="Snail3" parent="." unique_id=1913816765 instance=ExtResource("6_aob1a")]
 position = Vector2(740, 103)
-ExportedSpriteWrapper = SubResource("Resource_qo50u")
+ExportedSpriteWrapper = SubResource("Resource_b64ao")
 
 [node name="Vine" parent="." unique_id=1921563168 instance=ExtResource("9_hoh6n")]
 position = Vector2(867, 124)

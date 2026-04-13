@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bk3ha6u1u6d13"]
+
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="1_8qruf"]
+[ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="2_7smc1"]
+
+[node name="Grass" type="Node2D" unique_id=1346178027]
+
+[node name="Rope3" type="Node2D" parent="." unique_id=390009833]
+position = Vector2(-3, 0)
+script = ExtResource("1_8qruf")
+num_segments = 5
+rope_length = 0.5
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Rope3" unique_id=466947336]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 1.0
+round_precision = 1
+script = ExtResource("2_7smc1")
+position_mode = 1
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope4" type="Node2D" parent="." unique_id=19144209]
+script = ExtResource("1_8qruf")
+num_segments = 4
+rope_length = 1.0
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Rope4" unique_id=2014481937]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 1.0
+round_precision = 1
+script = ExtResource("2_7smc1")
+position_mode = 1
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
+
+[node name="Rope5" type="Node2D" parent="." unique_id=1854582257]
+position = Vector2(2, 0)
+script = ExtResource("1_8qruf")
+num_segments = 5
+rope_length = 0.5
+stiffness = 0.5
+gravity_direction = Vector2(0, -1)
+num_constraint_iterations = 5
+render_line = false
+line_width = 1.0
+color = Color(0.11372549, 0.1254902, 0, 1)
+enable_collisions = true
+collision_mask = 30
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="RopeRendererLine2D" type="Line2D" parent="Rope5" unique_id=1079370474]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, -0.3247223, -1.1418152, -0.5968933, -2.0988846, -0.80158997, -2.8186035, -0.9312744, -3.274643, -0.98599243, -3.4670105)
+width = 1.0
+default_color = Color(0.12156863, 0.69803923, 0.41568628, 1)
+texture_mode = 1
+joint_mode = 2
+sharp_limit = 1.0
+round_precision = 1
+script = ExtResource("2_7smc1")
+position_mode = 1
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
