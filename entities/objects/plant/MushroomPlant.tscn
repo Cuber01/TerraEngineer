@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://w784gkp03g63"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdec"]
 size = Vector2(8.5, 3)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rgdec"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_a0hhk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -25,8 +25,8 @@ animations = [{
 [node name="MushroomPlant" type="CharacterBody2D" unique_id=862336944 node_paths=PackedStringArray("Hitbox", "Sprite")]
 script = ExtResource("1_rgdec")
 Hitbox = NodePath("Area2D/CollisionShape2D")
-MyBiome = 2
-Sprite = NodePath("Sprite")
+MyBiome = 1
+Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_a0hhk")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=732570946]
@@ -37,7 +37,7 @@ position = Vector2(-0.25, -1.5)
 shape = SubResource("RectangleShape2D_rgdec")
 one_way_collision_margin = 0.0
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=712878350]
-sprite_frames = SubResource("SpriteFrames_rgdec")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=835372610]
+sprite_frames = SubResource("SpriteFrames_a0hhk")
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

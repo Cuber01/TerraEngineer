@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="3_eixo1"]
 [ext_resource type="PackedScene" uid="uid://b0eg46nrhalfj" path="res://entities/objects/puzzle/hp_gateway/HPGateway.tscn" id="4_7in26"]
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/TerraPlant.tscn" id="5_eixo1"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_fxhi3"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="6_xqscd"]
 [ext_resource type="Texture2D" uid="uid://dt51jsdu8jbfu" path="res://assets/items/green_essence.tres" id="7_3mq2g"]
 [ext_resource type="Resource" uid="uid://dghlav2hdya2h" path="res://assets/dialogue/item_green_essence.dialogue" id="7_frwa4"]
@@ -19,6 +20,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqscd"]
 size = Vector2(31, 32)
+
+[sub_resource type="Resource" id="Resource_ikec7"]
+script = ExtResource("5_fxhi3")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_qnm4d"]
+script = ExtResource("5_fxhi3")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cegg7"]
 atlas = ExtResource("8_frwa4")
@@ -61,10 +70,10 @@ tile_set = ExtResource("1_ocdex")
 [node name="SecretRoom" parent="." unique_id=482121199 instance=ExtResource("3_eixo1")]
 position = Vector2(0, 78)
 
-[node name="FakeLayer" parent="SecretRoom" index="0"]
+[node name="FakeLayer" parent="SecretRoom" index="0" unique_id=866630467]
 tile_map_data = PackedByteArray("AAAIAAAABQABAAEAAAAIAAEABQABAAEAAAAIAAIABQABAAEAAAAIAAMABQABAAIAAAAJAAMABQABAAIAAAAJAAIABQABAAEAAAAJAAEABQABAAEAAAAJAAAABQABAAEAAAAKAAAABQABAAEAAAAKAAEABQABAAEAAAAKAAIABQABAAEAAAAKAAMABQABAAIAAAALAAMABQABAAIAAAALAAIABQABAAEAAAALAAEABQABAAEAAAALAAAABQABAAEAAAAMAAMABQABAAIAAAAHAAMABQABAAIAAAANAAMABQABAAIAAAAIAPr/BQABAAEAAAAIAPv/BQABAAEAAAAIAPz/BQABAAEAAAAIAP3/BQABAAEAAAAIAP7/BQABAAEAAAAIAP//BQABAAEAAAAMAAIABQABAAEAAAAMAAEABQABAAEAAAAMAAAABQABAAEAAAAMAP//BQABAAEAAAAMAP7/BQABAAEAAAAMAP3/BQABAAEAAAAMAPz/BQABAAEAAAAMAPv/BQABAAEAAAAMAPr/BQABAAEAAAALAPr/BQABAAEAAAAKAPr/BQABAAEAAAAJAPr/BQABAAEAAAAJAPv/BQABAAEAAAAKAPv/BQABAAEAAAALAPv/BQABAAEAAAALAPz/BQABAAEAAAAKAPz/BQABAAEAAAAJAPz/BQABAAEAAAAJAP3/BQABAAEAAAAKAP3/BQABAAEAAAALAP3/BQABAAEAAAALAP7/BQABAAEAAAAKAP7/BQABAAEAAAAJAP7/BQABAAEAAAAJAP//BQABAAEAAAAKAP//BQABAAEAAAALAP//BQABAAEAAAA=")
 
-[node name="CollisionShape2D" parent="SecretRoom" index="1"]
+[node name="CollisionShape2D" parent="SecretRoom" index="1" unique_id=1783871849]
 position = Vector2(79.5, 16)
 shape = SubResource("RectangleShape2D_xqscd")
 
@@ -73,10 +82,12 @@ shape = SubResource("RectangleShape2D_xqscd")
 [node name="HpGateway" parent="." unique_id=1963958177 instance=ExtResource("4_7in26")]
 position = Vector2(120, 126)
 ExportedMode = 1
+ExportedSpriteWrapper = SubResource("Resource_ikec7")
 
 [node name="HpGateway2" parent="." unique_id=102129441 instance=ExtResource("4_7in26")]
 position = Vector2(48, 126)
 ExportedMode = 1
+ExportedSpriteWrapper = SubResource("Resource_qnm4d")
 
 [node name="Plant" parent="." unique_id=828826949 instance=ExtResource("5_eixo1")]
 position = Vector2(83, 130)
@@ -89,7 +100,7 @@ itemCollectedTag = &"green_essence_collected"
 dialogueDescription = ExtResource("7_frwa4")
 ItemTexture = ExtResource("7_3mq2g")
 
-[node name="AnimatedSprite2D" parent="GreenEssence" index="0"]
+[node name="AnimatedSprite2D" parent="GreenEssence" index="0" unique_id=298394551]
 sprite_frames = SubResource("SpriteFrames_gbkde")
 
 [node name="HealthSerum" parent="." unique_id=1647281721 instance=ExtResource("6_xqscd")]
@@ -100,13 +111,13 @@ itemType = 1
 dialogueDescription = ExtResource("12_mexo6")
 ItemTexture = ExtResource("13_ku3f2")
 
-[node name="AnimatedSprite2D" parent="HealthSerum" index="0"]
+[node name="AnimatedSprite2D" parent="HealthSerum" index="0" unique_id=298394551]
 sprite_frames = SubResource("SpriteFrames_tsdg4")
 
-[node name="CollisionShape2D" parent="HealthSerum/Area2D" index="0"]
+[node name="CollisionShape2D" parent="HealthSerum/Area2D" parent_id_path=PackedInt32Array(1647281721, 1456450714) index="0" unique_id=1143786807]
 position = Vector2(-0.5, -1)
 
-[node name="PedestalSprite" parent="HealthSerum" index="3"]
+[node name="PedestalSprite" parent="HealthSerum" index="3" unique_id=1109076071]
 visible = false
 
 [node name="InteractAndDisplay" parent="." unique_id=1725825487 instance=ExtResource("8_cn40b")]
@@ -121,7 +132,7 @@ position = Vector2(1, -4)
 visible = false
 position = Vector2(63, 16)
 
-[node name="TextLabel" parent="TextPopup" index="1"]
+[node name="TextLabel" parent="TextPopup" index="1" unique_id=848149528]
 text = "something happened to the regenerative gates. go through them twice and you're as good as dead
 rip Frank"
 
