@@ -7,6 +7,7 @@ namespace TerraEngineer.game;
 // unrelated high-level objects, but NOT between e.g. nodes and their children
 public enum GlobalEvents
 {
+    BossEntered,
     BossDefeated,
     None
 }

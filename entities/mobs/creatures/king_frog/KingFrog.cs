@@ -21,6 +21,7 @@ public partial class KingFrog : Creature
 {
     [Export] private RayCast2D playerDetector;
     private StateMachine<KingFrog> fsm;
+    private bool publishedEntered = false;
     
     private JumpState jumpState = new JumpState();
     private IdleState idleState = new IdleState();
@@ -43,6 +44,13 @@ public partial class KingFrog : Creature
     {
         if(Engine.IsEditorHint())
             return;
+
+        if (!publishedEntered)
+        {
+            GlobalEventBus.Instance.Publish(GlobalEvents.BossEntered);
+            publishedEntered = true;
+        }
+            
         
         fsm.Update((float)delta);
         CM.UpdateComponents((float)delta);

@@ -5,6 +5,7 @@ using TENamespace.save_entity;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.game;
 
 public partial class AutoDoc : Entity
 {
@@ -15,21 +16,40 @@ public partial class AutoDoc : Entity
 	private DialogueBalloon balloonTemplate;
 	private Player player;
 	private bool closed = false;
-	
-	// Called when the node enters the scene tree for the first time.
+
+	#region Init
 	public override void _Ready()
 	{
-		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, (_) =>
-		{
-			closed = true;
-			SpriteWrapper.Play("closed");
-		});
-		CM.GetComponent<SaveEntity>().OptionalInit(this);
 		SpriteWrapper.Init(Sprite);
+		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, close);
+		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossEntered, close);
+		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossDefeated, open);
+		CM.GetComponent<SaveEntity>().OptionalInit(this);
+		
 		
 		player = GetNode<Player>(Names.NodePaths.Player);
 		balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+
 	}
+
+	private void close(Node node)
+	{
+		closed = true;
+		SpriteWrapper.Play("closed");
+	}
+	
+	private void close()
+	{
+		closed = true;
+		SpriteWrapper.Play("closed");
+	}
+
+	private void open()
+	{
+		closed = false;
+		SpriteWrapper.Play("open");
+	}
+	#endregion
 	
 	private void onPlayerEntered(Player player)
 	{
@@ -74,6 +94,9 @@ public partial class AutoDoc : Entity
 		
 		CM.GetComponent<SaveEntity>().ChangeState(true);
 		player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
+		
+		SpriteWrapper.Play("closing");
+		closed = true;
 	}
 
 

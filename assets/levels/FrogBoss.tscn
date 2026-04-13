@@ -2,6 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_s6dal"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_553c0"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="4_61neq"]
 [ext_resource type="PackedScene" uid="uid://c51wlvsjnjx1a" path="res://entities/objects/puzzle/switcher_group/SwitcherGroup.tscn" id="4_i6ww4"]
 [ext_resource type="PackedScene" uid="uid://c664c7d5b8qgx" path="res://entities/mobs/creatures/king_frog/KingFrog.tscn" id="4_ppyts"]
 [ext_resource type="PackedScene" uid="uid://bjhdhb4i0bm06" path="res://entities/objects/puzzle/switchable_group/SwitchableGroup.tscn" id="5_1d37w"]
@@ -9,6 +10,47 @@
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="6_ppyts"]
 [ext_resource type="PackedScene" uid="uid://c5pb62b4yvo1m" path="res://entities/objects/puzzle/switcher_area/SwitcherArea.tscn" id="7_ppyts"]
 [ext_resource type="Texture2D" uid="uid://2drnkhxr2fjw" path="res://entities/objects/puzzle/puzzle-palette-blue-levers-buttons.png" id="7_vik8r"]
+[ext_resource type="PackedScene" uid="uid://boooxlqm536jd" path="res://entities/objects/autodoc/AutoDoc.tscn" id="11_j6dfo"]
+
+[sub_resource type="Resource" id="Resource_61neq"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_j6dfo"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_4cjlh"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_ba2v6"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_7ow4d"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_5nflo"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_x3yyd"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_anmqa"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_g1486"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_8ql5r"]
+script = ExtResource("4_61neq")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [node name="Level" type="Node2D" unique_id=1037949503]
 metadata/level_name = &"FrogBoss"
@@ -22,6 +64,7 @@ tile_set = ExtResource("1_s6dal")
 
 [node name="KingFrog" parent="." unique_id=236755459 instance=ExtResource("4_ppyts")]
 position = Vector2(156, 0)
+ExportedSpriteWrapper = SubResource("Resource_61neq")
 
 [node name="SwitcherGroup" parent="." unique_id=689601484 instance=ExtResource("4_i6ww4")]
 SavePropertiesToSwitch = Array[StringName]([&"boss_defeated"])
@@ -34,7 +77,7 @@ startState = true
 position = Vector2(9, -4)
 
 [node name="SwitchableGroup" parent="." unique_id=1664946770 node_paths=PackedStringArray("SwitcherGroups", "SwitchableGroupMembers") instance=ExtResource("5_1d37w")]
-overrideOpenOn = 0
+overrideOpenOn = 1
 GroupPalette = ExtResource("7_vik8r")
 BlocksGroupPalette = ExtResource("6_i6ww4")
 SwitcherGroups = [NodePath("../SwitcherGroup")]
@@ -43,29 +86,41 @@ GroupSwitchedOn = true
 
 [node name="SwitchableBlock" parent="SwitchableGroup" unique_id=1062409713 instance=ExtResource("6_ppyts")]
 position = Vector2(28, 98)
+ExportedSpriteWrapper = SubResource("Resource_j6dfo")
 
 [node name="SwitchableBlock9" parent="SwitchableGroup" unique_id=243830989 instance=ExtResource("6_ppyts")]
 position = Vector2(28, 90)
+ExportedSpriteWrapper = SubResource("Resource_4cjlh")
 
 [node name="SwitchableBlock2" parent="SwitchableGroup" unique_id=1028645653 instance=ExtResource("6_ppyts")]
 position = Vector2(28, 106)
+ExportedSpriteWrapper = SubResource("Resource_ba2v6")
 
 [node name="SwitchableBlock3" parent="SwitchableGroup" unique_id=1905441903 instance=ExtResource("6_ppyts")]
 position = Vector2(28, 114)
+ExportedSpriteWrapper = SubResource("Resource_7ow4d")
 
 [node name="SwitchableBlock4" parent="SwitchableGroup" unique_id=55288291 instance=ExtResource("6_ppyts")]
 position = Vector2(76, 178)
+ExportedSpriteWrapper = SubResource("Resource_5nflo")
 
 [node name="SwitchableBlock5" parent="SwitchableGroup" unique_id=1952929479 instance=ExtResource("6_ppyts")]
 position = Vector2(68, 178)
+ExportedSpriteWrapper = SubResource("Resource_x3yyd")
 
 [node name="SwitchableBlock6" parent="SwitchableGroup" unique_id=1607978625 instance=ExtResource("6_ppyts")]
 position = Vector2(60, 178)
+ExportedSpriteWrapper = SubResource("Resource_anmqa")
 
 [node name="SwitchableBlock7" parent="SwitchableGroup" unique_id=119821120 instance=ExtResource("6_ppyts")]
 position = Vector2(52, 178)
+ExportedSpriteWrapper = SubResource("Resource_g1486")
 
 [node name="SwitchableBlock8" parent="SwitchableGroup" unique_id=2076531601 instance=ExtResource("6_ppyts")]
 position = Vector2(44, 178)
+ExportedSpriteWrapper = SubResource("Resource_8ql5r")
+
+[node name="AutoDoc" parent="." unique_id=912996181 instance=ExtResource("11_j6dfo")]
+position = Vector2(248, 166)
 
 [editable path="SwitcherGroup/SwitcherArea"]

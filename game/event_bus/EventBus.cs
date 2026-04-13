@@ -7,25 +7,30 @@ namespace TerraEngineer.game;
 
 public class EventBus<T> where T : Enum
 {
-    protected Dictionary<T, Action> Subs = new Dictionary<T, Action>();
+    protected Dictionary<T, List<Action>> Subs = new();
 
     public void Subscribe(T eventType, Action handler)
     {
         if (!Subs.ContainsKey(eventType))
-            Subs[eventType] = null;
+            Subs[eventType] = new List<Action>();
         
-        Subs[eventType] += handler;
+        Subs[eventType].Add(handler);
     }
 
     public void Unsubscribe(T eventType, Action handler)
     {
-        Subs[eventType] -= handler;
+        Subs[eventType].Remove(handler);
     }
 
     public void Publish(T eventType)
     {
-        if(Subs.ContainsKey(eventType))
-            Subs[eventType].Invoke();
+        if (Subs.TryGetValue(eventType, out List<Action> subs))
+        {
+            foreach (Action sub in subs)
+            {
+                sub.Invoke();
+            }
+        }
     }
 
 }
