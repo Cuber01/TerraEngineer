@@ -35,6 +35,7 @@ size = Vector2(22, 24)
 size = Vector2(20, 19)
 
 [node name="KingFrog" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("playerDetector", "CM", "Sprite")]
+z_index = 1
 collision_layer = 4
 script = ExtResource("1_0c618")
 playerDetector = NodePath("PlayerDetector")
