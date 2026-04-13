@@ -67,36 +67,38 @@ public partial class AutoDoc : Entity
 
 	private void enter()
 	{
-		Action handlerA = null;
-		handlerA = () =>
+		Action whileInside = null;
+		whileInside = () =>
 		{
 			balloonTemplate.PlayDialogue(dialogueDescription, Names.Other.Start);
-			SpriteWrapper.AnimationFinished -= handlerA; 
+			SpriteWrapper.AnimationFinished -= whileInside; 
 		};
 		
-		Action handlerB = null;
-		handlerB = () =>
-		{
-			player.Show();
-			SpriteWrapper.AnimationFinished -= handlerB;
-		};
-		
-		SpriteWrapper.AnimationFinished += handlerA;
+		// Enter
+		SpriteWrapper.AnimationFinished += whileInside;
 		SpriteWrapper.Play("closing");
 		player.Hide();
 		player.Controller.SwitchControl(balloonTemplate.Controller);
 		
+		Action leave = null;
+		leave = () =>
+		{
+			player.Show();
+			CM.GetComponent<SaveEntity>().ChangeState(true);
+			player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
+		
+			SpriteWrapper.Play("closing");
+			closed = true;
+			SpriteWrapper.AnimationFinished -= leave;
+		};
+		
 		TimerManager.Schedule(3f, this, (_) =>
 		{
 			SpriteWrapper.Play("closing", -1);
-			SpriteWrapper.AnimationFinished += handlerB;
+			SpriteWrapper.AnimationFinished += leave;
 		});
 		
-		CM.GetComponent<SaveEntity>().ChangeState(true);
-		player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
-		
-		SpriteWrapper.Play("closing");
-		closed = true;
+
 	}
 
 
