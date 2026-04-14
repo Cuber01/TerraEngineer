@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using TerraEngineer;
 
 public partial class Dropper : Node2D
 {
@@ -9,14 +10,13 @@ public partial class Dropper : Node2D
 	
 	public override void _Ready()
 	{
-		sprite2D.Play("default");
+		sprite2D.Play("default", MathT.RandomFloat(1,10f));
 		sprite2D.AnimationLooped += spawnDroplet;
 	}
 
 	private void spawnDroplet()
 	{
 		Droplet instance = (Droplet)dropletScene.Instantiate();
-		//instance.GlobalPosition = spawnPlace.GlobalPosition;
 		instance.Position =  spawnPlace.Position;
 		AddChild(instance);
 	}

@@ -13,6 +13,7 @@
 size = Vector2(50, 36)
 
 [node name="Level" type="Node2D" unique_id=15680763]
+metadata/level_name = &"Lake"
 
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("3_0rai8")]
 z_index = 0
