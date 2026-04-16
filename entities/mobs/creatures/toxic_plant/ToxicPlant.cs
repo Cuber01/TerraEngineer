@@ -39,7 +39,7 @@ public partial class ToxicPlant : Creature
     public class ShootState : State<ToxicPlant>
     {
         private const int StartingOffset = -6;
-        private readonly Vector2 bigBulletStartingVelocity = new Vector2(0, -50);
+        private readonly Vector2 bigBulletStartingVelocity = new Vector2(0, -120);
 
         private const int R = 10;
         private const int NumbOfBullets = 8;
@@ -67,13 +67,13 @@ public partial class ToxicPlant : Creature
             float angleBetweenPoints = (2*MathT.PI)/NumbOfBullets;
             for (int i = 0; i < NumbOfBullets; i++)
             {
-                Vector2 targetPosition = new Vector2(bigBullet.GlobalPosition.X + R * Mathf.Sin(angleBetweenPoints),
-                                                     bigBullet.GlobalPosition.Y + R * Mathf.Cos(angleBetweenPoints));
-                Vector2 direction = (targetPosition - Actor.GlobalPosition).Normalized();
+                Vector2 targetPosition = new Vector2(bigBullet.GlobalPosition.X + R * Mathf.Sin(i*angleBetweenPoints),
+                                                     bigBullet.GlobalPosition.Y + R * Mathf.Cos(i*angleBetweenPoints));
+                Vector2 direction = (targetPosition - bigBullet.GlobalPosition).Normalized();
                 bigBullet.CM.GetComponent<GravityBulletSpawner>()
                     .Start()
-                    .SetPosition(Actor.GlobalPosition)
-                    .SetVelocity(direction * R * 10)
+                    .SetPosition(bigBullet.Position)
+                    .SetVelocity(direction * R * 5)
                     .Build();
                 bigBullet.CM.GetComponent<GravityBulletSpawner>().AddToGame(Actor);
             }

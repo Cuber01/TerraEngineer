@@ -48,7 +48,7 @@ shape = SubResource("RectangleShape2D_jp14h")
 [node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_hrqe5")]
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_jrbpw")]
-lifetime = 10.0
+lifetime = 0.8
 
 [node name="GravityBulletSpawnerComponent" parent="ComponentManager" unique_id=1914864503 instance=ExtResource("5_eivfc")]
 Scene = ExtResource("6_w8uig")

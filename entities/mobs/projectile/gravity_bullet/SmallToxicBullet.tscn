@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bvly3d6taeyb0"]
 
-[ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_5sbch"]
+[ext_resource type="Script" uid="uid://cb5rs6w55qybf" path="res://entities/mobs/projectile/gravity_bullet/GravityBullet.cs" id="1_5sbch"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_mbhvt"]
 [ext_resource type="Texture2D" uid="uid://c3gppyt822xwu" path="res://entities/mobs/creatures/toxic_plant/toxic-bubble-small.png" id="3_5sbch"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_bek6k"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_infth"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_mbhvt"]
 
-[sub_resource type="Resource" id="Resource_milgr"]
+[sub_resource type="Resource" id="Resource_mbhvt"]
 script = ExtResource("2_mbhvt")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -29,7 +29,7 @@ size = Vector2(4, 4)
 script = ExtResource("1_5sbch")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
-ExportedSpriteWrapper = SubResource("Resource_milgr")
+ExportedSpriteWrapper = SubResource("Resource_mbhvt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
 sprite_frames = SubResource("SpriteFrames_mbhvt")
@@ -46,8 +46,9 @@ shape = SubResource("RectangleShape2D_xlo8j")
 [node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_bek6k")]
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_infth")]
-lifetime = 0.3
+lifetime = 3.0
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("6_mbhvt")]
+maxGravity = 400.0
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
