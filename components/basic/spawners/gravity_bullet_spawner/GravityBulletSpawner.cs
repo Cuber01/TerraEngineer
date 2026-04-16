@@ -20,7 +20,7 @@ public partial class GravityBulletSpawner : Spawner<GravityBullet, GravityBullet
     
     public GravityBulletSpawner SetOnLifetimeDeath(Action doOnLifetimeDeath)
     {
-        Instance.OnCollideDeath = doOnLifetimeDeath;
+        Instance.OnLifetimeDeath = doOnLifetimeDeath;
         return this;
     }
 }

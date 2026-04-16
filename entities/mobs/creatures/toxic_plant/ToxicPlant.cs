@@ -38,11 +38,11 @@ public partial class ToxicPlant : Creature
 
     public class ShootState : State<ToxicPlant>
     {
-        private const int startingOffset = 6;
-        private readonly Vector2 bigBulletStartingVelocity = new Vector2(0, 50);
+        private const int StartingOffset = -6;
+        private readonly Vector2 bigBulletStartingVelocity = new Vector2(0, -50);
 
-        private const int r = 10;
-        private const int numbOfBullets = 8;
+        private const int R = 10;
+        private const int NumbOfBullets = 8;
         
         private GravityBullet bigBullet;
 
@@ -51,7 +51,7 @@ public partial class ToxicPlant : Creature
         {
             bigBullet = Actor.CM.GetComponent<GravityBulletSpawner>()
                 .Start()
-                .SetPosition(Actor.GlobalPosition + new Vector2(0, startingOffset))
+                .SetPosition(new Vector2(0, StartingOffset))
                 .SetVelocity(bigBulletStartingVelocity)
                 .SetOnLifetimeDeath(spawnRing)
                 .Build();
@@ -60,18 +60,20 @@ public partial class ToxicPlant : Creature
             Actor.fsm.FireTrigger(ToxicPlantTriggers.Shot);
         }
 
+
+
         private void spawnRing()
         {
-            float angleBetweenPoints = (2*MathT.PI)/numbOfBullets;
-            for (int i = 0; i < numbOfBullets; i++)
+            float angleBetweenPoints = (2*MathT.PI)/NumbOfBullets;
+            for (int i = 0; i < NumbOfBullets; i++)
             {
-                Vector2 targetPosition = new Vector2(bigBullet.GlobalPosition.X + r * Mathf.Sin(angleBetweenPoints),
-                                                     bigBullet.GlobalPosition.Y + r * Mathf.Cos(angleBetweenPoints));
+                Vector2 targetPosition = new Vector2(bigBullet.GlobalPosition.X + R * Mathf.Sin(angleBetweenPoints),
+                                                     bigBullet.GlobalPosition.Y + R * Mathf.Cos(angleBetweenPoints));
                 Vector2 direction = (targetPosition - Actor.GlobalPosition).Normalized();
                 bigBullet.CM.GetComponent<GravityBulletSpawner>()
                     .Start()
                     .SetPosition(Actor.GlobalPosition)
-                    .SetVelocity(direction * r * 10)
+                    .SetVelocity(direction * R * 10)
                     .Build();
                 bigBullet.CM.GetComponent<GravityBulletSpawner>().AddToGame(Actor);
             }

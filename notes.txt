@@ -20,8 +20,11 @@ f3 - godmode on/off
 
 todo til v0:
 X add frog animations
-- add double jump as an item
-- make it possible to leave the office lore room
+X add double jump as an item
+X make it possible to leave the office lore room
 - add dialogue to radio in tower
-- make boss room open only after picking up double jump
-- rewrite switcher area as generic area that fires event on enter
+X make boss room open only after picking up double jump
+X rewrite switcher area as generic area that fires event on enter
+
+code cleanliness todo:
+- limit amount of export - replace with const and readonly

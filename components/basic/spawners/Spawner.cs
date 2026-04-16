@@ -48,7 +48,7 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
     
     public new virtual Me SetPosition(Vector2 position)
     {
-        Instance.GlobalPosition = position;
+        Instance.Position = position;
         return (Me)this;
     }
 

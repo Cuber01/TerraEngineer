@@ -22,7 +22,8 @@ public partial class Projectile : Entity
     public override void _Ready()
     {
         CM.InitComponents();
-        CM.GetComponent<Lifetime>().LifetimeEnded += () => OnLifetimeDeath.Invoke();
+        if(OnLifetimeDeath != null)
+            CM.GetComponent<Lifetime>().LifetimeEnded += () => OnLifetimeDeath.Invoke();
     }
     
     private void onBodyEntered(Node2D body)
@@ -44,7 +45,12 @@ public partial class Projectile : Entity
         else
         {
             // Hit solid ground
-            if(breakOnWall) Die();
+
+            if (breakOnWall)
+            {
+                OnCollideDeath?.Invoke();
+                Die();
+            }
         }
     }
 

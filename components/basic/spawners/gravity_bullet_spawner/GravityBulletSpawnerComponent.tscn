@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c7f8mcd4lxgcv"]
+
+[ext_resource type="Script" uid="uid://ci5ydu7e48v06" path="res://components/basic/spawners/gravity_bullet_spawner/GravityBulletSpawner.cs" id="1_1i5g1"]
+
+[node name="GravityBulletSpawnerComponent" type="Node2D" unique_id=1914864503]
+script = ExtResource("1_1i5g1")

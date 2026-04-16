@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://dreccrsosik1i"]
 
 [ext_resource type="Script" uid="uid://cb5rs6w55qybf" path="res://entities/mobs/projectile/gravity_bullet/GravityBullet.cs" id="1_lroih"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_w8uig"]
 [ext_resource type="Texture2D" uid="uid://nek3wmnrp2bh" path="res://entities/mobs/creatures/toxic_plant/toxic-bubble.png" id="3_cqpmb"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_hrqe5"]
+[ext_resource type="PackedScene" uid="uid://c7f8mcd4lxgcv" path="res://components/basic/spawners/gravity_bullet_spawner/GravityBulletSpawnerComponent.tscn" id="5_eivfc"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_jrbpw"]
+[ext_resource type="PackedScene" uid="uid://bvly3d6taeyb0" path="res://entities/mobs/projectile/gravity_bullet/SmallToxicBullet.tscn" id="6_w8uig"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="8_30est"]
+
+[sub_resource type="Resource" id="Resource_30est"]
+script = ExtResource("2_w8uig")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mulwa"]
 animations = [{
@@ -19,8 +27,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jp14h"]
 size = Vector2(8, 8)
 
-[node name="BigToxicBullet" type="CharacterBody2D" unique_id=556815162]
+[node name="BigToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_lroih")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_30est")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
 sprite_frames = SubResource("SpriteFrames_mulwa")
@@ -37,6 +48,11 @@ shape = SubResource("RectangleShape2D_jp14h")
 [node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_hrqe5")]
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_jrbpw")]
-lifetime = 0.3
+lifetime = 10.0
+
+[node name="GravityBulletSpawnerComponent" parent="ComponentManager" unique_id=1914864503 instance=ExtResource("5_eivfc")]
+Scene = ExtResource("6_w8uig")
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1680854260 instance=ExtResource("8_30est")]
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

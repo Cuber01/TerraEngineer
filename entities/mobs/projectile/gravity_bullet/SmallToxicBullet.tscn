@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c3gppyt822xwu" path="res://entities/mobs/creatures/toxic_plant/toxic-bubble-small.png" id="3_5sbch"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_bek6k"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_infth"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_mbhvt"]
 
 [sub_resource type="Resource" id="Resource_milgr"]
 script = ExtResource("2_mbhvt")
@@ -46,5 +47,7 @@ shape = SubResource("RectangleShape2D_xlo8j")
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_infth")]
 lifetime = 0.3
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("6_mbhvt")]
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
