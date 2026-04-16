@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bvly3d6taeyb0"]
+
+[ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_5sbch"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_mbhvt"]
+[ext_resource type="Texture2D" uid="uid://c3gppyt822xwu" path="res://entities/mobs/creatures/toxic_plant/toxic-bubble-small.png" id="3_5sbch"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_bek6k"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_infth"]
+
+[sub_resource type="Resource" id="Resource_milgr"]
+script = ExtResource("2_mbhvt")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbhvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5sbch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlo8j"]
+size = Vector2(4, 4)
+
+[node name="SmallToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
+script = ExtResource("1_5sbch")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_milgr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
+sprite_frames = SubResource("SpriteFrames_mbhvt")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=798235926]
+position = Vector2(4.5, 0)
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=262930762]
+position = Vector2(-4.5, 0)
+shape = SubResource("RectangleShape2D_xlo8j")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_bek6k")]
+
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_infth")]
+lifetime = 0.3
+
+[connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dbbnukdeoc451"]
+
+[ext_resource type="Script" uid="uid://cpp0eflxjm7m1" path="res://entities/mobs/creatures/toxic_plant/ToxicPlant.cs" id="1_m75h6"]
+[ext_resource type="Texture2D" uid="uid://box72cm4qgpon" path="res://entities/mobs/creatures/toxic_plant/toxic-plant.png" id="3_28eul"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_3qpfx"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_xfkd8"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="6_ix4sj"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="7_qok1g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjmlm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_28eul")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
+size = Vector2(7.875, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jawkc"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("7_qok1g")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
+[node name="ToxicPlant" type="CharacterBody2D" unique_id=771239512]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource("1_m75h6")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=525984873]
+texture_filter = 1
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_rjmlm")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {
+"should_round_fps": true
+}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/mobs/creatures/frog/frog.ase",
+"source_uid": 5421163400374686998
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d647f47d916fa0bbf00e4f867bf7af36"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219721195]
+shape = SubResource("RectangleShape2D_0f11y")
+
+[node name="ComponentManager" parent="." unique_id=1765219149 instance=ExtResource("4_3qpfx")]
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=80804480 instance=ExtResource("5_xfkd8")]
+MaxHealth = 3
+
+[node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("6_ix4sj")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jawkc")])

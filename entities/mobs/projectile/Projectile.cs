@@ -1,6 +1,8 @@
 using Godot;
+using System;
 using TENamespace.basic;
 using TENamespace.health;
+using TENamespace.lifetime;
 using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.entities.projectiles;
@@ -14,6 +16,14 @@ public partial class Projectile : Entity
     
     // Set by builder
     public Vector2 DirectionNormal;
+    public Action OnLifetimeDeath;
+    public Action OnCollideDeath;
+
+    public override void _Ready()
+    {
+        CM.InitComponents();
+        CM.GetComponent<Lifetime>().LifetimeEnded += () => OnLifetimeDeath.Invoke();
+    }
     
     private void onBodyEntered(Node2D body)
     {
@@ -46,7 +56,9 @@ public partial class Projectile : Entity
         }
         else
         {
+            OnCollideDeath?.Invoke();
             Die();
         }
     }
+    
 }

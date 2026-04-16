@@ -7,7 +7,10 @@ namespace TENamespace.lifetime;
 public partial class Lifetime : Component
 {
     [Export] private float lifetime = 100;
-
+    
+    public delegate void LifetimeEndedHandler();
+    public event LifetimeEndedHandler LifetimeEnded;
+    
     private Entity entityActor;
 
     public override void Init(Node2D actor)
@@ -27,6 +30,7 @@ public partial class Lifetime : Component
     {
         TimerManager.Schedule(lifetime, this, (t) =>
         {
+             LifetimeEnded?.Invoke();
              entityActor.Die();
         });
     }

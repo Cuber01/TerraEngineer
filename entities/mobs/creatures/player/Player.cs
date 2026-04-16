@@ -40,7 +40,6 @@ public partial class Player : Creature
 	
 	public override void Init()
 	{
-		
 		Controller.TurnActive = true;
 		Controller.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
 		Controller.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
