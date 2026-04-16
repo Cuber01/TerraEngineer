@@ -38,7 +38,7 @@ public partial class ToxicPlant : Creature
 
     public class ShootState : State<ToxicPlant>
     {
-        private const int StartingOffset = -6;
+        private const int StartingOffset = -8;
         private readonly Vector2 bigBulletStartingVelocity = new Vector2(0, -120);
 
         private const int R = 10;
@@ -57,11 +57,14 @@ public partial class ToxicPlant : Creature
                 .Build();
             Actor.CM.GetComponent<GravityBulletSpawner>().AddToGame(Actor);
             
-            Actor.fsm.FireTrigger(ToxicPlantTriggers.Shot);
         }
 
-
-
+        public override void Update(float delta)
+        {
+            Actor.fsm.FireTrigger(ToxicPlantTriggers.Shot);
+            base.Update(delta);
+        }
+        
         private void spawnRing()
         {
             float angleBetweenPoints = (2*MathT.PI)/NumbOfBullets;

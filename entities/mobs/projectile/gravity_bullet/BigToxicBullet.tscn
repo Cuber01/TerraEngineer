@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_jrbpw"]
 [ext_resource type="PackedScene" uid="uid://bvly3d6taeyb0" path="res://entities/mobs/projectile/gravity_bullet/SmallToxicBullet.tscn" id="6_w8uig"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="8_30est"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="9_hobqm"]
 
 [sub_resource type="Resource" id="Resource_30est"]
 script = ExtResource("2_w8uig")
@@ -26,6 +27,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jp14h"]
 size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2io3"]
+size = Vector2(6, 6)
 
 [node name="BigToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_lroih")
@@ -55,4 +59,11 @@ Scene = ExtResource("6_w8uig")
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1680854260 instance=ExtResource("8_30est")]
 
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=336367335 instance=ExtResource("9_hobqm")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+shape = SubResource("RectangleShape2D_d2io3")
+
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
+
+[editable path="ComponentManager/ContactDamageComponent"]
