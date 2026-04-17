@@ -7,10 +7,10 @@ using TerraEngineer.entities.objects;
 
 public partial class HeartPlant : Terraformable
 {
-    [Export] private int healthHealed = 3;
-    [Export] private float secondsTilRegrow = 5;
     [Export] private AnimatedSprite2D sprite;
-    [Export] private bool regrowAllowed = true;
+    private const int HealthHealed = 3;
+    private const float SecondsTilRegrow = 5;
+    private bool regrowAllowed = true;
     
     private ITimer regrowTimer;
     
@@ -21,7 +21,7 @@ public partial class HeartPlant : Terraformable
         base.Enable();
         if (!hasFruit)
         {
-            regrowTimer = TimerManager.Schedule(secondsTilRegrow, this, (_) => regrow());
+            regrowTimer = TimerManager.Schedule(SecondsTilRegrow, this, (_) => regrow());
         }
     }
 
@@ -31,9 +31,9 @@ public partial class HeartPlant : Terraformable
         {
             Player player = (Player)body;
             sprite.Animation = Names.Animations.NoFruit;
-            player.CM.GetComponent<Health>().ChangeHealth(healthHealed);
+            player.CM.GetComponent<Health>().ChangeHealth(HealthHealed);
             hasFruit = false;    
-            regrowTimer = TimerManager.Schedule(secondsTilRegrow, this, (_) => regrow());
+            regrowTimer = TimerManager.Schedule(SecondsTilRegrow, this, (_) => regrow());
         }
     }
 

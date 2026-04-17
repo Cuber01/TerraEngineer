@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://v2staehrofra" path="res://entities/mobs/creatures/ufo/Ufo.tscn" id="16_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="16_gmryx"]
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://gfx/fluid/Fluid.tscn" id="17_kwwd8"]
+[ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="17_r1ybn"]
 [ext_resource type="PackedScene" uid="uid://b5rxo30wh0msq" path="res://entities/objects/movable_block/TerraBlock.tscn" id="17_x06ml"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lngq4"]
@@ -26,11 +27,11 @@ shader_parameter/seed = 0.2430000115425
 shader_parameter/tiles_per_unit = 5.0000002375
 shader_parameter/line_length_scale = 0.15625
 
-[sub_resource type="Resource" id="Resource_8k2kr"]
+[sub_resource type="Resource" id="Resource_x06ml"]
 script = ExtResource("7_r1ybn")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
-[sub_resource type="Resource" id="Resource_r1ybn"]
+[sub_resource type="Resource" id="Resource_7p47u"]
 script = ExtResource("7_r1ybn")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -177,7 +178,7 @@ metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 [node name="FungusSpider" parent="." unique_id=1877408370 instance=ExtResource("16_gmryx")]
 position = Vector2(234, 54)
 Team = 0
-ExportedSpriteWrapper = SubResource("Resource_8k2kr")
+ExportedSpriteWrapper = SubResource("Resource_x06ml")
 
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
 position = Vector2(317, 120)
@@ -203,10 +204,14 @@ position = Vector2(150, 92)
 
 [node name="Zombie" parent="." unique_id=344834364 instance=ExtResource("14_epa2u")]
 position = Vector2(287, 107)
-ExportedSpriteWrapper = SubResource("Resource_r1ybn")
+ExportedSpriteWrapper = SubResource("Resource_7p47u")
 
 [node name="ToxicPlant" parent="." unique_id=771239512 instance=ExtResource("15_xibyr")]
 position = Vector2(568, 129)
 
 [node name="Ufo" parent="." unique_id=1014702557 instance=ExtResource("16_8k2kr")]
 position = Vector2(683, 54)
+
+[node name="Moth" parent="." unique_id=1583262676 instance=ExtResource("17_r1ybn")]
+position = Vector2(529, 64)
+FlyAroundPoint = Vector2(0, 0)

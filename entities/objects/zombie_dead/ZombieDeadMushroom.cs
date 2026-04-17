@@ -11,7 +11,7 @@ public partial class ZombieDeadMushroom : Terraformable
 		GD.Load<PackedScene>(Names.Paths.Zombie)
 	);
 	
-	[Export] private float reviveTime = 5;
+	private const float reviveTime = 5;
 	private ITimer reviveTimer;
 	
 	public override void Enable()
