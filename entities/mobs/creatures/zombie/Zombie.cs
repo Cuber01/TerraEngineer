@@ -11,7 +11,7 @@ public partial class Zombie : Creature
 	[Export] public RayCast2D IsWallAhead;
 	[Export] private RayCast2D isEnemyAbove;
 	[Export] private PackedScene zombieBodyScene;
-	[Export] private float alertedSpeed = 80;
+	private const float AlertedSpeed = 80;
     
 	private readonly WalkState walkState = new WalkState();
 	private readonly JumpState jumpState = new JumpState();

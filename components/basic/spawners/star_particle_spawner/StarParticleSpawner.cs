@@ -6,7 +6,7 @@ namespace TENamespace.basic.particle_builder;
 
 public partial class StarParticleSpawner : Spawner<GpuParticles2D, StarParticleSpawner>
 {
-    [Export] private int extraYSpread = 2;
+    private const int ExtraYSpread = 2;
     
     [Export] private CurveXyzTexture leftVelCurve;
     [Export] private CurveXyzTexture rightVelCurve;
@@ -57,7 +57,7 @@ public partial class StarParticleSpawner : Spawner<GpuParticles2D, StarParticleS
         else 
             material.DirectionalVelocityCurve = upVelCurve.Duplicate(true) as CurveXyzTexture;
         
-        material.Direction = new Vector3(directionNormal.X, directionNormal.Y*extraYSpread, 0); 
+        material.Direction = new Vector3(directionNormal.X, directionNormal.Y*ExtraYSpread, 0); 
         Instance.ProcessMaterial = material.Duplicate() as ParticleProcessMaterial;
 
         return this;

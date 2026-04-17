@@ -70,11 +70,10 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Moth" type="CharacterBody2D" unique_id=1583262676 node_paths=PackedStringArray("FlyAroundPoint", "CM", "Sprite")]
+[node name="Moth" type="CharacterBody2D" unique_id=1583262676 node_paths=PackedStringArray("CM", "Sprite")]
 top_level = true
 collision_layer = 4
 script = ExtResource("1_qq40e")
-FlyAroundPoint = NodePath("FlyAroundPoint")
 MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
 Team = 1

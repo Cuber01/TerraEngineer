@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_2jiwv"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_08l68"]
 
-[sub_resource type="Resource" id="Resource_mmmtn"]
+[sub_resource type="Resource" id="Resource_lf67q"]
 script = ExtResource("3_mmmtn")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -42,7 +42,7 @@ size = Vector2(86, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 10)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6jhx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmmtn"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("11_08l68")
@@ -61,7 +61,7 @@ zombieBodyScene = ExtResource("2_lf67q")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
-ExportedSpriteWrapper = SubResource("Resource_mmmtn")
+ExportedSpriteWrapper = SubResource("Resource_lf67q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=549796304]
 position = Vector2(-1, 0)
@@ -109,7 +109,7 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=294067570 instance=ExtResource("9_wpeh0")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=550713322 instance=ExtResource("10_2jiwv")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_r6jhx")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_mmmtn")])
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=817091342 instance=ExtResource("4_mmmtn")]
 jumpVelocity = 80.0
