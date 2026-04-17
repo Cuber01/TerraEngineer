@@ -21,18 +21,19 @@ public partial class Snail : Creature
     private bool raycastReady = false;
     public bool WasOnFloor = true;
     
-    private StateMachine<Snail> fsm;
+    internal StateMachineWithTriggers<Snail, GenericCreatureTriggers> fsm;
     public float ToRotate = 0;
     
     public override void Init()
     {
-        fsm = new StateMachine<Snail>(this, walkState, true);
+        fsm = new StateMachineWithTriggers<Snail, GenericCreatureTriggers>(this, walkState, true);
 
         CM.GetComponent<Gravity>().LandedOnFloor += () => raycastReady = true;
         
         startingFacing = vecFacing;
         
         fsm.AddTransition(walkState, rotateState, needsRotate);
+        fsm.AddTransition(rotateState, walkState, () => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished));
     }
     
     public override void _PhysicsProcess(double delta)
@@ -115,7 +116,7 @@ public partial class Snail : Creature
             Actor.CM.GetComponent<Move>().Walk4(Actor.vecFacing, dt);
             
             if (Math.Abs(Actor.Rotation - reachRotation) < rotationTolerance)
-                Actor.fsm.ChangeState(Actor.walkState);
+                Actor.fsm.FireTrigger(GenericCreatureTriggers.TaskFinished);
         }
 
         public override void Exit()

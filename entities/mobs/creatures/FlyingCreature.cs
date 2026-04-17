@@ -37,9 +37,10 @@ public abstract partial class FlyingCreature : Creature
         }
     }
 
-    private void onDetectionAreaBodyEntered()
+    protected void onDetectionAreaBodyEntered(Entity body)
     {
-        SeesPlayer = false;
+        SeesPlayer = true;
+        fsm.FireTrigger(GenericCreatureTriggers.EnemyDetected);
         TimerManager.Schedule(TimeUntilBored, this, (_) =>
         {
             if (!SeesPlayer)
@@ -49,9 +50,9 @@ public abstract partial class FlyingCreature : Creature
         });
     }
 
-    private void onDetectionAreaBodyExited(Entity body)
+    protected void onDetectionAreaBodyExited(Entity body)
     {
-        SeesPlayer = true;
-        fsm.FireTrigger(GenericCreatureTriggers.EnemyDetected);
+        SeesPlayer = false;
+        fsm.FireTrigger(GenericCreatureTriggers.EnemyLost);
     }
 }

@@ -11,11 +11,12 @@ using Vector2 = Godot.Vector2;
 
 public enum PlayerTriggers
 {
-	PressedMove,
-	ReleasedMove,
-	PressedJump,
-	PressedDash,
-	Landed
+        PressedMove,
+        ReleasedMove,
+        PressedJump,
+        PressedDash,
+        Landed,
+        ToggleNoclip
 }
 
 public partial class Player : Creature
@@ -68,6 +69,10 @@ public partial class Player : Creature
 		fsm.AddTransition(walkState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
 		fsm.AddTransition(idleState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
 		
+		fsm.AddGlobalTransition(noclipState, () => fsm.CurrentState != noclipState && 
+		                                           fsm.IsTriggered(PlayerTriggers.ToggleNoclip));
+		fsm.AddTransition(noclipState, idleState, () => fsm.IsTriggered(PlayerTriggers.ToggleNoclip));
+
 		CM.GetComponent<Gravity>().LandedOnFloor += () => fsm.FireTrigger(PlayerTriggers.Landed);
 		
 		Controller.AddAction(Names.Actions.Dash, () =>
@@ -237,16 +242,9 @@ public partial class Player : Creature
 		#if DEBUG
 		if(Input.IsActionJustPressed("f2"))
 		{
-			if (fsm.CurrentState is NoclipState)
-			{
-				fsm.ChangeState(idleState);
-			}
-			else
-			{
-				fsm.ChangeState(noclipState);	
-			}
+				fsm.FireTrigger(PlayerTriggers.ToggleNoclip);
 		}
-		
+
 		if(Input.IsActionJustPressed("f3"))
 		{
 			GodMode = !GodMode;
