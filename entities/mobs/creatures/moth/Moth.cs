@@ -70,9 +70,6 @@ public partial class Moth : Creature
         {
            Actor.CM.GetComponent<FreeFly>().FlyToPoint(goToPoint, dt);    
         }
-
-        
-        // Start chase if player in detection range
     }
     
     private void onDetectionAreaBodyEntered(Node2D body)

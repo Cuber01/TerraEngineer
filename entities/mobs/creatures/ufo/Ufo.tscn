@@ -84,3 +84,4 @@ position = Vector2(0, 33.5)
 shape = SubResource("RectangleShape2D_iqnqc")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]
