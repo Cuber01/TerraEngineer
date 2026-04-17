@@ -51,12 +51,11 @@ public partial class ToxicPlant : Creature
         {
             bigBullet = Actor.CM.GetComponent<GravityBulletSpawner>()
                 .Start()
-                .SetPosition(new Vector2(0, StartingOffset))
+                .SetPosition(Actor.GlobalPosition + new Vector2(0, StartingOffset))
                 .SetVelocity(bigBulletStartingVelocity)
                 .SetOnLifetimeDeath(spawnRing)
                 .Build();
-            Actor.CM.GetComponent<GravityBulletSpawner>().AddToGame(Actor);
-            
+            Actor.CM.GetComponent<GravityBulletSpawner>().AddToGame();
         }
 
         public override void Update(float delta)
@@ -75,10 +74,10 @@ public partial class ToxicPlant : Creature
                 Vector2 direction = (targetPosition - bigBullet.GlobalPosition).Normalized();
                 bigBullet.CM.GetComponent<GravityBulletSpawner>()
                     .Start()
-                    .SetPosition(bigBullet.Position)
+                    .SetPosition(bigBullet.GlobalPosition)
                     .SetVelocity(direction * R * 5)
                     .Build();
-                bigBullet.CM.GetComponent<GravityBulletSpawner>().AddToGame(Actor);
+                bigBullet.CM.GetComponent<GravityBulletSpawner>().AddToGame();
             }
         }
     }

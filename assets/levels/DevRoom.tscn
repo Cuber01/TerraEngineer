@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://boooxlqm536jd" path="res://entities/objects/autodoc/AutoDoc.tscn" id="13_fumxt"]
 [ext_resource type="PackedScene" uid="uid://g38d3kf8jth2" path="res://entities/mobs/creatures/zombie/Zombie.tscn" id="14_epa2u"]
 [ext_resource type="PackedScene" uid="uid://dbbnukdeoc451" path="res://entities/mobs/creatures/toxic_plant/ToxicPlant.tscn" id="15_xibyr"]
+[ext_resource type="PackedScene" uid="uid://v2staehrofra" path="res://entities/mobs/creatures/ufo/Ufo.tscn" id="16_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="16_gmryx"]
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://gfx/fluid/Fluid.tscn" id="17_kwwd8"]
 [ext_resource type="PackedScene" uid="uid://b5rxo30wh0msq" path="res://entities/objects/movable_block/TerraBlock.tscn" id="17_x06ml"]
@@ -206,3 +207,6 @@ ExportedSpriteWrapper = SubResource("Resource_8k2kr")
 
 [node name="ToxicPlant" parent="." unique_id=771239512 instance=ExtResource("15_xibyr")]
 position = Vector2(568, 129)
+
+[node name="Ufo" parent="." unique_id=1014702557 instance=ExtResource("16_8k2kr")]
+position = Vector2(683, 54)

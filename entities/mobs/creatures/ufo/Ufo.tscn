@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://v2staehrofra"]
+
+[ext_resource type="Script" uid="uid://b0vgh3smtvflc" path="res://entities/mobs/creatures/ufo/Ufo.cs" id="1_bwweb"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_iqnqc"]
+[ext_resource type="Texture2D" uid="uid://bkbstkjtt6yha" path="res://assets/fungus-spider.png" id="3_g4eix"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_slblw"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_g1xf0"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="8_bwweb"]
+[ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_ivx3l"]
+[ext_resource type="PackedScene" uid="uid://c7f8mcd4lxgcv" path="res://components/basic/spawners/gravity_bullet_spawner/GravityBulletSpawnerComponent.tscn" id="9_na7cx"]
+[ext_resource type="PackedScene" uid="uid://bvly3d6taeyb0" path="res://entities/mobs/projectile/gravity_bullet/SmallToxicBullet.tscn" id="10_iqnqc"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_sd07x"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_aoylh"]
+
+[sub_resource type="Resource" id="Resource_k17i2"]
+script = ExtResource("2_iqnqc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_na7cx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_g4eix")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
+size = Vector2(7.875, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ogt6"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("11_aoylh")
+shader_parameter/blink_color = Vector3(1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
+[node name="Ufo" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource("1_bwweb")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_k17i2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1245267121]
+sprite_frames = SubResource("SpriteFrames_na7cx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219721195]
+shape = SubResource("RectangleShape2D_0f11y")
+
+[node name="ComponentManager" parent="." unique_id=1765219149 instance=ExtResource("3_slblw")]
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=80804480 instance=ExtResource("6_g1xf0")]
+MaxHealth = 3
+
+[node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_ivx3l")]
+
+[node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_sd07x")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_1ogt6")])
+
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=1688471712 instance=ExtResource("8_bwweb")]
+
+[node name="GravityBulletSpawnerComponent" parent="ComponentManager" unique_id=1914864503 instance=ExtResource("9_na7cx")]
+Scene = ExtResource("10_iqnqc")
