@@ -34,6 +34,7 @@ size = Vector2(6, 6)
 [node name="BigToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_lroih")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_30est")
 
