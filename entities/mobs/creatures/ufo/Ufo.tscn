@@ -66,6 +66,8 @@ MaxHealth = 3
 importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_1ogt6")])
 
 [node name="FreeFlyComponent" parent="ComponentManager" unique_id=1688471712 instance=ExtResource("8_bwweb")]
+errorMargin = Vector2(1, 1)
+acceleration = 5.0
 
 [node name="GravityBulletSpawnerComponent" parent="ComponentManager" unique_id=1914864503 instance=ExtResource("9_na7cx")]
 Scene = ExtResource("10_iqnqc")

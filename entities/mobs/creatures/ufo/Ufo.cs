@@ -6,7 +6,7 @@ using TerraEngineer.entities.mobs.creatures;
 
 public partial class Ufo : Creature
 {
-    private readonly Vector2 distanceToKeepFromPlayer = new Vector2(0, -10);
+    private readonly Vector2 distanceToKeepFromPlayer = new Vector2(0, -50);
     private Player player;
     
     public override void Init()
