@@ -60,7 +60,7 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2upb0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wt63l"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("8_q6o0n")
@@ -115,7 +115,7 @@ acceleration = 4.31
 airResistance = 1.724
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=552720510 instance=ExtResource("7_48xfr")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_2upb0")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_wt63l")])
 
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=135453091 instance=ExtResource("9_q6o0n")]
 

@@ -40,6 +40,9 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqnqc"]
+size = Vector2(166, 87)
+
 [node name="Ufo" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 4
 collision_mask = 33
@@ -71,3 +74,13 @@ acceleration = 5.0
 
 [node name="GravityBulletSpawnerComponent" parent="ComponentManager" unique_id=1914864503 instance=ExtResource("9_na7cx")]
 Scene = ExtResource("10_iqnqc")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1342224131]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1452270325]
+position = Vector2(0, 33.5)
+shape = SubResource("RectangleShape2D_iqnqc")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]

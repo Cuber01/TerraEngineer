@@ -6,22 +6,17 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs.creatures;
 using TerraEngineer.entities.projectiles.gravity_bullet;
 
-public enum ToxicPlantTriggers
-{
-    Shot
-}
-
 public partial class ToxicPlant : Creature
 {
     private readonly ShootState shootState = new ShootState();
     private readonly TimedState<ToxicPlant> waitState = new WaitState();
 
-    private StateMachineWithTriggers<ToxicPlant,ToxicPlantTriggers> fsm;
+    private StateMachineWithTriggers<ToxicPlant,GenericCreatureTriggers> fsm;
     
     public override void Init()
     {
-        fsm = new StateMachineWithTriggers<ToxicPlant,ToxicPlantTriggers>(this, waitState);
-        fsm.AddTransition(shootState, waitState, (() => fsm.IsTriggered(ToxicPlantTriggers.Shot)));
+        fsm = new StateMachineWithTriggers<ToxicPlant,GenericCreatureTriggers>(this, waitState);
+        fsm.AddTransition(shootState, waitState, (() => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished)));
         fsm.AddTransition(waitState, shootState, waitState.TimerCondition);
     }
     
@@ -61,7 +56,7 @@ public partial class ToxicPlant : Creature
 
         public override void Update(float delta)
         {
-            Actor.fsm.FireTrigger(ToxicPlantTriggers.Shot);
+            Actor.fsm.FireTrigger(GenericCreatureTriggers.TaskFinished);
             base.Update(delta);
         }
         
