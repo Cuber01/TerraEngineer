@@ -212,5 +212,11 @@ position = Vector2(568, 129)
 [node name="Ufo" parent="." unique_id=1014702557 instance=ExtResource("16_8k2kr")]
 position = Vector2(683, 54)
 
+[node name="Ufo2" parent="." unique_id=1604219200 instance=ExtResource("16_8k2kr")]
+position = Vector2(735, 69)
+
+[node name="Ufo3" parent="." unique_id=141186359 instance=ExtResource("16_8k2kr")]
+position = Vector2(641, 68)
+
 [node name="Moth" parent="." unique_id=1583262676 instance=ExtResource("17_r1ybn")]
 position = Vector2(529, 64)

@@ -28,4 +28,5 @@ X rewrite switcher area as generic area that fires event on enter
 
 code cleanliness todo:
 X limit amount of export - replace with const and readonly
-- remove all manual state changes and replace them with triggers
+X remove all manual state changes and replace them with triggers
+- prevent event memory leaks - make state exit on death?

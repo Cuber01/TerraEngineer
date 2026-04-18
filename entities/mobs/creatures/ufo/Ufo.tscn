@@ -30,7 +30,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
 size = Vector2(7.875, 6)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ogt6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqnqc"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("11_aoylh")
@@ -41,7 +41,7 @@ shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqnqc"]
-size = Vector2(166, 87)
+size = Vector2(166, 129)
 
 [node name="Ufo" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 4
@@ -66,7 +66,7 @@ MaxHealth = 3
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_ivx3l")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_sd07x")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_1ogt6")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_iqnqc")])
 
 [node name="FreeFlyComponent" parent="ComponentManager" unique_id=1688471712 instance=ExtResource("8_bwweb")]
 errorMargin = Vector2(1, 1)
@@ -80,7 +80,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1452270325]
-position = Vector2(0, 33.5)
+position = Vector2(0, 54.5)
 shape = SubResource("RectangleShape2D_iqnqc")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
