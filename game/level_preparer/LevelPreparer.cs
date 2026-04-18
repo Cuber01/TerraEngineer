@@ -11,6 +11,7 @@ public partial class LevelPreparer : Node2D
     [Export] private PackedScene[] tileScenes;
     
     private Dictionary<StringName, PackedScene> tilesDict;
+    private readonly Color defaultColor = new Color(0, 0, 0);
     
     public override void _Ready()
     {
@@ -25,16 +26,23 @@ public partial class LevelPreparer : Node2D
 
     public void Prepare(Node2D newLevel)
     {
-        prepareMeta(newLevel);
+        prepareLevelName(newLevel);
         prepareTiles(newLevel);
+        prepareBackgroundColor(newLevel);
     }
 
-    private void prepareMeta(Node2D newLevel)
+    private void prepareLevelName(Node2D newLevel)
     {
         if (!newLevel.HasMeta(Names.Properties.LevelName))
         {
             newLevel.SetMeta(Names.Properties.LevelName, newLevel.SceneFilePath.GetBaseName().GetFile());
         }
+    }
+
+    private void prepareBackgroundColor(Node2D newLevel)
+    {
+        Color color = (Color)newLevel.GetMeta(Names.Properties.BackgroundColor, defaultColor);
+        RenderingServer.SetDefaultClearColor(color);
     }
     
     private void prepareTiles(Node2D newLevel)
