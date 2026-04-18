@@ -15,7 +15,7 @@ public partial class FluidSpring : Node2D
 	
 	// Damping is increased for coastal springs to simulate waves crushing against the coast
 	[Export] private float coastalDamping = 0.9f;
-	[Export] private float coastalStiffness = 0.2f;
+	[Export] private float coastalStiffness = 0.6f;
 	
 	private float velocityY = 0;
 	private float targetHeight;
@@ -34,7 +34,10 @@ public partial class FluidSpring : Node2D
 		this.leftNeighbor = leftNeighbor;
 
 		if (leftNeighbor == null || rightNeighbor == null)
-			damping = coastalDamping;
+		{
+			damping = coastalDamping;	
+			stiffness = coastalStiffness; 
+		}
 	}
 
 	public void AddExternalForce(float force, float newSpread=BaseSpread)

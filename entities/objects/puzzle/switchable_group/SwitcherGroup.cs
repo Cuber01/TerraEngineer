@@ -76,7 +76,7 @@ public partial class SwitcherGroup : Node2D
         {
             if (!switcher.SwitchedOn)
             {
-                #if DEBUG
+                #if SWITCHES_DEBUG
                 GD.Print("Failed to switch: " + switcher + " was false.");
                 #endif
                 return;

@@ -101,5 +101,14 @@ public partial class Ufo : FlyingCreature
 
 
     }
-    
+
+    public override void Die()
+    {
+        if (fsm.CurrentState == bombardState)
+        {
+            bombardState.Exit(); // For cleanup
+        }
+        base.Die();
+    }
+
 }
