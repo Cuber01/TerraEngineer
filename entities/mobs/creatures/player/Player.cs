@@ -36,6 +36,7 @@ public partial class Player : Creature
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
+	private const float DoubleJumpVelocityModifier = 0.8f;
 	
 	
 	public override void Init()
@@ -148,8 +149,8 @@ public partial class Player : Creature
 
 			Actor.SpriteWrapper.AnimationFinished += afterStartJump;
 			Actor.SpriteWrapper.Play(Names.Animations.Jump);
-			
-			Actor.CM.GetComponent<Jump>().AttemptJump(); 
+
+			attemptJumpOrDoubleJump();
 		}
 		
 		public override void Update(float dt)
@@ -166,15 +167,7 @@ public partial class Player : Creature
 
 			if (Actor.fsm.IsTriggered(PlayerTriggers.PressedJump))
 			{
-				if (Actor.CM.GetComponent<Jump>().CurrentJumps > 0)
-				{
-					Actor.CM.GetComponent<Jump>().AttemptJump();	
-				}
-				else
-				{
-					Actor.CM.GetComponent<Jump>().AttemptJump(1.0f);
-				}
-				
+				attemptJumpOrDoubleJump();
 			}
 				
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
@@ -189,6 +182,13 @@ public partial class Player : Creature
 		{
 			Actor.SpriteWrapper.AnimationFinished -= afterStartJump;
 			Actor.SpriteWrapper.Play(Names.Animations.Fly);
+		}
+
+		private void attemptJumpOrDoubleJump()
+		{
+			Actor.CM.GetComponent<Jump>().AttemptJump(Actor.CM.GetComponent<Jump>().CurrentJumps > 0 
+															? DoubleJumpVelocityModifier 
+															: 1.0f);
 		}
 	}
 	
