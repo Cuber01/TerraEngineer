@@ -78,12 +78,14 @@ public partial class AutoDoc : Entity
 		SpriteWrapper.AnimationFinished += whileInside;
 		SpriteWrapper.Play("closing");
 		player.Hide();
+		player.Freeze();
 		player.Controller.SwitchControl(balloonTemplate.Controller);
 		
 		Action leave = null;
 		leave = () =>
 		{
 			player.Show();
+			player.Unfreeze();
 			CM.GetComponent<SaveEntity>().ChangeState(true);
 			player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
 		

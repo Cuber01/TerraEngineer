@@ -36,7 +36,6 @@ public partial class Player : Creature
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
-	public bool IsJumping = false;
 	
 	
 	public override void Init()
@@ -164,10 +163,20 @@ public partial class Player : Creature
 			{
 				Actor.fsm.FireTrigger(PlayerTriggers.ReleasedMove);
 			}
-			
-			if(Actor.fsm.IsTriggered(PlayerTriggers.PressedJump))
-				Actor.CM.GetComponent<Jump>().AttemptJump();
-			
+
+			if (Actor.fsm.IsTriggered(PlayerTriggers.PressedJump))
+			{
+				if (Actor.CM.GetComponent<Jump>().CurrentJumps > 0)
+				{
+					Actor.CM.GetComponent<Jump>().AttemptJump();	
+				}
+				else
+				{
+					Actor.CM.GetComponent<Jump>().AttemptJump(1.0f);
+				}
+				
+			}
+				
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
 		}
 

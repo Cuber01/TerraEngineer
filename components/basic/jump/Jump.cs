@@ -10,9 +10,11 @@ public partial class Jump : Component
 {
     [Export] private float jumpVelocity = 100;
     [Export] public int MaxJumps = 2;
-    [Export] private float limitThreshold = 30f;
     
-    private int currentJumps = 0;
+    private const float LimitThreshold = 30f;
+    
+    
+    public int CurrentJumps = 0;
     private Entity entityActor;
 
     public override void Init(Node2D actor)
@@ -28,13 +30,13 @@ public partial class Jump : Component
         }
         
         entityActor.CM.GetComponent<Gravity>().LandedOnFloor += 
-            () => currentJumps = 0;
+            () => CurrentJumps = 0;
         
         entityActor.CM.GetComponent<Gravity>().LeftFloor += () => {
             // If we fell
-            if (currentJumps == 0)
+            if (CurrentJumps == 0)
             {
-                currentJumps++;
+                CurrentJumps++;
             }
         };
     }
@@ -57,21 +59,21 @@ public partial class Jump : Component
 
     public void LimitJump()
     {
-        if (entityActor.velocity.Y <= -limitThreshold)
+        if (entityActor.velocity.Y <= -LimitThreshold)
         {
-            entityActor.velocity.Y += limitThreshold;
+            entityActor.velocity.Y += LimitThreshold;
         }
     }
 
     private void executeJump(float forceMultiplier=1f)
     {
         entityActor.velocity.Y = -jumpVelocity*forceMultiplier;
-        currentJumps++;
+        CurrentJumps++;
     }
 
     private bool canJump()
     {
-        return currentJumps < MaxJumps;
+        return CurrentJumps < MaxJumps;
     }
     
 }
