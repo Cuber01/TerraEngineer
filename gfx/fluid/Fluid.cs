@@ -2,10 +2,11 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
 
 [Tool]
-public partial class Fluid : Node2D
+public partial class Fluid : Terraformable
 {
 	[Export] private Vector2 Size
 	{

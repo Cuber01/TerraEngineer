@@ -17,5 +17,7 @@ public partial class Component : Node2D
     public virtual void OptionalInit(Node2D actor) { }
     
     public virtual void Update(float delta) {}
+    
+    public virtual void OnRemoved() {}
 
 }

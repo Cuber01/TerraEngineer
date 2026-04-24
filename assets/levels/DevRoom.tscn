@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dbbnukdeoc451" path="res://entities/mobs/creatures/toxic_plant/ToxicPlant.tscn" id="15_xibyr"]
 [ext_resource type="PackedScene" uid="uid://v2staehrofra" path="res://entities/mobs/creatures/ufo/Ufo.tscn" id="16_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://br7kc71dlql8f" path="res://entities/mobs/creatures/fungus_spider/FungusSpider.tscn" id="16_gmryx"]
-[ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://gfx/fluid/Fluid.tscn" id="17_kwwd8"]
+[ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Water.tscn" id="17_kwwd8"]
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="17_r1ybn"]
 [ext_resource type="PackedScene" uid="uid://b5rxo30wh0msq" path="res://entities/objects/movable_block/TerraBlock.tscn" id="17_x06ml"]
 

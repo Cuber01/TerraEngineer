@@ -83,4 +83,16 @@ public partial class ComponentManager : Node2D
             pair.Value.Update(delta);
         }
     }
+    
+    public void AddComponent(Component component)
+    {
+        components.Add(component.GetType(), component);
+        component.Init(actor);
+    }
+
+    public void RemoveComponent(Type component)
+    {
+        components[component].OnRemoved();
+        components.Remove(component);
+    }
 }
