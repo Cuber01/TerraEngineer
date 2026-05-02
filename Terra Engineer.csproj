@@ -9,6 +9,7 @@
     <Content Include=".github\workflows\dev_hell.yml" />
     <Content Include="addons\TimerManager\LICENSE.txt" />
     <Content Include="addons\TimerManager\TimerManager.tscn" />
+    <Content Include="entities\objects\turbine\TurbineParticles.tscn" />
     <Content Include="LICENSE.txt" />
     <Content Include="notes.txt" />
     <Content Include="README.md" />

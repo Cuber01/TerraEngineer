@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://3wcbg1yvsxff"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_abc12"]
+emission_shape = 3
+emission_box_extents = Vector3(6, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, -200, 0)
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = -2.2351742e-06
+damping_min = 2.0
+damping_max = 5.0
+
+[node name="TurbineParticles" type="GPUParticles2D" unique_id=2027106832]
+position = Vector2(1, 0)
+amount = 40
+lifetime = 2.0
+randomness = 0.5
+process_material = SubResource("ParticleProcessMaterial_abc12")
