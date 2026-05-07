@@ -49,6 +49,11 @@ public partial class ComponentManager : Node2D
         }
     }
 
+    public bool HasComponent<T>() where T : Component
+    {
+        return components.TryGetValue(typeof(T), out Component _);
+    }
+
     public T GetComponent<T>() where T : Component {
         return (T) components[typeof(T)];
     }
@@ -89,10 +94,11 @@ public partial class ComponentManager : Node2D
         components.Add(component.GetType(), component);
         component.Init(actor);
     }
+    
 
-    public void RemoveComponent(Type component)
+    public void RemoveComponent<T>() where T : Component
     {
-        components[component].OnRemoved();
-        components.Remove(component);
+        components[typeof(T)].OnRemoved();
+        components.Remove(typeof(T));
     }
 }

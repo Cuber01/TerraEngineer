@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://745elekjpiyp"]
+
+[ext_resource type="Script" uid="uid://cvyvmuen7wbi" path="res://entities/objects/fluid/TerraformableFluidCaretaker.cs" id="1_0vm2w"]
+
+[node name="TerraformableFluidCaretaker" type="CharacterBody2D" unique_id=1661537798]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_0vm2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1217634408]

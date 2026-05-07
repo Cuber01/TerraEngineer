@@ -34,7 +34,16 @@ public partial class PlayerInventory : Component
     public void AddUniqueItem(Player actor, StringName name)
     {
         SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, true);
-        fullItemList[name].Activate(actor);
+        
+        // Special handling for essences: auto-equip when newly acquired
+        if (fullItemList[name] is EssenceItem essenceItem)
+        {
+            essenceItem.ActivateAndEquip(actor);
+        }
+        else
+        {
+            fullItemList[name].Activate(actor);
+        }
     }
 
     public void AddGenericItem(Player actor, StringName name, int amount)
@@ -90,8 +99,13 @@ public class EssenceItem(Biomes biome) : Item
     public void Activate(Player actor)
     {
         GunHandle gunHandle = actor.CM.GetComponent<GunHandle>();
-        
         gunHandle.CM.GetComponent<TerraformGun>().LockOrUnlockMode(biome, true);
+    }
+    
+    public void ActivateAndEquip(Player actor)
+    {
+        Activate(actor);
+        GunHandle gunHandle = actor.CM.GetComponent<GunHandle>();
         if(gunHandle.SelectedGun == GunHandleType.Pistol)
             gunHandle.ChangeGunHandle();
     }

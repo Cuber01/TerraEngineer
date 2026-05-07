@@ -91,6 +91,16 @@ public partial class TerraformGun : AdvancedComponent, IGun
         }
     }
     
+    public bool IsModeUnlocked(Biomes biome)
+    {
+        return modes[(int)biome] != Biomes.Locked;
+    }
+    
+    public Biomes[] GetModes()
+    {
+        return modes;
+    }
+    
     private void applyTerraform()
     {
         foreach (TerraformableCaretaker obj in terraformablesAffected)

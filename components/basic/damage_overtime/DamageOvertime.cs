@@ -22,12 +22,9 @@ public partial class DamageOvertime : Component
         }
         else
         {
-            throw new Exception("Lifetime component requires Entity actor.");
+            throw new Exception("Damage Overtime component requires Entity actor.");
         }
-    }
-
-    public override void _Ready()
-    {
+        
         timer = TimerManager.Schedule(timeBetweenDamage, true ,this, (t) =>
         {
             Health hpComponent = entityActor.CM.TryGetComponent<Health>();
