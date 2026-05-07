@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TENamespace.basic.damage_overtime;
+using TENamespace.health;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
@@ -160,20 +162,27 @@ public partial class Fluid : StaticBody2D
 	
 	private void _onBodyEntered(Node2D body)
 	{
-		if (_currentBiome == Biomes.Mushroom)
+		if (_currentBiome == Biomes.Mushroom && body is Entity e)
 		{
-			onAcidEntered(body);
+			onAcidEntered(e);
 		}
 		addForce(body, true);
 	}
 
 	private void _onBodyExited(Node2D body)
 	{
+
+		
 		if (body is Entity e)
 		{
 			if (!e.Dead)
 			{
 				addForce(body, false);		
+				
+				if (_currentBiome == Biomes.Mushroom)
+				{
+					onAcidExited(e);
+				}
 			}
 		}
 		else
@@ -285,6 +294,18 @@ public partial class Fluid : StaticBody2D
 
 	private void onAcidEntered(Entity body)
 	{
+		if (body.CM.HasComponent<Health>())
+		{
+			body.CM.AddComponent(new DamageOvertime());
+		}
+	}
+
+	private void onAcidExited(Entity body)
+	{
+		if (body.CM.HasComponent<DamageOvertime>())
+		{
+			body.CM.RemoveComponent<DamageOvertime>();
+		}
 	}
 
 	private void changeColors(Biomes biome)
