@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ndo2lbat23bl"]
+
+[ext_resource type="Script" uid="uid://kbhti7vrip1e" path="res://entities/objects/turbine/Turbine.cs" id="1_0xee1"]
+[ext_resource type="PackedScene" uid="uid://3wcbg1yvsxff" path="res://entities/objects/turbine/TurbineParticles.tscn" id="2_sqo8c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68vi5"]
+size = Vector2(13, 114)
+
+[node name="Turbine" type="CharacterBody2D" unique_id=923893895 node_paths=PackedStringArray("areaOfEffect")]
+script = ExtResource("1_0xee1")
+areaOfEffect = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=387017699]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=411909707]
+position = Vector2(0.5, -57)
+shape = SubResource("RectangleShape2D_68vi5")
+
+[node name="TurbineParticles" parent="." unique_id=2027106832 instance=ExtResource("2_sqo8c")]
+z_index = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="onAreaBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onAreaBodyExited"]
