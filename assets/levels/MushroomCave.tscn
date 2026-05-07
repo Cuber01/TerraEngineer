@@ -3,8 +3,10 @@
 [ext_resource type="TileSet" uid="uid://b8eewqd5m6myt" path="res://assets/world/MushroomTileset.tres" id="2_gst5n"]
 [ext_resource type="PackedScene" uid="uid://dbbnukdeoc451" path="res://entities/mobs/creatures/toxic_plant/ToxicPlant.tscn" id="3_1qa8p"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_nqiex"]
-[ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Water.tscn" id="4_gst5n"]
-[ext_resource type="PackedScene" uid="uid://3wcbg1yvsxff" path="res://entities/objects/turbine/TurbineParticles.tscn" id="5_nqiex"]
+[ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Fluid.tscn" id="4_gst5n"]
+[ext_resource type="PackedScene" uid="uid://ndo2lbat23bl" path="res://entities/objects/turbine/Turbine.tscn" id="5_nqiex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqiex"]
 
 [node name="Level" type="Node2D" unique_id=15680763]
 metadata/background_color = Color(0.078431375, 0.02745098, 0.08627451, 1)
@@ -18,13 +20,24 @@ tile_set = ExtResource("2_gst5n")
 [node name="ToxicPlant" parent="." unique_id=771239512 instance=ExtResource("3_1qa8p")]
 position = Vector2(533, 125)
 
-[node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("4_gst5n")]
-z_index = -1
-position = Vector2(403, 143)
+[node name="Turbine" parent="." unique_id=923893895 instance=ExtResource("5_nqiex")]
+position = Vector2(452, 176)
 
-[node name="Fluid2" parent="." unique_id=525110140 instance=ExtResource("4_gst5n")]
+[node name="Fluid" parent="." unique_id=455745828 instance=ExtResource("4_gst5n")]
 z_index = -1
-position = Vector2(369, 307)
+position = Vector2(404, 138)
+Size = Vector2(100, 50)
 
-[node name="TurbineParticles" parent="." unique_id=2027106832 instance=ExtResource("5_nqiex")]
-position = Vector2(446, 175)
+[node name="DisplayPolygon" parent="Fluid" index="0" unique_id=1133375849]
+color = Color(0.22352941, 0.44705883, 1, 0.4509804)
+polygon = PackedVector2Array(0, 50, 0, 0, 3.5, 0, 7, 0, 10.5, 0, 14, 0, 17.5, 0, 21, 0, 24.5, 0, 28, 0, 31.5, 0, 35, 0, 38.5, 0, 42, 0, 45.5, 0, 49, 0, 52.5, 0, 56, 0, 59.5, 0, 63, 0, 66.5, 0, 70, 0, 73.5, 0, 77, 0, 80.5, 0, 84, 0, 87.5, 0, 91, 0, 94.5, 0, 98, 0, 100, 0, 100, 50)
+
+[node name="SurfaceLine" parent="Fluid" index="1" unique_id=60308002]
+default_color = Color(0.29411766, 0.6784314, 1, 1)
+
+[node name="CollisionShape2D" parent="Fluid/TerraformableFluidCaretaker" parent_id_path=PackedInt32Array(455745828, 1661537798) index="0" unique_id=1217634408]
+position = Vector2(1, -47)
+shape = SubResource("RectangleShape2D_nqiex")
+
+[editable path="Fluid"]
+[editable path="Fluid/TerraformableFluidCaretaker"]

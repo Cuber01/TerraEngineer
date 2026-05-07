@@ -37,7 +37,7 @@ public partial class TerraformableCaretaker : CharacterBody2D
         }
     }
 
-    public void Terraform(Biomes biome)
+    public virtual void Terraform(Biomes biome)
     {
         if (currentBiome == biome && init) return;
         if(!entityVersions.ContainsKey(biome)) return; // This shouldn't happen in the full game theoretically

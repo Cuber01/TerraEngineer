@@ -2,11 +2,11 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.objects;
 
 [Tool]
-public partial class Fluid : Terraformable
+public partial class Fluid : StaticBody2D
 {
 	[Export] private Vector2 Size
 	{
@@ -20,6 +20,17 @@ public partial class Fluid : Terraformable
 	}
 	private Vector2I _size = new Vector2I(100, 100);
 	
+	[Export] private Biomes CurrentBiome 
+	{
+		get => _currentBiome;
+		set
+		{
+			changeColors(value);
+			_currentBiome = value;
+		}
+	}
+	private Biomes _currentBiome = Biomes.Forest;
+	
 	[Export] private int springsAmountPer10Px = 3;
 	
 	[Export] private PackedScene fluidSpringScene;
@@ -28,6 +39,20 @@ public partial class Fluid : Terraformable
 	[Export] private CollisionShape2D collisionShape;
 	
 	private List<FluidSpring> fluidSprings = new List<FluidSpring>();
+	
+	// (Color, Color) = (Surface, Body)
+	private readonly Dictionary<Biomes, (Color, Color)> biomeColors = new ()
+	{
+		{ Biomes.Forest, (new Color("#4badff"), new Color("#3972ff73")) },
+		{ Biomes.Ice, (new Color("#d9edff"), new Color("#8fd3ffbd")) },
+		{ Biomes.Mushroom, (new Color("#91db69"), new Color("#aed957a6")) },
+	};
+	
+	private List<Vector2> frozenBodyPoints = new List<Vector2>();
+	private List<Vector2> frozenSurfacePoints = new List<Vector2>();
+	private List<float> originalDamping = new List<float>();
+	private CollisionShape2D solidCollisionShape;
+	private const float AcidDamping = 0.5f;
 	
 	public override void _Ready()
 	{
@@ -39,6 +64,7 @@ public partial class Fluid : Terraformable
 		#endif
 		
 		setupCollisions();
+		Terraform(_currentBiome);
 	}
 	
 	private void resetSprings()
@@ -107,6 +133,14 @@ public partial class Fluid : Terraformable
 	
 	public override void _Process(double delta)
 	{
+		// Don't update visuals if frozen
+		if (_currentBiome == Biomes.Ice)
+		{
+			displayPolygon.SetPolygon(frozenBodyPoints.ToArray());
+			surfaceLine.SetPoints(frozenSurfacePoints.ToArray());
+			return;
+		}
+		
 		// Order of points counts!
 		List<Vector2> bodyPoints = new List<Vector2>();
 		List<Vector2> surfacePoints = new List<Vector2>();
@@ -126,6 +160,10 @@ public partial class Fluid : Terraformable
 	
 	private void _onBodyEntered(Node2D body)
 	{
+		if (_currentBiome == Biomes.Mushroom)
+		{
+			onAcidEntered(body);
+		}
 		addForce(body, true);
 	}
 
@@ -153,14 +191,108 @@ public partial class Fluid : Terraformable
 		
 		if (source is Entity e)
 		{
-			top3Springs[0].AddExternalForce(entering ? e.Weight : -e.Weight);
-			top3Springs[1].AddExternalForce(entering ? e.Weight/2 : -e.Weight/2);
-			top3Springs[1].AddExternalForce(entering ? e.Weight / 2 : -e.Weight / 2);
+			top3Springs[0].AddExternalForce(entering ? e.Weight : -e.Weight, top3Springs[0].BaseSpread);
+			top3Springs[1].AddExternalForce(entering ? e.Weight/2 : -e.Weight/2, top3Springs[0].BaseSpread);
+			top3Springs[1].AddExternalForce(entering ? e.Weight / 2 : -e.Weight / 2, top3Springs[0].BaseSpread);
 			
 			e.FellIntoFluid(this);
 		}
-		
+	}
 
+	#region Terraforming
+	public void Terraform(Biomes biome)
+	{
+		// Exit current biome first
+		switch (_currentBiome)
+		{
+			case Biomes.Forest:
+				// Default
+				break;
+			case Biomes.Ice:
+				ExitIce();
+				break;
+			case Biomes.Mushroom:
+				ExitMushroom();
+				break;
+		}
+		
+		// Update to new biome
+		_currentBiome = biome;
+		changeColors(biome);
+		
+		// Enter new biome
+		switch (biome)
+		{
+			case Biomes.Forest:
+				// Default
+				break;
+			case Biomes.Ice:
+				EnterIce();
+				break;
+			case Biomes.Mushroom:
+				EnterMushroom();
+				break;
+		}
 	}
 	
+	private void EnterIce()
+	{
+		frozenBodyPoints.Clear();
+		frozenSurfacePoints.Clear();
+		
+		frozenBodyPoints.Add(new Vector2(0, _size.Y));
+		foreach (FluidSpring spring in fluidSprings)
+		{
+			frozenBodyPoints.Add(spring.Position);
+			frozenSurfacePoints.Add(spring.Position);
+		}
+		frozenBodyPoints.Add(new Vector2(_size.X, _size.Y));
+		
+		// Create solid collision shape (copy of the existing collision)
+		solidCollisionShape = new CollisionShape2D();
+		RectangleShape2D shape = new RectangleShape2D();
+		shape.Size = _size;
+		solidCollisionShape.Shape = shape;
+		solidCollisionShape.Position = collisionShape.Position;
+		AddChild(solidCollisionShape);
+	}
+
+	private void ExitIce()
+	{
+		// Remove solid collision
+		if (solidCollisionShape != null && solidCollisionShape.GetParent() == this)
+		{
+			solidCollisionShape.QueueFree();
+			solidCollisionShape = null;
+		}
+	}
+
+	private void EnterMushroom()
+	{
+		foreach (FluidSpring spring in fluidSprings)
+		{
+			spring.Spread = spring.AcidSpread;
+		}
+	}
+
+	private void ExitMushroom()
+	{
+		foreach (FluidSpring spring in fluidSprings)
+		{
+			spring.Spread = spring.BaseSpread;
+		}
+	}
+
+	private void onAcidEntered(Entity body)
+	{
+	}
+
+	private void changeColors(Biomes biome)
+	{
+		surfaceLine.DefaultColor = biomeColors[biome].Item1;
+		displayPolygon.Color = biomeColors[biome].Item2;
+	}
+	
+	#endregion
+
 }
