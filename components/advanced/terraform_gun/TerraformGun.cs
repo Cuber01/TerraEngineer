@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 using TENamespace.basic.particle_builder;
 using TerraEngineer.entities.objects;
@@ -33,8 +32,6 @@ public partial class TerraformGun : AdvancedComponent, IGun
     
     // Every enum biome corresponds to it's index in this array
     private Biomes[] modes = [Biomes.Locked, Biomes.Locked, Biomes.Locked, Biomes.Locked];
-    
-    private List<TerraformableCaretaker> terraformablesAffected = new List<TerraformableCaretaker>();
 
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)
     {
@@ -47,8 +44,12 @@ public partial class TerraformGun : AdvancedComponent, IGun
 
         CM.GetComponent<StarParticleSpawner>().AddToGame();
         
+        // Update area position and rotation
+        areaAffected.GlobalPosition = position;
         areaAffected.RotationDegrees = rotationDegrees;
-        applyTerraform(); // Maybe on timer
+        
+        // Defer terraform to next physics frame to ensure overlap detection is updated
+        CallDeferred(MethodName.applyTerraform);
     }
 
     public void ChangeWeapon(int index)
@@ -103,13 +104,23 @@ public partial class TerraformGun : AdvancedComponent, IGun
     
     private void applyTerraform()
     {
-        foreach (TerraformableCaretaker obj in terraformablesAffected)
+        var collisionShape = areaAffected.GetNode<CollisionShape2D>("CollisionShape2D");
+        var query = new PhysicsShapeQueryParameters2D();
+        query.Shape = collisionShape.Shape;
+        query.Transform = areaAffected.GetGlobalTransform();
+        query.CollisionMask = areaAffected.CollisionMask;
+        
+        var spaceState = GetWorld2D().DirectSpaceState;
+        var results = spaceState.IntersectShape(query);
+        
+        foreach (var result in results)
         {
-            obj.Terraform(_selectedBiome);
+            var collider = (Node)result["collider"];
+            if (collider is TerraformableCaretaker terraformable)
+            {
+                terraformable.Terraform(_selectedBiome);
+            }
         }
     }
 
-    private void onTerraformableEntered(Node2D body) => terraformablesAffected.Add(body as TerraformableCaretaker);
-    private void onTerraformableExited(Node2D body) => terraformablesAffected.Remove(body as TerraformableCaretaker);
-    
 }
