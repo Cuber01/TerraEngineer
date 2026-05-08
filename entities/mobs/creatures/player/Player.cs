@@ -63,6 +63,10 @@ public partial class Player : Creature
 		
 		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
 		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
+		
+		// Allow jumping while falling if player has double jump
+		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1);
+		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1);
 
 		fsm.AddTransition(dashState, jumpState, () => CM.GetComponent<Dash>().IsDashing);
 		fsm.AddTransition(jumpState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
@@ -135,6 +139,8 @@ public partial class Player : Creature
 			{
 				Actor.fsm.FireTrigger(PlayerTriggers.ReleasedMove);
 			}
+			
+			
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
 		}
 	}

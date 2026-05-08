@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Runtime.CompilerServices;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 
