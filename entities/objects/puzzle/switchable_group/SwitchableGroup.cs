@@ -9,7 +9,7 @@ namespace TerraEngineer.entities.objects.puzzle.switchable_group;
 public partial class SwitchableGroup : Node2D
 {
     [ExportToolButton("Update group palettes")]
-    public Callable MyToolButton => Callable.From(updateGroupPalette);
+    public Callable MyToolButton => Callable.From(() => CallDeferred(nameof(updateGroupPalette)));
 
     [Export] private GlobalEvents overrideOpenOn = GlobalEvents.None;
     
@@ -19,7 +19,7 @@ public partial class SwitchableGroup : Node2D
         set
         {
             _groupPalette = value;
-            updateGroupPalette();
+            CallDeferred(nameof(updateGroupPalette));
         }
     }
     private Texture2D _groupPalette;
@@ -30,7 +30,7 @@ public partial class SwitchableGroup : Node2D
         set
         {
             _blocksGroupPalette = value;
-            updateGroupPalette();
+            CallDeferred(nameof(updateGroupPalette));
         }
     }
     private Texture2D _blocksGroupPalette;
@@ -87,16 +87,19 @@ public partial class SwitchableGroup : Node2D
         
         foreach (var node in SwitcherGroups)
         {
-            SwitcherGroup switcherGroup = (SwitcherGroup)node;
-            if (!switcherGroup.IsInit)
+            // Cast the Node2D to SwitcherGroup - if it has the script, this will work
+            if (node is SwitcherGroup switcherGroup)
             {
-                switcherGroup.Init(this);
-            }
-            
-            foreach (var switcher in switcherGroup.SwitchersToSwitch)
-            {
-                AnimatedSprite2D sprite = ((Node2D)switcher).GetNodeOrNull<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
-                ((ShaderMaterial)sprite?.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);    
+                if (!switcherGroup.IsInit)
+                {
+                    switcherGroup.Init(this);
+                }
+                
+                foreach (var switcher in switcherGroup.SwitchersToSwitch)
+                {
+                    AnimatedSprite2D sprite = ((Node2D)switcher).GetNodeOrNull<AnimatedSprite2D>(Names.Node.AnimatedSprite2D);
+                    ((ShaderMaterial)sprite?.Material)?.SetShaderParameter(Names.Shader.Palette, _groupPalette);
+                }
             }
         }
     }

@@ -135,6 +135,15 @@ public partial class Fluid : StaticBody2D
 	
 	public override void _Process(double delta)
 	{
+		#if TOOLS
+		if(Engine.IsEditorHint())
+			return;
+		#endif
+		
+		// Safety check for uninitialized export variables
+		if (displayPolygon == null || surfaceLine == null)
+			return;
+		
 		// Don't update visuals if frozen
 		if (_currentBiome == Biomes.Ice)
 		{
@@ -310,6 +319,9 @@ public partial class Fluid : StaticBody2D
 
 	private void changeColors(Biomes biome)
 	{
+		if(surfaceLine == null || displayPolygon == null)
+			return;
+		
 		surfaceLine.DefaultColor = biomeColors[biome].Item1;
 		displayPolygon.Color = biomeColors[biome].Item2;
 	}

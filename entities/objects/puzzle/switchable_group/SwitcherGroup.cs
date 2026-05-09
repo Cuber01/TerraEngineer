@@ -1,3 +1,5 @@
+
+#define SWITCHES_DEBUG
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
