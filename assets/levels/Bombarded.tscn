@@ -38,3 +38,4 @@ position = Vector2(520, 47)
 
 [node name="Plant" parent="." unique_id=1389306202 instance=ExtResource("5_eh5mn")]
 position = Vector2(71, 124)
+currentBiome = 1
