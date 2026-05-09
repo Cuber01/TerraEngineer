@@ -16,14 +16,34 @@ public partial class MovableBlock : Terraformable
     protected bool IsPushed = false;
     protected float PushDirection = 0;
     
+    private bool resolvingEdgeCase = false;
 
     public override void Update(float delta)
     {
         IsPushed = false;
-        CheckIfPushed(Vector2.Left);
-        CheckIfPushed(Vector2.Right);
-
+        
+        // Can't be pushed while falling
+        if (velocity.Y > 0)
+        {
+            if (!resolvingEdgeCase)
+            {
+                velocity.X = 0;
+            }
+            else
+            {
+                resolvingEdgeCase = false;
+            }
+                
+        }
+        else
+        {
+            CheckIfPushed(Vector2.Left);
+            CheckIfPushed(Vector2.Right);
+        }
+        
         HandleVelocity(delta);
+
+        ResolveDownwardPlayerCollision();
         
         CM.UpdateComponents(delta);
         
@@ -43,6 +63,20 @@ public partial class MovableBlock : Terraformable
                     PushDirection = hit.GetNormal().X;
                     PushingSpeed = Math.Abs(player.velocity.X);
                 }
+            }
+        }
+    }
+    
+    // Edgecase when a box falls on the player an the player jumps
+    protected void ResolveDownwardPlayerCollision()
+    {
+        KinematicCollision2D hit = new KinematicCollision2D();
+        if (TestMove(GlobalTransform, Vector2.Down * TestMoveBuffer, hit))
+        {
+            if (hit.GetCollider() is Player)
+            {
+                velocity = velocity with { X = 10 };
+                resolvingEdgeCase = true;
             }
         }
     }

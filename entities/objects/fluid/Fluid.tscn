@@ -1,26 +1,25 @@
 [gd_scene format=3 uid="uid://dk13wckmp5j8x"]
 
 [ext_resource type="Script" uid="uid://4572tf2p8ars" path="res://gfx/fluid/Fluid.cs" id="1_q0vaf"]
-[ext_resource type="PackedScene" uid="uid://cw5pd4wwpyqiq" path="res://gfx/fluid/FluidSpring.tscn" id="2_3iaun"]
+[ext_resource type="PackedScene" uid="uid://cw5pd4wwpyqiq" path="res://gfx/fluid/FluidSpring.tscn" id="2_bi0rs"]
 [ext_resource type="PackedScene" uid="uid://745elekjpiyp" path="res://entities/objects/fluid/TerraformableFluidCaretaker.tscn" id="3_bi0rs"]
 
 [node name="Fluid" type="StaticBody2D" unique_id=455745828 node_paths=PackedStringArray("displayPolygon", "surfaceLine", "collisionShape")]
 z_index = 1
 collision_mask = 0
 script = ExtResource("1_q0vaf")
-fluidSpringScene = ExtResource("2_3iaun")
+fluidSpringScene = ExtResource("2_bi0rs")
 displayPolygon = NodePath("DisplayPolygon")
 surfaceLine = NodePath("SurfaceLine")
 collisionShape = NodePath("Area2D/CollisionShape2D")
 
 [node name="DisplayPolygon" type="Polygon2D" parent="." unique_id=1133375849]
-color = Color(0.68235296, 0.8509804, 0.34117648, 0.6509804)
-polygon = PackedVector2Array(0, 100, 0, 0, 3.5, 0, 7, 0, 10.5, 0, 14, 0, 17.5, 0, 21, 0, 24.5, 0, 28, 0, 31.5, 0, 35, 0, 38.5, 0, 42, 0, 45.5, 0, 49, 0, 52.5, 0, 56, 0, 59.5, 0, 63, 0, 66.5, 0, 70, 0, 73.5, 0, 77, 0, 80.5, 0, 84, 0, 87.5, 0, 91, 0, 94.5, 0, 98, 0, 100, 0, 100, 100)
+color = Color(0.22352941, 0.44705883, 1, 0.4509804)
+polygon = PackedVector2Array(0, 100, 100, 100)
 
 [node name="SurfaceLine" type="Line2D" parent="." unique_id=60308002]
-points = PackedVector2Array(0, 0, 3.5, 0, 7, 0, 10.5, 0, 14, 0, 17.5, 0, 21, 0, 24.5, 0, 28, 0, 31.5, 0, 35, 0, 38.5, 0, 42, 0, 45.5, 0, 49, 0, 52.5, 0, 56, 0, 59.5, 0, 63, 0, 66.5, 0, 70, 0, 73.5, 0, 77, 0, 80.5, 0, 84, 0, 87.5, 0, 91, 0, 94.5, 0, 98, 0, 100, 0)
 width = 1.0
-default_color = Color(0.5686275, 0.85882354, 0.4117647, 1)
+default_color = Color(0.29411766, 0.6784314, 1, 1)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=494408737]
 position = Vector2(0, 2)

@@ -9,10 +9,10 @@ public partial class Mushroom : Terraformable
     
     private void onBodyEntered(Node2D body)
     {
-        Player player = (Player)body;
-        if (player.velocity.Y > 0)
+        Entity e = (Entity)body;
+        if (e.velocity.Y > 0)
         {
-            player.velocity.Y = -BounceVelocity;
+            e.velocity.Y = -BounceVelocity;
         }
     }
     
