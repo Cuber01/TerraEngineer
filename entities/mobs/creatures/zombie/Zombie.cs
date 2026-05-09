@@ -10,6 +10,7 @@ public partial class Zombie : Creature
 {
 	[Export] public RayCast2D IsWallAhead;
 	[Export] private RayCast2D isEnemyAbove;
+	[Export] public RayCast2D IsGroundAhead;
 	[Export] private PackedScene zombieBodyScene;
 	private const float AlertedSpeed = 80;
     
@@ -81,7 +82,7 @@ public partial class Zombie : Creature
 
 		private void unalertedUpdate()
 		{
-			if (Actor.IsWallAhead.IsColliding())
+			if (Actor.IsWallAhead.IsColliding() || !Actor.IsGroundAhead.IsColliding())
 			{
 				Actor.Flip();
 			}

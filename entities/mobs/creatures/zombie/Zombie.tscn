@@ -52,11 +52,12 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Zombie" type="CharacterBody2D" unique_id=344834364 node_paths=PackedStringArray("IsWallAhead", "isEnemyAbove", "CM", "Sprite")]
+[node name="Zombie" type="CharacterBody2D" unique_id=344834364 node_paths=PackedStringArray("IsWallAhead", "isEnemyAbove", "IsGroundAhead", "CM", "Sprite")]
 collision_layer = 4
 script = ExtResource("1_bcpaq")
 IsWallAhead = NodePath("IsWallAhead")
 isEnemyAbove = NodePath("IsEnemyAbove")
+IsGroundAhead = NodePath("IsGroundAhead")
 zombieBodyScene = ExtResource("2_lf67q")
 CM = NodePath("ComponentManager")
 Team = 1
@@ -87,6 +88,10 @@ collision_mask = 9
 target_position = Vector2(0, -20)
 collision_mask = 2
 
+[node name="IsGroundAhead" type="RayCast2D" parent="." unique_id=2072549437]
+position = Vector2(5, 6)
+target_position = Vector2(0, 7)
+
 [node name="ComponentManager" parent="." unique_id=731129293 instance=ExtResource("3_lf67q")]
 
 [node name="MoveComponent" parent="ComponentManager" unique_id=145969847 instance=ExtResource("5_r6jhx")]
@@ -113,7 +118,6 @@ importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_mmmtn")])
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=817091342 instance=ExtResource("4_mmmtn")]
 jumpVelocity = 80.0
-limitThreshold = 40.0
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_onDetectionAreaPlayerEntered"]
 
