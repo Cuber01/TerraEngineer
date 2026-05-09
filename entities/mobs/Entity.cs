@@ -35,7 +35,11 @@ public partial class Entity : CharacterBody2D
     [Export] public DirectionX ExportedFacing
     {
         get => Facing;
-        set => Flip(value);
+        set
+        {
+            if(Engine.IsEditorHint())
+                Flip(value);
+        }
     }
     public DirectionX Facing = DirectionX.Right;
     public Vector2 velocity;

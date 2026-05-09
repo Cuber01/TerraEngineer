@@ -303,7 +303,7 @@ public partial class Fluid : StaticBody2D
 
 	private void onAcidEntered(Entity body)
 	{
-		if (body.CM.HasComponent<Health>())
+		if (body.CM.HasComponent<Health>() && !body.CM.HasComponent<DamageOvertime>())
 		{
 			body.CM.AddComponent(new DamageOvertime());
 		}
