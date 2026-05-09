@@ -17,7 +17,8 @@ public partial class Fluid : StaticBody2D
 		{
 			_size.X = ((int)MathF.Round(value.X / 10f)) * 10;
 			_size.Y = ((int)MathF.Round(value.Y));
-			CallDeferred(nameof(resetSprings));
+			resetSprings();
+			updateDisplayPolygon();
 		}
 	}
 	private Vector2I _size = new Vector2I(100, 100);
@@ -133,13 +134,8 @@ public partial class Fluid : StaticBody2D
 		fluidSprings.Add(springInstance);
 	}
 	
-	public override void _Process(double delta)
+	private void updateDisplayPolygon()
 	{
-		#if TOOLS
-		if(Engine.IsEditorHint())
-			return;
-		#endif
-		
 		// Safety check for uninitialized export variables
 		if (displayPolygon == null || surfaceLine == null)
 			return;
@@ -167,6 +163,16 @@ public partial class Fluid : StaticBody2D
 		
 		displayPolygon.SetPolygon(bodyPoints.ToArray());
 		surfaceLine.SetPoints(surfacePoints.ToArray());
+	}
+	
+	public override void _Process(double delta)
+	{
+		#if TOOLS
+		if(Engine.IsEditorHint())
+			return;
+		#endif
+		
+		updateDisplayPolygon();
 	}
 	
 	private void _onBodyEntered(Node2D body)
