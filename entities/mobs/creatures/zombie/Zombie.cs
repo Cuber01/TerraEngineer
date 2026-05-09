@@ -117,6 +117,7 @@ public partial class Zombie : Creature
 	protected override void FlipEffect()
 	{
 		base.FlipEffect();
+		IsGroundAhead.Position = new Vector2(-IsGroundAhead.Position.X, IsGroundAhead.Position.Y);
 		IsWallAhead.TargetPosition = new Vector2(-IsWallAhead.TargetPosition.X, IsWallAhead.TargetPosition.Y);
 	}
 

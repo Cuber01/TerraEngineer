@@ -57,11 +57,11 @@
 [-2,1,0]
 1,0,-1,-1|b50d9f,,,,||uid://dp5jhjh1qb3dj
 [-1,1,0]
--1,0,1,0|b50d9f,,,,||uid://ddgq2l65g01bg
+-1,0,1,0|b50d9f,,,,||uid://bdqd8uevtg5ob
 [0,1,0]
--1,0,-1,0|b50d9f,,,,||uid://ddgq2l65g01bg
+-1,0,-1,0|b50d9f,,,,||uid://bdqd8uevtg5ob
 [1,1,0]
-1,1,-1,0|b50d9f,,,,||uid://ddgq2l65g01bg
+1,1,-1,0|b50d9f,,,,||uid://bdqd8uevtg5ob
 [-3,2,0]
 -1,0,0,1|b50d9f,,,,||uid://brkqwig4mb8ox
 [-2,2,0]

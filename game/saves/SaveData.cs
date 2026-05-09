@@ -152,8 +152,8 @@ public partial class SaveData : Node
     public static Vector2 StringToVec(String vecString)
     { 
         string[] parts = vecString.Split(',');
-        float x = float.Parse(parts[0].Remove(0,1));
-        float y = float.Parse(parts[1].Remove(parts[1].Length-1,1));
+        float x = float.Parse(parts[0].Trim(" ()[]".ToCharArray()));
+        float y = float.Parse(parts[1].Trim(" ()[]".ToCharArray()));
         return new Vector2(x, y);
     }
 }
