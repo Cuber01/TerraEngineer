@@ -1,0 +1,110 @@
+[gd_scene format=4 uid="uid://cs43ir7fk8nwk"]
+
+[ext_resource type="Script" uid="uid://b3c4wp8n4qx8b" path="res://entities/mobs/projectile/rifle_bullet/RaycastBullet.cs" id="1_jujva"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_onlrp"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_84c17"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="5_q8x5e"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="6_mcmxr"]
+
+[sub_resource type="Resource" id="Resource_milgr"]
+script = ExtResource("2_onlrp")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_8ajxq"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAAAYAAABeAAAAUklGRlYAAABXRUJQVlA4TEoAAAAvI0ABEBcgEEgSW35KMWky7F/YTyCQ4nxGev4DvjUohG0ruhA9nxB2iD5PCrtnMUT0n2CSptqOCVW+iqBxrV9j2OdA4AC8QQPeAw==")
+size_override = Vector2(36, 6)
+
+[sub_resource type="Animation" id="Animation_diilw"]
+length = 0.08
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_onlrp"]
+length = 0.02
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ahuux"]
+_data = {
+&"disappear": SubResource("Animation_diilw"),
+&"idle": SubResource("Animation_onlrp")
+}
+
+[node name="RifleBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("raycast", "CM", "Sprite")]
+script = ExtResource("1_jujva")
+raycast = NodePath("RayCast2D")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_milgr")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1641088731]
+collision_mask = 13
+collide_with_areas = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1599480102]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_8ajxq")
+hframes = 3
+vframes = 2
+frame = 1
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"pending_changes": {
+"source": "res://entities/mobs/projectile/rifle_bullet/rifle-bullet.ase"
+}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://assets/rifle-bullet.ase",
+"source_uid": 4090304422429734173
+}
+metadata/_aseprite_wizard_source_file_hash_ = "27c694d34615c4a7500e9b2fecf5ef39"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=2028501741]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_ahuux")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_84c17")]
+
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=1408906313 instance=ExtResource("5_q8x5e")]
+speed = 500.0
+acceleration = 50.0
+airResistance = 0.0
+
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("6_mcmxr")]
+lifetime = 0.4

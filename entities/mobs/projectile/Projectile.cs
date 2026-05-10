@@ -28,6 +28,11 @@ public partial class Projectile : Entity
     
     private void onBodyEntered(Node2D body)
     {
+       OnHit(body);
+    }
+
+    protected void OnHit(Node2D body)
+    {
         if (body is Entity mob)
         {
             if (mob.Team != Team)
