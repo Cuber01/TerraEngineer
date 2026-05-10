@@ -29,7 +29,7 @@ public partial class PistolGunHandle : AdvancedComponent, IGun
     public override void _Ready()
     {
         guns.Add(CM.GetComponent<Blowtorch>());
-        guns.Add(CM.GetComponent<Shotgun>());
+        guns.Add(CM.GetComponent<Rifle>());
     }
     
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)
