@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_nqiex"]
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Fluid.tscn" id="4_gst5n"]
 [ext_resource type="PackedScene" uid="uid://ndo2lbat23bl" path="res://entities/objects/turbine/Turbine.tscn" id="5_nqiex"]
+[ext_resource type="PackedScene" uid="uid://dgd50a01ilmis" path="res://entities/mobs/creatures/player/Player.tscn" id="6_sqi7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqiex"]
 
@@ -34,6 +35,9 @@ polygon = PackedVector2Array(0, 50, 0, 0, 3.5, 0, 7, 0, 10.5, 0, 14, 0, 17.5, 0,
 [node name="CollisionShape2D" parent="Fluid/TerraformableFluidCaretaker" parent_id_path=PackedInt32Array(455745828, 1661537798) index="0" unique_id=1217634408]
 position = Vector2(1, -47)
 shape = SubResource("RectangleShape2D_nqiex")
+
+[node name="Player" parent="." unique_id=278146221 instance=ExtResource("6_sqi7v")]
+position = Vector2(604, 178)
 
 [editable path="Fluid"]
 [editable path="Fluid/TerraformableFluidCaretaker"]

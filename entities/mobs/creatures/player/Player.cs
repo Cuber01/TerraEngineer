@@ -21,6 +21,8 @@ public enum PlayerTriggers
 
 public partial class Player : Creature
 {
+	[Export] public Node2D PhasePoint;
+	
 	public delegate void InteractedEventHandler();
 	public event InteractedEventHandler Interacted;
 
@@ -28,16 +30,18 @@ public partial class Player : Creature
 	private readonly JumpState jumpState = new JumpState();
 	private readonly WalkState walkState = new WalkState();
 	private readonly IdleState idleState = new IdleState();
+	private readonly PhaseState phaseState = new PhaseState();
 	private readonly NoclipState noclipState = new NoclipState();
 	
 	private StateMachineWithTriggers<Player, PlayerTriggers> fsm;
 	public Controller Controller = new();
 
+	public bool PhasingAllowed = true;
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
 	private const float DoubleJumpVelocityModifier = 0.8f;
-	
+
 	
 	public override void Init()
 	{
@@ -60,6 +64,20 @@ public partial class Player : Creature
 		fsm.AddTransition(jumpState, walkState, () => fsm.IsTriggered(PlayerTriggers.Landed) &&
 		                                              fsm.IsTriggered(PlayerTriggers.PressedMove)
 													  , 1);
+		
+		fsm.AddTransition(idleState, phaseState, () => PhasingAllowed 
+														       && fsm.IsTriggered(PlayerTriggers.PressedJump)  
+															   && Input.IsActionPressed("ui_down")
+														       && !CM.GetComponent<PollingArea>().IsColliding()
+														       && IsOnFloor()
+														       ,1);
+		fsm.AddTransition(jumpState, phaseState, () => PhasingAllowed
+															   && fsm.IsTriggered(PlayerTriggers.PressedJump)  
+		                                                       && Input.IsActionPressed("ui_down")
+		                                                       && !CM.GetComponent<PollingArea>().IsColliding()
+															   && IsOnFloor()
+															   , 1);
+		fsm.AddTransition(phaseState, idleState, () => true);
 		
 		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
 		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
@@ -113,6 +131,7 @@ public partial class Player : Creature
 			{
 				Actor.fsm.FireTrigger(PlayerTriggers.PressedMove);
 			}
+			
 		}
 		
 	}
@@ -214,7 +233,18 @@ public partial class Player : Creature
 		{
 			
 		}
-		
+	}
+	
+	public class PhaseState : State<Player>
+	{
+		public override void Enter()
+		{
+			#if DEBUG_STATE
+			GD.Print("Entered Phase shift.");
+			#endif
+			
+			Actor.GlobalPosition = Actor.PhasePoint.GlobalPosition;
+		}
 	}
 	
 	public class NoclipState : State<Player>
@@ -257,7 +287,7 @@ public partial class Player : Creature
 		#if DEBUG
 		if(Input.IsActionJustPressed("f2"))
 		{
-				fsm.FireTrigger(PlayerTriggers.ToggleNoclip);
+			fsm.FireTrigger(PlayerTriggers.ToggleNoclip);
 		}
 
 		if(Input.IsActionJustPressed("f3"))
@@ -270,10 +300,22 @@ public partial class Player : Creature
 			DialogueManager.ShowDialogueBalloon(ResourceLoader.Load("res://dialogue/radio01.dialogue"), "start");
 		}
 		#endif
+
 		
 		Controller.Update((float)delta);
+
+		// GD.Print("allowed: " + PhasingAllowed);
+		// GD.Print("Jump: "+ fsm.IsTriggered(PlayerTriggers.PressedJump));  
+		// GD.Print("Down: "+ Input.IsActionPressed("ui_down"));  
+		// GD.Print("Not Colliding: " + !CM.GetComponent<PollingArea>().IsColliding());
+		// GD.Print("On Floor: " + IsOnFloor());
+		
 		fsm.Update((float)delta);
 		CM.UpdateComponents((float)delta);
+		
+
+		
+		
 		HandleMove();
 	}
 

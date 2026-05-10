@@ -14,26 +14,30 @@ public partial class PlayerInventory : Component
         { "double_jump", new DoubleJumpItem() },
         { "blowtorch", new BlowtorchItem() },
         {"health_serum", new HealthSerumItem() },
+        {"phase_teleporter", new PhaseTeleporterItem() },
+        {"rifle", new RifleItem() },
         { "green_essence", new EssenceItem(Biomes.Forest) },
         { "blue_essence", new EssenceItem(Biomes.Ice) },
         { "orange_essence", new EssenceItem(Biomes.Desert) },
         { "purple_essence", new EssenceItem(Biomes.Mushroom) },
     };
 
-    private List<StringName> itemsLastRead = new();
+    private List<Item> inventoryItems = new();
     
     public void ActivateItems(Player actor)
     {
-        itemsLastRead = SaveData.ReadInventory();
+        List<StringName> itemsLastRead = SaveData.ReadInventory();
         foreach (StringName item in itemsLastRead)
         {
             fullItemList[item].Activate(actor);
+            inventoryItems.Add(fullItemList[item]);
         }
     }
 
     public void AddUniqueItem(Player actor, StringName name)
     {
         SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, true);
+        inventoryItems.Add(fullItemList[name]);
         
         // Special handling for essences: auto-equip when newly acquired
         if (fullItemList[name] is EssenceItem essenceItem)
@@ -48,9 +52,15 @@ public partial class PlayerInventory : Component
 
     public void AddGenericItem(Player actor, StringName name, int amount)
     {
+        inventoryItems.Add(fullItemList[name]);
         int currentAmount = (int)SaveData.ReadValue(Names.SaveSections.PlayerInventory, name);
         SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, currentAmount + amount);
         fullItemList[name].Activate(actor);
+    }
+    
+    public bool HasItem<T>() where T : Item
+    {
+        return inventoryItems.Exists(x => x is T);
     }
 }
 
@@ -83,6 +93,20 @@ public class BlowtorchItem : Item
     }
 }
 
+public class RifleItem : Item
+{
+    public void Activate(Player actor)
+    {
+    }
+}
+
+public class PhaseTeleporterItem : Item
+{
+    public void Activate(Player actor)
+    {
+        actor.PhasingAllowed = true;
+    }
+}
 
 public class HealthSerumItem : Item
 {

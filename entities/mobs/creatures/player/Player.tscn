@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://coo88mqcbjp6u" path="res://components/basic/player_inventory/PlayerInventoryComponent.tscn" id="11_802vs"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="12_jlvbh"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="13_8611i"]
+[ext_resource type="PackedScene" uid="uid://cdttdqbpagfhk" path="res://components/basic/polling_area/PollingAreaComponent.tscn" id="14_8611i"]
 
 [sub_resource type="Resource" id="Resource_8611i"]
 script = ExtResource("2_jlvbh")
@@ -200,7 +201,7 @@ size = Vector2(7.9, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvbh"]
 size = Vector2(7.8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlvbh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8611i"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -210,12 +211,16 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Player" type="CharacterBody2D" unique_id=278146221 node_paths=PackedStringArray("CM", "Sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1q3sw"]
+size = Vector2(8, 11)
+
+[node name="Player" type="CharacterBody2D" unique_id=278146221 node_paths=PackedStringArray("PhasePoint", "CM", "Sprite")]
 collision_layer = 2
 collision_mask = 33
 slide_on_ceiling = false
 safe_margin = 0.001
 script = ExtResource("1_ldahb")
+PhasePoint = NodePath("PhasePoint")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_8611i")
@@ -261,6 +266,9 @@ libraries/ = SubResource("AnimationLibrary_gxffj")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hoemn")
 
+[node name="PhasePoint" type="Node2D" parent="." unique_id=611037989]
+position = Vector2(0, 20)
+
 [node name="Area2D" type="Area2D" parent="." unique_id=2137969782]
 collision_layer = 0
 
@@ -301,7 +309,6 @@ airResistance = 1.724
 [node name="JumpComponent" parent="ComponentManager" unique_id=1945252795 instance=ExtResource("6_owoq1")]
 jumpVelocity = 112.0
 MaxJumps = 1
-extraJumpsVelocityFactor = 0.5
 
 [node name="HealthComponent" parent="ComponentManager" unique_id=758392570 instance=ExtResource("8_1yb3l")]
 MaxHealth = 10
@@ -312,8 +319,15 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" unique_id=536859350 instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=2142681019 instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jlvbh")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_8611i")])
+
+[node name="PollingAreaComponent" parent="ComponentManager" unique_id=1188318437 instance=ExtResource("14_8611i")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComponentManager/PollingAreaComponent" unique_id=228685804]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_1q3sw")
 
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 
 [editable path="ComponentManager/GunAdvComponent"]
+[editable path="ComponentManager/PollingAreaComponent"]
