@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Godot;
+using TENamespace.advanced.main_gun_wrapper;
+using TENamespace.advanced.shotgun;
 using TENamespace.advanced.terraform_gun;
 using TENamespace.health;
 using TerraEngineer;
@@ -97,6 +99,7 @@ public class RifleItem : Item
 {
     public void Activate(Player actor)
     {
+        actor.CM.GetComponent<GunHandle>().CM.GetComponent<PistolGunHandle>().UnlockGun<Rifle>();
     }
 }
 

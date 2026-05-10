@@ -10,7 +10,7 @@ namespace TENamespace.advanced.main_gun_wrapper;
 public enum PistolGuns
 {
     Blowtorch,
-    Shotgun,
+    Rifle,
 }
 
 public interface IPistolGun
@@ -29,7 +29,6 @@ public partial class PistolGunHandle : AdvancedComponent, IGun
     public override void _Ready()
     {
         guns.Add(CM.GetComponent<Blowtorch>());
-        guns.Add(CM.GetComponent<Rifle>());
     }
     
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)
@@ -59,8 +58,8 @@ public partial class PistolGunHandle : AdvancedComponent, IGun
         PistolGunChanged?.Invoke((PistolGuns)selectedIndex);
     }
 
-    public void UnlockGun(IPistolGun gun)
+    public void UnlockGun<T>() where T : AdvancedComponent, IPistolGun
     {
-        guns.Add(gun);
+        guns.Add(CM.GetComponent<T>());
     }
 }

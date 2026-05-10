@@ -36,7 +36,7 @@ public partial class Player : Creature
 	private StateMachineWithTriggers<Player, PlayerTriggers> fsm;
 	public Controller Controller = new();
 
-	public bool PhasingAllowed = true;
+	public bool PhasingAllowed = false;
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
@@ -297,7 +297,7 @@ public partial class Player : Creature
 		
 		if(Input.IsActionJustPressed("f4"))
 		{
-			DialogueManager.ShowDialogueBalloon(ResourceLoader.Load("res://dialogue/radio01.dialogue"), "start");
+			CM.GetComponent<PlayerInventory>().AddUniqueItem(this, "rifle");
 		}
 		#endif
 
@@ -312,10 +312,6 @@ public partial class Player : Creature
 		
 		fsm.Update((float)delta);
 		CM.UpdateComponents((float)delta);
-		
-
-		
-		
 		HandleMove();
 	}
 
