@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b7jygjsij4v6s"]
+
+[ext_resource type="Script" uid="uid://buxlrp3tafbxy" path="res://components/advanced/rifle/Rifle.cs" id="1_pvjql"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_xvf0c"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="3_i6tri"]
+[ext_resource type="PackedScene" uid="uid://cs43ir7fk8nwk" path="res://entities/mobs/projectile/rifle_bullet/RifleBullet.tscn" id="4_3guej"]
+
+[node name="Rifle" type="Node2D" unique_id=1217266968 node_paths=PackedStringArray("CM")]
+script = ExtResource("1_pvjql")
+CM = NodePath("ComponentManager")
+
+[node name="ComponentManager" parent="." unique_id=1377411698 instance=ExtResource("2_xvf0c")]
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=249825035 instance=ExtResource("3_i6tri")]
+Scene = ExtResource("4_3guej")

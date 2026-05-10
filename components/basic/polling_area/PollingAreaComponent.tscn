@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cdttdqbpagfhk"]
+
+[ext_resource type="Script" uid="uid://dl8c247dciwlq" path="res://components/basic/polling_area/PollingArea.cs" id="1_bi63x"]
+
+[node name="PollingAreaComponent" type="Area2D" unique_id=1188318437]
+script = ExtResource("1_bi63x")
+
+[connection signal="body_entered" from="." to="." method="onBodyEntered"]
+[connection signal="body_exited" from="." to="." method="onBodyExited"]
