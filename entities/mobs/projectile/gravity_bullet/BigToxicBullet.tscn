@@ -33,6 +33,7 @@ size = Vector2(6, 6)
 
 [node name="BigToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_lroih")
+knockbackForce = 50.0
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("AnimatedSprite2D")
@@ -61,6 +62,7 @@ Scene = ExtResource("6_w8uig")
 [node name="GravityComponent" parent="ComponentManager" unique_id=1680854260 instance=ExtResource("8_30est")]
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=336367335 instance=ExtResource("9_hobqm")]
+knockbackForce = 50.0
 
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
 shape = SubResource("RectangleShape2D_d2io3")
