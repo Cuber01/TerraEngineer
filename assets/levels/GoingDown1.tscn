@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="7_t3g3f"]
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/TerraPlant.tscn" id="9_era2v"]
 
+[sub_resource type="Resource" id="Resource_t3g3f"]
+script = ExtResource("5_vd366")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
 [sub_resource type="Resource" id="Resource_sh0o7"]
 script = ExtResource("5_vd366")
 metadata/_custom_type_script = "uid://w784gkp03g63"
@@ -17,10 +21,6 @@ script = ExtResource("5_vd366")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="Resource" id="Resource_4i0cp"]
-script = ExtResource("5_vd366")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_2sl3n"]
 script = ExtResource("5_vd366")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -51,44 +51,44 @@ Size = Vector2(150, 50)
 CurrentBiome = 1
 
 [node name="Plant" parent="." unique_id=1389306202 instance=ExtResource("9_era2v")]
-position = Vector2(245, 148)
+position = Vector2(237, 148)
 currentBiome = 1
 
 [node name="Plant2" parent="." unique_id=1384441657 instance=ExtResource("9_era2v")]
-position = Vector2(97, 108)
+position = Vector2(89, 108)
 currentBiome = 1
 
 [node name="Plant3" parent="." unique_id=1264531598 instance=ExtResource("9_era2v")]
-position = Vector2(278, 267)
+position = Vector2(270, 268)
 currentBiome = 1
 
 [node name="Plant4" parent="." unique_id=836084377 instance=ExtResource("9_era2v")]
-position = Vector2(76, 268)
+position = Vector2(68, 268)
 currentBiome = 1
 
 [node name="Plant5" parent="." unique_id=300437973 instance=ExtResource("9_era2v")]
-position = Vector2(133, 340)
+position = Vector2(125, 340)
 currentBiome = 1
 
 [node name="Plant6" parent="." unique_id=105602444 instance=ExtResource("9_era2v")]
-position = Vector2(226, 324)
+position = Vector2(218, 324)
 currentBiome = 1
 
 [node name="Zombie" parent="." unique_id=344834364 instance=ExtResource("4_xevg4")]
-position = Vector2(262, 266)
-ExportedSpriteWrapper = SubResource("Resource_sh0o7")
+position = Vector2(254, 266)
+ExportedSpriteWrapper = SubResource("Resource_t3g3f")
 
 [node name="Zombie2" parent="." unique_id=1156825943 instance=ExtResource("4_xevg4")]
-position = Vector2(31, 179)
-ExportedSpriteWrapper = SubResource("Resource_e37qj")
+position = Vector2(23, 179)
+ExportedSpriteWrapper = SubResource("Resource_sh0o7")
 
 [node name="Zombie3" parent="." unique_id=1288023741 instance=ExtResource("4_xevg4")]
-position = Vector2(282, 106)
-ExportedSpriteWrapper = SubResource("Resource_4i0cp")
+position = Vector2(274, 106)
+ExportedSpriteWrapper = SubResource("Resource_e37qj")
 
 [node name="Zombie5" parent="." unique_id=596494460 instance=ExtResource("4_xevg4")]
-position = Vector2(62, 106)
-ExportedSpriteWrapper = SubResource("Resource_2sl3n")
+position = Vector2(54, 106)
+ExportedSpriteWrapper = SubResource("Resource_4i0cp")
 
 [node name="SecretRoom" parent="." unique_id=685863141 instance=ExtResource("7_t3g3f")]
 position = Vector2(-8, 0)

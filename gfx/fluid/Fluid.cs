@@ -120,6 +120,11 @@ public partial class Fluid : StaticBody2D
 
 	private void setupCollisions()
 	{
+		#if TOOLS
+		if(Engine.IsEditorHint())
+			return;
+		#endif
+		
 		RectangleShape2D shape = new RectangleShape2D();
 		shape.Size = _size;
 		collisionShape.Position += _size / 2;

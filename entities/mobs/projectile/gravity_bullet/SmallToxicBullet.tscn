@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_bek6k"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_infth"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_mbhvt"]
-[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_xlo8j"]
 
 [sub_resource type="Resource" id="Resource_mbhvt"]
 script = ExtResource("2_mbhvt")
@@ -24,9 +23,6 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlo8j"]
-size = Vector2(4, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bek6k"]
 size = Vector2(2, 2)
 
 [node name="SmallToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
@@ -43,7 +39,7 @@ sprite_frames = SubResource("SpriteFrames_mbhvt")
 [node name="Area2D" type="Area2D" parent="." unique_id=798235926]
 position = Vector2(4.5, 0)
 collision_layer = 0
-collision_mask = 5
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=262930762]
 position = Vector2(-4.5, 0)
@@ -57,12 +53,4 @@ lifetime = 3.0
 [node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("6_mbhvt")]
 maxGravity = 400.0
 
-[node name="ContactDamageComponent" parent="ComponentManager" unique_id=1715882970 instance=ExtResource("7_xlo8j")]
-knockbackForce = 50.0
-
-[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
-shape = SubResource("RectangleShape2D_bek6k")
-
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
-
-[editable path="ComponentManager/ContactDamageComponent"]
