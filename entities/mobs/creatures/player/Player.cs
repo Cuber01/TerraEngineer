@@ -343,10 +343,12 @@ public partial class Player : Creature
 		CM.GetComponent<Jump>().CancelJump();
 	}
 	
-	public void onRoomLoaded(Node level) => updateFrozen = false;
+	public void onRoomLoaded(Node level) => Unfreeze();
+	
 
 	private void onRoomEntered(string roomName, Vector2I playerDirection)
 	{
+		Freeze();
 		float extraForce = RoomTransitionForce;
 		if (playerDirection == Vector2I.Up)
 			extraForce *= RoomTransitionForceUpModifier;

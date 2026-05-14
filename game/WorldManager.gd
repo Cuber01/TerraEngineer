@@ -26,6 +26,7 @@ func start():
 	MetSys.set_save_data();
 	extPlayer.global_position = Vector2(11, 131);
 	set_player(extPlayer);
+	player.Freeze();
 	add_module("RoomTransitions.gd");
 	connect("room_loaded", on_room_loaded);
 	MetSys.connect("room_changed", player.onRoomEntered)

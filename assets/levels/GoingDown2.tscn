@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Fluid.tscn" id="3_k2nvr"]
 [ext_resource type="PackedScene" uid="uid://cbvywcak0dwtr" path="res://entities/objects/plant/TerraPlant.tscn" id="4_tux4d"]
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="5_c8hae"]
+[ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="6_ojx16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqhym"]
+size = Vector2(48, 46)
 
 [node name="Level" type="Node2D" unique_id=15680763]
 metadata/background_color = Color(0.078431375, 0.02745098, 0.08627451, 1)
@@ -162,7 +166,7 @@ tile_set = ExtResource("1_iqhym")
 [node name="Fluid" parent="." unique_id=455745828 instance=ExtResource("3_k2nvr")]
 position = Vector2(91, 554)
 Size = Vector2(100, 40)
-fluidSpringScene = null
+CurrentBiome = 1
 
 [node name="Moth" parent="." unique_id=1583262676 instance=ExtResource("5_c8hae")]
 position = Vector2(76, 273)
@@ -170,7 +174,7 @@ MarginAroundPoint = 50.0
 TimeUntilBored = 50.0
 
 [node name="Moth2" parent="." unique_id=1315795140 instance=ExtResource("5_c8hae")]
-position = Vector2(236, 464)
+position = Vector2(243, 461)
 MarginAroundPoint = 50.0
 TimeUntilBored = 50.0
 
@@ -183,3 +187,16 @@ TimeUntilBored = 50.0
 position = Vector2(182, 171)
 MarginAroundPoint = 50.0
 TimeUntilBored = 50.0
+
+[node name="SecretRoom" parent="." unique_id=685863141 instance=ExtResource("6_ojx16")]
+
+[node name="FakeLayer" parent="SecretRoom" index="0" unique_id=866630467]
+position = Vector2(-1, -1)
+tile_map_data = PackedByteArray("AAADACEAAAADAAUAAAADACIAAAADAAUAAAADACMAAAADAAUAAAADACQAAAADAAUAAAADACUAAAADAAUAAAADACYAAAADAAUAAAADACAAAAADAAUAAAACACAAAAAGAAUAAAABACAAAAAGAAUAAAAAACAAAAAGAAUAAAD//yAAAAAGAAUAAAD+/yAAAAAGAAUAAAD+/yEAAAAGAAUAAAD+/yIAAAAGAAUAAAD+/yMAAAAGAAUAAAD+/yQAAAAGAAUAAAD+/yUAAAAGAAUAAAD+/yYAAAAGAAUAAAD//yYAAAAGAAUAAAAAACYAAAAGAAUAAAABACYAAAAGAAUAAAACACYAAAAGAAUAAAACACUAAAAGAAUAAAACACQAAAAGAAUAAAACACMAAAAGAAUAAAACACIAAAAGAAUAAAACACEAAAAGAAUAAAABACUAAAAGAAUAAAABACQAAAAGAAUAAAABACMAAAAGAAUAAAABACIAAAAGAAUAAAABACEAAAAGAAUAAAAAACEAAAAGAAUAAAAAACIAAAAGAAUAAAAAACMAAAAGAAUAAAAAACQAAAAGAAUAAAAAACUAAAAGAAUAAAD//yUAAAAGAAUAAAD//yQAAAAGAAUAAAD//yMAAAAGAAUAAAD//yIAAAAGAAUAAAD//yEAAAAGAAUAAAA=")
+tile_set = ExtResource("1_iqhym")
+
+[node name="CollisionShape2D" parent="SecretRoom" index="1" unique_id=1783871849]
+position = Vector2(7, 280)
+shape = SubResource("RectangleShape2D_iqhym")
+
+[editable path="SecretRoom"]

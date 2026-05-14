@@ -74,44 +74,44 @@ public partial class Fluid : StaticBody2D
 	{
 		foreach (FluidSpring spring in fluidSprings)
 		{
-			spring.QueueFree();
+			spring.CallDeferred(Node.MethodName.QueueFree);
 		}
 		fluidSprings.Clear();
-		
+
 		setupSprings();
 	}
 
 	private void setupSprings()
 	{
 		createFluidSpring(new Vector2(0, 0)); // Left coast
-		
+
 		int springsAmount = (int)Math.Ceiling( (_size.X / 10.0) * springsAmountPer10Px );
-		
+
 		// How much space is needed to distribute the 2 springs we spawn outside of loop
 		// Loss of fraction unavoidable here
 		// ReSharper disable once PossibleLossOfFraction
 		float spaceTaken = (_size.X / springsAmount - 2) * 2;
-		
+
 		float spaceBetween = (_size.X - spaceTaken) / (springsAmount-2);
-		
+
 		float xOffset = spaceBetween;
 		for (int i = 0; i < springsAmount-2; i++)
 		{
 			createFluidSpring(new Vector2(xOffset, 0));
-			
+
 			xOffset += spaceBetween;
 		}
-		
+
 		createFluidSpring(new Vector2(_size.X, 0)); // Right coast
-		
+
 		#if TOOLS
 		if(Engine.IsEditorHint())
 			return;
 		#endif
-		
+
 		for (int i = 0; i < springsAmount; i++)
 		{
-			fluidSprings[i].SetupNeighbors( 
+			fluidSprings[i].SetupNeighbors(
 				i-1 >= 0 ? fluidSprings[i-1] : null,
 				i+1 < fluidSprings.Count ? fluidSprings[i+1] : null
 				);
@@ -135,7 +135,7 @@ public partial class Fluid : StaticBody2D
 	{
 		FluidSpring springInstance = (FluidSpring)fluidSpringScene.Instantiate();
 		springInstance.Position = position;
-		AddChild(springInstance);
+		CallDeferred(Node.MethodName.AddChild, springInstance);
 		fluidSprings.Add(springInstance);
 	}
 	
@@ -157,15 +157,15 @@ public partial class Fluid : StaticBody2D
 		List<Vector2> bodyPoints = new List<Vector2>();
 		List<Vector2> surfacePoints = new List<Vector2>();
 		bodyPoints.Add(new  Vector2(0, _size.Y));
-		
+
 		foreach (FluidSpring spring in fluidSprings)
 		{
 			bodyPoints.Add(spring.Position);
 			surfacePoints.Add(spring.Position);
 		}
-		
-		bodyPoints.Add(new  Vector2(_size.X, _size.Y));
-		
+
+		bodyPoints.Add(new Vector2(_size.X, _size.Y));
+
 		displayPolygon.SetPolygon(bodyPoints.ToArray());
 		surfaceLine.SetPoints(surfacePoints.ToArray());
 	}
