@@ -29,7 +29,7 @@ public partial class Moth : FlyingCreature
     {
         public override void Update( float dt)
         {
-            Actor.CM.GetComponent<FreeFly>().FlyToPoint(Actor.Player.GlobalPosition, dt);  
+            Actor.CM.GetComponent<FreeFly>().FlyToPoint(Actor.Player.GlobalPosition, dt);
         }
     }
     

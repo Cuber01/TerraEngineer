@@ -53,6 +53,5 @@ public abstract partial class FlyingCreature : Creature
     protected void onDetectionAreaBodyExited(Entity body)
     {
         SeesPlayer = false;
-        fsm.FireTrigger(GenericCreatureTriggers.EnemyLost);
     }
 }
