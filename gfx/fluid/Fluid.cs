@@ -42,6 +42,7 @@ public partial class Fluid : StaticBody2D
 	[Export] private CollisionShape2D collisionShape;
 	
 	private List<FluidSpring> fluidSprings = new List<FluidSpring>();
+	private List<Vector2> previewSpringPositions = new List<Vector2>();
 	
 	// (Color, Color) = (Surface, Body)
 	private readonly Dictionary<Biomes, (Color, Color)> biomeColors = new ()
@@ -72,6 +73,13 @@ public partial class Fluid : StaticBody2D
 	
 	private void resetSprings()
 	{
+		if (Engine.IsEditorHint())
+		{
+			previewSpringPositions.Clear();
+			setupSpringsEditor();
+			return;
+		}
+		
 		foreach (FluidSpring spring in fluidSprings)
 		{
 			spring.CallDeferred(Node.MethodName.QueueFree);
@@ -81,23 +89,42 @@ public partial class Fluid : StaticBody2D
 		setupSprings();
 	}
 
+	private void setupSpringsEditor()
+	{
+		previewSpringPositions.Clear();
+		previewSpringPositions.Add(new Vector2(0, 0));
+
+		int springsAmount = Math.Max(3, (int)Math.Ceiling((_size.X / 10.0) * springsAmountPer10Px));
+		double spaceTaken = (((double)_size.X / springsAmount) - 2.0) * 2.0;
+		double spaceBetween = (_size.X - spaceTaken) / (springsAmount - 2);
+
+		double xOffset = spaceBetween;
+		for (int i = 0; i < springsAmount - 2; i++)
+		{
+			previewSpringPositions.Add(new Vector2((float)xOffset, 0));
+			xOffset += spaceBetween;
+		}
+
+		previewSpringPositions.Add(new Vector2(_size.X, 0));
+	}
+
 	private void setupSprings()
 	{
 		createFluidSpring(new Vector2(0, 0)); // Left coast
 
-		int springsAmount = (int)Math.Ceiling( (_size.X / 10.0) * springsAmountPer10Px );
+		int springsAmount = Math.Max(3, (int)Math.Ceiling((_size.X / 10.0) * springsAmountPer10Px));
 
 		// How much space is needed to distribute the 2 springs we spawn outside of loop
 		// Loss of fraction unavoidable here
 		// ReSharper disable once PossibleLossOfFraction
-		float spaceTaken = (_size.X / springsAmount - 2) * 2;
+		double spaceTaken = (((double)_size.X / springsAmount) - 2.0) * 2.0;
 
-		float spaceBetween = (_size.X - spaceTaken) / (springsAmount-2);
+		double spaceBetween = (_size.X - spaceTaken) / (springsAmount - 2);
 
-		float xOffset = spaceBetween;
+		double xOffset = spaceBetween;
 		for (int i = 0; i < springsAmount-2; i++)
 		{
-			createFluidSpring(new Vector2(xOffset, 0));
+			createFluidSpring(new Vector2((float)xOffset, 0));
 
 			xOffset += spaceBetween;
 		}
@@ -158,10 +185,13 @@ public partial class Fluid : StaticBody2D
 		List<Vector2> surfacePoints = new List<Vector2>();
 		bodyPoints.Add(new  Vector2(0, _size.Y));
 
-		foreach (FluidSpring spring in fluidSprings)
+		IEnumerable<Vector2> points = Engine.IsEditorHint()
+			? previewSpringPositions
+			: fluidSprings.Select(spring => spring.Position);
+		foreach (Vector2 point in points)
 		{
-			bodyPoints.Add(spring.Position);
-			surfacePoints.Add(spring.Position);
+			bodyPoints.Add(point);
+			surfacePoints.Add(point);
 		}
 
 		bodyPoints.Add(new Vector2(_size.X, _size.Y));
@@ -174,7 +204,9 @@ public partial class Fluid : StaticBody2D
 	{
 		#if TOOLS
 		if(Engine.IsEditorHint())
+		{
 			return;
+		}
 		#endif
 		
 		updateDisplayPolygon();

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using TerraEngineer;
 using GodotDict = Godot.Collections.Dictionary<Godot.StringName, Godot.Variant>;
 using GodotArray = Godot.Collections.Array;
@@ -152,8 +152,8 @@ public partial class SaveData : Node
     public static Vector2 StringToVec(String vecString)
     { 
         string[] parts = vecString.Split(',');
-        float x = float.Parse(parts[0].Trim(" ()[]".ToCharArray()));
-        float y = float.Parse(parts[1].Trim(" ()[]".ToCharArray()));
+        float x = float.Parse(parts[0].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        float y = float.Parse(parts[1].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
         return new Vector2(x, y);
     }
 }

@@ -60,51 +60,51 @@ position = Vector2(160, 282)
 currentBiome = 1
 
 [node name="Plant24" parent="plants" unique_id=1155430729 instance=ExtResource("4_tux4d")]
-position = Vector2(220, 226)
+position = Vector2(221, 226)
 currentBiome = 1
 
 [node name="Plant25" parent="plants" unique_id=1751785728 instance=ExtResource("4_tux4d")]
-position = Vector2(229, 226)
+position = Vector2(230, 226)
 currentBiome = 1
 
 [node name="Plant26" parent="plants" unique_id=1536199552 instance=ExtResource("4_tux4d")]
-position = Vector2(238, 226)
+position = Vector2(239, 226)
 currentBiome = 1
 
 [node name="Plant27" parent="plants" unique_id=339041006 instance=ExtResource("4_tux4d")]
-position = Vector2(247, 226)
+position = Vector2(248, 226)
 currentBiome = 1
 
 [node name="Plant28" parent="plants" unique_id=494761558 instance=ExtResource("4_tux4d")]
-position = Vector2(92, 162)
+position = Vector2(93, 162)
 currentBiome = 1
 
 [node name="Plant29" parent="plants" unique_id=1732562359 instance=ExtResource("4_tux4d")]
-position = Vector2(101, 162)
+position = Vector2(102, 162)
 currentBiome = 1
 
 [node name="Plant30" parent="plants" unique_id=169452522 instance=ExtResource("4_tux4d")]
-position = Vector2(110, 162)
+position = Vector2(111, 162)
 currentBiome = 1
 
 [node name="Plant31" parent="plants" unique_id=24473745 instance=ExtResource("4_tux4d")]
-position = Vector2(119, 162)
+position = Vector2(120, 162)
 currentBiome = 1
 
 [node name="Plant32" parent="plants" unique_id=372132248 instance=ExtResource("4_tux4d")]
-position = Vector2(204, 106)
+position = Vector2(205, 106)
 currentBiome = 1
 
 [node name="Plant33" parent="plants" unique_id=921644938 instance=ExtResource("4_tux4d")]
-position = Vector2(213, 106)
+position = Vector2(214, 106)
 currentBiome = 1
 
 [node name="Plant34" parent="plants" unique_id=1318724750 instance=ExtResource("4_tux4d")]
-position = Vector2(222, 106)
+position = Vector2(223, 106)
 currentBiome = 1
 
 [node name="Plant35" parent="plants" unique_id=1247376422 instance=ExtResource("4_tux4d")]
-position = Vector2(231, 106)
+position = Vector2(232, 106)
 currentBiome = 1
 
 [node name="Plant12" parent="plants" unique_id=1322162962 instance=ExtResource("4_tux4d")]
