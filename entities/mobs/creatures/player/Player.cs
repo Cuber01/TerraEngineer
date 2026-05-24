@@ -327,6 +327,7 @@ public partial class Player : Creature
 		return (Direction4)(int)Facing;
 	}
 
+
 	public override void Die()
 	{
 		if (!Dead)

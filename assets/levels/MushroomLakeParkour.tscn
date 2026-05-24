@@ -71,7 +71,6 @@ tile_set = ExtResource("1_myqyb")
 [node name="Fluid" parent="." unique_id=455745828 instance=ExtResource("5_45mvh")]
 position = Vector2(54, 141)
 Size = Vector2(600, 40)
-fluidSpringScene = null
 
 [node name="UnderwaterZombies" type="Node2D" parent="." unique_id=475344537]
 
