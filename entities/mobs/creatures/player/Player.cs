@@ -57,7 +57,7 @@ public partial class Player : Creature
 		// State machine related
 
 		fsm = new StateMachineWithTriggers<Player, PlayerTriggers>(this, idleState, true);
-		fsm.AddTransition(idleState, walkState, () => fsm.IsTriggered(PlayerTriggers.PressedMove));
+		fsm.AddTransition(idleState, walkState, () => fsm.IsTriggered(PlayerTriggers.PressedMove), 0);
 		fsm.AddTransition(walkState, idleState, () => fsm.IsTriggered(PlayerTriggers.ReleasedMove), 0);
 		
 		fsm.AddTransition(jumpState, idleState, () => fsm.IsTriggered(PlayerTriggers.Landed));
@@ -79,7 +79,7 @@ public partial class Player : Creature
 															   , 1);
 		fsm.AddTransition(phaseState, idleState, () => true);
 		
-		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor());
+		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 1);
 		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 1);
 		
 		// Allow jumping while falling if player has double jump
