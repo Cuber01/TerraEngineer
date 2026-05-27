@@ -47,6 +47,8 @@ var current_layer: int:
 signal cell_changed(new_cell: Vector3i)
 ## Emitted when the player enters a new room, i.e. using [method set_player_position] results in a cell that has a different assigned scene. The new scene is provided as an argument, you can use it to easily make room transitions.
 signal room_changed(new_room: String, player_direction: Vector2i)
+## Emitted after a room transition has fully finished and the player can safely resume movement.
+signal room_transition_finished
 
 ## Emitted when a map cell was added, deleted or modified. This includes cell overrides and MapBuilder updates.
 signal map_updated

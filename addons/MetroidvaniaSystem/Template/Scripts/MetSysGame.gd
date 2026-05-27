@@ -50,6 +50,9 @@ func load_room(path: String):
 	map = _load_map(path)
 	add_child(map)
 	
+	if not map.is_inside_tree():
+		await map.ready
+	
 	MetSys.current_layer = MetSys.get_current_room_instance().get_layer()
 	map_changing = false
 	room_loaded.emit(map)

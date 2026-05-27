@@ -312,7 +312,9 @@ public partial class Player : Creature
 		
 		fsm.Update((float)delta);
 		CM.UpdateComponents((float)delta);
+		
 		HandleMove();
+		
 	}
 
 	public Direction4 GetShootDirection()
@@ -343,9 +345,16 @@ public partial class Player : Creature
 	{
 		CM.GetComponent<Jump>().CancelJump();
 	}
-	
-	public void onRoomLoaded(Node level) => Unfreeze();
-	
+
+	public void onRoomLoaded(Node level)
+	{
+		velocity = Vector2.Zero;
+	}
+
+	public void onRoomTransitionFinished()
+	{
+		Unfreeze();
+	}
 
 	private void onRoomEntered(string roomName, Vector2I playerDirection)
 	{
@@ -355,7 +364,6 @@ public partial class Player : Creature
 			extraForce *= RoomTransitionForceUpModifier;
 		
 		velocity += extraForce * (Vector2)(playerDirection);
-		updateFrozen = true;
 	}
 	
 	public void InvokeInteracted() => Interacted?.Invoke();

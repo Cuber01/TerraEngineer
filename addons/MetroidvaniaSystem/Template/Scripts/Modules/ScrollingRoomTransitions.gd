@@ -67,6 +67,7 @@ func _on_room_changed(target_room: String, player_direction: Vector2i):
 			
 			prev_map.queue_free()
 			game.get_tree().paused = false
+	
 
 func _on_cell_changed(new_cell: Vector3i):
 	#var change := new_cell - _prev_cell
