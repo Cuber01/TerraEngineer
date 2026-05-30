@@ -35,6 +35,7 @@ public partial class SwitchableGroup : Node2D
     }
     private Texture2D _blocksGroupPalette;
 
+    private bool initialized = false;
 
     // Groups of switchers - if one of the groups is switched, all switchables are
     [Export] public Node2D[] SwitcherGroups = Array.Empty<Node2D>();
@@ -63,6 +64,8 @@ public partial class SwitchableGroup : Node2D
         {
             OnSwitch(GroupSwitchedOn);
         }
+
+        initialized = true;
     }
 
     public void OnSwitch(bool switchedOn)
@@ -112,6 +115,8 @@ public partial class SwitchableGroup : Node2D
     
     public override void _ExitTree()
     {
+        if(!initialized) return;
+        
         if(overrideOpenOn != GlobalEvents.None)
             GlobalEventBus.Instance.Unsubscribe(overrideOpenOn, overrideOpen);
     }
