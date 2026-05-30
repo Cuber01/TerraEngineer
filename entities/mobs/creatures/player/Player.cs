@@ -348,7 +348,7 @@ public partial class Player : Creature
 
 	public void onRoomLoaded(Node level)
 	{
-		velocity = Vector2.Zero;
+		//velocity = Vector2.Zero;
 	}
 
 	public void onRoomTransitionFinished()
