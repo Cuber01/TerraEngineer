@@ -40,4 +40,4 @@ todo would be nice:
 - upgrade for blowtorch turning it into a shotgun or flamethrower type of weapon
 
 todo bugs:
-- lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity
+X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity
