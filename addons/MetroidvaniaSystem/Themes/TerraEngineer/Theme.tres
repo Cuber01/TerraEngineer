@@ -5,9 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cebl0efe2kt0t" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Borders/Door3.png" id="3_b7600"]
 [ext_resource type="Texture2D" uid="uid://cyeby1pppqw8t" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Borders/Door4.png" id="4_inwi1"]
 [ext_resource type="Texture2D" uid="uid://c31icc8dtly0e" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/RoomFill.png" id="5_f5o4m"]
+[ext_resource type="Texture2D" uid="uid://b3upw3deryv6l" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/corner.png" id="6_f5o4m"]
 [ext_resource type="Texture2D" uid="uid://bdj2f008uewl8" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/BorderPassage.png" id="8_r4jwx"]
 [ext_resource type="PackedScene" uid="uid://jm00e7eg4gpc" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/PlayerLocation.tscn" id="9_gn6y3"]
 [ext_resource type="Script" uid="uid://b7ofctgav4kq4" path="res://addons/MetroidvaniaSystem/Scripts/MapTheme.gd" id="10_j2g7r"]
+[ext_resource type="Texture2D" uid="uid://dftx55ar8ohqg" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/separator.png" id="10_otk81"]
 [ext_resource type="Texture2D" uid="uid://c62mrym4j2hhq" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/Item.png" id="11_7ls60"]
 [ext_resource type="Texture2D" uid="uid://cc0dia2u6u880" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/CollectedItem.png" id="12_54tsa"]
 [ext_resource type="Texture2D" uid="uid://qp30ichujgjp" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/SaveRoom.png" id="13_33eps"]
@@ -33,4 +35,9 @@ uncollected_item_symbol = 0
 collected_item_symbol = 1
 wall = ExtResource("18_nus2t")
 passage = ExtResource("8_r4jwx")
+separator = ExtResource("10_otk81")
 borders = Array[Texture2D]([ExtResource("1_otk81"), ExtResource("2_oixfk"), ExtResource("3_b7600"), ExtResource("4_inwi1")])
+u_corner = ExtResource("6_f5o4m")
+l_corner = ExtResource("6_f5o4m")
+t_corner = ExtResource("6_f5o4m")
+cross_corner = ExtResource("6_f5o4m")

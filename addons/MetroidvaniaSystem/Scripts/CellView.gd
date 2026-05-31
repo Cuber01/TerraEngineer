@@ -95,6 +95,11 @@ func _draw():
 		return
 	
 	var display_flags: int = (int(discovered == 2) * 255) | _theme.mapped_display
+
+	# Draw the room fill first so transparent parts of separator textures reveal it.
+	var fill_color: Color = cell_data.get_color() if discovered == 2 else _theme.mapped_center_color
+	var bg_size := _draw_size().round()
+	RenderingServer.canvas_item_add_rect(_canvas_item, Rect2(Vector2(), bg_size), fill_color)
 	
 	if bool(display_flags & MetroidvaniaSystem.DISPLAY_CENTER):
 		_draw_texture(_theme.center_texture, cell_data.get_color() if discovered == 2 else _theme.mapped_center_color)
