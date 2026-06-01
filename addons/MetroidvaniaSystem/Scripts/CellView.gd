@@ -15,7 +15,7 @@ var offset: Vector2:
 	set(v):
 		offset = v
 		if _canvas_item.is_valid():
-			var trans := (offset * _draw_size()).round()
+			var trans = (offset * MetSys.getCellSizeOffset()).round()
 			RenderingServer.canvas_item_set_transform(_canvas_item, Transform2D(0, trans))
 
 var _this: RefCounted # hack
@@ -48,7 +48,7 @@ func create_rids():
 	RenderingServer.canvas_item_set_parent(_canvas_item, _parent_item)
 	
 	RenderingServer.canvas_item_set_visible(_canvas_item, visible)
-	var trans := (offset * _draw_size()).round()
+	var trans = (offset * MetSys.getCellSizeOffset()).round()
 	RenderingServer.canvas_item_set_transform(_canvas_item, Transform2D(0, trans))
 	
 	if _theme.use_shared_borders:
@@ -98,7 +98,7 @@ func _draw():
 
 	# Draw the room fill first so transparent parts of separator textures reveal it.
 	var fill_color: Color = cell_data.get_color() if discovered == 2 else _theme.mapped_center_color
-	var bg_size := _draw_size().round()
+	var bg_size = MetSys.getCellSizeOffset().round()
 	RenderingServer.canvas_item_add_rect(_canvas_item, Rect2(Vector2(), bg_size), fill_color)
 	
 	if bool(display_flags & MetroidvaniaSystem.DISPLAY_CENTER):
@@ -126,7 +126,7 @@ func _draw():
 			if symbol >= _theme.symbols.size():
 				push_error("Bad symbol '%s' at '%s'" % [symbol, coords])
 			else:
-				_draw_texture(_theme.symbols[symbol], Color.WHITE, -_theme.symbols[symbol].get_size() * 0.5 + _draw_size() * 0.5)
+				_draw_texture(_theme.symbols[symbol], Color.WHITE, -_theme.symbols[symbol].get_size() * 0.5 + MetSys.getCellSizeOffset() * 0.5)
 
 func _draw_texture(texture: Texture2D, color := Color.WHITE, offset := Vector2(), direction := 0):
 	match direction:
@@ -500,7 +500,7 @@ func _draw_shared_corner(corner_offset: Vector2):
 	# Anchor corner to the gap intersection and snap to integer pixel coordinates.
 	var cell_size: Vector2 = MetSys.CELL_SIZE
 	var core_pos := Vector2(cell_size.x, cell_size.y)
-	var corner_pos := core_pos + corner_offset * _draw_size()
+	var corner_pos = core_pos + corner_offset * MetSys.getCellSizeOffset()
 	corner_pos = corner_pos.round()
 	_draw_texture(corner_texture, color, corner_pos, corner_rotation)
 
@@ -515,10 +515,6 @@ func _draw_corner(i: int, texture: Texture2D, color: Color):
 			_draw_texture(texture, color, Vector2(), i)
 		MetroidvaniaSystem.U:
 			_draw_texture(texture, color, Vector2(MetSys.CELL_SIZE.x - texture.get_width(), 0), i)
-
-func _draw_size() -> Vector2:
-	# The size used for drawing minimap cells includes a 1px gap between cells.
-	return MetSys.CELL_SIZE + Vector2.ONE
 
 func _rotate(i: int, amount := 1) -> int:
 	return (i + amount) % 4

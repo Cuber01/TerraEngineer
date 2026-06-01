@@ -27,6 +27,10 @@ var editor_plugin: Node
 ## The size of a map cell. Automatically set to the size of [member MapTheme.center_texture]. Read only.
 var CELL_SIZE: Vector2
 
+## To support pixel perfect drawing we add a 1px of offset for each cell to draw a shared 1px wide border
+func getCellSizeOffset() -> Vector2:
+	return CELL_SIZE + Vector2.ONE
+
 var map_data: MapData
 var save_data: MetSysSaveData
 

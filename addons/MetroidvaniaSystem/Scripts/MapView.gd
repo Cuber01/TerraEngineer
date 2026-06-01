@@ -59,10 +59,6 @@ func _init(parent_item: RID) -> void:
 	RenderingServer.canvas_item_set_parent(_canvas_item, parent_item)
 	recreate_cache.call_deferred()
 
-func _cell_draw_size() -> Vector2:
-	# Use a 1px gap between cells in minimap rendering.
-	return MetSys.CELL_SIZE + Vector2.ONE
-
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		RenderingServer.free_rid(_canvas_item)
@@ -161,7 +157,7 @@ func move(offset: Vector2i, new_layer := layer):
 	var element_manager: MetroidvaniaSystem.CustomElementManager = MetSys.settings.custom_elements
 	var element_list: Dictionary[Vector3i, CustomElement] = MetSys.map_data.custom_elements
 	
-	var element_draw_size: Vector2 = _cell_draw_size()
+	var element_draw_size: Vector2 = MetSys.getCellSizeOffset()
 	var element_offset: Vector2 = Vector2(offset) * element_draw_size
 	for coords in _custom_elements_cache.keys():
 		var element: CustomElementInstance = _custom_elements_cache[coords]
@@ -196,7 +192,7 @@ func move_to(coords: Vector3i):
 func _make_custom_element_instance(coords: Vector3i, element: CustomElement) -> CustomElementInstance:
 	var element_instance := CustomElementInstance.new(_canvas_item)
 	element_instance.coords = coords
-	var draw_size: Vector2 = _cell_draw_size()
+	var draw_size: Vector2 = MetSys.getCellSizeOffset()
 	element_instance.offset = (Vector2(-begin + Vector2i(coords.x, coords.y)) * draw_size).round()
 	element_instance.base_element = element
 	_custom_elements_cache[coords] = element_instance
@@ -220,7 +216,7 @@ func update_all():
 		var texture_size := empty_texture.get_size()
 		for y in size.y:
 			for x in size.x:
-				var pos := (Vector2(x, y) * _cell_draw_size()).round()
+				var pos = (Vector2(x, y) * MetSys.getCellSizeOffset()).round()
 				RenderingServer.canvas_item_add_texture_rect(_canvas_item, Rect2(pos, texture_size), texture_rid)
 
 ## Updates a specific cell. Prints error if no cell with the given [param coords] is visible. See also [method update_all].
@@ -313,6 +309,6 @@ class CustomElementInstance:
 		
 		var size := base_element.size
 		var element_rect := Rect2i(coords.x, coords.y, size.x, size.y)
-		# Nested class cannot call MapView methods, compute draw size explicitly here.
-		var draw_size: Vector2 = MetSys.CELL_SIZE + Vector2.ONE
+		
+		var draw_size: Vector2 = MetSys.getCellSizeOffset()
 		MetSys.settings.custom_elements.draw_element(canvas_item, coords, base_element.name, offset, Vector2(element_rect.size) * draw_size, base_element.data)

@@ -91,20 +91,24 @@ func _on_cell_changed(new_cell: Vector3i):
 	_update_drawer_position()
 
 func _update_drawer_position():
+	var draw_size := MetSys.getCellSizeOffset()
 	if smooth_scroll:
-		var new_position := -(MetSys.exact_player_position / MetSys.settings.in_game_cell_size).posmod(1) * MetSys.CELL_SIZE + MetSys.CELL_SIZE * 0.5
+		var new_position := -(MetSys.exact_player_position / MetSys.settings.in_game_cell_size).posmod(1) * draw_size + draw_size * 0.5
+		# snap drawer position for pixel-perfect rendering
+		new_position = new_position.round()
 		if new_position != _drawer.position:
 			if smooth_scroll:
-				_drawer.position = new_position - MetSys.CELL_SIZE
+				_drawer.position = (new_position - draw_size).round()
 			else:
 				_drawer.position = new_position
 	
 	if _player_location:
 		if layer == MetSys.current_layer:
 			_player_location.show()
-			_player_location.offset = -Vector2(center) * MetSys.CELL_SIZE + MetSys.CELL_SIZE * Vector2(area / 2)
+			var base_offset := -Vector2(center) * draw_size + draw_size * Vector2(area / 2)
 			if smooth_scroll:
-				_player_location.offset += MetSys.CELL_SIZE
+				base_offset += draw_size
+			_player_location.offset = base_offset.round()
 		else:
 			_player_location.hide()
 

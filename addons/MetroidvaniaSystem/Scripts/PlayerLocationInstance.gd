@@ -16,8 +16,10 @@ func _notification(what: int) -> void:
 
 func _process(delta: float) -> void:
 	var last_player_position_2d := Vector2(MetSys.last_player_position.x, MetSys.last_player_position.y)
-	var player_position := last_player_position_2d * MetSys.CELL_SIZE + MetSys.CELL_SIZE / 2
+	var draw_size := MetSys.CELL_SIZE + Vector2.ONE
+	var player_position := last_player_position_2d * draw_size + draw_size * 0.5
 	if exact:
-		player_position += (MetSys.exact_player_position / MetSys.settings.in_game_cell_size).posmod(1) * MetSys.CELL_SIZE - MetSys.CELL_SIZE * 0.5
-	
-	position = player_position + offset
+		player_position += (MetSys.exact_player_position / MetSys.settings.in_game_cell_size).posmod(1) * draw_size - draw_size * 0.5
+
+	# Snap to integer pixels for pixel-perfect rendering and nudge by (-1,-1)
+	position = (player_position + offset).round() + Vector2(-1, -1)
