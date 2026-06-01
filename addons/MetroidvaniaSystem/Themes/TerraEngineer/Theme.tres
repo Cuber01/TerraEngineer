@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://jm00e7eg4gpc" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/PlayerLocation.tscn" id="9_gn6y3"]
 [ext_resource type="Script" uid="uid://b7ofctgav4kq4" path="res://addons/MetroidvaniaSystem/Scripts/MapTheme.gd" id="10_j2g7r"]
 [ext_resource type="Texture2D" uid="uid://dftx55ar8ohqg" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/separator.png" id="10_otk81"]
-[ext_resource type="Texture2D" uid="uid://c62mrym4j2hhq" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/Item.png" id="11_7ls60"]
-[ext_resource type="Texture2D" uid="uid://cc0dia2u6u880" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/CollectedItem.png" id="12_54tsa"]
-[ext_resource type="Texture2D" uid="uid://qp30ichujgjp" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/SaveRoom.png" id="13_33eps"]
-[ext_resource type="Texture2D" uid="uid://bv1fuufw4bis7" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/RechargeRoom.png" id="14_w4j67"]
-[ext_resource type="Texture2D" uid="uid://p6byjrcep0kh" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/NavigationRoom.png" id="15_g6d4h"]
-[ext_resource type="Texture2D" uid="uid://b0foxighsnl0n" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/Ship.png" id="16_354te"]
-[ext_resource type="Texture2D" uid="uid://bnyh1h4m7qiqs" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/Boss.png" id="17_sdl6u"]
+[ext_resource type="Texture2D" uid="uid://hqq6icbflllp" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/uncollected.png" id="11_otk81"]
+[ext_resource type="Texture2D" uid="uid://cx060iakd8yri" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/collected.png" id="12_oixfk"]
+[ext_resource type="Texture2D" uid="uid://bbl6hwm02n4ns" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/heal.png" id="13_b7600"]
+[ext_resource type="Texture2D" uid="uid://b1dpixcnrgkb1" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/heart.png" id="14_inwi1"]
+[ext_resource type="Texture2D" uid="uid://ba766go3v71wq" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/save.png" id="15_lxdtv"]
+[ext_resource type="Texture2D" uid="uid://rly0nwx71xbg" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/boss.png" id="16_e7c5j"]
+[ext_resource type="Texture2D" uid="uid://d381eoa77c4uq" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/bang.png" id="17_0mla6"]
 [ext_resource type="Texture2D" uid="uid://q0b38erpbso0" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/BorderWall.png" id="18_nus2t"]
 
 [resource]
@@ -30,7 +30,7 @@ default_center_color = Color(1, 0, 1, 1)
 mapped_center_color = Color(0.45098, 0.443137, 0.45098, 1)
 default_border_color = Color(1, 1, 1, 1)
 mapped_border_color = Color(1, 1, 1, 1)
-symbols = Array[Texture2D]([ExtResource("11_7ls60"), ExtResource("12_54tsa"), ExtResource("13_33eps"), ExtResource("14_w4j67"), ExtResource("15_g6d4h"), ExtResource("16_354te"), ExtResource("17_sdl6u")])
+symbols = Array[Texture2D]([ExtResource("11_otk81"), ExtResource("12_oixfk"), ExtResource("13_b7600"), ExtResource("14_inwi1"), ExtResource("15_lxdtv"), ExtResource("16_e7c5j"), ExtResource("17_0mla6")])
 uncollected_item_symbol = 0
 collected_item_symbol = 1
 wall = ExtResource("18_nus2t")
