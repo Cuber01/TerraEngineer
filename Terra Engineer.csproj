@@ -16,4 +16,10 @@
     <Content Include="shaders\blink.gdshader" />
     <Content Include="shaders\palette_swap.gdshader" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove=".godot\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove=".godot\**" />
+  </ItemGroup>
 </Project>
