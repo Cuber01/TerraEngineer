@@ -46,7 +46,8 @@ func refresh():
 	on_layer_changed(current_layer)
 
 func get_cursor_pos() -> Vector2i:
-	var pos := (map_overlay.get_local_mouse_position() - MetSys.CELL_SIZE / 2).snapped(MetSys.CELL_SIZE) / MetSys.CELL_SIZE as Vector2i - map_offset
+	var padded_cell_size := MetSys.getCellSizeOffset()
+	var pos := (map_overlay.get_local_mouse_position() - padded_cell_size / 2).snapped(padded_cell_size) / padded_cell_size as Vector2i - map_offset
 	return pos
 
 func on_layer_changed(l: int):
@@ -70,7 +71,7 @@ func setup_new_layer(layer: MapView):
 	pass
 
 func on_recenter_view() -> void:
-	map_offset = map_overlay.size * 0.5 / MetSys.CELL_SIZE
+	map_offset = map_overlay.size * 0.5 / MetSys.getCellSizeOffset()
 	update_map_position()
 	map_overlay.queue_redraw()
 
@@ -82,10 +83,13 @@ func on_zoom_changed(new_zoom: float):
 	update_map_position()
 
 func _on_overlay_input(event: InputEvent) -> void:
+	if not event is InputEventMouseMotion:
+		if not event is InputEventMouseButton:
+			return
+	
 	if event is InputEventMouseMotion:
 		var zoomed_overlay := map_overlay.size / map.scale
 		var real_mouse := event.position * map.scale as Vector2
-		
 		if view_drag != Vector4():
 			if event.position.x >= zoomed_overlay.x:
 				map_view_container.warp_mouse(Vector2(event.position.x - zoomed_overlay.x, real_mouse.y))
@@ -93,23 +97,19 @@ func _on_overlay_input(event: InputEvent) -> void:
 			elif event.position.x < 0:
 				map_view_container.warp_mouse(Vector2(map_overlay.size.x + event.position.x, real_mouse.y))
 				view_drag.x += zoomed_overlay.x
-			
 			if event.position.y >= zoomed_overlay.y:
 				map_view_container.warp_mouse(Vector2(real_mouse.x, event.position.y - zoomed_overlay.y))
 				view_drag.y -= zoomed_overlay.y
 			elif event.position.y < 0:
 				map_view_container.warp_mouse(Vector2(real_mouse.x, map_overlay.size.y + event.position.y))
 				view_drag.y += zoomed_overlay.y
-			
-			map_offset = Vector2(view_drag.z, view_drag.w) + (map_overlay.get_local_mouse_position() - Vector2(view_drag.x, view_drag.y)) / MetSys.CELL_SIZE
+			map_offset = Vector2(view_drag.z, view_drag.w) + (map_overlay.get_local_mouse_position() - Vector2(view_drag.x, view_drag.y)) / (MetSys.CELL_SIZE + Vector2.ONE)
 			update_map_position()
 			map_overlay.queue_redraw()
 		else:
 			map_overlay.queue_redraw()
-		
 		_update_status_label()
-	
-	if event is InputEventMouseButton:
+	elif event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MIDDLE:
 			if event.pressed:
 				view_drag.x = map_overlay.get_local_mouse_position().x
@@ -123,8 +123,9 @@ func _on_overlay_input(event: InputEvent) -> void:
 				var prev_mouse := map.get_local_mouse_position()
 				zoom_slider.value += zoom_slider.step * (-1 if event.button_index == MOUSE_BUTTON_WHEEL_DOWN else 1)
 				var shift := map.get_local_mouse_position() - prev_mouse
-				map_offset += Vector2i(shift / MetSys.CELL_SIZE)
+				map_offset += Vector2i(shift / (MetSys.CELL_SIZE + Vector2.ONE))
 				update_map_position()
+				map_overlay.queue_redraw()
 
 func _update_status_label():
 	status_label.show()
@@ -151,7 +152,8 @@ func _on_overlay_draw() -> void:
 	pass
 
 func update_map_position():
-	map.position = Vector2(map_offset - Vector2i.ONE * MetSys.settings.map_extents) * MetSys.CELL_SIZE * map.scale
+	var padded_cell_size := MetSys.CELL_SIZE + Vector2.ONE
+	map.position = Vector2(map_offset - Vector2i.ONE * MetSys.settings.map_extents) * padded_cell_size * map.scale
 
 func get_assigned_scene_display(assigned_scene: String) -> String:
 	if assigned_scene.begins_with("uid://"):

@@ -99,7 +99,8 @@ func _on_overlay_draw() -> void:
 	if is_part_of_edited_scene():
 		return
 	
-	map_overlay.draw_set_transform(Vector2(map_offset) * MetSys.CELL_SIZE)
+	var padded_cell_size := MetSys.getCellSizeOffset()
+	map_overlay.draw_set_transform(Vector2(map_offset) * padded_cell_size)
 	
 	var sub := get_current_sub_editor()
 	sub.top_draw = Callable()
@@ -115,9 +116,10 @@ func _on_grid_draw() -> void:
 	if MetSys.settings.theme.empty_space_texture:
 		return
 	
-	for x in ceili(grid.size.x / MetSys.CELL_SIZE.x):
-		for y in ceili(grid.size.y / MetSys.CELL_SIZE.y):
-			grid.draw_rect(Rect2(Vector2(x, y) * MetSys.CELL_SIZE, MetSys.CELL_SIZE), Color(Color.WHITE, 0.1), false)
+	var padded_cell_size := MetSys.CELL_SIZE + Vector2.ONE
+	for x in ceili(grid.size.x / padded_cell_size.x):
+		for y in ceili(grid.size.y / padded_cell_size.y):
+			grid.draw_rect(Rect2(Vector2(x, y) * padded_cell_size, padded_cell_size), Color(Color.WHITE, 0.1), false)
 
 func on_zoom_changed(new_zoom: float):
 	super(new_zoom)

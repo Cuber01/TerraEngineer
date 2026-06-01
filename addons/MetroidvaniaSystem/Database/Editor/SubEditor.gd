@@ -42,19 +42,21 @@ func _editor_input(event: InputEvent):
 	pass
 
 func _editor_draw(map_overlay: CanvasItem):
+	var padded_cell_size := MetSys.getCellSizeOffset()
+	
 	if highlighted_border == -1:
 		for p in highlighted_room:
-			map_overlay.draw_rect(Rect2(Vector2(p.x, p.y) * MetSys.CELL_SIZE, MetSys.CELL_SIZE), theme_cache.highlighted_room)
+			map_overlay.draw_rect(Rect2(Vector2(p.x, p.y) * padded_cell_size, padded_cell_size), theme_cache.highlighted_room)
 	
 	if drag_from == Vector2i.MAX:
 		if use_cursor and editor.cursor_inside and (not room_only_cursor or get_cell_at_cursor()):
-			map_overlay.draw_rect(Rect2(get_cursor_pos() as Vector2 * MetSys.CELL_SIZE, MetSys.CELL_SIZE), theme_cache.cursor_color, false, 2)
+			map_overlay.draw_rect(Rect2(get_cursor_pos() as Vector2 * padded_cell_size, padded_cell_size), theme_cache.cursor_color, false, 2)
 	else:
 		var rect := get_rect_between(drag_from, get_cursor_pos())
-		top_draw = func(map_overlay: CanvasItem): map_overlay.draw_string(get_theme_font(&"font", &"Label"), Vector2(get_cursor_pos()) * MetSys.CELL_SIZE + MetSys.CELL_SIZE * Vector2.UP * 0.5, "%d x %d" % [rect.size.x, rect.size.y])
+		top_draw = func(map_overlay: CanvasItem): map_overlay.draw_string(get_theme_font(&"font", &"Label"), Vector2(get_cursor_pos()) * padded_cell_size + padded_cell_size * Vector2.UP * 0.5, "%d x %d" % [rect.size.x, rect.size.y])
 		
-		rect.position *= MetSys.CELL_SIZE
-		rect.size *= MetSys.CELL_SIZE
+		rect.position *= padded_cell_size
+		rect.size *= padded_cell_size
 		map_overlay.draw_rect(rect, theme_cache.cursor_color, false, 2)
 	
 	if highlighted_border > -1:
@@ -68,15 +70,16 @@ func _editor_draw(map_overlay: CanvasItem):
 						draw_border_highlight(map_overlay, Vector2(p.x, p.y), i)
 
 func draw_border_highlight(map_overlay: CanvasItem, pos: Vector2, border: int):
+		var padded_cell_size := MetSys.CELL_SIZE + Vector2.ONE
 		match border:
 			MetSys.R:
-				map_overlay.draw_rect(Rect2(pos * MetSys.CELL_SIZE + Vector2(MetSys.CELL_SIZE.x * 0.667, 0), MetSys.CELL_SIZE * Vector2(0.333, 1)), theme_cache.border_highlight)
+				map_overlay.draw_rect(Rect2(pos * padded_cell_size + Vector2(padded_cell_size.x * 0.667, 0), padded_cell_size * Vector2(0.333, 1)), theme_cache.border_highlight)
 			MetSys.D:
-				map_overlay.draw_rect(Rect2(pos * MetSys.CELL_SIZE + Vector2(0, MetSys.CELL_SIZE.y * 0.667), MetSys.CELL_SIZE * Vector2(1, 0.333)), theme_cache.border_highlight)
+				map_overlay.draw_rect(Rect2(pos * padded_cell_size + Vector2(0, padded_cell_size.y * 0.667), padded_cell_size * Vector2(1, 0.333)), theme_cache.border_highlight)
 			MetSys.L:
-				map_overlay.draw_rect(Rect2(pos * MetSys.CELL_SIZE, MetSys.CELL_SIZE * Vector2(0.333, 1)), theme_cache.border_highlight)
+				map_overlay.draw_rect(Rect2(pos * padded_cell_size, padded_cell_size * Vector2(0.333, 1)), theme_cache.border_highlight)
 			MetSys.U:
-				map_overlay.draw_rect(Rect2(pos * MetSys.CELL_SIZE, MetSys.CELL_SIZE * Vector2(1, 0.333)), theme_cache.border_highlight)
+				map_overlay.draw_rect(Rect2(pos * padded_cell_size, padded_cell_size * Vector2(1, 0.333)), theme_cache.border_highlight)
 
 func get_cursor_pos() -> Vector2i:
 	return editor.get_cursor_pos()
