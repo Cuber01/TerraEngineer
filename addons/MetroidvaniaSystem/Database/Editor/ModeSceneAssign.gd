@@ -53,12 +53,13 @@ func _editor_input(event: InputEvent):
 func _editor_draw(map_overlay: CanvasItem):
 	super(map_overlay)
 
+	var padded_cell_size := MetSys.getCellSizeOffset()
 	for coords in MetSys.map_data.assigned_scenes.values():
 		if coords[0].z != editor.current_layer:
 			continue
 		
 		for p in coords:
-			map_overlay.draw_rect(Rect2(Vector2(p.x, p.y) * MetSys.CELL_SIZE, MetSys.CELL_SIZE), theme_cache.assigned_scene)
+			map_overlay.draw_rect(Rect2(Vector2(p.x, p.y) * padded_cell_size, padded_cell_size), theme_cache.assigned_scene)
 
 	if not highlighted_room.is_empty():
 		map_overlay.draw_set_transform_matrix(Transform2D())
