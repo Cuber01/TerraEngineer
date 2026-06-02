@@ -26,6 +26,7 @@ tileNames = null
 
 [node name="PlayerHUD" parent="GUI" unique_id=930722298 instance=ExtResource("3_ljq5a")]
 z_index = 999
+position = Vector2(26, -26)
 
 [node name="Popup" parent="GUI" unique_id=1887763754 instance=ExtResource("5_yo8gm")]
 visible = false
