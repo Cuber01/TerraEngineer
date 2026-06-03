@@ -82,24 +82,50 @@ public static class Names
         public static readonly StringName Dash = "dash";
     }
 
-    public static class Actions
-    {
-        public static readonly StringName Weapon0 = "weapon_0";
-        public static readonly StringName Weapon1 = "weapon_1";
-        public static readonly StringName Weapon2 = "weapon_2";
-        public static readonly StringName Weapon3 = "weapon_3";
-        public static readonly StringName WeaponNext = "weapon_next";
-        public static readonly StringName GunHandleNext = "gunhandle_next";
-        public static readonly StringName Attack = "attack";
-        public static readonly StringName Dash = "dash";
-        public static readonly StringName Jump = "jump";
-        
-        public static readonly StringName GroupWeapon = "GroupWeapon";
-    }
+     public static class Actions
+     {
+         public static readonly StringName Weapon0 = "weapon_0";
+         public static readonly StringName Weapon1 = "weapon_1";
+         public static readonly StringName Weapon2 = "weapon_2";
+         public static readonly StringName Weapon3 = "weapon_3";
+         public static readonly StringName WeaponNext = "weapon_next";
+         public static readonly StringName GunHandleNext = "gunhandle_next";
+         public static readonly StringName Attack = "attack";
+         public static readonly StringName Dash = "dash";
+         public static readonly StringName Jump = "jump";
+         public static readonly StringName OpenMap = "jump";
+         public static readonly StringName Quit = "ui_cancel";
+         
+         public static readonly StringName Up = "ui_up";
+         public static readonly StringName Down = "ui_down";
+         public static readonly StringName Left = "ui_left";
+         public static readonly StringName Right = "ui_right";
+         
+         public static readonly StringName GroupWeapon = "GroupWeapon";
+     }
 
-    public static class Other
-    {
-        public static readonly StringName Start = "start";
-        public static readonly StringName Editor = "editor";
-    }
-}
+     public static class Other
+     {
+         public static readonly StringName Start = "start";
+         public static readonly StringName Editor = "editor";
+     }
+
+     public static class MetSys
+     {
+         public static readonly StringName CurrentLayer = "current_layer";
+         public static readonly StringName LastPlayerPosition = "last_player_position";
+         public static readonly StringName MapData = "map_data";
+         public static readonly StringName GroupCache = "group_cache";
+         public static readonly StringName GroupNames = "group_names";
+
+         public static readonly StringName GetCellSizeOffset = "getCellSizeOffset";
+         public static readonly StringName MakeMapView = "make_map_view";
+         public static readonly StringName AddPlayerLocation = "add_player_location";
+         public static readonly StringName GetCurrentFlatCoords = "get_current_flat_coords";
+         public static readonly StringName Move = "move";
+         public static readonly StringName MoveTo = "move_to";
+         public static readonly StringName UpdateAll = "update_all";
+
+         public static readonly StringName BiomeNotFound = "Biome name not found";
+     }
+ }

@@ -67,13 +67,13 @@ public partial class Player : Creature
 		
 		fsm.AddTransition(idleState, phaseState, () => PhasingAllowed 
 														       && fsm.IsTriggered(PlayerTriggers.PressedJump)  
-															   && Input.IsActionPressed("ui_down")
+															   && Input.IsActionPressed(Names.Actions.Down)
 														       && !CM.GetComponent<PollingArea>().IsColliding()
 														       && IsOnFloor()
 														       ,1);
 		fsm.AddTransition(jumpState, phaseState, () => PhasingAllowed
-															   && fsm.IsTriggered(PlayerTriggers.PressedJump)  
-		                                                       && Input.IsActionPressed("ui_down")
+														   && fsm.IsTriggered(PlayerTriggers.PressedJump)  
+		                                                       && Input.IsActionPressed(Names.Actions.Down)
 		                                                       && !CM.GetComponent<PollingArea>().IsColliding()
 															   && IsOnFloor()
 															   , 1);
@@ -126,7 +126,7 @@ public partial class Player : Creature
 
 		public override void Update(float dt)
 		{
-			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
+			DirectionX moveDir = Actor.Controller.GetAxis(Names.Actions.Left, Names.Actions.Right);
 			if (moveDir != 0)
 			{
 				Actor.fsm.FireTrigger(PlayerTriggers.PressedMove);
@@ -149,7 +149,7 @@ public partial class Player : Creature
 		
 		public override void Update( float dt)
 		{
-			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
+			DirectionX moveDir = Actor.Controller.GetAxis(Names.Actions.Left, Names.Actions.Right);
 			if (moveDir != 0)
 			{
 				Actor.Flip(moveDir);
@@ -180,7 +180,7 @@ public partial class Player : Creature
 		
 		public override void Update(float dt)
 		{
-			DirectionX moveDir = Actor.Controller.GetAxis("ui_left", "ui_right");
+			DirectionX moveDir = Actor.Controller.GetAxis(Names.Actions.Left, Names.Actions.Right);
 			if (moveDir != 0)
 			{
 				Actor.Flip(moveDir);
@@ -257,7 +257,7 @@ public partial class Player : Creature
 
 		public override void Update( float dt)
 		{
-			Vector2 dir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+			Vector2 dir = Input.GetVector(Names.Actions.Left, Names.Actions.Right, Names.Actions.Up, Names.Actions.Down);
 			if (dir != Vector2.Zero)
 			{
 				Actor.Facing = (DirectionX)dir.X;
@@ -319,8 +319,8 @@ public partial class Player : Creature
 
 	public Direction4 GetShootDirection()
 	{
-		Vector2 vector = Input.GetVector("ui_left", "ui_right", 
-										 "ui_down", "ui_up");
+		Vector2 vector = Input.GetVector(Names.Actions.Left, Names.Actions.Right, 
+										 Names.Actions.Down, Names.Actions.Up);
 		if (vector.Y > 0) return Direction4.Up;
 		if (vector.Y < 0) return Direction4.Down;
 		if (vector.X > 0) return Direction4.Right;
