@@ -36,6 +36,7 @@ public partial class Map : Control, IConnectable<Player>
         controller.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
         controller.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
         controller.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
+        
     }
 
     public override void _Process(double delta)
@@ -55,7 +56,18 @@ public partial class Map : Control, IConnectable<Player>
         playerLocation.Set(Names.MetSys.Offset,
             -new Vector2(offset.X, offset.Y) * MetSysApi.GetCellSizeOffset());
         mapView.MoveTo(new Vector3I(offset.X, offset.Y, MetSysApi.CurrentLayer));
-        textLabel.Text = MetSysApi.GetBiomeName(MetSysApi.LastPlayerPosition + MathT.vec2ToVec3(offset-baseOffset) );
+        
+        Vector3I selectedCoords = MetSysApi.LastPlayerPosition + MathT.vec2ToVec3(offset - baseOffset);
+        if (MetSysApi.IsCellDiscovered(selectedCoords))
+        {
+            textLabel.Text = MetSysApi.GetBiomeName(selectedCoords);    
+        }
+        else
+        {
+            textLabel.Text = Names.MetSys.BiomeNotFound;
+        }
+        
+        
         mapView.UpdateAll();
     }
 

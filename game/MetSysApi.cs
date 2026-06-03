@@ -7,6 +7,7 @@ using Godot;
 public static class MetSysApi
 {
     private static GodotObject metSys;
+    private static readonly int biomeCount = 4;
 
     static MetSysApi()
     {
@@ -21,6 +22,33 @@ public static class MetSysApi
     public static Vector2 GetCellSizeOffset()
     {
         return (Vector2)metSys.Call(Names.MetSys.GetCellSizeOffset);
+    }
+    
+    public static bool IsCellDiscovered(Vector3I cellCoords, bool includeMapped = true)
+    {
+        return (bool)metSys.Call(Names.MetSys.IsCellDiscovered, cellCoords, includeMapped);
+    }
+    
+    public static void DiscoverAll()
+    {
+        for(int i = 0; i < biomeCount; i++)
+            DiscoverCellGroup(i);
+    }
+    
+    public static void DiscoverCell(Vector3I cellCoords)
+    {
+        metSys.Call(Names.MetSys.DiscoverCell, cellCoords);
+    }
+    
+    public static void DiscoverCellGroup(int groupId)
+    {
+        metSys.Call(Names.MetSys.DiscoverCellGroup, groupId);
+    }
+    
+    // Explore effect
+    public static void VisitCell(Vector3I cellCoords)
+    {
+        metSys.Call(Names.MetSys.VisitCell, cellCoords);
     }
 
     public static GodotObject MakeMapView(Node wrapperNode, Vector2I minCell, Vector2I maxCell, int layer)

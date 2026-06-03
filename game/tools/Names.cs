@@ -126,6 +126,10 @@ public static class Names
          public static readonly StringName Move = "move";
          public static readonly StringName MoveTo = "move_to";
          public static readonly StringName UpdateAll = "update_all";
+         public static readonly StringName DiscoverCell = "discover_cell";
+         public static readonly StringName IsCellDiscovered = "is_cell_discovered";
+         public static readonly StringName DiscoverCellGroup = "discover_cell_group";
+         public static readonly StringName VisitCell = "discover_cell_group";
          
          public static readonly StringName Offset = "offset";
 

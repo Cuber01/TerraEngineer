@@ -304,6 +304,11 @@ public partial class Player : Creature
 		{
 			CM.GetComponent<PlayerInventory>().AddUniqueItem(this, "rifle");
 		}
+		
+		if(Input.IsActionJustPressed("f5"))
+		{
+			MetSysApi.DiscoverAll();
+		}
 		#endif
 
 		
