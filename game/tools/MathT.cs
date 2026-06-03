@@ -98,6 +98,26 @@ public static class MathT
         
         return Vector2.Zero;
     }
+    
+    public static Vector3I vec2ToVec3(Vector2I vec)
+    {
+        return new Vector3I(vec.X, vec.Y, 0);
+    }
+    
+    public static Vector2I vec3ToVec2(Vector3I vec)
+    {
+        return new Vector2I(vec.X, vec.Y);
+    }
+
+    public static Vector3 vec2ToVec3(Vector2 vec)
+    {
+        return new Vector3(vec.X, vec.Y, 0);
+    }
+    
+    public static Vector2 vec3ToVec2(Vector3 vec)
+    {
+        return new Vector2(vec.X, vec.Y);
+    }
 
     public static float Lerp(float from, float to, float weight, float delta)
     {

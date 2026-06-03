@@ -18,6 +18,8 @@ public partial class Map : Control, IConnectable<Player>
 
     private Node2D playerLocation;
     private Vector2I offset;
+    private Vector2I baseOffset;
+    private Vector2I calculateBaseOffset() => (MetSysApi.GetCurrentFlatCoords() - Size / 2);
 
     public override void _Ready()
     {
@@ -25,10 +27,15 @@ public partial class Map : Control, IConnectable<Player>
         Size = (Vector2I)(GetSize() / MetSysApi.GetCellSizeOffset());
         mapView = MetSysApi.MakeMapView(this, -Size / 2, Size, 0);
         
+        
         playerLocation = MetSysApi.AddPlayerLocation(this);
         controller = new Controller();
         controller.AddAction(Names.Actions.Quit, close);
         controller.AddAction(Names.Actions.OpenMap, close);
+        controller.AddAction(Names.Actions.Left, () => moveOffset(Vector2I.Left));
+        controller.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
+        controller.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
+        controller.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
     }
 
     public override void _Process(double delta)
@@ -36,49 +43,19 @@ public partial class Map : Control, IConnectable<Player>
         controller.Update();
     }
 
-    // TODO this needs to be implemented alongside our controller input system instead of this
-    public override void _Input(InputEvent @event)
+    private void moveOffset(Vector2I extraOffset)
     {
-        if (@event is InputEventKey keyEvent)
-        {
-            if (keyEvent.Pressed)
-            {
-                // Move with arrow keys.
-                Vector2I moveOffset = Vector2I.Zero;
-                    
-                if (keyEvent.Keycode == Key.Left)
-                {
-                    moveOffset = Vector2I.Left;
-                }
-                else if (keyEvent.Keycode == Key.Right)
-                {
-                    moveOffset = Vector2I.Right;
-                }
-                else if (keyEvent.Keycode == Key.Up)
-                {
-                    moveOffset = Vector2I.Up;
-                }
-                else if (keyEvent.Keycode == Key.Down)
-                {
-                    moveOffset = Vector2I.Down;
-                }
-                    
-                if (moveOffset != Vector2I.Zero)
-                {
-                    mapView.Move(moveOffset);
-                    UpdateOffset(new Vector3I(moveOffset.X, moveOffset.Y, 0));
-                }
-            }
-        }
+        mapView.Move(extraOffset);
+        UpdateOffset(extraOffset);
     }
 
-    private void UpdateOffset(Vector3I _extraOffset)
+    private void UpdateOffset(Vector2I extraOffset)
     {
-        offset = MetSysApi.GetCurrentFlatCoords() - Size / 2;
+        offset += extraOffset;
         playerLocation.Set(Names.MetSys.Offset,
             -new Vector2(offset.X, offset.Y) * MetSysApi.GetCellSizeOffset());
         mapView.MoveTo(new Vector3I(offset.X, offset.Y, MetSysApi.CurrentLayer));
-        textLabel.Text = MetSysApi.GetBiomeName(MetSysApi.LastPlayerPosition);
+        textLabel.Text = MetSysApi.GetBiomeName(MetSysApi.LastPlayerPosition + MathT.vec2ToVec3(offset-baseOffset) );
         mapView.UpdateAll();
     }
 
@@ -87,7 +64,9 @@ public partial class Map : Control, IConnectable<Player>
         oldController.SwitchControl(controller);
         Visible = true;
         GetTree().Paused = true; 
-        UpdateOffset(Vector3I.Zero);
+        baseOffset = calculateBaseOffset();
+        offset = baseOffset;
+        UpdateOffset(Vector2I.Zero);
     }
     
     private void close()

@@ -129,6 +129,6 @@ public static class Names
          
          public static readonly StringName Offset = "offset";
 
-         public static readonly StringName BiomeNotFound = "Biome name not found";
+         public static readonly StringName BiomeNotFound = "???";
      }
  }
