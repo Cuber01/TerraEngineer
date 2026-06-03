@@ -292,9 +292,6 @@ position = Vector2(5, 0)
 [node name="PointLeft" parent="ComponentManager/GunAdvComponent" index="3"]
 position = Vector2(-5, 0)
 
-[node name="TerraformGun" parent="ComponentManager/GunAdvComponent/ComponentManager" index="0"]
-position = Vector2(0, -1)
-
 [node name="DashComponent" parent="ComponentManager" unique_id=1541394193 instance=ExtResource("3_ldahb")]
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1676305436 instance=ExtResource("4_1yb3l")]
