@@ -75,7 +75,8 @@ public partial class Map : Control, IConnectable<Player>
     private void UpdateOffset(Vector3I _extraOffset)
     {
         offset = MetSysApi.GetCurrentFlatCoords() - Size / 2;
-        playerLocation.GlobalPosition = -new Vector2(offset.X, offset.Y) * MetSysApi.GetCellSizeOffset();
+        playerLocation.Set(Names.MetSys.Offset,
+            -new Vector2(offset.X, offset.Y) * MetSysApi.GetCellSizeOffset());
         mapView.MoveTo(new Vector3I(offset.X, offset.Y, MetSysApi.CurrentLayer));
         textLabel.Text = MetSysApi.GetBiomeName(MetSysApi.LastPlayerPosition);
         mapView.UpdateAll();

@@ -126,6 +126,8 @@ public static class Names
          public static readonly StringName Move = "move";
          public static readonly StringName MoveTo = "move_to";
          public static readonly StringName UpdateAll = "update_all";
+         
+         public static readonly StringName Offset = "offset";
 
          public static readonly StringName BiomeNotFound = "Biome name not found";
      }
