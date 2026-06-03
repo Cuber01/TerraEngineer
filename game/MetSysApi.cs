@@ -41,7 +41,6 @@ public static class MetSysApi
     public static string GetBiomeName(Vector3I cellCoords)
     {
         GodotObject mapData = metSys.Get(Names.MetSys.MapData).As<GodotObject>();
-        if (mapData == null) return Names.MetSys.BiomeNotFound;
 
         var groupCache = mapData.Get(Names.MetSys.GroupCache).As<Dictionary>();
 
@@ -50,13 +49,10 @@ public static class MetSysApi
             int[] groupsForCell = groupCache[cellCoords].As<int[]>();
             if (groupsForCell != null && groupsForCell.Length > 0)
             {
-                var groupNames = mapData.Get(Names.MetSys.GroupNames).As<Dictionary>();
+                string[] groupNames = mapData.Get(Names.MetSys.GroupNames).As<string[]>();
                 int firstGroupKey = groupsForCell[0];
                 
-                if (groupNames.ContainsKey(firstGroupKey))
-                {
-                    return groupNames[firstGroupKey].AsString();
-                }
+                return groupNames[firstGroupKey];
             }
         }
 
