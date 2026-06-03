@@ -25,7 +25,7 @@ public partial class Popup : Node2D, IPopupable
     
     public override void _Process(double delta)
     {
-        Controller.Update((float)delta);
+        Controller.Update();
     }
     
     public void ShowPopup(string message)

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://game/ui/textbox/Popup.tscn" id="5_yo8gm"]
 [ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://game/ui/dialogue_box/DialogueBalloon.tscn" id="6_fk7ia"]
 [ext_resource type="PackedScene" uid="uid://dch8dyylb7526" path="res://addons/MetroidvaniaSystem/Template/Nodes/Minimap.tscn" id="7_fk7ia"]
-[ext_resource type="PackedScene" uid="uid://bjvxl480aew1q" path="res://game/maps/MapScreen.tscn" id="8_6t0ec"]
+[ext_resource type="PackedScene" uid="uid://bjvxl480aew1q" path="res://game/ui/maps/MapScreen.tscn" id="8_6t0ec"]
 
 [node name="Main" type="Node2D" unique_id=1624566616 node_paths=PackedStringArray("extPlayer")]
 script = ExtResource("1_8gaax")
@@ -25,6 +25,7 @@ tileNames = null
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1075649017]
 
 [node name="MapScreen" parent="GUI" unique_id=1957285136 instance=ExtResource("8_6t0ec")]
+process_mode = 2
 visible = false
 anchors_preset = 0
 anchor_left = 0.0

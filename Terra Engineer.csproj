@@ -22,7 +22,4 @@
   <ItemGroup>
     <EmbeddedResource Remove=".godot\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="game\maps\" />
-  </ItemGroup>
 </Project>

@@ -37,7 +37,7 @@ public partial class DialogueBalloon : Node2D, IPopupable
 
 	public override void _Process(double delta)
 	{
-		Controller.Update((float)delta);
+		Controller.Update();
 	}
 	
 	public void PlayDialogue(Resource dialogue, StringName title)

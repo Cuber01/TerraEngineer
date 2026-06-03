@@ -25,6 +25,9 @@ public partial class Player : Creature
 	
 	public delegate void InteractedEventHandler();
 	public event InteractedEventHandler Interacted;
+	
+	public delegate void OpenMapEventHandler(Controller oldController);
+	public event OpenMapEventHandler OpenMap;
 
 	private readonly DashState dashState = new DashState();
 	private readonly JumpState jumpState = new JumpState();
@@ -51,9 +54,11 @@ public partial class Player : Creature
 		Controller.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
 		Controller.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
 		Controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
-		Controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupWeapon);
+		Controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupMenus);
 		Controller.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
 
+		Controller.AddAction(Names.Actions.OpenMap, () => OpenMap?.Invoke(Controller), Names.Actions.GroupMenus);
+		
 		// State machine related
 
 		fsm = new StateMachineWithTriggers<Player, PlayerTriggers>(this, idleState, true);
@@ -268,7 +273,7 @@ public partial class Player : Creature
 				Actor.CM.GetComponent<Dash>().AttemptDash(Actor.Facing);
 			}
 		
-			Actor.Controller.Update((float)dt);
+			Actor.Controller.Update();
 
 			Actor.velocity = dir * 150;
 		}
@@ -302,7 +307,7 @@ public partial class Player : Creature
 		#endif
 
 		
-		Controller.Update((float)delta);
+		Controller.Update();
 
 		// GD.Print("allowed: " + PhasingAllowed);
 		// GD.Print("Jump: "+ fsm.IsTriggered(PlayerTriggers.PressedJump));  

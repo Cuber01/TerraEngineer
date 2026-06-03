@@ -19,7 +19,7 @@ public class Controller
     // Actions in an exclusive group will be executed only once per update
     private Dictionary<StringName, StringName> exclusiveGroups = new();
 
-    public void Update(float delta)
+    public void Update()
     {
         if (TurnActive)
         {
@@ -29,7 +29,6 @@ public class Controller
         } else if (!active) {
             return;
         }
-        
         
         HashSet<StringName> executedGroups = new();
         

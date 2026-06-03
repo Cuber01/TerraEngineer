@@ -31,6 +31,7 @@ X limit amount of export - replace with const and readonly
 X remove all manual state changes and replace them with triggers
 - prevent event memory leaks - make state exit on death?
 - start using branches
+- change controller code to be event-based instead of polling (_input instead of _update)
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump
