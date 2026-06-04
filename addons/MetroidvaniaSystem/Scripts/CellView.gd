@@ -126,7 +126,7 @@ func _draw():
 			if symbol >= _theme.symbols.size():
 				push_error("Bad symbol '%s' at '%s'" % [symbol, coords])
 			else:
-				_draw_texture(_theme.symbols[symbol], Color.WHITE, -_theme.symbols[symbol].get_size() * 0.5 + MetSys.getCellSizeOffset() * 0.5)
+				_draw_texture(_theme.symbols[symbol], Color.WHITE, -_theme.symbols[symbol].get_size() * 0.5 + MetSys.getCellSizeOffset() * 0.5) # HERE OFFSET?
 
 func _draw_texture(texture: Texture2D, color := Color.WHITE, offset := Vector2(), direction := 0):
 	match direction:

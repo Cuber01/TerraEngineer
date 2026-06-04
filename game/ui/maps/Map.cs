@@ -20,6 +20,8 @@ public partial class Map : Control, IConnectable<Player>
     private Vector2I offset;
     private Vector2I baseOffset;
     private Vector2I calculateBaseOffset() => (MetSysApi.GetCurrentFlatCoords() - Size / 2);
+    
+    private static readonly Vector2I mapCellSize = new Vector2I(40, 20);
 
     private Player player;
 
@@ -27,7 +29,7 @@ public partial class Map : Control, IConnectable<Player>
     {
         // Cellular size is total size divided by cell size + shared borders.
         Size = (Vector2I)(GetSize() / MetSysApi.GetCellSizeOffset());
-        mapView = MetSysApi.MakeMapView(this, -Size / 2, Size, 0);
+        mapView = MetSysApi.MakeMapView(this, Vector2I.Zero, mapCellSize, 0);
         
         
         playerLocation = MetSysApi.AddPlayerLocation(this);
@@ -76,7 +78,7 @@ public partial class Map : Control, IConnectable<Player>
     private void open(Controller oldController)
     {
         oldController.SwitchControl(controller);
-        Visible = true;
+        GetParent<Node2D>().Show();
         GetTree().Paused = true; 
         baseOffset = calculateBaseOffset();
         offset = baseOffset;
@@ -87,7 +89,7 @@ public partial class Map : Control, IConnectable<Player>
     {
         player.InvokeCloseMap();
         controller.GiveBackControl();
-        Visible = false;
+        GetParent<Node2D>().Hide();
         GetTree().Paused = false; 
     }
     
