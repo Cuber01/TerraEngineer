@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c0il7q73uw014" path="res://game/ui/maps/Map.cs" id="1_hhgt4"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="2_11yua"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hhgt4"]
+
 [node name="MapScreen" type="Panel" unique_id=1570090613 node_paths=PackedStringArray("textLabel")]
 anchors_preset = 8
 anchor_left = 0.5
@@ -15,6 +17,7 @@ offset_right = -320.0
 offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hhgt4")
 script = ExtResource("1_hhgt4")
 textLabel = NodePath("TextLabel")
 
@@ -23,14 +26,21 @@ z_index = 10
 custom_minimum_size = Vector2(189, 13)
 layout_mode = 0
 offset_left = 71.0
-offset_top = 145.0
+offset_top = 161.0
 offset_right = 260.0
 offset_bottom = 176.0
 theme_override_constants/line_separation = -4
 theme_override_fonts/normal_font = ExtResource("2_11yua")
 bbcode_enabled = true
 text = "Testing Grounds
-
-Click to teleport!"
+"
 scroll_active = false
 horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=197993868]
+z_index = -1
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.050980393, 0.078431375, 0.15686275, 1)
