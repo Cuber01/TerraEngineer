@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cyeby1pppqw8t" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Borders/Door4.png" id="4_inwi1"]
 [ext_resource type="Texture2D" uid="uid://c31icc8dtly0e" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/RoomFill.png" id="5_f5o4m"]
 [ext_resource type="Texture2D" uid="uid://b3upw3deryv6l" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/corner.png" id="6_f5o4m"]
-[ext_resource type="Texture2D" uid="uid://ciflfxrgql206" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Empty.png" id="7_oixfk"]
 [ext_resource type="Texture2D" uid="uid://bdj2f008uewl8" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/BorderPassage.png" id="8_r4jwx"]
 [ext_resource type="PackedScene" uid="uid://jm00e7eg4gpc" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/PlayerLocation.tscn" id="9_gn6y3"]
 [ext_resource type="Script" uid="uid://b7ofctgav4kq4" path="res://addons/MetroidvaniaSystem/Scripts/MapTheme.gd" id="10_j2g7r"]
@@ -23,7 +22,6 @@
 [resource]
 script = ExtResource("10_j2g7r")
 center_texture = ExtResource("5_f5o4m")
-empty_space_texture = ExtResource("7_oixfk")
 player_location_scene = ExtResource("9_gn6y3")
 mapped_display = 11
 separator_mode = 3
