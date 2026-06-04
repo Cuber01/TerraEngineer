@@ -21,6 +21,8 @@ public partial class Map : Control, IConnectable<Player>
     private Vector2I baseOffset;
     private Vector2I calculateBaseOffset() => (MetSysApi.GetCurrentFlatCoords() - Size / 2);
 
+    private Player player;
+
     public override void _Ready()
     {
         // Cellular size is total size divided by cell size + shared borders.
@@ -83,6 +85,7 @@ public partial class Map : Control, IConnectable<Player>
     
     private void close()
     {
+        player.InvokeCloseMap();
         controller.GiveBackControl();
         Visible = false;
         GetTree().Paused = false; 
@@ -91,11 +94,12 @@ public partial class Map : Control, IConnectable<Player>
     public void Connect(Player actor)
     {
         actor.OpenMap += open;
+        this.player = actor;
     }
     
     public void Disconnect(Player actor)
     {
-        throw new System.NotImplementedException();
+        actor.OpenMap -= open;
     }
 }
 

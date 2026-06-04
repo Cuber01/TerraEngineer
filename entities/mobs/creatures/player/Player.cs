@@ -28,6 +28,9 @@ public partial class Player : Creature
 	
 	public delegate void OpenMapEventHandler(Controller oldController);
 	public event OpenMapEventHandler OpenMap;
+	
+	public delegate void CloseMapEventHandler();
+	public event CloseMapEventHandler CloseMap;
 
 	private readonly DashState dashState = new DashState();
 	private readonly JumpState jumpState = new JumpState();
@@ -376,7 +379,9 @@ public partial class Player : Creature
 		velocity += extraForce * (Vector2)(playerDirection);
 	}
 	
+	// TODO Make a proper mediator like class instead of using player for this
 	public void InvokeInteracted() => Interacted?.Invoke();
+	public void InvokeCloseMap() => CloseMap?.Invoke();
 	
 	// Wrapper for gdscript
 	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems(this);

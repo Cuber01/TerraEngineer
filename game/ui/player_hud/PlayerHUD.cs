@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using TerraEngineer.game;
 using TerraEngineer.ui.player_hud;
 
 public partial class PlayerHUD : Node2D, IConnectable<Player>
@@ -18,11 +19,17 @@ public partial class PlayerHUD : Node2D, IConnectable<Player>
 
 	public void Connect(Player player)
 	{
+		player.OpenMap += hide;
+		player.CloseMap += Show;
 		ApplyToChildren(player, (e, p) => e.Connect(player));
 	}
 
 	public void Disconnect(Player player)
 	{
+		player.OpenMap -= hide;
+		player.CloseMap -= Show;
 		ApplyToChildren(player, (e, p) => e.Disconnect(player));
 	}
+
+	private void hide(Controller _) => Hide();
 }
