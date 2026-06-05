@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c0il7q73uw014" path="res://game/ui/maps/Map.cs" id="1_hhgt4"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="2_11yua"]
 [ext_resource type="Shader" uid="uid://hw1hnkk5ta8b" path="res://shaders/grid.gdshader" id="3_5xdmq"]
+[ext_resource type="Texture2D" uid="uid://c1opoqbpw2pmn" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/RoomSelect.png" id="4_fndys"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fndys"]
 shader = ExtResource("3_5xdmq")
@@ -47,3 +48,8 @@ offset_bottom = 161.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5xdmq")
 script = ExtResource("1_hhgt4")
 textLabel = NodePath("../TextLabel")
+
+[node name="RoomSelect" type="Sprite2D" parent="." unique_id=1576490110]
+z_index = 5
+position = Vector2(158, 77)
+texture = ExtResource("4_fndys")
