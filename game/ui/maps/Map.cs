@@ -21,7 +21,7 @@ public partial class Map : Control, IConnectable<Player>
     private Vector2I baseOffset;
     private Vector2I calculateBaseOffset() => (MetSysApi.GetCurrentFlatCoords() - Size / 2);
     
-    private static readonly Vector2I mapCellSize = new Vector2I(40, 20);
+    private static readonly Vector2I mapCellSize = new Vector2I(40, 16);
 
     private Player player;
 

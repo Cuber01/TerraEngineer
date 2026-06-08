@@ -89,4 +89,12 @@ public partial class SwitcherGroup : Node2D
         groupSwitchedOn = !groupSwitchedOn;
         mySwitchableGroup.OnSwitch(groupSwitchedOn);
     }
+
+    public override void _ExitTree()
+    {
+        foreach (var switcher in (IEnumerable<ISwitcher>)SwitchersToSwitch)
+        { 
+            switcher.Switched -= checkSwitchers;
+        }    
+    }
 }
