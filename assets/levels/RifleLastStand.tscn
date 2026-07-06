@@ -5,16 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://g38d3kf8jth2" path="res://entities/mobs/creatures/zombie/Zombie.tscn" id="4_bw8iw"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_06g51"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="5_xt3gm"]
-
-[sub_resource type="Resource" id="Resource_xt3gm"]
-script = ExtResource("5_06g51")
-metadata/_custom_type_script = "uid://w784gkp03g63"
+[ext_resource type="Resource" uid="uid://bq5an6ilnbve5" path="res://assets/dialogue/item_rifle.dialogue" id="6_5biie"]
+[ext_resource type="Texture2D" uid="uid://bwevvooeivx73" path="res://assets/items/rifle.tres" id="7_6xupt"]
 
 [sub_resource type="Resource" id="Resource_5biie"]
 script = ExtResource("5_06g51")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="Resource" id="Resource_6xupt"]
+script = ExtResource("5_06g51")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_4ajpq"]
 script = ExtResource("5_06g51")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -31,16 +33,20 @@ tile_set = ExtResource("1_6xupt")
 
 [node name="Zombie" parent="." unique_id=344834364 instance=ExtResource("4_bw8iw")]
 position = Vector2(137, 166)
-ExportedSpriteWrapper = SubResource("Resource_xt3gm")
+ExportedSpriteWrapper = SubResource("Resource_5biie")
 
 [node name="Zombie3" parent="." unique_id=965726763 instance=ExtResource("4_bw8iw")]
 position = Vector2(86, 150)
-ExportedSpriteWrapper = SubResource("Resource_5biie")
+ExportedSpriteWrapper = SubResource("Resource_6xupt")
 
 [node name="Zombie2" parent="." unique_id=1493440299 instance=ExtResource("4_bw8iw")]
 position = Vector2(224, 158)
-ExportedSpriteWrapper = SubResource("Resource_6xupt")
+ExportedSpriteWrapper = SubResource("Resource_4ajpq")
 ExportedFacing = -1
 
 [node name="PickupableItem" parent="." unique_id=780288586 instance=ExtResource("5_xt3gm")]
 position = Vector2(162, 162)
+itemName = &"rifle"
+itemCollectedTag = &"rifle"
+dialogueDescription = ExtResource("6_5biie")
+ItemTexture = ExtResource("7_6xupt")
