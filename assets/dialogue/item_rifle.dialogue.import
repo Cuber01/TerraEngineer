@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bq5an6ilnbve5"
+path="res://.godot/imported/item_rifle.dialogue-d9d95eb58de8b71e3d373ab23e94c75f.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_rifle.dialogue"
+dest_files=["res://.godot/imported/item_rifle.dialogue-d9d95eb58de8b71e3d373ab23e94c75f.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bxeqm073snaax"]
+
+[ext_resource type="Shader" uid="uid://cskluh0itnl2w" path="res://shaders/snow.gdshader" id="1_xofx2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdhq4"]
+shader = ExtResource("1_xofx2")
+shader_parameter/movement_speed_x = 150.0
+shader_parameter/movement_speed_y = 6.0
+shader_parameter/base_wave_speed = 5.0
+shader_parameter/max_wave_amplitude = 40.0
+shader_parameter/spawn_spread_y = 600.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xofx2"]
+shader = ExtResource("1_xofx2")
+shader_parameter/movement_speed_x = 150.0
+shader_parameter/movement_speed_y = 6.0
+shader_parameter/base_wave_speed = 5.0
+shader_parameter/max_wave_amplitude = 40.0
+shader_parameter/spawn_spread_y = 600.0
+
+[node name="SnowEffect" type="GPUParticles2D" unique_id=546630888]
+material = SubResource("ShaderMaterial_qdhq4")
+amount = 32
+lifetime = 4.0
+preprocess = 2.0
+randomness = 0.1
+process_material = SubResource("ShaderMaterial_xofx2")

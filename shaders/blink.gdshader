@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform vec4 blink_color = vec4(1.0,1.0,1.0,1.0);
 // Color we ignore while blinking
-uniform vec4 ignore_color = vec4(0.0,0.0,0.0,1.0);
+uniform vec4 ignore_color = vec4(0.0,0.0,0.0,0.0);
 
 uniform float blink_speed = 2.0f;
 uniform float delta_time = 0.0f;

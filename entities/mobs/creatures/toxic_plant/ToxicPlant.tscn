@@ -28,12 +28,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
 size = Vector2(7.875, 6)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m75h6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpvlc"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("7_qok1g")
-shader_parameter/blink_color = Vector3(1, 1, 1)
-shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_color = Vector4(1, 1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 0)
 shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
@@ -85,7 +85,7 @@ shape = SubResource("RectangleShape2D_0f11y")
 MaxHealth = 3
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("6_ix4sj")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_m75h6")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_kpvlc")])
 
 [node name="GravityBulletSpawnerComponent" parent="ComponentManager" unique_id=1914864503 instance=ExtResource("8_kpvlc")]
 Scene = ExtResource("9_px6nd")

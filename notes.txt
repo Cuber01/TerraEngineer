@@ -44,3 +44,4 @@ todo would be nice:
 todo bugs:
 X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity
 - theres still a lot of bumping like issues when going up
+- non-ase sprites don't ignore colors in blink shader

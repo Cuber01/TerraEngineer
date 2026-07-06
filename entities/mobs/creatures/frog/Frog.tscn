@@ -101,8 +101,8 @@ size = Vector2(7, 5)
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("2_n5xjy")
-shader_parameter/blink_color = Vector3(1, 1, 1)
-shader_parameter/ignore_color = Vector4(0, 0, 0, 1)
+shader_parameter/blink_color = Vector4(1, 1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 0)
 shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
@@ -122,6 +122,7 @@ position = Vector2(0, -1)
 texture = SubResource("PortableCompressedTexture2D_y3mso")
 hframes = 2
 vframes = 2
+frame = 3
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -155,7 +156,6 @@ shape = SubResource("RectangleShape2D_0f11y")
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=1935978130 instance=ExtResource("2_c4mrv")]
 jumpVelocity = 70.0
-limitThreshold = 40.0
 
 [node name="MoveComponent" parent="ComponentManager" unique_id=1024852236 instance=ExtResource("3_hhfj2")]
 acceleration = 4.31
