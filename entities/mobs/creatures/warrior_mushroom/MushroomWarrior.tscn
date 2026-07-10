@@ -1,0 +1,178 @@
+[gd_scene format=4 uid="uid://d3j1ukdlcb1bu"]
+
+[ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_m044u"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_3edb5"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_6y1nu"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_8sjtt"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_5jqpo"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_lfno2"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_5g5pj"]
+
+[sub_resource type="Resource" id="Resource_ancsb"]
+script = ExtResource("2_3edb5")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m044u"]
+_data = PackedByteArray("AAADAAUAAAABAAAAUAAAADAAAACqAQAAUklGRqIBAABXRUJQVlA4TJYBAAAvT8ALEEegJgAShosCnHw4ghjejGoaSYGuuu5BCbIQhw1MIMdQBDIaeAoggCL6nyJ7b/4DgHSqhHt89v9OVTNLAhzXtutUR8SJaNNRWvzL7wAs8AAYwvteUdLRhioed+61b27EACL678BtJEXyQC0c1MErABAPFMfYLl8CTdCFNJXWJUQnu3xlGukwokuQXYjK09DlS3WG1sVxlzEOuhCHLheANOcKY7rcNDI1jrtEBYnUUOCMsSoTqUIcUsWp4xS+SvJUu8SC9BDy1Lrcck3iQfRzyJbS5RYloBu0b9A2uwalSyxZtCmlOfwsU+5yFS5ZZ2G5lJvWZYRuCRlaF45LxZ5JjnlG63I6n/Ovv2f9Hh48LF2egxc8ZuYu95ReNbCEvUvNZ4C9i/wzTzC+aKpJ0gSZaSbIfFrz49AHo+mE6TZne1pRMEuP7HJEcAZN4iEf4kwP6AbtG+KFAhANFm1KaQ54EXCWTVqe5bDqlhmM9kxy7JfixPLgnvV7eHEvOFu84AfB9EjgPqwafjkD+JpFzWc8LNcA")
+size_override = Vector2(80, 48)
+
+[sub_resource type="Animation" id="Animation_3edb5"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_6y1nu"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_x6aq1"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i26sj"]
+_data = {
+&"attack": SubResource("Animation_3edb5"),
+&"charge": SubResource("Animation_6y1nu"),
+&"idle": SubResource("Animation_x6aq1")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4g3d"]
+size = Vector2(22, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdvqp"]
+size = Vector2(15, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g5pj"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m044u"]
+size = Vector2(20, 17)
+
+[node name="MushroomWarrior" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("CM")]
+z_index = 1
+collision_layer = 4
+script = ExtResource("1_m044u")
+CM = NodePath("ComponentManager")
+Team = 1
+ExportedSpriteWrapper = SubResource("Resource_ancsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
+texture_filter = 1
+position = Vector2(10, -3)
+texture = SubResource("PortableCompressedTexture2D_m044u")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimatedSprite2D",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/mobs/creatures/warrior_mushroom/mushroom-warrior.ase",
+"source_uid": 9083517516064840392
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3f174270d0682ed0c8e57b2fc3d87d16"
+
+[node name="AnimatedSprite2D" type="AnimationPlayer" parent="Sprite2D" unique_id=2008528731]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_i26sj")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/mobs/creatures/sniper_mushroom/sniper-shroom.ase",
+"source_uid": 674606417106630694
+}
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=110568154]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_n4g3d")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=555927068]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1756061874]
+position = Vector2(19.5, -3.5)
+shape = SubResource("RectangleShape2D_sdvqp")
+
+[node name="ChargeArea" type="Area2D" parent="." unique_id=663348827]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea" unique_id=1795146103]
+position = Vector2(20, 3)
+shape = SubResource("RectangleShape2D_5g5pj")
+
+[node name="ComponentManager" parent="." unique_id=361461068 instance=ExtResource("3_6y1nu")]
+
+[node name="MoveComponent" parent="ComponentManager" unique_id=866251039 instance=ExtResource("4_8sjtt")]
+speed = 80.0
+acceleration = 10.0
+friction = 10.0
+errorMargin = 0.0
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=1112742135 instance=ExtResource("5_5jqpo")]
+MaxHealth = 1
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("6_lfno2")]
+
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=980029765 instance=ExtResource("7_5g5pj")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_m044u")
+
+[editable path="ComponentManager/ContactDamageComponent"]

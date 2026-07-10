@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d2oehathdcfrs"
+path="res://.godot/imported/mushroom-warrior.ase-0dfa642764423f45b99015d8fa9cddb7.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/warrior_mushroom/mushroom-warrior.ase"
+dest_files=["res://.godot/imported/mushroom-warrior.ase-0dfa642764423f45b99015d8fa9cddb7.res"]
+
+[params]
+

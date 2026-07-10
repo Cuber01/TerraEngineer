@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwta0ajoqhibc"]
 
-[ext_resource type="Script" uid="uid://ccs4x051uqnxy" path="res://entities/mobs/projectile/BasicBullet.cs" id="1_intoi"]
+[ext_resource type="Script" uid="uid://ccs4x051uqnxy" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_intoi"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_intoi"]
 [ext_resource type="Texture2D" uid="uid://dwluhg7h388hj" path="res://entities/mobs/projectile/flame/long-fire.png" id="2_o6ug1"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_vipxt"]
