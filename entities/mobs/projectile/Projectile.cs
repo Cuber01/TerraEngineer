@@ -40,7 +40,7 @@ public partial class Projectile : Entity
                 Health healthComp = mob.CM.TryGetComponent<Health>();
                 healthComp?.ChangeHealth(-damage);
                 
-                mob.CM.TryGetComponent<Knockback>()
+                mob.CM.TryGetComponent<KnockbackComponent>()
                     ?.ApplyKnockback(GlobalPosition, knockbackForce);
                 
                 pierceOrDie();

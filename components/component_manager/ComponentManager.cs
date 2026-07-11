@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Godot;
 
 namespace TENamespace;
@@ -7,7 +6,7 @@ namespace TENamespace;
 [Tool]
 public partial class ComponentManager : Node2D
 {
-    private readonly Dictionary<Type, Component> components = new();
+    private readonly System.Collections.Generic.Dictionary<Type, Component> components = new();
     private Node2D actor = null;
     
     private bool lateInitialized = false;
@@ -25,14 +24,23 @@ public partial class ComponentManager : Node2D
         }
         
         Godot.Collections.Array<Node> children = GetChildren();
-        foreach (Node child in children)
+
+        foreach (Node child in children) 
         {
             if (child is Component comp)
             {
-                components.Add(child.GetType(), comp);
+                if (!components.TryAdd(child.GetType(), comp))
+                {
+                    #if DEBUG
+                    GD.Print("Warning: Duplicate component key makes component " + child.GetType().Name + "inaccessible.");
+                    #endif
+                }
             }
         }
         
+
+        
+
         InitComponents();
     }
     
@@ -91,8 +99,10 @@ public partial class ComponentManager : Node2D
     
     public void AddComponent(Component component)
     {
-        components.Add(component.GetType(), component);
-        component.Init(actor);
+        //try {
+            components.Add(component.GetType(), component);
+        //catch
+            component.Init(actor);
     }
     
 

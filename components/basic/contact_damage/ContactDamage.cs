@@ -18,7 +18,7 @@ public partial class ContactDamage : Component
             
             mob.CM.TryGetComponent<Health>()?.ChangeHealth(-contactDamageAmount);
                 
-            mob.CM.TryGetComponent<Knockback>()
+            mob.CM.TryGetComponent<KnockbackComponent>()
                 ?.ApplyKnockback(GlobalPosition, knockbackForce);
 
         }

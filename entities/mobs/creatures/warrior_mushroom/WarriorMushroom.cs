@@ -278,7 +278,7 @@ public partial class WarriorMushroom : Creature
             
                     mob.CM.TryGetComponent<Health>()?.ChangeHealth(-AttackDamage);
                 
-                    mob.CM.TryGetComponent<Knockback>()
+                    mob.CM.TryGetComponent<KnockbackComponent>()
                         ?.ApplyKnockback(attackTransform.Origin, AttackKnockback);
                 }
             }
