@@ -86,8 +86,8 @@ public partial class SniperMushroom : Creature
     #region Movement
     public class FlankingState : State<SniperMushroom>
     {
-        private const float CloseDistanceX = 80f;
         private const float FarDistanceX = 80f;
+        private const float PositionTolerance = 1f;
         
         public override void Enter()
         {
