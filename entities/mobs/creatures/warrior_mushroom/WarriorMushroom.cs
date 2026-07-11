@@ -1,5 +1,8 @@
 using Godot;
+using Godot.Collections;
 using TENamespace;
+using TENamespace.basic;
+using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
@@ -197,6 +200,8 @@ public partial class WarriorMushroom : Creature
     {
         private const int AttackCount = 3;
         private const float StepMoveTime = 0.8f;
+        private const int AttackDamage = 2;
+        private const float AttackKnockback = 100f;
 
         private int attacksDone;
         private float moveTimer;
@@ -209,8 +214,7 @@ public partial class WarriorMushroom : Creature
             Finished = false;
 
             Actor.SpriteWrapper.AnimationFinished += OnAttackFinished;
-            Actor.SpriteWrapper.Play("attack");
-            // activate attack
+            executeAttack();
         }
 
         public override void Update(float dt)
@@ -234,7 +238,6 @@ public partial class WarriorMushroom : Creature
         private void OnAttackFinished()
         {
             attacksDone++;
-            // activate attack
             moveTimer = StepMoveTime;
 
             if (attacksDone >= AttackCount)
@@ -242,8 +245,45 @@ public partial class WarriorMushroom : Creature
                 Finished = true;
                 return;
             }
+            
+            executeAttack();
+        }
 
+        private void executeAttack()
+        {
             Actor.SpriteWrapper.Play("attack");
+            
+            RectangleShape2D rect = new()
+            {
+                Size = Actor.attackHitboxShape.Size
+            };
+
+            Transform2D attackTransform = new Transform2D(Actor.GlobalRotation,
+                Actor.attackHitboxShape.Position * (int)Actor.Facing);
+            PhysicsShapeQueryParameters2D query = new()
+            {
+                Shape = rect,
+                Transform = attackTransform,
+                CollisionMask = 1 // Player
+            };
+         
+            var spaceState = Actor.GetWorld2D().DirectSpaceState;
+            Array<Dictionary> results = spaceState.IntersectShape(query, 1);
+            foreach (Dictionary result in results)
+            {
+                Variant colliderVariant = result[Names.Properties.Collider];
+                if (colliderVariant.Obj is Entity mob)
+                {
+                    if(mob.GodMode) return;
+            
+                    mob.CM.TryGetComponent<Health>()?.ChangeHealth(-AttackDamage);
+                
+                    mob.CM.TryGetComponent<Knockback>()
+                        ?.ApplyKnockback(attackTransform.Origin, AttackKnockback);
+                }
+            }
+            
+            
         }
     }
     

@@ -23,6 +23,7 @@ public static class Names
         public static readonly StringName SpecialType = "special_type";
         public static readonly StringName Bosses = "bosses";
         public static readonly StringName KingFrog = "king_frog";
+        public static readonly StringName Collider = "collider";
         public static readonly StringName OpenDoors = "open_doors";
         public static readonly StringName BackgroundColor = "background_color";
     }

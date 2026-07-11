@@ -34,6 +34,7 @@ X prevent event memory leaks on events - make state exit on death?
 - change controller code to be event-based instead of polling (_input instead of _update)
 - add mediator class for inputs instead of relying on player to pass gui and interacted events
 - use float extension IsWithin for old code too
+- find way to reuse states like in a decorator pattern
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump
