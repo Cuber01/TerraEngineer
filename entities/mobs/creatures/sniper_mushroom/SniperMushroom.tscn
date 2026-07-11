@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_h43rw"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_0mqa1"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_jduby"]
-[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="7_os6np"]
-[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="8_hajj1"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="9_jh1ua"]
 
 [sub_resource type="Resource" id="Resource_msgna"]
@@ -82,10 +80,10 @@ size = Vector2(22, 24)
 z_index = 1
 collision_layer = 4
 script = ExtResource("1_a4unq")
-Team = 1
-ExportedSpriteWrapper = SubResource("Resource_msgna")
 CM = NodePath("ComponentManager")
+Team = 1
 Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_msgna")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
@@ -150,9 +148,6 @@ errorMargin = 0.0
 MaxHealth = 1
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("6_jduby")]
-
-[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=428926664 instance=ExtResource("7_os6np")]
-Scene = ExtResource("8_hajj1")
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=1816900990 instance=ExtResource("9_jh1ua")]
 

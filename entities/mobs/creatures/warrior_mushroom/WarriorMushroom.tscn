@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://d3j1ukdlcb1bu"]
 
-[ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_m044u"]
+[ext_resource type="Script" uid="uid://c428g10jfxgi8" path="res://entities/mobs/creatures/warrior_mushroom/WarriorMushroom.cs" id="1_m044u"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_3edb5"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_6y1nu"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_8sjtt"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_5jqpo"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_lfno2"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_5g5pj"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="8_1q0u7"]
 
 [sub_resource type="Resource" id="Resource_fhaxl"]
 script = ExtResource("2_3edb5")
@@ -89,6 +90,7 @@ collision_layer = 4
 script = ExtResource("1_m044u")
 CM = NodePath("ComponentManager")
 Team = 1
+Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_fhaxl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
@@ -169,6 +171,8 @@ errorMargin = 0.0
 MaxHealth = 1
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("6_lfno2")]
+
+[node name="JumpComponent" parent="ComponentManager" unique_id=148750433 instance=ExtResource("8_1q0u7")]
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=980029765 instance=ExtResource("7_5g5pj")]
 

@@ -8,6 +8,26 @@ using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 using TerraEngineer.game;
 
+// For movement fsm:
+// - enter idle by default
+// - if player is far away: reposition state
+// - if player's y is at or above current y: flanking state
+// - if neither is true: idle state
+
+// For shooting fsm:
+// - enter idle by default
+// - after a timer switch to shooting
+// - after finishing shooting switch back to idle
+
+// Shooting:
+// shoot three bullets with a small timer in between and make them fly at player, when all three are shot trigger a finished flag
+// Idle:
+// wait a timer and trigger a finished flag
+// Reposition:
+// move closer to player in x axis, finishes when on about the same x as player
+// Flanking (second phase):
+// if player is close move away from him, if player is far move closer, this state never exits 
+
 [Tool]
 public partial class SniperMushroom : Creature
 {
