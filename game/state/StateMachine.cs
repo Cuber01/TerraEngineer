@@ -37,8 +37,8 @@ public class StateMachine<T>
         }
     }
         
-    public void AddGlobalTransition(State<T> to, System.Func<bool> condition, float probability=1f) => 
-        globalTransitions.Add(new Transition<T>(to, condition, null, 0, probability));
+    public void AddGlobalTransition(State<T> to, System.Func<bool> condition, uint priority, float probability=1f) => 
+        globalTransitions.Add(new Transition<T>(to, condition, null, priority, probability));
 
     public virtual void Update(float dt)
     {

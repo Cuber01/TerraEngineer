@@ -100,7 +100,7 @@ public partial class Player : Creature
 		fsm.AddTransition(idleState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
 		
 		fsm.AddGlobalTransition(noclipState, () => fsm.CurrentState != noclipState && 
-		                                           fsm.IsTriggered(PlayerTriggers.ToggleNoclip));
+		                                           fsm.IsTriggered(PlayerTriggers.ToggleNoclip), 0);
 		fsm.AddTransition(noclipState, idleState, () => fsm.IsTriggered(PlayerTriggers.ToggleNoclip));
 
 		CM.GetComponent<Gravity>().LandedOnFloor += () => fsm.FireTrigger(PlayerTriggers.Landed);

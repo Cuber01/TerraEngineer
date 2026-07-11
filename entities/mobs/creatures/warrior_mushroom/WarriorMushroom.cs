@@ -10,6 +10,8 @@ using TerraEngineer.entities.mobs.creatures;
 [Tool]
 public partial class WarriorMushroom : Creature
 {
+    [Export] private CollisionShape2D mainHitbox;
+    [Export] private CollisionShape2D mainHurtbox;
     [Export] private CollisionShape2D chargeHitbox;
     [Export] private Rect2 attackHitboxShape;
     
@@ -34,7 +36,7 @@ public partial class WarriorMushroom : Creature
 
         fsm = new StateMachine<WarriorMushroom>(this, idleState);
 
-        fsm.AddGlobalTransition(stuckState, () => swordStuckInWall);
+        fsm.AddGlobalTransition(stuckState, () => swordStuckInWall, 3);
 
         fsm.AddTransition(idleState, flipState, IsPlayerBehind, 2);
 
@@ -140,13 +142,6 @@ public partial class WarriorMushroom : Creature
             }
         }
 
-        public override void Exit()
-        {
-            Actor.SpriteWrapper.AnimationFinished -= OnAnimationFinished;
-            Finished = false;
-            Actor.chargeHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-        }
-
         private void OnAnimationFinished()
         {
             Finished = true;
@@ -160,7 +155,15 @@ public partial class WarriorMushroom : Creature
             } else if (body is TileMapLayer)
             {
                 Actor.swordStuckInWall = true;
+                Finished = true;
             }
+        }
+        
+        public override void Exit()
+        {
+            Actor.SpriteWrapper.AnimationFinished -= OnAnimationFinished;
+            Finished = false;
+            Actor.chargeHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         }
     }
 
@@ -173,6 +176,7 @@ public partial class WarriorMushroom : Creature
             Actor.velocity.X = 0f;
             Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.swordStuckInWall = false;
+            Actor.SpriteWrapper.Play("stuck");
         }
     }
 
@@ -190,7 +194,7 @@ public partial class WarriorMushroom : Creature
             Actor.CM.GetComponent<Move>().Walk(Actor.Facing, 1f, JumpMoveMultiplier);
             
             Actor.CM.GetComponent<Gravity>().LandedOnFloor += OnLandedOnFloor;
-            Actor.SpriteWrapper.Play("charge");
+            Actor.SpriteWrapper.Play("jump");
         }
 
         public override void Update(float dt)
@@ -264,7 +268,7 @@ public partial class WarriorMushroom : Creature
             };
 
             Transform2D attackTransform = new Transform2D(Actor.GlobalRotation,
-                new Vector2(Actor.GlobalPosition.X + (Actor.attackHitboxShape.Position.X * (int)Actor.Facing),
+                new Vector2(Actor.GlobalPosition.X + Actor.attackHitboxShape.Position.X,
                             Actor.GlobalPosition.Y + Actor.attackHitboxShape.Position.Y));
             PhysicsShapeQueryParameters2D query = new()
             {
@@ -293,6 +297,15 @@ public partial class WarriorMushroom : Creature
             moveTimer = 0f;
             Finished = false;
         }
+    }
+
+    protected override void FlipEffect()
+    {
+        base.FlipEffect();
+        chargeHitbox.Position = new Vector2(-chargeHitbox.Position.X, chargeHitbox.Position.Y);
+        attackHitboxShape.Position = new Vector2(-attackHitboxShape.Position.X, attackHitboxShape.Position.Y);
+        mainHitbox.Position = new Vector2(-mainHitbox.Position.X, mainHitbox.Position.Y);
+        mainHurtbox.Position = new Vector2(-mainHurtbox.Position.X, mainHurtbox.Position.Y);
     }
 
     private void dealAttack(Entity victim, int damage, float knockbackForce, Vector2 knockbackFrom)
