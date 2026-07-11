@@ -114,6 +114,8 @@ public partial class WarriorMushroom : Creature
 
     public class ChargeState : State<WarriorMushroom>
     {
+        private const int ChargeDamage = 2;
+        private const float ChargeKnockback = 100f;
         private const float ChargeSpeedMultiplier = 2f;
 
         public bool Finished;
@@ -147,6 +149,17 @@ public partial class WarriorMushroom : Creature
         private void OnAnimationFinished()
         {
             Finished = true;
+        }
+
+        public void ChargeHit(Node2D body)
+        {
+            if (body is Entity mob)
+            {
+                Actor.dealAttack(mob, ChargeDamage, ChargeKnockback, Actor.GlobalPosition);
+            } else if (body is TileMapLayer)
+            {
+                Actor.swordStuckInWall = true;
+            }
         }
     }
 
@@ -226,15 +239,6 @@ public partial class WarriorMushroom : Creature
             }
         }
 
-        public override void Exit()
-        {
-            Actor.SpriteWrapper.AnimationFinished -= OnAttackFinished;
-
-            attacksDone = 0;
-            moveTimer = 0f;
-            Finished = false;
-        }
-
         private void OnAttackFinished()
         {
             attacksDone++;
@@ -274,19 +278,32 @@ public partial class WarriorMushroom : Creature
                 Variant colliderVariant = result[Names.Properties.Collider];
                 if (colliderVariant.Obj is Entity mob)
                 {
-                    if(mob.GodMode) return;
-            
-                    mob.CM.TryGetComponent<Health>()?.ChangeHealth(-AttackDamage);
-                
-                    mob.CM.TryGetComponent<KnockbackComponent>()
-                        ?.ApplyKnockback(attackTransform.Origin, AttackKnockback);
+                    Actor.dealAttack(mob, AttackDamage, AttackKnockback, attackTransform.Origin);
                 }
             }
-            
-            
+        }
+        
+        public override void Exit()
+        {
+            Actor.SpriteWrapper.AnimationFinished -= OnAttackFinished;
+
+            attacksDone = 0;
+            moveTimer = 0f;
+            Finished = false;
         }
     }
+
+    private void dealAttack(Entity victim, int damage, float knockbackForce, Vector2 knockbackFrom)
+    {
+        if(victim.GodMode) return;
+            
+        victim.CM.TryGetComponent<Health>()?.ChangeHealth(-damage);
+                
+        victim.CM.TryGetComponent<KnockbackComponent>()
+            ?.ApplyKnockback(knockbackFrom, knockbackForce);
+    }
     
+    private void onChargeAreaEntered(Node2D body) => chargeState.ChargeHit(body);
     private float DeltaToPlayerX() => Player.GlobalPosition.X - GlobalPosition.X;
     private bool IsPlayerBehind() => Mathf.Sign(DeltaToPlayerX()) == -(int)Facing;
     private bool IsPlayerFarAway() => Mathf.Abs(DeltaToPlayerX()) >= FarDistanceX;

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d3j1ukdlcb1bu" path="res://entities/mobs/creatures/warrior_mushroom/WarriorMushroom.tscn" id="3_ot3mu"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="4_ot3mu"]
 
-[sub_resource type="Resource" id="Resource_tv8fe"]
+[sub_resource type="Resource" id="Resource_ot3mu"]
 script = ExtResource("4_ot3mu")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -21,4 +21,4 @@ tile_set = ExtResource("1_ot3mu")
 
 [node name="MushroomWarrior" parent="." unique_id=1036610662 instance=ExtResource("3_ot3mu")]
 position = Vector2(64, 154)
-ExportedSpriteWrapper = SubResource("Resource_tv8fe")
+ExportedSpriteWrapper = SubResource("Resource_ot3mu")

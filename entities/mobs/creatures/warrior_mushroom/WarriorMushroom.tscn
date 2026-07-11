@@ -20,7 +20,6 @@ size_override = Vector2(80, 48)
 
 [sub_resource type="Animation" id="Animation_3edb5"]
 length = 0.1
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,7 +35,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6y1nu"]
 length = 0.5
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,7 +84,7 @@ size = Vector2(20, 17)
 z_index = 1
 collision_layer = 4
 script = ExtResource("1_m044u")
-chargeHitbox = NodePath("ComponentManager/ChargeContactDamage/AttackArea/CollisionShape2D")
+chargeHitbox = NodePath("ChargeArea/CollisionShape2D")
 attackHitboxShape = Rect2(20, -3, 15, 19)
 CM = NodePath("ComponentManager")
 Team = 1
@@ -99,7 +97,6 @@ position = Vector2(10, -3)
 texture = SubResource("PortableCompressedTexture2D_m044u")
 hframes = 2
 vframes = 2
-frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "pending_changes": {}
@@ -147,6 +144,14 @@ metadata/_aseprite_wizard_interface_config_ = {
 position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_n4g3d")
 
+[node name="ChargeArea" type="Area2D" parent="." unique_id=1201165171]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea" unique_id=1660182896]
+position = Vector2(21, 3)
+shape = SubResource("RectangleShape2D_0wlmj")
+
 [node name="ComponentManager" parent="." unique_id=361461068 instance=ExtResource("3_6y1nu")]
 
 [node name="MoveComponent" parent="ComponentManager" unique_id=866251039 instance=ExtResource("4_8sjtt")]
@@ -162,13 +167,6 @@ MaxHealth = 1
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=148750433 instance=ExtResource("8_1q0u7")]
 
-[node name="ChargeContactDamage" parent="ComponentManager" unique_id=1871397050 instance=ExtResource("7_5g5pj")]
-contactDamageAmount = 2
-
-[node name="CollisionShape2D" parent="ComponentManager/ChargeContactDamage/AttackArea" parent_id_path=PackedInt32Array(1871397050, 47129053) index="0" unique_id=520614987]
-position = Vector2(21, 3)
-shape = SubResource("RectangleShape2D_0wlmj")
-
 [node name="NormalContactDamage" parent="ComponentManager" unique_id=980029765 instance=ExtResource("7_5g5pj")]
 
 [node name="CollisionShape2D" parent="ComponentManager/NormalContactDamage/AttackArea" parent_id_path=PackedInt32Array(980029765, 47129053) index="0" unique_id=520614987]
@@ -178,5 +176,6 @@ shape = SubResource("RectangleShape2D_m044u")
 [node name="SaveEntityComponent" parent="ComponentManager" unique_id=2093928676 instance=ExtResource("9_0wlmj")]
 saveName = &"boss_defeated"
 
-[editable path="ComponentManager/ChargeContactDamage"]
+[connection signal="body_entered" from="ChargeArea" to="." method="onChargeAreaEntered"]
+
 [editable path="ComponentManager/NormalContactDamage"]
