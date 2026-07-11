@@ -82,6 +82,7 @@ size = Vector2(22, 24)
 [node name="MushroomSniper" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("CM", "Sprite")]
 z_index = 1
 collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_a4unq")
 CM = NodePath("ComponentManager")
 Team = 1

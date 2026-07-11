@@ -2,10 +2,10 @@
 
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_ot3mu"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_tv8fe"]
-[ext_resource type="PackedScene" uid="uid://berdk5iuj8eya" path="res://entities/mobs/creatures/sniper_mushroom/SniperMushroom.tscn" id="3_gvdrk"]
+[ext_resource type="PackedScene" uid="uid://d3j1ukdlcb1bu" path="res://entities/mobs/creatures/warrior_mushroom/WarriorMushroom.tscn" id="3_ot3mu"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="4_ot3mu"]
 
-[sub_resource type="Resource" id="Resource_ot3mu"]
+[sub_resource type="Resource" id="Resource_tv8fe"]
 script = ExtResource("4_ot3mu")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -19,6 +19,6 @@ tile_set = ExtResource("1_ot3mu")
 
 [node name="RoomInstance" parent="." unique_id=571797402 instance=ExtResource("2_tv8fe")]
 
-[node name="MushroomSniper" parent="." unique_id=1036610662 instance=ExtResource("3_gvdrk")]
-position = Vector2(150, 61)
-ExportedSpriteWrapper = SubResource("Resource_ot3mu")
+[node name="MushroomWarrior" parent="." unique_id=1036610662 instance=ExtResource("3_ot3mu")]
+position = Vector2(64, 154)
+ExportedSpriteWrapper = SubResource("Resource_tv8fe")

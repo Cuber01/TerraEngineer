@@ -38,6 +38,7 @@ X prevent event memory leaks on events - make state exit on death?
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump
 - give rifle a long reload time
+- make frog boss rain frogs instead of spawning them with a long attack - the hit frame should be at when he is charging for jump instead
 
 todo would be nice:
 - upgrade for blowtorch turning it into a shotgun or flamethrower type of weapon

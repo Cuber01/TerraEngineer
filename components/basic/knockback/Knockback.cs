@@ -4,7 +4,7 @@ using TerraEngineer.entities.mobs;
 
 namespace TENamespace.basic;
 
-public partial class KnockbackComponent : Component
+public partial class Knockback : Component
 {
     [Export] private Vector2 knockbackFactor = new(1.0f, 0.5f);
     

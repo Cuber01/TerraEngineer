@@ -7,6 +7,9 @@ using TerraEngineer.entities.mobs.creatures;
 [Tool]
 public partial class WarriorMushroom : Creature
 {
+    [Export] private CollisionShape2D chargeHitbox;
+    [Export] private Rect2 attackHitboxShape;
+    
     private const float FarDistanceX = 50f;
 
     private StateMachine<WarriorMushroom> fsm;
@@ -118,7 +121,7 @@ public partial class WarriorMushroom : Creature
             Actor.SpriteWrapper.AnimationFinished += OnAnimationFinished;
 
             Actor.SpriteWrapper.Play("charge");
-            // activate charge
+            Actor.chargeHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
         }
 
         public override void Update(float dt)
@@ -135,6 +138,7 @@ public partial class WarriorMushroom : Creature
         {
             Actor.SpriteWrapper.AnimationFinished -= OnAnimationFinished;
             Finished = false;
+            Actor.chargeHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         }
 
         private void OnAnimationFinished()

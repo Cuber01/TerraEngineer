@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://jg6608wf8u7l"]
+[gd_scene format=3 uid="uid://jg6608wf8u7l"]
 
 [ext_resource type="Script" uid="uid://bre61s1b3m78p" path="res://components/basic/contact_damage/ContactDamage.cs" id="1_x3f60"]
 
-[node name="ContactDamageComponent" type="Node2D"]
+[node name="ContactDamageComponent" type="Node2D" unique_id=1871397050]
 script = ExtResource("1_x3f60")
 knockbackForce = 250.0
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=47129053]
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=520614987]
 
 [connection signal="body_entered" from="AttackArea" to="." method="onAttackAreaEnemyEntered"]
