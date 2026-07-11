@@ -9,10 +9,10 @@ using TerraEngineer.entities.mobs.creatures;
 using TerraEngineer.game;
 
 [Tool]
-public partial class MushroomSniper : Creature
+public partial class SniperMushroom : Creature
 {
-    private StateMachine<MushroomSniper> movementFsm;
-    private StateMachine<MushroomSniper> gunFsm;
+    private StateMachine<SniperMushroom> movementFsm;
+    private StateMachine<SniperMushroom> gunFsm;
     private bool publishedEntered;
 
     private readonly FlankingState flankingState = new();
@@ -28,7 +28,7 @@ public partial class MushroomSniper : Creature
         Player = GetNode<Player>(Names.NodePaths.Player);
 
         // --- MOVEMENT FSM ---
-        movementFsm = new StateMachine<MushroomSniper>(this, idleState);
+        movementFsm = new StateMachine<SniperMushroom>(this, idleState);
         movementFsm.AddTransition(idleState, repositionState, () => !IsPlayerAtOrAbove() && IsPlayerFarAway());
         movementFsm.AddTransition(repositionState, idleState, () => !IsPlayerAtOrAbove() && repositionState.Finished);
         
@@ -37,7 +37,7 @@ public partial class MushroomSniper : Creature
         movementFsm.AddTransition(repositionState, flankingState, IsPlayerAtOrAbove); 
 
         // --- GUN FSM ---
-        gunFsm = new StateMachine<MushroomSniper>(this, shootingIdleState);
+        gunFsm = new StateMachine<SniperMushroom>(this, shootingIdleState);
         gunFsm.AddTransition(shootingIdleState, shootState, shootingIdleState.TimerCondition);
         gunFsm.AddTransition(shootState, shootingIdleState, () => shootState.Finished);
 
@@ -64,7 +64,7 @@ public partial class MushroomSniper : Creature
     }
 
     #region Movement
-    public class FlankingState : State<MushroomSniper>
+    public class FlankingState : State<SniperMushroom>
     {
         private const float CloseDistanceX = 80f;
         private const float FarDistanceX = 80f;
@@ -105,7 +105,7 @@ public partial class MushroomSniper : Creature
         }
     }
 
-    public class RepositionState : State<MushroomSniper>
+    public class RepositionState : State<SniperMushroom>
     {
         public const float FarDistanceX = 50f;
         private const float RepositionSameXThreshold = 1f;
@@ -135,7 +135,7 @@ public partial class MushroomSniper : Creature
         public override void Exit() { }
     }
 
-    public class IdleState : State<MushroomSniper>
+    public class IdleState : State<SniperMushroom>
     {
         // Do nothing. We exit this state when we need to reposition
     }
@@ -144,7 +144,7 @@ public partial class MushroomSniper : Creature
     
     #region Shooting
 
-    public class ShootingIdleState : TimedState<MushroomSniper>
+    public class ShootingIdleState : TimedState<SniperMushroom>
     {
         public override void Enter()
         {
@@ -153,7 +153,7 @@ public partial class MushroomSniper : Creature
         }
     }
 
-    public class ShootState : State<MushroomSniper>
+    public class ShootState : State<SniperMushroom>
     {
         private int bulletsPerBurst = 3;
         private float burstShotInterval = 0.12f;
