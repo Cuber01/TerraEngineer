@@ -1,16 +1,19 @@
 [gd_scene format=4 uid="uid://berdk5iuj8eya"]
 
 [ext_resource type="Script" uid="uid://c6su817dakeib" path="res://entities/mobs/creatures/sniper_mushroom/SniperMushroom.cs" id="1_a4unq"]
-[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_jh1ua"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_jkpin"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_rgrx0"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_h43rw"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_0mqa1"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_jduby"]
+[ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="8_a4unq"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="9_jh1ua"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="9_rgrx0"]
+[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="10_h43rw"]
 
-[sub_resource type="Resource" id="Resource_msgna"]
-script = ExtResource("2_jh1ua")
-metadata/_custom_type_script = "uid://w784gkp03g63"
+[sub_resource type="Resource" id="Resource_a4unq"]
+script = ExtResource("2_jkpin")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_msgna"]
 _data = PackedByteArray("AAADAAUAAAABAAAAMgAAAB4AAADcAAAAUklGRtQAAABXRUJQVlA4TMcAAAAvMUAHEDegmJEkaFhOgP2tv9WQkAWY7BpONmmlmIqato3gZMd2eu543M1/AGD+ev60rVOqwXEiSZJTMM2YMAbIghYF89bR6C0T9mz/fZhjW8iBiP5PAICHmZkg8GHdH0iADa/ZWOLsH+RH1oZYV+Is4DGQC8DDxiP/XBLgYYe7ew4AluK+ui55yhpf11Iqdw8o7neSS77mXkkmR0AlySVfO53tPifNl60uuKaNJgC4Qu71hkAlyR1hyBEgqUgRSiYQkQQRqwnRAA==")
@@ -83,7 +86,7 @@ script = ExtResource("1_a4unq")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_msgna")
+ExportedSpriteWrapper = SubResource("Resource_a4unq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
@@ -113,7 +116,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "0246436a8bbb4f8429856a411d991951"
 
-[node name="AnimatedSprite2D" type="AnimationPlayer" parent="Sprite2D" unique_id=2008528731]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=2008528731]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_i26sj")
 metadata/_aseprite_wizard_interface_config_ = {
@@ -145,7 +148,7 @@ friction = 10.0
 errorMargin = 0.0
 
 [node name="HealthComponent" parent="ComponentManager" unique_id=1112742135 instance=ExtResource("5_0mqa1")]
-MaxHealth = 1
+MaxHealth = 10
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("6_jduby")]
 
@@ -154,5 +157,11 @@ MaxHealth = 1
 [node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
 position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_rgrx0")
+
+[node name="SaveEntityComponent" parent="ComponentManager" unique_id=60794938 instance=ExtResource("8_a4unq")]
+saveName = &"boss_defeated"
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=695830977 instance=ExtResource("9_rgrx0")]
+Scene = ExtResource("10_h43rw")
 
 [editable path="ComponentManager/ContactDamageComponent"]

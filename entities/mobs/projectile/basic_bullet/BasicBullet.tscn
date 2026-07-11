@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://5uwwimmiw8sl"]
 
-[ext_resource type="Script" uid="uid://cb5rs6w55qybf" path="res://entities/mobs/projectile/gravity_bullet/GravityBullet.cs" id="1_y6bss"]
+[ext_resource type="Script" uid="uid://ccs4x051uqnxy" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.cs" id="1_q71h5"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_q71h5"]
 [ext_resource type="Texture2D" uid="uid://matrfljl1nab" path="res://entities/mobs/projectile/basic_bullet/common-bullet.png" id="3_u806n"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_3jrf3"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_t483a"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="6_u806n"]
 
 [sub_resource type="Resource" id="Resource_mbhvt"]
 script = ExtResource("2_q71h5")
@@ -25,7 +26,7 @@ animations = [{
 size = Vector2(3, 3)
 
 [node name="BasicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
-script = ExtResource("1_y6bss")
+script = ExtResource("1_q71h5")
 knockbackForce = 50.0
 CM = NodePath("ComponentManager")
 Team = 1
@@ -48,5 +49,7 @@ shape = SubResource("RectangleShape2D_xlo8j")
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_t483a")]
 lifetime = 3.0
+
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=123531175 instance=ExtResource("6_u806n")]
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
