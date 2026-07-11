@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_lfno2"]
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="7_5g5pj"]
 
-[sub_resource type="Resource" id="Resource_ancsb"]
+[sub_resource type="Resource" id="Resource_fhaxl"]
 script = ExtResource("2_3edb5")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -89,7 +89,7 @@ collision_layer = 4
 script = ExtResource("1_m044u")
 CM = NodePath("ComponentManager")
 Team = 1
-ExportedSpriteWrapper = SubResource("Resource_ancsb")
+ExportedSpriteWrapper = SubResource("Resource_fhaxl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
@@ -97,6 +97,7 @@ position = Vector2(10, -3)
 texture = SubResource("PortableCompressedTexture2D_m044u")
 hframes = 2
 vframes = 2
+frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
 "pending_changes": {}

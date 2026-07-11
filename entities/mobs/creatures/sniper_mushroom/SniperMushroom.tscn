@@ -1,16 +1,17 @@
 [gd_scene format=4 uid="uid://berdk5iuj8eya"]
 
-[ext_resource type="Script" uid="uid://dvrx2f0y0jfv1" path="res://entities/mobs/creatures/king_frog/KingFrog.cs" id="1_i26sj"]
-[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_ikrsw"]
-[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_c2ymt"]
-[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="5_pwxq3"]
-[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_w2m4l"]
-[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_vuiwy"]
-[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="8_2xwwp"]
-[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="8_msgna"]
+[ext_resource type="Script" uid="uid://c6su817dakeib" path="res://entities/mobs/creatures/sniper_mushroom/SniperMushroom.cs" id="1_a4unq"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_jh1ua"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_rgrx0"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_h43rw"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_0mqa1"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="6_jduby"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="7_os6np"]
+[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="8_hajj1"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="9_jh1ua"]
 
 [sub_resource type="Resource" id="Resource_msgna"]
-script = ExtResource("2_ikrsw")
+script = ExtResource("2_jh1ua")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_msgna"]
@@ -75,14 +76,16 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4g3d"]
 size = Vector2(22, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgrx0"]
+
 [node name="MushroomSniper" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("CM", "Sprite")]
 z_index = 1
 collision_layer = 4
-script = ExtResource("1_i26sj")
-CM = NodePath("ComponentManager")
+script = ExtResource("1_a4unq")
 Team = 1
-Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_msgna")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
@@ -135,18 +138,26 @@ metadata/_aseprite_wizard_interface_config_ = {
 position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_n4g3d")
 
-[node name="ComponentManager" parent="." unique_id=361461068 instance=ExtResource("3_c2ymt")]
+[node name="ComponentManager" parent="." unique_id=361461068 instance=ExtResource("3_rgrx0")]
 
-[node name="MoveComponent" parent="ComponentManager" unique_id=866251039 instance=ExtResource("5_pwxq3")]
+[node name="MoveComponent" parent="ComponentManager" unique_id=866251039 instance=ExtResource("4_h43rw")]
 speed = 80.0
 acceleration = 10.0
 friction = 10.0
 errorMargin = 0.0
 
-[node name="HealthComponent" parent="ComponentManager" unique_id=1112742135 instance=ExtResource("6_w2m4l")]
+[node name="HealthComponent" parent="ComponentManager" unique_id=1112742135 instance=ExtResource("5_0mqa1")]
 MaxHealth = 1
 
-[node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("7_vuiwy")]
+[node name="GravityComponent" parent="ComponentManager" unique_id=705434725 instance=ExtResource("6_jduby")]
 
-[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=428926664 instance=ExtResource("8_msgna")]
-Scene = ExtResource("8_2xwwp")
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=428926664 instance=ExtResource("7_os6np")]
+Scene = ExtResource("8_hajj1")
+
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=1816900990 instance=ExtResource("9_jh1ua")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_rgrx0")
+
+[editable path="ComponentManager/ContactDamageComponent"]
