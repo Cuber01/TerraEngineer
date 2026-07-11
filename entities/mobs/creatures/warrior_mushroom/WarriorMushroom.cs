@@ -40,6 +40,7 @@ public partial class WarriorMushroom : Creature
 
         fsm.AddTransition(idleState, chargeState, IsPlayerFarAway, 0, 0.5f);
         fsm.AddTransition(idleState, jumpState, IsPlayerFarAway, 0, 0.5f);
+        fsm.AddTransition(idleState, attackState, IsPlayerClose, 1, 0.5f);
 
         fsm.AddTransition(flipState, idleState, () => flipState.Finished);
 
@@ -263,12 +264,13 @@ public partial class WarriorMushroom : Creature
             };
 
             Transform2D attackTransform = new Transform2D(Actor.GlobalRotation,
-                Actor.attackHitboxShape.Position * (int)Actor.Facing);
+                new Vector2(Actor.GlobalPosition.X + (Actor.attackHitboxShape.Position.X * (int)Actor.Facing),
+                            Actor.GlobalPosition.Y + Actor.attackHitboxShape.Position.Y));
             PhysicsShapeQueryParameters2D query = new()
             {
                 Shape = rect,
                 Transform = attackTransform,
-                CollisionMask = 1 // Player
+                CollisionMask = 2 // Player
             };
          
             var spaceState = Actor.GetWorld2D().DirectSpaceState;

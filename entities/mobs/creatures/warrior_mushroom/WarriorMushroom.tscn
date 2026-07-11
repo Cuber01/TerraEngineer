@@ -14,9 +14,9 @@
 script = ExtResource("2_f0266")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m044u"]
-_data = PackedByteArray("AAADAAUAAAABAAAAUAAAADAAAACqAQAAUklGRqIBAABXRUJQVlA4TJYBAAAvT8ALEEegJgAShosCnHw4ghjejGoaSYGuuu5BCbIQhw1MIMdQBDIaeAoggCL6nyJ7b/4DgHSqhHt89v9OVTNLAhzXtutUR8SJaNNRWvzL7wAs8AAYwvteUdLRhioed+61b27EACL678BtJEXyQC0c1MErABAPFMfYLl8CTdCFNJXWJUQnu3xlGukwokuQXYjK09DlS3WG1sVxlzEOuhCHLheANOcKY7rcNDI1jrtEBYnUUOCMsSoTqUIcUsWp4xS+SvJUu8SC9BDy1Lrcck3iQfRzyJbS5RYloBu0b9A2uwalSyxZtCmlOfwsU+5yFS5ZZ2G5lJvWZYRuCRlaF45LxZ5JjnlG63I6n/Ovv2f9Hh48LF2egxc8ZuYu95ReNbCEvUvNZ4C9i/wzTzC+aKpJ0gSZaSbIfFrz49AHo+mE6TZne1pRMEuP7HJEcAZN4iEf4kwP6AbtG+KFAhANFm1KaQ54EXCWTVqe5bDqlhmM9kxy7JfixPLgnvV7eHEvOFu84AfB9EjgPqwafjkD+JpFzWc8LNcA")
-size_override = Vector2(80, 48)
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_8am2w"]
+_data = PackedByteArray("AAADAAUAAAABAAAAnAAAAEQAAACqAgAAUklGRqICAABXRUJQVlA4TJUCAAAvm8AQEE+gJgAShosCnHyuIIa3jnXMBGCxa99GErGEU0MJXTxmAaDJoDOAABLJa4oT2b35DwCiUimc47W7t6rsNaT/AbkOwLatRMQF9pgto6FrGYNzrm3GxR9wde9EvL0tazyFoycD+l2Jkinm9Smi/w7ctnEkBtjsdV37BDwWZ6pvV5GFW1U0XakoIai+FUVT+FndlqI6eHsWbkeRBUBEe3uK6l+Is7XDbSmy6GaOyWRFXZ8Li5bH8iTEkttl0qJOWJQAy4BykcAQsl4rLMp9USZrXTJZ5Gbr7VphUde7or2oddE8IPrrkf8H2iyh6LCXFS1BFsPeX+13SlG/lxSJzPzzt2wLizq/+z4TtYoPiH6Li3q3HUlRJzEj43dC0cETFeVZ3C+MjNspRb0nKxKgI9fKi9xmREXQQ5dHleQH8Q9/e8KiQ88sFjGQQ/wpzs56BHzNrxMW9ZygqHQ6gD5qsyaiCpoVJyr6zOwlRdCwBXn8/THGBAdRkQARZ1o+y84GgiUq8mufiYoCEHFDfKqArOitK81ERVsD/tb4nS/eZQsN8FEv6gC6fOkNnqCJbNUip2P3jPlCdCoADHCqRY1h76+DuMJfCke/iF333DS72ya7wxCxTizatZp+Ic7WDilFuiZEHzvIi7RZi2zKlCJNUwjLhKL3reYeQpKiK5gtcnZIKPqkaUAM7iwvUsXvzw7yIm2ztYyw6Aow+NEkFL1XhiiHqO1Xgl8xmS46ytFRX0l+HHGRLoAzjUQjYCkpctYj/DJG18YdK4BGYLOmcayggZX6wTFtu2xDRM5Kl5/qbBxp0bbSdEN8tkZeRKAJLt5lC424qGoMgPI6QQONuEh7vhCdCmjMSuAn0emnvsJfko2/TQsAAA==")
+size_override = Vector2(156, 68)
 
 [sub_resource type="Animation" id="Animation_3edb5"]
 length = 0.1
@@ -64,11 +64,43 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_6n7b3"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_n0cg2"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i26sj"]
 _data = {
 &"attack": SubResource("Animation_3edb5"),
 &"charge": SubResource("Animation_6y1nu"),
-&"idle": SubResource("Animation_x6aq1")
+&"idle": SubResource("Animation_x6aq1"),
+&"jump": SubResource("Animation_6n7b3"),
+&"stuck": SubResource("Animation_n0cg2")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4g3d"]
@@ -93,9 +125,9 @@ ExportedSpriteWrapper = SubResource("Resource_0wlmj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
-position = Vector2(10, -3)
-texture = SubResource("PortableCompressedTexture2D_m044u")
-hframes = 2
+position = Vector2(4, -8)
+texture = SubResource("PortableCompressedTexture2D_8am2w")
+hframes = 3
 vframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
@@ -113,13 +145,13 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "Sprite2D/AnimatedSprite2D",
+"player": "Sprite2D/AnimationPlayer",
 "scale": "1.0",
 "slice": "",
 "source": "res://entities/mobs/creatures/warrior_mushroom/mushroom-warrior.ase",
 "source_uid": 9083517516064840392
 }
-metadata/_aseprite_wizard_source_file_hash_ = "3f174270d0682ed0c8e57b2fc3d87d16"
+metadata/_aseprite_wizard_source_file_hash_ = "8d86056f42bd68e260f9892eb1ac564b"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=2008528731]
 root_node = NodePath("../..")
@@ -172,6 +204,7 @@ MaxHealth = 1
 [node name="CollisionShape2D" parent="ComponentManager/NormalContactDamage/AttackArea" parent_id_path=PackedInt32Array(980029765, 47129053) index="0" unique_id=520614987]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_m044u")
+disabled = true
 
 [node name="SaveEntityComponent" parent="ComponentManager" unique_id=2093928676 instance=ExtResource("9_0wlmj")]
 saveName = &"boss_defeated"
