@@ -51,5 +51,8 @@ shape = SubResource("RectangleShape2D_xlo8j")
 lifetime = 3.0
 
 [node name="FreeFlyComponent" parent="ComponentManager" unique_id=123531175 instance=ExtResource("6_u806n")]
+speed = 200.0
+acceleration = 0.95
+airResistance = 0.0
 
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

@@ -87,10 +87,12 @@ CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_a4unq")
+ExportedFacing = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
 texture = SubResource("PortableCompressedTexture2D_msgna")
+flip_h = true
 hframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,

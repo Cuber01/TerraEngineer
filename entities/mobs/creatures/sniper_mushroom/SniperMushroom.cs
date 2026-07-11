@@ -86,7 +86,7 @@ public partial class SniperMushroom : Creature
     #region Movement
     public class FlankingState : State<SniperMushroom>
     {
-        private const float FarDistanceX = 80f;
+        private const float OptimalDistanceX = 80f;
         private const float PositionTolerance = 1f;
         
         public override void Enter()
@@ -101,14 +101,18 @@ public partial class SniperMushroom : Creature
 
             DirectionX moveDir = DirectionX.None;
 
-            // Move away
-            if (distX <= CloseDistanceX)
+            if(distX.IsWithin(OptimalDistanceX, PositionTolerance))
             {
+                // Do nothing
+            }
+            else if (distX <= OptimalDistanceX)
+            {
+                // Move away
                 moveDir = deltaX > 0f ? DirectionX.Left : DirectionX.Right;
             }
-            // Move towards
-            else if (distX >= FarDistanceX)
+            else if (distX >= OptimalDistanceX)
             {
+                // Move towards
                 moveDir = deltaX > 0f ? DirectionX.Right : DirectionX.Left;
             }
 
