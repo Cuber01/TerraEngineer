@@ -26,6 +26,9 @@ public class StateMachine<T>
 
     public void AddTransition(State<T> from, State<T> to, System.Func<bool> condition, uint priority=0, float probability=1f)
     {
+        from.Assign(actor);
+        to.Assign(actor);
+        
         Transition<T> newTransition = new Transition<T>(to, condition, from, priority, probability); 
         localTransitions.Add(newTransition);
         if (from == CurrentState)
@@ -65,7 +68,6 @@ public class StateMachine<T>
     {
         CurrentState.Exit();
         CurrentState = newState;
-        CurrentState.Assign(actor);
         CurrentState.Enter();
 
         calculatePossibleTransitions();
