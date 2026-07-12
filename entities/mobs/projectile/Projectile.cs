@@ -26,9 +26,14 @@ public partial class Projectile : Entity
             CM.GetComponent<Lifetime>().LifetimeEnded += () => OnLifetimeDeath.Invoke();
     }
     
+    private void onAreaEntered(Area2D area)
+    {
+        OnDeflect();
+    }
+    
     private void onBodyEntered(Node2D body)
     {
-       OnHit(body);
+        OnHit(body);
     }
 
     protected void OnHit(Node2D body)
@@ -56,6 +61,33 @@ public partial class Projectile : Entity
                 OnCollideDeath?.Invoke();
                 Die();
             }
+        }
+    }
+
+    protected virtual void OnDeflect()
+    {
+        DirectionNormal = -DirectionNormal;
+        CM.GetComponent<FreeFly>().MultiplyAcceleration(2);
+        ReverseTeams();
+    }
+
+    protected void ReverseTeams()
+    {
+        if (GetCollisionMaskValue(Names.CollisionLayers.Player) && GetCollisionMaskValue(Names.CollisionLayers.Enemy))
+        {
+            // Do nothing (neutral bullet)
+        } else if (GetCollisionMaskValue(Names.CollisionLayers.Player)) 
+        {
+            // Enemy bullet -> Player bullet
+            Team = CollisionTeam.Player;
+            SetCollisionMaskValue(Names.CollisionLayers.Enemy, true);
+            SetCollisionMaskValue(Names.CollisionLayers.Player, false);
+        } else if (GetCollisionMaskValue(Names.CollisionLayers.Enemy)) 
+        {
+            // Player bullet -> Enemy bullet
+            Team = CollisionTeam.Enemy;
+            SetCollisionMaskValue(Names.CollisionLayers.Enemy, false);
+            SetCollisionMaskValue(Names.CollisionLayers.Player, true);
         }
     }
 

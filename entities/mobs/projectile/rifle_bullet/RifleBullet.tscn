@@ -52,9 +52,8 @@ _data = {
 &"idle": SubResource("Animation_onlrp")
 }
 
-[node name="RifleBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("raycast", "CM", "Sprite")]
+[node name="RifleBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_jujva")
-raycast = NodePath("RayCast2D")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_milgr")

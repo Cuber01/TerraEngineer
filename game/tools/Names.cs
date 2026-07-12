@@ -106,6 +106,18 @@ public static class Names
          public static readonly StringName GroupMenus = "GroupMenus";
      }
 
+     public static class CollisionLayers
+     {
+         public const int Ground = 1;
+         public const int Player = 2;
+         public const int Enemy = 3;
+         public const int Objects = 4;
+         public const int Terraformables = 5;
+         public const int Platforms = 6;
+         public const int Bullets = 7;
+         public const int BulletDeflectors = 8;
+     }
+
      public static class Other
      {
          public static readonly StringName Start = "start";

@@ -35,7 +35,7 @@ public partial class WarriorMushroom : Creature
     {
         Player = GetNode<Player>(Names.NodePaths.Player);
 
-        fsm = new StateMachine<WarriorMushroom>(this, idleState);
+        fsm = new StateMachine<WarriorMushroom>(this, stuckState);
 
         fsm.AddGlobalTransition(stuckState, () => swordStuckInWall, 3);
 
@@ -173,7 +173,7 @@ public partial class WarriorMushroom : Creature
         public override void Enter()
         {
             base.Enter();
-            Delay = 5;
+            Delay = 80;
             Actor.velocity.X = 0f;
             Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.swordStuckInWall = false;
@@ -275,7 +275,7 @@ public partial class WarriorMushroom : Creature
             {
                 Shape = rect,
                 Transform = attackTransform,
-                CollisionMask = 2 // Player
+                CollisionMask = Names.CollisionLayers.Player
             };
          
             var spaceState = Actor.GetWorld2D().DirectSpaceState;

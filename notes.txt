@@ -36,6 +36,7 @@ X prevent event memory leaks on events - make state exit on death?
 - use float extension IsWithin for old code too
 - find way to reuse states like in a decorator pattern
 - make a generic static function for spawning stuff
+- implement deflect for gravity bullets
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump

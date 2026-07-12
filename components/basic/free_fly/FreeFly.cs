@@ -52,5 +52,10 @@ public partial class FreeFly : Component
         entityActor.velocity = MathT.Lerp(entityActor.velocity, Vector2.Zero, airResistance, dt);
     }
 
+    public void MultiplyAcceleration(float by)
+    {
+        acceleration *= by;
+    }
+
     public override void Update(float dt) => updateAirResistance(dt);
 }
