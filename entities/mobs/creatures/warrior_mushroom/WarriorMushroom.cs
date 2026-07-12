@@ -29,7 +29,7 @@ public partial class WarriorMushroom : Creature
     private readonly JumpState jumpState = new();
     private readonly AttackState attackState = new();
 
-    private bool swordStuckInWall;
+    private bool swordStuckInWall = false;
 
     public Player Player { get; private set; }
 
@@ -175,11 +175,17 @@ public partial class WarriorMushroom : Creature
         public override void Enter()
         {
             base.Enter();
-            Delay = 15;
+            Delay = 7;
             Actor.velocity.X = 0f;
             Actor.SpriteWrapper.Play(Names.Animations.Idle);
-            Actor.swordStuckInWall = false;
+            Actor.mainHurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
             Actor.SpriteWrapper.Play("stuck");
+        }
+
+        public override void Exit()
+        {
+            Actor.swordStuckInWall = false;
+            Actor.mainHurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
         }
     }
 

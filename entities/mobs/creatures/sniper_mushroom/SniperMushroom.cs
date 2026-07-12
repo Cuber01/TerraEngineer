@@ -36,7 +36,7 @@ public partial class SniperMushroom : Creature
 {
     [Export] private CollisionShape2D hurtbox;
     
-    private float hideTime = 30f;
+    private float hideTime = 12f;
     private bool forcedToHide = false;
     
     private StateMachine<SniperMushroom> movementFsm;

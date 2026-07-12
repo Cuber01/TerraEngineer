@@ -193,6 +193,7 @@ collision_mask = 3
 [node name="ChargeHitbox" type="CollisionShape2D" parent="ChargeArea" unique_id=1660182896]
 position = Vector2(17, 3)
 shape = SubResource("RectangleShape2D_0wlmj")
+disabled = true
 
 [node name="ComponentManager" parent="." unique_id=361461068 instance=ExtResource("3_6y1nu")]
 
