@@ -11,15 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="9_rgrx0"]
 [ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="10_h43rw"]
 
-[sub_resource type="Resource" id="Resource_a4unq"]
+[sub_resource type="Resource" id="Resource_rgrx0"]
 script = ExtResource("2_jkpin")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_msgna"]
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_h43rw"]
 _data = PackedByteArray("AAADAAUAAAABAAAAMgAAAB4AAADcAAAAUklGRtQAAABXRUJQVlA4TMcAAAAvMUAHEDegmJEkaFhOgP2tv9WQkAWY7BpONmmlmIqato3gZMd2eu543M1/AGD+ev60rVOqwXEiSZJTMM2YMAbIghYF89bR6C0T9mz/fZhjW8iBiP5PAICHmZkg8GHdH0iADa/ZWOLsH+RH1oZYV+Is4DGQC8DDxiP/XBLgYYe7ew4AluK+ui55yhpf11Iqdw8o7neSS77mXkkmR0AlySVfO53tPifNl60uuKaNJgC4Qu71hkAlyR1hyBEgqUgRSiYQkQQRqwnRAA==")
 size_override = Vector2(50, 30)
 
-[sub_resource type="Animation" id="Animation_3edb5"]
+[sub_resource type="Animation" id="Animation_0mqa1"]
 length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
@@ -35,24 +35,8 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_6y1nu"]
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
 [sub_resource type="Animation" id="Animation_x6aq1"]
-length = 0.001
+length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -69,8 +53,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i26sj"]
 _data = {
-&"attack": SubResource("Animation_3edb5"),
-&"charge": SubResource("Animation_6y1nu"),
+&"hide": SubResource("Animation_0mqa1"),
 &"idle": SubResource("Animation_x6aq1")
 }
 
@@ -79,20 +62,20 @@ size = Vector2(22, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgrx0"]
 
-[node name="MushroomSniper" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("CM", "Sprite")]
+[node name="MushroomSniper" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("hurtbox", "CM", "Sprite")]
 z_index = 1
 collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_a4unq")
+hurtbox = NodePath("ComponentManager/ContactDamageComponent/AttackArea/CollisionShape2D")
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_a4unq")
-ExportedFacing = -1
+ExportedSpriteWrapper = SubResource("Resource_rgrx0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1
-texture = SubResource("PortableCompressedTexture2D_msgna")
+texture = SubResource("PortableCompressedTexture2D_h43rw")
 flip_h = true
 hframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
@@ -111,7 +94,7 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "Sprite2D/AnimatedSprite2D",
+"player": "Sprite2D/AnimationPlayer",
 "scale": "1.0",
 "slice": "",
 "source": "res://entities/mobs/creatures/sniper_mushroom/sniper-shroom.ase",
@@ -157,7 +140,7 @@ MaxHealth = 10
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=1816900990 instance=ExtResource("9_jh1ua")]
 
-[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" parent_id_path=PackedInt32Array(1816900990, 47129053) index="0" unique_id=520614987]
 position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_rgrx0")
 

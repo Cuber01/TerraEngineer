@@ -45,7 +45,7 @@ public partial class Projectile : Entity
             if (mob.Team != Team)
             {
                 Health healthComp = mob.CM.TryGetComponent<Health>();
-                healthComp?.ChangeHealth(-damage);
+                healthComp?.ChangeHealth(-damage, this);
                 
                 mob.CM.TryGetComponent<KnockbackComponent>()
                     ?.ApplyKnockback(GlobalPosition, knockbackForce);

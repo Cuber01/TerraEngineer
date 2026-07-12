@@ -1,5 +1,6 @@
 using Godot;
 using TENamespace.health;
+using TerraEngineer.entities.mobs;
 using TerraEngineer.ui.player_hud;
 
 public partial class HealthBar : TextureProgressBar, IConnectable<Player>
@@ -27,7 +28,7 @@ public partial class HealthBar : TextureProgressBar, IConnectable<Player>
         hpComponent.MaxHealthChanged -= onMaxHealthChanged;
     }
 
-    private void onHealthChanged(int health, int amount)
+    private void onHealthChanged(int health, int amount, Entity source)
     {
         Value = health;
         label.Text = health.ToString("00");

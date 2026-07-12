@@ -1,11 +1,14 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices.ComTypes;
 using TENamespace;
+using TENamespace.health;
 using TENamespace.projectile_builder;
 using TENamespace.save_entity;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
+using TerraEngineer.entities.projectiles;
 using TerraEngineer.game;
 
 // For movement fsm:
@@ -31,6 +34,11 @@ using TerraEngineer.game;
 [Tool]
 public partial class SniperMushroom : Creature
 {
+    [Export] private CollisionShape2D hurtbox;
+    
+    private float hideTime = 30f;
+    private bool forcedToHide = false;
+    
     private StateMachine<SniperMushroom> movementFsm;
     private StateMachine<SniperMushroom> gunFsm;
     private bool publishedEntered;
@@ -38,8 +46,11 @@ public partial class SniperMushroom : Creature
     private readonly FlankingState flankingState = new();
     private readonly RepositionState repositionState = new();
     private readonly IdleState idleState = new();
+    private readonly HideState hideState = new();
+    
     private readonly ShootState shootState = new();
     private readonly ShootingIdleState shootingIdleState = new();
+    private readonly ShootingHideState shootingHideState = new();
     
     public Player Player { get; private set; }
 
@@ -51,6 +62,8 @@ public partial class SniperMushroom : Creature
         movementFsm = new StateMachine<SniperMushroom>(this, idleState);
         movementFsm.AddTransition(idleState, repositionState, () => !IsPlayerAtOrAbove() && IsPlayerFarAway());
         movementFsm.AddTransition(repositionState, idleState, () => !IsPlayerAtOrAbove() && repositionState.Finished);
+        movementFsm.AddGlobalTransition(hideState, () => forcedToHide, 1);
+        movementFsm.AddTransition(hideState, idleState, hideState.TimerCondition);
         
         // If player got to us, we force the reposition state ignoring previous ones and never come back
         movementFsm.AddTransition(idleState, flankingState, IsPlayerAtOrAbove);
@@ -60,7 +73,12 @@ public partial class SniperMushroom : Creature
         gunFsm = new StateMachine<SniperMushroom>(this, shootingIdleState);
         gunFsm.AddTransition(shootingIdleState, shootState, shootingIdleState.TimerCondition);
         gunFsm.AddTransition(shootState, shootingIdleState, () => shootState.Finished);
+        gunFsm.AddGlobalTransition(shootingHideState, () => forcedToHide, 1);
+        gunFsm.AddTransition(shootingHideState, shootingIdleState, shootingHideState.TimerCondition);
 
+        CM.GetComponent<Health>().HealthChanged += onDamageTaken;
+    
+        
         CM.GetComponent<SaveEntity>().OptionalInit(this);
     }
 
@@ -83,6 +101,15 @@ public partial class SniperMushroom : Creature
         FlipIfHitWall();
     }
 
+    private void onDamageTaken(int current, int amount, Entity source)
+    {
+        if (source is BasicBullet && movementFsm.CurrentState is not HideState) // Bullet is mine
+        {
+            forcedToHide = true;
+            CM.GetComponent<Health>().MakeInvincible(hideTime);   
+        }
+    }
+    
     #region Movement
     public class FlankingState : State<SniperMushroom>
     {
@@ -158,6 +185,24 @@ public partial class SniperMushroom : Creature
 
         public override void Exit() { }
     }
+    
+    public class HideState : TimedState<SniperMushroom>
+    {
+        public override void Enter()
+        {
+            base.Enter();
+            Delay = Actor.hideTime;
+            Actor.SpriteWrapper.Play("hide");
+            Actor.hurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+        }
+
+        public override void Exit()
+        {
+            Actor.SpriteWrapper.Play("idle");
+            Actor.forcedToHide = false;
+            Actor.hurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+        }
+    }
 
     public class IdleState : State<SniperMushroom>
     {
@@ -174,6 +219,15 @@ public partial class SniperMushroom : Creature
         {
             base.Enter();
             Delay = 3f;
+        }
+    }
+    
+    public class ShootingHideState : TimedState<SniperMushroom>
+    {
+        public override void Enter()
+        {
+            base.Enter();
+            Delay = Actor.hideTime;
         }
     }
 

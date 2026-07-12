@@ -9,7 +9,7 @@ public partial class Health : Component
     public delegate void InvincibilityEndedEventHandler();
     public event InvincibilityEndedEventHandler InvincibilityEnded;
     
-    public delegate void HealthChangedEventHandler(int currentHealth, int amount);
+    public delegate void HealthChangedEventHandler(int currentHealth, int amount, Entity source=null);
     public event HealthChangedEventHandler HealthChanged;
     
     public delegate void MaxHealthChangedEventHandler(int newMax);
@@ -42,7 +42,7 @@ public partial class Health : Component
         HP = MaxHealth;
     }
     
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, Entity source=null)
     {
         if (invincible && amount < 0)
         {
@@ -58,7 +58,7 @@ public partial class Health : Component
             HP += amount;
         }
         
-        HealthChanged?.Invoke(HP, amount);
+        HealthChanged?.Invoke(HP, amount, source);
         if (HP <= 0)
         {
             entityActor.Die();
@@ -85,10 +85,10 @@ public partial class Health : Component
         MaxHealthChanged?.Invoke(MaxHealth);
     }
     
-    public void MakeInvincible()
+    public void MakeInvincible(float customTime=-1)
     {
         invincible = true;
-        TimerManager.Schedule(invincibilityTimeOnHit, Actor,  (t) =>
+        TimerManager.Schedule(customTime < 0 ? invincibilityTimeOnHit : customTime, Actor,  (t) =>
         {
             invincible = false;
             InvincibilityEnded?.Invoke();

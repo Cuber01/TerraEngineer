@@ -117,13 +117,14 @@ size = Vector2(13, 17)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n7b3"]
 size = Vector2(24, 10)
 
-[node name="MushroomWarrior" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("mainHitbox", "mainHurtbox", "chargeHitbox", "CM", "Sprite")]
+[node name="MushroomWarrior" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("mainHitbox", "mainHurtbox", "chargeHitbox", "deflectorHitbox", "CM", "Sprite")]
 z_index = 1
 collision_layer = 4
 script = ExtResource("1_m044u")
 mainHitbox = NodePath("MainHitbox")
 mainHurtbox = NodePath("ComponentManager/NormalContactDamage/AttackArea/CollisionShape2D")
 chargeHitbox = NodePath("ChargeArea/ChargeHitbox")
+deflectorHitbox = NodePath("ComponentManager/BulletDeflectorComponent/DeflectionArea/CollisionShape2D")
 mushroomCapScene = ExtResource("2_8am2w")
 attackHitboxShape = Rect2(16, -3, 15, 19)
 CM = NodePath("ComponentManager")

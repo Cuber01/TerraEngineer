@@ -13,8 +13,10 @@ public partial class WarriorMushroom : Creature
     [Export] private CollisionShape2D mainHitbox;
     [Export] private CollisionShape2D mainHurtbox;
     [Export] private CollisionShape2D chargeHitbox;
+    [Export] private CollisionShape2D deflectorHitbox;
     [Export] private PackedScene mushroomCapScene;
     [Export] private Rect2 attackHitboxShape;
+    
     
     private const float FarDistanceX = 50f;
 
@@ -317,6 +319,7 @@ public partial class WarriorMushroom : Creature
         attackHitboxShape.Position = new Vector2(-attackHitboxShape.Position.X, attackHitboxShape.Position.Y);
         mainHitbox.Position = new Vector2(-mainHitbox.Position.X, mainHitbox.Position.Y);
         mainHurtbox.Position = new Vector2(-mainHurtbox.Position.X, mainHurtbox.Position.Y);
+        deflectorHitbox.Position = new Vector2(-deflectorHitbox.Position.X, deflectorHitbox.Position.Y);
     }
 
     public override void Die()

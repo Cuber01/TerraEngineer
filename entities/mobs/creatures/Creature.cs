@@ -21,7 +21,7 @@ public partial class Creature : Entity
             return;
         #endif
         
-        CM.GetComponent<Health>().HealthChanged += (_, amount) =>
+        CM.GetComponent<Health>().HealthChanged += (_, amount, _) =>
         {
             if (amount < 0)
             {
