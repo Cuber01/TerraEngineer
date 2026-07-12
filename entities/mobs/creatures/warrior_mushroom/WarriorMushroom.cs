@@ -37,7 +37,7 @@ public partial class WarriorMushroom : Creature
     {
         Player = GetNode<Player>(Names.NodePaths.Player);
 
-        fsm = new StateMachine<WarriorMushroom>(this, stuckState);
+        fsm = new StateMachine<WarriorMushroom>(this, idleState);
 
         fsm.AddGlobalTransition(stuckState, () => swordStuckInWall, 3);
 
@@ -175,7 +175,7 @@ public partial class WarriorMushroom : Creature
         public override void Enter()
         {
             base.Enter();
-            Delay = 80;
+            Delay = 15;
             Actor.velocity.X = 0f;
             Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.swordStuckInWall = false;
