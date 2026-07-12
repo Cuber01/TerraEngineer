@@ -115,7 +115,7 @@ size = Vector2(14, 2)
 size = Vector2(13, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n7b3"]
-size = Vector2(24, 14)
+size = Vector2(24, 10)
 
 [node name="MushroomWarrior" type="CharacterBody2D" unique_id=1036610662 node_paths=PackedStringArray("mainHitbox", "mainHurtbox", "chargeHitbox", "CM", "Sprite")]
 z_index = 1
@@ -220,7 +220,7 @@ saveName = &"boss_defeated"
 [node name="BulletDeflectorComponent" parent="ComponentManager" unique_id=1871397050 instance=ExtResource("11_6n7b3")]
 
 [node name="CollisionShape2D" parent="ComponentManager/BulletDeflectorComponent/DeflectionArea" parent_id_path=PackedInt32Array(1871397050, 105617202) index="0" unique_id=520614987]
-position = Vector2(-3, -12)
+position = Vector2(-3, -10)
 shape = SubResource("RectangleShape2D_6n7b3")
 
 [connection signal="body_entered" from="ChargeArea" to="." method="onChargeAreaEntered"]

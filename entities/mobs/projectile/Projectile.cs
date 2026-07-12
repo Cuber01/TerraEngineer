@@ -9,6 +9,8 @@ namespace TerraEngineer.entities.projectiles;
 
 public partial class Projectile : Entity
 {
+    [Export] private Area2D hitArea;
+    
     [Export] private int damage = 1;
     [Export] private int piercing = 0;
     [Export] private float knockbackForce = 100f;
@@ -67,27 +69,28 @@ public partial class Projectile : Entity
     protected virtual void OnDeflect()
     {
         DirectionNormal = -DirectionNormal;
+        velocity = -velocity;
         CM.GetComponent<FreeFly>().MultiplyAcceleration(2);
         ReverseTeams();
     }
 
     protected void ReverseTeams()
     {
-        if (GetCollisionMaskValue(Names.CollisionLayers.Player) && GetCollisionMaskValue(Names.CollisionLayers.Enemy))
+        if (hitArea.GetCollisionMaskValue(Names.CollisionLayers.Player) && GetCollisionMaskValue(Names.CollisionLayers.Enemy))
         {
             // Do nothing (neutral bullet)
-        } else if (GetCollisionMaskValue(Names.CollisionLayers.Player)) 
+        } else if (hitArea.GetCollisionMaskValue(Names.CollisionLayers.Player)) 
         {
             // Enemy bullet -> Player bullet
             Team = CollisionTeam.Player;
-            SetCollisionMaskValue(Names.CollisionLayers.Enemy, true);
-            SetCollisionMaskValue(Names.CollisionLayers.Player, false);
-        } else if (GetCollisionMaskValue(Names.CollisionLayers.Enemy)) 
+            hitArea.SetCollisionMaskValue(Names.CollisionLayers.Enemy, true);
+            hitArea.SetCollisionMaskValue(Names.CollisionLayers.Player, false);
+        } else if (hitArea.GetCollisionMaskValue(Names.CollisionLayers.Enemy)) 
         {
             // Player bullet -> Enemy bullet
             Team = CollisionTeam.Enemy;
-            SetCollisionMaskValue(Names.CollisionLayers.Enemy, false);
-            SetCollisionMaskValue(Names.CollisionLayers.Player, true);
+            hitArea.SetCollisionMaskValue(Names.CollisionLayers.Enemy, false);
+            hitArea.SetCollisionMaskValue(Names.CollisionLayers.Player, true);
         }
     }
 

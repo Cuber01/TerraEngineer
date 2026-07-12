@@ -25,10 +25,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlo8j"]
 size = Vector2(3, 3)
 
-[node name="BasicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
+[node name="BasicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_q71h5")
+hitArea = NodePath("Area2D")
 knockbackForce = 50.0
 CM = NodePath("ComponentManager")
 Team = 1
@@ -41,7 +42,7 @@ sprite_frames = SubResource("SpriteFrames_msxgl")
 [node name="Area2D" type="Area2D" parent="." unique_id=798235926]
 position = Vector2(4.5, 0)
 collision_layer = 64
-collision_mask = 3
+collision_mask = 131
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=262930762]
 position = Vector2(-4, 0.5)
