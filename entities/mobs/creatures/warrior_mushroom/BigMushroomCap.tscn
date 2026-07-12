@@ -1,0 +1,85 @@
+[gd_scene format=4 uid="uid://du27cy6gaycux"]
+
+[ext_resource type="Script" uid="uid://d0cuix83asm8u" path="res://entities/objects/plant/Trampoline.cs" id="1_54yvp"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_eah0j"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_krihp"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="4_j0quw"]
+
+[sub_resource type="Resource" id="Resource_a0hhk"]
+script = ExtResource("2_eah0j")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdec"]
+size = Vector2(8.5, 3)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_54yvp"]
+_data = PackedByteArray("AAADAAUAAAABAAAAFgAAABAAAAB0AAAAUklGRmwAAABXRUJQVlA4TGAAAAAvFcADEBcgEEjyB5hpRLFgMn+DSHsFAkkWe088/wHdG1xFsq1GJwxSoiISGCU8FVGRb6axuW89RPQ/tNI60mvaRDl0iYoLMjUX4DafBRhnAaYAwFjYqf3+zT9XelNJWl0=")
+size_override = Vector2(22, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eah0j"]
+atlas = SubResource("PortableCompressedTexture2D_54yvp")
+region = Rect2(0, 0, 22, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_krihp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eah0j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa060"]
+size = Vector2(22, 5)
+
+[node name="BigMushroomCap" type="CharacterBody2D" unique_id=862336944 node_paths=PackedStringArray("Hitbox", "CM", "Sprite")]
+collision_layer = 8
+script = ExtResource("1_54yvp")
+bounceVelocity = 250.0
+Hitbox = NodePath("Area2D/CollisionShape2D")
+MyBiome = 1
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_a0hhk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=732570946]
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1883654811]
+position = Vector2(-0.25, -1.5)
+shape = SubResource("RectangleShape2D_rgdec")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=835372610]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_krihp")
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/mobs/creatures/warrior_mushroom/big-mushroom-cap.ase",
+"source_uid": 7803253370022642168
+}
+metadata/_aseprite_wizard_source_file_hash_ = "02c6153c0c39de974c1e38050144eb9d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=240154153]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_qa060")
+
+[node name="ComponentManager" parent="." unique_id=2052241324 instance=ExtResource("3_krihp")]
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1510732195 instance=ExtResource("4_j0quw")]
+
+[connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

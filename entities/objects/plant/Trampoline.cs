@@ -4,16 +4,16 @@ using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
-public partial class Mushroom : Terraformable
+public partial class Trampoline : Terraformable
 {
-    private const float BounceVelocity = 150;
+    [Export] private float bounceVelocity = 150;
     
     private void onBodyEntered(Node2D body)
     {
         Entity e = (Entity)body;
         if (e.velocity.Y > 0)
         {
-            e.velocity.Y = -BounceVelocity;
+            e.velocity.Y = -bounceVelocity;
         }
     }
     

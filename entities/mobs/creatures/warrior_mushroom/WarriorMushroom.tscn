@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://d3j1ukdlcb1bu"]
 
 [ext_resource type="Script" uid="uid://c428g10jfxgi8" path="res://entities/mobs/creatures/warrior_mushroom/WarriorMushroom.cs" id="1_m044u"]
+[ext_resource type="PackedScene" uid="uid://du27cy6gaycux" path="res://entities/mobs/creatures/warrior_mushroom/BigMushroomCap.tscn" id="2_8am2w"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_f0266"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_6y1nu"]
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="4_8sjtt"]
@@ -10,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="8_1q0u7"]
 [ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="9_0wlmj"]
 
-[sub_resource type="Resource" id="Resource_0wlmj"]
+[sub_resource type="Resource" id="Resource_6n7b3"]
 script = ExtResource("2_f0266")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -119,11 +120,12 @@ script = ExtResource("1_m044u")
 mainHitbox = NodePath("CollisionShape2D")
 mainHurtbox = NodePath("ComponentManager/NormalContactDamage/AttackArea/CollisionShape2D")
 chargeHitbox = NodePath("ChargeArea/CollisionShape2D")
+mushroomCapScene = ExtResource("2_8am2w")
 attackHitboxShape = Rect2(16, -3, 15, 19)
 CM = NodePath("ComponentManager")
 Team = 1
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_0wlmj")
+ExportedSpriteWrapper = SubResource("Resource_6n7b3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126216015]
 texture_filter = 1

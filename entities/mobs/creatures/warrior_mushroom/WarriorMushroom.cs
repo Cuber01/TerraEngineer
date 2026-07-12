@@ -13,6 +13,7 @@ public partial class WarriorMushroom : Creature
     [Export] private CollisionShape2D mainHitbox;
     [Export] private CollisionShape2D mainHurtbox;
     [Export] private CollisionShape2D chargeHitbox;
+    [Export] private PackedScene mushroomCapScene;
     [Export] private Rect2 attackHitboxShape;
     
     private const float FarDistanceX = 50f;
@@ -298,6 +299,16 @@ public partial class WarriorMushroom : Creature
             Finished = false;
         }
     }
+    
+    private void dealAttack(Entity victim, int damage, float knockbackForce, Vector2 knockbackFrom)
+    {
+        if(victim.GodMode) return;
+            
+        victim.CM.TryGetComponent<Health>()?.ChangeHealth(-damage);
+                
+        victim.CM.TryGetComponent<KnockbackComponent>()
+            ?.ApplyKnockback(knockbackFrom, knockbackForce);
+    }
 
     protected override void FlipEffect()
     {
@@ -308,14 +319,12 @@ public partial class WarriorMushroom : Creature
         mainHurtbox.Position = new Vector2(-mainHurtbox.Position.X, mainHurtbox.Position.Y);
     }
 
-    private void dealAttack(Entity victim, int damage, float knockbackForce, Vector2 knockbackFrom)
+    public override void Die()
     {
-        if(victim.GodMode) return;
-            
-        victim.CM.TryGetComponent<Health>()?.ChangeHealth(-damage);
-                
-        victim.CM.TryGetComponent<KnockbackComponent>()
-            ?.ApplyKnockback(knockbackFrom, knockbackForce);
+        base.Die();
+        Trampoline instance = (Trampoline)mushroomCapScene.Instantiate();
+        instance.Position = GlobalPosition;
+        GetParent().CallDeferred(Node.MethodName.AddChild, instance);
     }
     
     private void onChargeAreaEntered(Node2D body) => chargeState.ChargeHit(body);
