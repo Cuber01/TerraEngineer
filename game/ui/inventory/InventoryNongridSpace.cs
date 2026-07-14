@@ -1,9 +1,9 @@
 using Godot;
 using System;
+using TerraEngineer.game.ui.inventory;
 
 public partial class InventoryNongridSpace : TextureButton
 {
-    
     [Export] public InventoryItemData ItemData
     {
         set
@@ -18,6 +18,14 @@ public partial class InventoryNongridSpace : TextureButton
     public override void _Ready()
     {
         updateState();
+    }
+
+    private void onFocusEntered()
+    {
+        if (ItemData != null)
+        {
+            InventoryChannel.EmitItemChosen(ItemData);   
+        }
     }
 
     private void updateState()

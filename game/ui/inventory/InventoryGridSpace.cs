@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using TerraEngineer.game.ui.inventory;
+using TerraEngineer.ui.player_hud;
 
 public partial class InventoryGridSpace : TextureRect
 {
@@ -22,6 +24,11 @@ public partial class InventoryGridSpace : TextureRect
     private void onFocusEntered()
     {
         selectedSprite.Visible = true;
+        if (ItemData != null)
+        {
+            InventoryChannel.EmitItemChosen(ItemData);    
+        }
+        
     }
 
     private void onFocusExited()

@@ -35,6 +35,7 @@
 [ext_resource type="FontFile" uid="uid://dnso3d62nyw0e" path="res://assets/fonts/PixelMiddle.ttf" id="28_7e4sh"]
 [ext_resource type="Texture2D" uid="uid://bg216c64jmp6k" path="res://game/ui/inventory/item-description-box.png" id="29_2320j"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="30_hyud7"]
+[ext_resource type="Script" uid="uid://c8g8n24rabcou" path="res://game/ui/inventory/ItemDescriptionBox.cs" id="36_66r26"]
 
 [sub_resource type="Resource" id="Resource_66r26"]
 script = ExtResource("6_ow58c")
@@ -66,6 +67,10 @@ color = Color(0.050980393, 0.078431375, 0.15686275, 1)
 [node name="Ring" type="Sprite2D" parent="." unique_id=676180597]
 position = Vector2(40, 145)
 texture = ExtResource("1_5dic5")
+
+[node name="HealthContainer" type="Sprite2D" parent="." unique_id=339301690]
+position = Vector2(36, 145)
+texture = ExtResource("7_waatw")
 
 [node name="Wings" type="TextureButton" parent="." unique_id=1677957970]
 layout_mode = 0
@@ -112,10 +117,6 @@ texture_pressed = ExtResource("8_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("8_7bo0o")
 script = ExtResource("5_kidvn")
-
-[node name="HealthContainer" type="Sprite2D" parent="." unique_id=339301690]
-position = Vector2(36, 145)
-texture = ExtResource("7_waatw")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1428990793]
 layout_mode = 0
@@ -340,9 +341,12 @@ autowrap_trim_flags = 0
 shortcut_keys_enabled = false
 justification_flags = 0
 
-[node name="ItemDescriptionBox" type="Sprite2D" parent="." unique_id=261175894]
+[node name="ItemDescriptionBox" type="Sprite2D" parent="." unique_id=261175894 node_paths=PackedStringArray("nameLabel", "descLabel")]
 position = Vector2(160, 47)
 texture = ExtResource("29_2320j")
+script = ExtResource("36_66r26")
+nameLabel = NodePath("NameLabel")
+descLabel = NodePath("DescLabel")
 
 [node name="NameLabel" type="RichTextLabel" parent="ItemDescriptionBox" unique_id=148988397]
 z_index = 7
@@ -360,7 +364,7 @@ autowrap_trim_flags = 0
 shortcut_keys_enabled = false
 justification_flags = 0
 
-[node name="DialogueLabel" type="RichTextLabel" parent="ItemDescriptionBox" unique_id=1322270717]
+[node name="DescLabel" type="RichTextLabel" parent="ItemDescriptionBox" unique_id=1322270717]
 z_index = 7
 custom_minimum_size = Vector2(189, 13)
 offset_left = -145.0
@@ -373,3 +377,13 @@ theme_override_fonts/normal_font = ExtResource("30_hyud7")
 bbcode_enabled = true
 text = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
 scroll_active = false
+
+[connection signal="focus_entered" from="Wings" to="Wings" method="onFocusEntered"]
+[connection signal="focus_entered" from="PhaseShift" to="PhaseShift" method="_on_focus_entered"]
+[connection signal="focus_entered" from="Dash" to="Dash" method="onFocusEntered"]
+[connection signal="focus_entered" from="Green" to="Green" method="onFocusEntered"]
+[connection signal="focus_entered" from="Blue" to="Blue" method="onFocusEntered"]
+[connection signal="focus_entered" from="Purple" to="Purple" method="onFocusEntered"]
+[connection signal="focus_entered" from="Flamethrower" to="Flamethrower" method="onFocusEntered"]
+[connection signal="focus_entered" from="Rifle" to="Rifle" method="onFocusEntered"]
+[connection signal="focus_entered" from="GrenadeLauncher" to="GrenadeLauncher" method="onFocusEntered"]
