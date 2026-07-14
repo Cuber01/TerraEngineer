@@ -1,35 +1,34 @@
 [gd_scene format=3 uid="uid://dx8wf1mbox56o"]
 
-[ext_resource type="Texture2D" uid="uid://cdeum4mnukot4" path="res://assets/gui/big-ring.png" id="1_5dic5"]
-[ext_resource type="Texture2D" uid="uid://b4l7em00s8051" path="res://assets/gui/wings.png" id="2_846ir"]
-[ext_resource type="Texture2D" uid="uid://cns8r02nwg7i0" path="res://assets/gui/circle-field.png" id="2_b52o1"]
-[ext_resource type="Texture2D" uid="uid://dpi2k0a75by7s" path="res://assets/gui/wings-selected.png" id="3_g27qv"]
-[ext_resource type="Texture2D" uid="uid://kd7u6kb6ebq7" path="res://assets/gui/phase-shift.png" id="5_iaiip"]
-[ext_resource type="Texture2D" uid="uid://deyvinhfqgp5v" path="res://assets/gui/phase-shift-selected.png" id="6_7bo0o"]
-[ext_resource type="Texture2D" uid="uid://cytp1jx5ypf51" path="res://assets/gui/dash.png" id="7_iaiip"]
+[ext_resource type="Texture2D" uid="uid://cdeum4mnukot4" path="res://game/ui/inventory/big-ring.png" id="1_5dic5"]
+[ext_resource type="Texture2D" uid="uid://b4l7em00s8051" path="res://game/ui/inventory/wings.png" id="2_846ir"]
+[ext_resource type="Texture2D" uid="uid://cns8r02nwg7i0" path="res://game/ui/inventory/circle-field.png" id="2_b52o1"]
+[ext_resource type="Texture2D" uid="uid://dpi2k0a75by7s" path="res://game/ui/inventory/wings-selected.png" id="3_g27qv"]
+[ext_resource type="Texture2D" uid="uid://kd7u6kb6ebq7" path="res://game/ui/inventory/phase-shift.png" id="5_iaiip"]
+[ext_resource type="Texture2D" uid="uid://deyvinhfqgp5v" path="res://game/ui/inventory/phase-shift-selected.png" id="6_7bo0o"]
+[ext_resource type="Texture2D" uid="uid://cytp1jx5ypf51" path="res://game/ui/inventory/dash.png" id="7_iaiip"]
 [ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="7_waatw"]
-[ext_resource type="Texture2D" uid="uid://bmsrujfik1as5" path="res://assets/gui/dash-selected.png" id="8_7bo0o"]
+[ext_resource type="Texture2D" uid="uid://bmsrujfik1as5" path="res://game/ui/inventory/dash-selected.png" id="8_7bo0o"]
 [ext_resource type="PackedScene" uid="uid://lyjkoxxb2vp8" path="res://game/ui/inventory/InventorySpace.tscn" id="9_7bo0o"]
-[ext_resource type="Texture2D" uid="uid://djca8cgdm5vs7" path="res://assets/gui/inventory-upleft-corner.png" id="10_riig8"]
-[ext_resource type="Texture2D" uid="uid://bktrxbv6f8coh" path="res://assets/gui/inventory-upright-corner.png" id="11_7hey4"]
-[ext_resource type="Texture2D" uid="uid://cfrsbre44rq4h" path="res://assets/gui/inventory-downleft-corner.png" id="12_ru3si"]
-[ext_resource type="Texture2D" uid="uid://bcsvp25xsyox2" path="res://assets/gui/inventory-downright-corner.png" id="13_qsajc"]
-[ext_resource type="Texture2D" uid="uid://dqes8pqe2r2p3" path="res://assets/gui/multitool.png" id="14_7hey4"]
-[ext_resource type="Texture2D" uid="uid://cp5c5gbvs6t7i" path="res://assets/gui/green-star.png" id="15_mwv2u"]
-[ext_resource type="Texture2D" uid="uid://dhng1w8d11im5" path="res://assets/gui/green-star-selected.png" id="16_r2mc3"]
-[ext_resource type="Texture2D" uid="uid://uhk2rop2ur1f" path="res://assets/gui/blue-star.png" id="17_8qtfd"]
-[ext_resource type="Texture2D" uid="uid://ojprssrx46cl" path="res://assets/gui/blue-star-selected.png" id="18_5eab0"]
-[ext_resource type="Texture2D" uid="uid://boyh5gldbvod3" path="res://assets/gui/purple-star.png" id="19_8qtfd"]
-[ext_resource type="Texture2D" uid="uid://lrdtbeymohie" path="res://assets/gui/purple-star-selected.png" id="20_5eab0"]
-[ext_resource type="Texture2D" uid="uid://du0qwhhgk76ev" path="res://assets/gui/rifle-selected.png" id="21_31d0f"]
-[ext_resource type="Texture2D" uid="uid://coklkvs13dbm1" path="res://assets/gui/flamethrower.png" id="21_rpntv"]
-[ext_resource type="Texture2D" uid="uid://c04qa1jlrr2ci" path="res://assets/gui/flamethrower-selected.png" id="22_7e4sh"]
-[ext_resource type="Texture2D" uid="uid://ctjh30t0qo7yy" path="res://assets/gui/rifle.png" id="22_tismh"]
-[ext_resource type="Texture2D" uid="uid://bevvousqht177" path="res://assets/gui/BlankPixel.png" id="23_7e4sh"]
-[ext_resource type="Texture2D" uid="uid://l8v3byp5us65" path="res://assets/gui/grenade-launcher.png" id="26_hyud7"]
-[ext_resource type="Texture2D" uid="uid://cgg6jpqp3bvxy" path="res://assets/gui/grenade-launcher-selected.png" id="27_waatw"]
+[ext_resource type="Texture2D" uid="uid://bktrxbv6f8coh" path="res://game/ui/inventory/inventory-upright-corner.png" id="11_7hey4"]
+[ext_resource type="Texture2D" uid="uid://cfrsbre44rq4h" path="res://game/ui/inventory/inventory-downleft-corner.png" id="12_ru3si"]
+[ext_resource type="Texture2D" uid="uid://bcsvp25xsyox2" path="res://game/ui/inventory/inventory-downright-corner.png" id="13_qsajc"]
+[ext_resource type="Texture2D" uid="uid://dqes8pqe2r2p3" path="res://game/ui/inventory/multitool.png" id="14_7hey4"]
+[ext_resource type="Texture2D" uid="uid://cp5c5gbvs6t7i" path="res://game/ui/inventory/green-star.png" id="15_mwv2u"]
+[ext_resource type="Texture2D" uid="uid://dhng1w8d11im5" path="res://game/ui/inventory/green-star-selected.png" id="16_r2mc3"]
+[ext_resource type="Texture2D" uid="uid://uhk2rop2ur1f" path="res://game/ui/inventory/blue-star.png" id="17_8qtfd"]
+[ext_resource type="Texture2D" uid="uid://ojprssrx46cl" path="res://game/ui/inventory/blue-star-selected.png" id="18_5eab0"]
+[ext_resource type="Texture2D" uid="uid://boyh5gldbvod3" path="res://game/ui/inventory/purple-star.png" id="19_8qtfd"]
+[ext_resource type="Texture2D" uid="uid://lrdtbeymohie" path="res://game/ui/inventory/purple-star-selected.png" id="20_5eab0"]
+[ext_resource type="Texture2D" uid="uid://du0qwhhgk76ev" path="res://game/ui/inventory/rifle-selected.png" id="21_31d0f"]
+[ext_resource type="Texture2D" uid="uid://coklkvs13dbm1" path="res://game/ui/inventory/flamethrower.png" id="21_rpntv"]
+[ext_resource type="Texture2D" uid="uid://c04qa1jlrr2ci" path="res://game/ui/inventory/flamethrower-selected.png" id="22_7e4sh"]
+[ext_resource type="Texture2D" uid="uid://ctjh30t0qo7yy" path="res://game/ui/inventory/rifle.png" id="22_tismh"]
+[ext_resource type="Texture2D" uid="uid://bevvousqht177" path="res://game/ui/inventory/BlankPixel.png" id="23_7e4sh"]
+[ext_resource type="Texture2D" uid="uid://l8v3byp5us65" path="res://game/ui/inventory/grenade-launcher.png" id="26_hyud7"]
+[ext_resource type="Texture2D" uid="uid://cgg6jpqp3bvxy" path="res://game/ui/inventory/grenade-launcher-selected.png" id="27_waatw"]
 [ext_resource type="FontFile" uid="uid://dnso3d62nyw0e" path="res://assets/fonts/PixelMiddle.ttf" id="28_7e4sh"]
-[ext_resource type="Texture2D" uid="uid://bg216c64jmp6k" path="res://assets/gui/item-description-box.png" id="29_2320j"]
+[ext_resource type="Texture2D" uid="uid://bg216c64jmp6k" path="res://game/ui/inventory/item-description-box.png" id="29_2320j"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="30_hyud7"]
 
 [node name="InventoryScreen" type="Control" unique_id=1566924716]
@@ -37,77 +36,69 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=842499704]
-custom_minimum_size = Vector2(384, 216)
+custom_minimum_size = Vector2(320, 180)
 layout_mode = 0
-offset_right = 384.0
-offset_bottom = 216.0
+offset_right = 320.0
+offset_bottom = 180.0
 color = Color(0.050980393, 0.078431375, 0.15686275, 1)
 
 [node name="Ring" type="Sprite2D" parent="." unique_id=676180597]
-position = Vector2(63, 172)
+position = Vector2(40, 145)
 texture = ExtResource("1_5dic5")
 
 [node name="Wings" type="TextureButton" parent="." unique_id=1677957970]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 139.0
-offset_right = 73.0
-offset_bottom = 158.0
+offset_left = 31.0
+offset_top = 112.0
+offset_right = 50.0
+offset_bottom = 131.0
 focus_neighbor_left = NodePath("../Dash")
 focus_neighbor_right = NodePath("../PhaseShift")
 focus_neighbor_bottom = NodePath("../HealthContainerAmount")
 texture_normal = ExtResource("2_846ir")
 texture_pressed = ExtResource("3_g27qv")
-texture_hover = ExtResource("3_g27qv")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("3_g27qv")
 
 [node name="PhaseShift" type="TextureButton" parent="." unique_id=196241181]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 178.0
-offset_right = 94.0
-offset_bottom = 197.0
+offset_left = 52.0
+offset_top = 151.0
+offset_right = 71.0
+offset_bottom = 170.0
 focus_neighbor_left = NodePath("../Dash")
 focus_neighbor_top = NodePath("../HealthContainerAmount")
-focus_neighbor_right = NodePath("../GridContainer/InventorySpace")
 texture_normal = ExtResource("5_iaiip")
 texture_pressed = ExtResource("6_7bo0o")
-texture_hover = ExtResource("6_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("6_7bo0o")
 
 [node name="HealthContainer" type="Sprite2D" parent="." unique_id=339301690]
-position = Vector2(59, 172)
+position = Vector2(36, 145)
 texture = ExtResource("7_waatw")
 
 [node name="Dash" type="TextureButton" parent="." unique_id=1319015049]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 178.0
-offset_right = 52.0
-offset_bottom = 197.0
+offset_left = 10.0
+offset_top = 151.0
+offset_right = 29.0
+offset_bottom = 170.0
 focus_neighbor_top = NodePath("../HealthContainerAmount")
 focus_neighbor_right = NodePath("../PhaseShift")
 texture_normal = ExtResource("7_iaiip")
 texture_pressed = ExtResource("8_7bo0o")
-texture_hover = ExtResource("8_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("8_7bo0o")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1428990793]
 layout_mode = 0
-offset_left = 141.0
-offset_top = 145.0
-offset_right = 227.0
-offset_bottom = 197.0
+offset_left = 112.0
+offset_top = 118.0
+offset_right = 198.0
+offset_bottom = 170.0
 theme_override_constants/h_separation = -1
 theme_override_constants/v_separation = -1
 columns = 5
-
-[node name="InventorySpace" parent="GridContainer" unique_id=1444604901 instance=ExtResource("9_7bo0o")]
-layout_mode = 2
-texture = ExtResource("10_riig8")
 
 [node name="InventorySpace2" parent="GridContainer" unique_id=1189514420 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
@@ -163,105 +154,98 @@ focus_neighbor_right = NodePath("../../GrenadeLauncher")
 texture = ExtResource("13_qsajc")
 
 [node name="Multitool" type="Sprite2D" parent="." unique_id=1724049719]
-position = Vector2(331, 174)
+position = Vector2(289, 147)
 texture = ExtResource("14_7hey4")
 
 [node name="Green" type="TextureButton" parent="." unique_id=49455196]
 layout_mode = 0
-offset_left = 331.0
-offset_top = 157.0
-offset_right = 344.0
-offset_bottom = 170.0
+offset_left = 289.0
+offset_top = 130.0
+offset_right = 302.0
+offset_bottom = 143.0
 focus_neighbor_left = NodePath("../Flamethrower")
 focus_neighbor_right = NodePath("../Purple")
 focus_neighbor_bottom = NodePath("../Blue")
 texture_normal = ExtResource("15_mwv2u")
 texture_pressed = ExtResource("16_r2mc3")
-texture_hover = ExtResource("16_r2mc3")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("16_r2mc3")
 
 [node name="Blue" type="TextureButton" parent="." unique_id=2128692263]
 layout_mode = 0
-offset_left = 324.0
-offset_top = 170.0
-offset_right = 337.0
-offset_bottom = 183.0
+offset_left = 282.0
+offset_top = 143.0
+offset_right = 295.0
+offset_bottom = 156.0
 focus_neighbor_left = NodePath("../GrenadeLauncher")
 focus_neighbor_top = NodePath("../Green")
 focus_neighbor_right = NodePath("../Purple")
 texture_normal = ExtResource("17_8qtfd")
 texture_pressed = ExtResource("18_5eab0")
-texture_hover = ExtResource("18_5eab0")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("18_5eab0")
 
 [node name="Purple" type="TextureButton" parent="." unique_id=1281256408]
 layout_mode = 0
-offset_left = 339.0
-offset_top = 170.0
-offset_right = 352.0
-offset_bottom = 183.0
+offset_left = 297.0
+offset_top = 143.0
+offset_right = 310.0
+offset_bottom = 156.0
 focus_neighbor_left = NodePath("../Blue")
 focus_neighbor_top = NodePath("../Green")
 texture_normal = ExtResource("19_8qtfd")
 texture_pressed = ExtResource("20_5eab0")
-texture_hover = ExtResource("20_5eab0")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("20_5eab0")
 
 [node name="Flamethrower" type="TextureButton" parent="." unique_id=1802918485]
 layout_mode = 0
-offset_left = 276.0
-offset_top = 161.0
-offset_right = 316.0
-offset_bottom = 175.0
+offset_left = 234.0
+offset_top = 134.0
+offset_right = 274.0
+offset_bottom = 148.0
 focus_neighbor_left = NodePath("../GridContainer/InventorySpace10")
 focus_neighbor_top = NodePath("../Rifle")
 focus_neighbor_right = NodePath("../Blue")
 focus_neighbor_bottom = NodePath("../GrenadeLauncher")
 texture_normal = ExtResource("21_rpntv")
 texture_pressed = ExtResource("22_7e4sh")
-texture_hover = ExtResource("22_7e4sh")
 texture_disabled = ExtResource("23_7e4sh")
 texture_focused = ExtResource("22_7e4sh")
 
 [node name="Rifle" type="TextureButton" parent="." unique_id=1491600975]
 layout_mode = 0
-offset_left = 266.0
-offset_top = 146.0
-offset_right = 308.0
-offset_bottom = 161.0
-focus_neighbor_left = NodePath("../GridContainer/InventorySpace")
+offset_left = 224.0
+offset_top = 119.0
+offset_right = 266.0
+offset_bottom = 134.0
 focus_neighbor_right = NodePath("../Green")
 focus_neighbor_bottom = NodePath("../Flamethrower")
 texture_normal = ExtResource("21_31d0f")
 texture_pressed = ExtResource("22_tismh")
-texture_hover = ExtResource("22_tismh")
 texture_disabled = ExtResource("23_7e4sh")
 texture_focused = ExtResource("22_tismh")
 
 [node name="GrenadeLauncher" type="TextureButton" parent="." unique_id=1514817289]
 layout_mode = 0
-offset_left = 272.0
-offset_top = 175.0
-offset_right = 312.0
-offset_bottom = 186.0
+offset_left = 230.0
+offset_top = 148.0
+offset_right = 270.0
+offset_bottom = 159.0
 focus_neighbor_left = NodePath("../GridContainer/InventorySpace15")
 focus_neighbor_top = NodePath("../Flamethrower")
 focus_neighbor_right = NodePath("../Blue")
 texture_normal = ExtResource("26_hyud7")
 texture_pressed = ExtResource("27_waatw")
-texture_hover = ExtResource("27_waatw")
 texture_disabled = ExtResource("23_7e4sh")
 texture_focused = ExtResource("27_waatw")
 
 [node name="MutationsLabel" type="RichTextLabel" parent="." unique_id=766600010]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 123.0
-offset_right = 99.0
-offset_bottom = 137.0
+offset_left = 9.0
+offset_top = 96.0
+offset_right = 76.0
+offset_bottom = 110.0
 theme_override_colors/default_color = Color(0.08627451, 0.3529412, 0.29803923, 1)
 theme_override_fonts/normal_font = ExtResource("28_7e4sh")
 text = "MUTATIONS"
@@ -270,10 +254,10 @@ horizontal_alignment = 1
 
 [node name="ItemsLabel" type="RichTextLabel" parent="." unique_id=372795564]
 layout_mode = 0
-offset_left = 150.0
-offset_top = 123.0
-offset_right = 217.0
-offset_bottom = 137.0
+offset_left = 121.0
+offset_top = 96.0
+offset_right = 188.0
+offset_bottom = 110.0
 theme_override_colors/default_color = Color(0.08627451, 0.3529412, 0.29803923, 1)
 theme_override_fonts/normal_font = ExtResource("28_7e4sh")
 text = "ITEMS"
@@ -282,10 +266,10 @@ horizontal_alignment = 1
 
 [node name="MultitoolLabel" type="RichTextLabel" parent="." unique_id=330593207]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 123.0
-offset_right = 347.0
-offset_bottom = 137.0
+offset_left = 238.0
+offset_top = 96.0
+offset_right = 305.0
+offset_bottom = 110.0
 theme_override_colors/default_color = Color(0.08627451, 0.3529412, 0.29803923, 1)
 theme_override_fonts/normal_font = ExtResource("28_7e4sh")
 text = "MULTITOOL"
@@ -295,10 +279,10 @@ horizontal_alignment = 1
 [node name="HealthContainerAmount" type="RichTextLabel" parent="." unique_id=1149247721]
 z_index = 7
 layout_mode = 0
-offset_left = 64.0
-offset_top = 164.0
-offset_right = 73.0
-offset_bottom = 177.0
+offset_left = 41.0
+offset_top = 137.0
+offset_right = 50.0
+offset_bottom = 150.0
 focus_neighbor_left = NodePath("../Dash")
 focus_neighbor_top = NodePath("../Wings")
 focus_neighbor_right = NodePath("../PhaseShift")
@@ -313,15 +297,15 @@ shortcut_keys_enabled = false
 justification_flags = 0
 
 [node name="ItemDescriptionBox" type="Sprite2D" parent="." unique_id=261175894]
-position = Vector2(191, 55)
+position = Vector2(160, 47)
 texture = ExtResource("29_2320j")
 
 [node name="NameLabel" type="RichTextLabel" parent="ItemDescriptionBox" unique_id=148988397]
 z_index = 7
-offset_left = -175.0
-offset_top = -48.0
-offset_right = 101.0
-offset_bottom = -35.0
+offset_left = -145.0
+offset_top = -40.0
+offset_right = 131.0
+offset_bottom = -27.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.05490196, 0.6862745, 0.60784316, 1)
 theme_override_fonts/normal_font = ExtResource("30_hyud7")
@@ -335,13 +319,13 @@ justification_flags = 0
 [node name="DialogueLabel" type="RichTextLabel" parent="ItemDescriptionBox" unique_id=1322270717]
 z_index = 7
 custom_minimum_size = Vector2(189, 13)
-offset_left = -175.0
-offset_top = -39.0
-offset_right = 178.0
-offset_bottom = 44.0
+offset_left = -145.0
+offset_top = -30.0
+offset_right = 145.0
+offset_bottom = 38.0
 mouse_filter = 2
 theme_override_constants/line_separation = -4
 theme_override_fonts/normal_font = ExtResource("30_hyud7")
 bbcode_enabled = true
-text = "Lorem ipsum aa Lorem ipsum aaLorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa. aa aaa aaaa aaa Lorem ipsum aa Lorem ipsum aaLorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa. aa aaa aaaa aaa Lorem ipsum aa Lorem ipsum aaLorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa. aa aaa aaaa aaa Lorem ipsum aa Lorem ipsum aaLorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa Lorem ipsum aa. aa aaa aaaa aaa "
+text = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum "
 scroll_active = false
