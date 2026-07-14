@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bmsrujfik1as5" path="res://game/ui/inventory/dash-selected.png" id="8_7bo0o"]
 [ext_resource type="PackedScene" uid="uid://lyjkoxxb2vp8" path="res://game/ui/inventory/InventorySpace.tscn" id="9_7bo0o"]
 [ext_resource type="Texture2D" uid="uid://bktrxbv6f8coh" path="res://game/ui/inventory/inventory-upright-corner.png" id="11_7hey4"]
+[ext_resource type="Texture2D" uid="uid://djca8cgdm5vs7" path="res://game/ui/inventory/inventory-upleft-corner.png" id="11_waatw"]
 [ext_resource type="Texture2D" uid="uid://cfrsbre44rq4h" path="res://game/ui/inventory/inventory-downleft-corner.png" id="12_ru3si"]
 [ext_resource type="Texture2D" uid="uid://bcsvp25xsyox2" path="res://game/ui/inventory/inventory-downright-corner.png" id="13_qsajc"]
 [ext_resource type="Texture2D" uid="uid://dqes8pqe2r2p3" path="res://game/ui/inventory/multitool.png" id="14_7hey4"]
@@ -68,6 +69,7 @@ offset_right = 71.0
 offset_bottom = 170.0
 focus_neighbor_left = NodePath("../Dash")
 focus_neighbor_top = NodePath("../HealthContainerAmount")
+focus_neighbor_right = NodePath("../GridContainer/InventorySpace2")
 texture_normal = ExtResource("5_iaiip")
 texture_pressed = ExtResource("6_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
@@ -102,6 +104,7 @@ columns = 5
 
 [node name="InventorySpace2" parent="GridContainer" unique_id=1189514420 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
+texture = ExtResource("11_waatw")
 
 [node name="InventorySpace3" parent="GridContainer" unique_id=1478814602 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
@@ -111,12 +114,11 @@ layout_mode = 2
 
 [node name="InventorySpace5" parent="GridContainer" unique_id=1759241006 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
-focus_neighbor_right = NodePath("../../Rifle")
 texture = ExtResource("11_7hey4")
 
 [node name="InventorySpace6" parent="GridContainer" unique_id=1684078647 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
-texture = ExtResource("12_ru3si")
+texture = ExtResource("11_7hey4")
 
 [node name="InventorySpace7" parent="GridContainer" unique_id=1962704063 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
@@ -127,6 +129,10 @@ layout_mode = 2
 [node name="InventorySpace9" parent="GridContainer" unique_id=284397170 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
 
+[node name="InventorySpace16" parent="GridContainer" unique_id=1444604901 instance=ExtResource("9_7bo0o")]
+layout_mode = 2
+texture = ExtResource("13_qsajc")
+
 [node name="InventorySpace10" parent="GridContainer" unique_id=708148099 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
 focus_neighbor_right = NodePath("../../Flamethrower")
@@ -134,7 +140,7 @@ texture = ExtResource("13_qsajc")
 
 [node name="InventorySpace11" parent="GridContainer" unique_id=592820059 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
-texture = ExtResource("13_qsajc")
+texture = ExtResource("12_ru3si")
 
 [node name="InventorySpace12" parent="GridContainer" unique_id=10535628 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
@@ -219,6 +225,7 @@ offset_left = 224.0
 offset_top = 119.0
 offset_right = 266.0
 offset_bottom = 134.0
+focus_neighbor_left = NodePath("../GridContainer/InventorySpace6")
 focus_neighbor_right = NodePath("../Green")
 focus_neighbor_bottom = NodePath("../Flamethrower")
 texture_normal = ExtResource("21_31d0f")
@@ -286,6 +293,7 @@ offset_bottom = 150.0
 focus_neighbor_left = NodePath("../Dash")
 focus_neighbor_top = NodePath("../Wings")
 focus_neighbor_right = NodePath("../PhaseShift")
+focus_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("30_hyud7")

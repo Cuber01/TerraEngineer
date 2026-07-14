@@ -2,11 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://dcc77awfesewg" path="res://game/ui/inventory/rectangle-field.png" id="1_uqmkd"]
 [ext_resource type="Texture2D" uid="uid://dc4ogv0adpdbk" path="res://game/ui/inventory/square-selected-bg.png" id="2_1buk2"]
+[ext_resource type="Script" uid="uid://d1e4luhq6ljb0" path="res://game/ui/inventory/InventoryGridSpace.cs" id="2_6dowf"]
 
-[node name="InventorySpace" type="TextureRect" unique_id=1444604901]
+[node name="InventorySpace" type="TextureRect" unique_id=1444604901 node_paths=PackedStringArray("selectedSprite")]
+focus_mode = 2
 texture = ExtResource("1_uqmkd")
+script = ExtResource("2_6dowf")
+selectedSprite = NodePath("Selected")
 
-[node name="SquareSelectedBg" type="Sprite2D" parent="." unique_id=68918926]
+[node name="Selected" type="Sprite2D" parent="." unique_id=68918926]
 visible = false
 position = Vector2(9, 9)
 texture = ExtResource("2_1buk2")
+
+[connection signal="focus_entered" from="." to="." method="onFocusEntered"]
+[connection signal="focus_exited" from="." to="." method="onFocusExited"]
