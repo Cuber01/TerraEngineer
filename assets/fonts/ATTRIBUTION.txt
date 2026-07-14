@@ -1,3 +1,6 @@
 Font "m3x6.ttf" made by Daniel Linssen. Free to use with attribution.
 https://x.com/managore
 https://managore.itch.io/m3x6
+
+Fonts "PixelHigh.ttf", "PixelMiddle.ttf", "PixelSmall.ttf" by Lana Ro. Free to use under CC-BY 4.
+https://lana-ro.itch.io/sra-free-pixel-font-pack

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://lyjkoxxb2vp8"]
+
+[ext_resource type="Texture2D" uid="uid://dcc77awfesewg" path="res://assets/gui/rectangle-field.png" id="1_uqmkd"]
+[ext_resource type="Texture2D" uid="uid://dc4ogv0adpdbk" path="res://assets/gui/square-selected-bg.png" id="2_1buk2"]
+
+[node name="InventorySpace" type="TextureRect" unique_id=1444604901]
+texture = ExtResource("1_uqmkd")
+
+[node name="SquareSelectedBg" type="Sprite2D" parent="." unique_id=68918926]
+visible = false
+position = Vector2(9, 9)
+texture = ExtResource("2_1buk2")

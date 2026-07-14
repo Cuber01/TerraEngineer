@@ -35,6 +35,7 @@ runtime/advanced/uses_dotnet=true
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale=4.0
