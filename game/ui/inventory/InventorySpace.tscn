@@ -15,5 +15,8 @@ visible = false
 position = Vector2(9, 9)
 texture = ExtResource("2_1buk2")
 
+[node name="ItemIcon" type="Sprite2D" parent="." unique_id=2132642894]
+position = Vector2(9, 9)
+
 [connection signal="focus_entered" from="." to="." method="onFocusEntered"]
 [connection signal="focus_exited" from="." to="." method="onFocusExited"]
