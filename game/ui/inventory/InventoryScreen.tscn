@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://kd7u6kb6ebq7" path="res://assets/gui/phase-shift.png" id="5_iaiip"]
 [ext_resource type="Texture2D" uid="uid://deyvinhfqgp5v" path="res://assets/gui/phase-shift-selected.png" id="6_7bo0o"]
 [ext_resource type="Texture2D" uid="uid://cytp1jx5ypf51" path="res://assets/gui/dash.png" id="7_iaiip"]
+[ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="7_waatw"]
 [ext_resource type="Texture2D" uid="uid://bmsrujfik1as5" path="res://assets/gui/dash-selected.png" id="8_7bo0o"]
 [ext_resource type="PackedScene" uid="uid://lyjkoxxb2vp8" path="res://game/ui/inventory/InventorySpace.tscn" id="9_7bo0o"]
 [ext_resource type="Texture2D" uid="uid://djca8cgdm5vs7" path="res://assets/gui/inventory-upleft-corner.png" id="10_riig8"]
@@ -38,9 +39,8 @@ anchors_preset = 0
 [node name="ColorRect" type="ColorRect" parent="." unique_id=842499704]
 custom_minimum_size = Vector2(384, 216)
 layout_mode = 0
-offset_top = 1.0
 offset_right = 384.0
-offset_bottom = 217.0
+offset_bottom = 216.0
 color = Color(0.050980393, 0.078431375, 0.15686275, 1)
 
 [node name="Ring" type="Sprite2D" parent="." unique_id=676180597]
@@ -53,6 +53,9 @@ offset_left = 54.0
 offset_top = 139.0
 offset_right = 73.0
 offset_bottom = 158.0
+focus_neighbor_left = NodePath("../Dash")
+focus_neighbor_right = NodePath("../PhaseShift")
+focus_neighbor_bottom = NodePath("../HealthContainerAmount")
 texture_normal = ExtResource("2_846ir")
 texture_pressed = ExtResource("3_g27qv")
 texture_hover = ExtResource("3_g27qv")
@@ -65,11 +68,18 @@ offset_left = 75.0
 offset_top = 178.0
 offset_right = 94.0
 offset_bottom = 197.0
+focus_neighbor_left = NodePath("../Dash")
+focus_neighbor_top = NodePath("../HealthContainerAmount")
+focus_neighbor_right = NodePath("../GridContainer/InventorySpace")
 texture_normal = ExtResource("5_iaiip")
 texture_pressed = ExtResource("6_7bo0o")
 texture_hover = ExtResource("6_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("6_7bo0o")
+
+[node name="HealthContainer" type="Sprite2D" parent="." unique_id=339301690]
+position = Vector2(59, 172)
+texture = ExtResource("7_waatw")
 
 [node name="Dash" type="TextureButton" parent="." unique_id=1319015049]
 layout_mode = 0
@@ -77,6 +87,8 @@ offset_left = 33.0
 offset_top = 178.0
 offset_right = 52.0
 offset_bottom = 197.0
+focus_neighbor_top = NodePath("../HealthContainerAmount")
+focus_neighbor_right = NodePath("../PhaseShift")
 texture_normal = ExtResource("7_iaiip")
 texture_pressed = ExtResource("8_7bo0o")
 texture_hover = ExtResource("8_7bo0o")
@@ -108,6 +120,7 @@ layout_mode = 2
 
 [node name="InventorySpace5" parent="GridContainer" unique_id=1759241006 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../Rifle")
 texture = ExtResource("11_7hey4")
 
 [node name="InventorySpace6" parent="GridContainer" unique_id=1684078647 instance=ExtResource("9_7bo0o")]
@@ -125,6 +138,7 @@ layout_mode = 2
 
 [node name="InventorySpace10" parent="GridContainer" unique_id=708148099 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../Flamethrower")
 texture = ExtResource("13_qsajc")
 
 [node name="InventorySpace11" parent="GridContainer" unique_id=592820059 instance=ExtResource("9_7bo0o")]
@@ -145,6 +159,7 @@ texture = ExtResource("13_qsajc")
 
 [node name="InventorySpace15" parent="GridContainer" unique_id=494674758 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../GrenadeLauncher")
 texture = ExtResource("13_qsajc")
 
 [node name="Multitool" type="Sprite2D" parent="." unique_id=1724049719]
@@ -153,10 +168,13 @@ texture = ExtResource("14_7hey4")
 
 [node name="Green" type="TextureButton" parent="." unique_id=49455196]
 layout_mode = 0
-offset_left = 330.0
+offset_left = 331.0
 offset_top = 157.0
-offset_right = 370.0
-offset_bottom = 197.0
+offset_right = 344.0
+offset_bottom = 170.0
+focus_neighbor_left = NodePath("../Flamethrower")
+focus_neighbor_right = NodePath("../Purple")
+focus_neighbor_bottom = NodePath("../Blue")
 texture_normal = ExtResource("15_mwv2u")
 texture_pressed = ExtResource("16_r2mc3")
 texture_hover = ExtResource("16_r2mc3")
@@ -165,10 +183,13 @@ texture_focused = ExtResource("16_r2mc3")
 
 [node name="Blue" type="TextureButton" parent="." unique_id=2128692263]
 layout_mode = 0
-offset_left = 323.0
+offset_left = 324.0
 offset_top = 170.0
-offset_right = 363.0
-offset_bottom = 210.0
+offset_right = 337.0
+offset_bottom = 183.0
+focus_neighbor_left = NodePath("../GrenadeLauncher")
+focus_neighbor_top = NodePath("../Green")
+focus_neighbor_right = NodePath("../Purple")
 texture_normal = ExtResource("17_8qtfd")
 texture_pressed = ExtResource("18_5eab0")
 texture_hover = ExtResource("18_5eab0")
@@ -177,10 +198,12 @@ texture_focused = ExtResource("18_5eab0")
 
 [node name="Purple" type="TextureButton" parent="." unique_id=1281256408]
 layout_mode = 0
-offset_left = 338.0
+offset_left = 339.0
 offset_top = 170.0
-offset_right = 378.0
-offset_bottom = 210.0
+offset_right = 352.0
+offset_bottom = 183.0
+focus_neighbor_left = NodePath("../Blue")
+focus_neighbor_top = NodePath("../Green")
 texture_normal = ExtResource("19_8qtfd")
 texture_pressed = ExtResource("20_5eab0")
 texture_hover = ExtResource("20_5eab0")
@@ -192,7 +215,11 @@ layout_mode = 0
 offset_left = 276.0
 offset_top = 161.0
 offset_right = 316.0
-offset_bottom = 201.0
+offset_bottom = 175.0
+focus_neighbor_left = NodePath("../GridContainer/InventorySpace10")
+focus_neighbor_top = NodePath("../Rifle")
+focus_neighbor_right = NodePath("../Blue")
+focus_neighbor_bottom = NodePath("../GrenadeLauncher")
 texture_normal = ExtResource("21_rpntv")
 texture_pressed = ExtResource("22_7e4sh")
 texture_hover = ExtResource("22_7e4sh")
@@ -204,7 +231,10 @@ layout_mode = 0
 offset_left = 266.0
 offset_top = 146.0
 offset_right = 308.0
-offset_bottom = 186.0
+offset_bottom = 161.0
+focus_neighbor_left = NodePath("../GridContainer/InventorySpace")
+focus_neighbor_right = NodePath("../Green")
+focus_neighbor_bottom = NodePath("../Flamethrower")
 texture_normal = ExtResource("21_31d0f")
 texture_pressed = ExtResource("22_tismh")
 texture_hover = ExtResource("22_tismh")
@@ -216,7 +246,10 @@ layout_mode = 0
 offset_left = 272.0
 offset_top = 175.0
 offset_right = 312.0
-offset_bottom = 215.0
+offset_bottom = 186.0
+focus_neighbor_left = NodePath("../GridContainer/InventorySpace15")
+focus_neighbor_top = NodePath("../Flamethrower")
+focus_neighbor_right = NodePath("../Blue")
 texture_normal = ExtResource("26_hyud7")
 texture_pressed = ExtResource("27_waatw")
 texture_hover = ExtResource("27_waatw")
@@ -258,6 +291,26 @@ theme_override_fonts/normal_font = ExtResource("28_7e4sh")
 text = "MULTITOOL"
 scroll_active = false
 horizontal_alignment = 1
+
+[node name="HealthContainerAmount" type="RichTextLabel" parent="." unique_id=1149247721]
+z_index = 7
+layout_mode = 0
+offset_left = 64.0
+offset_top = 164.0
+offset_right = 73.0
+offset_bottom = 177.0
+focus_neighbor_left = NodePath("../Dash")
+focus_neighbor_top = NodePath("../Wings")
+focus_neighbor_right = NodePath("../PhaseShift")
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("30_hyud7")
+bbcode_enabled = true
+text = "x3"
+scroll_active = false
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+justification_flags = 0
 
 [node name="ItemDescriptionBox" type="Sprite2D" parent="." unique_id=261175894]
 position = Vector2(191, 55)
