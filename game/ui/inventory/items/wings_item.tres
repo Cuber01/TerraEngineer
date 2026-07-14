@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://dspy21o4l7u5j"]
+
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="1_8ip77"]
+[ext_resource type="Texture2D" uid="uid://cywfeo85vdy01" path="res://assets/items/watering_can.tres" id="1_baqw3"]
+
+[resource]
+script = ExtResource("1_8ip77")
+ItemName = "Wings"
+Description = "Double jumps."
+Icon = ExtResource("1_baqw3")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"

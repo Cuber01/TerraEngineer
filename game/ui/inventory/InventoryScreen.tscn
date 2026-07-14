@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cns8r02nwg7i0" path="res://game/ui/inventory/circle-field.png" id="2_b52o1"]
 [ext_resource type="Texture2D" uid="uid://dpi2k0a75by7s" path="res://game/ui/inventory/wings-selected.png" id="3_g27qv"]
 [ext_resource type="Texture2D" uid="uid://kd7u6kb6ebq7" path="res://game/ui/inventory/phase-shift.png" id="5_iaiip"]
+[ext_resource type="Script" uid="uid://tormvnk16ec4" path="res://game/ui/inventory/InventoryNongridSpace.cs" id="5_kidvn"]
 [ext_resource type="Texture2D" uid="uid://deyvinhfqgp5v" path="res://game/ui/inventory/phase-shift-selected.png" id="6_7bo0o"]
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="6_ow58c"]
 [ext_resource type="Texture2D" uid="uid://cytp1jx5ypf51" path="res://game/ui/inventory/dash.png" id="7_iaiip"]
 [ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="7_waatw"]
 [ext_resource type="Texture2D" uid="uid://bmsrujfik1as5" path="res://game/ui/inventory/dash-selected.png" id="8_7bo0o"]
@@ -15,22 +17,40 @@
 [ext_resource type="Texture2D" uid="uid://cfrsbre44rq4h" path="res://game/ui/inventory/inventory-downleft-corner.png" id="12_ru3si"]
 [ext_resource type="Texture2D" uid="uid://bcsvp25xsyox2" path="res://game/ui/inventory/inventory-downright-corner.png" id="13_qsajc"]
 [ext_resource type="Texture2D" uid="uid://dqes8pqe2r2p3" path="res://game/ui/inventory/multitool.png" id="14_7hey4"]
+[ext_resource type="Resource" uid="uid://dspy21o4l7u5j" path="res://game/ui/inventory/items/wings_item.tres" id="14_ow58c"]
 [ext_resource type="Texture2D" uid="uid://cp5c5gbvs6t7i" path="res://game/ui/inventory/green-star.png" id="15_mwv2u"]
+[ext_resource type="Texture2D" uid="uid://biwtq0xsgst44" path="res://game/ui/inventory/small-circle-field.png" id="16_hyud7"]
 [ext_resource type="Texture2D" uid="uid://dhng1w8d11im5" path="res://game/ui/inventory/green-star-selected.png" id="16_r2mc3"]
+[ext_resource type="Texture2D" uid="uid://ctjh30t0qo7yy" path="res://game/ui/inventory/rifle_selected.png" id="17_5eab0"]
 [ext_resource type="Texture2D" uid="uid://uhk2rop2ur1f" path="res://game/ui/inventory/blue-star.png" id="17_8qtfd"]
 [ext_resource type="Texture2D" uid="uid://ojprssrx46cl" path="res://game/ui/inventory/blue-star-selected.png" id="18_5eab0"]
 [ext_resource type="Texture2D" uid="uid://boyh5gldbvod3" path="res://game/ui/inventory/purple-star.png" id="19_8qtfd"]
 [ext_resource type="Texture2D" uid="uid://lrdtbeymohie" path="res://game/ui/inventory/purple-star-selected.png" id="20_5eab0"]
-[ext_resource type="Texture2D" uid="uid://du0qwhhgk76ev" path="res://game/ui/inventory/rifle-selected.png" id="21_31d0f"]
 [ext_resource type="Texture2D" uid="uid://coklkvs13dbm1" path="res://game/ui/inventory/flamethrower.png" id="21_rpntv"]
 [ext_resource type="Texture2D" uid="uid://c04qa1jlrr2ci" path="res://game/ui/inventory/flamethrower-selected.png" id="22_7e4sh"]
-[ext_resource type="Texture2D" uid="uid://ctjh30t0qo7yy" path="res://game/ui/inventory/rifle.png" id="22_tismh"]
+[ext_resource type="Texture2D" uid="uid://cv2rjilucwwbv" path="res://game/ui/inventory/rifle.png" id="22_tismh"]
 [ext_resource type="Texture2D" uid="uid://bevvousqht177" path="res://game/ui/inventory/BlankPixel.png" id="23_7e4sh"]
 [ext_resource type="Texture2D" uid="uid://l8v3byp5us65" path="res://game/ui/inventory/grenade-launcher.png" id="26_hyud7"]
 [ext_resource type="Texture2D" uid="uid://cgg6jpqp3bvxy" path="res://game/ui/inventory/grenade-launcher-selected.png" id="27_waatw"]
 [ext_resource type="FontFile" uid="uid://dnso3d62nyw0e" path="res://assets/fonts/PixelMiddle.ttf" id="28_7e4sh"]
 [ext_resource type="Texture2D" uid="uid://bg216c64jmp6k" path="res://game/ui/inventory/item-description-box.png" id="29_2320j"]
 [ext_resource type="FontFile" uid="uid://bp3bi7u802d7a" path="res://assets/fonts/m3x6.ttf" id="30_hyud7"]
+
+[sub_resource type="Resource" id="Resource_66r26"]
+script = ExtResource("6_ow58c")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
+
+[sub_resource type="Resource" id="Resource_2nup7"]
+script = ExtResource("6_ow58c")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
+
+[sub_resource type="Resource" id="Resource_th80x"]
+script = ExtResource("6_ow58c")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
+
+[sub_resource type="Resource" id="Resource_sfaxt"]
+script = ExtResource("6_ow58c")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
 
 [node name="InventoryScreen" type="Control" unique_id=1566924716]
 layout_mode = 3
@@ -60,6 +80,8 @@ texture_normal = ExtResource("2_846ir")
 texture_pressed = ExtResource("3_g27qv")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("3_g27qv")
+script = ExtResource("5_kidvn")
+ItemData = SubResource("Resource_66r26")
 
 [node name="PhaseShift" type="TextureButton" parent="." unique_id=196241181]
 layout_mode = 0
@@ -74,10 +96,8 @@ texture_normal = ExtResource("5_iaiip")
 texture_pressed = ExtResource("6_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("6_7bo0o")
-
-[node name="HealthContainer" type="Sprite2D" parent="." unique_id=339301690]
-position = Vector2(36, 145)
-texture = ExtResource("7_waatw")
+script = ExtResource("5_kidvn")
+ItemData = SubResource("Resource_2nup7")
 
 [node name="Dash" type="TextureButton" parent="." unique_id=1319015049]
 layout_mode = 0
@@ -91,6 +111,11 @@ texture_normal = ExtResource("7_iaiip")
 texture_pressed = ExtResource("8_7bo0o")
 texture_disabled = ExtResource("2_b52o1")
 texture_focused = ExtResource("8_7bo0o")
+script = ExtResource("5_kidvn")
+
+[node name="HealthContainer" type="Sprite2D" parent="." unique_id=339301690]
+position = Vector2(36, 145)
+texture = ExtResource("7_waatw")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1428990793]
 layout_mode = 0
@@ -118,6 +143,7 @@ texture = ExtResource("11_7hey4")
 
 [node name="InventorySpace6" parent="GridContainer" unique_id=1684078647 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
+focus_neighbor_right = NodePath("../../Flamethrower")
 texture = ExtResource("11_7hey4")
 
 [node name="InventorySpace7" parent="GridContainer" unique_id=1962704063 instance=ExtResource("9_7bo0o")]
@@ -125,6 +151,7 @@ layout_mode = 2
 
 [node name="InventorySpace8" parent="GridContainer" unique_id=286861707 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
+ItemData = ExtResource("14_ow58c")
 
 [node name="InventorySpace9" parent="GridContainer" unique_id=284397170 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
@@ -156,7 +183,7 @@ texture = ExtResource("13_qsajc")
 
 [node name="InventorySpace15" parent="GridContainer" unique_id=494674758 instance=ExtResource("9_7bo0o")]
 layout_mode = 2
-focus_neighbor_right = NodePath("../../GrenadeLauncher")
+focus_neighbor_right = NodePath("../../Flamethrower")
 texture = ExtResource("13_qsajc")
 
 [node name="Multitool" type="Sprite2D" parent="." unique_id=1724049719]
@@ -174,8 +201,10 @@ focus_neighbor_right = NodePath("../Purple")
 focus_neighbor_bottom = NodePath("../Blue")
 texture_normal = ExtResource("15_mwv2u")
 texture_pressed = ExtResource("16_r2mc3")
-texture_disabled = ExtResource("2_b52o1")
+texture_disabled = ExtResource("16_hyud7")
 texture_focused = ExtResource("16_r2mc3")
+script = ExtResource("5_kidvn")
+ItemData = SubResource("Resource_th80x")
 
 [node name="Blue" type="TextureButton" parent="." unique_id=2128692263]
 layout_mode = 0
@@ -185,11 +214,12 @@ offset_right = 295.0
 offset_bottom = 156.0
 focus_neighbor_left = NodePath("../GrenadeLauncher")
 focus_neighbor_top = NodePath("../Green")
-focus_neighbor_right = NodePath("../Purple")
+focus_neighbor_right = NodePath("../Green")
 texture_normal = ExtResource("17_8qtfd")
 texture_pressed = ExtResource("18_5eab0")
-texture_disabled = ExtResource("2_b52o1")
+texture_disabled = ExtResource("16_hyud7")
 texture_focused = ExtResource("18_5eab0")
+script = ExtResource("5_kidvn")
 
 [node name="Purple" type="TextureButton" parent="." unique_id=1281256408]
 layout_mode = 0
@@ -201,8 +231,9 @@ focus_neighbor_left = NodePath("../Blue")
 focus_neighbor_top = NodePath("../Green")
 texture_normal = ExtResource("19_8qtfd")
 texture_pressed = ExtResource("20_5eab0")
-texture_disabled = ExtResource("2_b52o1")
+texture_disabled = ExtResource("16_hyud7")
 texture_focused = ExtResource("20_5eab0")
+script = ExtResource("5_kidvn")
 
 [node name="Flamethrower" type="TextureButton" parent="." unique_id=1802918485]
 layout_mode = 0
@@ -218,6 +249,8 @@ texture_normal = ExtResource("21_rpntv")
 texture_pressed = ExtResource("22_7e4sh")
 texture_disabled = ExtResource("23_7e4sh")
 texture_focused = ExtResource("22_7e4sh")
+script = ExtResource("5_kidvn")
+ItemData = SubResource("Resource_sfaxt")
 
 [node name="Rifle" type="TextureButton" parent="." unique_id=1491600975]
 layout_mode = 0
@@ -228,10 +261,12 @@ offset_bottom = 134.0
 focus_neighbor_left = NodePath("../GridContainer/InventorySpace6")
 focus_neighbor_right = NodePath("../Green")
 focus_neighbor_bottom = NodePath("../Flamethrower")
-texture_normal = ExtResource("21_31d0f")
-texture_pressed = ExtResource("22_tismh")
+texture_normal = ExtResource("22_tismh")
+texture_pressed = ExtResource("17_5eab0")
 texture_disabled = ExtResource("23_7e4sh")
-texture_focused = ExtResource("22_tismh")
+texture_focused = ExtResource("17_5eab0")
+script = ExtResource("5_kidvn")
+ItemData = ExtResource("14_ow58c")
 
 [node name="GrenadeLauncher" type="TextureButton" parent="." unique_id=1514817289]
 layout_mode = 0
@@ -246,6 +281,7 @@ texture_normal = ExtResource("26_hyud7")
 texture_pressed = ExtResource("27_waatw")
 texture_disabled = ExtResource("23_7e4sh")
 texture_focused = ExtResource("27_waatw")
+script = ExtResource("5_kidvn")
 
 [node name="MutationsLabel" type="RichTextLabel" parent="." unique_id=766600010]
 layout_mode = 0

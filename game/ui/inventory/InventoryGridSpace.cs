@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class InventoryGridSpace : Node2D
+public partial class InventoryGridSpace : TextureRect
 {
     [Export] public InventoryItemData ItemData
     {
