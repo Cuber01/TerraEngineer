@@ -50,3 +50,6 @@ todo bugs:
 X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity
 - theres still a lot of bumping like issues when going up
 - non-ase sprites don't ignore colors in blink shader
+
+to-finish todo:
+- finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there

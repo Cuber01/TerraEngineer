@@ -179,7 +179,6 @@ offset_right = 302.0
 offset_bottom = 143.0
 focus_neighbor_left = NodePath("../Blowtorch")
 focus_neighbor_right = NodePath("../Purple")
-focus_neighbor_bottom = NodePath("../Blue")
 texture_normal = ExtResource("15_mwv2u")
 texture_pressed = ExtResource("16_r2mc3")
 texture_disabled = ExtResource("16_hyud7")
