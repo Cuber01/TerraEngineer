@@ -23,6 +23,8 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
         { "green_essence", "Green" },
         { "blue_essence", "Blue" },
         { "purple_essence", "Purple" },
+        { "grenade_launcher", "GrenadeLauncher"},
+        { "dash", "Dash"},
         { "health_serum", "HealthContainerAmount" },  // Special case: not a button
     };
 
@@ -130,6 +132,18 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
                     gridSpace.ItemData = resourceFile;
                     itemIndex++;
                 }
+            }
+        }
+        
+        // Third pass: Update state of all nongrid spaces 
+        // This has to be done here because else all nodes would first execute as disabled
+        foreach(var pair in ItemToNodeName)
+        {
+            var space = inventoryScreen.GetNodeOrNull<InventoryNongridSpace>(pair.Value);
+            
+            if(space != null)
+            {
+                space.UpdateState();
             }
         }
         

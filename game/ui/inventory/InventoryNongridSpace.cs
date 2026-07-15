@@ -4,20 +4,10 @@ using TerraEngineer.game.ui.inventory;
 
 public partial class InventoryNongridSpace : TextureButton
 {
-    [Export] public InventoryItemData ItemData
-    {
-        set
-        {
-            _itemData = value;
-            updateState();
-        }
-        private get => _itemData;
-    }
-    private InventoryItemData _itemData;
+    [Export] public InventoryItemData ItemData = null;
 
     public override void _Ready()
     {
-        updateState();
         FocusEntered += onFocusEntered;
     }
 
@@ -29,7 +19,7 @@ public partial class InventoryNongridSpace : TextureButton
         }
     }
 
-    private void updateState()
+    public void UpdateState()
     {
         if (ItemData != null)
         {
