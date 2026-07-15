@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://eufd7ctn27ro"]
+
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="1_8ip77"]
+[ext_resource type="Texture2D" uid="uid://deyvinhfqgp5v" path="res://game/ui/inventory/phase-shift-selected.png" id="1_icon"]
+
+[resource]
+script = ExtResource("1_8ip77")
+ItemName = "Phase Shift"
+Description = "Teleport and phase."
+Icon = ExtResource("1_icon")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
+

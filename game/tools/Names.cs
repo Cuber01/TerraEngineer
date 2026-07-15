@@ -95,6 +95,7 @@ public static class Names
          public static readonly StringName Dash = "dash";
          public static readonly StringName Jump = "jump";
          public static readonly StringName OpenMap = "open_map";
+         public static readonly StringName OpenInventory = "open_inventory";
          public static readonly StringName Quit = "ui_cancel";
          
          public static readonly StringName Up = "ui_up";

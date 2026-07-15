@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c4qwkn24y5u5k"]
+
+[ext_resource type="Script" uid="uid://dqenexgp8du1n" path="res://game/ui/inventory/InventoryScreenStarter.cs" id="1_4j05k"]
+[ext_resource type="PackedScene" uid="uid://dx8wf1mbox56o" path="res://game/ui/inventory/InventoryScreen.tscn" id="1_inv_screen"]
+
+[node name="InventoryScreenStarter" type="Node2D" unique_id=602652152]
+script = ExtResource("1_4j05k")
+inventoryScene = ExtResource("1_inv_screen")

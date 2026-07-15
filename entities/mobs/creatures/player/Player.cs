@@ -32,6 +32,12 @@ public partial class Player : Creature
 	public delegate void CloseMapEventHandler();
 	public event CloseMapEventHandler CloseMap;
 
+	public delegate void OpenInventoryEventHandler(Controller oldController);
+	public event OpenInventoryEventHandler OpenInventory;
+
+	public delegate void CloseInventoryEventHandler();
+	public event CloseInventoryEventHandler CloseInventory;
+
 	private readonly DashState dashState = new DashState();
 	private readonly JumpState jumpState = new JumpState();
 	private readonly WalkState walkState = new WalkState();
@@ -61,6 +67,7 @@ public partial class Player : Creature
 		Controller.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
 
 		Controller.AddAction(Names.Actions.OpenMap, () => OpenMap?.Invoke(Controller), Names.Actions.GroupMenus);
+		Controller.AddAction(Names.Actions.OpenInventory, () => OpenInventory?.Invoke(Controller), Names.Actions.GroupMenus);
 		
 		// State machine related
 
@@ -382,6 +389,7 @@ public partial class Player : Creature
 	// TODO Make a proper mediator like class instead of using player for this
 	public void InvokeInteracted() => Interacted?.Invoke();
 	public void InvokeCloseMap() => CloseMap?.Invoke();
+	public void InvokeCloseInventory() => CloseInventory?.Invoke();
 	
 	// Wrapper for gdscript
 	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems(this);

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://dpgwvq3xqw4t5"]
+
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="1_8ip77"]
+[ext_resource type="Texture2D" uid="uid://cp5c5gbvs6t7i" path="res://game/ui/inventory/green-star.png" id="1_icon"]
+
+[resource]
+script = ExtResource("1_8ip77")
+ItemName = "Green Essence"
+Description = "Forest world essence."
+Icon = ExtResource("1_icon")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
+

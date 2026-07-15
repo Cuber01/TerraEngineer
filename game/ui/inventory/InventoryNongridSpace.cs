@@ -18,6 +18,7 @@ public partial class InventoryNongridSpace : TextureButton
     public override void _Ready()
     {
         updateState();
+        FocusEntered += onFocusEntered;
     }
 
     private void onFocusEntered()

@@ -19,7 +19,16 @@ public partial class InventoryGridSpace : TextureRect
     [Export] private Sprite2D selectedSprite;
     [Export] private Sprite2D itemIcon;
     
-    private void updateIcon() => itemIcon.Texture = _itemData.Icon;    
+    public override void _Ready()
+    {
+        FocusEntered += onFocusEntered;
+        FocusExited += onFocusExited;
+    }
+    
+    private void updateIcon()
+    {
+        itemIcon.Texture = _itemData.Icon;
+    }    
     
     private void onFocusEntered()
     {

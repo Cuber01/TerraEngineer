@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dfrpu6pvsfai0" path="res://game/level_preparer/LevelPreparer.tscn" id="4_ljq5a"]
 [ext_resource type="PackedScene" uid="uid://diswsaudlbdh4" path="res://game/ui/textbox/Popup.tscn" id="5_yo8gm"]
 [ext_resource type="PackedScene" uid="uid://cmmr64akxvoq" path="res://game/ui/dialogue_box/DialogueBalloon.tscn" id="6_fk7ia"]
-[ext_resource type="PackedScene" uid="uid://dch8dyylb7526" path="res://addons/MetroidvaniaSystem/Template/Nodes/Minimap.tscn" id="7_fk7ia"]
 [ext_resource type="PackedScene" uid="uid://bjvxl480aew1q" path="res://game/ui/maps/MapScreen.tscn" id="8_6t0ec"]
+[ext_resource type="PackedScene" uid="uid://c4qwkn24y5u5k" path="res://game/ui/inventory/InventoryScreenStarter.tscn" id="8_v2tjf"]
 
 [node name="Main" type="Node2D" unique_id=1624566616 node_paths=PackedStringArray("extPlayer")]
 script = ExtResource("1_8gaax")
@@ -39,8 +39,4 @@ process_mode = 2
 visible = false
 position = Vector2(8, 16)
 
-[node name="Minimap" parent="GUI" unique_id=2016744048 instance=ExtResource("7_fk7ia")]
-visible = false
-offset_left = 95.0
-offset_right = 239.0
-display_player_location = true
+[node name="InventoryScreenStarter" parent="GUI" unique_id=602652152 instance=ExtResource("8_v2tjf")]
