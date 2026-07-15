@@ -48,10 +48,7 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
 
     public override void _Process(double delta)
     {
-        if (controller.TurnActive)
-        {
-            controller.Update();
-        }
+        controller.Update();
     }
 
     private void open(Controller oldController)
@@ -66,6 +63,20 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
         Callable.From(SetFocusToBlowtorch).CallDeferred();
         
         GetTree().Paused = true;
+    }
+    
+    private void close()
+    {
+        player.InvokeCloseInventory();
+        controller.GiveBackControl(false);
+
+        if (instantiatedInventory != null)
+        {
+           instantiatedInventory.CallDeferred(Node.MethodName.QueueFree);
+           instantiatedInventory = null;
+        }
+        
+        GetTree().Paused = false;
     }
 
     private void PopulateInventory(Control inventoryScreen)
@@ -122,16 +133,6 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
             }
         }
         
-    }
-
-    private void close()
-    {
-        player.InvokeCloseInventory();
-        controller.GiveBackControl();
-        
-        instantiatedInventory.QueueFree();
-        
-        GetTree().Paused = false;
     }
 
     private void SetFocusToBlowtorch()

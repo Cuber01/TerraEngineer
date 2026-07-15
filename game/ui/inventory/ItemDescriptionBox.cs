@@ -12,6 +12,11 @@ public partial class ItemDescriptionBox : Node2D
         InventoryChannel.ItemChosen += DisplayItem;
     }
 
+    public override void _ExitTree()
+    {
+        InventoryChannel.ItemChosen -= DisplayItem;
+    }
+
     public void DisplayItem(InventoryItemData item)
     {
         nameLabel.Text = item.ItemName;

@@ -7,6 +7,7 @@ namespace TerraEngineer.game;
 
 public class Controller
 {
+    // If true, will force Controller to become active next update
     public bool TurnActive = false;
     private bool active = false;
     private Controller switchedFrom = null;
@@ -103,10 +104,20 @@ public class Controller
         to.switchedFrom = this;
     }
 
-    public void GiveBackControl()
+    public void GiveBackControl(bool rememberSwitchedFrom = true)
     {
+        #if DEBUG
+        if (switchedFrom == null)
+        {
+            throw new Exception("Cannot give back control, no previous controller found.");
+        }
+        #endif
+        
         switchedFrom.TurnActive = true;
-        switchedFrom.switchedFrom = this;
+        
+        if(rememberSwitchedFrom)
+            switchedFrom.switchedFrom = this;
+        
         switchedFrom = null;
         active = false;
     }

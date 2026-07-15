@@ -40,3 +40,4 @@ visible = false
 position = Vector2(8, 16)
 
 [node name="InventoryScreenStarter" parent="GUI" unique_id=602652152 instance=ExtResource("8_v2tjf")]
+process_mode = 2
