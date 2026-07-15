@@ -21,13 +21,17 @@ public partial class PlayerHUD : Node2D, IConnectable<Player>
 	{
 		player.OpenMap += hide;
 		player.CloseMap += Show;
+		player.OpenInventory += hide;
+		player.CloseInventory += Show;
 		ApplyToChildren(player, (e, p) => e.Connect(player));
 	}
 
 	public void Disconnect(Player player)
 	{
 		player.OpenMap -= hide;
+		player.OpenInventory -= hide;
 		player.CloseMap -= Show;
+		player.CloseInventory -= Show;
 		ApplyToChildren(player, (e, p) => e.Disconnect(player));
 	}
 
