@@ -4,7 +4,7 @@ using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
-public partial class Trampoline : Terraformable
+public partial class Trampoline : TerraformableEntity
 {
     [Export] private float bounceVelocity = 150;
     

@@ -1,28 +1,28 @@
 using Godot;
-using System;
-using System.Numerics;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
-using Vector2 = Godot.Vector2;
 
 namespace TerraEngineer.entities;
 
-public partial class Terraformable : Entity
+public partial class TerraformableEntity : Entity, ITerraformable
 {
     [Export] public CollisionShape2D Hitbox;
-    [Export] public Biomes MyBiome;
-    public bool Active;
-    public TerraformableCaretaker Caretaker;
-    
-    public virtual void Setup(TerraformableCaretaker caretaker)
-    {
-        Caretaker = caretaker;
-    }
+    [Export] public Biomes MyBiome { get; set; }
+    public bool Active { get; set; }
+    public TerraformableCaretaker Caretaker { get; set; }
 
     public virtual void Update(float delta)
     {
         CM?.UpdateComponents(delta);
         HandleMove();
+    }
+    
+    public override void _PhysicsProcess(double delta)
+    {
+        if (Active)
+        {
+            Update((float)delta);   
+        }
     }
     
     public virtual void Enable()

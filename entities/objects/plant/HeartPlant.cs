@@ -5,7 +5,7 @@ using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
-public partial class HeartPlant : Terraformable
+public partial class HeartPlant : TerraformableEntity
 {
     [Export] private AnimatedSprite2D sprite;
     private const int HealthHealed = 3;

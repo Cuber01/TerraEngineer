@@ -6,7 +6,7 @@ using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
 using Vector2 = Godot.Vector2;
 
-public partial class MovableBlock : Terraformable
+public partial class MovableBlock : TerraformableEntity
 {
     private const float TestMoveBuffer = 1.1f;
     private const float BaseSlideSpeed = 100;

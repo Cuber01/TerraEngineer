@@ -10,13 +10,13 @@ public partial class TerraformableCaretaker : CharacterBody2D
 
     private bool init = false;
     
-    private Dictionary<Biomes, Terraformable> entityVersions = new Dictionary<Biomes, Terraformable>();
+    private Dictionary<Biomes, ITerraformable> entityVersions = new Dictionary<Biomes, ITerraformable>();
     
     public override void _Ready()
     {
         foreach (var node in versions.GetChildren())
         {
-            var entity = (Terraformable)node;
+            var entity = (ITerraformable)node;
             entity.Disable();
             entity.Setup(this);
             entityVersions.Add(entity.MyBiome, entity);
@@ -24,17 +24,6 @@ public partial class TerraformableCaretaker : CharacterBody2D
         
         Terraform(currentBiome);
         init = true;
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        foreach (var version in entityVersions)
-        {
-            if (version.Value.Active)
-            {
-                version.Value.Update((float)delta);
-            }
-        }
     }
 
     public virtual void Terraform(Biomes biome)

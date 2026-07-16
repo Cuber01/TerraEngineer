@@ -5,7 +5,7 @@ using TerraEngineer.entities;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
-public partial class ZombieDeadMushroom : Terraformable
+public partial class ZombieDeadMushroom : TerraformableEntity
 {
 	private readonly Lazy<PackedScene> zombieScene = new Lazy<PackedScene>(() =>
 		GD.Load<PackedScene>(Names.Paths.Zombie)
