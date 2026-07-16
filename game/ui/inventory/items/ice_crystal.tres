@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://coinc0wl2r7kd"]
+
+[ext_resource type="Texture2D" uid="uid://dru6y0tp0jw4t" path="res://assets/items/ice_crystal.tres" id="1_di3h1"]
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="2_vjx50"]
+
+[resource]
+script = ExtResource("2_vjx50")
+ItemName = "Ice Crystal"
+Description = "Stabilizes gunpowder. Will melt outside of the ice biome."
+Icon = ExtResource("1_di3h1")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"

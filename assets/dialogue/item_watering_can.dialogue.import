@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dypwwrdc48fvk"
+path="res://.godot/imported/item_watering_can.dialogue-5bcecbe3b60a2cb5bb7c0c399faa0dd9.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_watering_can.dialogue"
+dest_files=["res://.godot/imported/item_watering_can.dialogue-5bcecbe3b60a2cb5bb7c0c399faa0dd9.tres"]
+
+[params]
+
+defaults=true

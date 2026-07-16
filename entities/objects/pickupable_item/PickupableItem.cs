@@ -14,6 +14,7 @@ public partial class PickupableItem : Entity
     [Export] private ItemType itemType = ItemType.Unique;
     [Export] private int itemAmount = 1;
     [Export] private Resource dialogueDescription;
+    [Export] private Resource alreadyHaveItemDialogue;
     [Export] private AtlasTexture ItemTexture {
         get => _itemTexture;
         set
@@ -28,6 +29,8 @@ public partial class PickupableItem : Entity
         } 
     }
     private AtlasTexture _itemTexture;
+    
+    [Export] private bool canBeRecollected = false;
 
     private bool Collected
     {
@@ -55,19 +58,59 @@ public partial class PickupableItem : Entity
     
     private void onPlayerEntered(Node2D body)
     {
-        if(Collected) return;
-
-        if (itemType == ItemType.Unique)
+        if(canBeRecollected)
         {
-            player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
-        } else if (itemType == ItemType.Generic)
-        {
-            player.CM.GetComponent<PlayerInventory>().AddGenericItem(player, itemName, itemAmount);
+            handleWaitingForInput();
         }
+        else
+        {
+            handleSingleCollect();
+        }
+    }
+
+    private void handleSingleCollect()
+    {
+        if(Collected) return;
+        
         CM.GetComponent<SaveEntity>().ChangeState(true);
         Collected = true;
         
-        balloonTemplate.PlayDialogue(dialogueDescription, Names.Other.Start);
+        getItem();
+    }
+
+    private void handleWaitingForInput()
+    {
+        player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
+        player.Interacted += getItem;
+    }
+    
+    private void onPlayerExited()
+    {
+        player.Controller.RemoveOverride(Names.Actions.Attack);
+        player.Interacted -= getItem;
+    }
+
+    private void getItem()
+    {
+        bool success = false;
+        
+        if (itemType == ItemType.Unique)
+        {
+            success = player.CM.GetComponent<PlayerInventory>().TryAddUniqueItem(player, itemName);
+        } else if (itemType == ItemType.Generic)
+        {
+            player.CM.GetComponent<PlayerInventory>().AddGenericItem(player, itemName, itemAmount);
+            success = true;
+        }
+
+        if (success)
+        {
+            balloonTemplate.PlayDialogue(dialogueDescription, Names.Other.Start);
+        }
+        else
+        {
+            balloonTemplate.PlayDialogue(alreadyHaveItemDialogue, Names.Other.Start);
+        }
         player.Controller.SwitchControl(balloonTemplate.Controller);
     }
     

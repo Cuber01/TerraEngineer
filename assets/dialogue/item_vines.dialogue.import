@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cslgfvo3cwmql"
+path="res://.godot/imported/item_vines.dialogue-ae1996a685832538dea04b114de17876.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_vines.dialogue"
+dest_files=["res://.godot/imported/item_vines.dialogue-ae1996a685832538dea04b114de17876.tres"]
+
+[params]
+
+defaults=true

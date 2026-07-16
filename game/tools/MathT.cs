@@ -132,6 +132,8 @@ public static class MathT
             Y = MathT.Lerp(from.Y, to.Y, weight, delta)
         };
     }
-    
+
+    public static bool IsTrue(Variant b) => b.VariantType != Variant.Type.Nil && (bool)b;
+
 
 }

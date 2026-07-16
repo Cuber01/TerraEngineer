@@ -45,6 +45,7 @@ todo balance:
 
 todo would be nice:
 - upgrade for blowtorch turning it into a shotgun or flamethrower type of weapon
+- allow player to pick up any vine?
 
 todo bugs:
 X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity

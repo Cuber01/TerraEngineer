@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dhj087bfljg67"
+path="res://.godot/imported/already_have_item_ice.dialogue-29509c1d0aa92269cd369aa2be481742.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/already_have_item_ice.dialogue"
+dest_files=["res://.godot/imported/already_have_item_ice.dialogue-29509c1d0aa92269cd369aa2be481742.tres"]
+
+[params]
+
+defaults=true

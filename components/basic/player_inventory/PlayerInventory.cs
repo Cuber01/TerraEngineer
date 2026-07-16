@@ -22,6 +22,10 @@ public partial class PlayerInventory : Component
         { "blue_essence", new EssenceItem(Biomes.Ice) },
         { "orange_essence", new EssenceItem(Biomes.Desert) },
         { "purple_essence", new EssenceItem(Biomes.Mushroom) },
+        { "ice_crystal", new IceCrystalItem() },
+        { "gunpowder", new KeyItem() },
+        { "vine", new KeyItem() },
+        { "mushroom_cap", new KeyItem() },
     };
 
     private List<Item> inventoryItems = new();
@@ -34,6 +38,17 @@ public partial class PlayerInventory : Component
             fullItemList[item].Activate(actor);
             inventoryItems.Add(fullItemList[item]);
         }
+    }
+
+    public bool TryAddUniqueItem(Player actor, StringName name)
+    {
+        Variant hasItem = SaveData.ReadValue(Names.SaveSections.PlayerInventory, name);
+        if (!MathT.IsTrue(hasItem))
+        {
+            AddUniqueItem(actor, name);
+            return true;
+        }
+        return false;
     }
 
     public void AddUniqueItem(Player actor, StringName name)
@@ -58,11 +73,6 @@ public partial class PlayerInventory : Component
         int currentAmount = (int)SaveData.ReadValue(Names.SaveSections.PlayerInventory, name);
         SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, currentAmount + amount);
         fullItemList[name].Activate(actor);
-    }
-    
-    public bool HasItem<T>() where T : Item
-    {
-        return inventoryItems.Exists(x => x is T);
     }
 }
 
@@ -117,6 +127,22 @@ public class HealthSerumItem : Item
     {
         actor.CM.GetComponent<Health>().MaxHealth += 1;
         actor.CM.GetComponent<Health>().FullHeal();
+    }
+}
+
+public class IceCrystalItem : Item
+{
+    public void Activate(Player actor)
+    {
+
+    }
+}
+
+public class KeyItem : Item
+{
+    public void Activate(Player actor)
+    {
+
     }
 }
 

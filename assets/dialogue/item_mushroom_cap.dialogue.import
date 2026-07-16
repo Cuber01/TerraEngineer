@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c7kj1ktmpehcv"
+path="res://.godot/imported/item_mushroom_cap.dialogue-a1a36b24b273f5d26953813376aefcee.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_mushroom_cap.dialogue"
+dest_files=["res://.godot/imported/item_mushroom_cap.dialogue-a1a36b24b273f5d26953813376aefcee.tres"]
+
+[params]
+
+defaults=true

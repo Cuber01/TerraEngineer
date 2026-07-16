@@ -53,7 +53,7 @@ public partial class SwitcherGroup : Node2D
             foreach (string property in SavePropertiesToSwitch)
             {
                 Variant value = SaveData.ReadValue(levelName, property);
-                if (value.VariantType == Variant.Type.Nil || (bool)value == false)
+                if (!MathT.IsTrue(value))
                 {
                     allPropertiesTrue = false;
                 }

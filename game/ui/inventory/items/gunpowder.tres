@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://sjppvbqka4qc"]
+
+[ext_resource type="Texture2D" uid="uid://okrc8si31c6e" path="res://assets/items/gunpowder.tres" id="1_sihxi"]
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="2_364rq"]
+
+[resource]
+script = ExtResource("2_364rq")
+ItemName = "Unstable gunpowder"
+Description = "This explosive looks like it's from another world."
+Icon = ExtResource("1_sihxi")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"

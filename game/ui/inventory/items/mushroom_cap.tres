@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://5qho34vveyeq"]
+
+[ext_resource type="Texture2D" uid="uid://d0gcpxuqenqhf" path="res://assets/items/mushroom-cap.tres" id="1_8kq3b"]
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="2_xhk75"]
+
+[resource]
+script = ExtResource("2_xhk75")
+ItemName = "Mushroom Cap"
+Description = "Blast shroomy cap? Or mushroom blasty cap?"
+Icon = ExtResource("1_8kq3b")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"

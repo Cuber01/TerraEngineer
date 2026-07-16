@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://cgt6i24cmjicc"]
+
+[ext_resource type="Texture2D" uid="uid://ct4xa1hplrkex" path="res://assets/items/vine.tres" id="1_7ffvn"]
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="2_doe6c"]
+
+[resource]
+script = ExtResource("2_doe6c")
+ItemName = "Vine"
+Description = "A long piece of thin, highly flammable, vine."
+Icon = ExtResource("1_7ffvn")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"
