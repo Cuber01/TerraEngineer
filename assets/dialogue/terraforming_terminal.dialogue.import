@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://nwfwd3jc2qvc"
+path="res://.godot/imported/terraforming_terminal.dialogue-ab67bee6081527b17a1e8c07da876daa.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/terraforming_terminal.dialogue"
+dest_files=["res://.godot/imported/terraforming_terminal.dialogue-ab67bee6081527b17a1e8c07da876daa.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://gq1ll6jwufw3"
+path="res://.godot/imported/terraforming-terminal.ase-8fcbc910d50e0fe04b1b10463aa15c40.res"
+
+[deps]
+
+source_file="res://entities/objects/terraforming_terminal/terraforming-terminal.ase"
+dest_files=["res://.godot/imported/terraforming-terminal.ase-8fcbc910d50e0fe04b1b10463aa15c40.res"]
+
+[params]
+

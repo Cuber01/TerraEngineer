@@ -1,0 +1,147 @@
+[gd_scene format=4 uid="uid://m57i13pja7ui"]
+
+[ext_resource type="Script" uid="uid://cxr0r4m8btlao" path="res://entities/objects/terraforming_terminal/TerraformingTerminal.cs" id="1_ln4yu"]
+[ext_resource type="Resource" uid="uid://nwfwd3jc2qvc" path="res://assets/dialogue/terraforming_terminal.dialogue" id="2_oyuu7"]
+
+[sub_resource type="Animation" id="Animation_ln4yu"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_oyuu7"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_8tvan"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_4cglf"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_rfxcc"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rakp"]
+_data = {
+&"all": SubResource("Animation_ln4yu"),
+&"blue": SubResource("Animation_oyuu7"),
+&"green": SubResource("Animation_8tvan"),
+&"red": SubResource("Animation_4cglf"),
+&"yellow": SubResource("Animation_rfxcc")
+}
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_qiisn"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAABgAAADQAAAAUklGRsgAAABXRUJQVlA4TLsAAAAvI8AFEF+gJgDQBL0IRRUCkWqB9rnlUBBJaoMGROCg2cUDOhCAENIzZiPJ+EcTaiDXqRZJxZL5DwAoKwabb8pxWbra5dHTGK1S+pm/gVVtW1FYNqCB61WgAhWoQADHb2bUBFawgu2YIUFE/xW5bdvIt4wOPWM5Q6bynvQhUNn7biziHtUgmaF6EE3l/3kvkNwSFXeJGkNTucUVmgEQKu9V9pOUz8xgBovU0iDay5klbt9rDM3lNldlnwkIAA==")
+size_override = Vector2(36, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln4yu"]
+size = Vector2(12, 12)
+
+[node name="TerraformingTerminal" type="Node2D" unique_id=1553472831 node_paths=PackedStringArray("animationPlayer")]
+script = ExtResource("1_ln4yu")
+dialogueResource = ExtResource("2_oyuu7")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=654779885]
+libraries/ = SubResource("AnimationLibrary_6rakp")
+autoplay = &"all"
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer" unique_id=1725729763]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_qiisn")
+hframes = 3
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/objects/terraforming_terminal/terraforming-terminal.ase",
+"source_uid": 8250311636104109999
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a6afbea6d55a11300e618b56c37291a3"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=667650788]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1346411320]
+shape = SubResource("RectangleShape2D_ln4yu")
+
+[connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onPlayerExited"]
