@@ -137,8 +137,8 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "a6afbea6d55a11300e618b56c37291a3"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=667650788]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 256
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1346411320]
 shape = SubResource("RectangleShape2D_ln4yu")

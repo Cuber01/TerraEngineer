@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="12_jlvbh"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="13_8611i"]
 [ext_resource type="PackedScene" uid="uid://cdttdqbpagfhk" path="res://components/basic/polling_area/PollingAreaComponent.tscn" id="14_8611i"]
+[ext_resource type="PackedScene" uid="uid://uubeqpttudf6" path="res://components/basic/interacter/InteracterComponent.tscn" id="15_1q3sw"]
 
 [sub_resource type="Resource" id="Resource_8611i"]
 script = ExtResource("2_jlvbh")
@@ -201,7 +202,7 @@ size = Vector2(7.9, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvbh"]
 size = Vector2(7.8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8611i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q6l3"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("13_8611i")
@@ -212,6 +213,9 @@ shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1q3sw"]
+size = Vector2(8, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e8ii"]
 size = Vector2(8, 11)
 
 [node name="Player" type="CharacterBody2D" unique_id=278146221 node_paths=PackedStringArray("PhasePoint", "CM", "Sprite")]
@@ -317,7 +321,7 @@ invincibilityTimeOnHit = 2.0
 [node name="PlayerInventoryComponent" parent="ComponentManager" unique_id=536859350 instance=ExtResource("11_802vs")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=2142681019 instance=ExtResource("12_jlvbh")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_8611i")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_7q6l3")])
 
 [node name="PollingAreaComponent" parent="ComponentManager" unique_id=1188318437 instance=ExtResource("14_8611i")]
 
@@ -325,7 +329,14 @@ importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_8611i")])
 position = Vector2(0, 20)
 shape = SubResource("RectangleShape2D_1q3sw")
 
+[node name="InteracterComponent" parent="ComponentManager" unique_id=1125685492 instance=ExtResource("15_1q3sw")]
+
+[node name="CollisionShape2D" parent="ComponentManager/InteracterComponent/Area2D" parent_id_path=PackedInt32Array(1125685492, 945426379) index="0" unique_id=31077900]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6e8ii")
+
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 
 [editable path="ComponentManager/GunAdvComponent"]
 [editable path="ComponentManager/PollingAreaComponent"]
+[editable path="ComponentManager/InteracterComponent"]

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using System;
 using TENamespace.advanced.main_gun_wrapper;
 using TENamespace.advanced.shotgun;
 using TENamespace.advanced.terraform_gun;
@@ -30,28 +31,43 @@ public partial class PlayerInventory : Component
 
     private List<Item> inventoryItems = new();
     
-    public void ActivateItems(Player actor)
+    private Player playerActor;
+    
+    public override void Init(Node2D actor)
+    {
+        base.Init(actor);
+        if (actor is Player player)
+        {
+            playerActor = player;
+        }
+        else
+        {
+            throw new Exception("Interacter component requires Player actor.");
+        }
+    }
+    
+    public void ActivateItems()
     {
         List<StringName> itemsLastRead = SaveData.ReadInventory();
         foreach (StringName item in itemsLastRead)
         {
-            fullItemList[item].Activate(actor);
+            fullItemList[item].Activate(playerActor);
             inventoryItems.Add(fullItemList[item]);
         }
     }
 
-    public bool TryAddUniqueItem(Player actor, StringName name)
+    public bool TryAddUniqueItem(StringName name)
     {
         Variant hasItem = SaveData.ReadValue(Names.SaveSections.PlayerInventory, name);
         if (!MathT.IsTrue(hasItem))
         {
-            AddUniqueItem(actor, name);
+            AddUniqueItem(name);
             return true;
         }
         return false;
     }
 
-    public void AddUniqueItem(Player actor, StringName name)
+    public void AddUniqueItem(StringName name)
     {
         SaveData.SetAddValue(Names.SaveSections.PlayerInventory,name, true);
         inventoryItems.Add(fullItemList[name]);
@@ -59,11 +75,11 @@ public partial class PlayerInventory : Component
         // Special handling for essences: auto-equip when newly acquired
         if (fullItemList[name] is EssenceItem essenceItem)
         {
-            essenceItem.ActivateAndEquip(actor);
+            essenceItem.ActivateAndEquip(playerActor);
         }
         else
         {
-            fullItemList[name].Activate(actor);
+            fullItemList[name].Activate(playerActor);
         }
     }
 

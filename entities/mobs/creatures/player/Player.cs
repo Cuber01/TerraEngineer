@@ -312,7 +312,7 @@ public partial class Player : Creature
 		
 		if(Input.IsActionJustPressed("f4"))
 		{
-			CM.GetComponent<PlayerInventory>().AddUniqueItem(this, "rifle");
+			CM.GetComponent<PlayerInventory>().AddUniqueItem("rifle");
 		}
 		
 		if(Input.IsActionJustPressed("f5"))
@@ -387,12 +387,11 @@ public partial class Player : Creature
 	}
 	
 	// TODO Make a proper mediator like class instead of using player for this
-	public void InvokeInteracted() => Interacted?.Invoke();
 	public void InvokeCloseMap() => CloseMap?.Invoke();
 	public void InvokeCloseInventory() => CloseInventory?.Invoke();
 	
 	// Wrapper for gdscript
-	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems(this);
+	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems();
 	
 	public void Freeze() => updateFrozen = true;
 	public void Unfreeze() => updateFrozen = false;

@@ -1,8 +1,9 @@
 using Godot;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer;
+using TerraEngineer.entities.objects;
 
-public partial class InteractAndDisplay : Area2D
+public partial class InteractAndDisplay : Area2D, IInteractable
 {
 	public enum PopupType
 	{
@@ -15,6 +16,8 @@ public partial class InteractAndDisplay : Area2D
 	[Export(PropertyHint.MultilineText)] private string popupText;
 	[Export] private StringName startTitle;
 	
+	public bool InteractionBlocked { get; set; }
+	
 	private Player player;
 	private Popup popupTemplate;
 	private DialogueBalloon balloonTemplate;
@@ -25,8 +28,8 @@ public partial class InteractAndDisplay : Area2D
 		popupTemplate = GetNode<Popup>(Names.NodePaths.Popup);
 		balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
 	}
-	
-	private void display()
+
+	public void OnInteracted()
 	{
 		if (popupType == PopupType.Dialogue)
 		{
@@ -38,17 +41,5 @@ public partial class InteractAndDisplay : Area2D
 			popupTemplate.ShowPopup(popupText);
 			player.Controller.SwitchControl(popupTemplate.Controller);
 		}
-	}
-
-	private void onPlayerEntered(Player player)
-	{
-		player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
-		player.Interacted += display;
-	}
-	
-	private void onPlayerExited(Player player)
-	{
-		player.Controller.RemoveOverride(Names.Actions.Attack);
-		player.Interacted -= display;
 	}
 }

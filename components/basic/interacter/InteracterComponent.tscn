@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://uubeqpttudf6"]
+
+[ext_resource type="Script" uid="uid://25cnrxuvlhbx" path="res://components/basic/interacter/Interacter.cs" id="1_8i70w"]
+
+[node name="InteracterComponent" type="Node2D" unique_id=1125685492]
+script = ExtResource("1_8i70w")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=945426379]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=31077900]
+
+[connection signal="area_entered" from="Area2D" to="." method="onInteractableAreaEntered"]
+[connection signal="area_exited" from="Area2D" to="." method="onInteractableAreaExited"]

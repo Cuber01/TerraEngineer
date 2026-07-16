@@ -5,10 +5,12 @@ using TENamespace.ui.dialogue_box;
 
 namespace TerraEngineer.entities.objects.terraforming_terminal;
 
-public partial class TerraformingTerminal : Node2D
+public partial class TerraformingTerminal : Node2D, IInteractable
 {
     [Export] private Resource dialogueResource;
     [Export] private AnimationPlayer animationPlayer;
+    
+    public bool InteractionBlocked { get; set; }
     
     private Player player;
     private DialogueBalloon balloonTemplate;
@@ -21,26 +23,14 @@ public partial class TerraformingTerminal : Node2D
         caretaker = GetParent<TerraformableCaretaker>();
         caretaker.Terraformed += updateSprite;
     }
-
-    private void onPlayerEntered(Player player)
-    {
-        player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
-        player.Interacted += open;
-    }
-
-    private void onPlayerExited(Player player)
-    {
-        player.Controller.RemoveOverride(Names.Actions.Attack);
-        player.Interacted -= open;
-    }
-
-    private void open()
+    
+    public void OnInteracted()
     {
         DialogueManager.DialogueEnded += executeChosenOption;
         balloonTemplate.PlayDialogue(dialogueResource, Names.Other.Start);
         player.Controller.SwitchControl(balloonTemplate.Controller);
     }
-
+    
     private void executeChosenOption(Resource dialogueResource)
     {
         caretaker.Terraform((Biomes)GlobalDialoguesState.Instance.PuzzleTerraformingRoom_Biome);
@@ -65,5 +55,4 @@ public partial class TerraformingTerminal : Node2D
                 break;
         }
     }
-
 }

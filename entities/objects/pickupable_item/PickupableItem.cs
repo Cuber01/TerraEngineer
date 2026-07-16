@@ -7,7 +7,7 @@ using TerraEngineer.entities.mobs;
 namespace TerraEngineer.entities.objects;
 
 [Tool]
-public partial class PickupableItem : Entity
+public partial class PickupableItem : Entity, IInteractable
 {
     [Export] private StringName itemName;
     [Export] private StringName itemCollectedTag;
@@ -43,6 +43,8 @@ public partial class PickupableItem : Entity
     }
     private bool _collected = false;
     
+    public bool InteractionBlocked { get; set; }
+    
     private DialogueBalloon balloonTemplate;
     private Player player;
 
@@ -50,6 +52,11 @@ public partial class PickupableItem : Entity
     {
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+
+        if (!canBeRecollected)
+        {
+            InteractionBlocked = true;
+        }
      
         //Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, (Texture2D)_itemTexture.Duplicate());
         CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
@@ -58,11 +65,7 @@ public partial class PickupableItem : Entity
     
     private void onPlayerEntered(Node2D body)
     {
-        if(canBeRecollected)
-        {
-            handleWaitingForInput();
-        }
-        else
+        if(!canBeRecollected)
         {
             handleSingleCollect();
         }
@@ -78,25 +81,13 @@ public partial class PickupableItem : Entity
         getItem();
     }
 
-    private void handleWaitingForInput()
-    {
-        player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
-        player.Interacted += getItem;
-    }
-    
-    private void onPlayerExited()
-    {
-        player.Controller.RemoveOverride(Names.Actions.Attack);
-        player.Interacted -= getItem;
-    }
-
     private void getItem()
     {
         bool success = false;
         
         if (itemType == ItemType.Unique)
         {
-            success = player.CM.GetComponent<PlayerInventory>().TryAddUniqueItem(player, itemName);
+            success = player.CM.GetComponent<PlayerInventory>().TryAddUniqueItem(itemName);
         } else if (itemType == ItemType.Generic)
         {
             player.CM.GetComponent<PlayerInventory>().AddGenericItem(player, itemName, itemAmount);
@@ -113,5 +104,6 @@ public partial class PickupableItem : Entity
         }
         player.Controller.SwitchControl(balloonTemplate.Controller);
     }
-    
+
+    public void OnInteracted() => getItem();
 }

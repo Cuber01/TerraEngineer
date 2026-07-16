@@ -5,9 +5,10 @@ using TENamespace.save_entity;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.entities.objects;
 using TerraEngineer.game;
 
-public partial class AutoDoc : Entity
+public partial class AutoDoc : Entity, IInteractable
 {
 	[Export] private StringName itemName;
 	[Export] private StringName itemCollectedTag;
@@ -15,57 +16,38 @@ public partial class AutoDoc : Entity
 	
 	private DialogueBalloon balloonTemplate;
 	private Player player;
-	private bool closed = false;
+	public bool InteractionBlocked { get; set; }
 
 	#region Init
 	public override void _Ready()
 	{
 		SpriteWrapper.Init(Sprite);
-		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, close);
-		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossEntered, close);
-		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossDefeated, open);
-		CM.GetComponent<SaveEntity>().OptionalInit(this);
 		
+		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, (_) =>
+		{
+			SpriteWrapper.Play("closed");
+			InteractionBlocked = true;
+		});
+		
+		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossEntered, () =>
+		{
+			SpriteWrapper.Play("closed");
+			InteractionBlocked = true;
+		});
+		
+		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossDefeated, () => 
+			SpriteWrapper.Play("open"));
+		
+		CM.GetComponent<SaveEntity>().OptionalInit(this);
 		
 		player = GetNode<Player>(Names.NodePaths.Player);
 		balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
 
 	}
-
-	private void close(Node node)
-	{
-		closed = true;
-		SpriteWrapper.Play("closed");
-	}
 	
-	private void close()
-	{
-		closed = true;
-		SpriteWrapper.Play("closed");
-	}
-
-	private void open()
-	{
-		closed = false;
-		SpriteWrapper.Play("open");
-	}
 	#endregion
-	
-	private void onPlayerEntered(Player player)
-	{
-		if(closed) return;
-		
-		player.Controller.AddOverride(Names.Actions.Attack, player.InvokeInteracted);
-		player.Interacted += enter;
-	}
-    
-	private void onPlayerExited(Player player)
-	{
-		player.Controller.RemoveOverride(Names.Actions.Attack);
-		player.Interacted -= enter;
-	}
 
-	private void enter()
+	public void OnInteracted()
 	{
 		Action whileInside = null;
 		whileInside = () =>
@@ -87,10 +69,10 @@ public partial class AutoDoc : Entity
 			player.Show();
 			player.Unfreeze();
 			CM.GetComponent<SaveEntity>().ChangeState(true);
-			player.CM.GetComponent<PlayerInventory>().AddUniqueItem(player, itemName);
+			player.CM.GetComponent<PlayerInventory>().AddUniqueItem(itemName);
 		
 			SpriteWrapper.Play("closing");
-			closed = true;
+			InteractionBlocked = true;
 			SpriteWrapper.AnimationFinished -= leave;
 		};
 		
@@ -99,11 +81,5 @@ public partial class AutoDoc : Entity
 			SpriteWrapper.Play("closing", -1);
 			SpriteWrapper.AnimationFinished += leave;
 		});
-		
-
 	}
-	
-	
-
-
 }
