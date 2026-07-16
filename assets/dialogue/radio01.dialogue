@@ -1,11 +1,11 @@
 ~ start
-Jon: Now where could my pipe be?
-Choices:
-- In the fridge.
-	Jon: Nope.
-- On my desk.
-	Jon: Doesn't seem like it.
-- Start again => start
-- End the conversation => END
-Jon: GARFIELD!!
+Terraforming Terminal:
+- Forest
+	set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 0
+- Fungus
+	set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 1
+- Tundra
+	set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 3
+- Desert
+	set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 4
 => END

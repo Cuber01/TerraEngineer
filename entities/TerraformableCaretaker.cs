@@ -8,6 +8,9 @@ public partial class TerraformableCaretaker : Node2D
     [Export] private Biomes currentBiome;
     [Export] private Node2D versions;
 
+    public delegate void TerraformedEventHandler(Biomes biome);
+    public event TerraformedEventHandler Terraformed;
+    
     private bool init = false;
     
     private Dictionary<Biomes, ITerraformable> entityVersions = new Dictionary<Biomes, ITerraformable>();
@@ -43,5 +46,6 @@ public partial class TerraformableCaretaker : Node2D
         entityVersions[currentBiome].Disable();
         entityVersions[biome].Enable();
         currentBiome = biome;
+        Terraformed?.Invoke(biome);
     }
 }
