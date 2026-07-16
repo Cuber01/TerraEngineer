@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://ofe3t2e1xwcp"]
 
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_1smnm"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="1_1smnm"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_5oa38"]
 
 [node name="Level" type="Node2D" unique_id=1037949503]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="4_ikp84"]
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="4_qw6t1"]
 [ext_resource type="PackedScene" uid="uid://cbf0qr5ojtqgw" path="res://entities/mobs/creatures/frog/Frog.tscn" id="4_y3fmu"]
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="5_qf288"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="5_qf288"]
 [ext_resource type="PackedScene" uid="uid://jkol8scl305i" path="res://entities/objects/savepoint/savepoint.tscn" id="6_7v84h"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="6_beb2e"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="6_ha70h"]

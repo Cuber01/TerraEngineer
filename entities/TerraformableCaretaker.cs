@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TerraEngineer.entities;
 using TerraEngineer.entities.objects;
 
-public partial class TerraformableCaretaker : CharacterBody2D
+public partial class TerraformableCaretaker : Node2D
 {
     [Export] private Biomes currentBiome;
     [Export] private Node2D versions;
@@ -24,6 +24,15 @@ public partial class TerraformableCaretaker : CharacterBody2D
         
         Terraform(currentBiome);
         init = true;
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("f10"))
+        {
+            var nextBiome = (Biomes)(((int)currentBiome + 1) % System.Enum.GetValues(typeof(Biomes)).Length);
+            Terraform(nextBiome);
+        }
     }
 
     public virtual void Terraform(Biomes biome)

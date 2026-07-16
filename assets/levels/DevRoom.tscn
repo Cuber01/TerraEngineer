@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b1nj3yqr0qwkr"]
 
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="2_v3p77"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="2_v3p77"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="5_v3p77"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="7_r1ybn"]
 [ext_resource type="Shader" uid="uid://b6nhsjnmgur2f" path="res://shaders/rope-segment-selector.gdshader" id="10_lngq4"]
@@ -183,7 +183,6 @@ ExportedSpriteWrapper = SubResource("Resource_r1ybn")
 [node name="Fluid" parent="." unique_id=1673010555 instance=ExtResource("17_kwwd8")]
 position = Vector2(317, 120)
 Size = Vector2(160, 50)
-fluidSpringScene = null
 
 [node name="TerraBlock" parent="." unique_id=1673332728 instance=ExtResource("17_x06ml")]
 position = Vector2(261, 100)

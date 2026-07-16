@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://chykbvkl7hxs4"]
 
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_ocdex"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="1_ocdex"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_7in26"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="3_eixo1"]
 [ext_resource type="PackedScene" uid="uid://b0eg46nrhalfj" path="res://entities/objects/puzzle/hp_gateway/HPGateway.tscn" id="4_7in26"]

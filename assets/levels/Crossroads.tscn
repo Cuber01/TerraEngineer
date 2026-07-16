@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dbne7ouht374o"]
 
 [ext_resource type="TileSet" uid="uid://b8eewqd5m6myt" path="res://assets/world/MushroomTileset.tres" id="1_8pnxf"]
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="1_wtr06"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="1_wtr06"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_dyf7s"]
 
 [node name="Level" type="Node2D" unique_id=15680763]

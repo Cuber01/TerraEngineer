@@ -13,7 +13,11 @@ public partial class TerraformableRoom : Node2D, ITerraformable
     {
         foreach (Node child in GetChildren())
         {
-            child.ProcessMode = ProcessModeEnum.Disabled;
+            if (child is TileMapLayer layer)
+            {
+                layer.CollisionEnabled = true;
+            }
+            child.ProcessMode = ProcessModeEnum.Inherit;
         }
         Show();
     }
@@ -22,7 +26,11 @@ public partial class TerraformableRoom : Node2D, ITerraformable
     {
         foreach (Node child in GetChildren())
         {
-            child.ProcessMode = ProcessModeEnum.Inherit;
+            if (child is TileMapLayer layer)
+            {
+                layer.CollisionEnabled = false;
+            }
+            child.ProcessMode = ProcessModeEnum.Disabled;
         }
         Hide();
     }

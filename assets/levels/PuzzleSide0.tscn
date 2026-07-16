@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://b8eewqd5m6myt" path="res://assets/world/MushroomTileset.tres" id="1_cf4pt"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_xp44h"]
-[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/Tileset.tres" id="3_qu3lt"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="3_qu3lt"]
 [ext_resource type="PackedScene" uid="uid://b0eg46nrhalfj" path="res://entities/objects/puzzle/hp_gateway/HPGateway.tscn" id="4_05w1f"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_na8q3"]
 [ext_resource type="PackedScene" uid="uid://c51wlvsjnjx1a" path="res://entities/objects/puzzle/switcher_group/SwitcherGroup.tscn" id="7_tb3sg"]
