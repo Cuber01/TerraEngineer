@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b0ql271thbg4u"
+path="res://.godot/imported/puzzle_plant_forest.dialogue-8a36ff8e0366f0cb3354e88112ab39e1.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/puzzle_plant_forest.dialogue"
+dest_files=["res://.godot/imported/puzzle_plant_forest.dialogue-8a36ff8e0366f0cb3354e88112ab39e1.tres"]
+
+[params]
+
+defaults=true

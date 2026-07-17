@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bp8dw810rhxmc"]
+
+[ext_resource type="Script" uid="uid://blo7kdxbqebir" path="res://entities/TerraformableEntity.cs" id="1_entity"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_wrapper"]
+[ext_resource type="Texture2D" uid="uid://cdone2muf5twa" path="res://assets/world/grass/puzzle-plant-shroom-withered.tres" id="3_yx58a"]
+
+[sub_resource type="Resource" id="Resource_wrapper"]
+script = ExtResource("2_wrapper")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Animation" id="Animation_default"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_animations"]
+_data = {
+&"default": SubResource("Animation_default")
+}
+
+[node name="PuzzlePlantMushroomCap" type="CharacterBody2D" unique_id=1 node_paths=PackedStringArray("Sprite")]
+script = ExtResource("1_entity")
+MyBiome = 1
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_wrapper")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2]
+texture_filter = 1
+texture = ExtResource("3_yx58a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=3]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_animations")
+autoplay = &"default"

@@ -41,7 +41,8 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
         { "ice_crystal", "res://game/ui/inventory/items/ice_crystal.tres"},
         { "vine", "res://game/ui/inventory/items/vine.tres"},
         { "gunpowder", "res://game/ui/inventory/items/gunpowder.tres"},
-        { "mushroom_cap", "res://game/ui/inventory/items/mushroom_cap.tres"}
+        { "mushroom_cap", "res://game/ui/inventory/items/mushroom_cap.tres"},
+        { "watering_can", "res://game/ui/inventory/items/watering_can_item.tres"}
     };
 
     public override void _Ready()

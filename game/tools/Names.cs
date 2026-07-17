@@ -81,6 +81,7 @@ public static class Names
         public static readonly StringName Walk = "walk";
         public static readonly StringName Land = "land";
         public static readonly StringName Dash = "dash";
+        public static readonly StringName Locked = "locked";
     }
 
      public static class Actions

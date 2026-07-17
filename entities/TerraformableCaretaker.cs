@@ -24,6 +24,11 @@ public partial class TerraformableCaretaker : Node2D
             entity.Setup(this);
             entityVersions.Add(entity.MyBiome, entity);
         }
+
+        if (GetParent() is TerraformableCaretaker myCaretaker)
+        {
+            myCaretaker.Terraformed += Terraform;
+        }
         
         Terraform(currentBiome);
         init = true;

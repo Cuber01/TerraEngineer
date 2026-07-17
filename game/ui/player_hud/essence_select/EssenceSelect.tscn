@@ -175,32 +175,32 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EssenceSelect" type="Node2D" node_paths=PackedStringArray("essenceList", "decor")]
+[node name="EssenceSelect" type="Node2D" unique_id=1194453309 node_paths=PackedStringArray("essenceList", "decor")]
 script = ExtResource("1_sya5d")
 essenceList = [NodePath("Forest"), NodePath("Mushroom"), NodePath("Ice"), NodePath("Desert")]
 decor = NodePath("Decor")
 
-[node name="Forest" type="AnimatedSprite2D" parent="."]
+[node name="Forest" type="AnimatedSprite2D" parent="." unique_id=974681789]
 position = Vector2(3, 2)
 sprite_frames = SubResource("SpriteFrames_bn502")
 animation = &"locked"
 
-[node name="Mushroom" type="AnimatedSprite2D" parent="."]
+[node name="Mushroom" type="AnimatedSprite2D" parent="." unique_id=342270742]
 position = Vector2(10, 2)
 sprite_frames = SubResource("SpriteFrames_xv5hy")
 animation = &"locked"
 
-[node name="Ice" type="AnimatedSprite2D" parent="."]
+[node name="Ice" type="AnimatedSprite2D" parent="." unique_id=542787486]
 position = Vector2(17, 2)
 sprite_frames = SubResource("SpriteFrames_02fdx")
 animation = &"locked"
 
-[node name="Desert" type="AnimatedSprite2D" parent="."]
+[node name="Desert" type="AnimatedSprite2D" parent="." unique_id=1409856544]
 position = Vector2(24, 2)
 sprite_frames = SubResource("SpriteFrames_bm3qy")
 animation = &"locked"
 
-[node name="Decor" type="AnimatedSprite2D" parent="."]
+[node name="Decor" type="AnimatedSprite2D" parent="." unique_id=2129852518]
 position = Vector2(14, 2)
 sprite_frames = SubResource("SpriteFrames_4wxis")
 animation = &"unselected"

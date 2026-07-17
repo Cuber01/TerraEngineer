@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://df4v6i7wa5a3e"]
+
+[ext_resource type="Script" uid="uid://hh2b8387v56d" path="res://entities/objects/puzzle/plant/PuzzlePlantForest.cs" id="1_plant"]
+[ext_resource type="Resource" uid="uid://b0ql271thbg4u" path="res://assets/dialogue/puzzle_plant_forest.dialogue" id="2_dialogue"]
+[ext_resource type="PackedScene" uid="uid://bp8dw810rhxmc" path="res://entities/objects/puzzle/plant/PuzzlePlantMushroomCap.tscn" id="3_nwxum"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="3_wrapper"]
+[ext_resource type="Texture2D" uid="uid://yksu3u4cbcys" path="res://assets/world/grass/puzzple-plant-grown.tres" id="4_6x7tk"]
+[ext_resource type="Texture2D" uid="uid://gny8cnahgegq" path="res://assets/world/grass/puzzple-plant-withered.tres" id="4_fr8ep"]
+
+[sub_resource type="Resource" id="Resource_wrapper"]
+script = ExtResource("3_wrapper")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwxum"]
+size = Vector2(5, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwxum"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6x7tk")
+}],
+"loop": true,
+"name": &"grown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fr8ep")
+}],
+"loop": true,
+"name": &"withered",
+"speed": 5.0
+}]
+
+[node name="PuzzlePlantForest" type="CharacterBody2D" unique_id=1 node_paths=PackedStringArray("Hitbox", "Sprite")]
+script = ExtResource("1_plant")
+dialogue = ExtResource("2_dialogue")
+mushroomCapScene = ExtResource("3_nwxum")
+Hitbox = NodePath("Area2D/CollisionShape2D")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_wrapper")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=4]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=5]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_nwxum")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1153506258]
+sprite_frames = SubResource("SpriteFrames_nwxum")
+animation = &"grown"
+autoplay = "withered"
+
+[connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onPlayerExited"]

@@ -36,7 +36,7 @@ X prevent event memory leaks on events - make state exit on death?
 - find way to reuse states like in a decorator pattern
 - make a generic static function for spawning stuff
 - implement deflect for gravity bullets
-- make flip manually look for hitboxes and flip them
+- make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
 
 todo balance:

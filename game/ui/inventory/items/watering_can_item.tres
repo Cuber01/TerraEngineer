@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://b1t0yp8gfpnrr"]
+
+[ext_resource type="Texture2D" uid="uid://cywfeo85vdy01" path="res://assets/items/watering_can.tres" id="1_q1g2y"]
+[ext_resource type="Script" uid="uid://blshgn2d0t1id" path="res://game/ui/inventory/InventoryItemData.cs" id="2_e7upq"]
+
+[resource]
+script = ExtResource("2_e7upq")
+ItemName = "Watering Can"
+Description = "Now you can water with canned water!"
+Icon = ExtResource("1_q1g2y")
+metadata/_custom_type_script = "uid://blshgn2d0t1id"

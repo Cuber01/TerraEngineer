@@ -17,7 +17,7 @@ public partial class TerraformableRoom : Node2D, ITerraformable
             {
                 layer.CollisionEnabled = true;
             }
-            child.ProcessMode = ProcessModeEnum.Inherit;
+            child.ProcessMode = ProcessModeEnum.Inherit;    
         }
         Show();
     }

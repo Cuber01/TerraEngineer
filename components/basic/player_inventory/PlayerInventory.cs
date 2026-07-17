@@ -27,6 +27,7 @@ public partial class PlayerInventory : Component
         { "gunpowder", new KeyItem() },
         { "vine", new KeyItem() },
         { "mushroom_cap", new KeyItem() },
+        { "watering_can", new KeyItem() },
     };
 
     private List<Item> inventoryItems = new();

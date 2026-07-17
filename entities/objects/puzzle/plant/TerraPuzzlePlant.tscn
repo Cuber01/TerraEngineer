@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cxxuug0e4t51i"]
+
+[ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="1_s88y7"]
+[ext_resource type="PackedScene" uid="uid://df4v6i7wa5a3e" path="res://entities/objects/puzzle/plant/PuzzlePlantForest.tscn" id="2_g0uxu"]
+[ext_resource type="PackedScene" uid="uid://7f5eogqmbuaa" path="res://entities/objects/pickupable_item/pickupable_item_mushroom_cap.tscn" id="3_g0uxu"]
+[ext_resource type="PackedScene" uid="uid://csvo0d8mg4p1q" path="res://entities/objects/puzzle/plant/PuzzlePlantDestroyed.tscn" id="3_qygse"]
+[ext_resource type="PackedScene" uid="uid://bp8dw810rhxmc" path="res://entities/objects/puzzle/plant/PuzzlePlantMushroomCap.tscn" id="4_tsf3k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vmq4"]
+size = Vector2(9, 10)
+
+[node name="TerraPuzzlePlant" type="CharacterBody2D" unique_id=1389306202 node_paths=PackedStringArray("versions")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_s88y7")
+versions = NodePath("Versions")
+
+[node name="Versions" type="Node2D" parent="." unique_id=2010832830]
+
+[node name="PuzzlePlantForest" parent="Versions" unique_id=1 instance=ExtResource("2_g0uxu")]
+mushroomCapScene = ExtResource("3_g0uxu")
+
+[node name="PuzzlePlantDestroyed" parent="Versions" unique_id=1821784093 instance=ExtResource("3_qygse")]
+MyBiome = 3
+
+[node name="PuzzlePlantDestroyed2" parent="Versions" unique_id=210934146 instance=ExtResource("3_qygse")]
+MyBiome = 2
+
+[node name="PuzzlePlantMushroomCap" parent="Versions" unique_id=1244459272 instance=ExtResource("4_tsf3k")]
+position = Vector2(0, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1420760080]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_0vmq4")

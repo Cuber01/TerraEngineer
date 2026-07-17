@@ -1,0 +1,17 @@
+~ no_watering_can
+Plant: The plant looks dry and withered. It could really use some water.
+=> END
+
+~ has_watering_can
+Plant: The plant looks dry and withered. It could really use some water.
+Plant:
+- Water the plant
+	set GlobalDialoguesState.PuzzlePlant_Choice = 1
+	Plant: You water the plant. It looks much healthier now!
+- Cancel
+	set GlobalDialoguesState.PuzzlePlant_Choice = 0
+=> END
+
+~ already_watered
+Plant: The plant looks vibrant.
+=> END

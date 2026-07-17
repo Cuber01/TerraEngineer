@@ -24,6 +24,7 @@ public partial class EssenceSelectUI : Node2D, IConnectable<Player>
         gunHandle.GunHandleChanged += onGunHandleChanged;
         terraformGun.EssenceChanged += onSelect;
         terraformGun.EssenceUnlocked += onUnlock;
+        terraformGun.EssenceLocked += onLock;
         
         // Initialize UI: hide essences by default (pistol is selected)
         for (int i = 0; i < essenceList.Length; i++)
@@ -40,11 +41,17 @@ public partial class EssenceSelectUI : Node2D, IConnectable<Player>
         gunHandle.GunHandleChanged -= onGunHandleChanged;
         terraformGun.EssenceChanged -= onSelect;
         terraformGun.EssenceUnlocked -= onUnlock;
+        terraformGun.EssenceLocked -= onLock;
     }
 
     private void onUnlock(Biomes biome)
     {
         essenceList[(int)biome].Animation = Names.Animations.Selected;
+    }
+    
+    private void onLock(Biomes biome)
+    {
+        essenceList[(int)biome].Animation = Names.Animations.Locked;
     }
     
     private void onSelect(Biomes selected, Biomes unselected)
