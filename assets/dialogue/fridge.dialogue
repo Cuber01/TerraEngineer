@@ -1,0 +1,23 @@
+~ start
+Fridge: The fridge is empty. 
+=> END
+
+~ has_crystal
+Fridge: You have an ice crystal! Would you like to store it in the fridge to keep it from melting?
+Fridge:
+- Yes
+	set GlobalDialoguesState.PuzzleFridge_Choice = 1
+	Fridge: The ice crystal is now safely stored in the fridge.
+- No
+	set GlobalDialoguesState.PuzzleFridge_Choice = 0
+=> END
+
+~ crystal_in_fridge
+Fridge: There's an ice crystal stored in the fridge. Would you like to take it?
+Fridge:
+- Yes
+	set GlobalDialoguesState.PuzzleFridge_Choice = 1
+	Fridge: You take the ice crystal from the fridge. It's still cold!
+- No
+	set GlobalDialoguesState.PuzzleFridge_Choice = 0
+=> END

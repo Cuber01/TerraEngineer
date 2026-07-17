@@ -9,6 +9,9 @@ public partial class GlobalDialoguesState : Node
     // 2. The variable itself MUST be a public, non-static property
     [Export]
     public int PuzzleTerraformingRoom_Biome { get; set; } = 0;
+    
+    [Export]
+    public int PuzzleFridge_Choice { get; set; } = 0;
 
     public override void _EnterTree()
     {

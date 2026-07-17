@@ -67,7 +67,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxudd"]
-size = Vector2(12, 15)
+size = Vector2(10, 17)
 
 [node name="AutoDoc" type="CharacterBody2D" unique_id=912996181 node_paths=PackedStringArray("CM", "Sprite")]
 script = ExtResource("1_thjbx")

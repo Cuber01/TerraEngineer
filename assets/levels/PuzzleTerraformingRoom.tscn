@@ -12,17 +12,18 @@
 [ext_resource type="TileSet" uid="uid://covo1o6fyiihy" path="res://assets/world/DesertTileset.tres" id="9_5vi8i"]
 [ext_resource type="TileSet" uid="uid://b8eewqd5m6myt" path="res://assets/world/MushroomTileset.tres" id="10_5vi8i"]
 [ext_resource type="TileSet" uid="uid://ri1ugy335m8n" path="res://assets/world/IceTileset.tres" id="13_l4d3h"]
+[ext_resource type="PackedScene" uid="uid://b7fpp7p2sxgw8" path="res://entities/objects/puzzle/fridge/Fridge.tscn" id="14_l4d3h"]
 [ext_resource type="PackedScene" uid="uid://m57i13pja7ui" path="res://entities/objects/terraforming_terminal/TerraformingTerminal.tscn" id="15_sq0p4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4d3h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq0p4"]
 atlas = ExtResource("6_b82qi")
 region = Rect2(42, 10, 7, 7)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sq0p4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kj225"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l4d3h")
+"texture": SubResource("AtlasTexture_sq0p4")
 }],
 "loop": true,
 "name": &"default",
@@ -35,7 +36,7 @@ metadata/level_name = &"PuzzleTerraformingRoom"
 [node name="RoomInstance" parent="." unique_id=703832495 instance=ExtResource("1_bcbmq")]
 
 [node name="PickupableItem" parent="." unique_id=780288586 instance=ExtResource("2_b82qi")]
-position = Vector2(180, 54)
+position = Vector2(148, 144)
 itemName = &"ice_crystal"
 itemCollectedTag = &"null"
 dialogueDescription = ExtResource("3_ockd6")
@@ -44,7 +45,7 @@ ItemTexture = ExtResource("5_28lfm")
 canBeRecollected = true
 
 [node name="AnimatedSprite2D" parent="PickupableItem" index="0" unique_id=298394551]
-sprite_frames = SubResource("SpriteFrames_sq0p4")
+sprite_frames = SubResource("SpriteFrames_kj225")
 
 [node name="PedestalSprite" parent="PickupableItem" index="3" unique_id=1109076071]
 visible = false
@@ -52,6 +53,7 @@ visible = false
 [node name="TerraformableRoom" type="Node2D" parent="." unique_id=615890781 node_paths=PackedStringArray("versions")]
 script = ExtResource("7_3miqj")
 versions = NodePath("Versions")
+metadata/level_name = &"PuzzleTerraformingRoom"
 
 [node name="Versions" type="Node2D" parent="TerraformableRoom" unique_id=1682349939]
 
@@ -97,5 +99,8 @@ tile_set = ExtResource("10_5vi8i")
 
 [node name="TerraformingTerminal" parent="TerraformableRoom" unique_id=1553472831 instance=ExtResource("15_sq0p4")]
 position = Vector2(101, 135)
+
+[node name="Fridge" parent="TerraformableRoom" unique_id=912996181 instance=ExtResource("14_l4d3h")]
+position = Vector2(126, 143)
 
 [editable path="PickupableItem"]

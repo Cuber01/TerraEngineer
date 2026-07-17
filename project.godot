@@ -210,7 +210,7 @@ open_inventory={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://assets/dialogue/item_green_essence.dialogue", "res://assets/dialogue/item_health_serum.dialogue", "res://assets/dialogue/item_pistol.dialogue", "res://assets/dialogue/mines_announcement.dialogue", "res://assets/dialogue/radio01.dialogue", "res://assets/dialogue/item_double_jump.dialogue", "res://assets/dialogue/item_rifle.dialogue", "res://assets/dialogue/already_have_item_ice.dialogue", "res://assets/dialogue/item_ice_crystal.dialogue", "res://assets/dialogue/item_vines.dialogue", "res://assets/dialogue/item_mushroom_cap.dialogue", "res://assets/dialogue/item_watering_can.dialogue", "res://assets/dialogue/terraforming_terminal.dialogue")
+locale/translations_pot_files=PackedStringArray("res://assets/dialogue/item_green_essence.dialogue", "res://assets/dialogue/item_health_serum.dialogue", "res://assets/dialogue/item_pistol.dialogue", "res://assets/dialogue/mines_announcement.dialogue", "res://assets/dialogue/radio01.dialogue", "res://assets/dialogue/item_double_jump.dialogue", "res://assets/dialogue/item_rifle.dialogue", "res://assets/dialogue/already_have_item_ice.dialogue", "res://assets/dialogue/item_ice_crystal.dialogue", "res://assets/dialogue/item_vines.dialogue", "res://assets/dialogue/item_mushroom_cap.dialogue", "res://assets/dialogue/item_watering_can.dialogue", "res://assets/dialogue/terraforming_terminal.dialogue", "res://assets/dialogue/fridge.dialogue", "res://assets/dialogue/inventory_taker.dialogue")
 
 [layer_names]
 

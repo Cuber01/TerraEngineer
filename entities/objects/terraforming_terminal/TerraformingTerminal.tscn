@@ -10,7 +10,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
-tracks/0/interp = 0
+tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
@@ -92,7 +92,7 @@ _data = {
 &"yellow": SubResource("Animation_rfxcc")
 }
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_qiisn"]
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ln4yu"]
 _data = PackedByteArray("AAADAAUAAAABAAAAJAAAABgAAADQAAAAUklGRsgAAABXRUJQVlA4TLsAAAAvI8AFEF+gJgDQBL0IRRUCkWqB9rnlUBBJaoMGROCg2cUDOhCAENIzZiPJ+EcTaiDXqRZJxZL5DwAoKwabb8pxWbra5dHTGK1S+pm/gVVtW1FYNqCB61WgAhWoQADHb2bUBFawgu2YIUFE/xW5bdvIt4wOPWM5Q6bynvQhUNn7biziHtUgmaF6EE3l/3kvkNwSFXeJGkNTucUVmgEQKu9V9pOUz8xgBovU0iDay5klbt9rDM3lNldlnwkIAA==")
 size_override = Vector2(36, 24)
 
@@ -108,9 +108,9 @@ animationPlayer = NodePath("AnimationPlayer")
 libraries/ = SubResource("AnimationLibrary_6rakp")
 autoplay = &"all"
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer" unique_id=1725729763]
+[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer" unique_id=2053495446]
 texture_filter = 1
-texture = SubResource("PortableCompressedTexture2D_qiisn")
+texture = SubResource("PortableCompressedTexture2D_ln4yu")
 hframes = 3
 vframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
@@ -132,7 +132,7 @@ metadata/_aseprite_wizard_config_ = {
 "scale": "1.0",
 "slice": "",
 "source": "res://entities/objects/terraforming_terminal/terraforming-terminal.ase",
-"source_uid": 8250311636104109999
+"source_uid": 455762017522931964
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a6afbea6d55a11300e618b56c37291a3"
 

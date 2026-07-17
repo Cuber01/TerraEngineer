@@ -1,7 +1,7 @@
 ~ start
 Terraforming Terminal:
 - Forest
-	set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 0
+    set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 0
 - Fungus
 	set GlobalDialoguesState.PuzzleTerraformingRoom_Biome = 1
 - Tundra
