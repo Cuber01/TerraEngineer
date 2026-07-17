@@ -11,6 +11,9 @@ public partial class TerraformGun : AdvancedComponent, IGun
     
     public delegate void EssenceUnlockedEventHandler(Biomes biome);
     public event EssenceUnlockedEventHandler EssenceUnlocked;
+    
+    public delegate void EssenceLockedEventHandler(Biomes biome);
+    public event EssenceLockedEventHandler EssenceLocked;
 
     public Biomes SelectedBiome
     {
@@ -89,6 +92,27 @@ public partial class TerraformGun : AdvancedComponent, IGun
         {
             EssenceUnlocked?.Invoke(biome);
             Usable = true;
+        }
+        else
+        {
+            EssenceLocked?.Invoke(biome);
+            
+            // If the locked biome was the selected one, switch gun handle back to Pistol
+            if (_selectedBiome == biome)
+            {
+                GetParent().GetParent<GunHandle>().ChangeGunHandle();
+            }
+            
+            // Update Usable based on whether any essences are unlocked
+            Usable = false;
+            foreach (var mode in modes)
+            {
+                if (mode != Biomes.Locked)
+                {
+                    Usable = true;
+                    break;
+                }
+            }
         }
     }
     

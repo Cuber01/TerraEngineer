@@ -73,7 +73,7 @@ public partial class Fridge : Entity, IInteractable
             if (playerHasCrystal && !hasCrystalInFridge)
             {
                 // Put crystal in fridge
-                SaveData.SetAddValue(Names.SaveSections.PlayerInventory, "ice_crystal", false);
+                player.CM.GetComponent<PlayerInventory>().RemoveUniqueItem("ice_crystal");
                 hasCrystalInFridge = true;
                 CM.GetComponent<SaveEntity>().ChangeState(true);
             }

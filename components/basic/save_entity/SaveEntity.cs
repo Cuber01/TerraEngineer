@@ -20,7 +20,11 @@ public partial class SaveEntity : Component
         saveSection = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
         if (saveSection == "" || saveSection == null)
         {
-            throw new Exception("No level name found.");
+            saveSection = (StringName)Actor.GetParent().GetParent().GetMeta(Names.Properties.LevelName);
+            if (saveSection == "" || saveSection == null)
+            {
+                throw new Exception("No level name found.");
+            }
         }
 
         if (saveName =="" || saveName is null)

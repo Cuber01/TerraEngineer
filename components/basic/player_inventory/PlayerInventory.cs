@@ -90,9 +90,12 @@ public partial class PlayerInventory : Component
                 name));
     }
 
-    public void RemoveUniqueItem()
+    public void RemoveUniqueItem(StringName name)
     {
-        
+        Item item = fullItemList[name];
+        item.Deactivate(playerActor);
+        SaveData.SetAddValue(Names.SaveSections.PlayerInventory, name, false);
+        inventoryItems.Remove(item);
     }
 
     public void AddGenericItem(Player actor, StringName name, int amount)
@@ -113,7 +116,7 @@ public enum ItemType
 public interface Item
 {
     public void Activate(Player actor);
-    // public void Deactivate();
+    public void Deactivate(Player actor);
 }
 
 public class DoubleJumpItem : Item
@@ -121,6 +124,10 @@ public class DoubleJumpItem : Item
     public void Activate(Player actor)
     {
         actor.CM.GetComponent<Jump>().MaxJumps = 2;
+    }
+    public void Deactivate(Player actor)
+    {
+        throw new NotImplementedException();
     }
 }
 
@@ -131,6 +138,10 @@ public class BlowtorchItem : Item
         actor.Controller.AddAction(Names.Actions.Attack, 
             () => actor.CM.GetComponent<GunHandle>().Shoot(actor.GetShootDirection(), false), Names.Actions.GroupWeapon);
     }
+    public void Deactivate(Player actor)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class RifleItem : Item
@@ -139,6 +150,10 @@ public class RifleItem : Item
     {
         actor.CM.GetComponent<GunHandle>().CM.GetComponent<PistolGunHandle>().UnlockGun<Rifle>();
     }
+    public void Deactivate(Player actor)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class PhaseTeleporterItem : Item
@@ -146,6 +161,9 @@ public class PhaseTeleporterItem : Item
     public void Activate(Player actor)
     {
         actor.PhasingAllowed = true;
+    }
+    public void Deactivate(Player actor)
+    {
     }
 }
 
@@ -156,6 +174,10 @@ public class HealthSerumItem : Item
         actor.CM.GetComponent<Health>().MaxHealth += 1;
         actor.CM.GetComponent<Health>().FullHeal();
     }
+    public void Deactivate(Player actor)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class IceCrystalItem : Item
@@ -164,6 +186,10 @@ public class IceCrystalItem : Item
     {
 
     }
+    public void Deactivate(Player actor)
+    {
+        
+    }
 }
 
 public class KeyItem : Item
@@ -171,6 +197,11 @@ public class KeyItem : Item
     public void Activate(Player actor)
     {
 
+    }
+    
+    public void Deactivate(Player actor)
+    {
+        
     }
 }
 
@@ -183,6 +214,12 @@ public class EssenceItem(Biomes biome) : Item
         gunHandle.CM.GetComponent<TerraformGun>().LockOrUnlockMode(biome, true);
     }
     
+    public void Deactivate(Player actor)
+    {
+        GunHandle gunHandle = actor.CM.GetComponent<GunHandle>();
+        gunHandle.CM.GetComponent<TerraformGun>().LockOrUnlockMode(biome, false);
+    }
+
     public void ActivateAndEquip(Player actor)
     {
         Activate(actor);

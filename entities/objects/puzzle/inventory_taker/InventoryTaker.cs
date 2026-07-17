@@ -127,7 +127,7 @@ public partial class InventoryTaker : Entity, IInteractable, ISwitcher
     {
         foreach (StringName item in requiredItems)
         {
-            SaveData.SetAddValue(Names.SaveSections.PlayerInventory, item, false);
+            player.CM.GetComponent<PlayerInventory>().RemoveUniqueItem(item);
         }
         SwitchedOn = true;
         CM.GetComponent<SaveEntity>().ChangeState(true);
