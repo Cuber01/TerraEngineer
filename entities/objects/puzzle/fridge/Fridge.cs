@@ -34,8 +34,7 @@ public partial class Fridge : Entity, IInteractable
 
     public void OnInteracted()
     {
-        Variant hasCrystal = SaveData.ReadValue(Names.SaveSections.PlayerInventory, "ice_crystal");
-        bool playerHasCrystal = MathT.IsTrue(hasCrystal);
+        bool playerHasCrystal = player.CM.GetComponent<PlayerInventory>().HasItem("ice_crystal");
         
         StringName dialogueTitle;
         
@@ -55,12 +54,12 @@ public partial class Fridge : Entity, IInteractable
         balloonTemplate.PlayDialogue(dialogue, dialogueTitle);
         player.Controller.SwitchControl(balloonTemplate.Controller);
         
-        DialogueManager.DialogueEnded += OnDialogueEnded;
+        DialogueManager.DialogueEnded += onDialogueEnded;
     }
     
-    private void OnDialogueEnded(Resource dialogueResource)
+    private void onDialogueEnded(Resource dialogueResource)
     {
-        DialogueManager.DialogueEnded -= OnDialogueEnded;
+        DialogueManager.DialogueEnded -= onDialogueEnded;
         
         int choice = GlobalDialoguesState.Instance.PuzzleFridge_Choice;
         GlobalDialoguesState.Instance.PuzzleFridge_Choice = 0;

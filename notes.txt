@@ -37,6 +37,7 @@ X prevent event memory leaks on events - make state exit on death?
 - make a generic static function for spawning stuff
 - implement deflect for gravity bullets
 - make flip manually look for hitboxes and flip them
+- save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump

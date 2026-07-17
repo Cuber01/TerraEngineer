@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cg8gggos7yeeu"
+path="res://.godot/imported/inventory_taker.dialogue-654cfe65ab30ceff597214145742650c.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/inventory_taker.dialogue"
+dest_files=["res://.godot/imported/inventory_taker.dialogue-654cfe65ab30ceff597214145742650c.tres"]
+
+[params]
+
+defaults=true

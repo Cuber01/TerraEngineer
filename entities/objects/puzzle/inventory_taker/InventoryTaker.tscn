@@ -1,0 +1,184 @@
+[gd_scene format=4 uid="uid://bxgnl52we7txw"]
+
+[ext_resource type="Script" uid="uid://7tc1b817ac3x" path="res://entities/objects/puzzle/inventory_taker/InventoryTaker.cs" id="1_ncqy3"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_35lvp"]
+[ext_resource type="Resource" uid="uid://cg8gggos7yeeu" path="res://assets/dialogue/inventory_taker.dialogue" id="2_ncqy3"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_u8abk"]
+[ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="5_slljj"]
+
+[sub_resource type="Resource" id="Resource_ncqy3"]
+script = ExtResource("2_35lvp")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ncqy3"]
+_data = PackedByteArray("AAADAAUAAAABAAAALQAAAAoAAACaAAAAUklGRpIAAABXRUJQVlA4TIYAAAAvLEACEC+gkI0kaJHWX2IFvjsrMmmb+ofqqoFp2U2YbbT3/F2mcQxHMv8BAOhGOz6vwCqSZCcEBUEBffX+iRKeAR7+zWQJEf1X2LYN0jHvjgksVYD25Y3hptdlv+lwfaHVjZd2nJfG7Yvmt/qd/t+iRAkry8wSlKAlp5yg79woJ5qf6n9LBQ==")
+size_override = Vector2(45, 10)
+
+[sub_resource type="Animation" id="Animation_ncqy3"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_5q15i"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_078rj"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_u8abk"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_slljj"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2vnrc"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80duu"]
+_data = {
+&"1-off": SubResource("Animation_ncqy3"),
+&"1-on": SubResource("Animation_5q15i"),
+&"2-off": SubResource("Animation_078rj"),
+&"2-on": SubResource("Animation_u8abk"),
+&"3-off": SubResource("Animation_slljj"),
+&"3-on": SubResource("Animation_2vnrc")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncqy3"]
+size = Vector2(15, 5)
+
+[node name="InventoryTaker" type="CharacterBody2D" unique_id=912996181 node_paths=PackedStringArray("CM", "Sprite")]
+script = ExtResource("1_ncqy3")
+requiredItems = Array[StringName]([&"green_essence", &"blue_essence", &"purple_essence"])
+dialogue = ExtResource("2_ncqy3")
+CM = NodePath("ComponentManager")
+Team = 2
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_ncqy3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=88552828]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_ncqy3")
+hframes = 3
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"output_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/objects/puzzle/inventory_taker/inventory-taker.ase",
+"source_uid": 5906467410113604407
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0584ccf55e4b19444c35f8cbf94d6a07"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=177639070]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_80duu")
+
+[node name="ComponentManager" parent="." unique_id=924767318 instance=ExtResource("4_u8abk")]
+
+[node name="SaveEntityComponent" parent="ComponentManager" unique_id=1131271268 instance=ExtResource("5_slljj")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=600439736]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1934802200]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ncqy3")
+
+[connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="onPlayerExited"]

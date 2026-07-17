@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cxr0r4m8btlao" path="res://entities/objects/terraforming_terminal/TerraformingTerminal.cs" id="1_ln4yu"]
 [ext_resource type="Resource" uid="uid://nwfwd3jc2qvc" path="res://assets/dialogue/terraforming_terminal.dialogue" id="2_oyuu7"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="3_oyuu7"]
+
+[sub_resource type="Resource" id="Resource_8tvan"]
+script = ExtResource("3_oyuu7")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_oyuu7"]
+_data = PackedByteArray("AAADAAUAAAABAAAAJAAAABgAAADQAAAAUklGRsgAAABXRUJQVlA4TLsAAAAvI8AFEF+gJgDQBL0IRRUCkWqB9rnlUBBJaoMGROCg2cUDOhCAENIzZiPJ+EcTaiDXqRZJxZL5DwAoKwabb8pxWbra5dHTGK1S+pm/gVVtW1FYNqCB61WgAhWoQADHb2bUBFawgu2YIUFE/xW5bdvIt4wOPWM5Q6bynvQhUNn7biziHtUgmaF6EE3l/3kvkNwSFXeJGkNTucUVmgEQKu9V9pOUz8xgBovU0iDay5klbt9rDM3lNldlnwkIAA==")
+size_override = Vector2(36, 24)
 
 [sub_resource type="Animation" id="Animation_ln4yu"]
 length = 0.1
@@ -9,7 +18,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -25,7 +34,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -41,7 +50,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -57,7 +66,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -73,7 +82,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -92,25 +101,19 @@ _data = {
 &"yellow": SubResource("Animation_rfxcc")
 }
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ln4yu"]
-_data = PackedByteArray("AAADAAUAAAABAAAAJAAAABgAAADQAAAAUklGRsgAAABXRUJQVlA4TLsAAAAvI8AFEF+gJgDQBL0IRRUCkWqB9rnlUBBJaoMGROCg2cUDOhCAENIzZiPJ+EcTaiDXqRZJxZL5DwAoKwabb8pxWbra5dHTGK1S+pm/gVVtW1FYNqCB61WgAhWoQADHb2bUBFawgu2YIUFE/xW5bdvIt4wOPWM5Q6bynvQhUNn7biziHtUgmaF6EE3l/3kvkNwSFXeJGkNTucUVmgEQKu9V9pOUz8xgBovU0iDay5klbt9rDM3lNldlnwkIAA==")
-size_override = Vector2(36, 24)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ln4yu"]
 size = Vector2(12, 12)
 
-[node name="TerraformingTerminal" type="Node2D" unique_id=1553472831 node_paths=PackedStringArray("animationPlayer")]
+[node name="TerraformingTerminal" type="CharacterBody2D" unique_id=1330612350 node_paths=PackedStringArray("animationPlayer", "Sprite")]
 script = ExtResource("1_ln4yu")
 dialogueResource = ExtResource("2_oyuu7")
-animationPlayer = NodePath("AnimationPlayer")
+animationPlayer = NodePath("Sprite2D/AnimationPlayer")
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_8tvan")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=654779885]
-libraries/ = SubResource("AnimationLibrary_6rakp")
-autoplay = &"all"
-
-[node name="Sprite2D" type="Sprite2D" parent="AnimationPlayer" unique_id=2053495446]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2053495446]
 texture_filter = 1
-texture = SubResource("PortableCompressedTexture2D_ln4yu")
+texture = SubResource("PortableCompressedTexture2D_oyuu7")
 hframes = 3
 vframes = 2
 metadata/_aseprite_wizard_interface_config_ = {
@@ -128,7 +131,7 @@ metadata/_aseprite_wizard_config_ = {
 "o_folder": "",
 "o_name": "",
 "only_visible": false,
-"player": "AnimationPlayer",
+"player": "Sprite2D/AnimationPlayer",
 "scale": "1.0",
 "slice": "",
 "source": "res://entities/objects/terraforming_terminal/terraforming-terminal.ase",
@@ -136,12 +139,14 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a6afbea6d55a11300e618b56c37291a3"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=654779885]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_6rakp")
+autoplay = &"all"
+
 [node name="Area2D" type="Area2D" parent="." unique_id=667650788]
 collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1346411320]
 shape = SubResource("RectangleShape2D_ln4yu")
-
-[connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]
-[connection signal="body_exited" from="Area2D" to="." method="onPlayerExited"]

@@ -12,6 +12,9 @@ public partial class GlobalDialoguesState : Node
     
     [Export]
     public int PuzzleFridge_Choice { get; set; } = 0;
+    
+    [Export]
+    public int Lab_InventoryTaker { get; set; } = 0;
 
     public override void _EnterTree()
     {

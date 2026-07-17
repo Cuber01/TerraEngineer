@@ -83,6 +83,18 @@ public partial class PlayerInventory : Component
         }
     }
 
+    public bool HasItem(StringName name)
+    {
+        return MathT.IsTrue(
+            SaveData.ReadValue(Names.SaveSections.PlayerInventory,
+                name));
+    }
+
+    public void RemoveUniqueItem()
+    {
+        
+    }
+
     public void AddGenericItem(Player actor, StringName name, int amount)
     {
         inventoryItems.Add(fullItemList[name]);

@@ -2,10 +2,11 @@ using DialogueManagerRuntime;
 using Godot;
 using System;
 using TENamespace.ui.dialogue_box;
+using TerraEngineer.entities.mobs;
 
 namespace TerraEngineer.entities.objects.terraforming_terminal;
 
-public partial class TerraformingTerminal : Node2D, IInteractable
+public partial class TerraformingTerminal : Entity, IInteractable
 {
     [Export] private Resource dialogueResource;
     [Export] private AnimationPlayer animationPlayer;

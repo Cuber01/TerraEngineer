@@ -13,6 +13,7 @@
 [ext_resource type="TileSet" uid="uid://b8eewqd5m6myt" path="res://assets/world/MushroomTileset.tres" id="10_5vi8i"]
 [ext_resource type="TileSet" uid="uid://ri1ugy335m8n" path="res://assets/world/IceTileset.tres" id="13_l4d3h"]
 [ext_resource type="PackedScene" uid="uid://b7fpp7p2sxgw8" path="res://entities/objects/puzzle/fridge/Fridge.tscn" id="14_l4d3h"]
+[ext_resource type="PackedScene" uid="uid://bxgnl52we7txw" path="res://entities/objects/puzzle/inventory_taker/InventoryTaker.tscn" id="15_kj225"]
 [ext_resource type="PackedScene" uid="uid://m57i13pja7ui" path="res://entities/objects/terraforming_terminal/TerraformingTerminal.tscn" id="15_sq0p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sq0p4"]
@@ -98,9 +99,12 @@ tile_map_data = PackedByteArray("AAAFABgAAAACAAUAAAAFABcAAAACAAUAAAAFABYAAAAGAAU
 tile_set = ExtResource("10_5vi8i")
 
 [node name="TerraformingTerminal" parent="TerraformableRoom" unique_id=1553472831 instance=ExtResource("15_sq0p4")]
-position = Vector2(101, 135)
+position = Vector2(97, 138)
 
 [node name="Fridge" parent="TerraformableRoom" unique_id=912996181 instance=ExtResource("14_l4d3h")]
 position = Vector2(126, 143)
+
+[node name="InventoryTaker" parent="TerraformableRoom" unique_id=1502721532 instance=ExtResource("15_kj225")]
+position = Vector2(184, 159)
 
 [editable path="PickupableItem"]

@@ -1,0 +1,19 @@
+~ missing_items
+InventoryTaker: This device requires specific items to function. You don't have all the required items yet.
+=> END
+
+~ has_all_items
+InventoryTaker: You have all the required items! Would you like to deposit them to activate this device?
+- Deposit items
+	set GlobalDialoguesState.Lab_InventoryTaker = 1
+	InventoryTaker: Items deposited. The device is now active.
+- Keep items
+	=> END
+
+~ items_deposited
+InventoryTaker: The device is active with your deposited items. Would you like to take them back?
+- Take items back
+	set GlobalDialoguesState.Lab_InventoryTaker = 2
+	- InventoryTaker: Items returned to your inventory. The device is now inactive.
+- Leave them
+=> END
