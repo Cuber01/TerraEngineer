@@ -143,3 +143,4 @@ alreadyHaveItemDialogue = ExtResource("4_3miqj")
 ItemTexture = ExtResource("24_8jmve")
 
 [editable path="PickupableItem"]
+[editable path="TerraformableRoom/TerraPuzzlePlant"]

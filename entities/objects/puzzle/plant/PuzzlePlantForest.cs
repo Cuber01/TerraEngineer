@@ -13,6 +13,9 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
     
     private DialogueBalloon balloonTemplate;
     private Player player;
+    private Node2D room;
+    private PickupableItem mushroomCap;
+    
     private bool hasBeenWatered = false;
     
     public bool InteractionBlocked { get; set; }
@@ -25,6 +28,7 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
         
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+        room = GetParent().GetParent().GetParent<Node2D>();
     }
 
     public void OnInteracted()
@@ -67,12 +71,35 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
             SpriteWrapper.Play("grown");
             
             // Spawn mushroom cap pickup
-            PickupableItem mushroomCap = mushroomCapScene.Instantiate<PickupableItem>();
+            mushroomCap = mushroomCapScene.Instantiate<PickupableItem>();
             mushroomCap.GlobalPosition = GlobalPosition;
-            mushroomCap.ProcessMode = ProcessModeEnum.Disabled;
-            GetParent().AddChild(mushroomCap);
-
-            
+            disableCap();
+            room.AddChild(mushroomCap);
+            Caretaker.Terraformed += terraformCap;
         }
+    }
+
+    private void terraformCap(Biomes biome)
+    {
+        if (biome == Biomes.Mushroom)
+        {
+            enableCap();
+        }
+        else
+        {
+            disableCap();
+        }
+    }
+
+    private void disableCap()
+    {
+        mushroomCap.ProcessMode = ProcessModeEnum.Disabled;
+        mushroomCap.Visible = false;
+    }
+
+    private void enableCap()
+    {
+        mushroomCap.ProcessMode = ProcessModeEnum.Pausable;
+        mushroomCap.Visible = true;
     }
 }
