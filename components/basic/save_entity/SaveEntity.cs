@@ -17,10 +17,11 @@ public partial class SaveEntity : Component
 
     public override void OptionalInit(Node2D actor)
     {
-        saveSection = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName);
+        
+        saveSection = (StringName)Actor.GetParent().GetMeta(Names.Properties.LevelName, "");
         if (saveSection == "" || saveSection == null)
         {
-            saveSection = (StringName)Actor.GetParent().GetParent().GetMeta(Names.Properties.LevelName);
+            saveSection = (StringName)Actor.GetParent().GetParent().GetMeta(Names.Properties.LevelName, "");
             if (saveSection == "" || saveSection == null)
             {
                 throw new Exception("No level name found.");
