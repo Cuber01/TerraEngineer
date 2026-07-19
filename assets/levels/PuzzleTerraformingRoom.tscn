@@ -2,10 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_bcbmq"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="2_b82qi"]
-[ext_resource type="Resource" uid="uid://b8kkthe67crxa" path="res://assets/dialogue/item_ice_crystal.dialogue" id="3_ockd6"]
-[ext_resource type="Resource" uid="uid://dhj087bfljg67" path="res://assets/dialogue/already_have_item_ice.dialogue" id="4_3miqj"]
-[ext_resource type="Texture2D" uid="uid://dru6y0tp0jw4t" path="res://assets/items/ice_crystal.tres" id="5_28lfm"]
-[ext_resource type="Texture2D" uid="uid://b6oc8xnvv8gc0" path="res://assets/items/items.png" id="6_b82qi"]
 [ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="7_3miqj"]
 [ext_resource type="Script" uid="uid://bmd8tp2pdskbi" path="res://game/terraformable_room/TerraformableRoom.cs" id="8_28lfm"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="9_0m1tu"]
@@ -21,26 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="16_12em7"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="17_8jmve"]
 [ext_resource type="PackedScene" uid="uid://c51wlvsjnjx1a" path="res://entities/objects/puzzle/switcher_group/SwitcherGroup.tscn" id="18_wk3m4"]
+[ext_resource type="Texture2D" uid="uid://ct4xa1hplrkex" path="res://assets/items/vine.tres" id="19_vllxp"]
 [ext_resource type="PackedScene" uid="uid://cxxuug0e4t51i" path="res://entities/objects/puzzle/plant/TerraPuzzlePlant.tscn" id="22_5cbyj"]
-[ext_resource type="Resource" uid="uid://dypwwrdc48fvk" path="res://assets/dialogue/item_watering_can.dialogue" id="23_12em7"]
 [ext_resource type="Texture2D" uid="uid://cywfeo85vdy01" path="res://assets/items/watering_can.tres" id="24_8jmve"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_76f4i"]
-atlas = ExtResource("6_b82qi")
-region = Rect2(42, 10, 7, 7)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5cbyj"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_76f4i")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Resource" id="Resource_12em7"]
+[sub_resource type="Resource" id="Resource_vllxp"]
 script = ExtResource("17_8jmve")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -48,21 +29,6 @@ metadata/_custom_type_script = "uid://w784gkp03g63"
 metadata/level_name = &"PuzzleTerraformingRoom"
 
 [node name="RoomInstance" parent="." unique_id=703832495 instance=ExtResource("1_bcbmq")]
-
-[node name="PickupableItem" parent="." unique_id=780288586 instance=ExtResource("2_b82qi")]
-position = Vector2(148, 144)
-itemName = &"ice_crystal"
-itemCollectedTag = &"null"
-dialogueDescription = ExtResource("3_ockd6")
-alreadyHaveItemDialogue = ExtResource("4_3miqj")
-ItemTexture = ExtResource("5_28lfm")
-canBeRecollected = true
-
-[node name="AnimatedSprite2D" parent="PickupableItem" index="0" unique_id=298394551]
-sprite_frames = SubResource("SpriteFrames_5cbyj")
-
-[node name="PedestalSprite" parent="PickupableItem" index="3" unique_id=1109076071]
-visible = false
 
 [node name="TerraformableRoom" type="Node2D" parent="." unique_id=615890781 node_paths=PackedStringArray("versions")]
 script = ExtResource("7_3miqj")
@@ -118,7 +84,7 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock")]
 
 [node name="SwitchableBlock" parent="TerraformableRoom/SwitchableGroup" unique_id=1012799894 instance=ExtResource("16_12em7")]
 position = Vector2(206, 149)
-ExportedSpriteWrapper = SubResource("Resource_12em7")
+ExportedSpriteWrapper = SubResource("Resource_vllxp")
 
 [node name="SwitcherGroup" parent="TerraformableRoom" unique_id=689601484 instance=ExtResource("18_wk3m4")]
 
@@ -134,13 +100,16 @@ position = Vector2(126, 143)
 [node name="TerraPuzzlePlant" parent="TerraformableRoom" unique_id=1389306202 instance=ExtResource("22_5cbyj")]
 position = Vector2(226, 163)
 
-[node name="PickupableItem2" parent="." unique_id=802397097 instance=ExtResource("2_b82qi")]
-position = Vector2(249, 155)
-itemName = &"watering_can"
-itemCollectedTag = &"watering_can_collected"
-dialogueDescription = ExtResource("23_12em7")
-alreadyHaveItemDialogue = ExtResource("4_3miqj")
+[node name="PickupableItem" parent="." unique_id=780288586 instance=ExtResource("2_b82qi")]
+position = Vector2(153, 119)
+itemName = &"www"
+itemCollectedTag = &"aaaa"
+ItemTexture = ExtResource("19_vllxp")
+
+[node name="PickupableItem2" parent="." unique_id=1003789967 instance=ExtResource("2_b82qi")]
+position = Vector2(96, 101)
+itemName = &"bbb"
+itemCollectedTag = &"ccc"
 ItemTexture = ExtResource("24_8jmve")
 
-[editable path="PickupableItem"]
 [editable path="TerraformableRoom/TerraPuzzlePlant"]

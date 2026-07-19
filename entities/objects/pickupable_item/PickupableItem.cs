@@ -19,12 +19,9 @@ public partial class PickupableItem : Entity, IInteractable
         get => _itemTexture;
         set
         {
-            if (Sprite != null && SpriteWrapper is { Initialized: false })
-            {
-                SpriteWrapper.Init(Sprite);
-                SpriteWrapper.SetTexture(value);
-            }
-                
+            if(Sprite != null && value != null)
+                ((Sprite2D)Sprite).Texture = (Texture2D)value.Duplicate(true); 
+            
             _itemTexture = value;
         } 
     }
@@ -52,13 +49,19 @@ public partial class PickupableItem : Entity, IInteractable
     {
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+     
+        ((Sprite2D)Sprite).Texture = (Texture2D)_itemTexture.Duplicate(true); 
 
         if (!canBeRecollected)
         {
             InteractionBlocked = true;
         }
      
-        //Sprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, (Texture2D)_itemTexture.Duplicate());
+        #if DEBUG
+        if(Engine.IsEditorHint())
+            return;
+        #endif
+        
         CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
         CM.GetComponent<SaveEntity>().OptionalInit(this);
     } 
