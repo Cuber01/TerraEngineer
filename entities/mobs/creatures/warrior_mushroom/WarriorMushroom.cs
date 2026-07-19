@@ -131,7 +131,7 @@ public partial class WarriorMushroom : Creature
             Finished = false;
             Actor.SpriteWrapper.AnimationFinished += OnAnimationFinished;
 
-            Actor.SpriteWrapper.Play("charge");
+            Actor.SpriteWrapper.Play(Names.Animations.Charge);
             Actor.chargeHitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
         }
 
@@ -179,7 +179,7 @@ public partial class WarriorMushroom : Creature
             Actor.velocity.X = 0f;
             Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.mainHurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-            Actor.SpriteWrapper.Play("stuck");
+            Actor.SpriteWrapper.Play(Names.Animations.Stuck);
         }
 
         public override void Exit()
@@ -203,7 +203,7 @@ public partial class WarriorMushroom : Creature
             Actor.CM.GetComponent<Move>().Walk(Actor.Facing, 1f, JumpMoveMultiplier);
             
             Actor.CM.GetComponent<Gravity>().LandedOnFloor += OnLandedOnFloor;
-            Actor.SpriteWrapper.Play("jump");
+            Actor.SpriteWrapper.Play(Names.Animations.Jump);
         }
 
         public override void Update(float dt)
@@ -269,7 +269,7 @@ public partial class WarriorMushroom : Creature
 
         private void executeAttack()
         {
-            Actor.SpriteWrapper.Play("attack");
+            Actor.SpriteWrapper.Play(Names.Animations.Attack);
             
             RectangleShape2D rect = new()
             {

@@ -44,16 +44,16 @@ public partial class TerraformingTerminal : Entity, IInteractable
         switch (newBiome)
         {
             case Biomes.Forest:
-                animationPlayer.Play("green");
+                animationPlayer.Play(Names.Animations.Green);
                 break;
             case Biomes.Ice:
-                animationPlayer.Play("blue");
+                animationPlayer.Play(Names.Animations.Blue);
                 break;
             case Biomes.Mushroom:
-                animationPlayer.Play("red");
+                animationPlayer.Play(Names.Animations.Red);
                 break;
             case Biomes.Desert:
-                animationPlayer.Play("yellow");
+                animationPlayer.Play(Names.Animations.Yellow);
                 break;
         }
     }

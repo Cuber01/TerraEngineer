@@ -30,11 +30,11 @@ public partial class InventoryTaker : Entity, IInteractable, ISwitcher
 
             if (value)
             {
-                SpriteWrapper.Play("3-on");
+                SpriteWrapper.Play(Names.Animations.ThreeOn);
             }
             else
             {
-                SpriteWrapper.Play("3-off");
+                SpriteWrapper.Play(Names.Animations.ThreeOff);
             }
         }
     }
@@ -47,7 +47,7 @@ public partial class InventoryTaker : Entity, IInteractable, ISwitcher
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
         player = GetNode<Player>(Names.NodePaths.Player);
         
-        SpriteWrapper.Play("3-off");
+        SpriteWrapper.Play(Names.Animations.ThreeOff);
         
         CM.GetComponent<SaveEntity>().Setup("inventory_taker", (_) =>
         {

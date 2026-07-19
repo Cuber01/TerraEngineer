@@ -16,6 +16,8 @@ public static class Names
         public static readonly NodePath CollisionShape2D = "CollisionShape2D";
         public static readonly StringName GridContainer = "GridContainer";
         public static readonly StringName Blowtorch = "Blowtorch";
+        public static readonly StringName MetSys = "MetSys";
+        public static readonly StringName AnimationPlayer = "AnimationPlayer";
     }
 
     // Properties, metadata, custom tile data
@@ -89,6 +91,26 @@ public static class Names
         public static readonly StringName Land = "land";
         public static readonly StringName Dash = "dash";
         public static readonly StringName Locked = "locked";
+        
+        // Creature animations
+        public static readonly StringName Charge = "charge";
+        public static readonly StringName Stuck = "stuck";
+        public static readonly StringName Attack = "attack";
+        public static readonly StringName Hide = "hide";
+        
+        // Object animations
+        public static readonly StringName Grown = "grown";
+        public static readonly StringName ThreeOn = "3-on";
+        public static readonly StringName ThreeOff = "3-off";
+        public static readonly StringName Closed = "closed";
+        public static readonly StringName Open = "open";
+        public static readonly StringName Closing = "closing";
+        
+        // Terminal animations
+        public static readonly StringName Green = "green";
+        public static readonly StringName Blue = "blue";
+        public static readonly StringName Red = "red";
+        public static readonly StringName Yellow = "yellow";
     }
 
      public static class Actions

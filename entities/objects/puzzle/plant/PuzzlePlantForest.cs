@@ -69,7 +69,7 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
         {
             // Player chose to water the plant
             hasBeenWatered = true;
-            SpriteWrapper.Play("grown");
+            SpriteWrapper.Play(Names.Animations.Grown);
             
             // Spawn mushroom cap pickup
             mushroomCap = mushroomCapScene.Instantiate<PickupableItem>();

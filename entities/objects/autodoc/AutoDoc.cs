@@ -26,18 +26,18 @@ public partial class AutoDoc : Entity, IInteractable
 		
 		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, (_) =>
 		{
-			SpriteWrapper.Play("closed");
+			SpriteWrapper.Play(Names.Animations.Closed);
 			InteractionBlocked = true;
 		});
 		
 		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossEntered, () =>
 		{
-			SpriteWrapper.Play("closed");
+			SpriteWrapper.Play(Names.Animations.Closed);
 			InteractionBlocked = true;
 		});
 		
 		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossDefeated, () => 
-			SpriteWrapper.Play("open"));
+			SpriteWrapper.Play(Names.Animations.Open));
 		
 		CM.GetComponent<SaveEntity>().OptionalInit(this);
 		
@@ -59,7 +59,7 @@ public partial class AutoDoc : Entity, IInteractable
 		
 		// Enter
 		SpriteWrapper.AnimationFinished += whileInside;
-		SpriteWrapper.Play("closing");
+		SpriteWrapper.Play(Names.Animations.Closing);
 		player.Hide();
 		player.Freeze();
 		InputStackManager.Push(balloonTemplate.InputContext);
@@ -72,14 +72,14 @@ public partial class AutoDoc : Entity, IInteractable
 			CM.GetComponent<SaveEntity>().ChangeState(true);
 			player.CM.GetComponent<PlayerInventory>().AddUniqueItem(itemName);
 		
-			SpriteWrapper.Play("closing");
+			SpriteWrapper.Play(Names.Animations.Closing);
 			InteractionBlocked = true;
 			SpriteWrapper.AnimationFinished -= leave;
 		};
 		
 		TimerManager.Schedule(3f, this, (_) =>
 		{
-			SpriteWrapper.Play("closing", -1);
+			SpriteWrapper.Play(Names.Animations.Closing, -1);
 			SpriteWrapper.AnimationFinished += leave;
 		});
 	}

@@ -192,13 +192,13 @@ public partial class SniperMushroom : Creature
         {
             base.Enter();
             Delay = Actor.hideTime;
-            Actor.SpriteWrapper.Play("hide");
+            Actor.SpriteWrapper.Play(Names.Animations.Hide);
             Actor.hurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         }
 
         public override void Exit()
         {
-            Actor.SpriteWrapper.Play("idle");
+            Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.forcedToHide = false;
             Actor.hurtbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
         }
