@@ -31,9 +31,9 @@ public partial class SaveData : Node
         {
             SetAddValue(Names.SaveSections.SavePointData,
                 Names.SaveSections.SavePointPosition,
-                GetNode<Player>("/root/Main/Player").GlobalPosition);
+                GetNode<Player>(Names.NodePaths.Player).GlobalPosition);
         
-            StringName levelName = (StringName)GetNode<Node2D>("/root/Main/Level").GetMeta(Names.Properties.LevelName);
+            StringName levelName = (StringName)GetNode<Node2D>(Names.NodePaths.Level).GetMeta(Names.Properties.LevelName);
         
             SetAddValue(Names.SaveSections.SavePointData,
                 Names.SaveSections.SavePointLevel,

@@ -1,5 +1,6 @@
 using Godot;
 using TENamespace.basic.particle_builder;
+using TerraEngineer;
 using TerraEngineer.entities.objects;
 
 namespace TENamespace.advanced.terraform_gun;
@@ -128,7 +129,7 @@ public partial class TerraformGun : AdvancedComponent, IGun
     
     private void applyTerraform()
     {
-        var collisionShape = areaAffected.GetNode<CollisionShape2D>("CollisionShape2D");
+        var collisionShape = areaAffected.GetNode<CollisionShape2D>(Names.Node.CollisionShape2D);
         var query = new PhysicsShapeQueryParameters2D();
         query.Shape = collisionShape.Shape;
         query.Transform = areaAffected.GetGlobalTransform();

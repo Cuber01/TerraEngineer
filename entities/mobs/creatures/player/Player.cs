@@ -247,7 +247,7 @@ public partial class Player : Creature
 	{
 		public override void Enter()
 		{
-			Actor.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+			Actor.GetNode<CollisionShape2D>(Names.Node.CollisionShape2D).Disabled = true;
 			Actor.CM.GetComponent<Gravity>().Disabled = true;
 		}
 
@@ -259,7 +259,7 @@ public partial class Player : Creature
 				Actor.Facing = (DirectionX)dir.X;
 			}
 		
-			if (Input.IsActionJustPressed("dash"))
+			if (Input.IsActionJustPressed(Names.Actions.Dash))
 			{
 				Actor.CM.GetComponent<Dash>().AttemptDash(Actor.Facing);
 			}
@@ -269,7 +269,7 @@ public partial class Player : Creature
 
 		public override void Exit()
 		{
-			Actor.GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+			Actor.GetNode<CollisionShape2D>(Names.Node.CollisionShape2D).Disabled = false;
 			Actor.CM.GetComponent<Gravity>().Disabled = false;
 		}
 	}

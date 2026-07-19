@@ -111,7 +111,7 @@ public partial class InventoryScreenStarter : Node2D, IUserInterface
         }
         
         // Second pass: place remaining items in grid from left to right
-        var gridContainer = inventoryScreen.FindChild("GridContainer") as GridContainer;
+        var gridContainer = inventoryScreen.FindChild(Names.Node.GridContainer) as GridContainer;
 
         int gridIndex = 0;
         int itemIndex = 0;
@@ -149,7 +149,7 @@ public partial class InventoryScreenStarter : Node2D, IUserInterface
 
     private void SetFocusToBlowtorch()
     {
-        if (instantiatedInventory.FindChild("Blowtorch") is Control flamethrower)
+        if (instantiatedInventory.FindChild(Names.Node.Blowtorch) is Control flamethrower)
         {
             flamethrower.GrabFocus();
         }
