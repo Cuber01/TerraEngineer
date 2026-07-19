@@ -55,7 +55,7 @@ public partial class Move : Component
 
 	private bool isAtPoint(float posX, float pointX)
 	{
-		return (posX >= pointX - errorMargin && posX <= pointX + errorMargin);
+		return posX.IsWithin(pointX, errorMargin);
 	}
 
 	private void updateFriction(bool x, bool y, float dt)
