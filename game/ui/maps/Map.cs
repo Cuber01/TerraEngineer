@@ -1,6 +1,7 @@
 using Godot;
 using System.Runtime.CompilerServices;
 using TerraEngineer.game;
+using TerraEngineer.game.ui;
 using TerraEngineer.ui.player_hud;
 
 namespace TerraEngineer.ui.maps;
@@ -8,7 +9,7 @@ namespace TerraEngineer.ui.maps;
 public partial class Map : Control, IConnectable<Player>
 {
     [Export] private RichTextLabel textLabel;
-    private Controller controller;
+    private InputContext inputContext;
     
     // The size of the window in cells.
     private new Vector2I Size { get; set; }
@@ -33,19 +34,14 @@ public partial class Map : Control, IConnectable<Player>
         
         
         playerLocation = MetSysApi.AddPlayerLocation(this);
-        controller = new Controller();
-        controller.AddAction(Names.Actions.Quit, close);
-        controller.AddAction(Names.Actions.OpenMap, close);
-        controller.AddAction(Names.Actions.Left, () => moveOffset(Vector2I.Left));
-        controller.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
-        controller.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
-        controller.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
+        inputContext = new InputContext();
+        inputContext.AddAction(Names.Actions.Quit, close);
+        inputContext.AddAction(Names.Actions.OpenMap, close);
+        inputContext.AddAction(Names.Actions.Left, () => moveOffset(Vector2I.Left));
+        inputContext.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
+        inputContext.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
+        inputContext.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
         
-    }
-
-    public override void _Process(double delta)
-    {
-        controller.Update();
     }
 
     private void moveOffset(Vector2I extraOffset)
@@ -75,9 +71,9 @@ public partial class Map : Control, IConnectable<Player>
         mapView.UpdateAll();
     }
 
-    private void open(Controller oldController)
+    private void open()
     {
-        oldController.SwitchControl(controller);
+        InputStackManager.Push(inputContext);
         GetParent<Node2D>().Show();
         GetTree().Paused = true; 
         baseOffset = calculateBaseOffset();
@@ -88,7 +84,7 @@ public partial class Map : Control, IConnectable<Player>
     private void close()
     {
         player.InvokeCloseMap();
-        controller.GiveBackControl();
+        InputStackManager.Pop();
         GetParent<Node2D>().Hide();
         GetTree().Paused = false; 
     }

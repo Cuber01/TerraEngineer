@@ -1,8 +1,10 @@
+using DialogueManagerRuntime;
 using Godot;
 using TENamespace.player_inventory;
 using TENamespace.save_entity;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.game.ui;
 
 namespace TerraEngineer.entities.objects;
 
@@ -105,7 +107,7 @@ public partial class PickupableItem : Entity, IInteractable
         {
             balloonTemplate.PlayDialogue(alreadyHaveItemDialogue, Names.Other.Start);
         }
-        player.Controller.SwitchControl(balloonTemplate.Controller);
+        InputStackManager.Push(balloonTemplate.InputContext);
     }
 
     public void OnInteracted() => getItem();

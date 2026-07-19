@@ -2,6 +2,7 @@ using Godot;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer;
 using TerraEngineer.entities.objects;
+using TerraEngineer.game.ui;
 
 public partial class InteractAndDisplay : Area2D, IInteractable
 {
@@ -34,12 +35,12 @@ public partial class InteractAndDisplay : Area2D, IInteractable
 		if (popupType == PopupType.Dialogue)
 		{
 			balloonTemplate.PlayDialogue(dialogueResource, startTitle);
-			player.Controller.SwitchControl(balloonTemplate.Controller);
+			InputStackManager.Push(balloonTemplate.InputContext);
 		}
 		else if (popupType == PopupType.Popup)
 		{
 			popupTemplate.ShowPopup(popupText);
-			player.Controller.SwitchControl(popupTemplate.Controller);
+			InputStackManager.Push(popupTemplate.InputContext);
 		}
 	}
 }

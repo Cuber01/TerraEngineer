@@ -9,6 +9,7 @@ using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 using TerraEngineer.entities.objects.puzzle;
 using TerraEngineer.game.sprite;
+using TerraEngineer.game.ui;
 
 public partial class InventoryTaker : Entity, IInteractable, ISwitcher
 {
@@ -75,7 +76,7 @@ public partial class InventoryTaker : Entity, IInteractable, ISwitcher
         }
         
         balloonTemplate.PlayDialogue(dialogue, dialogueTitle);
-        player.Controller.SwitchControl(balloonTemplate.Controller);
+        InputStackManager.Push(balloonTemplate.InputContext);
         
         DialogueManager.DialogueEnded += onDialogueEnded;
     }

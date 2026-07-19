@@ -136,7 +136,7 @@ public class BlowtorchItem : Item
 {
     public void Activate(Player actor)
     {
-        actor.Controller.AddAction(Names.Actions.Attack, 
+        actor.InputContext.AddAction(Names.Actions.Attack, 
             () => actor.CM.GetComponent<GunHandle>().Shoot(actor.GetShootDirection(), false), Names.Actions.GroupWeapon);
     }
     public void Deactivate(Player actor)

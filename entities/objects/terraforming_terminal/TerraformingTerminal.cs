@@ -3,6 +3,7 @@ using Godot;
 using System;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.game.ui;
 
 namespace TerraEngineer.entities.objects.terraforming_terminal;
 
@@ -29,7 +30,7 @@ public partial class TerraformingTerminal : Entity, IInteractable
     {
         DialogueManager.DialogueEnded += executeChosenOption;
         balloonTemplate.PlayDialogue(dialogueResource, Names.Other.Start);
-        player.Controller.SwitchControl(balloonTemplate.Controller);
+        InputStackManager.Push(balloonTemplate.InputContext);
     }
     
     private void executeChosenOption(Resource dialogueResource)

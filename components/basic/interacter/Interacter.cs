@@ -3,10 +3,13 @@ using System;
 using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.objects;
+using TerraEngineer.game;
+using TerraEngineer.game.ui;
 
 public partial class Interacter : Component
 {
     private Player playerActor;
+    private InputContext interactContext;
     
     public override void Init(Node2D actor)
     {
@@ -19,6 +22,8 @@ public partial class Interacter : Component
         {
             throw new Exception("Interacter component requires Player actor.");
         }
+        
+        interactContext = new InputContext();
     }
     
     private IInteractable GetInteractable(Node2D area)
@@ -33,7 +38,8 @@ public partial class Interacter : Component
         IInteractable interactable = GetInteractable(area);
         if (interactable is { InteractionBlocked: false })
         {
-            playerActor.Controller.AddOverride(Names.Actions.Attack, interactable.OnInteracted);
+            interactContext.AddAction(Names.Actions.Attack, interactable.OnInteracted);
+            InputStackManager.Push(interactContext);
         }
     }
     
@@ -42,7 +48,7 @@ public partial class Interacter : Component
         IInteractable interactable = GetInteractable(area);
         if (interactable is { InteractionBlocked: false })
         {
-            playerActor.Controller.RemoveOverride(Names.Actions.Attack);
+            InputStackManager.Pop();
         }
     }
 }

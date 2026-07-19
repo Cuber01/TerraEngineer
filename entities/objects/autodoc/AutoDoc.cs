@@ -7,6 +7,7 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 using TerraEngineer.game;
+using TerraEngineer.game.ui;
 
 public partial class AutoDoc : Entity, IInteractable
 {
@@ -61,7 +62,7 @@ public partial class AutoDoc : Entity, IInteractable
 		SpriteWrapper.Play("closing");
 		player.Hide();
 		player.Freeze();
-		player.Controller.SwitchControl(balloonTemplate.Controller);
+		InputStackManager.Push(balloonTemplate.InputContext);
 		
 		Action leave = null;
 		leave = () =>

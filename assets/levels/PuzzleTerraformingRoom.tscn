@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cxxuug0e4t51i" path="res://entities/objects/puzzle/plant/TerraPuzzlePlant.tscn" id="22_5cbyj"]
 [ext_resource type="Texture2D" uid="uid://cywfeo85vdy01" path="res://assets/items/watering_can.tres" id="24_8jmve"]
 
-[sub_resource type="Resource" id="Resource_vllxp"]
+[sub_resource type="Resource" id="Resource_l4eie"]
 script = ExtResource("17_8jmve")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
@@ -84,7 +84,7 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock")]
 
 [node name="SwitchableBlock" parent="TerraformableRoom/SwitchableGroup" unique_id=1012799894 instance=ExtResource("16_12em7")]
 position = Vector2(206, 149)
-ExportedSpriteWrapper = SubResource("Resource_vllxp")
+ExportedSpriteWrapper = SubResource("Resource_l4eie")
 
 [node name="SwitcherGroup" parent="TerraformableRoom" unique_id=689601484 instance=ExtResource("18_wk3m4")]
 

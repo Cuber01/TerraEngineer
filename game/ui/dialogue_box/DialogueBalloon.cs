@@ -2,6 +2,7 @@ using Godot;
 using DialogueManagerRuntime;
 using TerraEngineer;
 using TerraEngineer.game;
+using TerraEngineer.game.ui;
 using TerraEngineer.ui.textbox;
 
 namespace TENamespace.ui.dialogue_box;
@@ -18,7 +19,8 @@ public partial class DialogueBalloon : Node2D, IPopupable
 	[Export] private VBoxContainer choicesContainer;
 	[Export] private Node2D decoration;
 	
-	public Controller Controller { get; set;  }
+	public InputContext InputContext { get; set;  }
+	private InputContext muteContext;
 
 	private DialogueLine currentLine;
 	private bool waitingForChoice = false;
@@ -31,13 +33,11 @@ public partial class DialogueBalloon : Node2D, IPopupable
 
 	public void SetupControls()
 	{
-		Controller = new Controller();
-		Controller.AddAction(Names.Actions.Attack, advanceDialogue);
-	}
-
-	public override void _Process(double delta)
-	{
-		Controller.Update();
+		InputContext = new InputContext();
+		muteContext = new InputContext();
+		
+		InputContext.AddAction(Names.Actions.Attack, advanceDialogue);
+		muteContext.AddAction(Names.Actions.Attack, () => {});
 	}
 	
 	public void PlayDialogue(Resource dialogue, StringName title)
@@ -53,7 +53,7 @@ public partial class DialogueBalloon : Node2D, IPopupable
 	public void Close()
 	{
 		GetTree().Paused = false;
-		Controller.GiveBackControl();
+		InputStackManager.Pop();
 		Hide();
 	}
 
@@ -88,7 +88,7 @@ public partial class DialogueBalloon : Node2D, IPopupable
 			choicesContainer.Visible = true;
 			
 			// We let godot buttons handle input
-			Controller.AddOverride(Names.Actions.Attack, () => {});
+			InputStackManager.Push(muteContext);
 			showChoices();
 		}
 		else
@@ -126,8 +126,8 @@ public partial class DialogueBalloon : Node2D, IPopupable
 		choicesContainer.Visible = false;
 		waitingForChoice = false;
 		
-		// We take back control of input
-		Controller.RemoveOverride(Names.Actions.Attack);
+		// We unmute (take back control of) input
+		InputStackManager.Pop();
 
 		currentLine = await DialogueManager.GetNextDialogueLine(dialogueResource, response.NextId);
 		tryDisplayLine();	

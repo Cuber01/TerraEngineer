@@ -2,11 +2,12 @@ using Godot;
 using System;
 using TerraEngineer;
 using TerraEngineer.game;
+using TerraEngineer.game.ui;
 using TerraEngineer.ui.textbox;
 
 public partial class Popup : Node2D, IPopupable
 {
-    public Controller Controller { get; set; }
+    public InputContext InputContext { get; set; }
     
     [Export] private RichTextLabel label;
     [Export] private Sprite2D popupBoxSprite;
@@ -23,11 +24,6 @@ public partial class Popup : Node2D, IPopupable
         SetupControls();
     }
     
-    public override void _Process(double delta)
-    {
-        Controller.Update();
-    }
-    
     public void ShowPopup(string message)
     {
         label.Text = message;
@@ -39,13 +35,13 @@ public partial class Popup : Node2D, IPopupable
     
     public void SetupControls()
     {
-        Controller = new Controller();
-        Controller.AddAction(Names.Actions.Attack, Close);
+        InputContext = new InputContext();
+        InputContext.AddAction(Names.Actions.Attack, Close);
     }
 
     public void Close()
     {
-        Controller.GiveBackControl();
+        InputStackManager.Pop();
         Visible = false;
         GetTree().Paused = false;
     }

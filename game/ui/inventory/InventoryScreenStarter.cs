@@ -10,7 +10,7 @@ namespace TerraEngineer.game.ui.inventory;
 public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
 {
     [Export] private PackedScene inventoryScene;
-    private Controller controller;
+    private InputContext inputContext;
     private Player player;
     private Control instantiatedInventory;
 
@@ -47,19 +47,14 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
 
     public override void _Ready()
     {
-        controller = new Controller();
-        controller.AddAction(Names.Actions.Quit, close);
-        controller.AddAction(Names.Actions.OpenInventory, close);
+        inputContext = new InputContext();
+        inputContext.AddAction(Names.Actions.Quit, close);
+        inputContext.AddAction(Names.Actions.OpenInventory, close);
     }
 
-    public override void _Process(double delta)
+    private void open()
     {
-        controller.Update();
-    }
-
-    private void open(Controller oldController)
-    {
-        oldController.SwitchControl(controller);
+        InputStackManager.Push(inputContext);
         
         instantiatedInventory = (Control)inventoryScene.Instantiate();
         AddChild(instantiatedInventory);
@@ -74,8 +69,8 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
     private void close()
     {
         player.InvokeCloseInventory();
-        controller.GiveBackControl(false);
-
+        InputStackManager.Pop();
+            
         if (instantiatedInventory != null)
         {
            instantiatedInventory.CallDeferred(Node.MethodName.QueueFree);

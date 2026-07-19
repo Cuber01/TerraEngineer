@@ -7,6 +7,7 @@ using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 using TerraEngineer.game;
+using TerraEngineer.game.ui;
 using Vector2 = Godot.Vector2;
 
 public enum PlayerTriggers
@@ -26,13 +27,13 @@ public partial class Player : Creature
 	public delegate void InteractedEventHandler();
 	public event InteractedEventHandler Interacted;
 	
-	public delegate void OpenMapEventHandler(Controller oldController);
+	public delegate void OpenMapEventHandler();
 	public event OpenMapEventHandler OpenMap;
 	
 	public delegate void CloseMapEventHandler();
 	public event CloseMapEventHandler CloseMap;
 
-	public delegate void OpenInventoryEventHandler(Controller oldController);
+	public delegate void OpenInventoryEventHandler();
 	public event OpenInventoryEventHandler OpenInventory;
 
 	public delegate void CloseInventoryEventHandler();
@@ -46,7 +47,7 @@ public partial class Player : Creature
 	private readonly NoclipState noclipState = new NoclipState();
 	
 	private StateMachineWithTriggers<Player, PlayerTriggers> fsm;
-	public Controller Controller = new();
+	public InputContext InputContext = new();
 
 	public bool PhasingAllowed = false;
 	private bool updateFrozen = false;
@@ -57,18 +58,17 @@ public partial class Player : Creature
 	
 	public override void Init()
 	{
-		Controller.TurnActive = true;
-		Controller.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
-		Controller.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
-		Controller.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
-		Controller.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
-		Controller.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
-		Controller.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupMenus);
-		Controller.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
+		InputContext.AddAction(Names.Actions.Weapon0, () => CM.GetComponent<GunHandle>().ChangeWeapon(0), Names.Actions.GroupWeapon);
+		InputContext.AddAction(Names.Actions.Weapon1, () => CM.GetComponent<GunHandle>().ChangeWeapon(1), Names.Actions.GroupWeapon);
+		InputContext.AddAction(Names.Actions.Weapon2, () => CM.GetComponent<GunHandle>().ChangeWeapon(2), Names.Actions.GroupWeapon);
+		InputContext.AddAction(Names.Actions.Weapon3, () => CM.GetComponent<GunHandle>().ChangeWeapon(3), Names.Actions.GroupWeapon);
+		InputContext.AddAction(Names.Actions.WeaponNext, () => CM.GetComponent<GunHandle>().ChangeToNextWeapon(), Names.Actions.GroupWeapon);
+		InputContext.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupMenus);
+		InputContext.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
 
-		Controller.AddAction(Names.Actions.OpenMap, () => OpenMap?.Invoke(Controller), Names.Actions.GroupMenus);
-		Controller.AddAction(Names.Actions.OpenInventory, () => OpenInventory?.Invoke(Controller), Names.Actions.GroupMenus);
-		
+		InputContext.AddAction(Names.Actions.OpenMap, () => OpenMap?.Invoke(), Names.Actions.GroupMenus);
+		InputContext.AddAction(Names.Actions.OpenInventory, () => OpenInventory?.Invoke(), Names.Actions.GroupMenus);
+		InputStackManager.Push(InputContext);
 		// State machine related
 
 		fsm = new StateMachineWithTriggers<Player, PlayerTriggers>(this, idleState, true);
@@ -112,12 +112,12 @@ public partial class Player : Creature
 
 		CM.GetComponent<Gravity>().LandedOnFloor += () => fsm.FireTrigger(PlayerTriggers.Landed);
 		
-		Controller.AddAction(Names.Actions.Dash, () =>
+		InputContext.AddAction(Names.Actions.Dash, () =>
 		{
 			fsm.FireTrigger(PlayerTriggers.PressedDash);
 		});
 		
-		Controller.AddAction(Names.Actions.Jump, () =>
+		InputContext.AddAction(Names.Actions.Jump, () =>
 		{
 			fsm.FireTrigger(PlayerTriggers.PressedJump);
 		});
@@ -141,7 +141,7 @@ public partial class Player : Creature
 
 		public override void Update(float dt)
 		{
-			DirectionX moveDir = Actor.Controller.GetAxis(Names.Actions.Left, Names.Actions.Right);
+			DirectionX moveDir = Actor.InputContext.GetAxis(Names.Actions.Left, Names.Actions.Right);
 			if (moveDir != 0)
 			{
 				Actor.fsm.FireTrigger(PlayerTriggers.PressedMove);
@@ -164,7 +164,7 @@ public partial class Player : Creature
 		
 		public override void Update( float dt)
 		{
-			DirectionX moveDir = Actor.Controller.GetAxis(Names.Actions.Left, Names.Actions.Right);
+			DirectionX moveDir = Actor.InputContext.GetAxis(Names.Actions.Left, Names.Actions.Right);
 			if (moveDir != 0)
 			{
 				Actor.Flip(moveDir);
@@ -195,7 +195,7 @@ public partial class Player : Creature
 		
 		public override void Update(float dt)
 		{
-			DirectionX moveDir = Actor.Controller.GetAxis(Names.Actions.Left, Names.Actions.Right);
+			DirectionX moveDir = Actor.InputContext.GetAxis(Names.Actions.Left, Names.Actions.Right);
 			if (moveDir != 0)
 			{
 				Actor.Flip(moveDir);
@@ -282,8 +282,6 @@ public partial class Player : Creature
 			{
 				Actor.CM.GetComponent<Dash>().AttemptDash(Actor.Facing);
 			}
-		
-			Actor.Controller.Update();
 
 			Actor.velocity = dir * 150;
 		}
@@ -320,9 +318,6 @@ public partial class Player : Creature
 			MetSysApi.DiscoverAll();
 		}
 		#endif
-
-		
-		Controller.Update();
 
 		// GD.Print("allowed: " + PhasingAllowed);
 		// GD.Print("Jump: "+ fsm.IsTriggered(PlayerTriggers.PressedJump));  

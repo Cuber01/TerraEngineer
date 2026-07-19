@@ -2,6 +2,7 @@ using DialogueManagerRuntime;
 using Godot;
 using TENamespace.player_inventory;
 using TENamespace.ui.dialogue_box;
+using TerraEngineer.game.ui;
 
 
 namespace TerraEngineer.entities.objects.puzzle.plant;
@@ -51,7 +52,7 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
         }
         
         balloonTemplate.PlayDialogue(dialogue, dialogueTitle);
-        player.Controller.SwitchControl(balloonTemplate.Controller);
+        InputStackManager.Push(balloonTemplate.InputContext);
         
         DialogueManager.DialogueEnded += onDialogueEnded;
     }

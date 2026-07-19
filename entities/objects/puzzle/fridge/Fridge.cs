@@ -6,6 +6,7 @@ using TENamespace.ui.dialogue_box;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
+using TerraEngineer.game.ui;
 
 public partial class Fridge : Entity, IInteractable
 {
@@ -52,7 +53,7 @@ public partial class Fridge : Entity, IInteractable
         }
         
         balloonTemplate.PlayDialogue(dialogue, dialogueTitle);
-        player.Controller.SwitchControl(balloonTemplate.Controller);
+        InputStackManager.Push(balloonTemplate.InputContext);
         
         DialogueManager.DialogueEnded += onDialogueEnded;
     }
