@@ -7,12 +7,14 @@ using TerraEngineer.ui.player_hud;
 
 namespace TerraEngineer.game.ui.inventory;
 
-public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
+public partial class InventoryScreenStarter : Node2D, IUserInterface
 {
     [Export] private PackedScene inventoryScene;
-    private InputContext inputContext;
+    
     private Player player;
     private Control instantiatedInventory;
+    
+    public bool IsOpen { get; set; }
 
     private static readonly Dictionary<string, string> ItemToNodeName = new()
     {
@@ -47,15 +49,12 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
 
     public override void _Ready()
     {
-        inputContext = new InputContext();
-        inputContext.AddAction(Names.Actions.Quit, close);
-        inputContext.AddAction(Names.Actions.OpenInventory, close);
+        player = GetNode<Player>(Names.NodePaths.Player);
+        
     }
 
-    private void open()
+    public void Open()
     {
-        InputStackManager.Push(inputContext);
-        
         instantiatedInventory = (Control)inventoryScene.Instantiate();
         AddChild(instantiatedInventory);
 
@@ -64,20 +63,20 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
         Callable.From(SetFocusToBlowtorch).CallDeferred();
         
         GetTree().Paused = true;
+        IsOpen = true;
     }
     
-    private void close()
+    public void Close()
     {
-        player.InvokeCloseInventory();
-        InputStackManager.Pop();
-            
-        if (instantiatedInventory != null)
-        {
-           instantiatedInventory.CallDeferred(Node.MethodName.QueueFree);
-           instantiatedInventory = null;
-        }
+        if (instantiatedInventory == null)
+            return;
+        
+        
+        instantiatedInventory.CallDeferred(Node.MethodName.QueueFree);
+        instantiatedInventory = null;
         
         GetTree().Paused = false;
+        IsOpen = false;
     }
 
     private void PopulateInventory(Control inventoryScreen)
@@ -156,14 +155,5 @@ public partial class InventoryScreenStarter : Node2D, IConnectable<Player>
         }
     }
 
-    public void Connect(Player actor)
-    {
-        actor.OpenInventory += open;
-        this.player = actor;
-    }
 
-    public void Disconnect(Player actor)
-    {
-        actor.OpenInventory -= open;
-    }
 }

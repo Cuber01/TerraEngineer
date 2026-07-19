@@ -30,8 +30,8 @@ code cleanliness todo:
 X limit amount of export - replace with const and readonly
 X remove all manual state changes and replace them with triggers
 X prevent event memory leaks on events - make state exit on death?
-- change controller code to be event-based instead of polling (_input instead of _update)
-- add mediator class for inputs instead of relying on player to pass gui and interacted events (get rid of all the dumb if player entered connect interacted yadayada)
+X change controller code to be event-based instead of polling (_input instead of _update)
+- add mediator class for inputs instead of relying on player to pass gui and interacted events 
 - use float extension IsWithin for old code too
 - find way to reuse states like in a decorator pattern
 - make a generic static function for spawning stuff

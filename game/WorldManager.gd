@@ -9,8 +9,6 @@ var gameInitialized: bool = false
 func _ready():
 	start()
 	$GUI/PlayerHUD.Connect(player)
-	$GUI/MapScreen/Panel.Connect(player)
-	$GUI/InventoryScreenStarter.Connect(player)
 
 func on_room_loaded(level: Node):
 	CurrentLevel = level

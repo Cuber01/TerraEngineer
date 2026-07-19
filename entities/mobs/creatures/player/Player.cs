@@ -1,6 +1,4 @@
-using DialogueManagerRuntime;
 using Godot;
-using System;
 using TENamespace;
 using TENamespace.player_inventory;
 using TerraEngineer;
@@ -23,21 +21,6 @@ public enum PlayerTriggers
 public partial class Player : Creature
 {
 	[Export] public Node2D PhasePoint;
-	
-	public delegate void InteractedEventHandler();
-	public event InteractedEventHandler Interacted;
-	
-	public delegate void OpenMapEventHandler();
-	public event OpenMapEventHandler OpenMap;
-	
-	public delegate void CloseMapEventHandler();
-	public event CloseMapEventHandler CloseMap;
-
-	public delegate void OpenInventoryEventHandler();
-	public event OpenInventoryEventHandler OpenInventory;
-
-	public delegate void CloseInventoryEventHandler();
-	public event CloseInventoryEventHandler CloseInventory;
 
 	private readonly DashState dashState = new DashState();
 	private readonly JumpState jumpState = new JumpState();
@@ -66,8 +49,6 @@ public partial class Player : Creature
 		InputContext.AddAction(Names.Actions.GunHandleNext, () => CM.GetComponent<GunHandle>().ChangeGunHandle(), Names.Actions.GroupMenus);
 		InputContext.AddReleaseAction(Names.Actions.Jump, () => CM.GetComponent<Jump>().LimitJump());
 
-		InputContext.AddAction(Names.Actions.OpenMap, () => OpenMap?.Invoke(), Names.Actions.GroupMenus);
-		InputContext.AddAction(Names.Actions.OpenInventory, () => OpenInventory?.Invoke(), Names.Actions.GroupMenus);
 		InputStackManager.Push(InputContext);
 		// State machine related
 
@@ -356,7 +337,7 @@ public partial class Player : Creature
 
 	#region Callbacks
 	
-	private void onBumpedCeiling(Node2D body)
+	private void onBumpedCeiling(Node2D _)
 	{
 		CM.GetComponent<Jump>().CancelJump();
 	}
@@ -380,10 +361,6 @@ public partial class Player : Creature
 		
 		velocity += extraForce * (Vector2)(playerDirection);
 	}
-	
-	// TODO Make a proper mediator like class instead of using player for this
-	public void InvokeCloseMap() => CloseMap?.Invoke();
-	public void InvokeCloseInventory() => CloseInventory?.Invoke();
 	
 	// Wrapper for gdscript
 	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems();

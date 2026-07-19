@@ -53,6 +53,9 @@ public static class Names
         public static readonly NodePath Popup = "/root/Main/GUI/Popup";
         public static readonly NodePath DialogueBalloon = "/root/Main/GUI/Dialogue";
         public static readonly NodePath Player = "/root/Main/Player";
+        public static readonly NodePath Map = "/root/Main/GUI/MapScreen/Panel";
+        public static readonly NodePath Inventory = "/root/Main/GUI/InventoryScreenStarter";
+        public static readonly NodePath PlayerHUD = "/root/Main/GUI/PlayerHUD";
     }
 
     // Json save sections

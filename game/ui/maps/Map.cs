@@ -6,10 +6,12 @@ using TerraEngineer.ui.player_hud;
 
 namespace TerraEngineer.ui.maps;
 
-public partial class Map : Control, IConnectable<Player>
+public partial class Map : Control, IUserInterface
 {
     [Export] private RichTextLabel textLabel;
-    private InputContext inputContext;
+    private InputContext openMapContext;
+    
+    public bool IsOpen { get; set; }
     
     // The size of the window in cells.
     private new Vector2I Size { get; set; }
@@ -28,20 +30,19 @@ public partial class Map : Control, IConnectable<Player>
 
     public override void _Ready()
     {
+        player = GetNode<Player>(Names.NodePaths.Player);
+        
         // Cellular size is total size divided by cell size + shared borders.
         Size = (Vector2I)(GetSize() / MetSysApi.GetCellSizeOffset());
         mapView = MetSysApi.MakeMapView(this, Vector2I.Zero, mapCellSize, 0);
         
-        
         playerLocation = MetSysApi.AddPlayerLocation(this);
-        inputContext = new InputContext();
-        inputContext.AddAction(Names.Actions.Quit, close);
-        inputContext.AddAction(Names.Actions.OpenMap, close);
-        inputContext.AddAction(Names.Actions.Left, () => moveOffset(Vector2I.Left));
-        inputContext.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
-        inputContext.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
-        inputContext.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
         
+        openMapContext = new InputContext();
+        openMapContext.AddAction(Names.Actions.Left, () => moveOffset(Vector2I.Left));
+        openMapContext.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
+        openMapContext.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
+        openMapContext.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
     }
 
     private void moveOffset(Vector2I extraOffset)
@@ -71,33 +72,23 @@ public partial class Map : Control, IConnectable<Player>
         mapView.UpdateAll();
     }
 
-    private void open()
+    public void Open()
     {
-        InputStackManager.Push(inputContext);
+        InputStackManager.Push(openMapContext);
         GetParent<Node2D>().Show();
         GetTree().Paused = true; 
         baseOffset = calculateBaseOffset();
         offset = baseOffset;
         UpdateOffset(Vector2I.Zero);
+        IsOpen = true;
     }
     
-    private void close()
+    public void Close()
     {
-        player.InvokeCloseMap();
         InputStackManager.Pop();
         GetParent<Node2D>().Hide();
         GetTree().Paused = false; 
-    }
-    
-    public void Connect(Player actor)
-    {
-        actor.OpenMap += open;
-        this.player = actor;
-    }
-    
-    public void Disconnect(Player actor)
-    {
-        actor.OpenMap -= open;
+        IsOpen = false;
     }
 }
 
