@@ -29,7 +29,7 @@ public partial class GuiMediator : Node
         uiGeneralContext.AddAction(Names.Actions.OpenMap, () => closeOpenAction(map));
         uiGeneralContext.AddAction(Names.Actions.OpenInventory, () => closeOpenAction(inventory));
         
-        uiOpenContext.AddAction(Names.Actions.Quit, () => currentUI.Close() );
+        uiOpenContext.AddAction(Names.Actions.Quit, () => closeOpenAction(currentUI) );
         
         InputStackManager.Push(uiGeneralContext);
     }
@@ -40,6 +40,7 @@ public partial class GuiMediator : Node
         {
             ui.Close();
             InputStackManager.Pop();
+            currentUI = null;
 
             if (ui is Map || ui is InventoryScreenStarter)
             {
