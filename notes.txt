@@ -49,6 +49,7 @@ todo would be nice:
 - allow player to pick up any vine?
 - allow for multiple markers per cell. in metsys store markers as a bitmask, and in map view if there are multiple symbols show them one by one interchangeably (blinking)
 - lore-wise the teleporter kills the old you every time you use it
+- some area that is only accessible once you discover a teleporter into it via some map item
 
 todo bugs:
 X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity

@@ -25,11 +25,20 @@ public partial class LevelPreparer : Node2D
         }
     }
 
-    public void Prepare(Node2D newLevel)
+    public void Prepare(Node2D newLevel, bool wasTeleported)
     {
         prepareLevelName(newLevel);
         prepareTiles(newLevel);
         prepareBackgroundColor(newLevel);
+        if(wasTeleported)
+            movePlayerToTeleport(newLevel);
+    }
+
+    private void movePlayerToTeleport(Node2D newLevel)
+    {
+        Node2D teleporter = (Node2D)newLevel.FindChild("Teleporter");
+        Player player = GetNode<Player>(Names.NodePaths.Player);
+        player.GlobalPosition = teleporter.GlobalPosition;
     }
 
     private void prepareLevelName(Node2D newLevel)

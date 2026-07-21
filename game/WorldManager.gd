@@ -13,7 +13,8 @@ func _ready():
 
 func on_room_loaded(level: Node):
 	CurrentLevel = level
-	$LevelPreparer.Prepare(CurrentLevel)
+	$LevelPreparer.Prepare(CurrentLevel, player_teleported)
+	player_teleported = false
 	
 	if (!gameInitialized):
 		player.global_position = SaveData.StringToVec2(SaveData.ReadValue("savepoint_data", "position"))
