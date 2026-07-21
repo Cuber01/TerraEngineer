@@ -119,4 +119,44 @@ public static class MetSysApi
     {
         mapView.Call(Names.MetSys.UpdateAll);
     }
+
+    public static Vector3I GetObjectCoords(GodotObject obj)
+    {
+        return (Vector3I)metSys.Call(Names.MetSys.GetObjectCoords, obj);
+    }
+
+    public static string GetObjectId(GodotObject obj)
+    {
+        return (string)metSys.Call(Names.MetSys.GetObjectId, obj);
+    }
+
+    public static bool IsObjectIdStored(string id)
+    {
+        return (bool)metSys.Call(Names.MetSys.IsObjectIdStored, id);
+    }
+
+    public static void StoreObject(GodotObject obj, int mapMarker = 0)
+    {
+        metSys.Call(Names.MetSys.StoreObject, obj, mapMarker);
+    }
+
+    public static bool RegisterStorableObject(GodotObject obj, Callable storedCallback = default)
+    {
+        return (bool)metSys.Call(Names.MetSys.RegisterStorableObject, obj, storedCallback);
+    }
+
+    public static bool RegisterStorableObjectWithMarker(GodotObject obj, Callable storedCallback = default, int mapMarker = 0)
+    {
+        return (bool)metSys.Call(Names.MetSys.RegisterStorableObjectWithMarker, obj, storedCallback, mapMarker);
+    }
+
+    public static void RemoveCustomMarker(Vector3I coords, int symbolId)
+    {
+        metSys.Call(Names.MetSys.RemoveCustomMarker, coords, symbolId);
+    }
+
+    public static void AddCustomMarker(Vector3I coords, int symbolId)
+    {
+        metSys.Call(Names.MetSys.AddCustomMarker, coords, symbolId);
+    }
 }

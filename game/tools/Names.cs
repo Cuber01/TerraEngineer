@@ -182,5 +182,14 @@ public static class Names
          public static readonly StringName ResetState = "reset_state";
 
          public static readonly StringName BiomeNotFound = "???";
+
+         public static readonly StringName GetObjectCoords = "get_object_coords";
+         public static readonly StringName GetObjectId = "get_object_id";
+         public static readonly StringName IsObjectIdStored = "is_object_id_stored";
+         public static readonly StringName StoreObject = "store_object";
+         public static readonly StringName RegisterStorableObject = "register_storable_object";
+         public static readonly StringName RegisterStorableObjectWithMarker = "register_storable_object_with_marker";
+         public static readonly StringName RemoveCustomMarker = "remove_custom_marker";
+         public static readonly StringName AddCustomMarker = "add_custom_marker";
      }
  }
