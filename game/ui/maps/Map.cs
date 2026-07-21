@@ -10,7 +10,10 @@ public partial class Map : Control, IUserInterface
 {
     [Export] private RichTextLabel textLabel;
     private InputContext openMapContext;
-    
+    private InputContext teleporterMapContext;
+
+    private const int TeleporterIconId = 7;
+    private bool isTeleporterMap = false;
     public bool IsOpen { get; set; }
     
     // The size of the window in cells.
@@ -25,6 +28,7 @@ public partial class Map : Control, IUserInterface
     private Vector2I calculateBaseOffset() => (MetSysApi.GetCurrentFlatCoords() - Size / 2);
     
     private static readonly Vector2I mapCellSize = new Vector2I(40, 16);
+    private Vector3I selectedCoords;
 
     private Player player;
 
@@ -43,6 +47,9 @@ public partial class Map : Control, IUserInterface
         openMapContext.AddAction(Names.Actions.Right, () => moveOffset(Vector2I.Right));
         openMapContext.AddAction(Names.Actions.Up, () => moveOffset(Vector2I.Up));
         openMapContext.AddAction(Names.Actions.Down, () => moveOffset(Vector2I.Down));
+
+        teleporterMapContext = new InputContext();
+        openMapContext.AddAction(Names.Actions.Attack, chooseTeleporter);
     }
 
     private void moveOffset(Vector2I extraOffset)
@@ -58,7 +65,7 @@ public partial class Map : Control, IUserInterface
             -new Vector2(offset.X, offset.Y) * MetSysApi.GetCellSizeOffset());
         mapView.MoveTo(new Vector3I(offset.X, offset.Y, MetSysApi.CurrentLayer));
         
-        Vector3I selectedCoords = MetSysApi.LastPlayerPosition + MathT.vec2ToVec3(offset - baseOffset);
+        selectedCoords = MetSysApi.LastPlayerPosition + MathT.vec2ToVec3(offset - baseOffset);
         if (MetSysApi.IsCellDiscovered(selectedCoords))
         {
             textLabel.Text = MetSysApi.GetBiomeName(selectedCoords);    
@@ -68,11 +75,46 @@ public partial class Map : Control, IUserInterface
             textLabel.Text = Names.MetSys.BiomeNotFound;
         }
         
-        
         mapView.UpdateAll();
     }
 
+    private void chooseTeleporter()
+    {
+        if (selectedCoords == MetSysApi.CurrentCoords)
+        {
+            Close();
+            return;
+        }
+
+        if (MetSysApi.GetMarkerAt(selectedCoords) == TeleporterIconId)
+        {
+            teleport(selectedCoords);
+        }
+        else
+        {
+            // Do some buzz sound.
+            GD.Print("No teleporter there.");
+        }
+    }
+
+    private void teleport(Vector3I to)
+    {
+        // TODO do this in Level Preparer I think
+    }
+
     public void Open()
+    {
+        handleOpen();
+    }
+
+    public void OpenForTeleporter()
+    {
+        isTeleporterMap = true;
+        InputStackManager.Push(teleporterMapContext);
+        handleOpen();
+    }
+
+    private void handleOpen()
     {
         InputStackManager.Push(openMapContext);
         GetParent<Node2D>().Show();
@@ -80,11 +122,17 @@ public partial class Map : Control, IUserInterface
         baseOffset = calculateBaseOffset();
         offset = baseOffset;
         UpdateOffset(Vector2I.Zero);
-        IsOpen = true;
+        IsOpen = true;   
     }
     
     public void Close()
     {
+        if (isTeleporterMap)
+        {
+            InputStackManager.Pop();
+            isTeleporterMap = false;
+        }
+        
         InputStackManager.Pop();
         GetParent<Node2D>().Hide();
         GetTree().Paused = false; 

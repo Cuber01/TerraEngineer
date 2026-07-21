@@ -191,5 +191,7 @@ public static class Names
          public static readonly StringName RegisterStorableObjectWithMarker = "register_storable_object_with_marker";
          public static readonly StringName RemoveCustomMarker = "remove_custom_marker";
          public static readonly StringName AddCustomMarker = "add_custom_marker";
+         public static readonly StringName GetCurrentCoords = "get_current_coords";
+         public static readonly StringName GetMarkerAt = "get_marker_at";
      }
  }

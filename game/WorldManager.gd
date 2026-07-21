@@ -32,3 +32,6 @@ func start():
 
 	var levelName = SaveData.ReadValue("savepoint_data", "level")
 	await load_room("res://assets/levels/" + levelName + ".tscn")
+	
+func teleport(to: Vector3i):
+	load_room()

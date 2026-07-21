@@ -14,9 +14,20 @@ public static class MetSysApi
         metSys = mainTree.Root.GetNodeOrNull<GodotObject>("MetSys");
     }
     
-    public static int CurrentLayer => (int)metSys.Get(Names.MetSys.CurrentLayer);
-    
-    public static Vector3I LastPlayerPosition => (Vector3I)metSys.Get(Names.MetSys.LastPlayerPosition);
+    public static int CurrentLayer
+    {
+        get => (int)metSys.Get(Names.MetSys.CurrentLayer);
+    }
+
+    public static Vector3I LastPlayerPosition
+    {
+        get => (Vector3I)metSys.Get(Names.MetSys.LastPlayerPosition);
+    }
+
+    public static Vector3I CurrentCoords
+    {
+        get => (Vector3I)metSys.Call(Names.MetSys.GetCurrentCoords);
+    }
 
     public static Vector2 GetCellSizeOffset()
     {
@@ -105,21 +116,6 @@ public static class MetSysApi
         return Names.MetSys.BiomeNotFound;
     }
     
-    public static void Move(this GodotObject mapView, Vector2I moveOffset)
-    {
-        mapView.Call(Names.MetSys.Move, moveOffset);
-    }
-
-    public static void MoveTo(this GodotObject mapView, Vector3I targetCoords)
-    {
-        mapView.Call(Names.MetSys.MoveTo, targetCoords);
-    }
-
-    public static void UpdateAll(this GodotObject mapView)
-    {
-        mapView.Call(Names.MetSys.UpdateAll);
-    }
-
     public static Vector3I GetObjectCoords(GodotObject obj)
     {
         return (Vector3I)metSys.Call(Names.MetSys.GetObjectCoords, obj);
@@ -159,4 +155,26 @@ public static class MetSysApi
     {
         metSys.Call(Names.MetSys.AddCustomMarker, coords, symbolId);
     }
+    
+    public static int GetMarkerAt(Vector3I coords)
+    {
+        return (int)metSys.Call(Names.MetSys.GetMarkerAt, coords);
+    }
+    
+    public static void Move(this GodotObject mapView, Vector2I moveOffset)
+    {
+        mapView.Call(Names.MetSys.Move, moveOffset);
+    }
+
+    public static void MoveTo(this GodotObject mapView, Vector3I targetCoords)
+    {
+        mapView.Call(Names.MetSys.MoveTo, targetCoords);
+    }
+
+    public static void UpdateAll(this GodotObject mapView)
+    {
+        mapView.Call(Names.MetSys.UpdateAll);
+    }
+
+
 }

@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://rly0nwx71xbg" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/boss.png" id="16_e7c5j"]
 [ext_resource type="Texture2D" uid="uid://d381eoa77c4uq" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/bang.png" id="17_0mla6"]
 [ext_resource type="Texture2D" uid="uid://q0b38erpbso0" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/BorderWall.png" id="18_nus2t"]
+[ext_resource type="Texture2D" uid="uid://cbkdq65j7xqo3" path="res://addons/MetroidvaniaSystem/Themes/TerraEngineer/Symbols/teleporter.png" id="18_oixfk"]
 
 [resource]
 script = ExtResource("10_j2g7r")
@@ -30,7 +31,7 @@ default_center_color = Color(1, 0, 1, 1)
 mapped_center_color = Color(0.45098, 0.443137, 0.45098, 1)
 default_border_color = Color(1, 1, 1, 1)
 mapped_border_color = Color(1, 1, 1, 1)
-symbols = Array[Texture2D]([ExtResource("11_otk81"), ExtResource("12_oixfk"), ExtResource("13_b7600"), ExtResource("14_inwi1"), ExtResource("15_lxdtv"), ExtResource("16_e7c5j"), ExtResource("17_0mla6")])
+symbols = Array[Texture2D]([ExtResource("11_otk81"), ExtResource("12_oixfk"), ExtResource("13_b7600"), ExtResource("14_inwi1"), ExtResource("15_lxdtv"), ExtResource("16_e7c5j"), ExtResource("17_0mla6"), ExtResource("18_oixfk")])
 uncollected_item_symbol = 0
 collected_item_symbol = 1
 wall = ExtResource("18_nus2t")
