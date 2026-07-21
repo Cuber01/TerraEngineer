@@ -22,6 +22,7 @@ public partial class Map : Control, IUserInterface
     // MapView object that draws cells.
     private GodotObject mapView;
 
+    private Node2D worldManager;
     private Node2D playerLocation;
     private Vector2I offset;
     private Vector2I baseOffset;
@@ -35,6 +36,7 @@ public partial class Map : Control, IUserInterface
     public override void _Ready()
     {
         player = GetNode<Player>(Names.NodePaths.Player);
+        worldManager = GetNode<Node2D>(Names.NodePaths.WorldManager);
         
         // Cellular size is total size divided by cell size + shared borders.
         Size = (Vector2I)(GetSize() / MetSysApi.GetCellSizeOffset());
@@ -88,18 +90,13 @@ public partial class Map : Control, IUserInterface
 
         if (MetSysApi.GetMarkerAt(selectedCoords) == TeleporterIconId)
         {
-            teleport(selectedCoords);
+            worldManager.Call("teleport", selectedCoords);
         }
         else
         {
             // Do some buzz sound.
             GD.Print("No teleporter there.");
         }
-    }
-
-    private void teleport(Vector3I to)
-    {
-        // TODO do this in Level Preparer I think
     }
 
     public void Open()

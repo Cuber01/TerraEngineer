@@ -34,4 +34,5 @@ func start():
 	await load_room("res://assets/levels/" + levelName + ".tscn")
 	
 func teleport(to: Vector3i):
-	load_room()
+	var path = MetSys.get_scene_path_at(to);
+	load_room(path)

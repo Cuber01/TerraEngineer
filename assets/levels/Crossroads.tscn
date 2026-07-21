@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://b8eewqd5m6myt" path="res://assets/world/MushroomTileset.tres" id="1_8pnxf"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="1_wtr06"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_dyf7s"]
+[ext_resource type="PackedScene" uid="uid://dffer28e0fsmg" path="res://entities/objects/teleporter/Teleporter.tscn" id="4_vnmsj"]
 
 [node name="Level" type="Node2D" unique_id=15680763]
 
@@ -22,3 +23,6 @@ tile_map_data = PackedByteArray("AAAYABUAAQAEAAEAAAAXABUAAQADAAEAAAAWABUAAQADAAE
 tile_set = ExtResource("1_8pnxf")
 
 [node name="RoomInstance" parent="." unique_id=703832495 instance=ExtResource("2_dyf7s")]
+
+[node name="Teleporter" parent="." unique_id=598511616 instance=ExtResource("4_vnmsj")]
+position = Vector2(221, 53)

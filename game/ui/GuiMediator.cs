@@ -60,4 +60,12 @@ public partial class GuiMediator : Node
             }
         }
     }
+
+    public void OnTeleporterUsed()
+    {
+        InputStackManager.Push(uiOpenContext);
+        ((Map)map).OpenForTeleporter();
+        currentUI = map;
+        hud.Close();
+    }
 }

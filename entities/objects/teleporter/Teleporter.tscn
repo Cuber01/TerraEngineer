@@ -1,58 +1,34 @@
 [gd_scene format=3 uid="uid://dffer28e0fsmg"]
 
 [ext_resource type="Script" uid="uid://bbddujc2fpfrl" path="res://entities/objects/teleporter/Teleporter.cs" id="1_nnogd"]
-[ext_resource type="Texture2D" uid="uid://dp5ojga10j7ho" path="res://entities/objects/puzzle/puzzle-palette-yellow-levers-buttons.png" id="2_c4nr5"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_ywbvk"]
+[ext_resource type="Texture2D" uid="uid://bogrtpyg1g3rn" path="res://entities/objects/teleporter/teleporter.png" id="4_ln6wa"]
 
-[sub_resource type="Shader" id="Shader_ywbvk"]
-code = "shader_type canvas_item;
-uniform sampler2D palette;
-
-uniform vec3 exclusion_list[16];
-uniform int exclusion_list_size : hint_range(0,16) = 0;
-
-void fragment() {
-    vec4 tex_color = texture(TEXTURE, UV);
-	
-	bool found = false;
-	for(int i = 0; i < exclusion_list_size; i++)
-	{
-		if(distance(tex_color.rgb, exclusion_list[i]) < 0.01)
-		{
-			found = true;
-		} 
-	}
-	
-	if(found)
-	{
-		COLOR = tex_color;
-	}
-	else
-	{
-		// Replace
-		vec4 new_color = texture(palette, vec2(tex_color.r, 0));
-    	COLOR = vec4(new_color.rgb, tex_color.a);	
-	}
-	
-    
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ln6wa"]
-shader = SubResource("Shader_ywbvk")
-shader_parameter/palette = ExtResource("2_c4nr5")
-shader_parameter/exclusion_list = PackedVector3Array(1, 1, 1, 0.18, 0.133, 0.184, 0.243, 0.208, 0.275)
-shader_parameter/exclusion_list_size = 3
+[sub_resource type="Resource" id="Resource_k658a"]
+script = ExtResource("2_ywbvk")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k658a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ln6wa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0htm"]
-size = Vector2(10, 8)
+size = Vector2(14, 19)
 
-[node name="Teleporter" type="CharacterBody2D" unique_id=598511616]
+[node name="Teleporter" type="CharacterBody2D" unique_id=598511616 node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_nnogd")
+Team = 2
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_k658a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=512486774]
-material = SubResource("ShaderMaterial_ln6wa")
 sprite_frames = SubResource("SpriteFrames_k658a")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=702987264]
@@ -60,6 +36,7 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=694805050]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_g0htm")
 
 [connection signal="body_entered" from="Area2D" to="." method="onPlayerEntered"]

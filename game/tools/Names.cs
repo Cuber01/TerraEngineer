@@ -62,6 +62,8 @@ public static class Names
         public static readonly NodePath Map = "/root/Main/GUI/MapScreen/Panel";
         public static readonly NodePath Inventory = "/root/Main/GUI/InventoryScreenStarter";
         public static readonly NodePath PlayerHUD = "/root/Main/GUI/PlayerHUD";
+        public static readonly NodePath GuiMediator = "/root/Main/GUI";
+        public static readonly NodePath WorldManager = "/root/Main";
     }
 
     // Json save sections

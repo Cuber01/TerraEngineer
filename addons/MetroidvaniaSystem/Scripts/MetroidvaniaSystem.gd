@@ -422,6 +422,9 @@ func get_current_room_name() -> String:
 # I added this one. It returns marker ID at map coords. 
 func get_marker_at(coords: Vector3i) -> int:
 	return map_data.get_cell_at(coords).get_symbol();
+	
+func get_scene_path_at(coords: Vector3i) -> String:
+	return map_data.get_assigned_scene_at(coords);
 
 ## Returns the full path to the provided [param room_name] scene. This method assumes that the scene is inside the base map folder.
 ## @deprecated: Map root folder no longer exists, so this method just changes scene UID to path.
