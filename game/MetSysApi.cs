@@ -4,13 +4,12 @@ namespace TerraEngineer.game;
 
 using Godot;
 
-public partial class MetSysApi : Node
+public static class MetSysApi
 {
     private static GodotObject metSys;
     private static readonly int biomeCount = 4;
 
-    public override void _Ready()
-    {
+    static MetSysApi() {
         var mainTree = Engine.GetMainLoop() as SceneTree;
         metSys = mainTree.Root.GetNodeOrNull<GodotObject>("MetSys");
     }
@@ -105,12 +104,7 @@ public partial class MetSysApi : Node
 
         return Names.MetSys.BiomeNotFound;
     }
-
-
-}
-
-public static class MapViewExtensionApi
-{
+    
     public static void Move(this GodotObject mapView, Vector2I moveOffset)
     {
         mapView.Call(Names.MetSys.Move, moveOffset);
