@@ -10,6 +10,7 @@ public partial class Interacter : Component
 {
     private Player playerActor;
     private InputContext interactContext;
+    private bool pushedContext = false;
     
     public override void Init(Node2D actor)
     {
@@ -40,15 +41,16 @@ public partial class Interacter : Component
         {
             interactContext.AddAction(Names.Actions.Attack, interactable.OnInteracted);
             InputStackManager.Push(interactContext);
+            pushedContext = true;
         }
     }
     
     private void onInteractableAreaExited(Area2D area)
     {
-        IInteractable interactable = GetInteractable(area);
-        if (interactable is { InteractionBlocked: false })
+        if(pushedContext)
         {
             InputStackManager.Pop();
+            pushedContext = false;
         }
     }
 }
