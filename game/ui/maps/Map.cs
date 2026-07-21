@@ -8,6 +8,8 @@ namespace TerraEngineer.ui.maps;
 
 public partial class Map : Control, IUserInterface
 {
+    public event IUserInterface.ClosedInternallyEventHandler ClosedInternally;
+ 
     [Export] private RichTextLabel textLabel;
     private InputContext openMapContext;
     private InputContext teleporterMapContext;
@@ -84,13 +86,14 @@ public partial class Map : Control, IUserInterface
     {
         if (selectedCoords == MetSysApi.CurrentCoords)
         {
-            Close();
+            ClosedInternally?.Invoke(this);
             return;
         }
 
         if (MetSysApi.GetMarkerAt(selectedCoords) == TeleporterIconId)
         {
             worldManager.Call("teleport", selectedCoords);
+            ClosedInternally?.Invoke(this);
         }
         else
         {

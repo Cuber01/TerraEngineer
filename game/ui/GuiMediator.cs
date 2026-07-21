@@ -23,6 +23,10 @@ public partial class GuiMediator : Node
         inventory = GetNode<IUserInterface>(Names.NodePaths.Inventory);
         hud = GetNode<IUserInterface>(Names.NodePaths.PlayerHUD);
         
+        inventory.ClosedInternally += close;
+        map.ClosedInternally += close;
+        hud.ClosedInternally += close;
+        
         uiGeneralContext = new InputContext();
         uiOpenContext = new InputContext();
         
@@ -38,26 +42,36 @@ public partial class GuiMediator : Node
     {
         if (ui.IsOpen)
         {
-            ui.Close();
-            InputStackManager.Pop();
-            currentUI = null;
-
-            if (ui is Map || ui is InventoryScreenStarter)
-            {
-                hud.Open();
-            }
+            close(ui);
         }
         else
         {
-            ui.Open();
-            currentUI = ui;
-            InputStackManager.Push(uiOpenContext);
+            open(ui);
+        }
+    }
+
+    private void open(IUserInterface ui)
+    {
+        ui.Open();
+        currentUI = ui;
+        InputStackManager.Push(uiOpenContext);
             
             
-            if (ui is Map || ui is InventoryScreenStarter)
-            {
-                hud.Close();
-            }
+        if (ui is Map || ui is InventoryScreenStarter)
+        {
+            hud.Close();
+        }
+    }
+
+    private void close(IUserInterface ui)
+    {
+        ui.Close();
+        InputStackManager.Pop();
+        currentUI = null;
+
+        if (ui is Map || ui is InventoryScreenStarter)
+        {
+            hud.Open();
         }
     }
 
@@ -68,4 +82,5 @@ public partial class GuiMediator : Node
         currentUI = map;
         hud.Close();
     }
+    
 }

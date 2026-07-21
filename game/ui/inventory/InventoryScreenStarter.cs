@@ -9,11 +9,12 @@ namespace TerraEngineer.game.ui.inventory;
 
 public partial class InventoryScreenStarter : Node2D, IUserInterface
 {
+    public event IUserInterface.ClosedInternallyEventHandler ClosedInternally;
     [Export] private PackedScene inventoryScene;
     
     private Player player;
     private Control instantiatedInventory;
-    
+
     public bool IsOpen { get; set; }
 
     private static readonly Dictionary<string, string> ItemToNodeName = new()

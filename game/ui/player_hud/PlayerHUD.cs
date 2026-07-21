@@ -6,6 +6,7 @@ using TerraEngineer.ui.player_hud;
 
 public partial class PlayerHUD : Node2D, IUserInterface
 {
+	public event IUserInterface.ClosedInternallyEventHandler ClosedInternally;
 	public bool IsOpen { get; set; }
 	
 	private void ApplyToChildren(Player player, Action<IConnectable<Player>, Player> action)
