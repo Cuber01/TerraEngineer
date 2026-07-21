@@ -47,6 +47,7 @@ todo balance:
 todo would be nice:
 - upgrade for blowtorch turning it into a shotgun or flamethrower type of weapon
 - allow player to pick up any vine?
+- allow for multiple markers per cell. in metsys store markers as a bitmask, and in map view if there are multiple symbols show them one by one interchangeably (blinking)
 
 todo bugs:
 X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity
@@ -55,3 +56,4 @@ X lots of player bugs when walking through levels up/down. Make sure level is lo
 
 to-finish todo:
 - finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there
+- make collectibles display on map and mark themselves as collected dynamically
