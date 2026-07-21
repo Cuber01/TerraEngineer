@@ -349,12 +349,12 @@ public partial class Player : Creature
 
 	public void onRoomTransitionFinished()
 	{
-		Unfreeze();
+		//Unfreeze();
 	}
 
 	private void onRoomEntered(string roomName, Vector2I playerDirection)
 	{
-		Freeze();
+		//Freeze();
 		float extraForce = RoomTransitionForce;
 		if (playerDirection == Vector2I.Up)
 			extraForce *= RoomTransitionForceUpModifier;
