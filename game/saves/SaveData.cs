@@ -1,8 +1,10 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using TerraEngineer;
+using TerraEngineer.game;
 using GodotDict = Godot.Collections.Dictionary<Godot.StringName, Godot.Variant>;
 using GodotArray = Godot.Collections.Array;
 
@@ -47,6 +49,7 @@ public partial class SaveData : Node
 
     public static void WriteChanges()
     {
+        addMetSysData();
         String newJsonText = Json.Stringify(data);
 
         if (newJsonText == "")
@@ -108,6 +111,45 @@ public partial class SaveData : Node
     public static Variant ReadFromArray(string sectionKey, string key, int index) 
         => ((GodotArray)((GodotDict)data[sectionKey] )[key])[index];
 
+    private static void addMetSysData()
+    {
+        if (data.ContainsKey(Names.SaveSections.Map))
+        {
+            data[Names.SaveSections.Map] = MetSysApi.GetSaveData();
+        }
+        else
+        {
+            data.Add(Names.SaveSections.Map, MetSysApi.GetSaveData());
+        }
+    }
+    
+    private static void loadMetSysData()
+    {
+        MetSysApi.ResetState();
+        
+        Dictionary mapData = (Dictionary)data[Names.SaveSections.Map];
+        Dictionary discoveredCells = (Dictionary)mapData["discovered_cells"];
+
+        List<Vector3I> vecKeys = new List<Vector3I>();
+        Dictionary updatedDiscoveredCells = new Dictionary();
+        
+        foreach (string key in discoveredCells.Keys)
+        {
+            Vector3I converted = StringToVec3I(key);
+            vecKeys.Add(converted);
+            updatedDiscoveredCells.Add(converted, discoveredCells[key]);
+        }
+        
+        mapData["discovered_cells"] = updatedDiscoveredCells;
+
+        MetSysApi.SetSaveData(mapData);
+        
+        foreach (Vector3I vec in vecKeys)
+        {
+            MetSysApi.VisitCell(vec);
+        }
+    }
+
     public static List<StringName> ReadInventory()
     {
         List<StringName> items = new();
@@ -143,17 +185,41 @@ public partial class SaveData : Node
         }
 
         data = (GodotDict)json.GetData();
+
+        if (data.TryGetValue(Names.SaveSections.Map, out Variant value))
+        {
+            loadMetSysData();   
+        }
+        
     }
     
     // We need to convert it to a really weird array in order for the comparison to work...
     public static GodotArray VecToParseableArray(Vector2I coords)
         => new GodotArray() {(float)coords.X, (float)coords.Y};
     
-    public static Vector2 StringToVec(String vecString)
+    public static Vector2 StringToVec2(String vecString)
     { 
         string[] parts = vecString.Split(',');
         float x = float.Parse(parts[0].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
         float y = float.Parse(parts[1].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
         return new Vector2(x, y);
+    }
+    
+    public static Vector3I StringToVec3I(string vecString)
+    { 
+        string[] parts = vecString.Split(',');
+        int x = int.Parse(parts[0].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        int y = int.Parse(parts[1].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        int z = int.Parse(parts[2].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        return new Vector3I(x, y, z);
+    }
+    
+    public static Vector3 StringToVec3(String vecString)
+    { 
+        string[] parts = vecString.Split(',');
+        float x = float.Parse(parts[0].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        float y = float.Parse(parts[1].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        float z = float.Parse(parts[2].Trim(" ()[]".ToCharArray()), CultureInfo.InvariantCulture);
+        return new Vector3(x, y, z);
     }
 }

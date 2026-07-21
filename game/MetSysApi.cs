@@ -4,12 +4,12 @@ namespace TerraEngineer.game;
 
 using Godot;
 
-public static class MetSysApi
+public partial class MetSysApi : Node
 {
     private static GodotObject metSys;
     private static readonly int biomeCount = 4;
 
-    static MetSysApi()
+    public override void _Ready()
     {
         var mainTree = Engine.GetMainLoop() as SceneTree;
         metSys = mainTree.Root.GetNodeOrNull<GodotObject>("MetSys");
@@ -37,12 +37,31 @@ public static class MetSysApi
     
     public static void DiscoverCell(Vector3I cellCoords)
     {
-        metSys.Call(Names.MetSys.DiscoverCell, cellCoords);
+        // GD.Print(metSys.GetScript());
+        // GD.Print(metSys.HasMethod("discover_cell"));
+        metSys.Call("discover_cell", cellCoords);
     }
+    
+
     
     public static void DiscoverCellGroup(int groupId)
     {
         metSys.Call(Names.MetSys.DiscoverCellGroup, groupId);
+    }
+
+    public static void ResetState()
+    {
+        metSys.Call(Names.MetSys.ResetState);
+    }
+
+    public static Dictionary GetSaveData()
+    {
+        return (Dictionary)metSys.Call(Names.MetSys.GetSaveData); 
+    }
+    
+    public static void SetSaveData(Dictionary data)
+    {
+        metSys.Call(Names.MetSys.SetSaveData, data); 
     }
     
     // Explore effect
@@ -87,6 +106,11 @@ public static class MetSysApi
         return Names.MetSys.BiomeNotFound;
     }
 
+
+}
+
+public static class MapViewExtensionApi
+{
     public static void Move(this GodotObject mapView, Vector2I moveOffset)
     {
         mapView.Call(Names.MetSys.Move, moveOffset);

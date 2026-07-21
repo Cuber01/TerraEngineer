@@ -21,13 +21,14 @@ config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 [autoload]
 
 TimerManager="*res://addons/TimerManager/TimerManager.tscn"
-SaveData="*res://game/saves/SaveData.tscn"
 MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
+MetSysApi="*uid://mgcstdrx1trl"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GlobalEventBus="*uid://de0e3k6hj6epk"
 GlobalDialoguesState="*uid://bbcls23kbrnfq"
 InputStackManager="*uid://b42ktfvchxxre"
 GuiMediator="*uid://diqy36n6131fv"
+SaveData="*res://game/saves/SaveData.tscn"
 
 [dialogue_manager]
 

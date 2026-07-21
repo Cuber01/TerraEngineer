@@ -15,7 +15,7 @@ func on_room_loaded(level: Node):
 	$LevelPreparer.Prepare(CurrentLevel)
 	
 	if (!gameInitialized):
-		player.global_position = SaveData.StringToVec(SaveData.ReadValue("savepoint_data", "position"))
+		player.global_position = SaveData.StringToVec2(SaveData.ReadValue("savepoint_data", "position"))
 		player.ActivateInventory()
 		gameInitialized = true
 	
@@ -23,8 +23,6 @@ func on_room_loaded(level: Node):
 	player.onRoomTransitionFinished()
 
 func start():
-	MetSys.reset_state()
-	MetSys.set_save_data()
 	extPlayer.global_position = Vector2(11, 131)
 	set_player(extPlayer)
 	player.Freeze()

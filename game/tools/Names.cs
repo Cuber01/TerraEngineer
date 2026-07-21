@@ -70,6 +70,7 @@ public static class Names
         public static readonly StringName SavePointData = "savepoint_data";
         public static readonly StringName SavePointPosition = "position";
         public static readonly StringName SavePointLevel = "level";
+        public static readonly StringName Map = "map";
         
         public static readonly StringName PlayerInventory = "player_inventory";
 
@@ -173,9 +174,12 @@ public static class Names
          public static readonly StringName DiscoverCell = "discover_cell";
          public static readonly StringName IsCellDiscovered = "is_cell_discovered";
          public static readonly StringName DiscoverCellGroup = "discover_cell_group";
-         public static readonly StringName VisitCell = "discover_cell_group";
+         public static readonly StringName VisitCell = "visit_cell";
          
          public static readonly StringName Offset = "offset";
+         public static readonly StringName GetSaveData = "get_save_data";
+         public static readonly StringName SetSaveData = "set_save_data";
+         public static readonly StringName ResetState = "reset_state";
 
          public static readonly StringName BiomeNotFound = "???";
      }
