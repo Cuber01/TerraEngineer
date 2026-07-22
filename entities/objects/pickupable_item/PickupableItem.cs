@@ -86,10 +86,10 @@ public partial class PickupableItem : Entity, IInteractable
         CM.GetComponent<SaveEntity>().ChangeState(true);
         Collected = true;
         
-        getItem();
+        Collected = tryGetItem();
     }
 
-    private void getItem()
+    private bool tryGetItem()
     {
         bool success = false;
         
@@ -111,6 +111,7 @@ public partial class PickupableItem : Entity, IInteractable
             balloonTemplate.PlayDialogue(alreadyHaveItemDialogue, Names.Other.Start);
         }
         InputStackManager.Push(balloonTemplate.InputContext);
+        return success;
     }
 
     public void OnInteracted() => getItem();
