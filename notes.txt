@@ -58,4 +58,5 @@ X lots of player bugs when walking through levels up/down. Make sure level is lo
 
 to-finish todo:
 - finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there
-- make collectibles display on map and mark themselves as collected dynamically
+X make collectibles display on map and mark themselves as collected dynamically
+- make pickupable item use metsys storage instead of SaveEntity component

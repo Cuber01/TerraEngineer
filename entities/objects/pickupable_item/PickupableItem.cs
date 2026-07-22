@@ -53,8 +53,11 @@ public partial class PickupableItem : Entity, IInteractable
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
         
-        //MetSysApi.RegisterStorableObjectWithMarker(this, () => {}, )
-     
+        MetSysApi.RegisterStorableObjectWithMarker(this, Callable.From(() =>
+        {
+            Collected = true;
+        }), Names.MapMarkers.UncollectedCollectible);
+        
         ((Sprite2D)Sprite).Texture = (Texture2D)_itemTexture.Duplicate(true); 
 
         if (!canBeRecollected)
@@ -67,8 +70,8 @@ public partial class PickupableItem : Entity, IInteractable
             return;
         #endif
         
-        CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
-        CM.GetComponent<SaveEntity>().OptionalInit(this);
+        //CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
+        //CM.GetComponent<SaveEntity>().OptionalInit(this);
     } 
     
     private void onPlayerEntered(Node2D body)
@@ -83,10 +86,11 @@ public partial class PickupableItem : Entity, IInteractable
     {
         if(Collected) return;
         
-        CM.GetComponent<SaveEntity>().ChangeState(true);
-        Collected = true;
+        //CM.GetComponent<SaveEntity>().ChangeState(true);
         
         Collected = tryGetItem();
+        if(Collected)
+            MetSysApi.StoreObject(this, Names.MapMarkers.CollectedCollectible);
     }
 
     private bool tryGetItem()
@@ -114,5 +118,5 @@ public partial class PickupableItem : Entity, IInteractable
         return success;
     }
 
-    public void OnInteracted() => getItem();
+    public void OnInteracted() => tryGetItem();
 }
