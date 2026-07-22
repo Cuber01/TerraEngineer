@@ -151,6 +151,18 @@ public static class Names
          public const int Bullets = 7;
          public const int BulletDeflectors = 8;
      }
+     
+     public static class MapMarkers
+     {
+         public const int UncollectedCollectible = 0;
+         public const int CollectedCollectible = 1;
+         public const int Heal = 2;
+         public const int Heart = 3;
+         public const int Save = 4;
+         public const int Boss = 5;
+         public const int Bang = 6;
+         public const int Teleport = 7;
+     }
 
      public static class Other
      {

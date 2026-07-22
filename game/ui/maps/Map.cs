@@ -14,7 +14,6 @@ public partial class Map : Control, IUserInterface
     private InputContext openMapContext;
     private InputContext teleporterMapContext;
 
-    private const int TeleporterIconId = 7;
     private bool isTeleporterMap = false;
     public bool IsOpen { get; set; }
     
@@ -90,7 +89,7 @@ public partial class Map : Control, IUserInterface
             return;
         }
 
-        if (MetSysApi.GetMarkerAt(selectedCoords) == TeleporterIconId)
+        if (MetSysApi.GetMarkerAt(selectedCoords) == Names.MapMarkers.Teleport)
         {
             worldManager.Call("teleport", selectedCoords);
             ClosedInternally?.Invoke(this);

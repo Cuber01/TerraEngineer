@@ -4,6 +4,7 @@ using TENamespace.player_inventory;
 using TENamespace.save_entity;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer.entities.mobs;
+using TerraEngineer.game;
 using TerraEngineer.game.ui;
 
 namespace TerraEngineer.entities.objects;
@@ -51,6 +52,8 @@ public partial class PickupableItem : Entity, IInteractable
     {
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
+        
+        //MetSysApi.RegisterStorableObjectWithMarker(this, () => {}, )
      
         ((Sprite2D)Sprite).Texture = (Texture2D)_itemTexture.Duplicate(true); 
 
