@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Fluid.tscn" id="4_gst5n"]
 [ext_resource type="PackedScene" uid="uid://ndo2lbat23bl" path="res://entities/objects/turbine/Turbine.tscn" id="5_nqiex"]
 [ext_resource type="PackedScene" uid="uid://dffer28e0fsmg" path="res://entities/objects/teleporter/Teleporter.tscn" id="6_sqi7v"]
+[ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="7_0wud3"]
+[ext_resource type="Resource" uid="uid://6in1o2gsk0f8" path="res://assets/dialogue/item_double_jump.dialogue" id="8_fqwgl"]
+[ext_resource type="Resource" uid="uid://dhj087bfljg67" path="res://assets/dialogue/already_have_item_ice.dialogue" id="9_x7fmo"]
+[ext_resource type="Texture2D" uid="uid://dru6y0tp0jw4t" path="res://assets/items/ice_crystal.tres" id="10_1lfax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqiex"]
 
@@ -42,6 +46,14 @@ shape = SubResource("RectangleShape2D_nqiex")
 
 [node name="Teleporter" parent="." unique_id=598511616 instance=ExtResource("6_sqi7v")]
 position = Vector2(621, 150)
+
+[node name="PickupableItem" parent="." unique_id=780288586 instance=ExtResource("7_0wud3")]
+position = Vector2(164, 22)
+itemName = &"ice_crystal"
+itemCollectedTag = &"ice"
+dialogueDescription = ExtResource("8_fqwgl")
+alreadyHaveItemDialogue = ExtResource("9_x7fmo")
+ItemTexture = ExtResource("10_1lfax")
 
 [editable path="Fluid"]
 [editable path="Fluid/TerraformableFluidCaretaker"]

@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using TerraEngineer;
 using TerraEngineer.game;
 using GodotDict = Godot.Collections.Dictionary<Godot.StringName, Godot.Variant>;
@@ -129,22 +130,32 @@ public partial class SaveData : Node
         
         Dictionary mapData = (Dictionary)data[Names.SaveSections.Map];
         Dictionary discoveredCells = (Dictionary)mapData["discovered_cells"];
+        Dictionary customMarkers = (Dictionary)mapData["custom_markers"];
 
-        List<Vector3I> vecKeys = new List<Vector3I>();
-        Dictionary updatedDiscoveredCells = new Dictionary();
-        
-        foreach (string key in discoveredCells.Keys)
+        (Dictionary, List<Vector3I>) convertKeysToVec3I(Dictionary oldDict)
         {
-            Vector3I converted = StringToVec3I(key);
-            vecKeys.Add(converted);
-            updatedDiscoveredCells.Add(converted, discoveredCells[key]);
+            List<Vector3I> vecKeys = new List<Vector3I>();
+            Dictionary newDict = new Dictionary();
+        
+            foreach (string key in oldDict.Keys)
+            {
+                Vector3I converted = StringToVec3I(key);
+                vecKeys.Add(converted);
+                newDict.Add(converted, discoveredCells[key]);
+            }
+            
+            return (newDict, vecKeys);
         }
         
-        mapData["discovered_cells"] = updatedDiscoveredCells;
+        (Dictionary, List<Vector3I>) discCells = convertKeysToVec3I(discoveredCells);
+        (Dictionary, List<Vector3I>) markers = convertKeysToVec3I(customMarkers);
+        
+        mapData["discovered_cells"] = discCells.Item1;
+        mapData["custom_markers"] = markers.Item1;
 
         MetSysApi.SetSaveData(mapData);
         
-        foreach (Vector3I vec in vecKeys)
+        foreach (Vector3I vec in discCells.Item2)
         {
             MetSysApi.VisitCell(vec);
         }
