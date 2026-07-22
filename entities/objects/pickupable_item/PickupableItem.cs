@@ -69,9 +69,6 @@ public partial class PickupableItem : Entity, IInteractable
         if(Engine.IsEditorHint())
             return;
         #endif
-        
-        //CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, ((_) => Collected = true));
-        //CM.GetComponent<SaveEntity>().OptionalInit(this);
     } 
     
     private void onPlayerEntered(Node2D body)
@@ -85,9 +82,7 @@ public partial class PickupableItem : Entity, IInteractable
     private void handleSingleCollect()
     {
         if(Collected) return;
-        
-        //CM.GetComponent<SaveEntity>().ChangeState(true);
-        
+
         Collected = tryGetItem();
         if(Collected)
             MetSysApi.StoreObject(this, Names.MapMarkers.CollectedCollectible);
