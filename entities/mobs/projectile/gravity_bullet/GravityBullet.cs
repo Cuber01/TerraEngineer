@@ -7,4 +7,11 @@ public partial class GravityBullet : Projectile
         CM.UpdateComponents((float)delta);
         HandleMove();
     }
+
+    protected override void OnDeflect()
+    {
+        DirectionNormal = -DirectionNormal;
+        velocity = -velocity;
+        ReverseTeams();
+    }
 }

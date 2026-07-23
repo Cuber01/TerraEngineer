@@ -25,10 +25,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlo8j"]
 size = Vector2(3, 3)
 
-[node name="SmallToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("CM", "Sprite")]
+[node name="SmallToxicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("1_5sbch")
+hitArea = NodePath("Area2D")
 knockbackForce = 50.0
 CM = NodePath("ComponentManager")
 Team = 1
@@ -55,4 +56,5 @@ lifetime = 3.0
 [node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("6_mbhvt")]
 maxGravity = 400.0
 
+[connection signal="area_entered" from="Area2D" to="." method="onAreaEntered"]
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

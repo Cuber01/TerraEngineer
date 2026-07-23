@@ -33,8 +33,8 @@ X prevent event memory leaks on events - make state exit on death?
 X change controller code to be event-based instead of polling (_input instead of _update)
 X add mediator class for inputs instead of relying on player to pass gui and interacted events 
 X use float extension IsWithin for old code too
-- find way to reuse states like in a decorator pattern
-- implement deflect for gravity bullets
+X find way to reuse states like in a decorator pattern (note: in decorator pattern we would make states that expand on other states, not solving our problem. the best way to reuse states with our existing architecture is to use base entity/creature classes as state type.)
+X implement deflect for gravity bullets
 - make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
 
