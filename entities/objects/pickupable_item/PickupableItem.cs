@@ -13,7 +13,6 @@ namespace TerraEngineer.entities.objects;
 public partial class PickupableItem : Entity, IInteractable
 {
     [Export] private StringName itemName;
-    [Export] private StringName itemCollectedTag;
     [Export] private ItemType itemType = ItemType.Unique;
     [Export] private int itemAmount = 1;
     [Export] private Resource dialogueDescription;

@@ -34,7 +34,6 @@ X change controller code to be event-based instead of polling (_input instead of
 X add mediator class for inputs instead of relying on player to pass gui and interacted events 
 X use float extension IsWithin for old code too
 - find way to reuse states like in a decorator pattern
-- make a generic static function for spawning stuff
 - implement deflect for gravity bullets
 - make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
@@ -59,4 +58,4 @@ X lots of player bugs when walking through levels up/down. Make sure level is lo
 to-finish todo:
 - finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there
 X make collectibles display on map and mark themselves as collected dynamically
-- make pickupable item use metsys storage instead of SaveEntity component
+X make pickupable item use metsys storage instead of SaveEntity component
