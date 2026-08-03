@@ -14,6 +14,7 @@ public partial class Fridge : Entity, IInteractable
     
     private DialogueBalloon balloonTemplate;
     private Player player;
+    private TerraformableCaretaker caretaker;
     public bool InteractionBlocked { get; set; }
     
     private bool hasCrystalInFridge = false;
@@ -30,6 +31,7 @@ public partial class Fridge : Entity, IInteractable
         CM.GetComponent<SaveEntity>().OptionalInit(this);
         
         player = GetNode<Player>(Names.NodePaths.Player);
+        caretaker = GetParent<TerraformableCaretaker>();
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
     }
 
@@ -84,6 +86,14 @@ public partial class Fridge : Entity, IInteractable
                 player.CM.GetComponent<PlayerInventory>().AddUniqueItem("ice_crystal");
                 hasCrystalInFridge = false;
                 CM.GetComponent<SaveEntity>().ChangeState(false);
+                // If the room is not an ice biome, the crystal melts immediately when taken out
+                if (caretaker != null && caretaker.currentBiome != Biomes.Ice)
+                {
+                    player.CM.GetComponent<PlayerInventory>().RemoveUniqueItem("ice_crystal");
+                    var res = ResourceLoader.Load<Resource>("res://assets/dialogue/item_ice_crystal.dialogue");
+                    balloonTemplate.PlayDialogue(res, "start");
+                    InputStackManager.Push(balloonTemplate.InputContext);
+                }
             }
         }
         // choice == 0 - do nothing

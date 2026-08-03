@@ -61,9 +61,9 @@ X make collectibles display on map and mark themselves as collected dynamically
 X make pickupable item use metsys storage instead of SaveEntity component
 
 puzzle room todo:
-- fix invalid access to property or key scene file path in terraformable room
+X fix invalid access to property or key scene file path in terraformable room
 - ice crystal should melt lol
-- smol shroom must change sprite on terraform
+X smol shroom must change sprite on terraform
 - we must take away terraformables from player (in lab)
 X cave pc has fcked up hitbox
 

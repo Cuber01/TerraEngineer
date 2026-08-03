@@ -1,7 +1,7 @@
 using DialogueManagerRuntime;
 using Godot;
-using System;
 using TENamespace.ui.dialogue_box;
+using TENamespace.player_inventory;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.game.ui;
 
@@ -55,6 +55,24 @@ public partial class TerraformingTerminal : Entity, IInteractable
             case Biomes.Desert:
                 animationPlayer.Play(Names.Animations.Yellow);
                 break;
+        }
+
+        TryMeltPlayerCrystal(newBiome);
+    }
+
+    private void TryMeltPlayerCrystal(Biomes newBiome)
+    {
+        if (newBiome == Biomes.Ice) return;
+
+        var inventory = player.CM.GetComponent<PlayerInventory>();
+        if (inventory.HasItem("ice_crystal"))
+        {
+            inventory.RemoveUniqueItem("ice_crystal");
+
+            // Show melting dialogue
+            var res = ResourceLoader.Load<Resource>("res://assets/dialogue/item_ice_crystal.dialogue");
+            balloonTemplate.PlayDialogue(res, "start");
+            InputStackManager.Push(balloonTemplate.InputContext);
         }
     }
 }

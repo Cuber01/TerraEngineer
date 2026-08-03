@@ -5,7 +5,7 @@ using TerraEngineer.entities.objects;
 
 public partial class TerraformableCaretaker : Node2D
 {
-    [Export] private Biomes currentBiome;
+    [Export] public Biomes currentBiome;
     [Export] private Node2D versions;
 
     public delegate void TerraformedEventHandler(Biomes biome);
