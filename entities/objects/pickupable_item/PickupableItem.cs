@@ -83,8 +83,7 @@ public partial class PickupableItem : Entity, IInteractable
         if(Collected) return;
 
         Collected = tryGetItem();
-        if(Collected)
-            MetSysApi.StoreObject(this, Names.MapMarkers.CollectedCollectible);
+        MetSysApi.StoreObject(this, Names.MapMarkers.CollectedCollectible);
     }
 
     private bool tryGetItem()

@@ -65,7 +65,7 @@ puzzle room todo:
 - ice crystal should melt lol
 - smol shroom must change sprite on terraform
 - we must take away terraformables from player (in lab)
-- cave pc has fcked up hitbox
+X cave pc has fcked up hitbox
 
 occasional stability issue when teleporting (changing scene):
  ERROR: System.InvalidOperationException: Handle is not initialized.

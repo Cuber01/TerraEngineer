@@ -11,6 +11,7 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
 {
     [Export] private Resource dialogue;
     [Export] private PackedScene mushroomCapScene;
+    [Export] private AnimatedSprite2D mushroomCapAnimatedSprite;
     
     private DialogueBalloon balloonTemplate;
     private Player player;
@@ -73,10 +74,12 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
             
             // Spawn mushroom cap pickup
             mushroomCap = mushroomCapScene.Instantiate<PickupableItem>();
-            mushroomCap.GlobalPosition = GlobalPosition;
+            mushroomCap.GlobalPosition = GlobalPosition + new Vector2(1, -3);
             disableCap();
             room.AddChild(mushroomCap);
             Caretaker.Terraformed += terraformCap;
+            
+            mushroomCapAnimatedSprite.Play("grown");
         }
     }
 

@@ -46,11 +46,11 @@ region = Rect2(42, 1, 9, 5)
 atlas = ExtResource("7_5cbyj")
 region = Rect2(42, 10, 7, 7)
 
-[sub_resource type="Resource" id="Resource_scg40"]
+[sub_resource type="Resource" id="Resource_sc74q"]
 script = ExtResource("17_8jmve")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sc74q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jni21"]
 atlas = ExtResource("7_5cbyj")
 region = Rect2(56, 1, 10, 8)
 
@@ -241,7 +241,7 @@ SwitchableGroupMembers = [NodePath("SwitchableBlock")]
 
 [node name="SwitchableBlock" parent="TerraformableRoom/SwitchableGroup" unique_id=1012799894 instance=ExtResource("16_12em7")]
 position = Vector2(168, -46)
-ExportedSpriteWrapper = SubResource("Resource_scg40")
+ExportedSpriteWrapper = SubResource("Resource_sc74q")
 
 [node name="SwitcherGroup" parent="TerraformableRoom" unique_id=689601484 instance=ExtResource("18_wk3m4")]
 visible = false
@@ -274,7 +274,7 @@ dialogueDescription = ExtResource("32_g8yf0")
 ItemTexture = ExtResource("24_8jmve")
 
 [node name="Sprite2D" parent="TerraformableRoom/PickupableItem2" index="0" unique_id=553403100]
-texture = SubResource("AtlasTexture_sc74q")
+texture = SubResource("AtlasTexture_jni21")
 
 [node name="Area2D" parent="TerraformableRoom/PickupableItem2" index="1" unique_id=1456450714]
 position = Vector2(-2, 0)
@@ -291,4 +291,5 @@ tile_set = ExtResource("9_0m1tu")
 [editable path="TerraformableRoom/Versions/DesertRoom/PickupableItem"]
 [editable path="TerraformableRoom/Versions/IceRoom/PickupableItem"]
 [editable path="TerraformableRoom/TerraPuzzlePlant"]
+[editable path="TerraformableRoom/TerraPuzzlePlant/Versions/PuzzlePlantMushroomCap"]
 [editable path="TerraformableRoom/PickupableItem2"]
