@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cslgfvo3cwmql"
+path="res://.godot/imported/item_vine.dialogue-37493d3eb0147e1ce8d03c3e7df7604f.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_vine.dialogue"
+dest_files=["res://.godot/imported/item_vine.dialogue-37493d3eb0147e1ce8d03c3e7df7604f.tres"]
+
+[params]
+
+defaults=true

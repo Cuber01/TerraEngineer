@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_bcbmq"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="2_b82qi"]
+[ext_resource type="Resource" uid="uid://cslgfvo3cwmql" path="res://assets/dialogue/item_vine.dialogue" id="6_ghrsx"]
 [ext_resource type="Script" uid="uid://busfo80meaiok" path="res://entities/TerraformableCaretaker.cs" id="7_3miqj"]
 [ext_resource type="Texture2D" uid="uid://b6oc8xnvv8gc0" path="res://assets/items/items.png" id="7_5cbyj"]
 [ext_resource type="Script" uid="uid://bmd8tp2pdskbi" path="res://game/terraformable_room/TerraformableRoom.cs" id="8_28lfm"]
@@ -17,6 +18,7 @@
 [ext_resource type="TileSet" uid="uid://ri1ugy335m8n" path="res://assets/world/IceTileset.tres" id="13_l4d3h"]
 [ext_resource type="Texture2D" uid="uid://2drnkhxr2fjw" path="res://entities/objects/puzzle/puzzle-palette-blue-levers-buttons.png" id="14_5cbyj"]
 [ext_resource type="PackedScene" uid="uid://b7fpp7p2sxgw8" path="res://entities/objects/puzzle/fridge/Fridge.tscn" id="14_l4d3h"]
+[ext_resource type="Resource" uid="uid://c0mh5q428l6np" path="res://assets/dialogue/item_gunpowder.dialogue" id="15_0mgak"]
 [ext_resource type="PackedScene" uid="uid://bxgnl52we7txw" path="res://entities/objects/puzzle/inventory_taker/InventoryTaker.tscn" id="15_kj225"]
 [ext_resource type="Texture2D" uid="uid://b72vatjax06mn" path="res://entities/objects/puzzle/puzzle-palette-blue.png" id="15_rlxu2"]
 [ext_resource type="Texture2D" uid="uid://okrc8si31c6e" path="res://assets/items/gunpowder.tres" id="15_scg40"]
@@ -24,20 +26,23 @@
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="16_12em7"]
 [ext_resource type="Texture2D" uid="uid://dru6y0tp0jw4t" path="res://assets/items/ice_crystal.tres" id="17_1uur6"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="17_8jmve"]
+[ext_resource type="Resource" uid="uid://b8kkthe67crxa" path="res://assets/dialogue/item_ice_crystal.dialogue" id="17_k3xqn"]
+[ext_resource type="Resource" uid="uid://dhj087bfljg67" path="res://assets/dialogue/already_have_item_ice.dialogue" id="18_0mgak"]
 [ext_resource type="PackedScene" uid="uid://c51wlvsjnjx1a" path="res://entities/objects/puzzle/switcher_group/SwitcherGroup.tscn" id="18_wk3m4"]
 [ext_resource type="Texture2D" uid="uid://ct4xa1hplrkex" path="res://assets/items/vine.tres" id="19_vllxp"]
 [ext_resource type="PackedScene" uid="uid://cxxuug0e4t51i" path="res://entities/objects/puzzle/plant/TerraPuzzlePlant.tscn" id="22_5cbyj"]
 [ext_resource type="Texture2D" uid="uid://cywfeo85vdy01" path="res://assets/items/watering_can.tres" id="24_8jmve"]
+[ext_resource type="Resource" uid="uid://dypwwrdc48fvk" path="res://assets/dialogue/item_watering_can.dialogue" id="32_g8yf0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wk3m4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8yf0"]
 atlas = ExtResource("7_5cbyj")
 region = Rect2(41, 20, 9, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1uur6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldw4e"]
 atlas = ExtResource("7_5cbyj")
 region = Rect2(42, 1, 9, 5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hoqkk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_thtvy"]
 atlas = ExtResource("7_5cbyj")
 region = Rect2(42, 10, 7, 7)
 
@@ -45,7 +50,7 @@ region = Rect2(42, 10, 7, 7)
 script = ExtResource("17_8jmve")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_scg40"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc74q"]
 atlas = ExtResource("7_5cbyj")
 region = Rect2(56, 1, 10, 8)
 
@@ -56,6 +61,7 @@ metadata/level_name = &"PuzzleTerraformingRoom"
 
 [node name="TerraformableRoom" type="Node2D" parent="." unique_id=615890781 node_paths=PackedStringArray("versions")]
 script = ExtResource("7_3miqj")
+currentBiome = 2
 versions = NodePath("Versions")
 metadata/level_name = &"PuzzleTerraformingRoom"
 
@@ -73,11 +79,12 @@ tile_set = ExtResource("9_0m1tu")
 
 [node name="PickupableItem" parent="TerraformableRoom/Versions/GrassRoom" unique_id=780288586 instance=ExtResource("2_b82qi")]
 position = Vector2(20, 37)
-itemName = &"www"
+itemName = &"vine"
+dialogueDescription = ExtResource("6_ghrsx")
 ItemTexture = ExtResource("19_vllxp")
 
 [node name="Sprite2D" parent="TerraformableRoom/Versions/GrassRoom/PickupableItem" index="0" unique_id=553403100]
-texture = SubResource("AtlasTexture_wk3m4")
+texture = SubResource("AtlasTexture_g8yf0")
 
 [node name="PedestalSprite" parent="TerraformableRoom/Versions/GrassRoom/PickupableItem" index="3" unique_id=1109076071]
 visible = false
@@ -144,6 +151,7 @@ Size = Vector2(30, 30)
 CurrentBiome = 1
 
 [node name="DesertRoom" type="Node2D" parent="TerraformableRoom/Versions" unique_id=573432549]
+visible = false
 script = ExtResource("8_28lfm")
 MyBiome = 3
 
@@ -154,15 +162,18 @@ tile_set = ExtResource("9_5vi8i")
 
 [node name="PickupableItem" parent="TerraformableRoom/Versions/DesertRoom" unique_id=168818388 instance=ExtResource("2_b82qi")]
 position = Vector2(269, 150)
+itemName = &"gunpowder"
+dialogueDescription = ExtResource("15_0mgak")
 ItemTexture = ExtResource("15_scg40")
 
 [node name="Sprite2D" parent="TerraformableRoom/Versions/DesertRoom/PickupableItem" index="0" unique_id=553403100]
-texture = SubResource("AtlasTexture_1uur6")
+texture = SubResource("AtlasTexture_ldw4e")
 
 [node name="PedestalSprite" parent="TerraformableRoom/Versions/DesertRoom/PickupableItem" index="3" unique_id=1109076071]
 visible = false
 
 [node name="IceRoom" type="Node2D" parent="TerraformableRoom/Versions" unique_id=1708736891]
+visible = false
 script = ExtResource("8_28lfm")
 MyBiome = 2
 
@@ -187,15 +198,19 @@ CurrentBiome = 2
 
 [node name="PickupableItem" parent="TerraformableRoom/Versions/IceRoom" unique_id=1668469237 instance=ExtResource("2_b82qi")]
 position = Vector2(183, 150)
+itemName = &"ice_crystal"
+dialogueDescription = ExtResource("17_k3xqn")
+alreadyHaveItemDialogue = ExtResource("18_0mgak")
 ItemTexture = ExtResource("17_1uur6")
+canBeRecollected = true
 
 [node name="Sprite2D" parent="TerraformableRoom/Versions/IceRoom/PickupableItem" index="0" unique_id=553403100]
-texture = SubResource("AtlasTexture_hoqkk")
+texture = SubResource("AtlasTexture_thtvy")
 
 [node name="PedestalSprite" parent="TerraformableRoom/Versions/IceRoom/PickupableItem" index="3" unique_id=1109076071]
 visible = false
 
-[node name="CrystalsForeground" type="Node" parent="TerraformableRoom/Versions/IceRoom" unique_id=859087511]
+[node name="CrystalsForeground" type="Node2D" parent="TerraformableRoom/Versions/IceRoom" unique_id=1557433877]
 
 [node name="IceCrystal" type="Sprite2D" parent="TerraformableRoom/Versions/IceRoom/CrystalsForeground" unique_id=1908803343]
 position = Vector2(191, 151)
@@ -241,7 +256,7 @@ position = Vector2(220, 146)
 position = Vector2(194, 98)
 
 [node name="TerraformingTerminal3" parent="TerraformableRoom" unique_id=169759347 instance=ExtResource("15_sq0p4")]
-position = Vector2(140, 26)
+position = Vector2(132, 26)
 
 [node name="Fridge" parent="TerraformableRoom" unique_id=912996181 instance=ExtResource("14_l4d3h")]
 position = Vector2(49, 96)
@@ -254,11 +269,12 @@ position = Vector2(0, 1)
 
 [node name="PickupableItem2" parent="TerraformableRoom" unique_id=1003789967 instance=ExtResource("2_b82qi")]
 position = Vector2(236, 149)
-itemName = &"bbb"
+itemName = &"watering_can"
+dialogueDescription = ExtResource("32_g8yf0")
 ItemTexture = ExtResource("24_8jmve")
 
 [node name="Sprite2D" parent="TerraformableRoom/PickupableItem2" index="0" unique_id=553403100]
-texture = SubResource("AtlasTexture_scg40")
+texture = SubResource("AtlasTexture_sc74q")
 
 [node name="Area2D" parent="TerraformableRoom/PickupableItem2" index="1" unique_id=1456450714]
 position = Vector2(-2, 0)
@@ -268,7 +284,7 @@ visible = false
 
 [node name="TileMap" type="TileMapLayer" parent="TerraformableRoom" unique_id=899009338]
 z_index = 2
-tile_map_data = PackedByteArray("AAAQAAQABQAAAAMAAAARAAQABQABAAMAAAASAAQABQACAAMAAAA=")
+tile_map_data = PackedByteArray("AAAQAAQABQABAAMAAAARAAQABQACAAMAAAAPAAQABQAAAAMAAAA=")
 tile_set = ExtResource("9_0m1tu")
 
 [editable path="TerraformableRoom/Versions/GrassRoom/PickupableItem"]

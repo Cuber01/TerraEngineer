@@ -59,3 +59,23 @@ to-finish todo:
 - finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there
 X make collectibles display on map and mark themselves as collected dynamically
 X make pickupable item use metsys storage instead of SaveEntity component
+
+puzzle room todo:
+- fix invalid access to property or key scene file path in terraformable room
+- ice crystal should melt lol
+- smol shroom must change sprite on terraform
+- we must take away terraformables from player (in lab)
+- cave pc has fcked up hitbox
+
+occasional stability issue when teleporting (changing scene):
+ ERROR: System.InvalidOperationException: Handle is not initialized.
+   at System.Runtime.InteropServices.GCHandle.FromIntPtr(IntPtr value)
+   at Godot.Bridge.ScriptManagerBridge.SwapGCHandleForType(IntPtr oldGCHandlePtr, IntPtr* outNewGCHandlePtr, godot_bool createWeak) in /root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/ScriptManagerBridge.cs:line 1270
+   at: void Godot.NativeInterop.ExceptionUtils.LogException(System.Exception) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/NativeInterop/ExceptionUtils.cs:113)
+   GDScript backtrace (most recent call first):
+       [0] _load_map (res://addons/MetroidvaniaSystem/Template/Scripts/MetSysGame.gd:65)
+       [1] load_room (res://addons/MetroidvaniaSystem/Template/Scripts/MetSysGame.gd:50)
+   C# backtrace (most recent call first):
+       [0] void Godot.GD.PushError(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:366)
+       [1] void Godot.NativeInterop.ExceptionUtils.LogException(System.Exception) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/NativeInterop/ExceptionUtils.cs:113)
+       [2] Godot.NativeInterop.godot_bool Godot.Bridge.ScriptManagerBridge.SwapGCHandleForType(nint, System.IntPtr*, Godot.NativeInterop.godot_bool) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/ScriptManagerBridge.cs:1270) 

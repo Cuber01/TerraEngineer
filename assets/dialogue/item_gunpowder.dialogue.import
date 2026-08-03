@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c0mh5q428l6np"
+path="res://.godot/imported/item_gunpowder.dialogue-6bd6a5a32866c96f6f8ba7708ef338a9.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_gunpowder.dialogue"
+dest_files=["res://.godot/imported/item_gunpowder.dialogue-6bd6a5a32866c96f6f8ba7708ef338a9.tres"]
+
+[params]
+
+defaults=true
