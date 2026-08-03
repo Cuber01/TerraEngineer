@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using TENamespace;
 using TerraEngineer;
 using TerraEngineer.entities.objects;
@@ -11,6 +12,7 @@ public partial class Interacter : Component
     private Player playerActor;
     private InputContext interactContext;
     private bool pushedContext = false;
+    private readonly List<IInteractable> overlappingInteractables = new();
     
     public override void Init(Node2D actor)
     {
@@ -39,18 +41,27 @@ public partial class Interacter : Component
         IInteractable interactable = GetInteractable(area);
         if (interactable is { InteractionBlocked: false })
         {
-            interactContext.AddAction(Names.Actions.Attack, interactable.OnInteracted);
-            InputStackManager.Push(interactContext);
-            pushedContext = true;
+            overlappingInteractables.Add(interactable);
+            if (!pushedContext)
+            {
+                interactContext.AddAction(Names.Actions.Attack, interactable.OnInteracted);
+                InputStackManager.Push(interactContext);
+                pushedContext = true;
+            }
         }
     }
     
     private void onInteractableAreaExited(Area2D area)
     {
-        if(pushedContext)
+        IInteractable interactable = GetInteractable(area);
+        if (interactable != null)
         {
-            InputStackManager.Pop();
-            pushedContext = false;
+            overlappingInteractables.Remove(interactable);
+            if (overlappingInteractables.Count == 0 && pushedContext)
+            {
+                InputStackManager.Pop();
+                pushedContext = false;
+            }
         }
     }
 }
