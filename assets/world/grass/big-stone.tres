@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://chewb5h46itic"]
+
+[ext_resource type="Texture2D" uid="uid://cw6d5hwve7h5j" path="res://assets/world/grass/cave-decor.png" id="1_p5mhn"]
+
+[resource]
+atlas = ExtResource("1_p5mhn")
+region = Rect2(40, 6, 11, 10)

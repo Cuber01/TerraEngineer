@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cw6d5hwve7h5j"
-path="res://.godot/imported/ceiling-decor.png-a81a3685a178bb9b9719b339110f78d2.ctex"
+path="res://.godot/imported/cave-decor.png-77a35e17aa88200a7c65c337789b5f2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/grass/ceiling-decor.png"
-dest_files=["res://.godot/imported/ceiling-decor.png-a81a3685a178bb9b9719b339110f78d2.ctex"]
+source_file="res://assets/world/grass/cave-decor.png"
+dest_files=["res://.godot/imported/cave-decor.png-77a35e17aa88200a7c65c337789b5f2c.ctex"]
 
 [params]
 
