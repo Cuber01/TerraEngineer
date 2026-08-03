@@ -74,6 +74,7 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
             
             // Spawn mushroom cap pickup
             mushroomCap = mushroomCapScene.Instantiate<PickupableItem>();
+            mushroomCap.SetPersistWithMetSys(false);
             mushroomCap.GlobalPosition = GlobalPosition + new Vector2(1, -3);
             disableCap();
             room.AddChild(mushroomCap);
@@ -97,12 +98,23 @@ public partial class PuzzlePlantForest : TerraformableEntity, IInteractable
 
     private void disableCap()
     {
+        if (mushroomCap == null)
+        {
+            return;
+        }
+
         mushroomCap.ProcessMode = ProcessModeEnum.Disabled;
         mushroomCap.Visible = false;
     }
 
     private void enableCap()
     {
+
+        if (mushroomCap == null || mushroomCap.Collected)
+        {
+            return;
+        }
+
         mushroomCap.ProcessMode = ProcessModeEnum.Pausable;
         mushroomCap.Visible = true;
     }

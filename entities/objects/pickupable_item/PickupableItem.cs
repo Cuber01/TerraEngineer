@@ -1,7 +1,5 @@
-using DialogueManagerRuntime;
 using Godot;
 using TENamespace.player_inventory;
-using TENamespace.save_entity;
 using TENamespace.ui.dialogue_box;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.game;
@@ -17,6 +15,7 @@ public partial class PickupableItem : Entity, IInteractable
     [Export] private int itemAmount = 1;
     [Export] private Resource dialogueDescription;
     [Export] private Resource alreadyHaveItemDialogue;
+    [Export] private bool persistWithMetSys = true;
     [Export] private AtlasTexture ItemTexture {
         get => _itemTexture;
         set
@@ -31,7 +30,7 @@ public partial class PickupableItem : Entity, IInteractable
     
     [Export] private bool canBeRecollected = false;
 
-    private bool Collected
+    public bool Collected
     {
         get => _collected;
         set
@@ -47,15 +46,23 @@ public partial class PickupableItem : Entity, IInteractable
     private DialogueBalloon balloonTemplate;
     private Player player;
 
+    public void SetPersistWithMetSys(bool value)
+    {
+        persistWithMetSys = value;
+    }
+
     public override void _Ready()
     {
         player = GetNode<Player>(Names.NodePaths.Player);
         balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
-        
-        MetSysApi.RegisterStorableObjectWithMarker(this, Callable.From(() =>
+
+        if (persistWithMetSys)
         {
-            Collected = true;
-        }), Names.MapMarkers.UncollectedCollectible);
+            MetSysApi.RegisterStorableObjectWithMarker(this, Callable.From(() =>
+            {
+                Collected = true;
+            }), Names.MapMarkers.UncollectedCollectible);
+        }
         
         ((Sprite2D)Sprite).Texture = (Texture2D)_itemTexture.Duplicate(true); 
 
@@ -70,7 +77,7 @@ public partial class PickupableItem : Entity, IInteractable
         #endif
     } 
     
-    private void onPlayerEntered(Node2D body)
+    private void onPlayerEntered(Node2D _)
     {
         if(!canBeRecollected)
         {
@@ -83,7 +90,11 @@ public partial class PickupableItem : Entity, IInteractable
         if(Collected) return;
 
         Collected = tryGetItem();
-        MetSysApi.StoreObject(this, Names.MapMarkers.CollectedCollectible);
+
+        if (persistWithMetSys)
+        {
+            MetSysApi.StoreObject(this, Names.MapMarkers.CollectedCollectible);
+        }
     }
 
     private bool tryGetItem()
