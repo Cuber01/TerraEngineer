@@ -169,7 +169,7 @@ MaxHealth = 3
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=363340069 instance=ExtResource("8_8wbl1")]
 
-[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" parent_id_path=PackedInt32Array(363340069, 47129053) index="0" unique_id=520614987]
 shape = SubResource("RectangleShape2D_8wbl1")
 
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_7m517")]

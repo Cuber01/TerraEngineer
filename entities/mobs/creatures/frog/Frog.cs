@@ -44,7 +44,7 @@ public partial class Frog : Creature
         
         public override void Enter()
         {
-            Actor.SpriteWrapper.Play(Names.Animations.Jump);
+            Actor.SpriteWrapper.Play(Names.Animations.StartJump);
             Actor.SpriteWrapper.AnimationFinished += jump;
         }
         

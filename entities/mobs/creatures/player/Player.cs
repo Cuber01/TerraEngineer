@@ -169,7 +169,7 @@ public partial class Player : Creature
 			#endif
 
 			Actor.SpriteWrapper.AnimationFinished += afterStartJump;
-			Actor.SpriteWrapper.Play(Names.Animations.Jump);
+			Actor.SpriteWrapper.Play(Names.Animations.StartJump);
 
 			attemptJumpOrDoubleJump();
 		}

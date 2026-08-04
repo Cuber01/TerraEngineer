@@ -87,7 +87,8 @@ public static class Names
         public static readonly StringName NoFruit = "no_fruit";
         public static readonly StringName Default = "default";
         public static readonly StringName Idle = "idle";
-        public static readonly StringName Jump = "start-jump";
+        public static readonly StringName StartJump = "start-jump";
+        public static readonly StringName Jump = "jump";
         public static readonly StringName Fall = "fly-downwards";
         public static readonly StringName Fly = "fly-upwards";
         public static readonly StringName Walk = "walk";
