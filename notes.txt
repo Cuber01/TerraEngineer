@@ -18,13 +18,6 @@ f1 - save at current location
 f2 - noclip on/off
 f3 - godmode on/off
 
-todo til v0:
-X add frog animations
-X add double jump as an item
-X make it possible to leave the office lore room
-- add dialogue to radio in tower
-X make boss room open only after picking up double jump
-X rewrite switcher area as generic area that fires event on enter
 
 code cleanliness todo:
 X limit amount of export - replace with const and readonly
@@ -60,12 +53,6 @@ to-finish todo:
 X make collectibles display on map and mark themselves as collected dynamically
 X make pickupable item use metsys storage instead of SaveEntity component
 
-puzzle room todo:
-X fix invalid access to property or key scene file path in terraformable room
-- ice crystal should melt lol
-X smol shroom must change sprite on terraform
-- we must take away terraformables from player (in lab)
-X cave pc has fcked up hitbox
 
 occasional stability issue when teleporting (changing scene):
  ERROR: System.InvalidOperationException: Handle is not initialized.

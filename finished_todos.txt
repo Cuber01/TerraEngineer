@@ -1,0 +1,14 @@
+
+todo til v0:
+X add frog animations
+X add double jump as an item
+X make it possible to leave the office lore room
+- add dialogue to radio in tower
+X make boss room open only after picking up double jump
+X rewrite switcher area as generic area that fires event on enter
+
+puzzle room todo:
+X fix invalid access to property or key scene file path in terraformable room
+x ice crystal should melt lol
+X smol shroom must change sprite on terraform
+X cave pc has fcked up hitbox
