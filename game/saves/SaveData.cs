@@ -87,6 +87,11 @@ public partial class SaveData : Node
     { 
         if(fireEvent) RealtimeDataChanged?.Invoke((bool)value);
         
+        if (!data.ContainsKey(sectionKey))
+        {
+            data[sectionKey] = new GodotDict();
+        }
+
         GodotDict dict = (GodotDict)data[sectionKey];
         if (!dict.ContainsKey(key))
         {
@@ -197,7 +202,7 @@ public partial class SaveData : Node
 
         data = (GodotDict)json.GetData();
 
-        if (data.TryGetValue(Names.SaveSections.Map, out Variant value))
+        if (data.TryGetValue(Names.SaveSections.Map, out _))
         {
             loadMetSysData();   
         }
