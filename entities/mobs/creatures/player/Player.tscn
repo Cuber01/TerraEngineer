@@ -324,6 +324,7 @@ invincibilityTimeOnHit = 2.0
 importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_1q3sw")])
 
 [node name="PollingAreaComponent" parent="ComponentManager" unique_id=1188318437 instance=ExtResource("14_8611i")]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ComponentManager/PollingAreaComponent" unique_id=228685804]
 position = Vector2(0, 20)
