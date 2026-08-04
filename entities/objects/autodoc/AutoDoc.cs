@@ -23,27 +23,35 @@ public partial class AutoDoc : Entity, IInteractable
 	public override void _Ready()
 	{
 		SpriteWrapper.Init(Sprite);
-		
-		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, (_) =>
-		{
-			SpriteWrapper.Play(Names.Animations.Closed);
-			InteractionBlocked = true;
-		});
-		
-		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossEntered, () =>
-		{
-			SpriteWrapper.Play(Names.Animations.Closed);
-			InteractionBlocked = true;
-		});
-		
-		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossDefeated, () => 
-			SpriteWrapper.Play(Names.Animations.Open));
+
+		CM.GetComponent<SaveEntity>().Setup(itemCollectedTag, closeInstantly);
+		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossEntered, closeInstantly);
+		GlobalEventBus.Instance.Subscribe(GlobalEvents.BossDefeated, open);
 		
 		CM.GetComponent<SaveEntity>().OptionalInit(this);
 		
 		player = GetNode<Player>(Names.NodePaths.Player);
 		balloonTemplate = GetNode<DialogueBalloon>(Names.NodePaths.DialogueBalloon);
 
+	}
+	
+	private void closeInstantly()
+	{
+		SpriteWrapper.Play(Names.Animations.Closed);
+		InteractionBlocked = true;
+	}
+
+	private void closeInstantly(Node2D _) => closeInstantly();
+	
+	private void open()
+	{
+		SpriteWrapper.Play(Names.Animations.Open);
+	}
+
+	public override void _ExitTree()
+	{
+		GlobalEventBus.Instance.Unsubscribe(GlobalEvents.BossEntered, closeInstantly);
+		GlobalEventBus.Instance.Unsubscribe(GlobalEvents.BossDefeated, open);
 	}
 	
 	#endregion
