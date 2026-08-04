@@ -15,8 +15,17 @@ public partial class FluidWithoutSurface : StaticBody2D
 		get => _Size;
 		set
 		{
-			_Size.X = ((int)MathF.Round(value.X / 10f)) * 10;
-			_Size.Y = ((int)MathF.Round(value.Y));
+			if (this is FluidWithoutSurface)
+			{
+				_Size.X = (int)value.X;
+				_Size.Y = (int)value.Y;
+			}
+			else
+			{
+				_Size.X = ((int)MathF.Round(value.X / 10f)) * 10;
+				_Size.Y = ((int)MathF.Round(value.Y));
+			}
+
 			setupCollisions();
 			updateDisplayPolygon();
 		}

@@ -121,7 +121,7 @@ public partial class InventoryTaker : Entity, IInteractable, ISwitcher
             takeItemsBack();
         }
 
-        GlobalDialoguesState.Instance.Lab_InventoryTaker = 0;
+        GlobalDialoguesState.Instance.Lab_CraftingStation = 0;
     }
     
     private void depositItems()

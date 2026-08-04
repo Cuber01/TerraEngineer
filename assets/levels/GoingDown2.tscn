@@ -166,7 +166,6 @@ tile_set = ExtResource("1_iqhym")
 
 [node name="Fluid" parent="." unique_id=455745828 instance=ExtResource("3_k2nvr")]
 position = Vector2(105, 528)
-Size = Vector2(90, 40)
 CurrentBiome = 1
 
 [node name="Moth" parent="." unique_id=1583262676 instance=ExtResource("5_c8hae")]

@@ -30,6 +30,7 @@ X find way to reuse states like in a decorator pattern (note: in decorator patte
 X implement deflect for gravity bullets
 - make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
+- inventory taker and crafting station should use the same class 
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump

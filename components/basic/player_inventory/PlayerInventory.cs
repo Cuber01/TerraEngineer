@@ -24,6 +24,7 @@ public partial class PlayerInventory : Component
         { "orange_essence", new EssenceItem(Biomes.Desert) },
         { "purple_essence", new EssenceItem(Biomes.Mushroom) },
         { "ice_crystal", new IceCrystalItem() },
+        { "bomb", new KeyItem() },
         { "gunpowder", new KeyItem() },
         { "vine", new KeyItem() },
         { "mushroom_cap", new KeyItem() },
