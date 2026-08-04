@@ -23,6 +23,7 @@ public partial class TerraformableEntity : Entity, ITerraformable
         {
             Update((float)delta);   
         }
+
     }
     
     public virtual void Enable()
@@ -47,7 +48,7 @@ public partial class TerraformableEntity : Entity, ITerraformable
 
     public override void HandleMove()
     {
-        if (velocity != Vector2.Zero)
+        if (velocity != Vector2.Zero && Caretaker != null)
         {
             Caretaker.GlobalPosition = GlobalPosition;
             Position = Vector2.Zero;

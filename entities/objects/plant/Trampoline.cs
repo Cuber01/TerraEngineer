@@ -16,5 +16,12 @@ public partial class Trampoline : TerraformableEntity
             e.velocity.Y = -bounceVelocity;
         }
     }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+        CM?.UpdateComponents((float)delta);
+        HandleMove();
+    }
     
 }
