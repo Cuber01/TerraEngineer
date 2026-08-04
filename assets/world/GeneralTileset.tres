@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dv8anmkrhdk26" path="res://assets/world/grass/wood.png" id="4_uxfa3"]
 [ext_resource type="Texture2D" uid="uid://cg1o5yjjncftx" path="res://assets/world/office/office-tileset.png" id="5_47163"]
 [ext_resource type="Texture2D" uid="uid://c1jjguvhaa2ep" path="res://assets/world/office/pipe-tileset.png" id="6_rlu0f"]
+[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special-tiles.png" id="7_j8ht1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3b7yi"]
 tile_data = PackedInt32Array(0, 327680, 5, 65536, 196610, 0, 131072, 196610, 1)
@@ -825,6 +826,11 @@ texture_region_size = Vector2i(8, 8)
 2:2/0 = 0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2xcyc"]
+texture = ExtResource("7_j8ht1")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+
 [resource]
 tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
@@ -854,6 +860,7 @@ sources/3 = SubResource("TileSetAtlasSource_pmbgb")
 sources/4 = SubResource("TileSetAtlasSource_y1ixd")
 sources/5 = SubResource("TileSetAtlasSource_4xb6h")
 sources/6 = SubResource("TileSetAtlasSource_jeby0")
+sources/7 = SubResource("TileSetAtlasSource_2xcyc")
 pattern_0 = SubResource("TileMapPattern_3b7yi")
 pattern_1 = SubResource("TileMapPattern_vwac4")
 pattern_2 = SubResource("TileMapPattern_ssocu")

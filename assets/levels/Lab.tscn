@@ -61,10 +61,12 @@ position = Vector2(152, 25)
 [node name="FluidWithoutSurface" parent="." unique_id=455745828 instance=ExtResource("7_tkx2c")]
 position = Vector2(117, 0)
 Size = Vector2(68, 25)
+CurrentBiome = 1
 
 [node name="FluidWithoutSurface2" parent="." unique_id=121570154 instance=ExtResource("7_tkx2c")]
 position = Vector2(133, 25)
 Size = Vector2(36, 16)
+CurrentBiome = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1202527062]
 position = Vector2(118, 25)
