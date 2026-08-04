@@ -32,9 +32,11 @@ using TerraEngineer.game;
 // if player is close move away from him, if player is far move closer, this state never exits 
 
 [Tool]
-public partial class SniperMushroom : Creature
+public partial class SniperMushroom : Creature, ISibling
 {
     [Export] private CollisionShape2D hurtbox;
+    [Export] private Entity sibling;
+    
     
     private float hideTime = 12f;
     private bool forcedToHide = false;
@@ -53,6 +55,7 @@ public partial class SniperMushroom : Creature
     private readonly ShootingHideState shootingHideState = new();
     
     public Player Player { get; private set; }
+    public bool SiblingDied { get; set; }
 
     public override void Init()
     {
@@ -77,9 +80,10 @@ public partial class SniperMushroom : Creature
         gunFsm.AddTransition(shootingHideState, shootingIdleState, shootingHideState.TimerCondition);
 
         CM.GetComponent<Health>().HealthChanged += onDamageTaken;
-    
         
         CM.GetComponent<SaveEntity>().OptionalInit(this);
+        
+        ((ISibling)this).ConnectToSibling(sibling);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -285,7 +289,8 @@ public partial class SniperMushroom : Creature
     public override void Die()
     {
         CM.GetComponent<SaveEntity>().ChangeState(true);
-        GlobalEventBus.Instance.Publish(GlobalEvents.BossDefeated);
+        if(SiblingDied)
+            GlobalEventBus.Instance.Publish(GlobalEvents.BossDefeated);
         base.Die();
     }
 }

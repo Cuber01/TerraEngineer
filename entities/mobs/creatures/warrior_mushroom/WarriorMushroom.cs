@@ -6,9 +6,10 @@ using TENamespace.health;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
+using TerraEngineer.game;
 
 [Tool]
-public partial class WarriorMushroom : Creature
+public partial class WarriorMushroom : Creature, ISibling
 {
     [Export] private CollisionShape2D mainHitbox;
     [Export] private CollisionShape2D mainHurtbox;
@@ -16,7 +17,8 @@ public partial class WarriorMushroom : Creature
     [Export] private CollisionShape2D deflectorHitbox;
     [Export] private PackedScene mushroomCapScene;
     [Export] private Rect2 attackHitboxShape;
-    
+
+    [Export] private Entity sibling;
     
     private const float FarDistanceX = 50f;
 
@@ -32,6 +34,7 @@ public partial class WarriorMushroom : Creature
     private bool swordStuckInWall = false;
 
     public Player Player { get; private set; }
+    public bool SiblingDied { get; set; }
 
     public override void Init()
     {
@@ -57,6 +60,8 @@ public partial class WarriorMushroom : Creature
 
         fsm.AddTransition(attackState, idleState, () => attackState.Finished);
         fsm.AddTransition(stuckState, idleState, stuckState.TimerCondition);
+        
+        ((ISibling)this).ConnectToSibling(sibling);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -334,6 +339,8 @@ public partial class WarriorMushroom : Creature
         Trampoline instance = (Trampoline)mushroomCapScene.Instantiate();
         instance.Position = GlobalPosition;
         GetParent().CallDeferred(Node.MethodName.AddChild, instance);
+        if(SiblingDied)
+            GlobalEventBus.Instance.Publish(GlobalEvents.BossDefeated);
     }
     
     private void onChargeAreaEntered(Node2D body) => chargeState.ChargeHit(body);
@@ -341,4 +348,5 @@ public partial class WarriorMushroom : Creature
     private bool IsPlayerBehind() => Mathf.Sign(DeltaToPlayerX()) == -(int)Facing;
     private bool IsPlayerFarAway() => Mathf.Abs(DeltaToPlayerX()) >= FarDistanceX;
     private bool IsPlayerClose() => Mathf.Abs(DeltaToPlayerX()) < FarDistanceX;
+    
 }
