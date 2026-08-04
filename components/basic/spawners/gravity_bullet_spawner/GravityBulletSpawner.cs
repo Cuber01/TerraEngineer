@@ -13,12 +13,6 @@ public partial class GravityBulletSpawner : Spawner<GravityBullet, GravityBullet
         return this;
     }
     
-    public GravityBulletSpawner SetTeam(CollisionTeam team)
-    {
-        Instance.Team = team;
-        return this;
-    }
-    
     public GravityBulletSpawner SetOnCollideDeath(Action doOnCollideDeath)
     {
         Instance.OnCollideDeath = doOnCollideDeath;

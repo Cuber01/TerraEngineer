@@ -12,6 +12,6 @@ public partial class GravityBullet : Projectile
     {
         DirectionNormal = -DirectionNormal;
         velocity = -velocity;
-        ReverseTeams();
+        ReverseCollision();
     }
 }

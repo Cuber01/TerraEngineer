@@ -13,7 +13,6 @@ public partial class Entity : CharacterBody2D
     [Signal] public delegate void DiedEventHandler();
     
     [Export] public ComponentManager CM;
-    [Export] public CollisionTeam Team;
     [Export] public bool GodMode = false;
     [Export] public Node2D Sprite;
     [Export] public float Weight = 64f; // For fluids

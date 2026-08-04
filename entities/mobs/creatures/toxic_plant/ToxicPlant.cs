@@ -49,7 +49,6 @@ public partial class ToxicPlant : Creature
                 .SetPosition(Actor.GlobalPosition + new Vector2(0, StartingOffset))
                 .SetVelocity(bigBulletStartingVelocity)
                 .SetOnLifetimeDeath(spawnRing)
-                .SetTeam(Actor.Team)
                 .Build();
             Actor.CM.GetComponent<GravityBulletSpawner>().AddToGame();
         }
@@ -72,7 +71,6 @@ public partial class ToxicPlant : Creature
                     .Start()
                     .SetPosition(bigBullet.GlobalPosition)
                     .SetVelocity(direction * R * 5)
-                    .SetTeam(Actor.Team)
                     .Build();
                 bigBullet.CM.GetComponent<GravityBulletSpawner>().AddToGame();
             }

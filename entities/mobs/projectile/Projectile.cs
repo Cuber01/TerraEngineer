@@ -20,6 +20,7 @@ public partial class Projectile : Entity
     public Vector2 DirectionNormal;
     public Action OnLifetimeDeath;
     public Action OnCollideDeath;
+    public ulong CreatorId;
 
     public override void _Ready()
     {
@@ -42,16 +43,14 @@ public partial class Projectile : Entity
     {
         if (body is Entity mob)
         {
-            if (mob.Team != Team)
-            {
-                Health healthComp = mob.CM?.TryGetComponent<Health>();
+            Health healthComp = mob.CM?.TryGetComponent<Health>();
                 healthComp?.ChangeHealth(-damage, this);
                 
-                mob.CM?.TryGetComponent<KnockbackComponent>()
-                    ?.ApplyKnockback(GlobalPosition, knockbackForce);
+            mob.CM?.TryGetComponent<KnockbackComponent>()
+                ?.ApplyKnockback(GlobalPosition, knockbackForce);
                 
-                pierceOrDie();
-            }
+            pierceOrDie();
+            
             // Else ignore
         }
         else
@@ -71,10 +70,10 @@ public partial class Projectile : Entity
         DirectionNormal = -DirectionNormal;
         velocity = -velocity;
         CM.GetComponent<FreeFly>().MultiplyAcceleration(2);
-        ReverseTeams();
+        ReverseCollision();
     }
 
-    protected void ReverseTeams()
+    protected void ReverseCollision()
     {
         if (hitArea.GetCollisionMaskValue(Names.CollisionLayers.Player) && GetCollisionMaskValue(Names.CollisionLayers.Enemy))
         {
@@ -82,13 +81,11 @@ public partial class Projectile : Entity
         } else if (hitArea.GetCollisionMaskValue(Names.CollisionLayers.Player)) 
         {
             // Enemy bullet -> Player bullet
-            Team = CollisionTeam.Player;
             hitArea.SetCollisionMaskValue(Names.CollisionLayers.Enemy, true);
             hitArea.SetCollisionMaskValue(Names.CollisionLayers.Player, false);
         } else if (hitArea.GetCollisionMaskValue(Names.CollisionLayers.Enemy)) 
         {
             // Player bullet -> Enemy bullet
-            Team = CollisionTeam.Enemy;
             hitArea.SetCollisionMaskValue(Names.CollisionLayers.Enemy, false);
             hitArea.SetCollisionMaskValue(Names.CollisionLayers.Player, true);
         }

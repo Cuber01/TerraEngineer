@@ -26,4 +26,10 @@ public partial class ProjectileSpawner : Spawner<Projectile, ProjectileSpawner>
         return this;
     }
     
+    public ProjectileSpawner SetCreatorId(ulong creatorId)
+    {
+        Instance.CreatorId = creatorId;
+        return this;
+    }
+    
 }

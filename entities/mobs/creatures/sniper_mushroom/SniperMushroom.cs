@@ -107,7 +107,7 @@ public partial class SniperMushroom : Creature, ISibling
 
     private void onDamageTaken(int current, int amount, Entity source)
     {
-        if (source is BasicBullet && movementFsm.CurrentState is not HideState) // Bullet is mine
+        if (source is BasicBullet bul && bul.CreatorId == GetInstanceId() && movementFsm.CurrentState is not HideState) // Bullet is mine
         {
             forcedToHide = true;
             CM.GetComponent<Health>().MakeInvincible(hideTime);   
@@ -265,6 +265,7 @@ public partial class SniperMushroom : Creature, ISibling
                 .Start()
                 .SetPosition(Actor.GlobalPosition)
                 .SetDirectionNormal(direction)
+                .SetCreatorId(Actor.GetInstanceId())
                 .AddToGame()
                 .Build();
 
