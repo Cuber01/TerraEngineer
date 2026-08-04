@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://cw5pd4wwpyqiq" path="res://gfx/fluid/FluidSpring.tscn" id="2_bi0rs"]
 [ext_resource type="PackedScene" uid="uid://745elekjpiyp" path="res://entities/objects/fluid/TerraformableFluidCaretaker.tscn" id="3_bi0rs"]
 
-[node name="Fluid" type="StaticBody2D" unique_id=455745828 node_paths=PackedStringArray("displayPolygon", "surfaceLine", "collisionShape")]
+[node name="Fluid" type="StaticBody2D" unique_id=455745828 node_paths=PackedStringArray("surfaceLine", "DisplayPolygon", "CollisionShape")]
 z_index = 1
 collision_mask = 0
 script = ExtResource("1_q0vaf")
 fluidSpringScene = ExtResource("2_bi0rs")
-displayPolygon = NodePath("DisplayPolygon")
 surfaceLine = NodePath("SurfaceLine")
-collisionShape = NodePath("Area2D/CollisionShape2D")
+DisplayPolygon = NodePath("DisplayPolygon")
+CollisionShape = NodePath("Area2D/CollisionShape2D")
 
 [node name="DisplayPolygon" type="Polygon2D" parent="." unique_id=1133375849]
 color = Color(0.22352941, 0.44705883, 1, 0.4509804)
