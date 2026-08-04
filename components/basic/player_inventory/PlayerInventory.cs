@@ -17,7 +17,7 @@ public partial class PlayerInventory : Component
         { "double_jump", new DoubleJumpItem() },
         { "blowtorch", new BlowtorchItem() },
         {"health_serum", new HealthSerumItem() },
-        {"phase_teleporter", new PhaseTeleporterItem() },
+        {"phase_shift", new PhaseShiftItem() },
         {"rifle", new RifleItem() },
         { "green_essence", new EssenceItem(Biomes.Forest) },
         { "blue_essence", new EssenceItem(Biomes.Ice) },
@@ -158,7 +158,7 @@ public class RifleItem : Item
     }
 }
 
-public class PhaseTeleporterItem : Item
+public class PhaseShiftItem : Item
 {
     public void Activate(Player actor)
     {
@@ -166,6 +166,7 @@ public class PhaseTeleporterItem : Item
     }
     public void Deactivate(Player actor)
     {
+        actor.PhasingAllowed = false;
     }
 }
 

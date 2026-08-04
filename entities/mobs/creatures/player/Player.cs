@@ -66,13 +66,8 @@ public partial class Player : Creature
 															   && Input.IsActionPressed(Names.Actions.Down)
 														       && !CM.GetComponent<PollingArea>().IsColliding()
 														       && IsOnFloor()
-														       ,1);
-		fsm.AddTransition(jumpState, phaseState, () => PhasingAllowed
-														   && fsm.IsTriggered(PlayerTriggers.PressedJump)  
-		                                                       && Input.IsActionPressed(Names.Actions.Down)
-		                                                       && !CM.GetComponent<PollingArea>().IsColliding()
-															   && IsOnFloor()
-															   , 1);
+														       ,2);
+
 		fsm.AddTransition(phaseState, idleState, () => true);
 		
 		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 1);
