@@ -1,0 +1,15 @@
+~ missing_items
+CraftingStation: You don't have the required items to craft a bomb.
+=> END
+
+~ has_all_items
+CraftingStation: You have the required items to craft a bomb. Would you like to combine them?
+CraftingStation:
+- Craft bomb
+	set GlobalDialoguesState.Lab_CraftingStation = 1
+	CraftingStation: You craft a bomb and place it in your inventory.
+- Keep items
+	set GlobalDialoguesState.Lab_CraftingStation = 0
+=> END
+
+

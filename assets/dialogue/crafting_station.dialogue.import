@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dt3dyr2jwrhnk"
+path="res://.godot/imported/crafting_station.dialogue-84d4b94a8969e835df13d7652ebe41e9.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/crafting_station.dialogue"
+dest_files=["res://.godot/imported/crafting_station.dialogue-84d4b94a8969e835df13d7652ebe41e9.tres"]
+
+[params]
+
+defaults=true

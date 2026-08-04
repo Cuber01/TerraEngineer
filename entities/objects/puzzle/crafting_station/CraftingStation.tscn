@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ddnanqwaq3p7n"]
+
+[ext_resource type="Script" path="res://entities/objects/puzzle/crafting_station/CraftingStation.cs" id="1_craft"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_wrap"]
+[ext_resource type="Resource" uid="uid://dt3dyr2jwrhnk" path="res://assets/dialogue/crafting_station.dialogue" id="3_dialogue"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_cm"]
+[ext_resource type="PackedScene" uid="uid://s2srgjs02kop" path="res://components/basic/save_entity/SaveEntityComponent.tscn" id="5_save"]
+[ext_resource type="Texture2D" uid="uid://br4nmrnvgm2dk" path="res://entities/objects/puzzle/crafting_station/crafting-station.png" id="6_texture"]
+
+[sub_resource type="Resource" id="Resource_wrap"]
+script = ExtResource("2_wrap")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_craft"]
+size = Vector2(31, 22)
+
+[node name="CraftingStation" type="CharacterBody2D" unique_id=1462450914 node_paths=PackedStringArray("CM", "Sprite")]
+script = ExtResource("1_craft")
+dialogue = ExtResource("3_dialogue")
+CM = NodePath("ComponentManager")
+Team = 2
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_wrap")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=440221151]
+modulate = Color(0.75, 0.75, 0.75, 1)
+texture_filter = 1
+texture = ExtResource("6_texture")
+
+[node name="ComponentManager" parent="." unique_id=1017119538 instance=ExtResource("4_cm")]
+
+[node name="SaveEntityComponent" parent="ComponentManager" unique_id=1367031169 instance=ExtResource("5_save")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=922190685]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1281992460]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_craft")
