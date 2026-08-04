@@ -3,6 +3,7 @@ using Godot.Collections;
 using TENamespace;
 using TENamespace.basic;
 using TENamespace.health;
+using TENamespace.save_entity;
 using TerraEngineer;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
@@ -60,6 +61,8 @@ public partial class WarriorMushroom : Creature, ISibling
 
         fsm.AddTransition(attackState, idleState, () => attackState.Finished);
         fsm.AddTransition(stuckState, idleState, stuckState.TimerCondition);
+        
+        CM.GetComponent<SaveEntity>().OptionalInit(this);
         
         ((ISibling)this).ConnectToSibling(sibling);
     }

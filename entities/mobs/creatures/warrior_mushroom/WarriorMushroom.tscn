@@ -128,7 +128,6 @@ deflectorHitbox = NodePath("ComponentManager/BulletDeflectorComponent/Deflection
 mushroomCapScene = ExtResource("2_8am2w")
 attackHitboxShape = Rect2(16, -3, 15, 19)
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_6n7b3")
 
