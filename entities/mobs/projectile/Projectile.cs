@@ -32,7 +32,19 @@ public partial class Projectile : Entity
     
     private void onAreaEntered(Area2D area)
     {
-        OnDeflect();
+        if (area.GetCollisionLayerValue(Names.CollisionLayers.AnitBullets))
+        {
+            OnIntercepted(area.GetParent<Projectile>());
+        }
+        else if (area.GetCollisionLayerValue(Names.CollisionLayers.BulletDeflectors))
+        {
+            OnDeflected();
+        }
+        else
+        {
+            throw new Exception($"Projectile collided with unknown area: {area.Name}");
+        }
+        
     }
     
     private void onBodyEntered(Node2D body)
@@ -67,12 +79,18 @@ public partial class Projectile : Entity
         }
     }
 
-    protected virtual void OnDeflect()
+    protected virtual void OnDeflected()
     {
         DirectionNormal = -DirectionNormal;
         velocity = -velocity;
         CM.GetComponent<FreeFly>().MultiplyAcceleration(2);
         ReverseCollision();
+    }
+    
+    protected virtual void OnIntercepted(Projectile interceptor)
+    {
+        pierceOrDie();
+        interceptor.OnAntiProjectileHit(this);
     }
 
     protected void ReverseCollision()

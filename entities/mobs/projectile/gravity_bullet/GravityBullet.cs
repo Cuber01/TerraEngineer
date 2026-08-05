@@ -8,7 +8,7 @@ public partial class GravityBullet : Projectile
         HandleMove();
     }
 
-    protected override void OnDeflect()
+    protected override void OnDeflected()
     {
         DirectionNormal = -DirectionNormal;
         velocity = -velocity;

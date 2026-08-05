@@ -151,6 +151,8 @@ public static class Names
          public const int Platforms = 6;
          public const int Bullets = 7;
          public const int BulletDeflectors = 8;
+         public const int IForgotToAddSomethingHereTbh = 9;
+         public const int AnitBullets = 10;
      }
      
      public static class MapMarkers
