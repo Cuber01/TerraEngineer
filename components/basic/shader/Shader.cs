@@ -9,6 +9,8 @@ namespace TENamespace.basic.shader;
 
 public partial class Shader : Component
 {
+    [ExportGroup("Internal")] 
+    
     [Export] private ShaderMaterial[] importedShaders;
     private Dictionary<StringName, ShaderMaterial> shaders = new();
     private Node2D sprite;

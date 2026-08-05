@@ -32,6 +32,7 @@ X implement deflect for gravity bullets
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
 - inventory taker and crafting station should use the same class 
 - projectile Area2D should be it's own scene for quick reuse
+- force export groups to be uncollapsed
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump

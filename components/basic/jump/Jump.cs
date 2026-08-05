@@ -7,6 +7,8 @@ namespace TENamespace;
 
 public partial class Jump : Component
 {
+    [ExportGroup("External")]
+    
     [Export] private float jumpVelocity = 100;
     [Export] public int MaxJumps = 2;
     

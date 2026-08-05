@@ -4,6 +4,8 @@ namespace TENamespace.basic.orbit;
 
 public partial class Orbit : FreeFly
 {
+    [ExportGroup("External")] 
+    
     [Export] private float orbitRadius = 50f;
     [Export] private float angularVelocity = 1.5f; // radians per second
     

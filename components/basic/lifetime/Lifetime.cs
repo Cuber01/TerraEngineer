@@ -6,6 +6,8 @@ namespace TENamespace.lifetime;
 
 public partial class Lifetime : Component
 {
+    [ExportGroup("External")]
+    
     [Export] private float lifetime = 100;
     
     public delegate void LifetimeEndedHandler();

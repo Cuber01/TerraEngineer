@@ -6,6 +6,8 @@ using TerraEngineer.entities.mobs;
 
 public partial class FreeFly : Component
 {
+    [ExportGroup("External")]
+    
     [Export] private float speed = 50.0f;
     [Export] private Vector2 errorMargin = new Vector2(5f, 5f);
     [Export] private float acceleration = 0.25f;

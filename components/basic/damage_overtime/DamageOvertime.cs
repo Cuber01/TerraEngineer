@@ -7,6 +7,8 @@ namespace TENamespace.basic.damage_overtime;
 
 public partial class DamageOvertime : Component
 {
+    [ExportGroup("External")]
+    
     [Export] private float timeBetweenDamage = 2;
     [Export] private int damageAmount = 1;
     

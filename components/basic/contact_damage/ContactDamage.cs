@@ -7,6 +7,8 @@ namespace TENamespace.contact_damage;
 
 public partial class ContactDamage : Component
 {
+    [ExportGroup("External")]
+    
     [Export] private int contactDamageAmount = 1;
     [Export] private float knockbackForce = 500f;
     

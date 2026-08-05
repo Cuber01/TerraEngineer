@@ -15,6 +15,8 @@ public partial class Health : Component
     public delegate void MaxHealthChangedEventHandler(int newMax);
     public event MaxHealthChangedEventHandler MaxHealthChanged;
     
+    [ExportGroup("External")]
+    
     [Export] public int MaxHealth;
     public int HP;
 

@@ -6,6 +6,8 @@ namespace TENamespace.basic;
 
 public partial class KnockbackComponent : Component
 {
+    [ExportGroup("External")]
+    
     [Export] private Vector2 knockbackFactor = new(1.0f, 0.5f);
     
     private Entity entityActor;

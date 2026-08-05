@@ -7,6 +7,8 @@ namespace TENamespace;
 
 public partial class Move : Component
 {
+	[ExportGroup("External")]
+	
 	[Export] private float speed = 50.0f;
 	[Export] private float acceleration = 0.25f;
 	[Export] private float friction = 0.1f;

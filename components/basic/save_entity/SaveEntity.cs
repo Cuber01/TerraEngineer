@@ -7,6 +7,8 @@ namespace TENamespace.save_entity;
 
 public partial class SaveEntity : Component
 {
+    [ExportGroup("External")] 
+    
     [Export] private StringName saveName;
     private StringName saveSection;
 
