@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bputchb080ndo"
+path="res://.godot/imported/item_purple_essence.dialogue-c6b07a8ba06b53e282041f179f0ff233.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_purple_essence.dialogue"
+dest_files=["res://.godot/imported/item_purple_essence.dialogue-c6b07a8ba06b53e282041f179f0ff233.tres"]
+
+[params]
+
+defaults=true
