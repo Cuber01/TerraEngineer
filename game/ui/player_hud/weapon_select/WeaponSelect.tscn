@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cm40ujd072ey0" path="res://game/ui/player_hud/weapon_select/WeaponSelectUI.cs" id="1_fd2b7"]
 [ext_resource type="Texture2D" uid="uid://bpt1fgm06dwf2" path="res://game/ui/player_hud/weapon_select/fireball-icon.png" id="2_m3bgj"]
 [ext_resource type="Texture2D" uid="uid://ckrnblots40mb" path="res://game/ui/player_hud/weapon_select/bullet-icon.png" id="3_8kll8"]
-[ext_resource type="Texture2D" uid="uid://2l73qeabktgd" path="res://missing-texture.png" id="4_qgrx0"]
+[ext_resource type="Texture2D" uid="uid://2l73qeabktgd" path="res://assets/missing-texture.png" id="4_qgrx0"]
 [ext_resource type="Texture2D" uid="uid://d05vt8yp0sddu" path="res://game/ui/player_hud/weapon_select/frame-selected.png" id="4_yt7ou"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w47gf"]

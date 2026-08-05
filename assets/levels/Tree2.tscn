@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://dtsqlokbfv8w7" path="res://assets/dialogue/item_health_serum.dialogue" id="10_norl4"]
 [ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="11_eimtd"]
 [ext_resource type="Texture2D" uid="uid://b6oc8xnvv8gc0" path="res://assets/items/items.png" id="12_s31n8"]
-[ext_resource type="Texture2D" uid="uid://2l73qeabktgd" path="res://missing-texture.png" id="13_norl4"]
+[ext_resource type="Texture2D" uid="uid://2l73qeabktgd" path="res://assets/missing-texture.png" id="13_norl4"]
 
 [sub_resource type="Resource" id="Resource_s31n8"]
 script = ExtResource("4_ikp84")
