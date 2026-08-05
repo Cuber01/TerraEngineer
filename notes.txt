@@ -33,6 +33,7 @@ X implement deflect for gravity bullets
 - inventory taker and crafting station should use the same class 
 - projectile Area2D should be it's own scene for quick reuse
 - force export groups to be uncollapsed
+- move all connecting signals to code from godot
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump

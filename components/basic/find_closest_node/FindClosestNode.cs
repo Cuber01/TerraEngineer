@@ -48,16 +48,10 @@ public partial class FindClosestNode : Component
 	}
 	#endregion
 
-	public Vector2? FindClosest()
+	public Node2D GetClosest()
 	{
+		// Default for Node2D is null!
 		Node2D closest = nodes.OrderBy(p => p.GlobalPosition.DistanceSquaredTo(Actor.GlobalPosition)).FirstOrDefault();
-		if (closest == null)
-		{
-			return null;
-		}
-		else
-		{
-			return closest.GlobalPosition;
-		}
+		return closest;
 	}
 }

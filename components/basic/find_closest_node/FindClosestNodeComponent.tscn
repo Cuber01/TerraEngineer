@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ec2yuchckj8j" path="res://components/basic/find_closest_node/FindClosestNode.cs" id="1_wuud2"]
 
-[node name="FindClosestNodeComponent" type="Node2D" unique_id=682174972]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuud2"]
+
+[node name="FindClosestNodeComponent" type="Node2D" unique_id=682174972 node_paths=PackedStringArray("myArea")]
 script = ExtResource("1_wuud2")
+myArea = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1885958311]
 collision_layer = 0
@@ -11,3 +14,4 @@ collision_mask = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=518328256]
+shape = SubResource("RectangleShape2D_wuud2")

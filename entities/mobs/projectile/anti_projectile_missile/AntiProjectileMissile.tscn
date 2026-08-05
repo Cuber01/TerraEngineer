@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_wbvnx"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_tndt2"]
 [ext_resource type="PackedScene" uid="uid://beqp7pdwx1uca" path="res://components/basic/orbit/OrbitComponent.tscn" id="6_5vtmy"]
+[ext_resource type="PackedScene" uid="uid://styixi4tel7x" path="res://components/basic/find_closest_node/FindClosestNodeComponent.tscn" id="6_bumx1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j0mow"]
 animations = [{
@@ -19,6 +20,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2lll2"]
 size = Vector2(5, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5vtmy"]
+radius = 81.00617
 
 [node name="AntiProjectileMissile" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
 collision_layer = 0
@@ -43,7 +47,7 @@ shape = SubResource("RectangleShape2D_2lll2")
 [node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_wbvnx")]
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_tndt2")]
-lifetime = 30.0
+lifetime = 50.0
 
 [node name="OrbitComponent" parent="ComponentManager" unique_id=2029757835 instance=ExtResource("6_5vtmy")]
 orbitRadius = 10.0
@@ -51,5 +55,16 @@ speed = 90.0
 errorMargin = Vector2(2, 2)
 acceleration = 10.0
 
+[node name="FindClosestNodeComponent" parent="ComponentManager" unique_id=682174972 instance=ExtResource("6_bumx1")]
+LookForBodies = false
+
+[node name="Area2D" parent="ComponentManager/FindClosestNodeComponent" index="0" unique_id=1885958311]
+collision_mask = 64
+
+[node name="CollisionShape2D" parent="ComponentManager/FindClosestNodeComponent/Area2D" index="0" unique_id=518328256]
+shape = SubResource("CircleShape2D_5vtmy")
+
 [connection signal="area_entered" from="Area2D" to="." method="onAreaEntered"]
 [connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
+
+[editable path="ComponentManager/FindClosestNodeComponent"]
