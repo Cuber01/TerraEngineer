@@ -41,22 +41,23 @@ public partial class Projectile : Entity
 
     protected void OnHit(Node2D body)
     {
-        if (body is Entity mob)
+        if (body is Projectile antiProjectile)
         {
-            Health healthComp = mob.CM?.TryGetComponent<Health>();
-                healthComp?.ChangeHealth(-damage, this);
+            pierceOrDie();
+            antiProjectile.OnAntiProjectileHit(this);
+        }
+        else if (body is Entity mob)
+        { 
+            mob.CM?.TryGetComponent<Health>()
+                ?.ChangeHealth(-damage, this);
                 
             mob.CM?.TryGetComponent<KnockbackComponent>()
                 ?.ApplyKnockback(GlobalPosition, knockbackForce);
                 
             pierceOrDie();
-            
-            // Else ignore
         }
-        else
+        else // Body is solid ground
         {
-            // Hit solid ground
-
             if (breakOnWall)
             {
                 OnCollideDeath?.Invoke();
@@ -90,6 +91,8 @@ public partial class Projectile : Entity
             hitArea.SetCollisionMaskValue(Names.CollisionLayers.Player, true);
         }
     }
+
+    public void OnAntiProjectileHit(Projectile victim) => pierceOrDie();   
 
     private void pierceOrDie()
     {
