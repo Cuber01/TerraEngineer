@@ -66,9 +66,15 @@ public partial class ComponentManager : Node2D
         return (T) components[typeof(T)];
     }
 
-    public void InitComponents()
+    public void InitComponents(Node2D newActor=null)
     {
-        // Do not pass actor if we are a subcomponent
+        // We override the default actor (parent) here so that subcomponents know who the 
+        // original actor is
+        if(newActor != null)
+        {
+            actor = newActor;
+        }
+
         if (actor != null)
         {
             foreach (var pair in components)

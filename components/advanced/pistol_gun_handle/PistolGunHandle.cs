@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Godot;
 using TENamespace.advanced.blowtorch;
 using TENamespace.advanced.shotgun;
+using TENamespace.advanced.anti_projectile_launcher;
 
 namespace TENamespace.advanced.main_gun_wrapper;
 
@@ -11,6 +12,7 @@ public enum PistolGuns
 {
     Blowtorch,
     Rifle,
+    AntiProjectileLauncher
 }
 
 public interface IPistolGun
@@ -29,6 +31,7 @@ public partial class PistolGunHandle : AdvancedComponent, IGun
     public override void _Ready()
     {
         guns.Add(CM.GetComponent<Blowtorch>());
+        guns.Add(CM.GetComponent<AntiProjectileLauncher>());
     }
     
     public void Shoot(Vector2 position, Vector2 direction, float rotationDegrees)

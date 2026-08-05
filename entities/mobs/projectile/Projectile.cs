@@ -20,6 +20,7 @@ public partial class Projectile : Entity
     public Vector2 DirectionNormal;
     public Action OnLifetimeDeath;
     public Action OnCollideDeath;
+    public Node2D Creator;
     public ulong CreatorId;
 
     public override void _Ready()

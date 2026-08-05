@@ -6,4 +6,11 @@ namespace TENamespace.advanced;
 public partial class AdvancedComponent : Component
 {
     [Export] public ComponentManager CM;
+    
+    public override void Init(Node2D actor)
+    {
+        this.Actor = actor;
+        CM.InitComponents(actor);
+    }
+    
 }

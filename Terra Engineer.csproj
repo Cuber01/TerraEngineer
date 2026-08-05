@@ -23,4 +23,7 @@
   <ItemGroup>
     <EmbeddedResource Remove=".godot\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="entities\mobs\projectile\anti_projectile_missile\" />
+  </ItemGroup>
 </Project>

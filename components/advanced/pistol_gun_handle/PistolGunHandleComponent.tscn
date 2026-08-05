@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_0ik3n"]
 [ext_resource type="PackedScene" uid="uid://bxs10yht7u0v6" path="res://components/advanced/blowtorch/Blowtorch.tscn" id="3_vc4ry"]
 [ext_resource type="PackedScene" uid="uid://b7jygjsij4v6s" path="res://components/advanced/rifle/Rifle.tscn" id="4_7hyir"]
+[ext_resource type="PackedScene" uid="uid://01p63el06lf" path="res://components/advanced/anti_projectile_launcher/AntiProjectileLauncher.tscn" id="5_sw3hp"]
 
 [node name="PistolGunHandleComponent" type="Node2D" unique_id=355157996 node_paths=PackedStringArray("CM")]
 script = ExtResource("1_vc4ry")
@@ -14,3 +15,5 @@ CM = NodePath("ComponentManager")
 [node name="Blowtorch" parent="ComponentManager" unique_id=258556062 instance=ExtResource("3_vc4ry")]
 
 [node name="Rifle" parent="ComponentManager" unique_id=166074800 instance=ExtResource("4_7hyir")]
+
+[node name="AntiProjectileLauncher" parent="ComponentManager" unique_id=809387562 instance=ExtResource("5_sw3hp")]

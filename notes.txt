@@ -31,6 +31,7 @@ X implement deflect for gravity bullets
 - make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
 - inventory taker and crafting station should use the same class 
+- projectile Area2D should be it's own scene for quick reuse
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump
@@ -54,6 +55,9 @@ to-finish todo:
 X make collectibles display on map and mark themselves as collected dynamically
 X make pickupable item use metsys storage instead of SaveEntity component
 
+the search for sfx:
+- consider taking some from Burning Knight (MIT)
+- consider purchasing a pack from itch
 
 occasional stability issue when teleporting (changing scene):
  ERROR: System.InvalidOperationException: Handle is not initialized.

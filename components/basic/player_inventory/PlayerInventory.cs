@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using System;
+using TENamespace.advanced.anti_projectile_launcher;
 using TENamespace.advanced.main_gun_wrapper;
 using TENamespace.advanced.shotgun;
 using TENamespace.advanced.terraform_gun;
@@ -19,6 +20,7 @@ public partial class PlayerInventory : Component
         {"health_serum", new HealthSerumItem() },
         {"phase_shift", new PhaseShiftItem() },
         {"rifle", new RifleItem() },
+        {"anti_projectile_launcher", new AntiProjectileLauncherItem() },
         { "green_essence", new EssenceItem(Biomes.Forest) },
         { "blue_essence", new EssenceItem(Biomes.Ice) },
         { "orange_essence", new EssenceItem(Biomes.Desert) },
@@ -151,6 +153,18 @@ public class RifleItem : Item
     public void Activate(Player actor)
     {
         actor.CM.GetComponent<GunHandle>().CM.GetComponent<PistolGunHandle>().UnlockGun<Rifle>();
+    }
+    public void Deactivate(Player actor)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class AntiProjectileLauncherItem : Item
+{
+    public void Activate(Player actor)
+    {
+        actor.CM.GetComponent<GunHandle>().CM.GetComponent<PistolGunHandle>().UnlockGun<AntiProjectileLauncher>();
     }
     public void Deactivate(Player actor)
     {

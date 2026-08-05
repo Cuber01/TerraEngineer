@@ -32,4 +32,10 @@ public partial class ProjectileSpawner : Spawner<Projectile, ProjectileSpawner>
         return this;
     }
     
+    public ProjectileSpawner SetCreator(Node2D creator)
+    {
+        Instance.Creator = creator;
+        return this;
+    }
+    
 }
