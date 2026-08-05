@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bt24gnk7lyp7a"
+path="res://.godot/imported/item_phase_shift.dialogue-93bb601259efc432c23d0d6525fde0c0.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/item_phase_shift.dialogue"
+dest_files=["res://.godot/imported/item_phase_shift.dialogue-93bb601259efc432c23d0d6525fde0c0.tres"]
+
+[params]
+
+defaults=true

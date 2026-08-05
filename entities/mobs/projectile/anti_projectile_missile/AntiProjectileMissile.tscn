@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bx16j68de2lh2"]
+
+[ext_resource type="Script" uid="uid://dvfqbyb3tn5r2" path="res://entities/mobs/projectile/anti_projectile_missile/AntiProjectileMissile.cs" id="1_0f4eo"]
+[ext_resource type="Texture2D" uid="uid://b103b52w1xv47" path="res://entities/mobs/projectile/anti_projectile_missile/anti-air-missile.png" id="3_gs8n1"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_wbvnx"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_tndt2"]
+[ext_resource type="PackedScene" uid="uid://beqp7pdwx1uca" path="res://components/basic/orbit/OrbitComponent.tscn" id="6_5vtmy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j0mow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gs8n1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2lll2"]
+size = Vector2(5, 5)
+
+[node name="AntiProjectileMissile" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_0f4eo")
+hitArea = NodePath("Area2D")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
+sprite_frames = SubResource("SpriteFrames_j0mow")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=798235926]
+position = Vector2(4.5, 0)
+collision_layer = 512
+collision_mask = 132
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=262930762]
+position = Vector2(-4, 0.5)
+shape = SubResource("RectangleShape2D_2lll2")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_wbvnx")]
+
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("5_tndt2")]
+lifetime = 30.0
+
+[node name="OrbitComponent" parent="ComponentManager" unique_id=2029757835 instance=ExtResource("6_5vtmy")]
+orbitRadius = 10.0
+speed = 90.0
+errorMargin = Vector2(2, 2)
+acceleration = 10.0
+
+[connection signal="area_entered" from="Area2D" to="." method="onAreaEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]

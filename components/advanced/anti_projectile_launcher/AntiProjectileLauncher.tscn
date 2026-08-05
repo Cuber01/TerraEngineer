@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://01p63el06lf"]
+
+[ext_resource type="Script" uid="uid://bti87ejja2llx" path="res://components/advanced/anti_projectile_launcher/AntiProjectileLauncher.cs" id="1_6rdbn"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_ri1pd"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="3_2rcou"]
+[ext_resource type="PackedScene" uid="uid://bx16j68de2lh2" path="res://entities/mobs/projectile/anti_projectile_missile/AntiProjectileMissile.tscn" id="4_1okof"]
+
+[node name="AntiProjectileLauncher" type="Node2D" unique_id=809387562 node_paths=PackedStringArray("CM")]
+script = ExtResource("1_6rdbn")
+CM = NodePath("ComponentManager")
+
+[node name="ComponentManager" parent="." unique_id=341360435 instance=ExtResource("2_ri1pd")]
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=2067164743 instance=ExtResource("3_2rcou")]
+Scene = ExtResource("4_1okof")

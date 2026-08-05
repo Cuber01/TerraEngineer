@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://beqp7pdwx1uca"]
+
+[ext_resource type="Script" uid="uid://fqily543x300" path="res://components/basic/orbit/Orbit.cs" id="1_k6y43"]
+
+[node name="OrbitComponent" type="Node2D" unique_id=2029757835]
+script = ExtResource("1_k6y43")
