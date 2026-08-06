@@ -46,6 +46,10 @@ public partial class GuiMediator : Node
         }
         else
         {
+            if (currentUI != null)
+            {
+                close(currentUI);
+            }
             open(ui);
         }
     }
