@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 using TerraEngineer.entities.mobs;
 using Vector2 = Godot.Vector2;
 
@@ -135,5 +136,13 @@ public static class MathT
 
     public static bool IsTrue(Variant b) => b.VariantType != Variant.Type.Nil && (bool)b;
 
+    public static Dictionary CheckRaycast2D(Vector2 from, Vector2 to, uint collisionMask, PhysicsDirectSpaceState2D spaceState)
+    {
+        var query = PhysicsRayQueryParameters2D.Create(from, to);
+        query.CollisionMask = collisionMask;
+        query.CollideWithBodies = true;
+        query.CollideWithAreas = true;
 
+        return spaceState.IntersectRay(query);
+    }
 }

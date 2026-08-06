@@ -1,0 +1,174 @@
+[gd_scene format=4 uid="uid://bpp8sk6owgww3"]
+
+[ext_resource type="Script" uid="uid://otr0vf4l1sys" path="res://entities/mobs/creatures/penguin/Penguin.cs" id="1_rdwns"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_755hb"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_755hb"]
+[ext_resource type="PackedScene" uid="uid://bi7ha8busj1or" path="res://components/basic/jump/JumpComponent.tscn" id="4_cgwd7"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="5_svjfv"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_e4hr6"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_twyuc"]
+[ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_y63fw"]
+[ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_ssnq1"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_etioi"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_p6em7"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="12_rdwns"]
+[ext_resource type="PackedScene" uid="uid://88c4nexc5pli" path="res://entities/mobs/projectile/gravity_bullet/EggBullet.tscn" id="13_755hb"]
+
+[sub_resource type="Resource" id="Resource_755hb"]
+script = ExtResource("2_755hb")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_755hb"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAAAoAAACSAAAAUklGRooAAABXRUJQVlA4TH4AAAAvF0ACEEdAJADhgwMuOCP7apgbatpGYg7Cg/jx18qfVVfURgq0lwd+YAAr+JfD/AcAAP7falWDVMQjeSwNjCLJdjIkC18AUcG/k89xkfAEIIHCOk9DRP8nABDOLRQei54b5/K5aiD/KWG6haC3B7Z1VijgKuAsZ7MIWQZ0rwQ=")
+size_override = Vector2(24, 10)
+
+[sub_resource type="Animation" id="Animation_l6l3q"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rdwns"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6l3q"]
+_data = {
+&"idle": SubResource("Animation_l6l3q"),
+&"slide": SubResource("Animation_rdwns")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wgpp"]
+size = Vector2(12, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdwns"]
+size = Vector2(7, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_755hb"]
+size = Vector2(11, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgwd7"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("11_p6em7")
+shader_parameter/blink_color = Vector4(1, 1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 0)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
+[node name="Penguin" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("slideShape", "idleShape", "isGroundAhead", "isPlayerBelow", "CM", "Sprite")]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource("1_rdwns")
+slideShape = NodePath("CollisionShapeSlide")
+idleShape = NodePath("CollisionShapeIdle")
+isGroundAhead = NodePath("IsGroundAhead")
+isPlayerBelow = NodePath("IsPlayerBelow")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_755hb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
+texture_filter = 1
+position = Vector2(0, -1)
+texture = SubResource("PortableCompressedTexture2D_755hb")
+hframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/mobs/creatures/penguin/penguin.aseprite",
+"source_uid": 8839551898228510034
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0d2ddbb069fdc35f5afbb70057b9b90f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1283013631]
+libraries/ = SubResource("AnimationLibrary_l6l3q")
+
+[node name="CollisionShapeSlide" type="CollisionShape2D" parent="." unique_id=1219721195]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_2wgpp")
+disabled = true
+
+[node name="CollisionShapeIdle" type="CollisionShape2D" parent="." unique_id=633689198]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_rdwns")
+disabled = true
+
+[node name="IsGroundAhead" type="RayCast2D" parent="." unique_id=1959920216]
+position = Vector2(7, 0)
+target_position = Vector2(0, 13)
+
+[node name="IsPlayerBelow" type="RayCast2D" parent="." unique_id=768564763]
+position = Vector2(0, 4)
+collision_mask = 2
+
+[node name="ComponentManager" parent="." unique_id=1765219149 instance=ExtResource("3_755hb")]
+
+[node name="JumpComponent" parent="ComponentManager" unique_id=1935978130 instance=ExtResource("4_cgwd7")]
+jumpVelocity = 70.0
+
+[node name="MoveComponent" parent="ComponentManager" unique_id=1024852236 instance=ExtResource("5_svjfv")]
+speed = 160.0
+acceleration = 6.0
+friction = 10.0
+airResistance = 1.724
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=80804480 instance=ExtResource("6_e4hr6")]
+MaxHealth = 3
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1043660710 instance=ExtResource("7_twyuc")]
+
+[node name="ContactDamageComponent" parent="ComponentManager" unique_id=363340069 instance=ExtResource("8_y63fw")]
+
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" parent_id_path=PackedInt32Array(363340069, 47129053) index="0" unique_id=520614987]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_755hb")
+
+[node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_ssnq1")]
+
+[node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_etioi")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_cgwd7")])
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=461897190 instance=ExtResource("12_rdwns")]
+position = Vector2(0, 5)
+Scene = ExtResource("13_755hb")
+
+[editable path="ComponentManager/ContactDamageComponent"]

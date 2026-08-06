@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://88c4nexc5pli"]
+
+[ext_resource type="Script" uid="uid://cb5rs6w55qybf" path="res://entities/mobs/projectile/gravity_bullet/GravityBullet.cs" id="1_gyr5d"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_4n34m"]
+[ext_resource type="Texture2D" uid="uid://dg7yw0227nkve" path="res://entities/mobs/projectile/gravity_bullet/egg.png" id="3_gyr5d"]
+[ext_resource type="PackedScene" uid="uid://30g37quxgbk2" path="res://entities/mobs/projectile/EnemyBulletHitArea.tscn" id="4_btvf4"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="5_tv2ou"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="6_78j3e"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_dohqm"]
+
+[sub_resource type="Resource" id="Resource_mbhvt"]
+script = ExtResource("2_4n34m")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbhvt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gyr5d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bek6k"]
+size = Vector2(4, 5)
+
+[node name="EggBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_gyr5d")
+hitArea = NodePath("HitArea")
+knockbackForce = 50.0
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_mbhvt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
+sprite_frames = SubResource("SpriteFrames_mbhvt")
+
+[node name="HitArea" parent="." unique_id=1072028451 instance=ExtResource("4_btvf4")]
+
+[node name="CollisionShape2D" parent="HitArea" index="0" unique_id=656834007]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_bek6k")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("5_tv2ou")]
+
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("6_78j3e")]
+lifetime = 3.0
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("7_dohqm")]
+maxGravity = 400.0
+
+[editable path="HitArea"]
