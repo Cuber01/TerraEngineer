@@ -25,9 +25,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhuo2"]
 size = Vector2(18, 11)
 
-[node name="FlameProjectile" type="CharacterBody2D" unique_id=1046525801 node_paths=PackedStringArray("CM", "Sprite")]
+[node name="FlameProjectile" type="CharacterBody2D" unique_id=1046525801 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
 z_index = 3
 script = ExtResource("1_intoi")
+hitArea = NodePath("Area2D")
 piercing = 99
 breakOnWall = false
 CM = NodePath("ComponentManager")

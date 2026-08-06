@@ -25,8 +25,11 @@ public partial class Projectile : Entity
 
     public override void _Ready()
     {
-        hitArea.AreaEntered += onAreaEntered;
-        hitArea.BodyEntered += onBodyEntered;
+        if (hitArea != null)
+        {
+            hitArea.AreaEntered += onAreaEntered;
+            hitArea.BodyEntered += onBodyEntered;
+        }
         
         CM.InitComponents();
         if(OnLifetimeDeath != null)
