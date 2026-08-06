@@ -25,6 +25,9 @@ public partial class Projectile : Entity
 
     public override void _Ready()
     {
+        hitArea.AreaEntered += onAreaEntered;
+        hitArea.BodyEntered += onBodyEntered;
+        
         CM.InitComponents();
         if(OnLifetimeDeath != null)
             CM.GetComponent<Lifetime>().LifetimeEnded += () => OnLifetimeDeath.Invoke();
@@ -40,11 +43,6 @@ public partial class Projectile : Entity
         {
             OnDeflected();
         }
-        else
-        {
-            throw new Exception($"Projectile collided with unknown area: {area.Name}");
-        }
-        
     }
     
     private void onBodyEntered(Node2D body)

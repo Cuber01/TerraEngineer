@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_q71h5"]
 [ext_resource type="Texture2D" uid="uid://matrfljl1nab" path="res://entities/mobs/projectile/basic_bullet/common-bullet.png" id="3_u806n"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_3jrf3"]
+[ext_resource type="PackedScene" uid="uid://30g37quxgbk2" path="res://entities/mobs/projectile/EnemyBulletHitArea.tscn" id="4_u806n"]
 [ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="5_t483a"]
 [ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="6_u806n"]
 
@@ -22,14 +23,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlo8j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u806n"]
 size = Vector2(3, 3)
 
 [node name="BasicBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_q71h5")
-hitArea = NodePath("Area2D")
+hitArea = NodePath("HitArea")
 knockbackForce = 50.0
 CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
@@ -38,14 +39,11 @@ ExportedSpriteWrapper = SubResource("Resource_mbhvt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
 sprite_frames = SubResource("SpriteFrames_msxgl")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=798235926]
-position = Vector2(4.5, 0)
-collision_layer = 64
-collision_mask = 643
+[node name="HitArea" parent="." unique_id=1072028451 instance=ExtResource("4_u806n")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=262930762]
-position = Vector2(-4, 0.5)
-shape = SubResource("RectangleShape2D_xlo8j")
+[node name="CollisionShape2D" parent="HitArea" index="0" unique_id=656834007]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_u806n")
 
 [node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_3jrf3")]
 
@@ -57,5 +55,4 @@ speed = 200.0
 acceleration = 0.95
 airResistance = 0.0
 
-[connection signal="area_entered" from="Area2D" to="." method="onAreaEntered"]
-[connection signal="body_entered" from="Area2D" to="." method="onBodyEntered"]
+[editable path="HitArea"]

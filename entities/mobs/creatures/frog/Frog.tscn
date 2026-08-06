@@ -112,7 +112,6 @@ collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_y3mso")
 
