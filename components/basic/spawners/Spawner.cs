@@ -6,6 +6,7 @@ namespace TENamespace.basic.builders;
 public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawner<T, Me>
 {
     [Export] protected PackedScene Scene;
+    [Export] public Node2D SpawnPosition = null; // Optional: Can also be set in code via SetPosition
 
     protected Node Main;
     protected T Instance;
@@ -17,6 +18,11 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
 
     public virtual T Build()
     {
+        if(Instance.Position == Vector2.Zero && SpawnPosition != null)
+        {
+            Instance.Position = SpawnPosition.Position;
+        }
+        
         return Instance;
     }
 
