@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using TENamespace.health;
 using TerraEngineer.game.sprite;
 using Shader = TENamespace.basic.shader.Shader;
@@ -38,17 +39,7 @@ public partial class Creature : Entity
         Init();
     }
 
-    protected void FlipIfHitWall()
-    {
-        for(int i = 0; i < GetSlideCollisionCount(); i++)
-        {
-            Vector2 normal = GetSlideCollision(i).GetNormal();
-            if (normal == new Vector2(-(int)Facing, 0))
-            {
-                Flip();
-            }
-        }
-    }
+
     
 
 }

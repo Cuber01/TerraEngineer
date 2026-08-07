@@ -70,6 +70,9 @@ public partial class Entity : CharacterBody2D
         SpriteWrapper.Flip();
     }
     
+    #region flipping
+    public void Flip() => Flip(DirectionX.None);
+    
     public void Flip(DirectionX side=DirectionX.None)
     {
         if ((side == DirectionX.None || (int)side == -(int)Facing) && Sprite != null)
@@ -89,9 +92,25 @@ public partial class Entity : CharacterBody2D
 
     protected virtual void FlipEffect()
     {
-        Facing = (DirectionX)(-(int)Facing);
+        Facing = Facing.Opposite();
         SpriteWrapper.Flip();
     }
+    
+    protected void FlipIfHitWall() => DoActionIfHitWall(Flip);
+
+    protected void DoActionIfHitWall(Action action)
+    {
+        for(int i = 0; i < GetSlideCollisionCount(); i++)
+        {
+            Vector2 normal = GetSlideCollision(i).GetNormal();
+            if (normal == new Vector2(-(int)Facing, 0))
+            {
+                action.Invoke();
+                return;
+            }
+        }
+    }
+    #endregion
 
     public virtual void Die()
     {
