@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cfx3l5qv1ljxs"
+path="res://.godot/imported/snowball.ase-c7616fcada443edd12d6b52ba3e183ac.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/yeti/snowball.ase"
+dest_files=["res://.godot/imported/snowball.ase-c7616fcada443edd12d6b52ba3e183ac.res"]
+
+[params]
+
