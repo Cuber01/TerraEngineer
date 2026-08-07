@@ -1,0 +1,179 @@
+[gd_scene format=4 uid="uid://bc2pkjtg2ft1c"]
+
+[ext_resource type="Script" uid="uid://biio7bfq72kdb" path="res://entities/mobs/creatures/yeti/Yeti.cs" id="1_11kml"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_m2cht"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_kw2oo"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="6_3bqy8"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_mjibf"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="8_8imd1"]
+[ext_resource type="PackedScene" uid="uid://cvcnpnyey4qmj" path="res://entities/mobs/creatures/yeti/Snowball.tscn" id="8_m2cht"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_nlfdb"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_n2v3j"]
+
+[sub_resource type="Resource" id="Resource_q7buq"]
+script = ExtResource("2_m2cht")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_rf8h3"]
+_data = PackedByteArray("AAADAAUAAAABAAAADwAAABMAAADGAAAAUklGRr4AAABXRUJQVlA4TLIAAAAvDoAEEFdgJAASEgdoEF1g9qIX3eINNY2kQFddfQJAwetfBnKoUBvJVvKlCIfMQhqj/8TmPwDw/9csknAkHos3Y1NntdxuD7itbVtKjrNmkP3U95f5VIsdMIXO91XAIySmXuwhov8TAAtmi/Qn0kz5VCSgKOXawS1LkThne4XvyXY0hbifzOSxz2avkHPOFgqHh0LqgUEeHTw0RDRrHkOo05ZB3v4aoK+aag1w4AAwTuME")
+size_override = Vector2(15, 19)
+
+[sub_resource type="Animation" id="Animation_lousp"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y3mso"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_g0rnh"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_l6l3q"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jqf4n"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6l3q"]
+_data = {
+&"default": SubResource("Animation_lousp"),
+&"fly-downwards": SubResource("Animation_y3mso"),
+&"fly-upwards": SubResource("Animation_g0rnh"),
+&"idle": SubResource("Animation_l6l3q"),
+&"start-jump": SubResource("Animation_jqf4n")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
+size = Vector2(15, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7buq"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("11_n2v3j")
+shader_parameter/blink_color = Vector4(1, 1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 0)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
+[node name="Yeti" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource("1_11kml")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_q7buq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
+texture_filter = 1
+position = Vector2(0, -1)
+texture = SubResource("PortableCompressedTexture2D_rf8h3")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/mobs/creatures/yeti/yeti.ase",
+"source_uid": 4825035777433693706
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ae7961a49e432ab3e487e9068f57f894"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1283013631]
+libraries/ = SubResource("AnimationLibrary_l6l3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219721195]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_0f11y")
+
+[node name="ComponentManager" parent="." unique_id=1765219149 instance=ExtResource("3_kw2oo")]
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=80804480 instance=ExtResource("6_3bqy8")]
+MaxHealth = 3
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1043660710 instance=ExtResource("7_mjibf")]
+
+[node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_nlfdb")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_q7buq")])
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=1179213390 node_paths=PackedStringArray("SpawnPosition") instance=ExtResource("8_8imd1")]
+Scene = ExtResource("8_m2cht")
+SpawnPosition = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="ComponentManager/ProjectileSpawnerComponent" unique_id=1141968812]
+position = Vector2(-15, 0)

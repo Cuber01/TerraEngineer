@@ -11,11 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://cviknho0o5vvg" path="res://gfx/droplet-dropper/Dropper.tscn" id="12_fumxt"]
 [ext_resource type="PackedScene" uid="uid://c0hhbqey7klp0" path="res://gfx/wire/vine.tscn" id="12_nt7ux"]
 [ext_resource type="PackedScene" uid="uid://boooxlqm536jd" path="res://entities/objects/autodoc/AutoDoc.tscn" id="13_fumxt"]
+[ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="15_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://dbbnukdeoc451" path="res://entities/mobs/creatures/toxic_plant/ToxicPlant.tscn" id="15_xibyr"]
 [ext_resource type="PackedScene" uid="uid://v2staehrofra" path="res://entities/mobs/creatures/ufo/Ufo.tscn" id="16_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="17_r1ybn"]
 
-[sub_resource type="Resource" id="Resource_epa2u"]
+[sub_resource type="Resource" id="Resource_r1ybn"]
 script = ExtResource("3_xibyr")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -38,8 +39,8 @@ tile_map_data = PackedByteArray("AAD1/wgAAAADAAIAAAD1/wcAAAAHAAEAAAD0/wgAAAAHAAI
 tile_set = ExtResource("2_v3p77")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("2_epa2u")]
-position = Vector2(273, 136)
-ExportedSpriteWrapper = SubResource("Resource_epa2u")
+position = Vector2(234, 36)
+ExportedSpriteWrapper = SubResource("Resource_r1ybn")
 
 [node name="RoomInstance" parent="." unique_id=646333494 instance=ExtResource("5_v3p77")]
 
@@ -200,3 +201,6 @@ position = Vector2(641, 68)
 
 [node name="Moth" parent="." unique_id=1583262676 instance=ExtResource("17_r1ybn")]
 position = Vector2(529, 64)
+
+[node name="Yeti" parent="." unique_id=144688187 instance=ExtResource("15_8k2kr")]
+position = Vector2(438, 131)

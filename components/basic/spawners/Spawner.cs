@@ -20,7 +20,7 @@ public partial class Spawner<T, Me> : Component where T : Node2D where Me: Spawn
     {
         if(Instance.Position == Vector2.Zero && SpawnPosition != null)
         {
-            Instance.Position = SpawnPosition.Position;
+            Instance.Position = SpawnPosition.GlobalPosition;
         }
         
         return Instance;

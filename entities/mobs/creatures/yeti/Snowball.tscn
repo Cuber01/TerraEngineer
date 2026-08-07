@@ -1,0 +1,180 @@
+[gd_scene format=4 uid="uid://cvcnpnyey4qmj"]
+
+[ext_resource type="Script" uid="uid://dh1obmxwgh382" path="res://entities/mobs/creatures/yeti/Snowball.cs" id="1_sy5ia"]
+[ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="2_jeh18"]
+[ext_resource type="PackedScene" uid="uid://30g37quxgbk2" path="res://entities/mobs/projectile/EnemyBulletHitArea.tscn" id="4_fo652"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="5_awxjs"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="6_lhyyy"]
+[ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="7_jeh18"]
+[ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_pvlro"]
+
+[sub_resource type="Resource" id="Resource_uhsm2"]
+script = ExtResource("2_jeh18")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_jeh18"]
+_data = PackedByteArray("AAADAAUAAAABAAAAKgAAABwAAADsAAAAUklGRuQAAABXRUJQVlA4TNgAAAAvKcAGEB8gECD8zynQYkMgQPgvE+CHQIDwf2fBiPkPwD9lAZxq25Y3T8rciSXgxvhJKP04fWui4pcQpqnw0/s4aP2wjfdLSUFE/ycA/3fFdVfBlVRgJpFkW7jLpnAnMB01p+oZEckWIo7VSeTDLQw4ZmuCQXwC6Y7Xq68o4yWUXSTcR8plpF9IZA/1r3GYJSAdB47htB2M9jjl8GA82VRXMmU82VJ32ab1hK6tukdHJKwPXVXSsuvIY9Yz/1MN4s97xs+qrB0b8kKlvBhV5zKyr2WFT8C+QAM=")
+size_override = Vector2(42, 28)
+
+[sub_resource type="Animation" id="Animation_jeh18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../HitArea/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uhsm2"]
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(9, 9), Vector2(10, 10), Vector2(11, 11), Vector2(12, 12), Vector2(14, 14)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0.5, -0.25), Vector2(1, -1), Vector2(1.5, -1.5), Vector2(1.5, -2.5), Vector2(2.5, -3.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../HitArea/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0.5, -0.25), Vector2(1, -1), Vector2(1.5, -1.5), Vector2(1.5, -2.5), Vector2(2.5, -3.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6oblk"]
+_data = {
+&"RESET": SubResource("Animation_jeh18"),
+&"idle": SubResource("Animation_uhsm2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bek6k"]
+size = Vector2(9, 9)
+
+[node name="Snowball" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
+collision_layer = 64
+script = ExtResource("1_sy5ia")
+hitArea = NodePath("HitArea")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("Sprite2D")
+ExportedSpriteWrapper = SubResource("Resource_uhsm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2077597627]
+texture_filter = 1
+position = Vector2(3, -3)
+texture = SubResource("PortableCompressedTexture2D_jeh18")
+hframes = 3
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"convert_fps_field": 60.0,
+"convert_ms_field": 16.0,
+"convert_to_fps": false,
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Sprite2D/AnimationPlayer",
+"scale": "1.0",
+"slice": "",
+"source": "res://entities/mobs/creatures/yeti/snowball.ase",
+"source_uid": 5172987594856860892
+}
+metadata/_aseprite_wizard_source_file_hash_ = "2001dbc72934d760ffe9438679d49589"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=561117518]
+libraries/ = SubResource("AnimationLibrary_6oblk")
+autoplay = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=675316495]
+shape = SubResource("RectangleShape2D_bek6k")
+
+[node name="HitArea" parent="." unique_id=1072028451 instance=ExtResource("4_fo652")]
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=965429688]
+shape = SubResource("RectangleShape2D_bek6k")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("5_awxjs")]
+
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("6_lhyyy")]
+lifetime = 10.0
+
+[node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("7_pvlro")]
+maxGravity = 400.0
+
+[node name="MoveComponent" parent="ComponentManager" unique_id=1838368449 instance=ExtResource("7_jeh18")]
+speed = 130.0
+acceleration = 0.1
+
+[editable path="HitArea"]
