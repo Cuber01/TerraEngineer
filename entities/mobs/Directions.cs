@@ -5,6 +5,8 @@ public enum DirectionX
     Left=-1,
     Right=1,
     None=0
+    
+    
 }
 
 public enum Direction4

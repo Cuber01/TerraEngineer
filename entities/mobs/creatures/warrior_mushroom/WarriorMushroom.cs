@@ -100,7 +100,7 @@ public partial class WarriorMushroom : Creature, ISibling
         {
             Finished = false;
             
-            DirectionX backwards = (DirectionX)(-(int)Actor.Facing);
+            DirectionX backwards = Actor.Facing.Opposite();
             Actor.CM.GetComponent<Jump>().AttemptJump(0.7f);
             Actor.CM.GetComponent<Move>().Walk(backwards, 1f, BackwardMoveMultiplier);
 
@@ -110,7 +110,7 @@ public partial class WarriorMushroom : Creature, ISibling
 
         public override void Update(float dt)
         {
-            DirectionX backwards = (DirectionX)(-(int)Actor.Facing);
+            DirectionX backwards = Actor.Facing.Opposite();
             Actor.CM.GetComponent<Move>().Walk(backwards, dt, BackwardMoveMultiplier);
         }
 

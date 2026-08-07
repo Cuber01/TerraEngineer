@@ -58,9 +58,7 @@ public partial class Penguin : Creature
             {
                 CM.GetComponent<ProjectileSpawner>()
                     .Start()
-                    .SetDirectionNormal(new Vector2((int)Facing, 0))
                     .SetPosition(GlobalPosition)
-                    .SetCreatorId(GetInstanceId())
                     .AddToGame()
                     .Build();
             
