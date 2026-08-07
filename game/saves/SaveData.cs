@@ -208,6 +208,16 @@ public partial class SaveData : Node
         }
         
     }
+
+    public void Say()
+    {
+        GD.Print("say");
+    }
+
+    public bool Very()
+    {
+        return true;
+    }
     
     // We need to convert it to a really weird array in order for the comparison to work...
     public static GodotArray VecToParseableArray(Vector2I coords)
