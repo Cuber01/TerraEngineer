@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgo3q10t643ca" path="res://components/basic/move/MoveComponent.tscn" id="7_jeh18"]
 [ext_resource type="PackedScene" uid="uid://bp0aqjgq2lsmf" path="res://components/basic/gravity/GravityComponent.tscn" id="7_pvlro"]
 
-[sub_resource type="Resource" id="Resource_uhsm2"]
+[sub_resource type="Resource" id="Resource_jeh18"]
 script = ExtResource("2_jeh18")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -121,7 +121,7 @@ script = ExtResource("1_sy5ia")
 hitArea = NodePath("HitArea")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_uhsm2")
+ExportedSpriteWrapper = SubResource("Resource_jeh18")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2077597627]
 texture_filter = 1

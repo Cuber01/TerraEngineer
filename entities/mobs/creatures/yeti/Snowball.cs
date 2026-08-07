@@ -8,6 +8,7 @@ public partial class Snowball : Projectile
 {
 	public override void _Ready()
 	{
+		base._Ready();
 		InitSpriteWrapper();	
 	}
 	
