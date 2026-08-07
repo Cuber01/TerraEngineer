@@ -41,7 +41,7 @@ sprite_frames = SubResource("SpriteFrames_mbhvt")
 
 [node name="HitArea" parent="." unique_id=1072028451 instance=ExtResource("4_btvf4")]
 
-[node name="CollisionShape2D" parent="HitArea" index="0" unique_id=656834007]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitArea" unique_id=1660103940]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_bek6k")
 
@@ -52,5 +52,3 @@ lifetime = 3.0
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("7_dohqm")]
 maxGravity = 400.0
-
-[editable path="HitArea"]
