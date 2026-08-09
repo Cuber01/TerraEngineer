@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://k3r6y3y067bv"]
+
+[ext_resource type="Script" uid="uid://bbaow2gpifc78" path="res://components/advanced/spawn_scheduler/CreatureSpawnScheduler.cs" id="1_p5jjb"]
+
+[node name="CreatureSpawnScheduler" type="Node2D" unique_id=1039981081]
+script = ExtResource("1_p5jjb")

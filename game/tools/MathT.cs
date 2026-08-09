@@ -16,6 +16,14 @@ public static class MathT
 
     private static Random random = new Random();
 
+    public static Vector2 RandomPositionInRect(Vector2 rectLeftUpCornerPos, Vector2 rectSize)
+    {
+        return new Vector2(
+            RandomFloat(rectLeftUpCornerPos.X, rectLeftUpCornerPos.X + rectSize.X),
+            RandomFloat(rectLeftUpCornerPos.Y, rectLeftUpCornerPos.Y + rectSize.Y)
+        );
+    }
+    
     public static float RandomFloat(float min, float max)
     {
         if (min == max) return min;

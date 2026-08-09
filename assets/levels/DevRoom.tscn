@@ -10,9 +10,11 @@
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="11_ryq83"]
 [ext_resource type="PackedScene" uid="uid://cviknho0o5vvg" path="res://gfx/droplet-dropper/Dropper.tscn" id="12_fumxt"]
 [ext_resource type="PackedScene" uid="uid://c0hhbqey7klp0" path="res://gfx/wire/vine.tscn" id="12_nt7ux"]
-[ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="13_epa2u"]
+[ext_resource type="PackedScene" uid="uid://k3r6y3y067bv" path="res://components/advanced/spawn_scheduler/CreatureSpawnScheduler.tscn" id="13_epa2u"]
 [ext_resource type="PackedScene" uid="uid://boooxlqm536jd" path="res://entities/objects/autodoc/AutoDoc.tscn" id="13_fumxt"]
+[ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawnerComponent.tscn" id="14_xibyr"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="15_8k2kr"]
+[ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="15_r1ybn"]
 
 [sub_resource type="Resource" id="Resource_xibyr"]
 script = ExtResource("3_xibyr")
@@ -183,12 +185,23 @@ position = Vector2(331, 28)
 [node name="Dropper" parent="." unique_id=1306450557 instance=ExtResource("12_fumxt")]
 position = Vector2(405, 28)
 
-[node name="AutoDoc" parent="." unique_id=912996181 instance=ExtResource("13_fumxt")]
-position = Vector2(150, 92)
-
 [node name="Yeti" parent="." unique_id=144688187 instance=ExtResource("15_8k2kr")]
 position = Vector2(750, 99)
 ExportedSpriteWrapper = SubResource("Resource_8k2kr")
 
-[node name="Snowdrone" parent="." unique_id=556815162 instance=ExtResource("13_epa2u")]
-position = Vector2(309, 84)
+[node name="AutoDoc" parent="." unique_id=912996181 instance=ExtResource("13_fumxt")]
+position = Vector2(150, 92)
+
+[node name="CreatureSpawnScheduler" parent="." unique_id=1039981081 node_paths=PackedStringArray("spawner", "spawnSpace") instance=ExtResource("13_epa2u")]
+position = Vector2(206, 43)
+spawner = NodePath("CreatureSpawnerComponent")
+spawnSpace = NodePath("ReferenceRect")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CreatureSpawnScheduler" unique_id=1001742058]
+offset_left = -47.0
+offset_top = -7.0
+offset_right = -7.0
+offset_bottom = 33.0
+
+[node name="CreatureSpawnerComponent" parent="CreatureSpawnScheduler" unique_id=974395419 instance=ExtResource("14_xibyr")]
+Scene = ExtResource("15_r1ybn")
