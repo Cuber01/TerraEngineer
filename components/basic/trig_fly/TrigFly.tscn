@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxru841j8paxb"]
+
+[ext_resource type="Script" uid="uid://dqs8kiylscb6e" path="res://components/basic/trig_fly/TrigFly.cs" id="1_bmdpa"]
+
+[node name="TrigFly" type="Node2D" unique_id=612156419]
+script = ExtResource("1_bmdpa")

@@ -8,19 +8,19 @@ public partial class FreeFly : Component
 {
     [ExportGroup("External")]
     
-    [Export] private float speed = 50.0f;
+    [Export] protected float speed = 50.0f;
     [Export] private Vector2 errorMargin = new Vector2(5f, 5f);
-    [Export] private float acceleration = 0.25f;
+    [Export] protected float acceleration = 0.25f;
     [Export] private float airResistance = 0.1f;
 
-    private Entity entityActor;
+    protected Entity EntityActor;
 
     public override void Init(Node2D actor)
     {
         base.Init(actor);
         if (actor is Entity entity)
         {
-            entityActor = entity;
+            EntityActor = entity;
         }
         else
         {
@@ -30,16 +30,24 @@ public partial class FreeFly : Component
 
     public void FlyInDirection(Vector2 directionNormal, float dt)
     {
-        entityActor.velocity.X = MathT.Lerp(entityActor.velocity.X, directionNormal.X * speed, acceleration, dt);
-        entityActor.velocity.Y = MathT.Lerp(entityActor.velocity.Y, directionNormal.Y * speed, acceleration, dt);
+        EntityActor.velocity.X = MathT.Lerp(EntityActor.velocity.X, directionNormal.X * speed, acceleration, dt);
+        EntityActor.velocity.Y = MathT.Lerp(EntityActor.velocity.Y, directionNormal.Y * speed, acceleration, dt);
     }
 
-    public void FlyToPoint(Vector2 point, float dt)
+    public void FlyToPoint(Vector2 point, float dt, Action<Vector2, float> flyStyle = null)
     {
         if (!isAtPoint(Actor.GlobalPosition, point))
         {
             Vector2 direction = (point - Actor.GlobalPosition).Normalized();
-            FlyInDirection(direction, dt);
+            if (flyStyle == null)
+            {
+                FlyInDirection(direction, dt);    
+            }
+            else
+            {
+                flyStyle(direction, dt);
+            }
+            
         }
     }
 
@@ -51,7 +59,7 @@ public partial class FreeFly : Component
     
     private void updateAirResistance(float dt)
     {
-        entityActor.velocity = MathT.Lerp(entityActor.velocity, Vector2.Zero, airResistance, dt);
+        EntityActor.velocity = MathT.Lerp(EntityActor.velocity, Vector2.Zero, airResistance, dt);
     }
 
     public void MultiplyAcceleration(float by)
