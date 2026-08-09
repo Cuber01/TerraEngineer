@@ -19,11 +19,14 @@ public partial class AnimatedWrapper : SpriteWrapper
     public override void Flip() => animSprite.FlipH = !animSprite.FlipH;
     public override bool GetFlipH() => animSprite.FlipH;
     public override void SetFrame(int num) => animSprite.Frame = num;
-
+    public override int GetFrameCount(StringName anim) => animSprite.SpriteFrames.GetFrameCount(anim);
+    public override int GetFrameIndex() => animSprite.Frame;
+    
     public override void SetTexture(Texture2D texture)
     {
         animSprite.SpriteFrames = (SpriteFrames)animSprite.SpriteFrames.Duplicate();
         animSprite.SpriteFrames.SetFrame(Names.Animations.Default, 0, (Texture2D)texture.Duplicate());    
     }
     
+
 }

@@ -37,4 +37,14 @@ public partial class PlayerWrapper : SpriteWrapper
     {
         throw new System.NotImplementedException();
     }
+    
+    public override int GetFrameCount(StringName anim)
+    {
+        throw new System.NotImplementedException();
+    }
+    
+    public override int GetFrameIndex()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c26ebfwvbuac8"
+path="res://.godot/imported/snowdrone.ase-e9eb5b7cfb85c7e3362da998bd2b4999.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/snowdrone/snowdrone.ase"
+dest_files=["res://.godot/imported/snowdrone.ase-e9eb5b7cfb85c7e3362da998bd2b4999.res"]
+
+[params]
+

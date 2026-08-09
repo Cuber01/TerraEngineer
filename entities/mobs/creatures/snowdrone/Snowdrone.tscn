@@ -1,0 +1,124 @@
+[gd_scene format=4 uid="uid://rk0413hw3mha"]
+
+[ext_resource type="Script" uid="uid://ca47tay1j3ega" path="res://entities/mobs/creatures/snowdrone/Snowdrone.cs" id="1_cws8p"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_x0qwc"]
+[ext_resource type="PackedScene" uid="uid://30g37quxgbk2" path="res://entities/mobs/projectile/EnemyBulletHitArea.tscn" id="3_8fius"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_drjt6"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_cws8p"]
+[ext_resource type="PackedScene" uid="uid://dxru841j8paxb" path="res://components/basic/trig_fly/TrigFly.tscn" id="6_8fius"]
+
+[sub_resource type="Resource" id="Resource_8fius"]
+script = ExtResource("2_x0qwc")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_x0qwc"]
+_data = PackedByteArray("AAADAAUAAAABAAAADwAAAA4AAACMAAAAUklGRoQAAABXRUJQVlA4THcAAAAvDkADED+gkI0kaB1W4CM/orM4jdMgEoAwwQjdSwt1UxAJQHghuuCsawY4Yv4DgP/XRpIkl5rFduAokiTVysdXfgaegSeBjMCnK3//ESwhov8T4M8BgTzIC8gDwcvPQze/pHo4X5wytMWzfeJ8WZoDpOf2+cIpAwA=")
+size_override = Vector2(15, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cws8p"]
+atlas = SubResource("PortableCompressedTexture2D_x0qwc")
+region = Rect2(0, 0, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fius"]
+atlas = SubResource("PortableCompressedTexture2D_x0qwc")
+region = Rect2(5, 0, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drjt6"]
+atlas = SubResource("PortableCompressedTexture2D_x0qwc")
+region = Rect2(10, 0, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2776"]
+atlas = SubResource("PortableCompressedTexture2D_x0qwc")
+region = Rect2(0, 7, 5, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovi11"]
+atlas = SubResource("PortableCompressedTexture2D_x0qwc")
+region = Rect2(5, 7, 5, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41p71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cws8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fius")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drjt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drjt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2776")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovi11")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cws8p"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bek6k"]
+resource_local_to_scene = true
+size = Vector2(3, 3)
+
+[node name="Snowdrone" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
+z_index = 2
+collision_layer = 68
+collision_mask = 0
+script = ExtResource("1_cws8p")
+hitArea = NodePath("HitArea")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_8fius")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1817075254]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_41p71")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/mobs/creatures/snowdrone/snowdrone.ase",
+"source_uid": 6732180807312614581
+}
+metadata/_aseprite_wizard_source_file_hash_ = "33ee3292c79cf3ee4f0042b7300ae522"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41560275]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_cws8p")
+
+[node name="HitArea" parent="." unique_id=1072028451 instance=ExtResource("3_8fius")]
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=965429688]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_bek6k")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("4_drjt6")]
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=1469763198 instance=ExtResource("5_cws8p")]
+MaxHealth = 1
+invincibilityTimeOnHit = 0.0
+
+[node name="TrigFly" parent="ComponentManager" unique_id=612156419 instance=ExtResource("6_8fius")]
+frequency = 1.0
+amplitude = 60.0
+acceleration = 0.4
+
+[editable path="HitArea"]

@@ -30,11 +30,12 @@ X find way to reuse states like in a decorator pattern (note: in decorator patte
 X implement deflect for gravity bullets
 - make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
-- inventory taker and crafting station should use the same class 
+N inventory taker and crafting station should use the same class (tried and failed, they have different behaviour, and are hard to easily break up into smaller segments)
 X projectile Area2D should be it's own scene for quick reuse
-- force export groups to be uncollapsed
+N force export groups to be uncollapsed (this is not supported I think)
 - move all connecting signals to code from godot
 - try to cut down on usage of editable children for components?
+- move reusable systems to a commons folder?
 
 todo balance:
 - make zombie's jump / detection avoidable with double jump, but not with normal jump

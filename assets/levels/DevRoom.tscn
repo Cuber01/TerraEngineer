@@ -10,13 +10,11 @@
 [ext_resource type="Script" uid="uid://dfppmnngy2wx4" path="res://addons/ropesim/RopeRendererLine2D.gd" id="11_ryq83"]
 [ext_resource type="PackedScene" uid="uid://cviknho0o5vvg" path="res://gfx/droplet-dropper/Dropper.tscn" id="12_fumxt"]
 [ext_resource type="PackedScene" uid="uid://c0hhbqey7klp0" path="res://gfx/wire/vine.tscn" id="12_nt7ux"]
+[ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="13_epa2u"]
 [ext_resource type="PackedScene" uid="uid://boooxlqm536jd" path="res://entities/objects/autodoc/AutoDoc.tscn" id="13_fumxt"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="15_8k2kr"]
-[ext_resource type="PackedScene" uid="uid://dbbnukdeoc451" path="res://entities/mobs/creatures/toxic_plant/ToxicPlant.tscn" id="15_xibyr"]
-[ext_resource type="PackedScene" uid="uid://v2staehrofra" path="res://entities/mobs/creatures/ufo/Ufo.tscn" id="16_8k2kr"]
-[ext_resource type="PackedScene" uid="uid://c7lheehhbvylp" path="res://entities/mobs/creatures/moth/Moth.tscn" id="17_r1ybn"]
 
-[sub_resource type="Resource" id="Resource_r1ybn"]
+[sub_resource type="Resource" id="Resource_xibyr"]
 script = ExtResource("3_xibyr")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -29,6 +27,10 @@ shader_parameter/seed = 0.2430000115425
 shader_parameter/tiles_per_unit = 5.0000002375
 shader_parameter/line_length_scale = 0.15625
 
+[sub_resource type="Resource" id="Resource_8k2kr"]
+script = ExtResource("3_xibyr")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"DevRoom"
 
@@ -39,8 +41,8 @@ tile_map_data = PackedByteArray("AAD1/wgAAAADAAIAAAD1/wcAAAAHAAEAAAD0/wgAAAAHAAI
 tile_set = ExtResource("2_v3p77")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("2_epa2u")]
-position = Vector2(234, 36)
-ExportedSpriteWrapper = SubResource("Resource_r1ybn")
+position = Vector2(792, 142)
+ExportedSpriteWrapper = SubResource("Resource_xibyr")
 
 [node name="RoomInstance" parent="." unique_id=646333494 instance=ExtResource("5_v3p77")]
 
@@ -61,6 +63,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope3" unique_id=1605863389]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_lngq4")
+position = Vector2(377, -41)
 points = PackedVector2Array(0, 0, 0, 7.691948, 0, 15.185944, 0, 22.426239, 0, 29.37796, 0, 36.020515, 0, 42.342316, 0, 48.33705, 0, 54.001343, 0, 59.333496, 0, 64.333496)
 width = 4.0
 texture_mode = 1
@@ -85,6 +88,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 [node name="RopeRendererLine2D" type="Line2D" parent="Rope2" unique_id=1057960365]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_lngq4")
+position = Vector2(377, -41)
 points = PackedVector2Array(0, 0, 0, 7.691948, 0, 15.185944, 0, 22.426239, 0, 29.37796, 0, 36.020515, 0, 42.342316, 0, 48.33705, 0, 54.001343, 0, 59.333496, 0, 64.333496)
 width = 4.0
 texture_mode = 1
@@ -174,12 +178,7 @@ script = ExtResource("11_ryq83")
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Vine" parent="." unique_id=1921563168 instance=ExtResource("12_nt7ux")]
-position = Vector2(92, 67)
-
-[node name="Line2D" type="Line2D" parent="." unique_id=123561933]
-position = Vector2(137, 61)
-points = PackedVector2Array(0, 0, 9, 0, 16, 0, 34, 0, 48, 0, 55, 0, 63, 0)
-width = 1.0
+position = Vector2(331, 28)
 
 [node name="Dropper" parent="." unique_id=1306450557 instance=ExtResource("12_fumxt")]
 position = Vector2(405, 28)
@@ -187,20 +186,9 @@ position = Vector2(405, 28)
 [node name="AutoDoc" parent="." unique_id=912996181 instance=ExtResource("13_fumxt")]
 position = Vector2(150, 92)
 
-[node name="ToxicPlant" parent="." unique_id=140626265 instance=ExtResource("15_xibyr")]
-position = Vector2(568, 129)
-
-[node name="Ufo" parent="." unique_id=1014702557 instance=ExtResource("16_8k2kr")]
-position = Vector2(683, 54)
-
-[node name="Ufo2" parent="." unique_id=1604219200 instance=ExtResource("16_8k2kr")]
-position = Vector2(735, 69)
-
-[node name="Ufo3" parent="." unique_id=141186359 instance=ExtResource("16_8k2kr")]
-position = Vector2(641, 68)
-
-[node name="Moth" parent="." unique_id=1583262676 instance=ExtResource("17_r1ybn")]
-position = Vector2(529, 64)
-
 [node name="Yeti" parent="." unique_id=144688187 instance=ExtResource("15_8k2kr")]
-position = Vector2(438, 131)
+position = Vector2(750, 99)
+ExportedSpriteWrapper = SubResource("Resource_8k2kr")
+
+[node name="Snowdrone" parent="." unique_id=556815162 instance=ExtResource("13_epa2u")]
+position = Vector2(309, 84)

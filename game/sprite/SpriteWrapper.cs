@@ -18,4 +18,6 @@ public abstract partial class SpriteWrapper : Resource
     public abstract bool GetFlipH();
     public abstract void SetFrame(int num);
     public abstract void SetTexture(Texture2D texture);
+    public abstract int GetFrameCount(StringName anim);
+    public abstract int GetFrameIndex();
 }
