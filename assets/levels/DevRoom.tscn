@@ -196,6 +196,7 @@ position = Vector2(150, 92)
 position = Vector2(206, 43)
 spawner = NodePath("CreatureSpawnerComponent")
 spawnSpace = NodePath("ReferenceRect")
+spawnChance = 0.0
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CreatureSpawnScheduler" unique_id=1001742058]
 offset_left = -47.0

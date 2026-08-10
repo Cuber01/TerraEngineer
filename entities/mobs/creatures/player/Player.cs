@@ -28,6 +28,7 @@ public partial class Player : Creature
 	private readonly IdleState idleState = new IdleState();
 	private readonly PhaseState phaseState = new PhaseState();
 	private readonly NoclipState noclipState = new NoclipState();
+	private readonly FallState fallState = new FallState();
 	
 	private StateMachineWithTriggers<Player, PlayerTriggers> fsm;
 	public InputContext InputContext = new();
@@ -56,8 +57,8 @@ public partial class Player : Creature
 		fsm.AddTransition(idleState, walkState, () => fsm.IsTriggered(PlayerTriggers.PressedMove), 0);
 		fsm.AddTransition(walkState, idleState, () => fsm.IsTriggered(PlayerTriggers.ReleasedMove), 0);
 		
-		fsm.AddTransition(jumpState, idleState, () => fsm.IsTriggered(PlayerTriggers.Landed));
-		fsm.AddTransition(jumpState, walkState, () => fsm.IsTriggered(PlayerTriggers.Landed) &&
+		fsm.AddTransition(fallState, idleState, () => fsm.IsTriggered(PlayerTriggers.Landed));
+		fsm.AddTransition(fallState, walkState, () => fsm.IsTriggered(PlayerTriggers.Landed) &&
 		                                              fsm.IsTriggered(PlayerTriggers.PressedMove)
 													  , 1);
 		
@@ -66,21 +67,26 @@ public partial class Player : Creature
 															   && Input.IsActionPressed(Names.Actions.Down)
 														       && !CM.GetComponent<PollingArea>().IsColliding()
 														       && IsOnFloor()
-														       ,2);
+														       ,3);
 
 		fsm.AddTransition(phaseState, idleState, () => true);
 		
-		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 1);
-		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 1);
+		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 2);
+		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 2);
 		
 		// Allow jumping while falling if player has double jump
-		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1);
-		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1);
+		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1, 2);
+		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1, 2);
 
-		fsm.AddTransition(dashState, jumpState, () => CM.GetComponent<Dash>().IsDashing);
-		fsm.AddTransition(jumpState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
-		fsm.AddTransition(walkState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
-		fsm.AddTransition(idleState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash));
+		fsm.AddTransition(dashState, fallState, () => !CM.GetComponent<Dash>().IsDashing);
+		fsm.AddTransition(jumpState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(walkState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(idleState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(fallState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
+		
+		fsm.AddTransition(jumpState, fallState, () => velocity.Y > 0);
+		fsm.AddTransition(walkState, fallState, () => velocity.Y > 0, 1);
+		fsm.AddTransition(idleState, fallState, () => velocity.Y > 0, 1);
 		
 		fsm.AddGlobalTransition(noclipState, () => fsm.CurrentState != noclipState && 
 		                                           fsm.IsTriggered(PlayerTriggers.ToggleNoclip), 0);
@@ -166,7 +172,7 @@ public partial class Player : Creature
 			Actor.SpriteWrapper.AnimationFinished += afterStartJump;
 			Actor.SpriteWrapper.Play(Names.Animations.StartJump);
 
-			attemptJumpOrDoubleJump();
+			Actor.attemptJumpOrDoubleJump();
 		}
 		
 		public override void Update(float dt)
@@ -183,7 +189,48 @@ public partial class Player : Creature
 
 			if (Actor.fsm.IsTriggered(PlayerTriggers.PressedJump))
 			{
-				attemptJumpOrDoubleJump();
+				Actor.attemptJumpOrDoubleJump();
+			}
+				
+			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
+		}
+
+		public override void Exit()
+		{
+			
+		}
+
+		private void afterStartJump()
+		{
+			Actor.SpriteWrapper.AnimationFinished -= afterStartJump;
+			Actor.SpriteWrapper.Play(Names.Animations.Fly);
+		}
+	}
+	
+	public class FallState : State<Player>
+	{
+		public override void Enter()
+		{
+			#if DEBUG_STATE
+			GD.Print("Entered Fall.");
+			#endif
+		}
+		
+		public override void Update(float dt)
+		{
+			DirectionX moveDir = Actor.InputContext.GetAxis(Names.Actions.Left, Names.Actions.Right);
+			if (moveDir != 0)
+			{
+				Actor.Flip(moveDir);
+				Actor.fsm.FireTrigger(PlayerTriggers.PressedMove);
+			} else if (Actor.fsm.IsTriggered(PlayerTriggers.PressedMove))
+			{
+				Actor.fsm.FireTrigger(PlayerTriggers.ReleasedMove);
+			}
+			
+			if (Actor.fsm.IsTriggered(PlayerTriggers.PressedJump))
+			{
+				Actor.attemptJumpOrDoubleJump();
 			}
 				
 			Actor.CM.GetComponent<Move>().Walk(moveDir, dt);
@@ -193,19 +240,7 @@ public partial class Player : Creature
 		{
 			Actor.SpriteWrapper.Play(Names.Animations.Land);
 		}
-
-		private void afterStartJump()
-		{
-			Actor.SpriteWrapper.AnimationFinished -= afterStartJump;
-			Actor.SpriteWrapper.Play(Names.Animations.Fly);
-		}
-
-		private void attemptJumpOrDoubleJump()
-		{
-			Actor.CM.GetComponent<Jump>().AttemptJump(Actor.CM.GetComponent<Jump>().CurrentJumps > 0 
-															? DoubleJumpVelocityModifier 
-															: 1.0f);
-		}
+		
 	}
 	
 	public class DashState : State<Player>
@@ -294,12 +329,6 @@ public partial class Player : Creature
 			MetSysApi.DiscoverAll();
 		}
 		#endif
-
-		// GD.Print("allowed: " + PhasingAllowed);
-		// GD.Print("Jump: "+ fsm.IsTriggered(PlayerTriggers.PressedJump));  
-		// GD.Print("Down: "+ Input.IsActionPressed("ui_down"));  
-		// GD.Print("Not Colliding: " + !CM.GetComponent<PollingArea>().IsColliding());
-		// GD.Print("On Floor: " + IsOnFloor());
 		
 		fsm.Update((float)delta);
 		CM.UpdateComponents((float)delta);
@@ -308,6 +337,13 @@ public partial class Player : Creature
 		
 	}
 
+	private void attemptJumpOrDoubleJump()
+	{
+		CM.GetComponent<Jump>().AttemptJump(CM.GetComponent<Jump>().CurrentJumps > 0 
+			? DoubleJumpVelocityModifier 
+			: 1.0f);
+	}
+	
 	public Direction4 GetShootDirection()
 	{
 		Vector2 vector = Input.GetVector(Names.Actions.Left, Names.Actions.Right, 
