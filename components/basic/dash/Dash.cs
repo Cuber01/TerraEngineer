@@ -17,6 +17,7 @@ public partial class Dash : Component
     private int dashDirection;
     
     private Entity entityActor;
+    private Gravity entityGravity;
 
     public override void Init(Node2D actor)
     {
@@ -30,8 +31,8 @@ public partial class Dash : Component
             throw new Exception("Dash component requires Entity actor.");
         }
         
-        entityActor.CM.GetComponent<Gravity>().LandedOnFloor += 
-            () => currentDashes = 0;
+        entityGravity = entityActor.CM.GetComponent<Gravity>();
+        entityGravity.LandedOnFloor += () => currentDashes = 0;
     }
     
     public override void Update(float delta)
@@ -58,12 +59,14 @@ public partial class Dash : Component
         IsDashing = true;
         dashDirection = (int)direction;
         TimerManager.Schedule(dashDuration,  this, endDash);
+        entityGravity.Disabled = true;
         currentDashes++;
     }
 
     private void endDash(ITimer timer)
     {
         IsDashing = false;
+        entityGravity.Disabled = false;
     }
 
     private bool canDash()
