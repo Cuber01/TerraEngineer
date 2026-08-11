@@ -19,13 +19,14 @@ public partial class PlayerInventory : Component
         { "blowtorch", new BlowtorchItem() },
         {"health_serum", new HealthSerumItem() },
         {"phase_shift", new PhaseShiftItem() },
+        { "dash", new DashItem()},
         {"rifle", new RifleItem() },
         {"anti_projectile_launcher", new AntiProjectileLauncherItem() },
         { "green_essence", new EssenceItem(Biomes.Forest) },
         { "blue_essence", new EssenceItem(Biomes.Ice) },
         { "orange_essence", new EssenceItem(Biomes.Desert) },
         { "purple_essence", new EssenceItem(Biomes.Mushroom) },
-        { "ice_crystal", new IceCrystalItem() },
+        { "ice_crystal", new KeyItem() },
         { "bomb", new KeyItem() },
         { "gunpowder", new KeyItem() },
         { "vine", new KeyItem() },
@@ -135,6 +136,18 @@ public class DoubleJumpItem : Item
     }
 }
 
+public class DashItem : Item
+{
+    public void Activate(Player actor)
+    {
+        actor.DashAllowed = true;
+    }
+    public void Deactivate(Player actor)
+    {
+        throw new NotImplementedException();
+    }
+}
+
 public class BlowtorchItem : Item
 {
     public void Activate(Player actor)
@@ -164,7 +177,9 @@ public class AntiProjectileLauncherItem : Item
 {
     public void Activate(Player actor)
     {
-        actor.CM.GetComponent<GunHandle>().CM.GetComponent<PistolGunHandle>().UnlockGun<AntiProjectileLauncher>();
+        actor.CM.GetComponent<GunHandle>()
+            .CM.GetComponent<PistolGunHandle>()
+            .UnlockGun<AntiProjectileLauncher>();
     }
     public void Deactivate(Player actor)
     {
@@ -191,37 +206,18 @@ public class HealthSerumItem : Item
         actor.CM.GetComponent<Health>().MaxHealth += 1;
         actor.CM.GetComponent<Health>().FullHeal();
     }
+    
     public void Deactivate(Player actor)
     {
-        throw new NotImplementedException();
-    }
-}
-
-public class IceCrystalItem : Item
-{
-    public void Activate(Player actor)
-    {
-
-    }
-    public void Deactivate(Player actor)
-    {
-        
+        actor.CM.GetComponent<Health>().MaxHealth -= 1;
     }
 }
 
 public class KeyItem : Item
 {
-    public void Activate(Player actor)
-    {
-
-    }
-    
-    public void Deactivate(Player actor)
-    {
-        
-    }
+    public void Activate(Player actor) { }
+    public void Deactivate(Player actor) { }
 }
-
 
 public class EssenceItem(Biomes biome) : Item
 {

@@ -34,6 +34,7 @@ public partial class Player : Creature
 	public InputContext InputContext = new();
 
 	public bool PhasingAllowed = false;
+	public bool DashAllowed = false;
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
@@ -96,7 +97,8 @@ public partial class Player : Creature
 		
 		InputContext.AddAction(Names.Actions.Dash, () =>
 		{
-			fsm.FireTrigger(PlayerTriggers.PressedDash);
+			if(DashAllowed)
+				fsm.FireTrigger(PlayerTriggers.PressedDash);
 		});
 		
 		InputContext.AddAction(Names.Actions.Jump, () =>
