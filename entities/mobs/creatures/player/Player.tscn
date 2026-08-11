@@ -15,6 +15,7 @@
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="13_8611i"]
 [ext_resource type="PackedScene" uid="uid://cdttdqbpagfhk" path="res://components/basic/polling_area/PollingAreaComponent.tscn" id="14_8611i"]
 [ext_resource type="PackedScene" uid="uid://uubeqpttudf6" path="res://components/basic/interacter/InteracterComponent.tscn" id="15_1q3sw"]
+[ext_resource type="Texture2D" uid="uid://b0fa1u7cdimwf" path="res://assets/light_texture.webp" id="16_7q6l3"]
 
 [sub_resource type="Resource" id="Resource_8611i"]
 script = ExtResource("2_jlvbh")
@@ -335,6 +336,11 @@ shape = SubResource("RectangleShape2D_1q3sw")
 [node name="CollisionShape2D" parent="ComponentManager/InteracterComponent/Area2D" parent_id_path=PackedInt32Array(1125685492, 945426379) index="0" unique_id=31077900]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_6e8ii")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1850579853]
+shadow_enabled = true
+texture = ExtResource("16_7q6l3")
+texture_scale = 0.3
 
 [connection signal="body_entered" from="Area2D" to="." method="onBumpedCeiling"]
 

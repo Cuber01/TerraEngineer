@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b1nj3yqr0qwkr"]
 
+[ext_resource type="Texture2D" uid="uid://boptxeewkmfyo" path="res://assets/black_pixel.png" id="1_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://bpp8sk6owgww3" path="res://entities/mobs/creatures/penguin/Penguin.tscn" id="2_epa2u"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="2_v3p77"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="3_xibyr"]
@@ -16,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="15_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="15_r1ybn"]
 
-[sub_resource type="Resource" id="Resource_xibyr"]
+[sub_resource type="Resource" id="Resource_8k2kr"]
 script = ExtResource("3_xibyr")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -29,12 +30,17 @@ shader_parameter/seed = 0.2430000115425
 shader_parameter/tiles_per_unit = 5.0000002375
 shader_parameter/line_length_scale = 0.15625
 
-[sub_resource type="Resource" id="Resource_8k2kr"]
+[sub_resource type="Resource" id="Resource_r1ybn"]
 script = ExtResource("3_xibyr")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"DevRoom"
+
+[node name="BackgroundColor" type="Sprite2D" parent="." unique_id=1358497715]
+texture_repeat = 2
+scale = Vector2(967, 196)
+texture = ExtResource("1_8k2kr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1739096045]
 z_index = 2
@@ -44,7 +50,7 @@ tile_set = ExtResource("2_v3p77")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("2_epa2u")]
 position = Vector2(792, 142)
-ExportedSpriteWrapper = SubResource("Resource_xibyr")
+ExportedSpriteWrapper = SubResource("Resource_8k2kr")
 
 [node name="RoomInstance" parent="." unique_id=646333494 instance=ExtResource("5_v3p77")]
 
@@ -187,7 +193,7 @@ position = Vector2(405, 28)
 
 [node name="Yeti" parent="." unique_id=144688187 instance=ExtResource("15_8k2kr")]
 position = Vector2(750, 99)
-ExportedSpriteWrapper = SubResource("Resource_8k2kr")
+ExportedSpriteWrapper = SubResource("Resource_r1ybn")
 
 [node name="AutoDoc" parent="." unique_id=912996181 instance=ExtResource("13_fumxt")]
 position = Vector2(150, 92)
@@ -206,3 +212,6 @@ offset_bottom = 33.0
 
 [node name="CreatureSpawnerComponent" parent="CreatureSpawnScheduler" unique_id=974395419 instance=ExtResource("14_xibyr")]
 Scene = ExtResource("15_r1ybn")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1857634649]
+color = Color(0.29586658, 0.2958665, 0.2958665, 1)

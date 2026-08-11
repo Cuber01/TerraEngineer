@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://jg6608wf8u7l" path="res://components/basic/contact_damage/ContactDamageComponent.tscn" id="8_8wbl1"]
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_7m517"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_y3mso"]
+[ext_resource type="Texture2D" uid="uid://b0fa1u7cdimwf" path="res://assets/light_texture.webp" id="12_g0rnh"]
 
-[sub_resource type="Resource" id="Resource_y3mso"]
+[sub_resource type="Resource" id="Resource_jqf4n"]
 script = ExtResource("2_y3mso")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -97,7 +98,7 @@ size = Vector2(7.875, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wbl1"]
 size = Vector2(7, 5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0rnh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6l3q"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("2_n5xjy")
@@ -113,7 +114,7 @@ collision_mask = 33
 script = ExtResource("1_hhfj2")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_y3mso")
+ExportedSpriteWrapper = SubResource("Resource_jqf4n")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
 texture_filter = 1
@@ -174,6 +175,11 @@ shape = SubResource("RectangleShape2D_8wbl1")
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=43033032 instance=ExtResource("9_7m517")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_y3mso")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_g0rnh")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_l6l3q")])
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=425588260]
+shadow_enabled = true
+texture = ExtResource("12_g0rnh")
+texture_scale = 0.3
 
 [editable path="ComponentManager/ContactDamageComponent"]

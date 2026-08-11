@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="8_8imd1"]
 [ext_resource type="PackedScene" uid="uid://cvcnpnyey4qmj" path="res://entities/mobs/creatures/yeti/Snowball.tscn" id="8_m2cht"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_nlfdb"]
+[ext_resource type="Texture2D" uid="uid://b0fa1u7cdimwf" path="res://assets/light_texture.webp" id="10_q7buq"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_n2v3j"]
 
-[sub_resource type="Resource" id="Resource_q7buq"]
+[sub_resource type="Resource" id="Resource_rf8h3"]
 script = ExtResource("2_m2cht")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -109,7 +110,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f11y"]
 size = Vector2(15, 16)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7buq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lousp"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("11_n2v3j")
@@ -125,7 +126,7 @@ collision_mask = 33
 script = ExtResource("1_11kml")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_q7buq")
+ExportedSpriteWrapper = SubResource("Resource_rf8h3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
 texture_filter = 1
@@ -169,7 +170,7 @@ MaxHealth = 3
 [node name="GravityComponent" parent="ComponentManager" unique_id=1043660710 instance=ExtResource("7_mjibf")]
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("10_nlfdb")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_q7buq")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_lousp")])
 
 [node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=1179213390 node_paths=PackedStringArray("SpawnPosition") instance=ExtResource("8_8imd1")]
 Scene = ExtResource("8_m2cht")
@@ -177,3 +178,8 @@ SpawnPosition = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="ComponentManager/ProjectileSpawnerComponent" unique_id=1141968812]
 position = Vector2(-15, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1388567297]
+shadow_enabled = true
+texture = ExtResource("10_q7buq")
+texture_scale = 0.3

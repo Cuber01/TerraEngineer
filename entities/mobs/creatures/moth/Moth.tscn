@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="7_48xfr"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="8_q6o0n"]
 [ext_resource type="PackedScene" uid="uid://h6i865gi5hpj" path="res://components/basic/knockback/KnockbackComponent.tscn" id="9_q6o0n"]
+[ext_resource type="Texture2D" uid="uid://b0fa1u7cdimwf" path="res://assets/light_texture.webp" id="11_cf6to"]
 
 [sub_resource type="Resource" id="Resource_cf6to"]
 script = ExtResource("2_wt63l")
@@ -60,7 +61,7 @@ radius = 22.0227
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4wwo"]
 size = Vector2(4, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wt63l"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2upb0"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("8_q6o0n")
@@ -76,7 +77,6 @@ collision_layer = 4
 script = ExtResource("1_qq40e")
 MarginAroundPoint = 10.0
 CM = NodePath("ComponentManager")
-Team = 1
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_cf6to")
 
@@ -105,7 +105,7 @@ MaxHealth = 2
 
 [node name="ContactDamageComponent" parent="ComponentManager" unique_id=293547787 instance=ExtResource("5_ihw6d")]
 
-[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" index="0"]
+[node name="CollisionShape2D" parent="ComponentManager/ContactDamageComponent/AttackArea" parent_id_path=PackedInt32Array(293547787, 47129053) index="0" unique_id=520614987]
 shape = SubResource("RectangleShape2D_q4wwo")
 
 [node name="FreeFlyComponent" parent="ComponentManager" unique_id=1467101279 instance=ExtResource("6_qq40e")]
@@ -114,9 +114,14 @@ acceleration = 4.31
 airResistance = 1.724
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=552720510 instance=ExtResource("7_48xfr")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_wt63l")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_2upb0")])
 
 [node name="KnockbackComponent" parent="ComponentManager" unique_id=135453091 instance=ExtResource("9_q6o0n")]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=565346646]
+shadow_enabled = true
+texture = ExtResource("11_cf6to")
+texture_scale = 0.3
 
 [connection signal="body_entered" from="DetectionArea" to="." method="onDetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="onDetectionAreaBodyExited"]
