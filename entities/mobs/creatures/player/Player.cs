@@ -321,11 +321,6 @@ public partial class Player : Creature
 			GodMode = !GodMode;
 		}
 		
-		if(Input.IsActionJustPressed("f4"))
-		{
-			CM.GetComponent<PlayerInventory>().AddUniqueItem("rifle");
-		}
-		
 		if(Input.IsActionJustPressed("f5"))
 		{
 			MetSysApi.DiscoverAll();
@@ -338,6 +333,7 @@ public partial class Player : Creature
 		HandleMove();
 		
 	}
+
 
 	private void attemptJumpOrDoubleJump()
 	{
