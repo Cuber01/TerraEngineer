@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b2jug6kir0erd"
+path="res://.godot/imported/toxic-plant.ase-53acba2196455fe3fbf510712514d66b.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/toxic_plant/toxic-plant.ase"
+dest_files=["res://.godot/imported/toxic-plant.ase-53acba2196455fe3fbf510712514d66b.res"]
+
+[params]
+
