@@ -5,9 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://dk13wckmp5j8x" path="res://entities/objects/fluid/Fluid.tscn" id="3_0rai8"]
 [ext_resource type="PackedScene" uid="uid://j1vclnor6vgd" path="res://entities/objects/pickupable_item/PickupableItem.tscn" id="4_foogd"]
 [ext_resource type="Resource" uid="uid://dtsqlokbfv8w7" path="res://assets/dialogue/item_health_serum.dialogue" id="5_ygdwb"]
+[ext_resource type="Texture2D" uid="uid://b6oc8xnvv8gc0" path="res://assets/items/items.png" id="6_f86us"]
 [ext_resource type="Texture2D" uid="uid://bj0rc2qk8w10" path="res://assets/items/health_container.tres" id="6_j0syo"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="7_foogd"]
 [ext_resource type="PackedScene" uid="uid://cviknho0o5vvg" path="res://gfx/droplet-dropper/Dropper.tscn" id="8_ygdwb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po0bg"]
+atlas = ExtResource("6_f86us")
+region = Rect2(8, 0, 7, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_foogd"]
 size = Vector2(50, 36)
@@ -27,10 +32,12 @@ tile_set = ExtResource("1_uu787")
 [node name="HPup" parent="." unique_id=780288586 instance=ExtResource("4_foogd")]
 position = Vector2(588, 124)
 itemName = &"health_serum"
-itemCollectedTag = &"Lake_health_serum_collected"
 itemType = 1
 dialogueDescription = ExtResource("5_ygdwb")
 ItemTexture = ExtResource("6_j0syo")
+
+[node name="Sprite2D" parent="HPup" index="0" unique_id=553403100]
+texture = SubResource("AtlasTexture_po0bg")
 
 [node name="PedestalSprite" parent="HPup" index="3" unique_id=1109076071]
 visible = false

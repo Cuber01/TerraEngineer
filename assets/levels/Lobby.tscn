@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_n1gxf"]
 [ext_resource type="Texture2D" uid="uid://dpbgorkdqruna" path="res://assets/world/office/desk.tres" id="3_gyuag"]
 [ext_resource type="Texture2D" uid="uid://1rnt132sqoco" path="res://assets/world/office/back-computer.tres" id="4_ymuiv"]
-[ext_resource type="Texture2D" uid="uid://ccmovvc0wd2wf" path="res://assets/eurofed.png" id="5_ui1w4"]
 [ext_resource type="Texture2D" uid="uid://2ym2pnou4up8" path="res://assets/world/office/office-decor.png" id="6_gyuag"]
 [ext_resource type="Texture2D" uid="uid://bwjppqxv3l1if" path="res://assets/world/office/paperstack-2.tres" id="7_7i7hg"]
 [ext_resource type="Texture2D" uid="uid://cdollu8bx58st" path="res://assets/world/office/lamp.tres" id="8_6htc0"]
@@ -42,11 +41,6 @@ texture = ExtResource("3_gyuag")
 [node name="BackComputer" type="Sprite2D" parent="Props" unique_id=402110069]
 position = Vector2(161, 139)
 texture = ExtResource("4_ymuiv")
-
-[node name="Eurofed" type="Sprite2D" parent="Props" unique_id=2039702812]
-visible = false
-position = Vector2(160, 83)
-texture = ExtResource("5_ui1w4")
 
 [node name="Newspaper" type="Sprite2D" parent="Props" unique_id=139663342]
 position = Vector2(190, 134)
