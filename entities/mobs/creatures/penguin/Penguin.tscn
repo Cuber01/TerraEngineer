@@ -138,6 +138,7 @@ target_position = Vector2(0, 13)
 
 [node name="IsPlayerBelow" type="RayCast2D" parent="." unique_id=768564763]
 position = Vector2(0, 4)
+target_position = Vector2(0, 119)
 collision_mask = 2
 
 [node name="ComponentManager" parent="." unique_id=1765219149 instance=ExtResource("3_755hb")]
