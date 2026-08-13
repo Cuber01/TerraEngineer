@@ -59,6 +59,8 @@ public static class MathT
         };
     }
 
+
+
     public static Vector2 dir4ToVect2(Direction4 dir)
     {
         switch (dir)

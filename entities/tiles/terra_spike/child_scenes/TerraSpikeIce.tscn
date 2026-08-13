@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://idpp6gogjsal"]
+
+[ext_resource type="PackedScene" uid="uid://ciivk6d5672s4" path="res://entities/tiles/terra_spike/TerraSpike.tscn" id="1_nkfhc"]
+
+[node name="TerraSpike" unique_id=1389306202 instance=ExtResource("1_nkfhc")]
+currentBiome = 2

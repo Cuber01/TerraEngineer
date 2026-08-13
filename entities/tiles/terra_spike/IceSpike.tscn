@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cisogakhaehg1"]
+
+[ext_resource type="Script" uid="uid://dytalq0pituso" path="res://entities/tiles/terra_spike/Spike.cs" id="1_3mnc8"]
+[ext_resource type="Texture2D" uid="uid://bqcyl2f6pbdb8" path="res://assets/world/special_tiles/ice-spikes.tres" id="2_36eqo"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_p8ywt"]
+
+[sub_resource type="Resource" id="Resource_6yohw"]
+script = ExtResource("2_p8ywt")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8ywt"]
+atlas = ExtResource("2_36eqo")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yohw"]
+atlas = ExtResource("2_36eqo")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgxsj"]
+atlas = ExtResource("2_36eqo")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dul1"]
+atlas = ExtResource("2_36eqo")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3mnc8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8ywt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yohw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgxsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dul1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8ywt"]
+size = Vector2(8, 7)
+
+[node name="IceSpike" type="CharacterBody2D" unique_id=1434504614 node_paths=PackedStringArray("hurtArea", "Sprite")]
+script = ExtResource("1_3mnc8")
+hurtArea = NodePath("Area2D")
+MyBiome = 2
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_6yohw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=496020631]
+sprite_frames = SubResource("SpriteFrames_3mnc8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1846669830]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=339867009]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_p8ywt")

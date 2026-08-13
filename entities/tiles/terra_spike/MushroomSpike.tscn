@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://7apktiopjkxj"]
+
+[ext_resource type="Script" uid="uid://dytalq0pituso" path="res://entities/tiles/terra_spike/Spike.cs" id="1_apxfm"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_jq0tr"]
+[ext_resource type="Texture2D" uid="uid://c42rr2gmyug4e" path="res://assets/world/special_tiles/mushroom-spikes.tres" id="3_apxfm"]
+
+[sub_resource type="Resource" id="Resource_6yohw"]
+script = ExtResource("2_jq0tr")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq0tr"]
+atlas = ExtResource("3_apxfm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x57ss"]
+atlas = ExtResource("3_apxfm")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ikck"]
+atlas = ExtResource("3_apxfm")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnfj7"]
+atlas = ExtResource("3_apxfm")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vk70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq0tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x57ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ikck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnfj7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ikck"]
+size = Vector2(8, 5)
+
+[node name="MushroomSpike" type="CharacterBody2D" unique_id=1434504614 node_paths=PackedStringArray("solidHitbox", "Hitbox", "Sprite")]
+script = ExtResource("1_apxfm")
+solidHitbox = NodePath("CollisionShape2D")
+Hitbox = NodePath("CollisionShape2D")
+MyBiome = 1
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_6yohw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=496020631]
+sprite_frames = SubResource("SpriteFrames_7vk70")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1611123234]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_1ikck")

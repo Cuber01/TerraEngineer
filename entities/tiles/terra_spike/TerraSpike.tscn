@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ciivk6d5672s4"]
+
+[ext_resource type="Script" uid="uid://cnhd01mcastnl" path="res://entities/tiles/terra_spike/TerraformableSpikeCaretaker.cs" id="1_5lxdh"]
+[ext_resource type="PackedScene" uid="uid://cisogakhaehg1" path="res://entities/tiles/terra_spike/IceSpike.tscn" id="1_lwre2"]
+[ext_resource type="PackedScene" uid="uid://ckkov5jsibn0h" path="res://entities/tiles/terra_spike/GrassSpike.tscn" id="2_5lxdh"]
+[ext_resource type="PackedScene" uid="uid://7apktiopjkxj" path="res://entities/tiles/terra_spike/MushroomSpike.tscn" id="3_fi0d6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vmq4"]
+size = Vector2(8, 8)
+
+[node name="TerraSpike" type="CharacterBody2D" unique_id=1389306202 node_paths=PackedStringArray("groundLeft", "groundRight", "groundDown", "groundUp", "versions")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_5lxdh")
+groundLeft = NodePath("IsGroundLeft")
+groundRight = NodePath("IsGroundRight")
+groundDown = NodePath("IsGroundDown")
+groundUp = NodePath("IsGroundUp")
+versions = NodePath("Versions")
+
+[node name="Versions" type="Node2D" parent="." unique_id=2010832830]
+
+[node name="IceSpike" parent="Versions" unique_id=1434504614 instance=ExtResource("1_lwre2")]
+
+[node name="GrassSpike" parent="Versions" unique_id=761738213 instance=ExtResource("2_5lxdh")]
+
+[node name="MushroomSpike" parent="Versions" unique_id=1116879073 instance=ExtResource("3_fi0d6")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1420760080]
+shape = SubResource("RectangleShape2D_0vmq4")
+
+[node name="IsGroundRight" type="RayCast2D" parent="." unique_id=2131539574]
+target_position = Vector2(8, 0)
+
+[node name="IsGroundLeft" type="RayCast2D" parent="." unique_id=393754531]
+target_position = Vector2(-8, 0)
+
+[node name="IsGroundUp" type="RayCast2D" parent="." unique_id=1907123763]
+target_position = Vector2(0, -7)
+
+[node name="IsGroundDown" type="RayCast2D" parent="." unique_id=45253216]
+target_position = Vector2(0, 8)

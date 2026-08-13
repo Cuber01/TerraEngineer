@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ckkov5jsibn0h"]
+
+[ext_resource type="PackedScene" uid="uid://cisogakhaehg1" path="res://entities/tiles/terra_spike/IceSpike.tscn" id="1_rstyt"]
+[ext_resource type="Texture2D" uid="uid://dhksbnxxv7f2" path="res://assets/world/special_tiles/grass-spikes.tres" id="2_nqjpm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdf3y"]
+atlas = ExtResource("2_nqjpm")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xq8s"]
+atlas = ExtResource("2_nqjpm")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf46k"]
+atlas = ExtResource("2_nqjpm")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x5to"]
+atlas = ExtResource("2_nqjpm")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjjen"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdf3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xq8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf46k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x5to")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GrassSpike" unique_id=1434504614 instance=ExtResource("1_rstyt")]
+MyBiome = 0
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=496020631]
+sprite_frames = SubResource("SpriteFrames_vjjen")
