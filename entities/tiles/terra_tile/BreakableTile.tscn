@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ba10rytdj18kj" path="res://entities/tiles/terra_tile/BreakableTile.cs" id="1_aukk6"]
 [ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special_tiles/special-tiles.png" id="1_f810q"]
-[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_aukk6"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_o04u6"]
-[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="3_lx7qt"]
-[ext_resource type="PackedScene" uid="uid://nrndakgkb8c8" path="res://components/basic/save_tile/SaveTileComponent.tscn" id="5_lx7qt"]
 
 [sub_resource type="Resource" id="Resource_w50ey"]
 script = ExtResource("2_o04u6")
@@ -33,7 +30,7 @@ size = Vector2(8, 8)
 collision_mask = 4
 script = ExtResource("1_aukk6")
 CollisionShape = NodePath("CollisionShape2D")
-CM = NodePath("ComponentManager")
+CM = NodePath("")
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_w50ey")
 
@@ -42,11 +39,3 @@ sprite_frames = SubResource("SpriteFrames_imu5j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=561458747]
 shape = SubResource("RectangleShape2D_uo1hy")
-
-[node name="ComponentManager" parent="." unique_id=1942817936 instance=ExtResource("2_aukk6")]
-
-[node name="HealthComponent" parent="ComponentManager" unique_id=1033198629 instance=ExtResource("3_lx7qt")]
-MaxHealth = 1
-invincibilityTimeOnHit = 0.0
-
-[node name="SaveTileComponent" parent="ComponentManager" unique_id=196550037 instance=ExtResource("5_lx7qt")]
