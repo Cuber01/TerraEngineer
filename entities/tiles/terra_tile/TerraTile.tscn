@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://btgvopbf0o41i" path="res://entities/tiles/TerraformableTileCaretaker.cs" id="1_5dce0"]
 [ext_resource type="PackedScene" uid="uid://b7a8ld2p7qvwm" path="res://entities/tiles/terra_tile/BreakableTile.tscn" id="2_y8ihi"]
 [ext_resource type="PackedScene" uid="uid://6wceo01lgq28" path="res://entities/tiles/terra_tile/IndestructibleTile.tscn" id="3_xlkem"]
-[ext_resource type="PackedScene" uid="uid://bbl181mnyr1id" path="res://entities/tiles/terra_tile/StepToBreakTile.tscn" id="4_7pqqn"]
+[ext_resource type="PackedScene" uid="uid://bbl181mnyr1id" path="res://entities/tiles/terra_tile/FragileTile.tscn" id="4_7pqqn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vmq4"]
 size = Vector2(8, 8)

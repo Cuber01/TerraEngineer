@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bq7m4ortk7huy" path="res://entities/tiles/terra_tile/child_scenes/TerraBreakableTile.tscn" id="2_5ifx1"]
 [ext_resource type="PackedScene" uid="uid://bry5x4s0a5utc" path="res://entities/tiles/terra_tile/child_scenes/TerraIndestructibleTile.tscn" id="3_k0mjx"]
 [ext_resource type="PackedScene" uid="uid://clhatbh6c4ivu" path="res://entities/tiles/terra_tile/child_scenes/TerraShatterableTile.tscn" id="4_8qmis"]
+[ext_resource type="PackedScene" uid="uid://cctth45cb1g0g" path="res://entities/tiles/shatterable_forever/FragileTileForever.tscn" id="5_k0mjx"]
 
 [node name="LevelPreparer" type="Node2D" unique_id=2004204040]
 script = ExtResource("1_l4i6g")
 tileNames = Array[StringName]([&"breakable", &"indestructible", &"shatterable", &"shatterable_forever", &"ice_spike_up", &"ice_spike_down", &"ice_spike_right", &"ice_spike_left", &"grs_spike_up", &"grs_spike_down", &"grs_spike_right", &"grs_spike_left", &"msh_spike_up", &"msh_spike_down", &"msh_spike_right", &"msh_spike_left"])
-tileScenes = Array[PackedScene]([ExtResource("2_5ifx1"), ExtResource("3_k0mjx"), ExtResource("4_8qmis")])
+tileScenes = Array[PackedScene]([ExtResource("2_5ifx1"), ExtResource("3_k0mjx"), ExtResource("4_8qmis"), ExtResource("5_k0mjx")])

@@ -87,9 +87,10 @@ public partial class LevelPreparer : Node2D
     private void spawnTile(StringName name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {
         PackedScene scene = tilesDict[name];
-        TerraformableTileCaretaker instance = (TerraformableTileCaretaker)scene.Instantiate();
-        instance.GlobalPosition = dataLayer.MapToLocal(mapCoords) + dataLayer.GlobalPosition;
-        level.AddChild(instance);
+        ITile instance = (ITile)scene.Instantiate();
+        Node2D nodeInstance = (Node2D)instance;
+        nodeInstance.GlobalPosition = dataLayer.MapToLocal(mapCoords) + dataLayer.GlobalPosition;
+        level.AddChild(nodeInstance);
     }
     
     

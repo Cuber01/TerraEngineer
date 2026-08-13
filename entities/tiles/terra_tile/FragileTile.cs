@@ -2,7 +2,7 @@ using Godot;
 using TENamespace.basic.save_tile;
 using TerraEngineer.entities.tiles;
 
-public partial class StepToBreakTile : TerraformableTile
+public partial class FragileTile : TerraformableTile
 {
     [Export] private Area2D stepDetector;
 
@@ -56,4 +56,5 @@ public partial class StepToBreakTile : TerraformableTile
         stepDetector.SetDeferred(Area2D.PropertyName.Monitoring, false);
         base.Disable();
     }
+
 }

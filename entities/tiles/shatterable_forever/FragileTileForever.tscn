@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cctth45cb1g0g"]
+
+[ext_resource type="Script" uid="uid://ya5gv7tskddj" path="res://entities/tiles/shatterable_forever/FragileTileForever.cs" id="1_lcv1h"]
+[ext_resource type="Texture2D" uid="uid://dh43616jflbf6" path="res://assets/world/special_tiles/frozen-tile.tres" id="2_fwvad"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_di3a1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fwvad")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo1hy"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytv7c"]
+size = Vector2(8, 1.5)
+
+[node name="FragileTileForever" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("stepDetector")]
+collision_mask = 0
+script = ExtResource("1_lcv1h")
+stepDetector = NodePath("StepDetector")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2131270710]
+sprite_frames = SubResource("SpriteFrames_di3a1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=561458747]
+shape = SubResource("RectangleShape2D_uo1hy")
+
+[node name="StepDetector" type="Area2D" parent="." unique_id=1579477051]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StepDetector" unique_id=1039934594]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ytv7c")
