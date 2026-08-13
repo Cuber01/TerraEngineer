@@ -1,0 +1,64 @@
+[gd_scene format=4 uid="uid://df1b5dcxxeajc"]
+
+[ext_resource type="TileSet" uid="uid://ri1ugy335m8n" path="res://assets/world/IceTileset.tres" id="1_ct6cj"]
+[ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="2_lpinn"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_hom60"]
+[ext_resource type="PackedScene" uid="uid://v37c1i0566mt" path="res://entities/mobs/creatures/snail/Snail.tscn" id="4_hom60"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_56j80"]
+
+[sub_resource type="Resource" id="Resource_perks"]
+script = ExtResource("5_56j80")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_0b11j"]
+script = ExtResource("5_56j80")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_e0376"]
+script = ExtResource("5_56j80")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_omsvl"]
+script = ExtResource("5_56j80")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_5gf8o"]
+script = ExtResource("5_56j80")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[node name="Level" type="Node2D" unique_id=1264198129]
+metadata/level_name = &"IceDescent"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1739096045]
+z_index = 2
+position = Vector2(136, 128)
+tile_map_data = PackedByteArray("AADv//D/AgACAAEAAADv//H/AgACAAEAAADv//L/AgACAAEAAADv//P/AgACAAEAAADv//T/AgACAAEAAADv//X/AgACAAEAAADv//b/AgACAAEAAADv//f/AgACAAEAAADv//j/AgACAAEAAADw//D/AgACAAEAAADw//H/AgACAAEAAADw//L/AgACAAEAAADw//P/AgACAAEAAADw//T/AgACAAEAAADw//X/AgACAAEAAADw//b/AgACAAEAAADw//f/AgACAAEAAADw//j/AgACAAEAAADt//D/AgACAAEAAADt//H/AgACAAEAAADt//L/AgACAAEAAADt//P/AgACAAEAAADt//T/AgACAAEAAADt//X/AgACAAEAAADt//b/AgACAAEAAADt//f/AgACAAEAAADt//j/AgACAAEAAADu//D/AgACAAEAAADu//H/AgACAAEAAADu//L/AgACAAEAAADu//P/AgACAAEAAADu//T/AgACAAEAAADu//X/AgACAAEAAADu//b/AgACAAEAAADu//f/AgACAAEAAADu//j/AgACAAEAAADt//z/AgACAAEAAADt//3/AgACAAEAAADt//7/AgACAAEAAADt////AgACAAEAAADt/wAAAgACAAEAAADt/wEAAgACAAEAAADt/wIAAgACAAEAAADt/wMAAgACAAEAAADt/wQAAgACAAEAAADt/wUAAgACAAEAAADt/wYAAgACAAEAAADu//z/AgACAAEAAADu//3/AgACAAEAAADu//7/AgACAAEAAADu////AgACAAEAAADu/wAAAgACAAEAAADu/wEAAgACAAEAAADu/wIAAgACAAEAAADu/wMAAgACAAEAAADu/wQAAgACAAEAAADu/wUAAgACAAEAAADu/wYAAgACAAEAAADv//z/AgACAAEAAADv//3/AgACAAEAAADv//7/AgACAAEAAADv////AgACAAEAAADv/wAAAgACAAEAAADv/wEAAgACAAEAAADv/wIAAgACAAEAAADv/wMAAgACAAEAAADv/wQAAgACAAEAAADv/wUAAgACAAEAAADv/wYAAgACAAEAAADw//z/AgACAAEAAADw//3/AgACAAEAAADw//7/AgACAAEAAADw////AgACAAEAAADw/wAAAgACAAEAAADw/wEAAgACAAEAAADw/wIAAgACAAEAAADw/wMAAgACAAEAAADw/wQAAgACAAEAAADw/wUAAgACAAEAAADw/wYAAgACAAEAAADx//H/AgACAAEAAADx//L/AgACAAEAAADx//P/AgACAAEAAADx//T/AgACAAEAAADx//X/AgACAAEAAADx//b/AgACAAEAAADx//f/AgACAAEAAADx//j/AgACAAEAAADy//T/AgACAAEAAADy//X/AgACAAEAAADy//b/AgACAAEAAADy//f/AgACAAEAAADy//j/AgACAAEAAADv/wcAAgACAAEAAADv/wgAAgACAAEAAADv/wkAAgACAAEAAADv/woAAgACAAEAAADv/wsAAgACAAEAAADv/wwAAgACAAEAAADv/w0AAgACAAEAAADv/w4AAgACAAEAAADv/w8AAgACAAEAAADv/xAAAgACAAEAAADv/xEAAgACAAEAAADv/xIAAgACAAEAAADv/xMAAgACAAEAAADv/xQAAgACAAEAAADv/xUAAgACAAEAAADv/xYAAgACAAEAAADv/xcAAgACAAEAAADv/xgAAgACAAEAAADv/xkAAgACAAEAAADv/xoAAgACAAEAAADv/xsAAgACAAEAAADv/xwAAgACAAEAAADw/wcAAgACAAEAAADw/wgAAgACAAEAAADw/wkAAgACAAEAAADw/woAAgACAAEAAADw/wsAAgACAAEAAADw/wwAAgACAAEAAADw/w0AAgACAAEAAADw/w4AAgACAAEAAADw/w8AAgACAAEAAADw/xAAAgACAAEAAADw/xEAAgACAAEAAADw/xIAAgACAAEAAADw/xMAAgACAAEAAADw/xQAAgACAAEAAADw/xUAAgACAAEAAADw/xYAAgACAAEAAADw/xcAAgACAAEAAADw/xgAAgACAAEAAADw/xkAAgACAAEAAADw/xoAAgACAAEAAADw/xsAAgACAAEAAADw/xwAAgACAAEAAADx/wcAAgACAAEAAADx/wgAAgACAAEAAADx/wkAAgACAAEAAADx/woAAgACAAEAAADx/wsAAgACAAEAAADx/wwAAgACAAEAAADx/w0AAgACAAEAAADx/w4AAgACAAEAAADx/w8AAgACAAEAAADx/xAAAgACAAEAAADx/xEAAgACAAEAAADx/xIAAgACAAEAAADx/xMAAgACAAEAAADx/xQAAgACAAEAAADx/xUAAgACAAEAAADx/xYAAgACAAEAAADx/xcAAgACAAEAAADx/xgAAgACAAEAAADx/xkAAgACAAEAAADx/xoAAgACAAEAAADx/xsAAgACAAEAAADx/xwAAgACAAEAAADx//7/AgACAAEAAADx////AgACAAEAAADx/wAAAgACAAEAAADx/wEAAgACAAEAAADx/wIAAgACAAEAAADx/wMAAgACAAEAAADx/wQAAgACAAEAAADx/wUAAgACAAEAAADx/wYAAgACAAEAAADx/x0AAgACAAEAAADy/wEAAgACAAEAAADy/wIAAgACAAEAAADy/wMAAgACAAEAAADy/wQAAgACAAEAAADy/wUAAgACAAEAAADy/wYAAgACAAEAAADy/wcAAgACAAEAAADy/wgAAgACAAEAAADy/wkAAgACAAEAAADy/woAAgACAAEAAADy/wsAAgACAAEAAADy/wwAAgACAAEAAADy/w0AAgACAAEAAADy/w4AAgACAAEAAADy/w8AAgACAAEAAADy/xAAAgACAAEAAADy/xEAAgACAAEAAADy/xIAAgACAAEAAADy/xMAAgACAAEAAADy/xQAAgACAAEAAADy/xUAAgACAAEAAADy/xYAAgACAAEAAADy/xcAAgACAAEAAADy/xgAAgACAAEAAADy/xkAAgACAAEAAADy/xoAAgACAAEAAADy/xsAAgACAAEAAADy/xwAAgACAAEAAADy/x0AAgACAAEAAADy//L/AgACAAEAAADy//P/AgACAAEAAADx//D/AgACAAEAAADy//D/AgACAAEAAADy//H/AgACAAEAAADx//z/AgACAAEAAADx//3/AgACAAEAAADy////AgACAAEAAADy/wAAAgACAAEAAADw/x0AAgACAAEAAADv/x0AAgACAAEAAADv/x4AAgACAAEAAADw/x4AAgACAAEAAADx/x4AAgACAAEAAADy/x4AAgACAAEAAAA=")
+tile_set = ExtResource("1_ct6cj")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1795492747]
+z_index = 2
+position = Vector2(136, 112)
+tile_map_data = PackedByteArray("AAD+//7/BwAAAAEAAAD+/wsABwAAAAEAAAD+/xgABwAAAAEAAAAQAAMABwAAAAEAAAAQABAABwAAAAEAAAD6//7/BwAAAAEAAAD6/wsABwAAAAEAAAD6/xgABwAAAAEAAAD7//7/BwAAAAEAAAD7/wsABwAAAAEAAAD7/xgABwAAAAEAAAD8//7/BwAAAAEAAAD8/wsABwAAAAEAAAD8/xgABwAAAAEAAAD9//7/BwAAAAEAAAD9/wsABwAAAAEAAAD9/xgABwAAAAEAAAAMAAMABwAAAAEAAAAMABAABwAAAAEAAAANAAMABwAAAAEAAAANABAABwAAAAEAAAAOAAMABwAAAAEAAAAOABAABwAAAAEAAAAPAAMABwAAAAEAAAAPABAABwAAAAEAAAA=")
+tile_set = ExtResource("2_lpinn")
+
+[node name="RoomInstance" parent="." unique_id=1004152205 instance=ExtResource("3_hom60")]
+
+[node name="Snail" parent="." unique_id=749977076 instance=ExtResource("4_hom60")]
+position = Vector2(100, 91)
+ExportedSpriteWrapper = SubResource("Resource_perks")
+
+[node name="Snail2" parent="." unique_id=1699081168 instance=ExtResource("4_hom60")]
+position = Vector2(245, 130)
+ExportedSpriteWrapper = SubResource("Resource_0b11j")
+
+[node name="Snail3" parent="." unique_id=838478357 instance=ExtResource("4_hom60")]
+position = Vector2(99, 195)
+ExportedSpriteWrapper = SubResource("Resource_e0376")
+
+[node name="Snail4" parent="." unique_id=1875150971 instance=ExtResource("4_hom60")]
+position = Vector2(259, 235)
+ExportedSpriteWrapper = SubResource("Resource_omsvl")
+
+[node name="Snail5" parent="." unique_id=1772825938 instance=ExtResource("4_hom60")]
+position = Vector2(108, 298)
+ExportedSpriteWrapper = SubResource("Resource_5gf8o")
