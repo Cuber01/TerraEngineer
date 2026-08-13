@@ -7,7 +7,6 @@ namespace TerraEngineer.entities.tiles.terra_spike;
 public partial class Spike : TerraformableEntity
 {
     [Export] private Area2D hurtArea;
-    [Export] private CollisionShape2D solidHitbox;
 
     private const int Damage = 2;
 
@@ -23,13 +22,29 @@ public partial class Spike : TerraformableEntity
         {
             hurtArea.Rotation = rotation;
             hurtArea.BodyEntered += onBodyEntered;
-            hurtArea.Monitoring = true;
         }
 
-        if (solidHitbox != null)
+        if (Hitbox != null)
         {
-            solidHitbox.Rotation = rotation;
-            solidHitbox.Disabled = false;
+            Hitbox.Rotation = rotation;
+        }
+    }
+    
+    public override void Enable()
+    {
+        base.Enable();
+        if (hurtArea != null)
+        {
+            hurtArea.Monitoring = true;
+        }
+    }
+    
+    public override void Disable()
+    {
+        base.Disable();
+        if (hurtArea != null)
+        {
+            hurtArea.Monitoring = false;
         }
     }
 
