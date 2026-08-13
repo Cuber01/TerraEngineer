@@ -18,7 +18,7 @@ public partial class LevelPreparer : Node2D
     {
         tilesDict = new Dictionary<StringName, PackedScene>();
         int i = 0;
-        while (i < tileNames.Length)
+        while (i < tileScenes.Length)
         {
             tilesDict.Add(tileNames[i], tileScenes[i]);
             i++;
@@ -87,8 +87,7 @@ public partial class LevelPreparer : Node2D
     private void spawnTile(StringName name, Vector2I mapCoords, Node2D level, TileMapLayer dataLayer)
     {
         PackedScene scene = tilesDict[name];
-        Tile instance = (Tile)scene.Instantiate();
-        instance.MapCoords = mapCoords;
+        TerraformableTileCaretaker instance = (TerraformableTileCaretaker)scene.Instantiate();
         instance.GlobalPosition = dataLayer.MapToLocal(mapCoords) + dataLayer.GlobalPosition;
         level.AddChild(instance);
     }

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b72vatjax06mn" path="res://entities/objects/puzzle/puzzle-palette-blue.png" id="10_6s0g2"]
 [ext_resource type="PackedScene" uid="uid://dx5otd75j65no" path="res://entities/objects/puzzle/switchable_block/SwitchableBlock.tscn" id="11_nikvl"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="12_oeqho"]
-[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special-tiles.png" id="13_4ftpy"]
+[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special_tiles/special-tiles.png" id="13_4ftpy"]
 
 [sub_resource type="Resource" id="Resource_8brst"]
 script = ExtResource("4_ot3mu")

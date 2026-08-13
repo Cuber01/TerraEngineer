@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://clhatbh6c4ivu"]
+
+[ext_resource type="PackedScene" uid="uid://6cnkve7fno8a" path="res://entities/tiles/terra_tile/TerraTile.tscn" id="1_gl728"]
+
+[node name="TerraTile" unique_id=1389306202 instance=ExtResource("1_gl728")]
+currentBiome = 2

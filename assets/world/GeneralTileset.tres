@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dv8anmkrhdk26" path="res://assets/world/grass/wood.png" id="4_uxfa3"]
 [ext_resource type="Texture2D" uid="uid://cg1o5yjjncftx" path="res://assets/world/office/office-tileset.png" id="5_47163"]
 [ext_resource type="Texture2D" uid="uid://c1jjguvhaa2ep" path="res://assets/world/office/pipe-tileset.png" id="6_rlu0f"]
-[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special-tiles.png" id="7_j8ht1"]
+[ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special_tiles/special-tiles.png" id="7_j8ht1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_3b7yi"]
 tile_data = PackedInt32Array(0, 327680, 5, 65536, 196610, 0, 131072, 196610, 1)
@@ -830,21 +830,37 @@ texture_region_size = Vector2i(8, 8)
 texture = ExtResource("7_j8ht1")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
+0:0/0/custom_data_0 = &"breakable"
 1:0/0 = 0
+1:0/0/custom_data_0 = &"ice_spike_up"
 2:0/0 = 0
+2:0/0/custom_data_0 = &"ice_spike_down"
 3:0/0 = 0
+3:0/0/custom_data_0 = &"ice_spike_right"
 4:0/0 = 0
+4:0/0/custom_data_0 = &"ice_spike_left"
 0:1/0 = 0
+0:1/0/custom_data_0 = &"shatterable"
 1:1/0 = 0
+1:1/0/custom_data_0 = &"grs_spike_up"
 2:1/0 = 0
+2:1/0/custom_data_0 = &"grs_spike_down"
 3:1/0 = 0
+3:1/0/custom_data_0 = &"grs_spike_right"
 4:1/0 = 0
+4:1/0/custom_data_0 = &"grs_spike_left"
 4:2/0 = 0
+4:2/0/custom_data_0 = &"msh_spike_left"
 3:2/0 = 0
+3:2/0/custom_data_0 = &"msh_spike_right"
 2:2/0 = 0
+2:2/0/custom_data_0 = &"msh_spike_down"
 1:2/0 = 0
+1:2/0/custom_data_0 = &"msh_spike_up"
 0:2/0 = 0
+0:2/0/custom_data_0 = &"indestructible"
 0:3/0 = 0
+0:3/0/custom_data_0 = &"shatterable_forever"
 
 [resource]
 tile_size = Vector2i(8, 8)
@@ -868,6 +884,8 @@ terrain_set_1/terrain_0/name = "Wood"
 terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_1/terrain_1/name = "Pipes"
 terrain_set_1/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+custom_data_layer_0/name = "special_type"
+custom_data_layer_0/type = 21
 sources/0 = SubResource("TileSetAtlasSource_fk7ia")
 sources/1 = SubResource("TileSetAtlasSource_ndpi1")
 sources/2 = SubResource("TileSetAtlasSource_h5lnc")

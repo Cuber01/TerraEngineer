@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dxs5ae8r4qvb0" path="res://entities/objects/plant/HeartPlant.tscn" id="3_yu1ek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vmq4"]
-size = Vector2(9, 10)
+size = Vector2(8, 8)
 
 [node name="Plant" type="CharacterBody2D" unique_id=1389306202 node_paths=PackedStringArray("versions")]
 collision_layer = 16
