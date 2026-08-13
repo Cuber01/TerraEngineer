@@ -34,6 +34,15 @@ public partial class TerraformableCaretaker : Node2D
         init = true;
     }
 
+    protected void RunDisable()
+    {
+        foreach (var node in versions.GetChildren())
+        {
+            var entity = (ITerraformable)node;
+            entity.Disable();
+        }
+    }
+
     public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("f10"))

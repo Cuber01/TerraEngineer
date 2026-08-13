@@ -11,7 +11,10 @@ public partial class TerraformableSpikeCaretaker : TerraformableTileCaretaker
     [Export] private RayCast2D groundUp;
     public Direction4 SpikeFacing = Direction4.None;
 
-    public override void _Ready() { }
+    public override void _Ready()
+    {
+        RunDisable();
+    }
 
     private void init()
     {

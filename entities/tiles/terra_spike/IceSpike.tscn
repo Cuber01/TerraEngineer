@@ -48,6 +48,7 @@ animations = [{
 size = Vector2(8, 7)
 
 [node name="IceSpike" type="CharacterBody2D" unique_id=1434504614 node_paths=PackedStringArray("hurtArea", "Sprite")]
+collision_layer = 0
 script = ExtResource("1_3mnc8")
 hurtArea = NodePath("Area2D")
 MyBiome = 2

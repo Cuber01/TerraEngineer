@@ -48,6 +48,7 @@ animations = [{
 size = Vector2(8, 5)
 
 [node name="MushroomSpike" type="CharacterBody2D" unique_id=1434504614 node_paths=PackedStringArray("solidHitbox", "Hitbox", "Sprite")]
+collision_mask = 0
 script = ExtResource("1_apxfm")
 solidHitbox = NodePath("CollisionShape2D")
 Hitbox = NodePath("CollisionShape2D")
