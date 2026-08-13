@@ -128,7 +128,6 @@ public partial class Penguin : Creature
         {
             Actor.SpriteWrapper.Play(Names.Animations.Idle);
             Actor.CM.GetComponent<Gravity>().LandedOnFloor -= landedOnFloor;
-            
         }
 
         private void jump()
