@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.objects;
 
@@ -10,6 +11,8 @@ public partial class TerraformableEntity : Entity, ITerraformable
     [Export] public Biomes MyBiome { get; set; }
     public bool Active { get; set; }
     public TerraformableCaretaker Caretaker { get; set; }
+
+    public virtual void Init() { }
 
     public virtual void Update(float delta)
     {
@@ -23,7 +26,6 @@ public partial class TerraformableEntity : Entity, ITerraformable
         {
             Update((float)delta);   
         }
-
     }
     
     public virtual void Enable()

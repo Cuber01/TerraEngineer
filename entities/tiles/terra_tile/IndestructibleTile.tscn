@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://6wceo01lgq28"]
 
-[ext_resource type="Script" uid="uid://bdcqkjkn5awme" path="res://entities/tiles/terra_tile/TerraformableTile.cs" id="1_dpx43"]
+[ext_resource type="Script" uid="uid://blo7kdxbqebir" path="res://entities/TerraformableEntity.cs" id="1_dpx43"]
 [ext_resource type="Texture2D" uid="uid://bkm062a8np031" path="res://assets/world/special_tiles/mushroom-breakable-tile.tres" id="1_x6olo"]
-[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_c1vrl"]
-
-[sub_resource type="Resource" id="Resource_c1nhu"]
-script = ExtResource("2_c1vrl")
-metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1xi12"]
 animations = [{
@@ -22,13 +17,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo1hy"]
 size = Vector2(8, 8)
 
-[node name="IndestructibleTile" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("CollisionShape", "Sprite")]
+[node name="IndestructibleTile" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("Hitbox")]
 collision_mask = 4
 script = ExtResource("1_dpx43")
-CollisionShape = NodePath("CollisionShape2D")
+Hitbox = NodePath("CollisionShape2D")
 MyBiome = 1
-Sprite = NodePath("AnimatedSprite2D")
-ExportedSpriteWrapper = SubResource("Resource_c1nhu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2131270710]
 sprite_frames = SubResource("SpriteFrames_1xi12")

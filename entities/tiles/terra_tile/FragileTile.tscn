@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://bbl181mnyr1id"]
 
 [ext_resource type="Script" uid="uid://cjm4jjtdob01t" path="res://entities/tiles/terra_tile/FragileTile.cs" id="1_gsiqk"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_gsiqk"]
 [ext_resource type="Texture2D" uid="uid://b71cuba0pyymj" path="res://assets/world/special_tiles/ice-breakable-tile.tres" id="3_t87bs"]
+
+[sub_resource type="Resource" id="Resource_qliha"]
+script = ExtResource("2_gsiqk")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t6axv"]
 animations = [{
@@ -20,12 +25,14 @@ size = Vector2(8, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ytv7c"]
 size = Vector2(8, 1.5)
 
-[node name="FragileTile" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("stepDetector", "CollisionShape")]
+[node name="FragileTile" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("stepDetector", "Hitbox", "Sprite")]
 collision_mask = 4
 script = ExtResource("1_gsiqk")
 stepDetector = NodePath("StepDetector")
-CollisionShape = NodePath("CollisionShape2D")
+Hitbox = NodePath("CollisionShape2D")
 MyBiome = 2
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_qliha")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2131270710]
 sprite_frames = SubResource("SpriteFrames_t6axv")

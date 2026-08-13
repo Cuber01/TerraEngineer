@@ -1,11 +1,7 @@
-using Godot;
-using TENamespace.basic.save_tile;
-using TerraEngineer.entities.mobs;
-using TerraEngineer.entities.objects;
 
 namespace TerraEngineer.entities.tiles;
 
-public partial class BreakableTile : TerraformableTile
+public partial class BreakableTile : TerraformableEntity
 {
     public override void Die()
     {

@@ -9,6 +9,8 @@ public partial class TerraformableRoom : Node2D, ITerraformable
     [Export] public bool Active { get; set; }
     public TerraformableCaretaker Caretaker { get; set; }
     
+    public void Init() { }
+    
     public void Enable()
     {
         foreach (Node child in GetChildren())

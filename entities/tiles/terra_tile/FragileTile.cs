@@ -1,8 +1,9 @@
 using Godot;
 using TENamespace.basic.save_tile;
+using TerraEngineer.entities;
 using TerraEngineer.entities.tiles;
 
-public partial class FragileTile : TerraformableTile
+public partial class FragileTile : TerraformableEntity
 {
     [Export] private Area2D stepDetector;
 
@@ -32,7 +33,7 @@ public partial class FragileTile : TerraformableTile
         
         Hide();
         stepDetector.SetDeferred(Area2D.PropertyName.Monitoring, false);
-        CollisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+        Hitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         currentTimer = TimerManager.Schedule(repairTime, this, repair);
     }
 
@@ -42,7 +43,7 @@ public partial class FragileTile : TerraformableTile
         
         Show();
         stepDetector.SetDeferred(Area2D.PropertyName.Monitoring, true);
-        CollisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+        Hitbox.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
     }
 
     public override void Enable()

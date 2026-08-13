@@ -16,8 +16,10 @@ public interface ITerraformable
     public void Setup(TerraformableCaretaker caretaker)
     {
         Caretaker = caretaker;
+        Init();
     }
 
+    public void Init();
     public void Enable();
     public void Disable();
 }

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ba10rytdj18kj" path="res://entities/tiles/terra_tile/BreakableTile.cs" id="1_aukk6"]
 [ext_resource type="Texture2D" uid="uid://car0mxad04w6e" path="res://assets/world/special_tiles/special-tiles.png" id="1_f810q"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_o04u6"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="4_mpwwm"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="5_o04u6"]
 
 [sub_resource type="Resource" id="Resource_w50ey"]
 script = ExtResource("2_o04u6")
@@ -26,11 +28,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo1hy"]
 size = Vector2(8, 8)
 
-[node name="BreakableTile" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("CollisionShape", "CM", "Sprite")]
+[node name="BreakableTile" type="CharacterBody2D" unique_id=1439251837 node_paths=PackedStringArray("Hitbox", "CM", "Sprite")]
 collision_mask = 4
 script = ExtResource("1_aukk6")
-CollisionShape = NodePath("CollisionShape2D")
-CM = NodePath("")
+Hitbox = NodePath("CollisionShape2D")
+CM = NodePath("ComponentManager")
 Sprite = NodePath("AnimatedSprite2D")
 ExportedSpriteWrapper = SubResource("Resource_w50ey")
 
@@ -39,3 +41,9 @@ sprite_frames = SubResource("SpriteFrames_imu5j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=561458747]
 shape = SubResource("RectangleShape2D_uo1hy")
+
+[node name="ComponentManager" parent="." unique_id=2110464275 instance=ExtResource("4_mpwwm")]
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=1408514816 instance=ExtResource("5_o04u6")]
+MaxHealth = 1
+invincibilityTimeOnHit = 0.0
