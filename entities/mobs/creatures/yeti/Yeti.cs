@@ -1,15 +1,24 @@
 using Godot;
 using System;
 using TENamespace.projectile_builder;
+using TerraEngineer.entities.mobs;
 using TerraEngineer.entities.mobs.creatures;
 
 [Tool]
 public partial class Yeti : Creature
 {
+	[Export] private Node2D spawnPos;
 	private float spawnTime = 3f;
 	
 	public override void Init()
 	{
+		// TODO no idea why yeti fails to flip without this
+		if (Facing == DirectionX.Left)
+		{
+			Flip();
+			Facing = DirectionX.Left;
+		}
+			
 		TimerManager.Schedule(spawnTime, this, spawnSnowball);
 	}
 
@@ -33,5 +42,11 @@ public partial class Yeti : Creature
 		
 		CM.UpdateComponents((float)delta);
 		HandleMove();
+	}
+	
+	protected override void FlipEffect()
+	{
+		base.FlipEffect();
+		spawnPos.Position = new Vector2(-spawnPos.Position.X, spawnPos.Position.Y);
 	}
 }

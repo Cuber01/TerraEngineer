@@ -36,8 +36,6 @@ public partial class Creature : Entity
             CM.TryGetComponent<Shader>()?.ToggleShader(false);
         };
         
-        if(Facing == DirectionX.Left)
-            SpriteWrapper.Flip();
         Init();
     }
 

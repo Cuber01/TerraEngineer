@@ -119,10 +119,11 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Yeti" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
+[node name="Yeti" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("spawnPos", "CM", "Sprite")]
 collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_11kml")
+spawnPos = NodePath("ComponentManager/ProjectileSpawnerComponent/Node2D")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
 ExportedSpriteWrapper = SubResource("Resource_m2cht")
