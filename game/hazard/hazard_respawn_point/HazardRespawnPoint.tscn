@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://w1brqpunfh7u"]
 
-[ext_resource type="Script" uid="uid://ehw5egnswok4" path="res://game/hazard_respawn_point/HazardRespawnPoint.cs" id="1_rbb80"]
+[ext_resource type="Script" uid="uid://ehw5egnswok4" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.cs" id="1_rbb80"]
 
 [node name="HazardRespawnPoint" type="Area2D" unique_id=903134636]
 collision_layer = 0
