@@ -32,9 +32,11 @@ public partial class Player : Creature
 	
 	private StateMachineWithTriggers<Player, PlayerTriggers> fsm;
 	public InputContext InputContext = new();
-
+	
 	public bool PhasingAllowed = false;
 	public bool DashAllowed = false;
+	public Vector2 HazardRespawnPoint;
+	
 	private bool updateFrozen = false;
 	private const float RoomTransitionForce = 10f;
 	private const float RoomTransitionForceUpModifier = 3f;
@@ -393,6 +395,8 @@ public partial class Player : Creature
 	
 	// Wrapper for gdscript
 	public void ActivateInventory() => CM.GetComponent<PlayerInventory>().ActivateItems();
+	
+	public void ReturnToHazardRespawnPoint() => GlobalPosition = HazardRespawnPoint;
 	
 	public void Freeze() => updateFrozen = true;
 	public void Unfreeze() => updateFrozen = false;

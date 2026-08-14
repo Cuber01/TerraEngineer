@@ -15,8 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawnerComponent.tscn" id="14_xibyr"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="15_8k2kr"]
 [ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="15_r1ybn"]
+[ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard_respawn_point/HazardRespawnPoint.tscn" id="16_8k2kr"]
 
-[sub_resource type="Resource" id="Resource_8k2kr"]
+[sub_resource type="Resource" id="Resource_xibyr"]
 script = ExtResource("3_xibyr")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -29,9 +30,15 @@ shader_parameter/seed = 0.2430000115425
 shader_parameter/tiles_per_unit = 5.0000002375
 shader_parameter/line_length_scale = 0.15625
 
-[sub_resource type="Resource" id="Resource_r1ybn"]
+[sub_resource type="Resource" id="Resource_8k2kr"]
 script = ExtResource("3_xibyr")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8k2kr"]
+size = Vector2(40, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1ybn"]
+size = Vector2(61, 153)
 
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"DevRoom"
@@ -45,12 +52,12 @@ tile_set = ExtResource("2_v3p77")
 [node name="SpecialTiles" type="TileMapLayer" parent="." unique_id=877896893]
 z_index = 2
 position = Vector2(119, 108)
-tile_map_data = PackedByteArray("AAD+//3/BwAAAAMAAAD///3/BwAAAAMAAAAAAP3/BwAAAAMAAAAVAAMABwACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD+//3/BwAAAAMAAAD///3/BwAAAAMAAAAAAP3/BwAAAAMAAAAVAAMABwADAAAAAAASAAMABwADAAAAAAATAAMABwADAAAAAAAUAAMABwADAAAAAAAWAAMABwADAAAAAAAXAAMABwADAAAAAAAYAAMABwADAAAAAAAhAAMABwADAAAAAAAiAAMABwADAAAAAAAjAAMABwADAAAAAAAkAAMABwADAAAAAAAlAAMABwADAAAAAAAmAAMABwADAAAAAAAnAAMABwADAAAAAAAoAAMABwADAAAAAAA=")
 tile_set = ExtResource("2_v3p77")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("2_epa2u")]
 position = Vector2(792, 142)
-ExportedSpriteWrapper = SubResource("Resource_8k2kr")
+ExportedSpriteWrapper = SubResource("Resource_xibyr")
 
 [node name="RoomInstance" parent="." unique_id=646333494 instance=ExtResource("5_v3p77")]
 
@@ -193,7 +200,7 @@ position = Vector2(405, 28)
 
 [node name="Yeti" parent="." unique_id=144688187 instance=ExtResource("15_8k2kr")]
 position = Vector2(750, 99)
-ExportedSpriteWrapper = SubResource("Resource_r1ybn")
+ExportedSpriteWrapper = SubResource("Resource_8k2kr")
 
 [node name="AutoDoc" parent="." unique_id=912996181 instance=ExtResource("13_fumxt")]
 position = Vector2(150, 92)
@@ -212,3 +219,17 @@ offset_bottom = 33.0
 
 [node name="CreatureSpawnerComponent" parent="CreatureSpawnScheduler" unique_id=974395419 instance=ExtResource("14_xibyr")]
 Scene = ExtResource("15_r1ybn")
+
+[node name="HazardRespawnPoint" parent="." unique_id=903134636 instance=ExtResource("16_8k2kr")]
+position = Vector2(251, 108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint" unique_id=1198662018]
+position = Vector2(-8, -56)
+shape = SubResource("RectangleShape2D_8k2kr")
+
+[node name="HazardRespawnPoint2" parent="." unique_id=797475718 instance=ExtResource("16_8k2kr")]
+position = Vector2(351, 163)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint2" unique_id=726220314]
+position = Vector2(-0.5, -66.5)
+shape = SubResource("RectangleShape2D_r1ybn")

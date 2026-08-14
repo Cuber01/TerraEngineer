@@ -51,7 +51,10 @@ public partial class Spike : TerraformableEntity
     private void onBodyEntered(Node2D stepper)
     {
         if (stepper is Player p)
+        {
             p.CM.GetComponent<Health>().ChangeHealth(-Damage, this);
+            p.ReturnToHazardRespawnPoint();
+        }
         else if (stepper is Entity e)
             e.Die();
     }
