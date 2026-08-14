@@ -3,12 +3,69 @@
 [ext_resource type="TileSet" uid="uid://ri1ugy335m8n" path="res://assets/world/IceTileset.tres" id="1_qwvdb"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_32ini"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="3_cpkd6"]
+[ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="4_27xvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_27xvb"]
 size = Vector2(32, 80)
 
+[sub_resource type="Shader" id="Shader_27xvb"]
+code = "shader_type particles;
+
+uniform float movement_speed_x = 150.0;     
+uniform float movement_speed_y = 6.0;     
+uniform float base_wave_speed = 4.0;      
+uniform float max_wave_amplitude = 30.0;   
+uniform float spawn_spread_y = 180.0;      
+
+float rand(inout uint seed) {
+    seed = (seed ^ 61u) ^ (seed >> 16u);
+    seed *= 9u;
+    seed = seed ^ (seed >> 4u);
+    seed *= 0x27d4eb2du;
+    seed = seed ^ (seed >> 15u);
+    return float(seed) / 4294967296.0;
+}
+
+void start() {
+    uint seed = NUMBER + RANDOM_SEED;
+
+    TRANSFORM[3].x = 0.0; 
+    float random_y_offset = rand(seed) * (spawn_spread_y / 2.0);
+    TRANSFORM[3].y = random_y_offset;
+
+    // Bake unique custom properties into each pixel so they don't look identical
+    // CUSTOM.x = amplitude multiplier
+    // CUSTOM.y = frequency modifier
+    // CUSTOM.z = starting time phase
+    CUSTOM.x = rand(seed) * max_wave_amplitude; 
+    CUSTOM.y = base_wave_speed + (rand(seed) * 2.0 - 1.0); 
+    CUSTOM.z = rand(seed) * 6.28; // 6.28=2*PI
+}
+
+void process() {    
+    TRANSFORM[3].x -= movement_speed_x * DELTA;
+
+    float my_amplitude = CUSTOM.x;
+    float my_freq     = CUSTOM.y;
+    float my_phase     = CUSTOM.z;
+
+	// CUSTOM.w = current position in sin, so taking frequency into account unlike TRANSFORM.x
+    CUSTOM.w += DELTA * my_freq; 
+    float sine_wave = sin(CUSTOM.w + my_phase) * my_amplitude;
+
+    TRANSFORM[3].y += sine_wave * DELTA * movement_speed_y; 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0wt5"]
+shader = SubResource("Shader_27xvb")
+shader_parameter/movement_speed_x = 150.0
+shader_parameter/movement_speed_y = 6.0
+shader_parameter/base_wave_speed = 5.0
+shader_parameter/max_wave_amplitude = 40.0
+shader_parameter/spawn_spread_y = 400.0
+
 [node name="Level" type="Node2D" unique_id=1264198129]
-metadata/level_name = &"IceCave1"
+metadata/level_name = &"MountainPeak"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1739096045]
 z_index = 2
@@ -28,5 +85,9 @@ tile_set = ExtResource("1_qwvdb")
 [node name="CollisionShape2D" parent="SecretRoom" index="1" unique_id=1783871849]
 position = Vector2(160, 136)
 shape = SubResource("RectangleShape2D_27xvb")
+
+[node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("4_27xvb")]
+material = SubResource("ShaderMaterial_c0wt5")
+position = Vector2(320, 0)
 
 [editable path="SecretRoom"]

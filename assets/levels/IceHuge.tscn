@@ -9,24 +9,25 @@
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_l2j0d"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="6_jgcgi"]
 [ext_resource type="PackedScene" uid="uid://bchjl20lymip" path="res://entities/objects/secret_room/SecretRoom.tscn" id="9_ocwf6"]
-
-[sub_resource type="Resource" id="Resource_4ncbg"]
-script = ExtResource("5_l2j0d")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_ge3i7"]
-script = ExtResource("5_l2j0d")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_ocwf6"]
-script = ExtResource("5_d5gp1")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
-
-[sub_resource type="Resource" id="Resource_d5gp1"]
-script = ExtResource("5_d5gp1")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
+[ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="10_d5gp1"]
 
 [sub_resource type="Resource" id="Resource_jgcgi"]
+script = ExtResource("5_l2j0d")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_euun5"]
+script = ExtResource("5_l2j0d")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="Resource" id="Resource_ofufd"]
+script = ExtResource("5_d5gp1")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="Resource" id="Resource_guo1m"]
+script = ExtResource("5_d5gp1")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="Resource" id="Resource_cigo7"]
 script = ExtResource("5_d5gp1")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -36,8 +37,64 @@ size = Vector2(31, 359)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgcgi"]
 size = Vector2(77, 47)
 
+[sub_resource type="Shader" id="Shader_d5gp1"]
+code = "shader_type particles;
+
+uniform float movement_speed_x = 150.0;     
+uniform float movement_speed_y = 6.0;     
+uniform float base_wave_speed = 4.0;      
+uniform float max_wave_amplitude = 30.0;   
+uniform float spawn_spread_y = 180.0;      
+
+float rand(inout uint seed) {
+    seed = (seed ^ 61u) ^ (seed >> 16u);
+    seed *= 9u;
+    seed = seed ^ (seed >> 4u);
+    seed *= 0x27d4eb2du;
+    seed = seed ^ (seed >> 15u);
+    return float(seed) / 4294967296.0;
+}
+
+void start() {
+    uint seed = NUMBER + RANDOM_SEED;
+
+    TRANSFORM[3].x = 0.0; 
+    float random_y_offset = rand(seed) * (spawn_spread_y / 2.0);
+    TRANSFORM[3].y = random_y_offset;
+
+    // Bake unique custom properties into each pixel so they don't look identical
+    // CUSTOM.x = amplitude multiplier
+    // CUSTOM.y = frequency modifier
+    // CUSTOM.z = starting time phase
+    CUSTOM.x = rand(seed) * max_wave_amplitude; 
+    CUSTOM.y = base_wave_speed + (rand(seed) * 2.0 - 1.0); 
+    CUSTOM.z = rand(seed) * 6.28; // 6.28=2*PI
+}
+
+void process() {    
+    TRANSFORM[3].x -= movement_speed_x * DELTA;
+
+    float my_amplitude = CUSTOM.x;
+    float my_freq     = CUSTOM.y;
+    float my_phase     = CUSTOM.z;
+
+	// CUSTOM.w = current position in sin, so taking frequency into account unlike TRANSFORM.x
+    CUSTOM.w += DELTA * my_freq; 
+    float sine_wave = sin(CUSTOM.w + my_phase) * my_amplitude;
+
+    TRANSFORM[3].y += sine_wave * DELTA * movement_speed_y; 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jgcgi"]
+shader = SubResource("Shader_d5gp1")
+shader_parameter/movement_speed_x = 150.0
+shader_parameter/movement_speed_y = 6.0
+shader_parameter/base_wave_speed = 5.0
+shader_parameter/max_wave_amplitude = 40.0
+shader_parameter/spawn_spread_y = 800.0
+
 [node name="Level" type="Node2D" unique_id=1264198129]
-metadata/level_name = &"IceCave1"
+metadata/level_name = &"IceHuge"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1739096045]
 z_index = 2
@@ -55,24 +112,24 @@ tile_set = ExtResource("2_4ncbg")
 
 [node name="Snail" parent="." unique_id=749977076 instance=ExtResource("4_kqbj1")]
 position = Vector2(783, 107)
-ExportedSpriteWrapper = SubResource("Resource_4ncbg")
+ExportedSpriteWrapper = SubResource("Resource_jgcgi")
 
 [node name="Snail2" parent="." unique_id=2008045061 instance=ExtResource("4_kqbj1")]
 position = Vector2(783, 180)
-ExportedSpriteWrapper = SubResource("Resource_ge3i7")
+ExportedSpriteWrapper = SubResource("Resource_euun5")
 
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("6_jgcgi")]
 position = Vector2(729, 23)
-ExportedSpriteWrapper = SubResource("Resource_ocwf6")
+ExportedSpriteWrapper = SubResource("Resource_ofufd")
 ExportedFacing = -1
 
 [node name="Yeti2" parent="." unique_id=92286628 instance=ExtResource("6_jgcgi")]
 position = Vector2(839, 23)
-ExportedSpriteWrapper = SubResource("Resource_d5gp1")
+ExportedSpriteWrapper = SubResource("Resource_guo1m")
 
 [node name="Penguin" parent="." unique_id=158773391 instance=ExtResource("4_ocwf6")]
 position = Vector2(52, 245)
-ExportedSpriteWrapper = SubResource("Resource_jgcgi")
+ExportedSpriteWrapper = SubResource("Resource_cigo7")
 
 [node name="SecretRoom" parent="." unique_id=685863141 instance=ExtResource("9_ocwf6")]
 position = Vector2(464, 0)
@@ -92,15 +149,21 @@ position = Vector2(464, 0)
 tile_map_data = PackedByteArray("AAAEABkAAgACAAEAAAAEABoAAgACAAEAAAAFABkAAgACAAEAAAAFABoAAgACAAEAAAAGABgAAgACAAEAAAAGABkAAgACAAEAAAAGABoAAgACAAEAAAAGABsAAgACAAEAAAAHABcAAgACAAEAAAAHABgAAgACAAEAAAAHABkAAgACAAEAAAAHABoAAgACAAEAAAAHABsAAgACAAEAAAAHABwAAgACAAEAAAAIABcAAgACAAEAAAAIABgAAgACAAEAAAAIABkAAgACAAEAAAAIABoAAgACAAEAAAAIABsAAgACAAEAAAAIABwAAgACAAEAAAAJABcAAgACAAEAAAAJABgAAgACAAEAAAAJABkAAgACAAEAAAAJABoAAgACAAEAAAAJABsAAgACAAEAAAAJABwAAgACAAEAAAAKABcAAgACAAEAAAAKABgAAgACAAEAAAAKABkAAgACAAEAAAAKABoAAgACAAEAAAAKABsAAgACAAEAAAAKABwAAgACAAEAAAALABcAAgACAAEAAAALABgAAgACAAEAAAALABkAAgACAAEAAAALABoAAgACAAEAAAALABsAAgACAAEAAAALABwAAgACAAEAAAAMABcAAgACAAEAAAAMABgAAgACAAEAAAAMABkAAgACAAEAAAAMABoAAgACAAEAAAAMABsAAgACAAEAAAAMABwAAgACAAEAAAANABcAAgACAAEAAAANABgAAgACAAEAAAANABkAAgACAAEAAAANABoAAgACAAEAAAANABsAAgACAAEAAAANABwAAgACAAEAAAAKAAYAAgACAAEAAAAKAAcAAgACAAEAAAAKAAgAAgACAAEAAAAKAAkAAgACAAEAAAAKAAoAAgACAAEAAAAKAAsAAgACAAEAAAAKAAwAAgACAAEAAAAKAA0AAgACAAEAAAAKAA4AAgACAAEAAAAKAA8AAgACAAEAAAAKABAAAgACAAEAAAAKABEAAgACAAEAAAAKABIAAgACAAEAAAAKABMAAgACAAEAAAAKABQAAgACAAEAAAAKABUAAgACAAEAAAAKABYAAgACAAEAAAALAAYAAgACAAEAAAALAAcAAgACAAEAAAALAAgAAgACAAEAAAALAAkAAgACAAEAAAALAAoAAgACAAEAAAALAAsAAgACAAEAAAALAAwAAgACAAEAAAALAA0AAgACAAEAAAALAA4AAgACAAEAAAALAA8AAgACAAEAAAALABAAAgACAAEAAAALABEAAgACAAEAAAALABIAAgACAAEAAAALABMAAgACAAEAAAALABQAAgACAAEAAAALABUAAgACAAEAAAALABYAAgACAAEAAAAMAAYAAgACAAEAAAAMAAcAAgACAAEAAAAMAAgAAgACAAEAAAANAAYAAgACAAEAAAANAAcAAgACAAEAAAANAAgAAgACAAEAAAAOAAYAAgACAAEAAAAOAAcAAgACAAEAAAAOAAgAAgACAAEAAAAPAAYAAgACAAEAAAAPAAcAAgACAAEAAAAPAAgAAgACAAEAAAAQAAYAAgACAAEAAAAQAAcAAgACAAEAAAAQAAgAAgACAAEAAAARAAYAAgACAAEAAAARAAcAAgACAAEAAAARAAgAAgACAAEAAAA=")
 tile_set = ExtResource("1_l2j0d")
 
+[node name="CollisionShape2D" parent="SecretRoom2" index="1" unique_id=1783871849]
+position = Vector2(73.5, 207.5)
+shape = SubResource("RectangleShape2D_jgcgi")
+
 [node name="FakeLayer2" type="TileMapLayer" parent="SecretRoom2" unique_id=1601584798]
 z_index = 5
 tile_map_data = PackedByteArray("AAASAAYABwACAAAAAAASAAcABwACAAAAAAASAAgABwACAAAAAAA=")
 tile_set = ExtResource("2_4ncbg")
 collision_enabled = false
 
-[node name="CollisionShape2D" parent="SecretRoom2" index="2" unique_id=1783871849]
-position = Vector2(73.5, 207.5)
-shape = SubResource("RectangleShape2D_jgcgi")
+[node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("10_d5gp1")]
+position = Vector2(960, 0)
+amount = 64
+lifetime = 8.0
+process_material = SubResource("ShaderMaterial_jgcgi")
 
 [editable path="SecretRoom"]
 [editable path="SecretRoom2"]

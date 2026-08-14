@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="10_nlfdb"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="11_n2v3j"]
 
-[sub_resource type="Resource" id="Resource_q7buq"]
+[sub_resource type="Resource" id="Resource_m2cht"]
 script = ExtResource("2_m2cht")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -125,7 +125,7 @@ collision_mask = 33
 script = ExtResource("1_11kml")
 CM = NodePath("ComponentManager")
 Sprite = NodePath("Sprite2D")
-ExportedSpriteWrapper = SubResource("Resource_q7buq")
+ExportedSpriteWrapper = SubResource("Resource_m2cht")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
 texture_filter = 1
