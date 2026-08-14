@@ -46,6 +46,7 @@ tile_set = ExtResource("2_c3chl")
 [node name="RoomInstance" parent="." unique_id=1004152205 instance=ExtResource("3_dv3cm")]
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("4_dk348")]
+process_mode = 4
 position = Vector2(696, 43)
 ExportedSpriteWrapper = SubResource("Resource_dv3cm")
 
@@ -55,17 +56,17 @@ ExportedSpriteWrapper = SubResource("Resource_75mmm")
 ExportedFacing = -1
 
 [node name="Penguin3" parent="." unique_id=212272930 instance=ExtResource("4_dk348")]
+process_mode = 4
 position = Vector2(568, 44)
 ExportedSpriteWrapper = SubResource("Resource_vrrut")
 
 [node name="Yeti" parent="." unique_id=1163335444 instance=ExtResource("4_75mmm")]
-position = Vector2(335, 94)
+position = Vector2(388, 119)
 ExportedSpriteWrapper = SubResource("Resource_j8oxb")
 ExportedFacing = -1
 
-[node name="Yeti2" parent="." unique_id=1320648960 instance=ExtResource("4_75mmm")]
-process_mode = 4
-position = Vector2(597, 39)
+[node name="Yeti2" parent="." unique_id=1055692311 instance=ExtResource("4_75mmm")]
+position = Vector2(360, 119)
 ExportedSpriteWrapper = SubResource("Resource_ejda4")
 
 [node name="PickupableHealthSerum" parent="." unique_id=780288586 instance=ExtResource("7_dv3cm")]

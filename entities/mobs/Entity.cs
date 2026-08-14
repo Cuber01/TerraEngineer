@@ -38,6 +38,8 @@ public partial class Entity : CharacterBody2D
         {
             if(Engine.IsEditorHint())
                 Flip(value);
+
+            Facing = value;
         }
     }
     public DirectionX Facing = DirectionX.Right;
