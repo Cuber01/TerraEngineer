@@ -3,32 +3,17 @@
 [ext_resource type="TileSet" uid="uid://ri1ugy335m8n" path="res://assets/world/IceTileset.tres" id="1_ct6cj"]
 [ext_resource type="TileSet" uid="uid://boeyhwe0ovo68" path="res://assets/world/GeneralTileset.tres" id="2_lpinn"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_hom60"]
-[ext_resource type="PackedScene" uid="uid://v37c1i0566mt" path="res://entities/mobs/creatures/snail/Snail.tscn" id="4_hom60"]
-[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="5_56j80"]
+[ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="5_hom60"]
 [ext_resource type="PackedScene" uid="uid://lvyd7vmj2y65" path="res://game/hazard/hazard_area/HazardArea.tscn" id="6_56j80"]
-
-[sub_resource type="Resource" id="Resource_perks"]
-script = ExtResource("5_56j80")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_0b11j"]
-script = ExtResource("5_56j80")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_e0376"]
-script = ExtResource("5_56j80")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_omsvl"]
-script = ExtResource("5_56j80")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
-[sub_resource type="Resource" id="Resource_5gf8o"]
-script = ExtResource("5_56j80")
-metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56j80"]
 size = Vector2(230, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_perks"]
+size = Vector2(23, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b11j"]
+size = Vector2(40, 113)
 
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"IceDescent"
@@ -47,29 +32,23 @@ tile_set = ExtResource("2_lpinn")
 
 [node name="RoomInstance" parent="." unique_id=1004152205 instance=ExtResource("3_hom60")]
 
-[node name="Snail" parent="." unique_id=749977076 instance=ExtResource("4_hom60")]
-position = Vector2(100, 91)
-ExportedSpriteWrapper = SubResource("Resource_perks")
-
-[node name="Snail2" parent="." unique_id=1699081168 instance=ExtResource("4_hom60")]
-position = Vector2(245, 130)
-ExportedSpriteWrapper = SubResource("Resource_0b11j")
-
-[node name="Snail3" parent="." unique_id=838478357 instance=ExtResource("4_hom60")]
-position = Vector2(99, 195)
-ExportedSpriteWrapper = SubResource("Resource_e0376")
-
-[node name="Snail4" parent="." unique_id=1875150971 instance=ExtResource("4_hom60")]
-position = Vector2(259, 235)
-ExportedSpriteWrapper = SubResource("Resource_omsvl")
-
-[node name="Snail5" parent="." unique_id=1772825938 instance=ExtResource("4_hom60")]
-position = Vector2(108, 298)
-ExportedSpriteWrapper = SubResource("Resource_5gf8o")
-
 [node name="HazardArea" parent="." unique_id=926237003 instance=ExtResource("6_56j80")]
 position = Vector2(42, 349)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=2121041622]
 position = Vector2(163, 21)
 shape = SubResource("RectangleShape2D_56j80")
+
+[node name="HazardRespawnPoint" parent="." unique_id=903134636 instance=ExtResource("5_hom60")]
+position = Vector2(17, 83)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint" unique_id=442689670]
+position = Vector2(-4.5, 1)
+shape = SubResource("RectangleShape2D_perks")
+
+[node name="HazardRespawnPoint2" parent="." unique_id=1790459972 instance=ExtResource("5_hom60")]
+position = Vector2(58, 315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint2" unique_id=1588404795]
+position = Vector2(-6, 21.5)
+shape = SubResource("RectangleShape2D_0b11j")
