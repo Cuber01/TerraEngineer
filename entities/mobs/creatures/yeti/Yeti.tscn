@@ -14,8 +14,8 @@
 script = ExtResource("2_m2cht")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_rf8h3"]
-_data = PackedByteArray("AAADAAUAAAABAAAADwAAABMAAADGAAAAUklGRr4AAABXRUJQVlA4TLIAAAAvDoAEEFdgJAASEgdoEF1g9qIX3eINNY2kQFddfQJAwetfBnKoUBvJVvKlCIfMQhqj/8TmPwDw/9csknAkHos3Y1NntdxuD7itbVtKjrNmkP3U95f5VIsdMIXO91XAIySmXuwhov8TAAtmi/Qn0kz5VCSgKOXawS1LkThne4XvyXY0hbifzOSxz2avkHPOFgqHh0LqgUEeHTw0RDRrHkOo05ZB3v4aoK+aag1w4AAwTuME")
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_m2cht"]
+_data = PackedByteArray("AAADAAUAAAABAAAADwAAABMAAADKAAAAUklGRsIAAABXRUJQVlA4TLUAAAAvDoAEEFdgJAASEgdoEF1g9qIX3eINNY2kQFddfQJAwetfBnKoUBvJVvKlCIfMQhqj/8TmPwDw/9csknAkHos3Y1NntdxuDzixbdtNDh3cjwqW1AH8seA72KjcJ+nvy+jMlzlE9L8HAEwAIGwBCCkHQpKyCUiWZxCS1MYZWFJRRDpXW+yKWZK1RbFfdOYqimLWJXlbRB69XIJDkvkaLj93E/R3czc49Lc/L7fPEmDDBmAYhxEAAA==")
 size_override = Vector2(15, 19)
 
 [sub_resource type="Animation" id="Animation_lousp"]
@@ -130,7 +130,7 @@ ExportedSpriteWrapper = SubResource("Resource_m2cht")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=458524593]
 texture_filter = 1
 position = Vector2(0, -1)
-texture = SubResource("PortableCompressedTexture2D_rf8h3")
+texture = SubResource("PortableCompressedTexture2D_m2cht")
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -152,7 +152,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://entities/mobs/creatures/yeti/yeti.ase",
 "source_uid": 4825035777433693706
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ae7961a49e432ab3e487e9068f57f894"
+metadata/_aseprite_wizard_source_file_hash_ = "6d23a55b8913d4cc499ab59f525f80e9"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1283013631]
 libraries/ = SubResource("AnimationLibrary_l6l3q")
@@ -176,4 +176,4 @@ Scene = ExtResource("8_m2cht")
 SpawnPosition = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="ComponentManager/ProjectileSpawnerComponent" unique_id=1141968812]
-position = Vector2(-15, 0)
+position = Vector2(15, 0)

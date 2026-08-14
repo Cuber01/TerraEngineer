@@ -17,7 +17,7 @@ public partial class Yeti : Creature
 	{
 		CM.GetComponent<ProjectileSpawner>()
 			.Start()
-			.SetFacing(Facing.Opposite())
+			.SetFacing(Facing)
 			.AddToGame()
 			.Build();
 		
@@ -32,5 +32,6 @@ public partial class Yeti : Creature
 		#endif
 		
 		CM.UpdateComponents((float)delta);
+		HandleMove();
 	}
 }

@@ -38,12 +38,13 @@ tile_set = ExtResource("2_llvr0")
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("4_d8yjy")]
 position = Vector2(262, 87)
 ExportedSpriteWrapper = SubResource("Resource_d8yjy")
+ExportedFacing = -1
 
 [node name="Yeti2" parent="." unique_id=620656229 instance=ExtResource("4_d8yjy")]
 position = Vector2(463, 39)
 ExportedSpriteWrapper = SubResource("Resource_161ob")
-ExportedFacing = -1
 
 [node name="Yeti3" parent="." unique_id=2053352016 instance=ExtResource("4_d8yjy")]
 position = Vector2(558, 39)
 ExportedSpriteWrapper = SubResource("Resource_vgdmq")
+ExportedFacing = -1

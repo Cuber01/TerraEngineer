@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="6_0mt7t"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="6_co8xx"]
 
-[sub_resource type="Resource" id="Resource_4gd0s"]
+[sub_resource type="Resource" id="Resource_0mt7t"]
 script = ExtResource("5_accah")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -29,7 +29,8 @@ tile_set = ExtResource("2_4gd0s")
 
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("6_co8xx")]
 position = Vector2(111, 35)
-ExportedSpriteWrapper = SubResource("Resource_4gd0s")
+ExportedSpriteWrapper = SubResource("Resource_0mt7t")
+ExportedFacing = -1
 
 [node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("6_0mt7t")]
 position = Vector2(640, -23)
