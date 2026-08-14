@@ -306,7 +306,7 @@ position = Vector2(1, 0)
 speed = 120.0
 acceleration = 4.31
 friction = 3.5
-airResistance = 3.5
+airResistance = 4.31
 
 [node name="JumpComponent" parent="ComponentManager" unique_id=1945252795 instance=ExtResource("6_owoq1")]
 jumpVelocity = 112.0

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://lvyd7vmj2y65" path="res://game/hazard/hazard_area/HazardArea.tscn" id="5_8upbs"]
 [ext_resource type="PackedScene" uid="uid://boooxlqm536jd" path="res://entities/objects/autodoc/AutoDoc.tscn" id="5_i47ji"]
 [ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="6_i47ji"]
+[ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="7_75lcc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i47ji"]
 size = Vector2(495, 24)
@@ -58,3 +59,6 @@ position = Vector2(578, 81)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint2" unique_id=764495129]
 position = Vector2(-10, 7)
 shape = SubResource("RectangleShape2D_tki2q")
+
+[node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("7_75lcc")]
+position = Vector2(643, -57)
