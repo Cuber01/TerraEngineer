@@ -170,7 +170,7 @@ shape = SubResource("RectangleShape2D_bek6k")
 [node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("5_awxjs")]
 
 [node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("6_lhyyy")]
-lifetime = 10.0
+lifetime = 8.0
 
 [node name="GravityComponent" parent="ComponentManager" unique_id=1158163884 instance=ExtResource("7_pvlro")]
 maxGravity = 400.0

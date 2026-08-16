@@ -13,9 +13,11 @@ public partial class Snowball : Projectile
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if(IsOnFloor())
+		if (IsOnFloor())
+		{
 			CM.GetComponent<Move>().Walk(Facing, (float)delta);
-		
+		}
+
 		CM.UpdateComponents((float)delta);
 		
 		HandleMove();
