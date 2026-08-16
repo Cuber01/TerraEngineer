@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c6lmh5fprlfv2"]
+
+[ext_resource type="PackedScene" uid="uid://k3r6y3y067bv" path="res://components/advanced/spawn_scheduler/CreatureSpawnScheduler.tscn" id="1_a04g6"]
+[ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawnerComponent.tscn" id="2_4utd4"]
+[ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="3_dvw3b"]
+
+[node name="DroneSpawnScheduler" unique_id=1039981081 node_paths=PackedStringArray("spawner") instance=ExtResource("1_a04g6")]
+spawner = NodePath("CreatureSpawnerComponent")
+spawnChance = 0.5
+spawnInterval = 3.0
+
+[node name="CreatureSpawnerComponent" parent="." index="0" unique_id=1794889250 instance=ExtResource("2_4utd4")]
+Scene = ExtResource("3_dvw3b")

@@ -4,15 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_sssef"]
 [ext_resource type="PackedScene" uid="uid://bpp8sk6owgww3" path="res://entities/mobs/creatures/penguin/Penguin.tscn" id="3_uxkfv"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="4_sssef"]
-[ext_resource type="PackedScene" uid="uid://k3r6y3y067bv" path="res://components/advanced/spawn_scheduler/CreatureSpawnScheduler.tscn" id="5_hkp7k"]
-[ext_resource type="PackedScene" uid="uid://dc23talabpgrc" path="res://components/basic/spawners/creature_spawner/CreatureSpawnerComponent.tscn" id="6_4ulah"]
-[ext_resource type="PackedScene" uid="uid://rk0413hw3mha" path="res://entities/mobs/creatures/snowdrone/Snowdrone.tscn" id="7_e1fu1"]
+[ext_resource type="PackedScene" uid="uid://c6lmh5fprlfv2" path="res://components/advanced/spawn_scheduler/child_scenes/DroneSpawnScheduler.tscn" id="5_sssef"]
 
-[sub_resource type="Resource" id="Resource_hkp7k"]
+[sub_resource type="Resource" id="Resource_g27i3"]
 script = ExtResource("4_sssef")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="Resource" id="Resource_4ulah"]
+[sub_resource type="Resource" id="Resource_hkp7k"]
 script = ExtResource("4_sssef")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -29,22 +27,16 @@ tile_set = ExtResource("1_v4i2j")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("3_uxkfv")]
 position = Vector2(30, 207)
-ExportedSpriteWrapper = SubResource("Resource_hkp7k")
+ExportedSpriteWrapper = SubResource("Resource_g27i3")
 
 [node name="Penguin2" parent="." unique_id=1253494832 instance=ExtResource("3_uxkfv")]
 position = Vector2(29, 95)
-ExportedSpriteWrapper = SubResource("Resource_4ulah")
+ExportedSpriteWrapper = SubResource("Resource_hkp7k")
 
-[node name="CreatureSpawnScheduler" parent="." unique_id=1039981081 node_paths=PackedStringArray("spawner", "spawnSpace") instance=ExtResource("5_hkp7k")]
-position = Vector2(656, 0)
-spawner = NodePath("CreatureSpawnerComponent")
-spawnSpace = NodePath("ReferenceRect")
-spawnChance = 0.3
-spawnInterval = 5.0
+[node name="DroneSpawnScheduler" parent="." unique_id=1039981081 instance=ExtResource("5_sssef")]
+position = Vector2(17, 0)
 
-[node name="CreatureSpawnerComponent" parent="CreatureSpawnScheduler" unique_id=426868698 instance=ExtResource("6_4ulah")]
-Scene = ExtResource("7_e1fu1")
-
-[node name="ReferenceRect" type="ReferenceRect" parent="CreatureSpawnScheduler" unique_id=1901519534]
-offset_right = 32.0
-offset_bottom = 379.0
+[node name="ReferenceRect" type="ReferenceRect" parent="DroneSpawnScheduler" unique_id=424742362]
+offset_left = 640.0
+offset_right = 680.0
+offset_bottom = 369.0

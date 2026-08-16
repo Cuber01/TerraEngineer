@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="6_0mt7t"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="6_co8xx"]
 [ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="7_4gd0s"]
+[ext_resource type="PackedScene" uid="uid://c6lmh5fprlfv2" path="res://components/advanced/spawn_scheduler/child_scenes/DroneSpawnScheduler.tscn" id="8_sseqv"]
 
-[sub_resource type="Resource" id="Resource_4gd0s"]
+[sub_resource type="Resource" id="Resource_tfphq"]
 script = ExtResource("5_accah")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -37,7 +38,7 @@ tile_set = ExtResource("2_4gd0s")
 
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("6_co8xx")]
 position = Vector2(111, 35)
-ExportedSpriteWrapper = SubResource("Resource_4gd0s")
+ExportedSpriteWrapper = SubResource("Resource_tfphq")
 ExportedFacing = -1
 
 [node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("6_0mt7t")]
@@ -56,3 +57,10 @@ position = Vector2(86, 12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint2" unique_id=1050847130]
 position = Vector2(78.5, 0)
 shape = SubResource("RectangleShape2D_4gd0s")
+
+[node name="DroneSpawnScheduler" parent="." unique_id=1039981081 instance=ExtResource("8_sseqv")]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DroneSpawnScheduler" unique_id=1456800455]
+offset_left = 640.0
+offset_right = 680.0
+offset_bottom = 179.0

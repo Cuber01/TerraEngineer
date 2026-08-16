@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="5_hom60"]
 [ext_resource type="PackedScene" uid="uid://lvyd7vmj2y65" path="res://game/hazard/hazard_area/HazardArea.tscn" id="6_56j80"]
 [ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="6_perks"]
+[ext_resource type="PackedScene" uid="uid://c6lmh5fprlfv2" path="res://components/advanced/spawn_scheduler/child_scenes/DroneSpawnScheduler.tscn" id="7_perks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56j80"]
 size = Vector2(230, 36)
@@ -113,3 +114,11 @@ shape = SubResource("RectangleShape2D_0b11j")
 [node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("6_perks")]
 position = Vector2(366, -5)
 process_material = SubResource("ShaderMaterial_e0376")
+
+[node name="DroneSpawnScheduler" parent="." unique_id=1039981081 instance=ExtResource("7_perks")]
+position = Vector2(-320, 0)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DroneSpawnScheduler" unique_id=1273104450]
+offset_left = 640.0
+offset_right = 680.0
+offset_bottom = 369.0
