@@ -13,8 +13,9 @@ public partial class Snowball : Projectile
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		if(IsOnFloor())
+			CM.GetComponent<Move>().Walk(Facing, (float)delta);
 		
-		CM.GetComponent<Move>().Walk(Facing, (float)delta);
 		CM.UpdateComponents((float)delta);
 		
 		HandleMove();
@@ -24,6 +25,6 @@ public partial class Snowball : Projectile
 	protected override void FlipEffect()
 	{
 		base.FlipEffect();
-		velocity = -velocity;
+		velocity.X = -velocity.X;
 	}
 }
