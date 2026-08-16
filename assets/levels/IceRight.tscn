@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="5_accah"]
 [ext_resource type="PackedScene" uid="uid://bxeqm073snaax" path="res://gfx/snow/SnowEffect.tscn" id="6_0mt7t"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="6_co8xx"]
-[ext_resource type="PackedScene" uid="uid://lvyd7vmj2y65" path="res://game/hazard/hazard_area/HazardArea.tscn" id="7_4gd0s"]
+[ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="7_4gd0s"]
 
-[sub_resource type="Resource" id="Resource_0mt7t"]
+[sub_resource type="Resource" id="Resource_4gd0s"]
 script = ExtResource("5_accah")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -20,6 +20,8 @@ size = Vector2(249, 22)
 
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"IceRight"
+
+[node name="RoomInstance" parent="." unique_id=190077693 instance=ExtResource("3_sseqv")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1739096045]
 z_index = 2
@@ -33,26 +35,24 @@ position = Vector2(104, 124)
 tile_map_data = PackedByteArray("AAD+/wMABwADAAAAAAD//wMABwADAAAAAAAAAAMABwADAAAAAAABAAMABwADAAAAAAACAAMABwADAAAAAAA=")
 tile_set = ExtResource("2_4gd0s")
 
-[node name="RoomInstance" parent="." unique_id=1004152205 instance=ExtResource("3_sseqv")]
-
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("6_co8xx")]
 position = Vector2(111, 35)
-ExportedSpriteWrapper = SubResource("Resource_0mt7t")
+ExportedSpriteWrapper = SubResource("Resource_4gd0s")
 ExportedFacing = -1
 
 [node name="SnowEffect" parent="." unique_id=546630888 instance=ExtResource("6_0mt7t")]
 position = Vector2(640, -23)
 
-[node name="HazardArea" parent="." unique_id=926237003 instance=ExtResource("7_4gd0s")]
-position = Vector2(169, 135)
+[node name="HazardRespawnPoint" parent="." unique_id=903134636 instance=ExtResource("7_4gd0s")]
+position = Vector2(176, 137)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=2116666205]
-position = Vector2(11, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint" unique_id=2116666205]
+position = Vector2(4, -1)
 shape = SubResource("RectangleShape2D_sseqv")
 
-[node name="HazardArea2" parent="." unique_id=296954424 instance=ExtResource("7_4gd0s")]
-position = Vector2(86, 13)
+[node name="HazardRespawnPoint2" parent="." unique_id=1507864590 instance=ExtResource("7_4gd0s")]
+position = Vector2(86, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea2" unique_id=1050847130]
-position = Vector2(78.5, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint2" unique_id=1050847130]
+position = Vector2(78.5, 0)
 shape = SubResource("RectangleShape2D_4gd0s")
