@@ -5,18 +5,25 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_d8yjy"]
 [ext_resource type="PackedScene" uid="uid://bc2pkjtg2ft1c" path="res://entities/mobs/creatures/yeti/Yeti.tscn" id="4_d8yjy"]
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="5_161ob"]
-
-[sub_resource type="Resource" id="Resource_d8yjy"]
-script = ExtResource("5_161ob")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
-
-[sub_resource type="Resource" id="Resource_161ob"]
-script = ExtResource("5_161ob")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
+[ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="6_161ob"]
 
 [sub_resource type="Resource" id="Resource_vgdmq"]
 script = ExtResource("5_161ob")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="Resource" id="Resource_4rwmx"]
+script = ExtResource("5_161ob")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="Resource" id="Resource_a02gj"]
+script = ExtResource("5_161ob")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_161ob"]
+size = Vector2(33.5, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru183"]
+size = Vector2(64, 29)
 
 [node name="Level" type="Node2D" unique_id=1264198129]
 metadata/level_name = &"IceCave1"
@@ -37,14 +44,28 @@ tile_set = ExtResource("2_llvr0")
 
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("4_d8yjy")]
 position = Vector2(262, 87)
-ExportedSpriteWrapper = SubResource("Resource_d8yjy")
+ExportedSpriteWrapper = SubResource("Resource_vgdmq")
 ExportedFacing = -1
 
 [node name="Yeti2" parent="." unique_id=620656229 instance=ExtResource("4_d8yjy")]
 position = Vector2(463, 39)
-ExportedSpriteWrapper = SubResource("Resource_161ob")
+ExportedSpriteWrapper = SubResource("Resource_4rwmx")
 
 [node name="Yeti3" parent="." unique_id=2053352016 instance=ExtResource("4_d8yjy")]
 position = Vector2(558, 39)
-ExportedSpriteWrapper = SubResource("Resource_vgdmq")
+ExportedSpriteWrapper = SubResource("Resource_a02gj")
 ExportedFacing = -1
+
+[node name="HazardRespawnPoint" parent="." unique_id=903134636 instance=ExtResource("6_161ob")]
+position = Vector2(90, 121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint" unique_id=135554260]
+position = Vector2(-1.25, -13.5)
+shape = SubResource("RectangleShape2D_161ob")
+
+[node name="HazardRespawnPoint2" parent="." unique_id=642088437 instance=ExtResource("6_161ob")]
+position = Vector2(511, 19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawnPoint2" unique_id=135320319]
+position = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_ru183")

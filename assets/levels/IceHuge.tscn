@@ -14,17 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="12_euun5"]
 [ext_resource type="PackedScene" uid="uid://lvyd7vmj2y65" path="res://game/hazard/hazard_area/HazardArea.tscn" id="13_ofufd"]
 
-[sub_resource type="Resource" id="Resource_euun5"]
-script = ExtResource("5_l2j0d")
-metadata/_custom_type_script = "uid://w784gkp03g63"
-
 [sub_resource type="Resource" id="Resource_ofufd"]
 script = ExtResource("5_l2j0d")
 metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="Resource" id="Resource_guo1m"]
-script = ExtResource("5_d5gp1")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
+script = ExtResource("5_l2j0d")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="Resource" id="Resource_cigo7"]
 script = ExtResource("5_d5gp1")
@@ -34,7 +30,11 @@ metadata/_custom_type_script = "uid://byqwodwsmyd66"
 script = ExtResource("5_d5gp1")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_al8dn"]
+[sub_resource type="Resource" id="Resource_al8dn"]
+script = ExtResource("5_d5gp1")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvuw7"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("9_jgcgi")
@@ -140,30 +140,30 @@ tile_set = ExtResource("2_4ncbg")
 
 [node name="Snail" parent="." unique_id=749977076 instance=ExtResource("4_kqbj1")]
 position = Vector2(783, 107)
-ExportedSpriteWrapper = SubResource("Resource_euun5")
+ExportedSpriteWrapper = SubResource("Resource_ofufd")
 
 [node name="Snail2" parent="." unique_id=2008045061 instance=ExtResource("4_kqbj1")]
 position = Vector2(783, 180)
-ExportedSpriteWrapper = SubResource("Resource_ofufd")
+ExportedSpriteWrapper = SubResource("Resource_guo1m")
 
 [node name="Yeti" parent="." unique_id=771239512 instance=ExtResource("6_jgcgi")]
 position = Vector2(729, 23)
-ExportedSpriteWrapper = SubResource("Resource_guo1m")
+ExportedSpriteWrapper = SubResource("Resource_cigo7")
 
 [node name="Yeti2" parent="." unique_id=92286628 instance=ExtResource("6_jgcgi")]
 position = Vector2(837, 23)
-ExportedSpriteWrapper = SubResource("Resource_cigo7")
+ExportedSpriteWrapper = SubResource("Resource_sdiq1")
 ExportedFacing = -1
 
 [node name="Penguin" parent="." unique_id=158773391 instance=ExtResource("4_ocwf6")]
 position = Vector2(52, 245)
-ExportedSpriteWrapper = SubResource("Resource_sdiq1")
+ExportedSpriteWrapper = SubResource("Resource_al8dn")
 
 [node name="JumpComponent" parent="Penguin/ComponentManager" parent_id_path=PackedInt32Array(158773391, 1765219149) index="0" unique_id=1935978130]
 jumpVelocity = 80.0
 
 [node name="ShaderComponent" parent="Penguin/ComponentManager" parent_id_path=PackedInt32Array(158773391, 1765219149) index="6" unique_id=300308497]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_al8dn")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jvuw7")])
 
 [node name="SecretRoom" parent="." unique_id=685863141 instance=ExtResource("9_ocwf6")]
 position = Vector2(464, 0)
@@ -234,11 +234,8 @@ position = Vector2(730, 339)
 position = Vector2(122, 26)
 shape = SubResource("RectangleShape2D_guo1m")
 
-[node name="HazardArea2" parent="." unique_id=1642903999 instance=ExtResource("13_ofufd")]
-position = Vector2(11, 333)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea2" unique_id=1231691336]
-position = Vector2(106, 32)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HazardArea" unique_id=1231691336]
+position = Vector2(-613, 26)
 shape = SubResource("RectangleShape2D_cigo7")
 
 [editable path="Penguin"]
