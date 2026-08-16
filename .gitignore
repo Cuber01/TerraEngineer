@@ -6,4 +6,5 @@
 Folder.DotSettings.user
 Terra Engineer.sln.DotSettings.user
 .bin/
+build/
 *.zip

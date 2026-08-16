@@ -10,11 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://dwt3cung16kav" path="res://entities/objects/pickupable_item/PickupableHealthSerum.tscn" id="7_dv3cm"]
 [ext_resource type="PackedScene" uid="uid://w1brqpunfh7u" path="res://game/hazard/hazard_respawn_point/HazardRespawnPoint.tscn" id="9_vrrut"]
 
-[sub_resource type="Resource" id="Resource_j8oxb"]
+[sub_resource type="Resource" id="Resource_vrrut"]
 script = ExtResource("5_vrrut")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejda4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j8oxb"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_75mmm")
@@ -24,11 +24,11 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[sub_resource type="Resource" id="Resource_qr0h4"]
+[sub_resource type="Resource" id="Resource_ejda4"]
 script = ExtResource("5_vrrut")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ciogb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qr0h4"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_75mmm")
@@ -37,12 +37,12 @@ shader_parameter/ignore_color = Vector4(0, 0, 0, 0)
 shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
+
+[sub_resource type="Resource" id="Resource_ciogb"]
+script = ExtResource("5_vrrut")
+metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
 [sub_resource type="Resource" id="Resource_5lqey"]
-script = ExtResource("5_vrrut")
-metadata/_custom_type_script = "uid://byqwodwsmyd66"
-
-[sub_resource type="Resource" id="Resource_g7m2l"]
 script = ExtResource("5_vrrut")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -74,17 +74,17 @@ tile_set = ExtResource("2_c3chl")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("4_dk348")]
 position = Vector2(489, 43)
-ExportedSpriteWrapper = SubResource("Resource_j8oxb")
+ExportedSpriteWrapper = SubResource("Resource_vrrut")
 
 [node name="JumpComponent" parent="Penguin/ComponentManager" parent_id_path=PackedInt32Array(771239512, 1765219149) index="0" unique_id=1935978130]
 jumpVelocity = 50.0
 
 [node name="ShaderComponent" parent="Penguin/ComponentManager" parent_id_path=PackedInt32Array(771239512, 1765219149) index="6" unique_id=300308497]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_ejda4")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_j8oxb")])
 
 [node name="Penguin2" parent="." unique_id=1830396754 instance=ExtResource("4_dk348")]
 position = Vector2(825, 44)
-ExportedSpriteWrapper = SubResource("Resource_qr0h4")
+ExportedSpriteWrapper = SubResource("Resource_ejda4")
 ExportedFacing = -1
 
 [node name="Sprite2D" parent="Penguin2" index="0" unique_id=458524593]
@@ -97,16 +97,16 @@ position = Vector2(-7, 0)
 jumpVelocity = 50.0
 
 [node name="ShaderComponent" parent="Penguin2/ComponentManager" parent_id_path=PackedInt32Array(1830396754, 1765219149) index="6" unique_id=300308497]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_ciogb")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_qr0h4")])
 
 [node name="Yeti" parent="." unique_id=1163335444 instance=ExtResource("4_75mmm")]
 position = Vector2(778, 39)
-ExportedSpriteWrapper = SubResource("Resource_5lqey")
+ExportedSpriteWrapper = SubResource("Resource_ciogb")
 ExportedFacing = -1
 
 [node name="Yeti2" parent="." unique_id=1055692311 instance=ExtResource("4_75mmm")]
 position = Vector2(598, 39)
-ExportedSpriteWrapper = SubResource("Resource_g7m2l")
+ExportedSpriteWrapper = SubResource("Resource_5lqey")
 
 [node name="PickupableHealthSerum" parent="." unique_id=780288586 instance=ExtResource("7_dv3cm")]
 position = Vector2(599, 162)
