@@ -24,3 +24,6 @@ offset_bottom = 168.0
 [node name="Snowinatron" parent="." unique_id=771239512 node_paths=PackedStringArray("arena") instance=ExtResource("3_lp3od")]
 position = Vector2(159, 47)
 arena = NodePath("../ArenaRect")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1033031865]
+position = Vector2(23, 24)

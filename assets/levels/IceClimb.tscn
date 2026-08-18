@@ -6,11 +6,11 @@
 [ext_resource type="Script" uid="uid://byqwodwsmyd66" path="res://game/sprite/PlayerWrapper.cs" id="4_sssef"]
 [ext_resource type="PackedScene" uid="uid://c6lmh5fprlfv2" path="res://components/advanced/spawn_scheduler/child_scenes/DroneSpawnScheduler.tscn" id="5_sssef"]
 
-[sub_resource type="Resource" id="Resource_g27i3"]
+[sub_resource type="Resource" id="Resource_sssef"]
 script = ExtResource("4_sssef")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
-[sub_resource type="Resource" id="Resource_hkp7k"]
+[sub_resource type="Resource" id="Resource_g27i3"]
 script = ExtResource("4_sssef")
 metadata/_custom_type_script = "uid://byqwodwsmyd66"
 
@@ -27,14 +27,15 @@ tile_set = ExtResource("1_v4i2j")
 
 [node name="Penguin" parent="." unique_id=771239512 instance=ExtResource("3_uxkfv")]
 position = Vector2(30, 207)
-ExportedSpriteWrapper = SubResource("Resource_g27i3")
+ExportedSpriteWrapper = SubResource("Resource_sssef")
 
 [node name="Penguin2" parent="." unique_id=1253494832 instance=ExtResource("3_uxkfv")]
 position = Vector2(29, 95)
-ExportedSpriteWrapper = SubResource("Resource_hkp7k")
+ExportedSpriteWrapper = SubResource("Resource_g27i3")
 
-[node name="DroneSpawnScheduler" parent="." unique_id=1039981081 instance=ExtResource("5_sssef")]
+[node name="DroneSpawnScheduler" parent="." unique_id=1039981081 node_paths=PackedStringArray("spawnSpace") instance=ExtResource("5_sssef")]
 position = Vector2(17, 0)
+spawnSpace = NodePath("ReferenceRect")
 
 [node name="ReferenceRect" type="ReferenceRect" parent="DroneSpawnScheduler" unique_id=424742362]
 offset_left = 640.0

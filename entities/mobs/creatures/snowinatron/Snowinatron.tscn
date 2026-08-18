@@ -1,12 +1,18 @@
 [gd_scene format=4 uid="uid://yfg1rqgh4fxh"]
 
 [ext_resource type="Script" uid="uid://bq6sb8vtplyr2" path="res://entities/mobs/creatures/snowinatron/Snowinatron.cs" id="1_ev452"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_apv7l"]
+[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="2_xk5qw"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_3gse6"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_xk5qw"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="5_u1s03"]
 [ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="6_84c3w"]
 [ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="6_bibcv"]
 [ext_resource type="PackedScene" uid="uid://b5d6pp4po2am2" path="res://entities/mobs/projectile/homing_projectile/HomingBullet.tscn" id="7_3gse6"]
+
+[sub_resource type="Resource" id="Resource_u1s03"]
+script = ExtResource("2_apv7l")
+metadata/_custom_type_script = "uid://w784gkp03g63"
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_apv7l"]
 _data = PackedByteArray("AAADAAUAAAABAAAAEAAAABAAAACoAAAAUklGRqAAAABXRUJQVlA4TJMAAAAvD8ADEDegkI0kaB3W4FNYlDM+R7WQJEEr8JFsvtH5GxyOQjaS4OB+dwqLcSQ3/wGAepnqr7H+5PbgprbevNX2FgGQ3ALwN3jXURg4AH69Z0pE/wP4FgCfYgGvJDcYctfJK8/mYa+yqoWNyJq/fo6Y29z6OaKqql8jct9bvw5lVZMd8mwu4y93XXC4JAOWawGwFgAA")
@@ -27,7 +33,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjpwe"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84c3w"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_84c3w")
@@ -37,10 +43,18 @@ shader_parameter/blink_speed = 2.0
 shader_parameter/delta_time = 0.0
 shader_parameter/run = false
 
-[node name="Snowinatron" type="CharacterBody2D" unique_id=771239512]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bibcv"]
+size = Vector2(16, 16)
+
+[node name="Snowinatron" type="CharacterBody2D" unique_id=771239512 node_paths=PackedStringArray("CM", "Sprite")]
 collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_ev452")
+basicBulletScene = ExtResource("2_xk5qw")
+homingBulletScene = ExtResource("7_3gse6")
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_u1s03")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=59368433]
 texture_filter = 1
@@ -70,7 +84,10 @@ MaxHealth = 8
 invincibilityTimeOnHit = 0.0
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("5_u1s03")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jjpwe")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_84c3w")])
 
 [node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=213596528 instance=ExtResource("6_bibcv")]
 Scene = ExtResource("7_3gse6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450602564]
+shape = SubResource("RectangleShape2D_bibcv")
