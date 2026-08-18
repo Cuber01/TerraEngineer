@@ -9,6 +9,7 @@ public partial class HomingProjectile : Projectile
 	
 	public override void _Ready()
 	{
+		base._Ready();
 		player = GetNode<Player>(Names.NodePaths.Player);
 	}
 

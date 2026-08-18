@@ -34,12 +34,12 @@ public partial class Snowinatron : Creature
 
         bool IsFinished() => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished);
         
-        fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition);
-        // fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition);
+        fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition, 0, 0f);
+        fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition, 0, 1.0f);
         // fsm.AddTransition(waitState, throwSnowState, waitState.TimerCondition);
         
         fsm.AddTransition(sidesShootState, waitState, ()=>true);
-        // fsm.AddTransition(shootHomingState, waitState, IsFinished);
+        fsm.AddTransition(shootHomingState, waitState, IsFinished);
         // fsm.AddTransition(throwSnowState, waitState, IsFinished);
         
         // Actor.fsm.FireTrigger(GenericCreatureTriggers.TaskFinished);
@@ -190,7 +190,7 @@ public partial class Snowinatron : Creature
         private const float ChanceOfNextBullet = 0.8f;
         private int bulletsShot = 0;
         
-        public void Enter()
+        public override void Enter()
         {
             bulletsShot = 0;
             spawnBullet(null);
