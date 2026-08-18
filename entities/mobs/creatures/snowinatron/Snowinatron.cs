@@ -99,7 +99,7 @@ public partial class Snowinatron : Creature
                 case Direction4.Left:
                 {
                     Vector2 startPos = arenaPos + DistFromArenaBounds*Vector2.One;
-                    float boundDown = arenaPos.Y + arenaSize.Y - DistFromArenaBounds;
+                    float boundDown = arenaPos.Y + arenaSize.Y;
                     int bulletAmount = (int)((boundDown - startPos.Y) / DistBetweenBullets);
                     int missingBullet = MathT.RandomInt(1, bulletAmount);
 
@@ -107,7 +107,7 @@ public partial class Snowinatron : Creature
                     for (float y = startPos.Y; y < boundDown; y += DistBetweenBullets)
                     {
                         // There's a randomly chosen "entrance" through the bullet wall
-                        if (bulletId != missingBullet || bulletId != missingBullet - 1)
+                        if (bulletId != missingBullet && bulletId != missingBullet - 1)
                         {
                             spawnBullet(new Vector2(startPos.X, y), Vector2.Right);    
                         }
@@ -118,15 +118,14 @@ public partial class Snowinatron : Creature
                 case Direction4.Right:
                 {
                     Vector2 startPos = new Vector2(arenaPos.X+arenaSize.X-DistFromArenaBounds, arenaPos.Y+DistFromArenaBounds);
-                    float boundDown = arenaPos.Y + arenaSize.Y - DistFromArenaBounds;
+                    float boundDown = arenaPos.Y + arenaSize.Y;
                     int bulletAmount = (int)((boundDown - startPos.Y) / DistBetweenBullets);
                     int missingBullet = MathT.RandomInt(1, bulletAmount);
                     
                     int bulletId = 0;
                     for (float y = startPos.Y; y < boundDown; y += DistBetweenBullets)
                     {
-                        // There's a randomly chosen "entrance" through the bullet wall
-                        if (bulletId != missingBullet || bulletId != missingBullet - 1)
+                        if (bulletId != missingBullet && bulletId != missingBullet - 1)
                         {
                             spawnBullet(new Vector2(startPos.X, y), Vector2.Left);
                         }
@@ -137,14 +136,14 @@ public partial class Snowinatron : Creature
                 case Direction4.Up:
                 {
                     Vector2 startPos = arenaPos + DistFromArenaBounds*Vector2.One;
-                    float boundRight = arenaPos.X + arenaSize.X - DistFromArenaBounds;
+                    float boundRight = arenaPos.X + arenaSize.X;
                     int bulletAmount = (int)((boundRight - startPos.X) / DistBetweenBullets);
                     int missingBullet = MathT.RandomInt(1, bulletAmount);
                     
                     int bulletId = 0;
                     for (float x = startPos.X; x < arenaPos.X + arenaSize.X - DistFromArenaBounds; x += DistBetweenBullets)
                     {
-                        if (bulletId != missingBullet || bulletId != missingBullet - 1)
+                        if (bulletId != missingBullet && bulletId != missingBullet - 1)
                         {
                             spawnBullet(new Vector2(x, startPos.Y), Vector2.Down);
                         }
