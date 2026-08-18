@@ -38,7 +38,7 @@ public partial class Snowinatron : Creature
         // fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition);
         // fsm.AddTransition(waitState, throwSnowState, waitState.TimerCondition);
         
-        fsm.AddTransition(sidesShootState, waitState, IsFinished);
+        fsm.AddTransition(sidesShootState, waitState, ()=>true);
         // fsm.AddTransition(shootHomingState, waitState, IsFinished);
         // fsm.AddTransition(throwSnowState, waitState, IsFinished);
         
@@ -117,13 +117,13 @@ public partial class Snowinatron : Creature
                     break;
                 case Direction4.Right:
                 {
-                    Vector2 startPos = arenaPos+arenaSize - DistFromArenaBounds*Vector2.One;
+                    Vector2 startPos = new Vector2(arenaPos.X+arenaSize.X-DistFromArenaBounds, arenaPos.Y+DistFromArenaBounds);
                     float boundDown = arenaPos.Y + arenaSize.Y - DistFromArenaBounds;
                     int bulletAmount = (int)((boundDown - startPos.Y) / DistBetweenBullets);
                     int missingBullet = MathT.RandomInt(1, bulletAmount);
                     
                     int bulletId = 0;
-                    for (float y = startPos.Y; y < arenaPos.Y + arenaSize.Y - DistFromArenaBounds; y += DistBetweenBullets)
+                    for (float y = startPos.Y; y < boundDown; y += DistBetweenBullets)
                     {
                         // There's a randomly chosen "entrance" through the bullet wall
                         if (bulletId != missingBullet || bulletId != missingBullet - 1)
