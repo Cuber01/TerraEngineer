@@ -15,5 +15,3 @@ public enum Direction4
     Down=3,
     None=0
 }
-
-

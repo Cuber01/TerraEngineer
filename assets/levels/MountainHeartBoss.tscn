@@ -13,3 +13,9 @@ tile_map_data = PackedByteArray("AADv//D/AgACAAEAAADv//H/AgACAAEAAADv//L/AgACAAE
 tile_set = ExtResource("1_squ7d")
 
 [node name="RoomInstance" parent="." unique_id=1004152205 instance=ExtResource("3_04wup")]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1460481096]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 168.0

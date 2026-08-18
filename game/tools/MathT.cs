@@ -49,6 +49,11 @@ public static class MathT
         int i = RandomInt(0, random.Next(args.Length));
         return args[i];
     }
+    
+    public static bool RandomBool(float trueChance=0.5f)
+    {
+        return random.NextDouble() < trueChance;
+    }
 
     public static Vector2 RandomVector2(float min, float max)
     {

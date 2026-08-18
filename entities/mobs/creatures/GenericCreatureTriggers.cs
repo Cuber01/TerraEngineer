@@ -4,5 +4,6 @@ public enum GenericCreatureTriggers
 {
     TaskFinished,
     EnemyDetected,
-    EnemyLost
+    EnemyLost,
+    BeingHurt
 }
