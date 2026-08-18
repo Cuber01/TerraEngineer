@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cx1tfk5i0bt1x"
+path="res://.godot/imported/homing-bullet.aseprite-4eb440be994fe0e71b11afce7b2f21b1.res"
+
+[deps]
+
+source_file="res://entities/mobs/projectile/homing_projectile/homing-bullet.aseprite"
+dest_files=["res://.godot/imported/homing-bullet.aseprite-4eb440be994fe0e71b11afce7b2f21b1.res"]
+
+[params]
+

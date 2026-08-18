@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://qqimbfdr2f1j"
+path="res://.godot/imported/snowflake-bullet.ase-94a61dffaea155ef567ca25d0047d737.res"
+
+[deps]
+
+source_file="res://entities/mobs/creatures/snowinatron/snowflake-bullet.ase"
+dest_files=["res://.godot/imported/snowflake-bullet.ase-94a61dffaea155ef567ca25d0047d737.res"]
+
+[params]
+

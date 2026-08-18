@@ -1,0 +1,81 @@
+[gd_scene format=4 uid="uid://b5d6pp4po2am2"]
+
+[ext_resource type="Script" uid="uid://exo02qc8enua" path="res://entities/mobs/projectile/homing_projectile/HomingProjectile.cs" id="1_ippwn"]
+[ext_resource type="PackedScene" uid="uid://30g37quxgbk2" path="res://entities/mobs/projectile/EnemyBulletHitArea.tscn" id="1_ww7jw"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="2_ippwn"]
+[ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_k2axi"]
+[ext_resource type="PackedScene" uid="uid://bakgk2dcg81b6" path="res://components/basic/lifetime/LifetimeComponent.tscn" id="3_k2axi"]
+[ext_resource type="PackedScene" uid="uid://bs00eiy8lhlvg" path="res://components/basic/free_fly/FreeFlyComponent.tscn" id="4_ywt6f"]
+
+[sub_resource type="Resource" id="Resource_ywt6f"]
+script = ExtResource("2_k2axi")
+metadata/_custom_type_script = "uid://w784gkp03g63"
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_ww7jw"]
+_data = PackedByteArray("AAADAAUAAAABAAAABwAAAAcAAABgAAAAUklGRlgAAABXRUJQVlA4TEwAAAAvBoABECegoG0U6PxbegE1SFLTtgET/sBKqNc6iLRt5mQC5l/Y4dn8B8ClvOJ5HRS0kRSn5wAFWDgDPOtgIvofODkJtjP7Ldt5EnAC")
+size_override = Vector2(7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ippwn"]
+atlas = SubResource("PortableCompressedTexture2D_ww7jw")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k2axi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ippwn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww7jw"]
+size = Vector2(5, 5)
+
+[node name="HomingBullet" type="CharacterBody2D" unique_id=556815162 node_paths=PackedStringArray("hitArea", "CM", "Sprite")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ippwn")
+hitArea = NodePath("HitArea")
+knockbackForce = 10.0
+CM = NodePath("ComponentManager")
+Sprite = NodePath("AnimatedSprite2D")
+ExportedSpriteWrapper = SubResource("Resource_ywt6f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=36281496]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_k2axi")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/mobs/projectile/homing_projectile/homing-bullet.aseprite",
+"source_uid": 6442021716473176303
+}
+metadata/_aseprite_wizard_source_file_hash_ = "4501b2716f23e157708d9c610c359abb"
+
+[node name="HitArea" parent="." unique_id=1072028451 instance=ExtResource("1_ww7jw")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitArea" unique_id=1414801838]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ww7jw")
+
+[node name="ComponentManager" parent="." unique_id=1086564786 instance=ExtResource("2_ippwn")]
+
+[node name="LifetimeComponent" parent="ComponentManager" unique_id=611267927 instance=ExtResource("3_k2axi")]
+lifetime = 8.0
+
+[node name="FreeFlyComponent" parent="ComponentManager" unique_id=123531175 instance=ExtResource("4_ywt6f")]
+speed = 200.0
+acceleration = 0.95
+airResistance = 0.0
