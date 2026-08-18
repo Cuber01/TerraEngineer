@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TerraEngineer;
+using TerraEngineer.entities.mobs.creatures;
 
 public class StateMachine<T>
 {
@@ -148,5 +149,6 @@ public class StateMachine<T>
         public readonly float Probability = probability;
         public readonly uint Priority = priority;
     }
-    
+
+
 }

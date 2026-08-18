@@ -1,0 +1,76 @@
+[gd_scene format=4 uid="uid://yfg1rqgh4fxh"]
+
+[ext_resource type="Script" uid="uid://bq6sb8vtplyr2" path="res://entities/mobs/creatures/snowinatron/Snowinatron.cs" id="1_ev452"]
+[ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_3gse6"]
+[ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_xk5qw"]
+[ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="5_u1s03"]
+[ext_resource type="Shader" uid="uid://cxksc8qvj1ruc" path="res://shaders/blink.gdshader" id="6_84c3w"]
+[ext_resource type="PackedScene" uid="uid://dkvr8v554lald" path="res://components/basic/spawners/projectile_spawner/ProjectileSpawnerComponent.tscn" id="6_bibcv"]
+[ext_resource type="PackedScene" uid="uid://b5d6pp4po2am2" path="res://entities/mobs/projectile/homing_projectile/HomingBullet.tscn" id="7_3gse6"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_apv7l"]
+_data = PackedByteArray("AAADAAUAAAABAAAAEAAAABAAAACoAAAAUklGRqAAAABXRUJQVlA4TJMAAAAvD8ADEDegkI0kaB3W4FNYlDM+R7WQJEEr8JFsvtH5GxyOQjaS4OB+dwqLcSQ3/wGAepnqr7H+5PbgprbevNX2FgGQ3ALwN3jXURg4AH69Z0pE/wP4FgCfYgGvJDcYctfJK8/mYa+yqoWNyJq/fo6Y29z6OaKqql8jct9bvw5lVZMd8mwu4y93XXC4JAOWawGwFgAA")
+size_override = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bibcv"]
+atlas = SubResource("PortableCompressedTexture2D_apv7l")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gse6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bibcv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjpwe"]
+resource_local_to_scene = true
+resource_name = "Blink"
+shader = ExtResource("6_84c3w")
+shader_parameter/blink_color = Vector4(1, 1, 1, 1)
+shader_parameter/ignore_color = Vector4(0, 0, 0, 0)
+shader_parameter/blink_speed = 2.0
+shader_parameter/delta_time = 0.0
+shader_parameter/run = false
+
+[node name="Snowinatron" type="CharacterBody2D" unique_id=771239512]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource("1_ev452")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=59368433]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_3gse6")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/mobs/creatures/snowinatron/snowinatron.ase",
+"source_uid": 6029999078181604598
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c90cab7b28ce2fec54f0540d6623b9d5"
+
+[node name="ComponentManager" parent="." unique_id=1765219149 instance=ExtResource("3_3gse6")]
+
+[node name="HealthComponent" parent="ComponentManager" unique_id=80804480 instance=ExtResource("4_xk5qw")]
+MaxHealth = 8
+invincibilityTimeOnHit = 0.0
+
+[node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("5_u1s03")]
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_jjpwe")])
+
+[node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=213596528 instance=ExtResource("6_bibcv")]
+Scene = ExtResource("7_3gse6")
