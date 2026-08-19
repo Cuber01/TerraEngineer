@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bq6sb8vtplyr2" path="res://entities/mobs/creatures/snowinatron/Snowinatron.cs" id="1_ev452"]
 [ext_resource type="Script" uid="uid://w784gkp03g63" path="res://game/sprite/AnimatedWrapper.cs" id="2_apv7l"]
-[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="2_xk5qw"]
+[ext_resource type="PackedScene" uid="uid://cxwxa83ck6qba" path="res://entities/mobs/projectile/basic_bullet/SnowflakeBullet.tscn" id="2_xk5qw"]
 [ext_resource type="PackedScene" uid="uid://bs3qn0k6qk34k" path="res://components/component_manager/ComponentManager.tscn" id="3_3gse6"]
 [ext_resource type="PackedScene" uid="uid://rh1dx2kfkm1n" path="res://components/basic/health/HealthComponent.tscn" id="4_xk5qw"]
 [ext_resource type="PackedScene" uid="uid://cgxg315s21wev" path="res://components/basic/shader/ShaderComponent.tscn" id="5_u1s03"]
@@ -33,7 +33,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_84c3w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1s03"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_84c3w")
@@ -84,7 +84,7 @@ MaxHealth = 8
 invincibilityTimeOnHit = 0.0
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("5_u1s03")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_84c3w")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_u1s03")])
 
 [node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=213596528 instance=ExtResource("6_bibcv")]
 Scene = ExtResource("7_3gse6")

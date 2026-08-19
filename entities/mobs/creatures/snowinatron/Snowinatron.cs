@@ -34,8 +34,8 @@ public partial class Snowinatron : Creature
 
         bool IsFinished() => fsm.ConsumeTrigger(GenericCreatureTriggers.TaskFinished);
         
-        fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition,0,0.6f );
-        fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition,0, 0.4f );
+        fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition,0,0.5f );
+        fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition,0, 0.5f );
         // fsm.AddTransition(waitState, throwSnowState, waitState.TimerCondition);
         
         fsm.AddTransition(sidesShootState, waitState, ()=>true);
@@ -57,7 +57,7 @@ public partial class Snowinatron : Creature
     public class SidesShootState : State<Snowinatron>
     {
         private const int DistFromArenaBounds = 8;
-        private const int DistBetweenBullets = 8;
+        private const int DistBetweenBullets = 12;
 
         // We do some hoops here to make sure that the player doesn't get shot in the face
         public override void Enter()
@@ -186,14 +186,22 @@ public partial class Snowinatron : Creature
         private const int MaxBullets = 4;
         private const float ChanceOfNextBullet = 0.8f;
         private int bulletsShot = 0;
+        private bool shootBulletNextUpdate = false;
         
         public override void Enter()
         {
+            shootBulletNextUpdate = false;
             bulletsShot = 0;
-            spawnBullet(null);
+            spawnBullet();
         }
-        
-        private void spawnBullet(ITimer _)
+
+        public override void Update(float dt)
+        {
+            if(shootBulletNextUpdate)
+                spawnBullet();
+        }
+
+        private void spawnBullet()
         {
             Actor.CM.GetComponent<ProjectileSpawner>()
                 .Start(Actor.homingBulletScene)
@@ -203,17 +211,18 @@ public partial class Snowinatron : Creature
             Actor.CM.GetComponent<ProjectileSpawner>().AddToGame();
             
             bulletsShot += 1;
+            shootBulletNextUpdate = false;
             considerReschedule();
         }
 
         private void considerReschedule()
         {
-            if (bulletsShot >= MaxBullets || MathT.RandomBool(1f-ChanceOfNextBullet))
+            if (bulletsShot >= MaxBullets || MathT.RandomBool(1-ChanceOfNextBullet))
             {
                 Actor.fsm.FireTrigger(GenericCreatureTriggers.TaskFinished);
                 return;
             }
-            TimerManager.Schedule(TimeBetweenBullets, Actor, spawnBullet);
+            TimerManager.Schedule(TimeBetweenBullets, Actor, (_) => shootBulletNextUpdate = true);
         }
     }
     
