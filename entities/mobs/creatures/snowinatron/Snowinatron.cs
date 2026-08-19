@@ -34,8 +34,8 @@ public partial class Snowinatron : Creature
 
         bool IsFinished() => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished);
         
-        fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition, 0, 0f);
-        fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition, 0, 1.0f);
+        fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition,0,0.6f );
+        fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition,0, 0.4f );
         // fsm.AddTransition(waitState, throwSnowState, waitState.TimerCondition);
         
         fsm.AddTransition(sidesShootState, waitState, ()=>true);
@@ -93,62 +93,59 @@ public partial class Snowinatron : Creature
         {
             Vector2 arenaSize = Actor.arena.Size;
             Vector2 arenaPos = Actor.arena.GlobalPosition;
+
+            void CreateBulletWallY(Vector2 startPos, Vector2 flyingDirection)
+            {
+                float boundDown = arenaPos.Y + arenaSize.Y;
+                int bulletAmount = (int)((boundDown - startPos.Y) / DistBetweenBullets);
+                int missingBullet = MathT.RandomInt(1, bulletAmount);
+
+                int bulletId = 0;
+                for (float y = startPos.Y; y < boundDown; y += DistBetweenBullets)
+                {
+                    // There's a randomly chosen "entrance" through the bullet wall
+                    if (bulletId != missingBullet && bulletId != missingBullet - 1)
+                    {
+                        spawnBullet(new Vector2(startPos.X, y), flyingDirection);    
+                    }
+                    bulletId += 1;
+                }
+            }
+
+            void CreateBulletWallX(Vector2 startPos, Vector2 flyingDirection)
+            {
+                float boundRight = arenaPos.X + arenaSize.X;
+                int bulletAmount = (int)((boundRight - startPos.X) / DistBetweenBullets);
+                int missingBullet = MathT.RandomInt(1, bulletAmount);
+                    
+                int bulletId = 0;
+                for (float x = startPos.X; x < arenaPos.X + arenaSize.X - DistFromArenaBounds; x += DistBetweenBullets)
+                {
+                    if (bulletId != missingBullet && bulletId != missingBullet - 1)
+                    {
+                        spawnBullet(new Vector2(x, startPos.Y), flyingDirection);
+                    }
+                    bulletId += 1;
+                }
+            }
             
             switch (direction)
             {
                 case Direction4.Left:
                 {
-                    Vector2 startPos = arenaPos + DistFromArenaBounds*Vector2.One;
-                    float boundDown = arenaPos.Y + arenaSize.Y;
-                    int bulletAmount = (int)((boundDown - startPos.Y) / DistBetweenBullets);
-                    int missingBullet = MathT.RandomInt(1, bulletAmount);
-
-                    int bulletId = 0;
-                    for (float y = startPos.Y; y < boundDown; y += DistBetweenBullets)
-                    {
-                        // There's a randomly chosen "entrance" through the bullet wall
-                        if (bulletId != missingBullet && bulletId != missingBullet - 1)
-                        {
-                            spawnBullet(new Vector2(startPos.X, y), Vector2.Right);    
-                        }
-                        bulletId += 1;
-                    }
+                    CreateBulletWallY(arenaPos + DistFromArenaBounds * Vector2.One,
+                        Vector2.Right);
                 }
                     break;
                 case Direction4.Right:
                 {
-                    Vector2 startPos = new Vector2(arenaPos.X+arenaSize.X-DistFromArenaBounds, arenaPos.Y+DistFromArenaBounds);
-                    float boundDown = arenaPos.Y + arenaSize.Y;
-                    int bulletAmount = (int)((boundDown - startPos.Y) / DistBetweenBullets);
-                    int missingBullet = MathT.RandomInt(1, bulletAmount);
-                    
-                    int bulletId = 0;
-                    for (float y = startPos.Y; y < boundDown; y += DistBetweenBullets)
-                    {
-                        if (bulletId != missingBullet && bulletId != missingBullet - 1)
-                        {
-                            spawnBullet(new Vector2(startPos.X, y), Vector2.Left);
-                        }
-                        bulletId += 1;
-                    }
+                    CreateBulletWallY(new Vector2(arenaPos.X+arenaSize.X-DistFromArenaBounds, arenaPos.Y+DistFromArenaBounds),
+                        Vector2.Left);
                 }
                     break;
                 case Direction4.Up:
                 {
-                    Vector2 startPos = arenaPos + DistFromArenaBounds*Vector2.One;
-                    float boundRight = arenaPos.X + arenaSize.X;
-                    int bulletAmount = (int)((boundRight - startPos.X) / DistBetweenBullets);
-                    int missingBullet = MathT.RandomInt(1, bulletAmount);
-                    
-                    int bulletId = 0;
-                    for (float x = startPos.X; x < arenaPos.X + arenaSize.X - DistFromArenaBounds; x += DistBetweenBullets)
-                    {
-                        if (bulletId != missingBullet && bulletId != missingBullet - 1)
-                        {
-                            spawnBullet(new Vector2(x, startPos.Y), Vector2.Down);
-                        }
-                        bulletId += 1;
-                    }
+                    CreateBulletWallX(arenaPos + DistFromArenaBounds*Vector2.One, Vector2.Down);
                 }
                     break;
                 default:
