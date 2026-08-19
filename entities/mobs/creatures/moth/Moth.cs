@@ -13,8 +13,8 @@ public partial class Moth : FlyingCreature
         Player = GetNode<Player>(Names.NodePaths.Player);
         FlyAroundPoint = GlobalPosition;
         fsm = new StateMachineWithTriggers<FlyingCreature, GenericCreatureTriggers>(this, idleState);
-        fsm.AddTransition(idleState, chaseState, (() => fsm.IsTriggered(GenericCreatureTriggers.EnemyDetected)));
-        fsm.AddTransition(chaseState, idleState, (() => fsm.IsTriggered(GenericCreatureTriggers.EnemyLost)));
+        fsm.AddTransition(idleState, chaseState, (() => fsm.ConsumeTrigger(GenericCreatureTriggers.EnemyDetected)));
+        fsm.AddTransition(chaseState, idleState, (() => fsm.ConsumeTrigger(GenericCreatureTriggers.EnemyLost)));
     }
 
     public override void _PhysicsProcess(double delta)

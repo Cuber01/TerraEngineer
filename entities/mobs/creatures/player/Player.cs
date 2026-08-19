@@ -57,43 +57,43 @@ public partial class Player : Creature
 		// State machine related
 
 		fsm = new StateMachineWithTriggers<Player, PlayerTriggers>(this, idleState, true);
-		fsm.AddTransition(idleState, walkState, () => fsm.IsTriggered(PlayerTriggers.PressedMove), 0);
-		fsm.AddTransition(walkState, idleState, () => fsm.IsTriggered(PlayerTriggers.ReleasedMove), 0);
+		fsm.AddTransition(idleState, walkState, () => fsm.ConsumeTrigger(PlayerTriggers.PressedMove), 0);
+		fsm.AddTransition(walkState, idleState, () => fsm.ConsumeTrigger(PlayerTriggers.ReleasedMove), 0);
 		
-		fsm.AddTransition(fallState, idleState, () => fsm.IsTriggered(PlayerTriggers.Landed));
-		fsm.AddTransition(fallState, walkState, () => fsm.IsTriggered(PlayerTriggers.Landed) &&
-		                                              fsm.IsTriggered(PlayerTriggers.PressedMove)
-													  , 1);
+		fsm.AddTransition(fallState, idleState, () => fsm.ConsumeTrigger(PlayerTriggers.Landed));
+		fsm.AddTransition(fallState, walkState, () => fsm.ConsumeTriggers([PlayerTriggers.Landed, PlayerTriggers.PressedMove]), 1);
 		
-		fsm.AddTransition(idleState, phaseState, () => PhasingAllowed 
-														       && fsm.IsTriggered(PlayerTriggers.PressedJump)  
+		// Order of ConsumeTrigger is super important - it has to be last to make sure we don't consume a trigger
+		// without switching state
+		fsm.AddTransition(idleState, phaseState, () => PhasingAllowed
 															   && Input.IsActionPressed(Names.Actions.Down)
 														       && !CM.GetComponent<PollingArea>().IsColliding()
 														       && IsOnFloor()
+															   && fsm.ConsumeTrigger(PlayerTriggers.PressedJump)
 														       ,3);
 
 		fsm.AddTransition(phaseState, idleState, () => true);
 		
-		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 2);
-		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && IsOnFloor(), 2);
+		fsm.AddTransition(idleState, jumpState, () => IsOnFloor() && fsm.ConsumeTrigger(PlayerTriggers.PressedJump), 2);
+		fsm.AddTransition(walkState, jumpState, () => IsOnFloor() && fsm.ConsumeTrigger(PlayerTriggers.PressedJump), 2);
 		
 		// Allow jumping while falling if player has double jump
-		fsm.AddTransition(idleState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1, 2);
-		fsm.AddTransition(walkState, jumpState, () => fsm.IsTriggered(PlayerTriggers.PressedJump) && !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1, 2);
+		fsm.AddTransition(idleState, jumpState, () => !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1 && fsm.ConsumeTrigger(PlayerTriggers.PressedJump) , 2);
+		fsm.AddTransition(walkState, jumpState, () => !IsOnFloor() && CM.GetComponent<Jump>().MaxJumps > 1 && fsm.ConsumeTrigger(PlayerTriggers.PressedJump), 2);
 
 		fsm.AddTransition(dashState, fallState, () => !CM.GetComponent<Dash>().IsDashing);
-		fsm.AddTransition(jumpState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
-		fsm.AddTransition(walkState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
-		fsm.AddTransition(idleState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
-		fsm.AddTransition(fallState, dashState, () => fsm.IsTriggered(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(jumpState, dashState, () => fsm.ConsumeTrigger(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(walkState, dashState, () => fsm.ConsumeTrigger(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(idleState, dashState, () => fsm.ConsumeTrigger(PlayerTriggers.PressedDash), 1);
+		fsm.AddTransition(fallState, dashState, () => fsm.ConsumeTrigger(PlayerTriggers.PressedDash), 1);
 		
 		fsm.AddTransition(jumpState, fallState, () => velocity.Y > 0);
 		fsm.AddTransition(walkState, fallState, () => velocity.Y > 0, 1);
 		fsm.AddTransition(idleState, fallState, () => velocity.Y > 0, 1);
 		
 		fsm.AddGlobalTransition(noclipState, () => fsm.CurrentState != noclipState && 
-		                                           fsm.IsTriggered(PlayerTriggers.ToggleNoclip), 0);
-		fsm.AddTransition(noclipState, idleState, () => fsm.IsTriggered(PlayerTriggers.ToggleNoclip));
+		                                           fsm.ConsumeTrigger(PlayerTriggers.ToggleNoclip), 0);
+		fsm.AddTransition(noclipState, idleState, () => fsm.ConsumeTrigger(PlayerTriggers.ToggleNoclip));
 
 		CM.GetComponent<Gravity>().LandedOnFloor += () => fsm.FireTrigger(PlayerTriggers.Landed);
 		

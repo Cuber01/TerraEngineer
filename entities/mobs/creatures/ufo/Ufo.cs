@@ -16,8 +16,8 @@ public partial class Ufo : FlyingCreature
         
         FlyAroundPoint = GlobalPosition;
         fsm = new StateMachineWithTriggers<FlyingCreature, GenericCreatureTriggers>(this, idleState);
-        fsm.AddTransition(idleState, bombardState, (() => fsm.IsTriggered(GenericCreatureTriggers.EnemyDetected)));
-        fsm.AddTransition(bombardState, idleState, (() => fsm.IsTriggered(GenericCreatureTriggers.EnemyLost)));
+        fsm.AddTransition(idleState, bombardState, (() => fsm.ConsumeTrigger(GenericCreatureTriggers.EnemyDetected)));
+        fsm.AddTransition(bombardState, idleState, (() => fsm.ConsumeTrigger(GenericCreatureTriggers.EnemyLost)));
     }
 
     public override void _PhysicsProcess(double delta)

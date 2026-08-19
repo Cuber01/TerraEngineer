@@ -26,6 +26,30 @@ public class StateMachineWithTriggers<T, TEnum> : StateMachine<T> where TEnum : 
         }
     }
 
+    public bool ConsumeTrigger(TEnum trigger)
+    {
+        triggers[trigger] = false;
+        return triggers[trigger];
+    }
+
+    public bool ConsumeTriggers(TEnum[] list)
+    {
+        foreach(TEnum trigger in list)
+        {
+            if (!triggers[trigger])
+            {
+                return false;
+            }
+        }
+        
+        // We consume only if all are true
+        foreach(TEnum trigger in list)
+        {
+            triggers[trigger] = false;
+        }
+        return true;
+    }
+    
     public bool IsTriggered(TEnum trigger)
     {
         return triggers[trigger];

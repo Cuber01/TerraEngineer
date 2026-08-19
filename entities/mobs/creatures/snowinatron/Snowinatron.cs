@@ -32,7 +32,7 @@ public partial class Snowinatron : Creature
         
         fsm = new (this, waitState);
 
-        bool IsFinished() => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished);
+        bool IsFinished() => fsm.ConsumeTrigger(GenericCreatureTriggers.TaskFinished);
         
         fsm.AddTransition(waitState, sidesShootState, waitState.TimerCondition,0,0.6f );
         fsm.AddTransition(waitState, shootHomingState, waitState.TimerCondition,0, 0.4f );

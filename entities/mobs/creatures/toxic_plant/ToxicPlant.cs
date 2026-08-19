@@ -16,7 +16,7 @@ public partial class ToxicPlant : Creature
     public override void Init()
     {
         fsm = new StateMachineWithTriggers<ToxicPlant,GenericCreatureTriggers>(this, waitState);
-        fsm.AddTransition(shootState, waitState, (() => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished)));
+        fsm.AddTransition(shootState, waitState, (() => fsm.ConsumeTrigger(GenericCreatureTriggers.TaskFinished)));
         fsm.AddTransition(waitState, shootState, waitState.TimerCondition);
     }
     

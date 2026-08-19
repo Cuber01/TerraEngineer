@@ -33,7 +33,7 @@ public partial class Snail : Creature
         startingFacing = vecFacing;
         
         fsm.AddTransition(walkState, rotateState, needsRotate);
-        fsm.AddTransition(rotateState, walkState, () => fsm.IsTriggered(GenericCreatureTriggers.TaskFinished));
+        fsm.AddTransition(rotateState, walkState, () => fsm.ConsumeTrigger(GenericCreatureTriggers.TaskFinished));
     }
     
     public override void _PhysicsProcess(double delta)
