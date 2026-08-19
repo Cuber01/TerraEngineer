@@ -1,0 +1,52 @@
+[gd_scene format=4 uid="uid://cxwxa83ck6qba"]
+
+[ext_resource type="PackedScene" uid="uid://5uwwimmiw8sl" path="res://entities/mobs/projectile/basic_bullet/BasicBullet.tscn" id="1_4xfnq"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_4xfnq"]
+_data = PackedByteArray("AAADAAUAAAABAAAABQAAAAUAAABMAAAAUklGRkQAAABXRUJQVlA4TDgAAAAvBAABEB8gJCD8v6SZYJ3atm0Y//9vTwaBAOFEgP8rEfMfALW+5qCQbQToHqThnuIBRfQ/6LVeFA==")
+size_override = Vector2(5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3y57"]
+atlas = SubResource("PortableCompressedTexture2D_4xfnq")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pv5jh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3y57")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="SnowflakeBullet" unique_id=556815162 instance=ExtResource("1_4xfnq")]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=36281496]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_pv5jh")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://entities/mobs/creatures/snowinatron/snowflake-bullet.ase",
+"source_uid": 1156558768149929113
+}
+metadata/_aseprite_wizard_source_file_hash_ = "491b30c5d4127b885f951c908794b269"
+
+[node name="LifetimeComponent" parent="ComponentManager" parent_id_path=PackedInt32Array(1086564786) index="0" unique_id=611267927]
+lifetime = 6.0
+
+[node name="FreeFlyComponent" parent="ComponentManager" parent_id_path=PackedInt32Array(1086564786) index="1" unique_id=123531175]
+speed = 150.0
+acceleration = 1.0
