@@ -1,14 +1,40 @@
-
-todo til v0:
 X add frog animations
 X add double jump as an item
 X make it possible to leave the office lore room
-- add dialogue to radio in tower
+~ add dialogue to radio in tower
 X make boss room open only after picking up double jump
 X rewrite switcher area as generic area that fires event on enter
-
-puzzle room todo:
 X fix invalid access to property or key scene file path in terraformable room
 x ice crystal should melt lol
 X smol shroom must change sprite on terraform
 X cave pc has fcked up hitbox
+X limit amount of export - replace with const and readonly
+X remove all manual state changes and replace them with triggers
+X prevent event memory leaks on events - make state exit on death?
+X change controller code to be event-based instead of polling (_input instead of _update)
+X add mediator class for inputs instead of relying on player to pass gui and interacted events 
+X use float extension IsWithin for old code too
+X find way to reuse states like in a decorator pattern (note: in decorator pattern we would make states that expand on other states, not solving our problem. the best way to reuse states with our existing architecture is to use base entity/creature classes as state type.)
+X implement deflect for gravity bullets
+~ inventory taker and crafting station should use the same class (tried and failed, they have different behaviour, and are hard to easily break up into smaller segments)
+X projectile Area2D should be it's own scene for quick reuse
+~ force export groups to be uncollapsed (this is not supported I think)
+X make collectibles display on map and mark themselves as collected dynamically
+X make pickupable item use metsys storage instead of SaveEntity component
+~ give rifle a long reload time
+X Mushroom Boss prototype  
+X inventory design  
+X Puzzle prototype  
+X level design (lab, puzzle, boss room, room adjacent to boss, phase shift item room) :ballot_box_with_check:
+X map saving + teleportation research :ballot_box_with_check:
+X teleportation  
+X inventory 
+X setting up ice biome tileset~~
+X ice biome design (enemies, big map) 
+X ice biome ability  
+X ice biome gun  
+X make enemies for ice biome 
+X ice biome level design  
+X boss design 
+X ice boss 
+X place mushroom essence somewhere (right after mushroom boss?) 

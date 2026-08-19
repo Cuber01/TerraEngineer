@@ -18,31 +18,31 @@ f1 - save at current location
 f2 - noclip on/off
 f3 - godmode on/off
 
+before v0.2:
+- add map icons
+- block unfinished entrances
+- add savepoints
+- add teleporter so that leaving snowinatron level is possible
+- make zombie's jump / detection avoidable with double jump, but not with normal jump
+- invincibility should turn off your hitbox, not just turn off taking damage
+- make sure that all levels are accessible for the player and that the player can go back to previous levels
+- non-ase sprites don't work properly with blink shader
+- finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there
+- RESEARCH & FIX: there are issues player "bumping/limitng jump" when going to levels upwards
+- RESEARCH & FIX: stability issues with GC when loading new levels
+- play through the game and fix all issues that come up
 
 code cleanliness todo:
-X limit amount of export - replace with const and readonly
-X remove all manual state changes and replace them with triggers
-X prevent event memory leaks on events - make state exit on death?
-X change controller code to be event-based instead of polling (_input instead of _update)
-X add mediator class for inputs instead of relying on player to pass gui and interacted events 
-X use float extension IsWithin for old code too
-X find way to reuse states like in a decorator pattern (note: in decorator pattern we would make states that expand on other states, not solving our problem. the best way to reuse states with our existing architecture is to use base entity/creature classes as state type.)
-X implement deflect for gravity bullets
 - make flip automatically look for hitboxes and flip them
 - save DialoguesGlobalState as a whole instead of relying on one million SaveEntity components
-N inventory taker and crafting station should use the same class (tried and failed, they have different behaviour, and are hard to easily break up into smaller segments)
-X projectile Area2D should be it's own scene for quick reuse
-N force export groups to be uncollapsed (this is not supported I think)
 - move all connecting signals to code from godot
 - try to cut down on usage of editable children for components?
 - move reusable systems to a commons folder?
 - make noclip not break other states, its getting pretty bad
 
 todo balance:
-- make zombie's jump / detection avoidable with double jump, but not with normal jump
-- give rifle a long reload time
+- add mana
 - make frog boss rain frogs instead of spawning them with a long attack - the hit frame should be at when he is charging for jump instead
-- invincibility should turn off your hitbox, not just turn off taking damage
 - raise player air resistance, the x travel of the jump is ridiculous especially since we have dash for that
 
 todo would be nice:
@@ -51,16 +51,6 @@ todo would be nice:
 - allow for multiple markers per cell. in metsys store markers as a bitmask, and in map view if there are multiple symbols show them one by one interchangeably (blinking)
 - lore-wise the teleporter kills the old you every time you use it
 - some area that is only accessible once you discover a teleporter into it via some map item
-
-todo bugs:
-X lots of player bugs when walking through levels up/down. Make sure level is loaded before applying extra player velocity
-- theres still a lot of bumping like issues when going up
-- non-ase sprites don't ignore colors in blink shader
-
-to-finish todo:
-- finish terraforming sprayer for water (there's a sprite). It should be connected via fat pipes to water and spray terraforming there
-X make collectibles display on map and mark themselves as collected dynamically
-X make pickupable item use metsys storage instead of SaveEntity component
 
 the search for sfx:
 - consider taking some from Burning Knight (MIT)
