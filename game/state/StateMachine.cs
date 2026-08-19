@@ -47,25 +47,11 @@ public class StateMachine<T>
         
         Transition<T> transition = GetTransition();
         if (transition != null) {
-            changeState(transition.To);
+            ChangeState(transition.To);
         }
     }
 
-    public void ChangeState(State<T> newState)
-    {
-        if (!manualTransitionAllowed) {
-            throw new AccessViolationException("Cannot manually change state when manualTransition flag is false");
-        }
-
-        if (CurrentState == newState)
-        {
-            return;
-        }
-    
-        changeState(newState);
-    }
-    
-    private void changeState(State<T> newState)
+    protected void ChangeState(State<T> newState)
     {
         CurrentState.Exit();
         CurrentState = newState;
@@ -78,7 +64,7 @@ public class StateMachine<T>
         .Where(t => t.From == CurrentState)
         .ToList();
 
-    private Transition<T> GetTransition()
+    protected Transition<T> GetTransition()
     {
         List<Transition<T>> availableTransitions = new();
         
@@ -141,7 +127,7 @@ public class StateMachine<T>
     }
 
     // If from=null it's a global transition
-    private class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from, uint priority, float probability)
+    protected class Transition<U>(State<U> to, System.Func<bool> condition, State<U> from, uint priority, float probability)
     {
         public readonly State<U> From = from;
         public readonly State<U> To = to;

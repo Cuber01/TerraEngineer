@@ -330,6 +330,9 @@ public partial class Player : Creature
 		#endif
 		
 		fsm.Update((float)delta);
+		// Reset input-based triggers
+		fsm.ResetTriggers([PlayerTriggers.PressedMove, PlayerTriggers.PressedDash, PlayerTriggers.PressedJump,PlayerTriggers.ReleasedMove,PlayerTriggers.ToggleNoclip]);
+		
 		CM.UpdateComponents((float)delta);
 		
 		HandleMove();

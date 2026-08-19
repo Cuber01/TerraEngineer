@@ -16,20 +16,14 @@ public class StateMachineWithTriggers<T, TEnum> : StateMachine<T> where TEnum : 
         }
     }
 
-    public override void Update(float dt)
-    {
-        base.Update(dt);
-        
-        foreach (KeyValuePair<TEnum, bool> pair in triggers)
-        {
-            triggers[pair.Key] = false;
-        }
-    }
-
     public bool ConsumeTrigger(TEnum trigger)
     {
-        triggers[trigger] = false;
-        return triggers[trigger];
+        if (triggers[trigger])
+        {
+            triggers[trigger] = false;
+            return true;
+        }
+        return false;
     }
 
     public bool ConsumeTriggers(TEnum[] list)
@@ -48,6 +42,14 @@ public class StateMachineWithTriggers<T, TEnum> : StateMachine<T> where TEnum : 
             triggers[trigger] = false;
         }
         return true;
+    }
+
+    public void ResetTriggers(TEnum[] list)
+    {
+        foreach(TEnum trigger in list)
+        {
+            triggers[trigger] = false;
+        }
     }
     
     public bool IsTriggered(TEnum trigger)
