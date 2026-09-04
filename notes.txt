@@ -12,7 +12,7 @@ f3 - godmode on/off
 
 before v0.2:
 - add map icons
-- block unfinished entrances
+X block unfinished entrances
 - add savepoints
 - add teleporter so that leaving snowinatron level is possible
 - make zombie's jump / detection avoidable with double jump, but not with normal jump
@@ -47,6 +47,7 @@ todo would be nice:
 
 the search for sfx:
 - consider taking some from Burning Knight (MIT)
+- inspiration: Satryn?
 - consider purchasing a pack from itch
 
 occasional stability issue when teleporting (changing scene):

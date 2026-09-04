@@ -33,7 +33,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1s03"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xk5qw"]
 resource_local_to_scene = true
 resource_name = "Blink"
 shader = ExtResource("6_84c3w")
@@ -84,7 +84,7 @@ MaxHealth = 8
 invincibilityTimeOnHit = 0.0
 
 [node name="ShaderComponent" parent="ComponentManager" unique_id=300308497 instance=ExtResource("5_u1s03")]
-importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_u1s03")])
+importedShaders = Array[ShaderMaterial]([SubResource("ShaderMaterial_xk5qw")])
 
 [node name="ProjectileSpawnerComponent" parent="ComponentManager" unique_id=213596528 instance=ExtResource("6_bibcv")]
 Scene = ExtResource("7_3gse6")

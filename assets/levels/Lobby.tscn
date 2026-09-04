@@ -13,10 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://syutpctt6pee" path="res://assets/world/office/table.tres" id="12_mip8o"]
 [ext_resource type="Texture2D" uid="uid://bf0xwp4h6v7k5" path="res://assets/world/office/cup.tres" id="13_fqd37"]
 [ext_resource type="Texture2D" uid="uid://bbck0gr3oja6t" path="res://assets/world/office/chair.tres" id="14_8rd0g"]
+[ext_resource type="Texture2D" uid="uid://lfxtyxigtmk3" path="res://assets/x.png" id="14_vn4jd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ymuiv"]
 atlas = ExtResource("6_gyuag")
 region = Rect2(16, 0, 10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ruwh"]
+size = Vector2(36, 72)
 
 [node name="Level" type="Node2D" unique_id=1988878557]
 metadata/level_name = &"Lobby"
@@ -103,3 +107,14 @@ texture = ExtResource("14_8rd0g")
 position = Vector2(67.00001, 145.99998)
 rotation = 1.5682148
 texture = ExtResource("14_8rd0g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=201821095]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=67721422]
+position = Vector2(11, 112)
+shape = SubResource("RectangleShape2D_3ruwh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1457262399]
+position = Vector2(11, 112)
+scale = Vector2(0.5625, 1.125)
+texture = ExtResource("14_vn4jd")
